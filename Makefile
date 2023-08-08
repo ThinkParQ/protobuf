@@ -8,15 +8,20 @@ all: protos
 
 # Generate Go code from protobuf files:
 PROTO_FILES := $(shell find ./. -name '*.proto')
-PROTO_GENERATED_FILES := $(patsubst %.proto, %.pb.go, $(PROTO_FILES))
+GO_GENERATED_FILES := $(patsubst %.proto, %.pb.go, $(PROTO_FILES))
+CPP_PROTO_GENERATED_FILES := $(patsubst %.proto, %.pb.cc, $(PROTO_FILES))
 
 .PHONY: protos
 
-protos: $(PROTO_GENERATED_FILES)
+protos: $(GO_GENERATED_FILES) $(CPP_PROTO_GENERATED_FILES)
 
 %.pb.go: %.proto
-	@echo "Compiling $<"
+	@echo "Compiling Go $<"
 	protoc -I $(dir $<) --go_out=$(dir $<) --go_opt=paths=source_relative --go-grpc_out=$(dir $<) --go-grpc_opt=paths=source_relative $<
+
+%.pb.cc: %.proto
+	@echo "Compiling C++ $<"
+	protoc -I $(dir $<) --cpp_out=$(dir $<) $<
 
 # Test targets: 
 # Test targets may make change to the local repository (e.g. try to generate protos) to
@@ -27,8 +32,11 @@ protos: $(PROTO_GENERATED_FILES)
 test: test-protos 
 
 test-protos: protos
-	@if [ -n "$$(git status --porcelain */pb/*)" ]; then \
+	@out="$$(git status --porcelain $$(find . -name '*.pb.*'))"; \
+	if [ -n "$$out" ]; then \
 		echo "Protobuf files are not up to date. Please run 'make protos' and commit the changes."; \
+		echo "The following files are not up to date:"; \
+		echo "$$out"; \
 		exit 1; \
 	fi
 
