@@ -75,6 +75,16 @@ intended for you.
 
 When working with protobuf files and vscode it is recommended to install [this
 extension](https://marketplace.visualstudio.com/items?itemName=zxh404.vscode-proto3).
+Especially if you are using a workspace, you will need to add the absolute path
+to the bee-protos project in either your user or workspace `settings.json` file:
+
+```
+    "protoc": {
+        "options": [
+            "--proto_path=/home/joe/development/beeflex/bee-protos/.",
+        ],
+    },
+```
 
 ## Prerequisites
 
