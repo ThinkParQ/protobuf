@@ -1,0 +1,98 @@
+syntax = "proto3";
+package beesync;
+option go_package = "github.com/thinkparq/bee-protos/beesync/go";
+
+import "beegfs/beegfs.proto";
+
+service BeeSync {
+    rpc UpdateConfig(ConfigUpdateRequest) returns (ConfigUpdateResponse);    
+    rpc JobRequests(stream JobRequest) returns (stream JobResponse);
+    // TODO: All work requests should go through the same stream. This makes it
+    // impossible for conflicting operations to occur. However do we want a
+    // seperate (perhaps unary) RPC for checking status?
+}
+
+// All RemoteStorageTarget(s) that should be configured need to be included in
+// each message. Any that are not included will be deleted.
+message ConfigUpdateRequest {
+    repeated beegfs.RemoteStorageTarget rsts = 1;
+}
+
+message ConfigUpdateResponse {
+    Result result = 1;
+    // Message should be used to return any additional details, particuarly to aid in troubleshooting.
+    string message = 2;
+
+    enum Result {
+        UNKNOWN = 0; // Should not be used. Exists only as the default if there is a programming error.
+        SUCCESS = 1; // The configuration was succesfully updated.
+        PARTIAL = 2; // The configuration was partially updated (see the message for details).
+        FAILURE = 3; // The configuration was not updated.
+    }
+}
+
+// A JobRequest encapsulates the details of a particular SyncRequest along with
+// its state including the auto generated ID, segment, and status fields. It is
+// expected the fields in a SyncJob will be populated over time as the job
+// progresses. For example when BeeRemote initially starts a job Segment will
+// not be set so BeeSync can determine if it should determine this (based on
+// file size and autostart_max_size), or if it needs to send the job back to
+// BeeRemote so it can determine if the job should be distributed across
+// multiple nodes. Therefore it is critical to understand the concept of field
+// presence in proto3: https://protobuf.dev/programming-guides/field_presence/
+// TL;DR - Generally expect fields to default to the language specific default
+// values for each type for any fields that were not set by the server.
+message JobRequest {
+    string id = 1;
+    beegfs.JobStatus status = 2;
+    SyncRequest request = 3;
+    Segment segment = 4;
+}
+
+message SyncRequest {
+    beegfs.BeeGFSEntry entry = 1;
+    Operation operation = 2;
+    enum Operation {
+        UNKNOWN = 0;
+        UPLOAD = 1;
+        DOWNLOAD = 2;
+    }    
+}
+
+message JobResponse {
+    string id = 1;
+    beegfs.JobStatus status = 2;
+}
+
+// A segment indicates what portion of a file transfer a particular BeeSync node should work on.
+message Segment {
+    int64 offset_start = 1;
+    int64 offset_stop = 2;
+    uint64 file_size = 3; // This won't be a problem until we support ~18 exabytes files.
+    Config config = 4;
+    
+    message Config {
+        uint32 autostart_max_size = 1; // If the file is smaller than this, we will start the job automatically.
+    }
+
+    // Method defines fields required to figure out "what" and "how" to transfer content.
+    oneof method {
+        bool default = 5;
+        S3 s3 = 6;
+    }
+
+    // BeeSync calculates the amount of data to write in each part based on offset_start and offset_stop.
+    message S3 {
+        string multipart_id = 1;
+        int32 parts_start = 2;
+        int32 parts_stop = 3;
+        repeated CompletedParts completed_parts = 4;
+
+        message CompletedParts {
+            int32 part_number = 1;
+            string entity_tag = 2;
+            string checksum = 3;
+        }
+    }
+}
+

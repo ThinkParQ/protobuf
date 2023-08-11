@@ -1,0 +1,67 @@
+syntax = "proto3";
+package beeremote;
+option go_package = "github.com/thinkparq/bee-protos/beeremote/go";
+
+import "beesync/beesync.proto";
+import "beegfs/beegfs.proto";
+
+
+// Externally facing RPCs and messages clients use to interact with BeeRemote.
+service BeeRemote {
+    rpc SubmitJob(JobRequest) returns (JobResponse);
+    rpc GetJobs(MultiJobRequest) returns (MultiJobResponse);    
+    rpc PauseJobs(MultiJobRequest) returns(MultiJobResponse);    
+    rpc CancelJobs(MultiJobRequest) returns(MultiJobResponse);
+}
+
+// A JobRequest contains all the information necessary for BeeRemote to trigger
+// a job on the appropriate worker node(s) (like BeeSync nodes) based on the
+// particular request_type specified by the user. 
+message JobRequest {
+    // An arbitrary name for a job can be specified.
+    // Job names are optional and not need to be unique.
+    string name = 1;
+    int32 priority = 2;
+    oneof request_type {
+        beesync.SyncRequest sync = 10;
+    }
+}
+
+// A JobResponse is used to return information about a job to a user.
+message JobResponse {
+    string id = 1;
+    beegfs.JobStatus status = 2;
+    JobRequest request = 3;
+}
+
+// Messages used to interact with one or more jobs.
+message MultiJobRequest {
+    JobFilter filter = 1;
+    // If more than results_per_page are returned we'll use pagination.
+    int32 page_number = 2; 
+    // If unspecified we'll cap the number of results returned at some
+    // reasonable number. We'll alway impose an absolute maximum so we don't end
+    // up with very large messages.
+    int32 results_per_page = 3; 
+}
+
+// Returns job(s) that match all specified fields.
+// Any subset of fields (including all or none) can be set.
+// An empty JobFilter can be used to return all jobs.
+// When returning all jobs use of pagination is recommended.
+message JobFilter {
+    // A single ID can be specified to return at most one job.
+    repeated string id = 1;
+    // Only Job(s) matching all set fields will be returned.
+    repeated beegfs.JobStatus status = 2;
+    // We can filter by any fields in the JobRequest.
+    // This includes filtering on fields for specific request_types.
+    repeated JobRequest request = 3;      
+}
+
+// Return results using pagination to avoid overly large message sizes.
+message MultiJobResponse {
+    repeated JobResponse jobs = 1;
+    int32 page_number = 2;
+    int32 total_pages = 3;
+}

@@ -1,0 +1,84 @@
+syntax = "proto3";
+package beegfs;
+option go_package = "github.com/thinkparq/bee-protos/beegfs/go";
+
+message BeeGFSEntry {
+    string id = 1;
+    string path = 2;
+    // This is the string based ID, NOT an actual reference to an RST. 
+    // This ensures we don't have to include the full RST configuration,
+    // every time we send a BeeGFSEntry (commonly as part of a Job).
+    string remote_storage_target = 3;
+}
+
+// Status codese used by BeeRemote and its worker nodes to track the progress of a Job.
+// We use a common set of statuses across all types of workers (such as BeeSync).
+message JobStatus {
+    Status status = 1;
+    // Message should be used to return any additional details, particuarly to aid in troubleshooting.
+    string message = 2;
+
+    // The Status fields are used to track the progress of each JobRequest to a terminal state.
+    // See the docs/design/architecture/v1/job-request-state-flow.drawio diagram for more details.
+    enum Status {
+        UNKNOWN = 0;     // Used if BeeRemote is unable to make contact with a worker node.
+        UNASSIGNED = 1;  // When BeeRemote has a job waiting on an available worker node.
+        ASSIGNED = 2;    // When BeeRemote first assigns a job to a worker node.
+        CREATED = 3;     // When either BeeRemote or a worker has created a multipart upload/other prerequisites of a specific job type.
+        RESCHEDULED = 4; // If a worker node is waiting on BeeRemote to determine if the job should be distributed across multiple workers.
+        SCHEDULED = 5;   // When a worker node has accepted a job but is waiting on CPU cycles to actually run it.
+        RUNNING = 6;     // If a job is actively in progress on a worker.
+        STALLED = 7;     // If a worker node comes up with outstanding jobs, it will first check with BeeRemote to ensure the job wasn't cancelled.
+        PAUSED = 8;      // If a job has been manually paused.
+        FAILED = 9;      // If the worker node encounters an unrecoverable error it will return this status to BeeRemote.
+        COMPLETED = 10;  // If the job has finished succesfully.
+        CANCELLED = 11;  // Set by BeeRemote if a job needs to be cancelled.
+    }
+}
+
+// Note while there is a lot of data contained in RemoteStorageTarget,
+// gRPC will not serialize fields to the wire unless they are set.
+// https://protobuf.dev/programming-guides/proto3/#specifying-field-rules
+// This allows us to define all possible fields that may need to be sent 
+// to BeeSync to configure different target types, without extra overhead.
+message RemoteStorageTarget {
+    string id = 1;
+    string name = 2;
+    Policies policies = 3; 
+
+    // TODO: consider if defining policies would be more flexible as a map.
+    // These could change a lot early on, and defining them here creates a contract 
+    // we won't ever remove/change them.
+    message Policies {
+        bool local_flock = 1;   
+        bool remote_flock = 2;
+        bool keep_dir_structure = 3;
+        bool keep_beegfs_metadata = 4; // If BeeGFS metadata should be stored as extended attributes/metadata (if supported).
+        // int32 cooldown = 4; // Not really relevant for BeeSync.
+        // Future fields could include ReplicationPolicy. 
+    }
+
+    // Type defines fields required to figure out "where" to transfer content.
+    oneof type { // Ref: https://groups.google.com/g/protobuf/c/ojpYHqx2l04
+        S3 s3 = 4;
+        POSIX posix = 5;
+        Azure azure = 6;
+    }
+
+    message S3 {
+        string bucket = 1;
+        string region = 2;
+        string endpoint = 3;
+        string access_key = 4;
+        string secret_key = 5;
+    }
+
+    message Azure {
+        S3 s3 = 1;
+        string account = 2;
+    }
+    
+    message POSIX {
+        string path = 1;
+    }
+}
