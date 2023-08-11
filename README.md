@@ -5,9 +5,9 @@
 - [Overview](#overview)
 - [Quick Start](#quick-start)
   - [Go](#go)
-- [Advanced: Generate / Compile .proto files](#advanced-generate--compile-proto-files)
+- [Advanced: Generate / Compile `.proto` Files](#advanced-generate--compile-proto-files)
   - [Prerequisites](#prerequisites)
-  - [Generating Code](#generating-code)
+  - [Generating Code for a New Language](#generating-code-for-a-new-language)
   - [Generating Code for Golang](#generating-code-for-golang)
 - [References](#references)
 
@@ -16,10 +16,11 @@
 This repository contains the [Protocol Buffer](https://protobuf.dev/overview/)
 and gRPC service definitions (as `.proto` files) for a number of projects in the
 BeeGFS ecosystem. These `.proto` files are used to generate code that allows the
-data structures and gRPC clients and servers to be easily used from a number of
-languages. Generated code for select languages is also provided through this
-repository, or users can generate code themselves using the `protoc` tool and
-any language specific plugins.
+data structures and gRPC clients and servers to be easily used and implemented
+in a number of languages. Generated code for select languages is also provided
+alongside each `.proto` file organized into per-language sub-directories.
+Alternatively users can generate code themselves using the `protoc` tool and any
+language specific plugins.
 
 Languages with precompiled/generated code:
 
@@ -32,7 +33,7 @@ Languages with precompiled/generated code:
 
 Most users will not need to worry about generating code themselves, and can
 simply import this repository into their project using whatever method is
-appropriate for their language. 
+appropriate for their language.
 
 ## Go
 
@@ -52,7 +53,7 @@ Steps:
 access the repository directly instead of going through the central services
 (which could potentially leak information, such as the project name):
 ```shell
-export GOPRIVATE=github.com/thinkparq/bee-protos
+export GOPRIVATE=github.com/thinkparq/bee-protos/go
 ```
 (2) Add the following to your global `.gitconfig` file to ensure `go get` will
 use SSH instead of HTTP:
@@ -62,10 +63,10 @@ use SSH instead of HTTP:
 ```
 (3) From here you can add any of the packages from bee-protos as a dependency
 with `go get`. For example to use BeeWatch in your project run `go get
-github.com/thinkparq/bee-protos/beewatch`. When changes are made to the
+github.com/thinkparq/bee-protos/beewatch/go`. When changes are made to the
 `bee-protos` project you can update dependencies with `go get -u <URL>` 
 
-# Advanced: Generate / Compile .proto files
+# Advanced: Generate / Compile `.proto` Files
 
 For convenience, pregenerated/compiled code for popular language is provided in
 this repository. This means most users should only need to follow the steps in
@@ -100,7 +101,7 @@ to the bee-protos project in either your user or workspace `settings.json` file:
 * Ensure all the necessary binaries are added to your `$PATH` variable using
   `.bashrc` or similar.
 
-## Generating Code
+## Generating Code for a New Language
 
 The project Makefile is setup with targets to compile all protobuf files in the
 project into a multiple target languages when `make` or `make protos` is
@@ -108,21 +109,30 @@ executed.
 
 To add a new language amend the Makefile as follows:
 
-1. Add a new variable `<LANGUAGE>_GENERATED_FILES` that transforms the `.proto`
+1. In each directory containing a `.proto` file add a new subdirectory where
+   language specific files will be compiled/generated (for example `cpp` or
+   `go`).
+1. Add any additional options to the `.proto` files required by the language.
+   1. For example for Go something like `option go_package =
+      "github.com/thinkparq/bee-protos/beesync/go";` is required so cross
+      package imports work correctly.
+2. Add a new variable `<LANGUAGE>_GENERATED_FILES` that transforms the `.proto`
    file names returned by `PROTO_FILES` into corresponding files to generate for
    the target language.
    1. For example for Go this looks like: `GO_GENERATED_FILES := $(patsubst
       %.proto, %.pb.go, $(PROTO_FILES))`.
-2. Modify the `protos` target to add the generated list of files as a
+3. Modify the `protos` target to add the generated list of files as a
    dependency.
-3. Create a new pattern rule for the target language to generate the appropriate
+4. Create a new pattern rule for the target language to generate the appropriate
    source files from the `.proto` files with the correct `protoc` command for
-   the new language. 
+   the new language. Ensure to any `_out` flags are appended with the
+   appropriate directory where language specific files will be
+   generated/compiled (for example `cpp` or `go`).
    1. For example for Go this rule looks like: 
 ```Makefile
 %.pb.go: %.proto
 	@echo "Compiling Go $<"
-	protoc -I $(dir $<) --go_out=$(dir $<) --go_opt=paths=source_relative --go-grpc_out=$(dir $<) --go-grpc_opt=paths=source_relative $<
+	protoc -I $(dir $<) -I. --go_out=$(dir $<)/go --go_opt=paths=source_relative --go-grpc_out=$(dir $<)/go --go-grpc_opt=paths=source_relative $<
 ```
 
 ## Generating Code for Golang

@@ -15,16 +15,18 @@ CPP_PROTO_GENERATED_FILES := $(patsubst %.proto, %.pb.cc, $(PROTO_FILES))
 
 protos: $(GO_GENERATED_FILES) $(CPP_PROTO_GENERATED_FILES)
 
+# In the protoc command the second `-I.` is required for imports to work correctly. 
+# It is also import the `-I.` is in the second position otherwise protoc will generate files at a location like `beewatch/go/beewatch`. 
 %.pb.go: %.proto
 	@echo "Compiling Go $<"
-	protoc -I $(dir $<) --go_out=$(dir $<) --go_opt=paths=source_relative --go-grpc_out=$(dir $<) --go-grpc_opt=paths=source_relative $<
+	protoc -I $(dir $<) -I. --go_out=$(dir $<)/go --go_opt=paths=source_relative --go-grpc_out=$(dir $<)/go --go-grpc_opt=paths=source_relative $<
 
 %.pb.cc: %.proto
 	@echo "Compiling C++ $<"
-	protoc -I $(dir $<) --cpp_out=$(dir $<) $<
+	protoc -I $(dir $<) -I. --cpp_out=$(dir $<)/cpp $<
 
 # Test targets: 
-# Test targets may make change to the local repository (e.g. try to generate protos) to
+# Test targets may make change to the local repository (e.g. try toå generate protos) to
 # verify all code required to build the project has been properly committed.
 # Commonly this is done by running `make test` in CI, but could also be done locally.
 # If you ran `make test` locally you may want to use `git reset` to revert the changes.
