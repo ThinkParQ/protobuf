@@ -262,9 +262,9 @@ const char descriptor_table_protodef_beegfs_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "point\030\003 \001(\t\022\022\n\naccess_key\030\004 \001(\t\022\022\n\nsecre"
   "t_key\030\005 \001(\t\032D\n\005Azure\022*\n\002s3\030\001 \001(\0132\036.beegf"
   "s.RemoteStorageTarget.S3\022\017\n\007account\030\002 \001("
-  "\t\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\tB\006\n\004typeB+Z)gith"
-  "ub.com/thinkparq/bee-protos/beegfs/gob\006p"
-  "roto3"
+  "\t\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\tB\006\n\004typeB)Z\'gith"
+  "ub.com/thinkparq/protobuf/beegfs/gob\006pro"
+  "to3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beegfs_2eproto_deps[1] = {
 };
@@ -279,7 +279,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beegfs_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beegfs_2eproto = {
-  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 965,
+  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 963,
   &descriptor_table_beegfs_2eproto_once, descriptor_table_beegfs_2eproto_sccs, descriptor_table_beegfs_2eproto_deps, 7, 0,
   schemas, file_default_instances, TableStruct_beegfs_2eproto::offsets,
   file_level_metadata_beegfs_2eproto, 7, file_level_enum_descriptors_beegfs_2eproto, file_level_service_descriptors_beegfs_2eproto,

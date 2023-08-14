@@ -328,9 +328,9 @@ const char descriptor_table_protodef_beesync_2eproto[] PROTOBUF_SECTION_VARIABLE
   "\006method2\224\001\n\007BeeSync\022K\n\014UpdateConfig\022\034.be"
   "esync.ConfigUpdateRequest\032\035.beesync.Conf"
   "igUpdateResponse\022<\n\013JobRequests\022\023.beesyn"
-  "c.JobRequest\032\024.beesync.JobResponse(\0010\001B,"
-  "Z*github.com/thinkparq/bee-protos/beesyn"
-  "c/gob\006proto3"
+  "c.JobRequest\032\024.beesync.JobResponse(\0010\001B*"
+  "Z(github.com/thinkparq/protobuf/beesync/"
+  "gob\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beesync_2eproto_deps[1] = {
   &::descriptor_table_beegfs_2fbeegfs_2eproto,
@@ -348,7 +348,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beesync_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beesync_2eproto = {
-  false, false, descriptor_table_protodef_beesync_2eproto, "beesync.proto", 1252,
+  false, false, descriptor_table_protodef_beesync_2eproto, "beesync.proto", 1250,
   &descriptor_table_beesync_2eproto_once, descriptor_table_beesync_2eproto_sccs, descriptor_table_beesync_2eproto_deps, 9, 1,
   schemas, file_default_instances, TableStruct_beesync_2eproto::offsets,
   file_level_metadata_beesync_2eproto, 9, file_level_enum_descriptors_beesync_2eproto, file_level_service_descriptors_beesync_2eproto,
