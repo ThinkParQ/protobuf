@@ -1,4 +1,4 @@
-module github.com/thinkparq/bee-protos
+module github.com/thinkparq/protobuf
 
 go 1.20
 
