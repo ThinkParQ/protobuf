@@ -1,6 +1,6 @@
 syntax = "proto3";
 package beesync;
-option go_package = "github.com/thinkparq/protobuf/beesync/go";
+option go_package = "github.com/thinkparq/protobuf/beesync/go;beesync";
 
 import "beegfs/beegfs.proto";
 
@@ -50,7 +50,7 @@ message JobRequest {
 }
 
 message SyncRequest {
-    beegfs.BeeGFSEntry entry = 1;
+    beegfs.Entry entry = 1;
     Operation operation = 2;
     enum Operation {
         UNKNOWN = 0;

@@ -1,6 +1,6 @@
 syntax = "proto3";
 package beeremote;
-option go_package = "github.com/thinkparq/protobuf/beeremote/go";
+option go_package = "github.com/thinkparq/protobuf/beeremote/go;beeremote";
 
 import "beesync/beesync.proto";
 import "beegfs/beegfs.proto";

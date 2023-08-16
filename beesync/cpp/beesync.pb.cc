@@ -14,7 +14,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_beegfs_2fbeegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BeeGFSEntry_beegfs_2fbeegfs_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_beegfs_2fbeegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Entry_beegfs_2fbeegfs_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_beegfs_2fbeegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_JobStatus_beegfs_2fbeegfs_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_beegfs_2fbeegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_RemoteStorageTarget_beegfs_2fbeegfs_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_beesync_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Segment_beesync_2eproto;
@@ -195,7 +195,7 @@ static void InitDefaultsscc_info_SyncRequest_beesync_2eproto() {
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SyncRequest_beesync_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_SyncRequest_beesync_2eproto}, {
-      &scc_info_BeeGFSEntry_beegfs_2fbeegfs_2eproto.base,}};
+      &scc_info_Entry_beegfs_2fbeegfs_2eproto.base,}};
 
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_beesync_2eproto[9];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_beesync_2eproto[2];
@@ -309,28 +309,28 @@ const char descriptor_table_protodef_beesync_2eproto[] PROTOBUF_SECTION_VARIABLE
   "uest\022\n\n\002id\030\001 \001(\t\022!\n\006status\030\002 \001(\0132\021.beegf"
   "s.JobStatus\022%\n\007request\030\003 \001(\0132\024.beesync.S"
   "yncRequest\022!\n\007segment\030\004 \001(\0132\020.beesync.Se"
-  "gment\"\230\001\n\013SyncRequest\022\"\n\005entry\030\001 \001(\0132\023.b"
-  "eegfs.BeeGFSEntry\0221\n\toperation\030\002 \001(\0162\036.b"
-  "eesync.SyncRequest.Operation\"2\n\tOperatio"
-  "n\022\013\n\007UNKNOWN\020\000\022\n\n\006UPLOAD\020\001\022\014\n\010DOWNLOAD\020\002"
-  "\"<\n\013JobResponse\022\n\n\002id\030\001 \001(\t\022!\n\006status\030\002 "
-  "\001(\0132\021.beegfs.JobStatus\"\246\003\n\007Segment\022\024\n\014of"
-  "fset_start\030\001 \001(\003\022\023\n\013offset_stop\030\002 \001(\003\022\021\n"
-  "\tfile_size\030\003 \001(\004\022\'\n\006config\030\004 \001(\0132\027.beesy"
-  "nc.Segment.Config\022\021\n\007default\030\005 \001(\010H\000\022!\n\002"
-  "s3\030\006 \001(\0132\023.beesync.Segment.S3H\000\032$\n\006Confi"
-  "g\022\032\n\022autostart_max_size\030\001 \001(\r\032\315\001\n\002S3\022\024\n\014"
-  "multipart_id\030\001 \001(\t\022\023\n\013parts_start\030\002 \001(\005\022"
-  "\022\n\nparts_stop\030\003 \001(\005\022;\n\017completed_parts\030\004"
-  " \003(\0132\".beesync.Segment.S3.CompletedParts"
-  "\032K\n\016CompletedParts\022\023\n\013part_number\030\001 \001(\005\022"
-  "\022\n\nentity_tag\030\002 \001(\t\022\020\n\010checksum\030\003 \001(\tB\010\n"
-  "\006method2\224\001\n\007BeeSync\022K\n\014UpdateConfig\022\034.be"
-  "esync.ConfigUpdateRequest\032\035.beesync.Conf"
-  "igUpdateResponse\022<\n\013JobRequests\022\023.beesyn"
-  "c.JobRequest\032\024.beesync.JobResponse(\0010\001B*"
-  "Z(github.com/thinkparq/protobuf/beesync/"
-  "gob\006proto3"
+  "gment\"\222\001\n\013SyncRequest\022\034\n\005entry\030\001 \001(\0132\r.b"
+  "eegfs.Entry\0221\n\toperation\030\002 \001(\0162\036.beesync"
+  ".SyncRequest.Operation\"2\n\tOperation\022\013\n\007U"
+  "NKNOWN\020\000\022\n\n\006UPLOAD\020\001\022\014\n\010DOWNLOAD\020\002\"<\n\013Jo"
+  "bResponse\022\n\n\002id\030\001 \001(\t\022!\n\006status\030\002 \001(\0132\021."
+  "beegfs.JobStatus\"\246\003\n\007Segment\022\024\n\014offset_s"
+  "tart\030\001 \001(\003\022\023\n\013offset_stop\030\002 \001(\003\022\021\n\tfile_"
+  "size\030\003 \001(\004\022\'\n\006config\030\004 \001(\0132\027.beesync.Seg"
+  "ment.Config\022\021\n\007default\030\005 \001(\010H\000\022!\n\002s3\030\006 \001"
+  "(\0132\023.beesync.Segment.S3H\000\032$\n\006Config\022\032\n\022a"
+  "utostart_max_size\030\001 \001(\r\032\315\001\n\002S3\022\024\n\014multip"
+  "art_id\030\001 \001(\t\022\023\n\013parts_start\030\002 \001(\005\022\022\n\npar"
+  "ts_stop\030\003 \001(\005\022;\n\017completed_parts\030\004 \003(\0132\""
+  ".beesync.Segment.S3.CompletedParts\032K\n\016Co"
+  "mpletedParts\022\023\n\013part_number\030\001 \001(\005\022\022\n\nent"
+  "ity_tag\030\002 \001(\t\022\020\n\010checksum\030\003 \001(\tB\010\n\006metho"
+  "d2\224\001\n\007BeeSync\022K\n\014UpdateConfig\022\034.beesync."
+  "ConfigUpdateRequest\032\035.beesync.ConfigUpda"
+  "teResponse\022<\n\013JobRequests\022\023.beesync.JobR"
+  "equest\032\024.beesync.JobResponse(\0010\001B2Z0gith"
+  "ub.com/thinkparq/protobuf/beesync/go;bee"
+  "syncb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beesync_2eproto_deps[1] = {
   &::descriptor_table_beegfs_2fbeegfs_2eproto,
@@ -348,7 +348,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beesync_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beesync_2eproto = {
-  false, false, descriptor_table_protodef_beesync_2eproto, "beesync.proto", 1250,
+  false, false, descriptor_table_protodef_beesync_2eproto, "beesync.proto", 1252,
   &descriptor_table_beesync_2eproto_once, descriptor_table_beesync_2eproto_sccs, descriptor_table_beesync_2eproto_deps, 9, 1,
   schemas, file_default_instances, TableStruct_beesync_2eproto::offsets,
   file_level_metadata_beesync_2eproto, 9, file_level_enum_descriptors_beesync_2eproto, file_level_service_descriptors_beesync_2eproto,
@@ -1202,15 +1202,15 @@ void JobRequest::InternalSwap(JobRequest* other) {
 // ===================================================================
 
 void SyncRequest::InitAsDefaultInstance() {
-  ::beesync::_SyncRequest_default_instance_._instance.get_mutable()->entry_ = const_cast< ::beegfs::BeeGFSEntry*>(
-      ::beegfs::BeeGFSEntry::internal_default_instance());
+  ::beesync::_SyncRequest_default_instance_._instance.get_mutable()->entry_ = const_cast< ::beegfs::Entry*>(
+      ::beegfs::Entry::internal_default_instance());
 }
 class SyncRequest::_Internal {
  public:
-  static const ::beegfs::BeeGFSEntry& entry(const SyncRequest* msg);
+  static const ::beegfs::Entry& entry(const SyncRequest* msg);
 };
 
-const ::beegfs::BeeGFSEntry&
+const ::beegfs::Entry&
 SyncRequest::_Internal::entry(const SyncRequest* msg) {
   return *msg->entry_;
 }
@@ -1230,7 +1230,7 @@ SyncRequest::SyncRequest(const SyncRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_entry()) {
-    entry_ = new ::beegfs::BeeGFSEntry(*from.entry_);
+    entry_ = new ::beegfs::Entry(*from.entry_);
   } else {
     entry_ = nullptr;
   }
@@ -1293,7 +1293,7 @@ const char* SyncRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // .beegfs.BeeGFSEntry entry = 1;
+      // .beegfs.Entry entry = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_entry(), ptr);
@@ -1336,7 +1336,7 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .beegfs.BeeGFSEntry entry = 1;
+  // .beegfs.Entry entry = 1;
   if (this->has_entry()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1367,7 +1367,7 @@ size_t SyncRequest::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .beegfs.BeeGFSEntry entry = 1;
+  // .beegfs.Entry entry = 1;
   if (this->has_entry()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1412,7 +1412,7 @@ void SyncRequest::MergeFrom(const SyncRequest& from) {
   (void) cached_has_bits;
 
   if (from.has_entry()) {
-    _internal_mutable_entry()->::beegfs::BeeGFSEntry::MergeFrom(from._internal_entry());
+    _internal_mutable_entry()->::beegfs::Entry::MergeFrom(from._internal_entry());
   }
   if (from.operation() != 0) {
     _internal_set_operation(from._internal_operation());

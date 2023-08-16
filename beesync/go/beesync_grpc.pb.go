@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: beesync.proto
 
-package _go
+package beesync
 
 import (
 	context "context"

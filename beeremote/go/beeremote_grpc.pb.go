@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: beeremote.proto
 
-package _go
+package beeremote
 
 import (
 	context "context"

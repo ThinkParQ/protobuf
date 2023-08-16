@@ -66,6 +66,16 @@ with `go get`. For example to use BeeWatch in your project run `go get
 github.com/thinkparq/bee-protos/beewatch/go`. When changes are made to the
 `bee-protos` project you can update dependencies with `go get -u <URL>` 
 
+Because code for each language is organized into a directory with the language name (i.e., `go`), by default the generated package name would be some variation of `go`. Because this would be confusing and cause conflicts when an application imports multiple protocol buffer definitions, the `go_package` specified in each `.proto` file includes an explicit package name that is separated from the import path by semicolon ([reference](https://protobuf.dev/reference/go/go-generated/)). For example to use the `beegfs` package:
+
+```go
+import "github.com/thinkparq/protobuf/beegfs/go" // import uses the full path
+
+type AppConfig struct {
+	beegfs.BeeGFSEntry // uses the explicit package name
+}
+```
+
 # Advanced: Generate / Compile `.proto` Files
 
 For convenience, pregenerated/compiled code for popular language is provided in

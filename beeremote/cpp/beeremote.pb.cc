@@ -204,8 +204,9 @@ const char descriptor_table_protodef_beeremote_2eproto[] PROTOBUF_SECTION_VARIAB
   "\022D\n\tPauseJobs\022\032.beeremote.MultiJobReques"
   "t\032\033.beeremote.MultiJobResponse\022E\n\nCancel"
   "Jobs\022\032.beeremote.MultiJobRequest\032\033.beere"
-  "mote.MultiJobResponseB,Z*github.com/thin"
-  "kparq/protobuf/beeremote/gob\006proto3"
+  "mote.MultiJobResponseB6Z4github.com/thin"
+  "kparq/protobuf/beeremote/go;beeremoteb\006p"
+  "roto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beeremote_2eproto_deps[2] = {
   &::descriptor_table_beegfs_2fbeegfs_2eproto,
@@ -220,7 +221,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beeremote_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beeremote_2eproto = {
-  false, false, descriptor_table_protodef_beeremote_2eproto, "beeremote.proto", 915,
+  false, false, descriptor_table_protodef_beeremote_2eproto, "beeremote.proto", 925,
   &descriptor_table_beeremote_2eproto_once, descriptor_table_beeremote_2eproto_sccs, descriptor_table_beeremote_2eproto_deps, 5, 2,
   schemas, file_default_instances, TableStruct_beeremote_2eproto::offsets,
   file_level_metadata_beeremote_2eproto, 5, file_level_enum_descriptors_beeremote_2eproto, file_level_service_descriptors_beeremote_2eproto,

@@ -858,23 +858,23 @@ class SyncRequest PROTOBUF_FINAL :
     kEntryFieldNumber = 1,
     kOperationFieldNumber = 2,
   };
-  // .beegfs.BeeGFSEntry entry = 1;
+  // .beegfs.Entry entry = 1;
   bool has_entry() const;
   private:
   bool _internal_has_entry() const;
   public:
   void clear_entry();
-  const ::beegfs::BeeGFSEntry& entry() const;
-  ::beegfs::BeeGFSEntry* release_entry();
-  ::beegfs::BeeGFSEntry* mutable_entry();
-  void set_allocated_entry(::beegfs::BeeGFSEntry* entry);
+  const ::beegfs::Entry& entry() const;
+  ::beegfs::Entry* release_entry();
+  ::beegfs::Entry* mutable_entry();
+  void set_allocated_entry(::beegfs::Entry* entry);
   private:
-  const ::beegfs::BeeGFSEntry& _internal_entry() const;
-  ::beegfs::BeeGFSEntry* _internal_mutable_entry();
+  const ::beegfs::Entry& _internal_entry() const;
+  ::beegfs::Entry* _internal_mutable_entry();
   public:
   void unsafe_arena_set_allocated_entry(
-      ::beegfs::BeeGFSEntry* entry);
-  ::beegfs::BeeGFSEntry* unsafe_arena_release_entry();
+      ::beegfs::Entry* entry);
+  ::beegfs::Entry* unsafe_arena_release_entry();
 
   // .beesync.SyncRequest.Operation operation = 2;
   void clear_operation();
@@ -892,7 +892,7 @@ class SyncRequest PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::beegfs::BeeGFSEntry* entry_;
+  ::beegfs::Entry* entry_;
   int operation_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_beesync_2eproto;
@@ -2307,24 +2307,24 @@ inline void JobRequest::set_allocated_segment(::beesync::Segment* segment) {
 
 // SyncRequest
 
-// .beegfs.BeeGFSEntry entry = 1;
+// .beegfs.Entry entry = 1;
 inline bool SyncRequest::_internal_has_entry() const {
   return this != internal_default_instance() && entry_ != nullptr;
 }
 inline bool SyncRequest::has_entry() const {
   return _internal_has_entry();
 }
-inline const ::beegfs::BeeGFSEntry& SyncRequest::_internal_entry() const {
-  const ::beegfs::BeeGFSEntry* p = entry_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::beegfs::BeeGFSEntry*>(
-      &::beegfs::_BeeGFSEntry_default_instance_);
+inline const ::beegfs::Entry& SyncRequest::_internal_entry() const {
+  const ::beegfs::Entry* p = entry_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::beegfs::Entry*>(
+      &::beegfs::_Entry_default_instance_);
 }
-inline const ::beegfs::BeeGFSEntry& SyncRequest::entry() const {
+inline const ::beegfs::Entry& SyncRequest::entry() const {
   // @@protoc_insertion_point(field_get:beesync.SyncRequest.entry)
   return _internal_entry();
 }
 inline void SyncRequest::unsafe_arena_set_allocated_entry(
-    ::beegfs::BeeGFSEntry* entry) {
+    ::beegfs::Entry* entry) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(entry_);
   }
@@ -2336,33 +2336,33 @@ inline void SyncRequest::unsafe_arena_set_allocated_entry(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.SyncRequest.entry)
 }
-inline ::beegfs::BeeGFSEntry* SyncRequest::release_entry() {
+inline ::beegfs::Entry* SyncRequest::release_entry() {
   auto temp = unsafe_arena_release_entry();
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::beegfs::BeeGFSEntry* SyncRequest::unsafe_arena_release_entry() {
+inline ::beegfs::Entry* SyncRequest::unsafe_arena_release_entry() {
   // @@protoc_insertion_point(field_release:beesync.SyncRequest.entry)
   
-  ::beegfs::BeeGFSEntry* temp = entry_;
+  ::beegfs::Entry* temp = entry_;
   entry_ = nullptr;
   return temp;
 }
-inline ::beegfs::BeeGFSEntry* SyncRequest::_internal_mutable_entry() {
+inline ::beegfs::Entry* SyncRequest::_internal_mutable_entry() {
   
   if (entry_ == nullptr) {
-    auto* p = CreateMaybeMessage<::beegfs::BeeGFSEntry>(GetArena());
+    auto* p = CreateMaybeMessage<::beegfs::Entry>(GetArena());
     entry_ = p;
   }
   return entry_;
 }
-inline ::beegfs::BeeGFSEntry* SyncRequest::mutable_entry() {
+inline ::beegfs::Entry* SyncRequest::mutable_entry() {
   // @@protoc_insertion_point(field_mutable:beesync.SyncRequest.entry)
   return _internal_mutable_entry();
 }
-inline void SyncRequest::set_allocated_entry(::beegfs::BeeGFSEntry* entry) {
+inline void SyncRequest::set_allocated_entry(::beegfs::Entry* entry) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(entry_);

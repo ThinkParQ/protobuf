@@ -56,9 +56,9 @@ struct TableStruct_beegfs_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beegfs_2eproto;
 namespace beegfs {
-class BeeGFSEntry;
-class BeeGFSEntryDefaultTypeInternal;
-extern BeeGFSEntryDefaultTypeInternal _BeeGFSEntry_default_instance_;
+class Entry;
+class EntryDefaultTypeInternal;
+extern EntryDefaultTypeInternal _Entry_default_instance_;
 class JobStatus;
 class JobStatusDefaultTypeInternal;
 extern JobStatusDefaultTypeInternal _JobStatus_default_instance_;
@@ -79,7 +79,7 @@ class RemoteStorageTarget_S3DefaultTypeInternal;
 extern RemoteStorageTarget_S3DefaultTypeInternal _RemoteStorageTarget_S3_default_instance_;
 }  // namespace beegfs
 PROTOBUF_NAMESPACE_OPEN
-template<> ::beegfs::BeeGFSEntry* Arena::CreateMaybeMessage<::beegfs::BeeGFSEntry>(Arena*);
+template<> ::beegfs::Entry* Arena::CreateMaybeMessage<::beegfs::Entry>(Arena*);
 template<> ::beegfs::JobStatus* Arena::CreateMaybeMessage<::beegfs::JobStatus>(Arena*);
 template<> ::beegfs::RemoteStorageTarget* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget>(Arena*);
 template<> ::beegfs::RemoteStorageTarget_Azure* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget_Azure>(Arena*);
@@ -126,23 +126,23 @@ inline bool JobStatus_Status_Parse(
 }
 // ===================================================================
 
-class BeeGFSEntry PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beegfs.BeeGFSEntry) */ {
+class Entry PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beegfs.Entry) */ {
  public:
-  inline BeeGFSEntry() : BeeGFSEntry(nullptr) {};
-  virtual ~BeeGFSEntry();
+  inline Entry() : Entry(nullptr) {};
+  virtual ~Entry();
 
-  BeeGFSEntry(const BeeGFSEntry& from);
-  BeeGFSEntry(BeeGFSEntry&& from) noexcept
-    : BeeGFSEntry() {
+  Entry(const Entry& from);
+  Entry(Entry&& from) noexcept
+    : Entry() {
     *this = ::std::move(from);
   }
 
-  inline BeeGFSEntry& operator=(const BeeGFSEntry& from) {
+  inline Entry& operator=(const Entry& from) {
     CopyFrom(from);
     return *this;
   }
-  inline BeeGFSEntry& operator=(BeeGFSEntry&& from) noexcept {
+  inline Entry& operator=(Entry&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -160,20 +160,20 @@ class BeeGFSEntry PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const BeeGFSEntry& default_instance();
+  static const Entry& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const BeeGFSEntry* internal_default_instance() {
-    return reinterpret_cast<const BeeGFSEntry*>(
-               &_BeeGFSEntry_default_instance_);
+  static inline const Entry* internal_default_instance() {
+    return reinterpret_cast<const Entry*>(
+               &_Entry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(BeeGFSEntry& a, BeeGFSEntry& b) {
+  friend void swap(Entry& a, Entry& b) {
     a.Swap(&b);
   }
-  inline void Swap(BeeGFSEntry* other) {
+  inline void Swap(Entry* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -181,7 +181,7 @@ class BeeGFSEntry PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(BeeGFSEntry* other) {
+  void UnsafeArenaSwap(Entry* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -189,17 +189,17 @@ class BeeGFSEntry PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline BeeGFSEntry* New() const final {
-    return CreateMaybeMessage<BeeGFSEntry>(nullptr);
+  inline Entry* New() const final {
+    return CreateMaybeMessage<Entry>(nullptr);
   }
 
-  BeeGFSEntry* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<BeeGFSEntry>(arena);
+  Entry* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Entry>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const BeeGFSEntry& from);
-  void MergeFrom(const BeeGFSEntry& from);
+  void CopyFrom(const Entry& from);
+  void MergeFrom(const Entry& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -213,13 +213,13 @@ class BeeGFSEntry PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(BeeGFSEntry* other);
+  void InternalSwap(Entry* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "beegfs.BeeGFSEntry";
+    return "beegfs.Entry";
   }
   protected:
-  explicit BeeGFSEntry(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit Entry(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -318,7 +318,7 @@ class BeeGFSEntry PROTOBUF_FINAL :
   std::string* _internal_mutable_remote_storage_target();
   public:
 
-  // @@protoc_insertion_point(class_scope:beegfs.BeeGFSEntry)
+  // @@protoc_insertion_point(class_scope:beegfs.Entry)
  private:
   class _Internal;
 
@@ -1596,60 +1596,60 @@ class RemoteStorageTarget PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// BeeGFSEntry
+// Entry
 
 // string id = 1;
-inline void BeeGFSEntry::clear_id() {
+inline void Entry::clear_id() {
   id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& BeeGFSEntry::id() const {
-  // @@protoc_insertion_point(field_get:beegfs.BeeGFSEntry.id)
+inline const std::string& Entry::id() const {
+  // @@protoc_insertion_point(field_get:beegfs.Entry.id)
   return _internal_id();
 }
-inline void BeeGFSEntry::set_id(const std::string& value) {
+inline void Entry::set_id(const std::string& value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:beegfs.BeeGFSEntry.id)
+  // @@protoc_insertion_point(field_set:beegfs.Entry.id)
 }
-inline std::string* BeeGFSEntry::mutable_id() {
-  // @@protoc_insertion_point(field_mutable:beegfs.BeeGFSEntry.id)
+inline std::string* Entry::mutable_id() {
+  // @@protoc_insertion_point(field_mutable:beegfs.Entry.id)
   return _internal_mutable_id();
 }
-inline const std::string& BeeGFSEntry::_internal_id() const {
+inline const std::string& Entry::_internal_id() const {
   return id_.Get();
 }
-inline void BeeGFSEntry::_internal_set_id(const std::string& value) {
+inline void Entry::_internal_set_id(const std::string& value) {
   
   id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void BeeGFSEntry::set_id(std::string&& value) {
+inline void Entry::set_id(std::string&& value) {
   
   id_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:beegfs.BeeGFSEntry.id)
+  // @@protoc_insertion_point(field_set_rvalue:beegfs.Entry.id)
 }
-inline void BeeGFSEntry::set_id(const char* value) {
+inline void Entry::set_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:beegfs.BeeGFSEntry.id)
+  // @@protoc_insertion_point(field_set_char:beegfs.Entry.id)
 }
-inline void BeeGFSEntry::set_id(const char* value,
+inline void Entry::set_id(const char* value,
     size_t size) {
   
   id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:beegfs.BeeGFSEntry.id)
+  // @@protoc_insertion_point(field_set_pointer:beegfs.Entry.id)
 }
-inline std::string* BeeGFSEntry::_internal_mutable_id() {
+inline std::string* Entry::_internal_mutable_id() {
   
   return id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* BeeGFSEntry::release_id() {
-  // @@protoc_insertion_point(field_release:beegfs.BeeGFSEntry.id)
+inline std::string* Entry::release_id() {
+  // @@protoc_insertion_point(field_release:beegfs.Entry.id)
   return id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void BeeGFSEntry::set_allocated_id(std::string* id) {
+inline void Entry::set_allocated_id(std::string* id) {
   if (id != nullptr) {
     
   } else {
@@ -1657,16 +1657,16 @@ inline void BeeGFSEntry::set_allocated_id(std::string* id) {
   }
   id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:beegfs.BeeGFSEntry.id)
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Entry.id)
 }
-inline std::string* BeeGFSEntry::unsafe_arena_release_id() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.BeeGFSEntry.id)
+inline std::string* Entry::unsafe_arena_release_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.Entry.id)
   GOOGLE_DCHECK(GetArena() != nullptr);
   
   return id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       GetArena());
 }
-inline void BeeGFSEntry::unsafe_arena_set_allocated_id(
+inline void Entry::unsafe_arena_set_allocated_id(
     std::string* id) {
   GOOGLE_DCHECK(GetArena() != nullptr);
   if (id != nullptr) {
@@ -1676,61 +1676,61 @@ inline void BeeGFSEntry::unsafe_arena_set_allocated_id(
   }
   id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       id, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.BeeGFSEntry.id)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Entry.id)
 }
 
 // string path = 2;
-inline void BeeGFSEntry::clear_path() {
+inline void Entry::clear_path() {
   path_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& BeeGFSEntry::path() const {
-  // @@protoc_insertion_point(field_get:beegfs.BeeGFSEntry.path)
+inline const std::string& Entry::path() const {
+  // @@protoc_insertion_point(field_get:beegfs.Entry.path)
   return _internal_path();
 }
-inline void BeeGFSEntry::set_path(const std::string& value) {
+inline void Entry::set_path(const std::string& value) {
   _internal_set_path(value);
-  // @@protoc_insertion_point(field_set:beegfs.BeeGFSEntry.path)
+  // @@protoc_insertion_point(field_set:beegfs.Entry.path)
 }
-inline std::string* BeeGFSEntry::mutable_path() {
-  // @@protoc_insertion_point(field_mutable:beegfs.BeeGFSEntry.path)
+inline std::string* Entry::mutable_path() {
+  // @@protoc_insertion_point(field_mutable:beegfs.Entry.path)
   return _internal_mutable_path();
 }
-inline const std::string& BeeGFSEntry::_internal_path() const {
+inline const std::string& Entry::_internal_path() const {
   return path_.Get();
 }
-inline void BeeGFSEntry::_internal_set_path(const std::string& value) {
+inline void Entry::_internal_set_path(const std::string& value) {
   
   path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void BeeGFSEntry::set_path(std::string&& value) {
+inline void Entry::set_path(std::string&& value) {
   
   path_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:beegfs.BeeGFSEntry.path)
+  // @@protoc_insertion_point(field_set_rvalue:beegfs.Entry.path)
 }
-inline void BeeGFSEntry::set_path(const char* value) {
+inline void Entry::set_path(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:beegfs.BeeGFSEntry.path)
+  // @@protoc_insertion_point(field_set_char:beegfs.Entry.path)
 }
-inline void BeeGFSEntry::set_path(const char* value,
+inline void Entry::set_path(const char* value,
     size_t size) {
   
   path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:beegfs.BeeGFSEntry.path)
+  // @@protoc_insertion_point(field_set_pointer:beegfs.Entry.path)
 }
-inline std::string* BeeGFSEntry::_internal_mutable_path() {
+inline std::string* Entry::_internal_mutable_path() {
   
   return path_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* BeeGFSEntry::release_path() {
-  // @@protoc_insertion_point(field_release:beegfs.BeeGFSEntry.path)
+inline std::string* Entry::release_path() {
+  // @@protoc_insertion_point(field_release:beegfs.Entry.path)
   return path_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void BeeGFSEntry::set_allocated_path(std::string* path) {
+inline void Entry::set_allocated_path(std::string* path) {
   if (path != nullptr) {
     
   } else {
@@ -1738,16 +1738,16 @@ inline void BeeGFSEntry::set_allocated_path(std::string* path) {
   }
   path_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), path,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:beegfs.BeeGFSEntry.path)
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Entry.path)
 }
-inline std::string* BeeGFSEntry::unsafe_arena_release_path() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.BeeGFSEntry.path)
+inline std::string* Entry::unsafe_arena_release_path() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.Entry.path)
   GOOGLE_DCHECK(GetArena() != nullptr);
   
   return path_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       GetArena());
 }
-inline void BeeGFSEntry::unsafe_arena_set_allocated_path(
+inline void Entry::unsafe_arena_set_allocated_path(
     std::string* path) {
   GOOGLE_DCHECK(GetArena() != nullptr);
   if (path != nullptr) {
@@ -1757,61 +1757,61 @@ inline void BeeGFSEntry::unsafe_arena_set_allocated_path(
   }
   path_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       path, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.BeeGFSEntry.path)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Entry.path)
 }
 
 // string remote_storage_target = 3;
-inline void BeeGFSEntry::clear_remote_storage_target() {
+inline void Entry::clear_remote_storage_target() {
   remote_storage_target_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& BeeGFSEntry::remote_storage_target() const {
-  // @@protoc_insertion_point(field_get:beegfs.BeeGFSEntry.remote_storage_target)
+inline const std::string& Entry::remote_storage_target() const {
+  // @@protoc_insertion_point(field_get:beegfs.Entry.remote_storage_target)
   return _internal_remote_storage_target();
 }
-inline void BeeGFSEntry::set_remote_storage_target(const std::string& value) {
+inline void Entry::set_remote_storage_target(const std::string& value) {
   _internal_set_remote_storage_target(value);
-  // @@protoc_insertion_point(field_set:beegfs.BeeGFSEntry.remote_storage_target)
+  // @@protoc_insertion_point(field_set:beegfs.Entry.remote_storage_target)
 }
-inline std::string* BeeGFSEntry::mutable_remote_storage_target() {
-  // @@protoc_insertion_point(field_mutable:beegfs.BeeGFSEntry.remote_storage_target)
+inline std::string* Entry::mutable_remote_storage_target() {
+  // @@protoc_insertion_point(field_mutable:beegfs.Entry.remote_storage_target)
   return _internal_mutable_remote_storage_target();
 }
-inline const std::string& BeeGFSEntry::_internal_remote_storage_target() const {
+inline const std::string& Entry::_internal_remote_storage_target() const {
   return remote_storage_target_.Get();
 }
-inline void BeeGFSEntry::_internal_set_remote_storage_target(const std::string& value) {
+inline void Entry::_internal_set_remote_storage_target(const std::string& value) {
   
   remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void BeeGFSEntry::set_remote_storage_target(std::string&& value) {
+inline void Entry::set_remote_storage_target(std::string&& value) {
   
   remote_storage_target_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:beegfs.BeeGFSEntry.remote_storage_target)
+  // @@protoc_insertion_point(field_set_rvalue:beegfs.Entry.remote_storage_target)
 }
-inline void BeeGFSEntry::set_remote_storage_target(const char* value) {
+inline void Entry::set_remote_storage_target(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:beegfs.BeeGFSEntry.remote_storage_target)
+  // @@protoc_insertion_point(field_set_char:beegfs.Entry.remote_storage_target)
 }
-inline void BeeGFSEntry::set_remote_storage_target(const char* value,
+inline void Entry::set_remote_storage_target(const char* value,
     size_t size) {
   
   remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:beegfs.BeeGFSEntry.remote_storage_target)
+  // @@protoc_insertion_point(field_set_pointer:beegfs.Entry.remote_storage_target)
 }
-inline std::string* BeeGFSEntry::_internal_mutable_remote_storage_target() {
+inline std::string* Entry::_internal_mutable_remote_storage_target() {
   
   return remote_storage_target_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* BeeGFSEntry::release_remote_storage_target() {
-  // @@protoc_insertion_point(field_release:beegfs.BeeGFSEntry.remote_storage_target)
+inline std::string* Entry::release_remote_storage_target() {
+  // @@protoc_insertion_point(field_release:beegfs.Entry.remote_storage_target)
   return remote_storage_target_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void BeeGFSEntry::set_allocated_remote_storage_target(std::string* remote_storage_target) {
+inline void Entry::set_allocated_remote_storage_target(std::string* remote_storage_target) {
   if (remote_storage_target != nullptr) {
     
   } else {
@@ -1819,16 +1819,16 @@ inline void BeeGFSEntry::set_allocated_remote_storage_target(std::string* remote
   }
   remote_storage_target_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_storage_target,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:beegfs.BeeGFSEntry.remote_storage_target)
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Entry.remote_storage_target)
 }
-inline std::string* BeeGFSEntry::unsafe_arena_release_remote_storage_target() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.BeeGFSEntry.remote_storage_target)
+inline std::string* Entry::unsafe_arena_release_remote_storage_target() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.Entry.remote_storage_target)
   GOOGLE_DCHECK(GetArena() != nullptr);
   
   return remote_storage_target_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       GetArena());
 }
-inline void BeeGFSEntry::unsafe_arena_set_allocated_remote_storage_target(
+inline void Entry::unsafe_arena_set_allocated_remote_storage_target(
     std::string* remote_storage_target) {
   GOOGLE_DCHECK(GetArena() != nullptr);
   if (remote_storage_target != nullptr) {
@@ -1838,7 +1838,7 @@ inline void BeeGFSEntry::unsafe_arena_set_allocated_remote_storage_target(
   }
   remote_storage_target_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       remote_storage_target, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.BeeGFSEntry.remote_storage_target)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Entry.remote_storage_target)
 }
 
 // -------------------------------------------------------------------
