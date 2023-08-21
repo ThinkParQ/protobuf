@@ -6,7 +6,7 @@ import "beegfs/beegfs.proto";
 
 service BeeSync {
     rpc UpdateConfig(ConfigUpdateRequest) returns (ConfigUpdateResponse);    
-    rpc JobRequests(stream JobRequest) returns (stream JobResponse);
+    rpc JobRequests(stream WorkRequest) returns (stream beegfs.WorkResponse);
     // TODO: All work requests should go through the same stream. This makes it
     // impossible for conflicting operations to occur. However do we want a
     // seperate (perhaps unary) RPC for checking status?
@@ -31,25 +31,11 @@ message ConfigUpdateResponse {
     }
 }
 
-// A JobRequest encapsulates the details of a particular SyncRequest along with
-// its state including the auto generated ID, segment, and status fields. It is
-// expected the fields in a SyncJob will be populated over time as the job
-// progresses. For example when BeeRemote initially starts a job Segment will
-// not be set so BeeSync can determine if it should determine this (based on
-// file size and autostart_max_size), or if it needs to send the job back to
-// BeeRemote so it can determine if the job should be distributed across
-// multiple nodes. Therefore it is critical to understand the concept of field
-// presence in proto3: https://protobuf.dev/programming-guides/field_presence/
-// TL;DR - Generally expect fields to default to the language specific default
-// values for each type for any fields that were not set by the server.
-message JobRequest {
-    string id = 1;
-    beegfs.JobStatus status = 2;
-    SyncRequest request = 3;
-    Segment segment = 4;
-}
-
-message SyncRequest {
+// A SyncJob is WHAT work needs to be done. It is populated based on the
+// file system modification event or by a user describing some work that needs
+// to be done. It does not carry any details about HOW the request will be
+// fufilled (that is part of the generated WorkRequest).
+message SyncJob {
     beegfs.Entry entry = 1;
     Operation operation = 2;
     enum Operation {
@@ -59,26 +45,33 @@ message SyncRequest {
     }    
 }
 
-message JobResponse {
-    string id = 1;
-    beegfs.JobStatus status = 2;
+// A WorkRequest describes HOW a SyncJob should be carried out. It encapsulates
+// the details of the part of a SyncJob assigned to a particular BeeSync node
+// along with its state including the auto generated ID, segment, and status
+// fields. It is expected the fields in a WorkRequest will be populated over
+// time as the job progresses. For example when BeeRemote initially starts a job
+// Segment will not be set so BeeSync can determine if it should determine this
+// (based on file size and autostart_max_size), or if it needs to send the job
+// back to BeeRemote so it can determine if the job should be distributed across
+// multiple nodes. Therefore it is critical to understand the concept of field
+// presence in proto3: https://protobuf.dev/programming-guides/field_presence/
+// TL;DR - Generally expect fields to default to the language specific default
+// values for each type for any fields that were not set by the server.
+message WorkRequest {
+    beegfs.JobMetadata metadata = 1;
+    SyncJob job = 2;
+    Segment segment = 3;
 }
 
 // A segment indicates what portion of a file transfer a particular BeeSync node should work on.
 message Segment {
     int64 offset_start = 1;
     int64 offset_stop = 2;
-    uint64 file_size = 3; // This won't be a problem until we support ~18 exabytes files.
-    Config config = 4;
-    
-    message Config {
-        uint32 autostart_max_size = 1; // If the file is smaller than this, we will start the job automatically.
-    }
 
     // Method defines fields required to figure out "what" and "how" to transfer content.
     oneof method {
-        bool default = 5;
-        S3 s3 = 6;
+        bool default = 3;
+        S3 s3 = 4;
     }
 
     // BeeSync calculates the amount of data to write in each part based on offset_start and offset_stop.

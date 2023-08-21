@@ -8,6 +8,7 @@ package beesync
 
 import (
 	context "context"
+	_go "github.com/thinkparq/protobuf/beegfs/go"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -53,8 +54,8 @@ func (c *beeSyncClient) JobRequests(ctx context.Context, opts ...grpc.CallOption
 }
 
 type BeeSync_JobRequestsClient interface {
-	Send(*JobRequest) error
-	Recv() (*JobResponse, error)
+	Send(*WorkRequest) error
+	Recv() (*_go.WorkResponse, error)
 	grpc.ClientStream
 }
 
@@ -62,12 +63,12 @@ type beeSyncJobRequestsClient struct {
 	grpc.ClientStream
 }
 
-func (x *beeSyncJobRequestsClient) Send(m *JobRequest) error {
+func (x *beeSyncJobRequestsClient) Send(m *WorkRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *beeSyncJobRequestsClient) Recv() (*JobResponse, error) {
-	m := new(JobResponse)
+func (x *beeSyncJobRequestsClient) Recv() (*_go.WorkResponse, error) {
+	m := new(_go.WorkResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -129,8 +130,8 @@ func _BeeSync_JobRequests_Handler(srv interface{}, stream grpc.ServerStream) err
 }
 
 type BeeSync_JobRequestsServer interface {
-	Send(*JobResponse) error
-	Recv() (*JobRequest, error)
+	Send(*_go.WorkResponse) error
+	Recv() (*WorkRequest, error)
 	grpc.ServerStream
 }
 
@@ -138,12 +139,12 @@ type beeSyncJobRequestsServer struct {
 	grpc.ServerStream
 }
 
-func (x *beeSyncJobRequestsServer) Send(m *JobResponse) error {
+func (x *beeSyncJobRequestsServer) Send(m *_go.WorkResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *beeSyncJobRequestsServer) Recv() (*JobRequest, error) {
-	m := new(JobRequest)
+func (x *beeSyncJobRequestsServer) Recv() (*WorkRequest, error) {
+	m := new(WorkRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}

@@ -16,22 +16,23 @@ service BeeRemote {
 
 // A JobRequest contains all the information necessary for BeeRemote to trigger
 // a job on the appropriate worker node(s) (like BeeSync nodes) based on the
-// particular request_type specified by the user. 
+// particular request_type specified by the user. It is the external request
+// so it does not include automatically generated fields like the job ID or
+// anything about the work request(s) used to execute the job.
 message JobRequest {
     // An arbitrary name for a job can be specified.
     // Job names are optional and not need to be unique.
     string name = 1;
     int32 priority = 2;
-    oneof request_type {
-        beesync.SyncRequest sync = 10;
+    oneof type {
+        beesync.SyncJob sync = 10;
     }
 }
 
 // A JobResponse is used to return information about a job to a user.
 message JobResponse {
-    string id = 1;
-    beegfs.JobStatus status = 2;
-    JobRequest request = 3;
+    beegfs.JobMetadata metadata = 1;
+    JobRequest request = 2;
 }
 
 // Messages used to interact with one or more jobs.
@@ -53,7 +54,7 @@ message JobFilter {
     // A single ID can be specified to return at most one job.
     repeated string id = 1;
     // Only Job(s) matching all set fields will be returned.
-    repeated beegfs.JobStatus status = 2;
+    repeated beegfs.RequestStatus status = 2;
     // We can filter by any fields in the JobRequest.
     // This includes filtering on fields for specific request_types.
     repeated JobRequest request = 3;      

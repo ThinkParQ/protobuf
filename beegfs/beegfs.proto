@@ -9,11 +9,13 @@ message Entry {
     // This ensures we don't have to include the full RST configuration,
     // every time we send a Entry (commonly as part of a Job).
     string remote_storage_target = 3;
+    uint64 file_size = 4; // This won't be a problem until we support ~18 exabytes files.
 }
 
-// Status codese used by BeeRemote and its worker nodes to track the progress of a Job.
-// We use a common set of statuses across all types of workers (such as BeeSync).
-message JobStatus {
+// Status codes used by BeeRemote and its worker nodes to track the progress of
+// a Job and its work requests. We use a common set of statuses across all types
+// of Jobs and worker nodes (such as BeeSync).
+message RequestStatus {
     Status status = 1;
     // Message should be used to return any additional details, particuarly to aid in troubleshooting.
     string message = 2;
@@ -36,6 +38,17 @@ message JobStatus {
     }
 }
 
+// Basic metadata all job responses and work request/responses for must embed.
+message JobMetadata {
+    string id = 1;
+    RequestStatus status = 2;
+}
+
+message WorkResponse {
+    string id = 1;
+    RequestStatus status = 2; // TODO: Do we need a different list of statuses for WorkResponses?
+}
+
 // Note while there is a lot of data contained in RemoteStorageTarget,
 // gRPC will not serialize fields to the wire unless they are set.
 // https://protobuf.dev/programming-guides/proto3/#specifying-field-rules
@@ -54,6 +67,7 @@ message RemoteStorageTarget {
         bool remote_flock = 2;
         bool keep_dir_structure = 3;
         bool keep_beegfs_metadata = 4; // If BeeGFS metadata should be stored as extended attributes/metadata (if supported).
+        uint32 autostart_max_size = 5; // If the file is smaller than this, we will start the job automatically.
         // int32 cooldown = 4; // Not really relevant for BeeSync.
         // Future fields could include ReplicationPolicy. 
     }

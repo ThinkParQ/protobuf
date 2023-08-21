@@ -48,7 +48,7 @@ struct TableStruct_beegfs_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[7]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -59,9 +59,9 @@ namespace beegfs {
 class Entry;
 class EntryDefaultTypeInternal;
 extern EntryDefaultTypeInternal _Entry_default_instance_;
-class JobStatus;
-class JobStatusDefaultTypeInternal;
-extern JobStatusDefaultTypeInternal _JobStatus_default_instance_;
+class JobMetadata;
+class JobMetadataDefaultTypeInternal;
+extern JobMetadataDefaultTypeInternal _JobMetadata_default_instance_;
 class RemoteStorageTarget;
 class RemoteStorageTargetDefaultTypeInternal;
 extern RemoteStorageTargetDefaultTypeInternal _RemoteStorageTarget_default_instance_;
@@ -77,52 +77,60 @@ extern RemoteStorageTarget_PoliciesDefaultTypeInternal _RemoteStorageTarget_Poli
 class RemoteStorageTarget_S3;
 class RemoteStorageTarget_S3DefaultTypeInternal;
 extern RemoteStorageTarget_S3DefaultTypeInternal _RemoteStorageTarget_S3_default_instance_;
+class RequestStatus;
+class RequestStatusDefaultTypeInternal;
+extern RequestStatusDefaultTypeInternal _RequestStatus_default_instance_;
+class WorkResponse;
+class WorkResponseDefaultTypeInternal;
+extern WorkResponseDefaultTypeInternal _WorkResponse_default_instance_;
 }  // namespace beegfs
 PROTOBUF_NAMESPACE_OPEN
 template<> ::beegfs::Entry* Arena::CreateMaybeMessage<::beegfs::Entry>(Arena*);
-template<> ::beegfs::JobStatus* Arena::CreateMaybeMessage<::beegfs::JobStatus>(Arena*);
+template<> ::beegfs::JobMetadata* Arena::CreateMaybeMessage<::beegfs::JobMetadata>(Arena*);
 template<> ::beegfs::RemoteStorageTarget* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget>(Arena*);
 template<> ::beegfs::RemoteStorageTarget_Azure* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget_Azure>(Arena*);
 template<> ::beegfs::RemoteStorageTarget_POSIX* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget_POSIX>(Arena*);
 template<> ::beegfs::RemoteStorageTarget_Policies* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget_Policies>(Arena*);
 template<> ::beegfs::RemoteStorageTarget_S3* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget_S3>(Arena*);
+template<> ::beegfs::RequestStatus* Arena::CreateMaybeMessage<::beegfs::RequestStatus>(Arena*);
+template<> ::beegfs::WorkResponse* Arena::CreateMaybeMessage<::beegfs::WorkResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace beegfs {
 
-enum JobStatus_Status : int {
-  JobStatus_Status_UNKNOWN = 0,
-  JobStatus_Status_UNASSIGNED = 1,
-  JobStatus_Status_ASSIGNED = 2,
-  JobStatus_Status_CREATED = 3,
-  JobStatus_Status_RESCHEDULED = 4,
-  JobStatus_Status_SCHEDULED = 5,
-  JobStatus_Status_RUNNING = 6,
-  JobStatus_Status_STALLED = 7,
-  JobStatus_Status_PAUSED = 8,
-  JobStatus_Status_FAILED = 9,
-  JobStatus_Status_COMPLETED = 10,
-  JobStatus_Status_CANCELLED = 11,
-  JobStatus_Status_JobStatus_Status_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
-  JobStatus_Status_JobStatus_Status_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+enum RequestStatus_Status : int {
+  RequestStatus_Status_UNKNOWN = 0,
+  RequestStatus_Status_UNASSIGNED = 1,
+  RequestStatus_Status_ASSIGNED = 2,
+  RequestStatus_Status_CREATED = 3,
+  RequestStatus_Status_RESCHEDULED = 4,
+  RequestStatus_Status_SCHEDULED = 5,
+  RequestStatus_Status_RUNNING = 6,
+  RequestStatus_Status_STALLED = 7,
+  RequestStatus_Status_PAUSED = 8,
+  RequestStatus_Status_FAILED = 9,
+  RequestStatus_Status_COMPLETED = 10,
+  RequestStatus_Status_CANCELLED = 11,
+  RequestStatus_Status_RequestStatus_Status_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  RequestStatus_Status_RequestStatus_Status_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
-bool JobStatus_Status_IsValid(int value);
-constexpr JobStatus_Status JobStatus_Status_Status_MIN = JobStatus_Status_UNKNOWN;
-constexpr JobStatus_Status JobStatus_Status_Status_MAX = JobStatus_Status_CANCELLED;
-constexpr int JobStatus_Status_Status_ARRAYSIZE = JobStatus_Status_Status_MAX + 1;
+bool RequestStatus_Status_IsValid(int value);
+constexpr RequestStatus_Status RequestStatus_Status_Status_MIN = RequestStatus_Status_UNKNOWN;
+constexpr RequestStatus_Status RequestStatus_Status_Status_MAX = RequestStatus_Status_CANCELLED;
+constexpr int RequestStatus_Status_Status_ARRAYSIZE = RequestStatus_Status_Status_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* JobStatus_Status_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RequestStatus_Status_descriptor();
 template<typename T>
-inline const std::string& JobStatus_Status_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, JobStatus_Status>::value ||
+inline const std::string& RequestStatus_Status_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, RequestStatus_Status>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function JobStatus_Status_Name.");
+    "Incorrect type passed to function RequestStatus_Status_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    JobStatus_Status_descriptor(), enum_t_value);
+    RequestStatus_Status_descriptor(), enum_t_value);
 }
-inline bool JobStatus_Status_Parse(
-    const std::string& name, JobStatus_Status* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<JobStatus_Status>(
-    JobStatus_Status_descriptor(), name, value);
+inline bool RequestStatus_Status_Parse(
+    const std::string& name, RequestStatus_Status* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<RequestStatus_Status>(
+    RequestStatus_Status_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -242,6 +250,7 @@ class Entry PROTOBUF_FINAL :
     kIdFieldNumber = 1,
     kPathFieldNumber = 2,
     kRemoteStorageTargetFieldNumber = 3,
+    kFileSizeFieldNumber = 4,
   };
   // string id = 1;
   void clear_id();
@@ -318,6 +327,15 @@ class Entry PROTOBUF_FINAL :
   std::string* _internal_mutable_remote_storage_target();
   public:
 
+  // uint64 file_size = 4;
+  void clear_file_size();
+  ::PROTOBUF_NAMESPACE_ID::uint64 file_size() const;
+  void set_file_size(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_file_size() const;
+  void _internal_set_file_size(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:beegfs.Entry)
  private:
   class _Internal;
@@ -328,28 +346,29 @@ class Entry PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr path_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_storage_target_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 file_size_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_beegfs_2eproto;
 };
 // -------------------------------------------------------------------
 
-class JobStatus PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beegfs.JobStatus) */ {
+class RequestStatus PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beegfs.RequestStatus) */ {
  public:
-  inline JobStatus() : JobStatus(nullptr) {};
-  virtual ~JobStatus();
+  inline RequestStatus() : RequestStatus(nullptr) {};
+  virtual ~RequestStatus();
 
-  JobStatus(const JobStatus& from);
-  JobStatus(JobStatus&& from) noexcept
-    : JobStatus() {
+  RequestStatus(const RequestStatus& from);
+  RequestStatus(RequestStatus&& from) noexcept
+    : RequestStatus() {
     *this = ::std::move(from);
   }
 
-  inline JobStatus& operator=(const JobStatus& from) {
+  inline RequestStatus& operator=(const RequestStatus& from) {
     CopyFrom(from);
     return *this;
   }
-  inline JobStatus& operator=(JobStatus&& from) noexcept {
+  inline RequestStatus& operator=(RequestStatus&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -367,20 +386,20 @@ class JobStatus PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const JobStatus& default_instance();
+  static const RequestStatus& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const JobStatus* internal_default_instance() {
-    return reinterpret_cast<const JobStatus*>(
-               &_JobStatus_default_instance_);
+  static inline const RequestStatus* internal_default_instance() {
+    return reinterpret_cast<const RequestStatus*>(
+               &_RequestStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(JobStatus& a, JobStatus& b) {
+  friend void swap(RequestStatus& a, RequestStatus& b) {
     a.Swap(&b);
   }
-  inline void Swap(JobStatus* other) {
+  inline void Swap(RequestStatus* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -388,7 +407,7 @@ class JobStatus PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(JobStatus* other) {
+  void UnsafeArenaSwap(RequestStatus* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -396,17 +415,17 @@ class JobStatus PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline JobStatus* New() const final {
-    return CreateMaybeMessage<JobStatus>(nullptr);
+  inline RequestStatus* New() const final {
+    return CreateMaybeMessage<RequestStatus>(nullptr);
   }
 
-  JobStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<JobStatus>(arena);
+  RequestStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RequestStatus>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const JobStatus& from);
-  void MergeFrom(const JobStatus& from);
+  void CopyFrom(const RequestStatus& from);
+  void MergeFrom(const RequestStatus& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -420,13 +439,13 @@ class JobStatus PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(JobStatus* other);
+  void InternalSwap(RequestStatus* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "beegfs.JobStatus";
+    return "beegfs.RequestStatus";
   }
   protected:
-  explicit JobStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit RequestStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -443,54 +462,54 @@ class JobStatus PROTOBUF_FINAL :
 
   // nested types ----------------------------------------------------
 
-  typedef JobStatus_Status Status;
+  typedef RequestStatus_Status Status;
   static constexpr Status UNKNOWN =
-    JobStatus_Status_UNKNOWN;
+    RequestStatus_Status_UNKNOWN;
   static constexpr Status UNASSIGNED =
-    JobStatus_Status_UNASSIGNED;
+    RequestStatus_Status_UNASSIGNED;
   static constexpr Status ASSIGNED =
-    JobStatus_Status_ASSIGNED;
+    RequestStatus_Status_ASSIGNED;
   static constexpr Status CREATED =
-    JobStatus_Status_CREATED;
+    RequestStatus_Status_CREATED;
   static constexpr Status RESCHEDULED =
-    JobStatus_Status_RESCHEDULED;
+    RequestStatus_Status_RESCHEDULED;
   static constexpr Status SCHEDULED =
-    JobStatus_Status_SCHEDULED;
+    RequestStatus_Status_SCHEDULED;
   static constexpr Status RUNNING =
-    JobStatus_Status_RUNNING;
+    RequestStatus_Status_RUNNING;
   static constexpr Status STALLED =
-    JobStatus_Status_STALLED;
+    RequestStatus_Status_STALLED;
   static constexpr Status PAUSED =
-    JobStatus_Status_PAUSED;
+    RequestStatus_Status_PAUSED;
   static constexpr Status FAILED =
-    JobStatus_Status_FAILED;
+    RequestStatus_Status_FAILED;
   static constexpr Status COMPLETED =
-    JobStatus_Status_COMPLETED;
+    RequestStatus_Status_COMPLETED;
   static constexpr Status CANCELLED =
-    JobStatus_Status_CANCELLED;
+    RequestStatus_Status_CANCELLED;
   static inline bool Status_IsValid(int value) {
-    return JobStatus_Status_IsValid(value);
+    return RequestStatus_Status_IsValid(value);
   }
   static constexpr Status Status_MIN =
-    JobStatus_Status_Status_MIN;
+    RequestStatus_Status_Status_MIN;
   static constexpr Status Status_MAX =
-    JobStatus_Status_Status_MAX;
+    RequestStatus_Status_Status_MAX;
   static constexpr int Status_ARRAYSIZE =
-    JobStatus_Status_Status_ARRAYSIZE;
+    RequestStatus_Status_Status_ARRAYSIZE;
   static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
   Status_descriptor() {
-    return JobStatus_Status_descriptor();
+    return RequestStatus_Status_descriptor();
   }
   template<typename T>
   static inline const std::string& Status_Name(T enum_t_value) {
     static_assert(::std::is_same<T, Status>::value ||
       ::std::is_integral<T>::value,
       "Incorrect type passed to function Status_Name.");
-    return JobStatus_Status_Name(enum_t_value);
+    return RequestStatus_Status_Name(enum_t_value);
   }
   static inline bool Status_Parse(const std::string& name,
       Status* value) {
-    return JobStatus_Status_Parse(name, value);
+    return RequestStatus_Status_Parse(name, value);
   }
 
   // accessors -------------------------------------------------------
@@ -524,16 +543,16 @@ class JobStatus PROTOBUF_FINAL :
   std::string* _internal_mutable_message();
   public:
 
-  // .beegfs.JobStatus.Status status = 1;
+  // .beegfs.RequestStatus.Status status = 1;
   void clear_status();
-  ::beegfs::JobStatus_Status status() const;
-  void set_status(::beegfs::JobStatus_Status value);
+  ::beegfs::RequestStatus_Status status() const;
+  void set_status(::beegfs::RequestStatus_Status value);
   private:
-  ::beegfs::JobStatus_Status _internal_status() const;
-  void _internal_set_status(::beegfs::JobStatus_Status value);
+  ::beegfs::RequestStatus_Status _internal_status() const;
+  void _internal_set_status(::beegfs::RequestStatus_Status value);
   public:
 
-  // @@protoc_insertion_point(class_scope:beegfs.JobStatus)
+  // @@protoc_insertion_point(class_scope:beegfs.RequestStatus)
  private:
   class _Internal;
 
@@ -542,6 +561,352 @@ class JobStatus PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
   int status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class JobMetadata PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beegfs.JobMetadata) */ {
+ public:
+  inline JobMetadata() : JobMetadata(nullptr) {};
+  virtual ~JobMetadata();
+
+  JobMetadata(const JobMetadata& from);
+  JobMetadata(JobMetadata&& from) noexcept
+    : JobMetadata() {
+    *this = ::std::move(from);
+  }
+
+  inline JobMetadata& operator=(const JobMetadata& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JobMetadata& operator=(JobMetadata&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const JobMetadata& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const JobMetadata* internal_default_instance() {
+    return reinterpret_cast<const JobMetadata*>(
+               &_JobMetadata_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(JobMetadata& a, JobMetadata& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(JobMetadata* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JobMetadata* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline JobMetadata* New() const final {
+    return CreateMaybeMessage<JobMetadata>(nullptr);
+  }
+
+  JobMetadata* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<JobMetadata>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const JobMetadata& from);
+  void MergeFrom(const JobMetadata& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(JobMetadata* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "beegfs.JobMetadata";
+  }
+  protected:
+  explicit JobMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_beegfs_2eproto);
+    return ::descriptor_table_beegfs_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kStatusFieldNumber = 2,
+  };
+  // string id = 1;
+  void clear_id();
+  const std::string& id() const;
+  void set_id(const std::string& value);
+  void set_id(std::string&& value);
+  void set_id(const char* value);
+  void set_id(const char* value, size_t size);
+  std::string* mutable_id();
+  std::string* release_id();
+  void set_allocated_id(std::string* id);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_id();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_id(
+      std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // .beegfs.RequestStatus status = 2;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const ::beegfs::RequestStatus& status() const;
+  ::beegfs::RequestStatus* release_status();
+  ::beegfs::RequestStatus* mutable_status();
+  void set_allocated_status(::beegfs::RequestStatus* status);
+  private:
+  const ::beegfs::RequestStatus& _internal_status() const;
+  ::beegfs::RequestStatus* _internal_mutable_status();
+  public:
+  void unsafe_arena_set_allocated_status(
+      ::beegfs::RequestStatus* status);
+  ::beegfs::RequestStatus* unsafe_arena_release_status();
+
+  // @@protoc_insertion_point(class_scope:beegfs.JobMetadata)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::beegfs::RequestStatus* status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WorkResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beegfs.WorkResponse) */ {
+ public:
+  inline WorkResponse() : WorkResponse(nullptr) {};
+  virtual ~WorkResponse();
+
+  WorkResponse(const WorkResponse& from);
+  WorkResponse(WorkResponse&& from) noexcept
+    : WorkResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline WorkResponse& operator=(const WorkResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WorkResponse& operator=(WorkResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WorkResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const WorkResponse* internal_default_instance() {
+    return reinterpret_cast<const WorkResponse*>(
+               &_WorkResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(WorkResponse& a, WorkResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WorkResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WorkResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WorkResponse* New() const final {
+    return CreateMaybeMessage<WorkResponse>(nullptr);
+  }
+
+  WorkResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WorkResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WorkResponse& from);
+  void MergeFrom(const WorkResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WorkResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "beegfs.WorkResponse";
+  }
+  protected:
+  explicit WorkResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_beegfs_2eproto);
+    return ::descriptor_table_beegfs_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kStatusFieldNumber = 2,
+  };
+  // string id = 1;
+  void clear_id();
+  const std::string& id() const;
+  void set_id(const std::string& value);
+  void set_id(std::string&& value);
+  void set_id(const char* value);
+  void set_id(const char* value, size_t size);
+  std::string* mutable_id();
+  std::string* release_id();
+  void set_allocated_id(std::string* id);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_id();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_id(
+      std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // .beegfs.RequestStatus status = 2;
+  bool has_status() const;
+  private:
+  bool _internal_has_status() const;
+  public:
+  void clear_status();
+  const ::beegfs::RequestStatus& status() const;
+  ::beegfs::RequestStatus* release_status();
+  ::beegfs::RequestStatus* mutable_status();
+  void set_allocated_status(::beegfs::RequestStatus* status);
+  private:
+  const ::beegfs::RequestStatus& _internal_status() const;
+  ::beegfs::RequestStatus* _internal_mutable_status();
+  public:
+  void unsafe_arena_set_allocated_status(
+      ::beegfs::RequestStatus* status);
+  ::beegfs::RequestStatus* unsafe_arena_release_status();
+
+  // @@protoc_insertion_point(class_scope:beegfs.WorkResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::beegfs::RequestStatus* status_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_beegfs_2eproto;
 };
@@ -589,7 +954,7 @@ class RemoteStorageTarget_Policies PROTOBUF_FINAL :
                &_RemoteStorageTarget_Policies_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(RemoteStorageTarget_Policies& a, RemoteStorageTarget_Policies& b) {
     a.Swap(&b);
@@ -664,6 +1029,7 @@ class RemoteStorageTarget_Policies PROTOBUF_FINAL :
     kRemoteFlockFieldNumber = 2,
     kKeepDirStructureFieldNumber = 3,
     kKeepBeegfsMetadataFieldNumber = 4,
+    kAutostartMaxSizeFieldNumber = 5,
   };
   // bool local_flock = 1;
   void clear_local_flock();
@@ -701,6 +1067,15 @@ class RemoteStorageTarget_Policies PROTOBUF_FINAL :
   void _internal_set_keep_beegfs_metadata(bool value);
   public:
 
+  // uint32 autostart_max_size = 5;
+  void clear_autostart_max_size();
+  ::PROTOBUF_NAMESPACE_ID::uint32 autostart_max_size() const;
+  void set_autostart_max_size(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_autostart_max_size() const;
+  void _internal_set_autostart_max_size(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:beegfs.RemoteStorageTarget.Policies)
  private:
   class _Internal;
@@ -712,6 +1087,7 @@ class RemoteStorageTarget_Policies PROTOBUF_FINAL :
   bool remote_flock_;
   bool keep_dir_structure_;
   bool keep_beegfs_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 autostart_max_size_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_beegfs_2eproto;
 };
@@ -759,7 +1135,7 @@ class RemoteStorageTarget_S3 PROTOBUF_FINAL :
                &_RemoteStorageTarget_S3_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(RemoteStorageTarget_S3& a, RemoteStorageTarget_S3& b) {
     a.Swap(&b);
@@ -1020,7 +1396,7 @@ class RemoteStorageTarget_Azure PROTOBUF_FINAL :
                &_RemoteStorageTarget_Azure_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(RemoteStorageTarget_Azure& a, RemoteStorageTarget_Azure& b) {
     a.Swap(&b);
@@ -1193,7 +1569,7 @@ class RemoteStorageTarget_POSIX PROTOBUF_FINAL :
                &_RemoteStorageTarget_POSIX_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(RemoteStorageTarget_POSIX& a, RemoteStorageTarget_POSIX& b) {
     a.Swap(&b);
@@ -1353,7 +1729,7 @@ class RemoteStorageTarget PROTOBUF_FINAL :
                &_RemoteStorageTarget_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(RemoteStorageTarget& a, RemoteStorageTarget& b) {
     a.Swap(&b);
@@ -1841,82 +2217,102 @@ inline void Entry::unsafe_arena_set_allocated_remote_storage_target(
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Entry.remote_storage_target)
 }
 
+// uint64 file_size = 4;
+inline void Entry::clear_file_size() {
+  file_size_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Entry::_internal_file_size() const {
+  return file_size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Entry::file_size() const {
+  // @@protoc_insertion_point(field_get:beegfs.Entry.file_size)
+  return _internal_file_size();
+}
+inline void Entry::_internal_set_file_size(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  file_size_ = value;
+}
+inline void Entry::set_file_size(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_file_size(value);
+  // @@protoc_insertion_point(field_set:beegfs.Entry.file_size)
+}
+
 // -------------------------------------------------------------------
 
-// JobStatus
+// RequestStatus
 
-// .beegfs.JobStatus.Status status = 1;
-inline void JobStatus::clear_status() {
+// .beegfs.RequestStatus.Status status = 1;
+inline void RequestStatus::clear_status() {
   status_ = 0;
 }
-inline ::beegfs::JobStatus_Status JobStatus::_internal_status() const {
-  return static_cast< ::beegfs::JobStatus_Status >(status_);
+inline ::beegfs::RequestStatus_Status RequestStatus::_internal_status() const {
+  return static_cast< ::beegfs::RequestStatus_Status >(status_);
 }
-inline ::beegfs::JobStatus_Status JobStatus::status() const {
-  // @@protoc_insertion_point(field_get:beegfs.JobStatus.status)
+inline ::beegfs::RequestStatus_Status RequestStatus::status() const {
+  // @@protoc_insertion_point(field_get:beegfs.RequestStatus.status)
   return _internal_status();
 }
-inline void JobStatus::_internal_set_status(::beegfs::JobStatus_Status value) {
+inline void RequestStatus::_internal_set_status(::beegfs::RequestStatus_Status value) {
   
   status_ = value;
 }
-inline void JobStatus::set_status(::beegfs::JobStatus_Status value) {
+inline void RequestStatus::set_status(::beegfs::RequestStatus_Status value) {
   _internal_set_status(value);
-  // @@protoc_insertion_point(field_set:beegfs.JobStatus.status)
+  // @@protoc_insertion_point(field_set:beegfs.RequestStatus.status)
 }
 
 // string message = 2;
-inline void JobStatus::clear_message() {
+inline void RequestStatus::clear_message() {
   message_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& JobStatus::message() const {
-  // @@protoc_insertion_point(field_get:beegfs.JobStatus.message)
+inline const std::string& RequestStatus::message() const {
+  // @@protoc_insertion_point(field_get:beegfs.RequestStatus.message)
   return _internal_message();
 }
-inline void JobStatus::set_message(const std::string& value) {
+inline void RequestStatus::set_message(const std::string& value) {
   _internal_set_message(value);
-  // @@protoc_insertion_point(field_set:beegfs.JobStatus.message)
+  // @@protoc_insertion_point(field_set:beegfs.RequestStatus.message)
 }
-inline std::string* JobStatus::mutable_message() {
-  // @@protoc_insertion_point(field_mutable:beegfs.JobStatus.message)
+inline std::string* RequestStatus::mutable_message() {
+  // @@protoc_insertion_point(field_mutable:beegfs.RequestStatus.message)
   return _internal_mutable_message();
 }
-inline const std::string& JobStatus::_internal_message() const {
+inline const std::string& RequestStatus::_internal_message() const {
   return message_.Get();
 }
-inline void JobStatus::_internal_set_message(const std::string& value) {
+inline void RequestStatus::_internal_set_message(const std::string& value) {
   
   message_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void JobStatus::set_message(std::string&& value) {
+inline void RequestStatus::set_message(std::string&& value) {
   
   message_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:beegfs.JobStatus.message)
+  // @@protoc_insertion_point(field_set_rvalue:beegfs.RequestStatus.message)
 }
-inline void JobStatus::set_message(const char* value) {
+inline void RequestStatus::set_message(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   message_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:beegfs.JobStatus.message)
+  // @@protoc_insertion_point(field_set_char:beegfs.RequestStatus.message)
 }
-inline void JobStatus::set_message(const char* value,
+inline void RequestStatus::set_message(const char* value,
     size_t size) {
   
   message_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:beegfs.JobStatus.message)
+  // @@protoc_insertion_point(field_set_pointer:beegfs.RequestStatus.message)
 }
-inline std::string* JobStatus::_internal_mutable_message() {
+inline std::string* RequestStatus::_internal_mutable_message() {
   
   return message_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* JobStatus::release_message() {
-  // @@protoc_insertion_point(field_release:beegfs.JobStatus.message)
+inline std::string* RequestStatus::release_message() {
+  // @@protoc_insertion_point(field_release:beegfs.RequestStatus.message)
   return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void JobStatus::set_allocated_message(std::string* message) {
+inline void RequestStatus::set_allocated_message(std::string* message) {
   if (message != nullptr) {
     
   } else {
@@ -1924,16 +2320,16 @@ inline void JobStatus::set_allocated_message(std::string* message) {
   }
   message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:beegfs.JobStatus.message)
+  // @@protoc_insertion_point(field_set_allocated:beegfs.RequestStatus.message)
 }
-inline std::string* JobStatus::unsafe_arena_release_message() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.JobStatus.message)
+inline std::string* RequestStatus::unsafe_arena_release_message() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.RequestStatus.message)
   GOOGLE_DCHECK(GetArena() != nullptr);
   
   return message_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       GetArena());
 }
-inline void JobStatus::unsafe_arena_set_allocated_message(
+inline void RequestStatus::unsafe_arena_set_allocated_message(
     std::string* message) {
   GOOGLE_DCHECK(GetArena() != nullptr);
   if (message != nullptr) {
@@ -1943,7 +2339,339 @@ inline void JobStatus::unsafe_arena_set_allocated_message(
   }
   message_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       message, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.JobStatus.message)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.RequestStatus.message)
+}
+
+// -------------------------------------------------------------------
+
+// JobMetadata
+
+// string id = 1;
+inline void JobMetadata::clear_id() {
+  id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& JobMetadata::id() const {
+  // @@protoc_insertion_point(field_get:beegfs.JobMetadata.id)
+  return _internal_id();
+}
+inline void JobMetadata::set_id(const std::string& value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:beegfs.JobMetadata.id)
+}
+inline std::string* JobMetadata::mutable_id() {
+  // @@protoc_insertion_point(field_mutable:beegfs.JobMetadata.id)
+  return _internal_mutable_id();
+}
+inline const std::string& JobMetadata::_internal_id() const {
+  return id_.Get();
+}
+inline void JobMetadata::_internal_set_id(const std::string& value) {
+  
+  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void JobMetadata::set_id(std::string&& value) {
+  
+  id_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:beegfs.JobMetadata.id)
+}
+inline void JobMetadata::set_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:beegfs.JobMetadata.id)
+}
+inline void JobMetadata::set_id(const char* value,
+    size_t size) {
+  
+  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:beegfs.JobMetadata.id)
+}
+inline std::string* JobMetadata::_internal_mutable_id() {
+  
+  return id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* JobMetadata::release_id() {
+  // @@protoc_insertion_point(field_release:beegfs.JobMetadata.id)
+  return id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void JobMetadata::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:beegfs.JobMetadata.id)
+}
+inline std::string* JobMetadata::unsafe_arena_release_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.JobMetadata.id)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void JobMetadata::unsafe_arena_set_allocated_id(
+    std::string* id) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      id, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.JobMetadata.id)
+}
+
+// .beegfs.RequestStatus status = 2;
+inline bool JobMetadata::_internal_has_status() const {
+  return this != internal_default_instance() && status_ != nullptr;
+}
+inline bool JobMetadata::has_status() const {
+  return _internal_has_status();
+}
+inline void JobMetadata::clear_status() {
+  if (GetArena() == nullptr && status_ != nullptr) {
+    delete status_;
+  }
+  status_ = nullptr;
+}
+inline const ::beegfs::RequestStatus& JobMetadata::_internal_status() const {
+  const ::beegfs::RequestStatus* p = status_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::beegfs::RequestStatus*>(
+      &::beegfs::_RequestStatus_default_instance_);
+}
+inline const ::beegfs::RequestStatus& JobMetadata::status() const {
+  // @@protoc_insertion_point(field_get:beegfs.JobMetadata.status)
+  return _internal_status();
+}
+inline void JobMetadata::unsafe_arena_set_allocated_status(
+    ::beegfs::RequestStatus* status) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(status_);
+  }
+  status_ = status;
+  if (status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.JobMetadata.status)
+}
+inline ::beegfs::RequestStatus* JobMetadata::release_status() {
+  auto temp = unsafe_arena_release_status();
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::beegfs::RequestStatus* JobMetadata::unsafe_arena_release_status() {
+  // @@protoc_insertion_point(field_release:beegfs.JobMetadata.status)
+  
+  ::beegfs::RequestStatus* temp = status_;
+  status_ = nullptr;
+  return temp;
+}
+inline ::beegfs::RequestStatus* JobMetadata::_internal_mutable_status() {
+  
+  if (status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::beegfs::RequestStatus>(GetArena());
+    status_ = p;
+  }
+  return status_;
+}
+inline ::beegfs::RequestStatus* JobMetadata::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:beegfs.JobMetadata.status)
+  return _internal_mutable_status();
+}
+inline void JobMetadata::set_allocated_status(::beegfs::RequestStatus* status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete status_;
+  }
+  if (status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(status);
+    if (message_arena != submessage_arena) {
+      status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  status_ = status;
+  // @@protoc_insertion_point(field_set_allocated:beegfs.JobMetadata.status)
+}
+
+// -------------------------------------------------------------------
+
+// WorkResponse
+
+// string id = 1;
+inline void WorkResponse::clear_id() {
+  id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& WorkResponse::id() const {
+  // @@protoc_insertion_point(field_get:beegfs.WorkResponse.id)
+  return _internal_id();
+}
+inline void WorkResponse::set_id(const std::string& value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:beegfs.WorkResponse.id)
+}
+inline std::string* WorkResponse::mutable_id() {
+  // @@protoc_insertion_point(field_mutable:beegfs.WorkResponse.id)
+  return _internal_mutable_id();
+}
+inline const std::string& WorkResponse::_internal_id() const {
+  return id_.Get();
+}
+inline void WorkResponse::_internal_set_id(const std::string& value) {
+  
+  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void WorkResponse::set_id(std::string&& value) {
+  
+  id_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:beegfs.WorkResponse.id)
+}
+inline void WorkResponse::set_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:beegfs.WorkResponse.id)
+}
+inline void WorkResponse::set_id(const char* value,
+    size_t size) {
+  
+  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:beegfs.WorkResponse.id)
+}
+inline std::string* WorkResponse::_internal_mutable_id() {
+  
+  return id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* WorkResponse::release_id() {
+  // @@protoc_insertion_point(field_release:beegfs.WorkResponse.id)
+  return id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WorkResponse::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:beegfs.WorkResponse.id)
+}
+inline std::string* WorkResponse::unsafe_arena_release_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.WorkResponse.id)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void WorkResponse::unsafe_arena_set_allocated_id(
+    std::string* id) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      id, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.WorkResponse.id)
+}
+
+// .beegfs.RequestStatus status = 2;
+inline bool WorkResponse::_internal_has_status() const {
+  return this != internal_default_instance() && status_ != nullptr;
+}
+inline bool WorkResponse::has_status() const {
+  return _internal_has_status();
+}
+inline void WorkResponse::clear_status() {
+  if (GetArena() == nullptr && status_ != nullptr) {
+    delete status_;
+  }
+  status_ = nullptr;
+}
+inline const ::beegfs::RequestStatus& WorkResponse::_internal_status() const {
+  const ::beegfs::RequestStatus* p = status_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::beegfs::RequestStatus*>(
+      &::beegfs::_RequestStatus_default_instance_);
+}
+inline const ::beegfs::RequestStatus& WorkResponse::status() const {
+  // @@protoc_insertion_point(field_get:beegfs.WorkResponse.status)
+  return _internal_status();
+}
+inline void WorkResponse::unsafe_arena_set_allocated_status(
+    ::beegfs::RequestStatus* status) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(status_);
+  }
+  status_ = status;
+  if (status) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.WorkResponse.status)
+}
+inline ::beegfs::RequestStatus* WorkResponse::release_status() {
+  auto temp = unsafe_arena_release_status();
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::beegfs::RequestStatus* WorkResponse::unsafe_arena_release_status() {
+  // @@protoc_insertion_point(field_release:beegfs.WorkResponse.status)
+  
+  ::beegfs::RequestStatus* temp = status_;
+  status_ = nullptr;
+  return temp;
+}
+inline ::beegfs::RequestStatus* WorkResponse::_internal_mutable_status() {
+  
+  if (status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::beegfs::RequestStatus>(GetArena());
+    status_ = p;
+  }
+  return status_;
+}
+inline ::beegfs::RequestStatus* WorkResponse::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:beegfs.WorkResponse.status)
+  return _internal_mutable_status();
+}
+inline void WorkResponse::set_allocated_status(::beegfs::RequestStatus* status) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete status_;
+  }
+  if (status) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(status);
+    if (message_arena != submessage_arena) {
+      status = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, status, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  status_ = status;
+  // @@protoc_insertion_point(field_set_allocated:beegfs.WorkResponse.status)
 }
 
 // -------------------------------------------------------------------
@@ -2028,6 +2756,26 @@ inline void RemoteStorageTarget_Policies::_internal_set_keep_beegfs_metadata(boo
 inline void RemoteStorageTarget_Policies::set_keep_beegfs_metadata(bool value) {
   _internal_set_keep_beegfs_metadata(value);
   // @@protoc_insertion_point(field_set:beegfs.RemoteStorageTarget.Policies.keep_beegfs_metadata)
+}
+
+// uint32 autostart_max_size = 5;
+inline void RemoteStorageTarget_Policies::clear_autostart_max_size() {
+  autostart_max_size_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 RemoteStorageTarget_Policies::_internal_autostart_max_size() const {
+  return autostart_max_size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 RemoteStorageTarget_Policies::autostart_max_size() const {
+  // @@protoc_insertion_point(field_get:beegfs.RemoteStorageTarget.Policies.autostart_max_size)
+  return _internal_autostart_max_size();
+}
+inline void RemoteStorageTarget_Policies::_internal_set_autostart_max_size(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  autostart_max_size_ = value;
+}
+inline void RemoteStorageTarget_Policies::set_autostart_max_size(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_autostart_max_size(value);
+  // @@protoc_insertion_point(field_set:beegfs.RemoteStorageTarget.Policies.autostart_max_size)
 }
 
 // -------------------------------------------------------------------
@@ -3180,6 +3928,10 @@ inline RemoteStorageTarget::TypeCase RemoteStorageTarget::type_case() const {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -3187,10 +3939,10 @@ inline RemoteStorageTarget::TypeCase RemoteStorageTarget::type_case() const {
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::beegfs::JobStatus_Status> : ::std::true_type {};
+template <> struct is_proto_enum< ::beegfs::RequestStatus_Status> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::beegfs::JobStatus_Status>() {
-  return ::beegfs::JobStatus_Status_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::beegfs::RequestStatus_Status>() {
+  return ::beegfs::RequestStatus_Status_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
