@@ -54,7 +54,7 @@ func (c *beeSyncClient) JobRequests(ctx context.Context, opts ...grpc.CallOption
 }
 
 type BeeSync_JobRequestsClient interface {
-	Send(*WorkRequest) error
+	Send(*SyncRequest) error
 	Recv() (*_go.WorkResponse, error)
 	grpc.ClientStream
 }
@@ -63,7 +63,7 @@ type beeSyncJobRequestsClient struct {
 	grpc.ClientStream
 }
 
-func (x *beeSyncJobRequestsClient) Send(m *WorkRequest) error {
+func (x *beeSyncJobRequestsClient) Send(m *SyncRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
@@ -131,7 +131,7 @@ func _BeeSync_JobRequests_Handler(srv interface{}, stream grpc.ServerStream) err
 
 type BeeSync_JobRequestsServer interface {
 	Send(*_go.WorkResponse) error
-	Recv() (*WorkRequest, error)
+	Recv() (*SyncRequest, error)
 	grpc.ServerStream
 }
 
@@ -143,8 +143,8 @@ func (x *beeSyncJobRequestsServer) Send(m *_go.WorkResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *beeSyncJobRequestsServer) Recv() (*WorkRequest, error) {
-	m := new(WorkRequest)
+func (x *beeSyncJobRequestsServer) Recv() (*SyncRequest, error) {
+	m := new(SyncRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}

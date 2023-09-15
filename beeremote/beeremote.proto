@@ -20,10 +20,11 @@ service BeeRemote {
 // so it does not include automatically generated fields like the job ID or
 // anything about the work request(s) used to execute the job.
 message JobRequest {
+    string path = 1;    
     // An arbitrary name for a job can be specified.
     // Job names are optional and not need to be unique.
-    string name = 1;
-    int32 priority = 2;
+    string name = 2;
+    int32 priority = 3;
     oneof type {
         beesync.SyncJob sync = 10;
     }

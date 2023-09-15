@@ -75,9 +75,9 @@ extern Segment_S3_CompletedPartsDefaultTypeInternal _Segment_S3_CompletedParts_d
 class SyncJob;
 class SyncJobDefaultTypeInternal;
 extern SyncJobDefaultTypeInternal _SyncJob_default_instance_;
-class WorkRequest;
-class WorkRequestDefaultTypeInternal;
-extern WorkRequestDefaultTypeInternal _WorkRequest_default_instance_;
+class SyncRequest;
+class SyncRequestDefaultTypeInternal;
+extern SyncRequestDefaultTypeInternal _SyncRequest_default_instance_;
 }  // namespace beesync
 PROTOBUF_NAMESPACE_OPEN
 template<> ::beesync::ConfigUpdateRequest* Arena::CreateMaybeMessage<::beesync::ConfigUpdateRequest>(Arena*);
@@ -86,7 +86,7 @@ template<> ::beesync::Segment* Arena::CreateMaybeMessage<::beesync::Segment>(Are
 template<> ::beesync::Segment_S3* Arena::CreateMaybeMessage<::beesync::Segment_S3>(Arena*);
 template<> ::beesync::Segment_S3_CompletedParts* Arena::CreateMaybeMessage<::beesync::Segment_S3_CompletedParts>(Arena*);
 template<> ::beesync::SyncJob* Arena::CreateMaybeMessage<::beesync::SyncJob>(Arena*);
-template<> ::beesync::WorkRequest* Arena::CreateMaybeMessage<::beesync::WorkRequest>(Arena*);
+template<> ::beesync::SyncRequest* Arena::CreateMaybeMessage<::beesync::SyncRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace beesync {
 
@@ -634,28 +634,35 @@ class SyncJob PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kEntryFieldNumber = 1,
-    kOperationFieldNumber = 2,
+    kRemoteStorageTargetFieldNumber = 2,
+    kOperationFieldNumber = 1,
   };
-  // .beegfs.Entry entry = 1;
-  bool has_entry() const;
+  // string remote_storage_target = 2;
+  void clear_remote_storage_target();
+  const std::string& remote_storage_target() const;
+  void set_remote_storage_target(const std::string& value);
+  void set_remote_storage_target(std::string&& value);
+  void set_remote_storage_target(const char* value);
+  void set_remote_storage_target(const char* value, size_t size);
+  std::string* mutable_remote_storage_target();
+  std::string* release_remote_storage_target();
+  void set_allocated_remote_storage_target(std::string* remote_storage_target);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_remote_storage_target();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_remote_storage_target(
+      std::string* remote_storage_target);
   private:
-  bool _internal_has_entry() const;
+  const std::string& _internal_remote_storage_target() const;
+  void _internal_set_remote_storage_target(const std::string& value);
+  std::string* _internal_mutable_remote_storage_target();
   public:
-  void clear_entry();
-  const ::beegfs::Entry& entry() const;
-  ::beegfs::Entry* release_entry();
-  ::beegfs::Entry* mutable_entry();
-  void set_allocated_entry(::beegfs::Entry* entry);
-  private:
-  const ::beegfs::Entry& _internal_entry() const;
-  ::beegfs::Entry* _internal_mutable_entry();
-  public:
-  void unsafe_arena_set_allocated_entry(
-      ::beegfs::Entry* entry);
-  ::beegfs::Entry* unsafe_arena_release_entry();
 
-  // .beesync.SyncJob.Operation operation = 2;
+  // .beesync.SyncJob.Operation operation = 1;
   void clear_operation();
   ::beesync::SyncJob_Operation operation() const;
   void set_operation(::beesync::SyncJob_Operation value);
@@ -671,30 +678,30 @@ class SyncJob PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::beegfs::Entry* entry_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_storage_target_;
   int operation_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_beesync_2eproto;
 };
 // -------------------------------------------------------------------
 
-class WorkRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beesync.WorkRequest) */ {
+class SyncRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beesync.SyncRequest) */ {
  public:
-  inline WorkRequest() : WorkRequest(nullptr) {};
-  virtual ~WorkRequest();
+  inline SyncRequest() : SyncRequest(nullptr) {};
+  virtual ~SyncRequest();
 
-  WorkRequest(const WorkRequest& from);
-  WorkRequest(WorkRequest&& from) noexcept
-    : WorkRequest() {
+  SyncRequest(const SyncRequest& from);
+  SyncRequest(SyncRequest&& from) noexcept
+    : SyncRequest() {
     *this = ::std::move(from);
   }
 
-  inline WorkRequest& operator=(const WorkRequest& from) {
+  inline SyncRequest& operator=(const SyncRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline WorkRequest& operator=(WorkRequest&& from) noexcept {
+  inline SyncRequest& operator=(SyncRequest&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -712,20 +719,20 @@ class WorkRequest PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const WorkRequest& default_instance();
+  static const SyncRequest& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const WorkRequest* internal_default_instance() {
-    return reinterpret_cast<const WorkRequest*>(
-               &_WorkRequest_default_instance_);
+  static inline const SyncRequest* internal_default_instance() {
+    return reinterpret_cast<const SyncRequest*>(
+               &_SyncRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(WorkRequest& a, WorkRequest& b) {
+  friend void swap(SyncRequest& a, SyncRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(WorkRequest* other) {
+  inline void Swap(SyncRequest* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -733,7 +740,7 @@ class WorkRequest PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(WorkRequest* other) {
+  void UnsafeArenaSwap(SyncRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -741,17 +748,17 @@ class WorkRequest PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline WorkRequest* New() const final {
-    return CreateMaybeMessage<WorkRequest>(nullptr);
+  inline SyncRequest* New() const final {
+    return CreateMaybeMessage<SyncRequest>(nullptr);
   }
 
-  WorkRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<WorkRequest>(arena);
+  SyncRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SyncRequest>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const WorkRequest& from);
-  void MergeFrom(const WorkRequest& from);
+  void CopyFrom(const SyncRequest& from);
+  void MergeFrom(const SyncRequest& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -765,13 +772,13 @@ class WorkRequest PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(WorkRequest* other);
+  void InternalSwap(SyncRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "beesync.WorkRequest";
+    return "beesync.SyncRequest";
   }
   protected:
-  explicit WorkRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit SyncRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -791,11 +798,63 @@ class WorkRequest PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kMetadataFieldNumber = 1,
-    kJobFieldNumber = 2,
-    kSegmentFieldNumber = 3,
+    kRequestIdFieldNumber = 1,
+    kPathFieldNumber = 3,
+    kMetadataFieldNumber = 2,
+    kJobFieldNumber = 4,
+    kSegmentFieldNumber = 5,
   };
-  // .beegfs.JobMetadata metadata = 1;
+  // string request_id = 1;
+  void clear_request_id();
+  const std::string& request_id() const;
+  void set_request_id(const std::string& value);
+  void set_request_id(std::string&& value);
+  void set_request_id(const char* value);
+  void set_request_id(const char* value, size_t size);
+  std::string* mutable_request_id();
+  std::string* release_request_id();
+  void set_allocated_request_id(std::string* request_id);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_request_id();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_request_id(
+      std::string* request_id);
+  private:
+  const std::string& _internal_request_id() const;
+  void _internal_set_request_id(const std::string& value);
+  std::string* _internal_mutable_request_id();
+  public:
+
+  // string path = 3;
+  void clear_path();
+  const std::string& path() const;
+  void set_path(const std::string& value);
+  void set_path(std::string&& value);
+  void set_path(const char* value);
+  void set_path(const char* value, size_t size);
+  std::string* mutable_path();
+  std::string* release_path();
+  void set_allocated_path(std::string* path);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_path();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_path(
+      std::string* path);
+  private:
+  const std::string& _internal_path() const;
+  void _internal_set_path(const std::string& value);
+  std::string* _internal_mutable_path();
+  public:
+
+  // .beegfs.JobMetadata metadata = 2;
   bool has_metadata() const;
   private:
   bool _internal_has_metadata() const;
@@ -813,7 +872,7 @@ class WorkRequest PROTOBUF_FINAL :
       ::beegfs::JobMetadata* metadata);
   ::beegfs::JobMetadata* unsafe_arena_release_metadata();
 
-  // .beesync.SyncJob job = 2;
+  // .beesync.SyncJob job = 4;
   bool has_job() const;
   private:
   bool _internal_has_job() const;
@@ -831,7 +890,7 @@ class WorkRequest PROTOBUF_FINAL :
       ::beesync::SyncJob* job);
   ::beesync::SyncJob* unsafe_arena_release_job();
 
-  // .beesync.Segment segment = 3;
+  // .beesync.Segment segment = 5;
   bool has_segment() const;
   private:
   bool _internal_has_segment() const;
@@ -849,13 +908,15 @@ class WorkRequest PROTOBUF_FINAL :
       ::beesync::Segment* segment);
   ::beesync::Segment* unsafe_arena_release_segment();
 
-  // @@protoc_insertion_point(class_scope:beesync.WorkRequest)
+  // @@protoc_insertion_point(class_scope:beesync.SyncRequest)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr request_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr path_;
   ::beegfs::JobMetadata* metadata_;
   ::beesync::SyncJob* job_;
   ::beesync::Segment* segment_;
@@ -1608,82 +1669,7 @@ inline void ConfigUpdateResponse::unsafe_arena_set_allocated_message(
 
 // SyncJob
 
-// .beegfs.Entry entry = 1;
-inline bool SyncJob::_internal_has_entry() const {
-  return this != internal_default_instance() && entry_ != nullptr;
-}
-inline bool SyncJob::has_entry() const {
-  return _internal_has_entry();
-}
-inline const ::beegfs::Entry& SyncJob::_internal_entry() const {
-  const ::beegfs::Entry* p = entry_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::beegfs::Entry*>(
-      &::beegfs::_Entry_default_instance_);
-}
-inline const ::beegfs::Entry& SyncJob::entry() const {
-  // @@protoc_insertion_point(field_get:beesync.SyncJob.entry)
-  return _internal_entry();
-}
-inline void SyncJob::unsafe_arena_set_allocated_entry(
-    ::beegfs::Entry* entry) {
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(entry_);
-  }
-  entry_ = entry;
-  if (entry) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.SyncJob.entry)
-}
-inline ::beegfs::Entry* SyncJob::release_entry() {
-  auto temp = unsafe_arena_release_entry();
-  if (GetArena() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-  return temp;
-}
-inline ::beegfs::Entry* SyncJob::unsafe_arena_release_entry() {
-  // @@protoc_insertion_point(field_release:beesync.SyncJob.entry)
-  
-  ::beegfs::Entry* temp = entry_;
-  entry_ = nullptr;
-  return temp;
-}
-inline ::beegfs::Entry* SyncJob::_internal_mutable_entry() {
-  
-  if (entry_ == nullptr) {
-    auto* p = CreateMaybeMessage<::beegfs::Entry>(GetArena());
-    entry_ = p;
-  }
-  return entry_;
-}
-inline ::beegfs::Entry* SyncJob::mutable_entry() {
-  // @@protoc_insertion_point(field_mutable:beesync.SyncJob.entry)
-  return _internal_mutable_entry();
-}
-inline void SyncJob::set_allocated_entry(::beegfs::Entry* entry) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(entry_);
-  }
-  if (entry) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(entry)->GetArena();
-    if (message_arena != submessage_arena) {
-      entry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, entry, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  entry_ = entry;
-  // @@protoc_insertion_point(field_set_allocated:beesync.SyncJob.entry)
-}
-
-// .beesync.SyncJob.Operation operation = 2;
+// .beesync.SyncJob.Operation operation = 1;
 inline void SyncJob::clear_operation() {
   operation_ = 0;
 }
@@ -1703,27 +1689,189 @@ inline void SyncJob::set_operation(::beesync::SyncJob_Operation value) {
   // @@protoc_insertion_point(field_set:beesync.SyncJob.operation)
 }
 
+// string remote_storage_target = 2;
+inline void SyncJob::clear_remote_storage_target() {
+  remote_storage_target_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& SyncJob::remote_storage_target() const {
+  // @@protoc_insertion_point(field_get:beesync.SyncJob.remote_storage_target)
+  return _internal_remote_storage_target();
+}
+inline void SyncJob::set_remote_storage_target(const std::string& value) {
+  _internal_set_remote_storage_target(value);
+  // @@protoc_insertion_point(field_set:beesync.SyncJob.remote_storage_target)
+}
+inline std::string* SyncJob::mutable_remote_storage_target() {
+  // @@protoc_insertion_point(field_mutable:beesync.SyncJob.remote_storage_target)
+  return _internal_mutable_remote_storage_target();
+}
+inline const std::string& SyncJob::_internal_remote_storage_target() const {
+  return remote_storage_target_.Get();
+}
+inline void SyncJob::_internal_set_remote_storage_target(const std::string& value) {
+  
+  remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void SyncJob::set_remote_storage_target(std::string&& value) {
+  
+  remote_storage_target_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:beesync.SyncJob.remote_storage_target)
+}
+inline void SyncJob::set_remote_storage_target(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:beesync.SyncJob.remote_storage_target)
+}
+inline void SyncJob::set_remote_storage_target(const char* value,
+    size_t size) {
+  
+  remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:beesync.SyncJob.remote_storage_target)
+}
+inline std::string* SyncJob::_internal_mutable_remote_storage_target() {
+  
+  return remote_storage_target_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* SyncJob::release_remote_storage_target() {
+  // @@protoc_insertion_point(field_release:beesync.SyncJob.remote_storage_target)
+  return remote_storage_target_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void SyncJob::set_allocated_remote_storage_target(std::string* remote_storage_target) {
+  if (remote_storage_target != nullptr) {
+    
+  } else {
+    
+  }
+  remote_storage_target_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_storage_target,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:beesync.SyncJob.remote_storage_target)
+}
+inline std::string* SyncJob::unsafe_arena_release_remote_storage_target() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beesync.SyncJob.remote_storage_target)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return remote_storage_target_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void SyncJob::unsafe_arena_set_allocated_remote_storage_target(
+    std::string* remote_storage_target) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (remote_storage_target != nullptr) {
+    
+  } else {
+    
+  }
+  remote_storage_target_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      remote_storage_target, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.SyncJob.remote_storage_target)
+}
+
 // -------------------------------------------------------------------
 
-// WorkRequest
+// SyncRequest
 
-// .beegfs.JobMetadata metadata = 1;
-inline bool WorkRequest::_internal_has_metadata() const {
+// string request_id = 1;
+inline void SyncRequest::clear_request_id() {
+  request_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& SyncRequest::request_id() const {
+  // @@protoc_insertion_point(field_get:beesync.SyncRequest.request_id)
+  return _internal_request_id();
+}
+inline void SyncRequest::set_request_id(const std::string& value) {
+  _internal_set_request_id(value);
+  // @@protoc_insertion_point(field_set:beesync.SyncRequest.request_id)
+}
+inline std::string* SyncRequest::mutable_request_id() {
+  // @@protoc_insertion_point(field_mutable:beesync.SyncRequest.request_id)
+  return _internal_mutable_request_id();
+}
+inline const std::string& SyncRequest::_internal_request_id() const {
+  return request_id_.Get();
+}
+inline void SyncRequest::_internal_set_request_id(const std::string& value) {
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void SyncRequest::set_request_id(std::string&& value) {
+  
+  request_id_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:beesync.SyncRequest.request_id)
+}
+inline void SyncRequest::set_request_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:beesync.SyncRequest.request_id)
+}
+inline void SyncRequest::set_request_id(const char* value,
+    size_t size) {
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:beesync.SyncRequest.request_id)
+}
+inline std::string* SyncRequest::_internal_mutable_request_id() {
+  
+  return request_id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* SyncRequest::release_request_id() {
+  // @@protoc_insertion_point(field_release:beesync.SyncRequest.request_id)
+  return request_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void SyncRequest::set_allocated_request_id(std::string* request_id) {
+  if (request_id != nullptr) {
+    
+  } else {
+    
+  }
+  request_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), request_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:beesync.SyncRequest.request_id)
+}
+inline std::string* SyncRequest::unsafe_arena_release_request_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beesync.SyncRequest.request_id)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return request_id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void SyncRequest::unsafe_arena_set_allocated_request_id(
+    std::string* request_id) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (request_id != nullptr) {
+    
+  } else {
+    
+  }
+  request_id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      request_id, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.SyncRequest.request_id)
+}
+
+// .beegfs.JobMetadata metadata = 2;
+inline bool SyncRequest::_internal_has_metadata() const {
   return this != internal_default_instance() && metadata_ != nullptr;
 }
-inline bool WorkRequest::has_metadata() const {
+inline bool SyncRequest::has_metadata() const {
   return _internal_has_metadata();
 }
-inline const ::beegfs::JobMetadata& WorkRequest::_internal_metadata() const {
+inline const ::beegfs::JobMetadata& SyncRequest::_internal_metadata() const {
   const ::beegfs::JobMetadata* p = metadata_;
   return p != nullptr ? *p : *reinterpret_cast<const ::beegfs::JobMetadata*>(
       &::beegfs::_JobMetadata_default_instance_);
 }
-inline const ::beegfs::JobMetadata& WorkRequest::metadata() const {
-  // @@protoc_insertion_point(field_get:beesync.WorkRequest.metadata)
+inline const ::beegfs::JobMetadata& SyncRequest::metadata() const {
+  // @@protoc_insertion_point(field_get:beesync.SyncRequest.metadata)
   return _internal_metadata();
 }
-inline void WorkRequest::unsafe_arena_set_allocated_metadata(
+inline void SyncRequest::unsafe_arena_set_allocated_metadata(
     ::beegfs::JobMetadata* metadata) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
@@ -1734,23 +1882,23 @@ inline void WorkRequest::unsafe_arena_set_allocated_metadata(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.WorkRequest.metadata)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.SyncRequest.metadata)
 }
-inline ::beegfs::JobMetadata* WorkRequest::release_metadata() {
+inline ::beegfs::JobMetadata* SyncRequest::release_metadata() {
   auto temp = unsafe_arena_release_metadata();
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::beegfs::JobMetadata* WorkRequest::unsafe_arena_release_metadata() {
-  // @@protoc_insertion_point(field_release:beesync.WorkRequest.metadata)
+inline ::beegfs::JobMetadata* SyncRequest::unsafe_arena_release_metadata() {
+  // @@protoc_insertion_point(field_release:beesync.SyncRequest.metadata)
   
   ::beegfs::JobMetadata* temp = metadata_;
   metadata_ = nullptr;
   return temp;
 }
-inline ::beegfs::JobMetadata* WorkRequest::_internal_mutable_metadata() {
+inline ::beegfs::JobMetadata* SyncRequest::_internal_mutable_metadata() {
   
   if (metadata_ == nullptr) {
     auto* p = CreateMaybeMessage<::beegfs::JobMetadata>(GetArena());
@@ -1758,11 +1906,11 @@ inline ::beegfs::JobMetadata* WorkRequest::_internal_mutable_metadata() {
   }
   return metadata_;
 }
-inline ::beegfs::JobMetadata* WorkRequest::mutable_metadata() {
-  // @@protoc_insertion_point(field_mutable:beesync.WorkRequest.metadata)
+inline ::beegfs::JobMetadata* SyncRequest::mutable_metadata() {
+  // @@protoc_insertion_point(field_mutable:beesync.SyncRequest.metadata)
   return _internal_mutable_metadata();
 }
-inline void WorkRequest::set_allocated_metadata(::beegfs::JobMetadata* metadata) {
+inline void SyncRequest::set_allocated_metadata(::beegfs::JobMetadata* metadata) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
@@ -1779,32 +1927,113 @@ inline void WorkRequest::set_allocated_metadata(::beegfs::JobMetadata* metadata)
     
   }
   metadata_ = metadata;
-  // @@protoc_insertion_point(field_set_allocated:beesync.WorkRequest.metadata)
+  // @@protoc_insertion_point(field_set_allocated:beesync.SyncRequest.metadata)
 }
 
-// .beesync.SyncJob job = 2;
-inline bool WorkRequest::_internal_has_job() const {
+// string path = 3;
+inline void SyncRequest::clear_path() {
+  path_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& SyncRequest::path() const {
+  // @@protoc_insertion_point(field_get:beesync.SyncRequest.path)
+  return _internal_path();
+}
+inline void SyncRequest::set_path(const std::string& value) {
+  _internal_set_path(value);
+  // @@protoc_insertion_point(field_set:beesync.SyncRequest.path)
+}
+inline std::string* SyncRequest::mutable_path() {
+  // @@protoc_insertion_point(field_mutable:beesync.SyncRequest.path)
+  return _internal_mutable_path();
+}
+inline const std::string& SyncRequest::_internal_path() const {
+  return path_.Get();
+}
+inline void SyncRequest::_internal_set_path(const std::string& value) {
+  
+  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void SyncRequest::set_path(std::string&& value) {
+  
+  path_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:beesync.SyncRequest.path)
+}
+inline void SyncRequest::set_path(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:beesync.SyncRequest.path)
+}
+inline void SyncRequest::set_path(const char* value,
+    size_t size) {
+  
+  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:beesync.SyncRequest.path)
+}
+inline std::string* SyncRequest::_internal_mutable_path() {
+  
+  return path_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* SyncRequest::release_path() {
+  // @@protoc_insertion_point(field_release:beesync.SyncRequest.path)
+  return path_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void SyncRequest::set_allocated_path(std::string* path) {
+  if (path != nullptr) {
+    
+  } else {
+    
+  }
+  path_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), path,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:beesync.SyncRequest.path)
+}
+inline std::string* SyncRequest::unsafe_arena_release_path() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beesync.SyncRequest.path)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return path_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void SyncRequest::unsafe_arena_set_allocated_path(
+    std::string* path) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (path != nullptr) {
+    
+  } else {
+    
+  }
+  path_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      path, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.SyncRequest.path)
+}
+
+// .beesync.SyncJob job = 4;
+inline bool SyncRequest::_internal_has_job() const {
   return this != internal_default_instance() && job_ != nullptr;
 }
-inline bool WorkRequest::has_job() const {
+inline bool SyncRequest::has_job() const {
   return _internal_has_job();
 }
-inline void WorkRequest::clear_job() {
+inline void SyncRequest::clear_job() {
   if (GetArena() == nullptr && job_ != nullptr) {
     delete job_;
   }
   job_ = nullptr;
 }
-inline const ::beesync::SyncJob& WorkRequest::_internal_job() const {
+inline const ::beesync::SyncJob& SyncRequest::_internal_job() const {
   const ::beesync::SyncJob* p = job_;
   return p != nullptr ? *p : *reinterpret_cast<const ::beesync::SyncJob*>(
       &::beesync::_SyncJob_default_instance_);
 }
-inline const ::beesync::SyncJob& WorkRequest::job() const {
-  // @@protoc_insertion_point(field_get:beesync.WorkRequest.job)
+inline const ::beesync::SyncJob& SyncRequest::job() const {
+  // @@protoc_insertion_point(field_get:beesync.SyncRequest.job)
   return _internal_job();
 }
-inline void WorkRequest::unsafe_arena_set_allocated_job(
+inline void SyncRequest::unsafe_arena_set_allocated_job(
     ::beesync::SyncJob* job) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(job_);
@@ -1815,23 +2044,23 @@ inline void WorkRequest::unsafe_arena_set_allocated_job(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.WorkRequest.job)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.SyncRequest.job)
 }
-inline ::beesync::SyncJob* WorkRequest::release_job() {
+inline ::beesync::SyncJob* SyncRequest::release_job() {
   auto temp = unsafe_arena_release_job();
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::beesync::SyncJob* WorkRequest::unsafe_arena_release_job() {
-  // @@protoc_insertion_point(field_release:beesync.WorkRequest.job)
+inline ::beesync::SyncJob* SyncRequest::unsafe_arena_release_job() {
+  // @@protoc_insertion_point(field_release:beesync.SyncRequest.job)
   
   ::beesync::SyncJob* temp = job_;
   job_ = nullptr;
   return temp;
 }
-inline ::beesync::SyncJob* WorkRequest::_internal_mutable_job() {
+inline ::beesync::SyncJob* SyncRequest::_internal_mutable_job() {
   
   if (job_ == nullptr) {
     auto* p = CreateMaybeMessage<::beesync::SyncJob>(GetArena());
@@ -1839,11 +2068,11 @@ inline ::beesync::SyncJob* WorkRequest::_internal_mutable_job() {
   }
   return job_;
 }
-inline ::beesync::SyncJob* WorkRequest::mutable_job() {
-  // @@protoc_insertion_point(field_mutable:beesync.WorkRequest.job)
+inline ::beesync::SyncJob* SyncRequest::mutable_job() {
+  // @@protoc_insertion_point(field_mutable:beesync.SyncRequest.job)
   return _internal_mutable_job();
 }
-inline void WorkRequest::set_allocated_job(::beesync::SyncJob* job) {
+inline void SyncRequest::set_allocated_job(::beesync::SyncJob* job) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete job_;
@@ -1860,32 +2089,32 @@ inline void WorkRequest::set_allocated_job(::beesync::SyncJob* job) {
     
   }
   job_ = job;
-  // @@protoc_insertion_point(field_set_allocated:beesync.WorkRequest.job)
+  // @@protoc_insertion_point(field_set_allocated:beesync.SyncRequest.job)
 }
 
-// .beesync.Segment segment = 3;
-inline bool WorkRequest::_internal_has_segment() const {
+// .beesync.Segment segment = 5;
+inline bool SyncRequest::_internal_has_segment() const {
   return this != internal_default_instance() && segment_ != nullptr;
 }
-inline bool WorkRequest::has_segment() const {
+inline bool SyncRequest::has_segment() const {
   return _internal_has_segment();
 }
-inline void WorkRequest::clear_segment() {
+inline void SyncRequest::clear_segment() {
   if (GetArena() == nullptr && segment_ != nullptr) {
     delete segment_;
   }
   segment_ = nullptr;
 }
-inline const ::beesync::Segment& WorkRequest::_internal_segment() const {
+inline const ::beesync::Segment& SyncRequest::_internal_segment() const {
   const ::beesync::Segment* p = segment_;
   return p != nullptr ? *p : *reinterpret_cast<const ::beesync::Segment*>(
       &::beesync::_Segment_default_instance_);
 }
-inline const ::beesync::Segment& WorkRequest::segment() const {
-  // @@protoc_insertion_point(field_get:beesync.WorkRequest.segment)
+inline const ::beesync::Segment& SyncRequest::segment() const {
+  // @@protoc_insertion_point(field_get:beesync.SyncRequest.segment)
   return _internal_segment();
 }
-inline void WorkRequest::unsafe_arena_set_allocated_segment(
+inline void SyncRequest::unsafe_arena_set_allocated_segment(
     ::beesync::Segment* segment) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(segment_);
@@ -1896,23 +2125,23 @@ inline void WorkRequest::unsafe_arena_set_allocated_segment(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.WorkRequest.segment)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beesync.SyncRequest.segment)
 }
-inline ::beesync::Segment* WorkRequest::release_segment() {
+inline ::beesync::Segment* SyncRequest::release_segment() {
   auto temp = unsafe_arena_release_segment();
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::beesync::Segment* WorkRequest::unsafe_arena_release_segment() {
-  // @@protoc_insertion_point(field_release:beesync.WorkRequest.segment)
+inline ::beesync::Segment* SyncRequest::unsafe_arena_release_segment() {
+  // @@protoc_insertion_point(field_release:beesync.SyncRequest.segment)
   
   ::beesync::Segment* temp = segment_;
   segment_ = nullptr;
   return temp;
 }
-inline ::beesync::Segment* WorkRequest::_internal_mutable_segment() {
+inline ::beesync::Segment* SyncRequest::_internal_mutable_segment() {
   
   if (segment_ == nullptr) {
     auto* p = CreateMaybeMessage<::beesync::Segment>(GetArena());
@@ -1920,11 +2149,11 @@ inline ::beesync::Segment* WorkRequest::_internal_mutable_segment() {
   }
   return segment_;
 }
-inline ::beesync::Segment* WorkRequest::mutable_segment() {
-  // @@protoc_insertion_point(field_mutable:beesync.WorkRequest.segment)
+inline ::beesync::Segment* SyncRequest::mutable_segment() {
+  // @@protoc_insertion_point(field_mutable:beesync.SyncRequest.segment)
   return _internal_mutable_segment();
 }
-inline void WorkRequest::set_allocated_segment(::beesync::Segment* segment) {
+inline void SyncRequest::set_allocated_segment(::beesync::Segment* segment) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete segment_;
@@ -1941,7 +2170,7 @@ inline void WorkRequest::set_allocated_segment(::beesync::Segment* segment) {
     
   }
   segment_ = segment;
-  // @@protoc_insertion_point(field_set_allocated:beesync.WorkRequest.segment)
+  // @@protoc_insertion_point(field_set_allocated:beesync.SyncRequest.segment)
 }
 
 // -------------------------------------------------------------------

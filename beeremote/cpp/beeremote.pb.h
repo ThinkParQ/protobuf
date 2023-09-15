@@ -202,11 +202,37 @@ class JobRequest PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNameFieldNumber = 1,
-    kPriorityFieldNumber = 2,
+    kPathFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kPriorityFieldNumber = 3,
     kSyncFieldNumber = 10,
   };
-  // string name = 1;
+  // string path = 1;
+  void clear_path();
+  const std::string& path() const;
+  void set_path(const std::string& value);
+  void set_path(std::string&& value);
+  void set_path(const char* value);
+  void set_path(const char* value, size_t size);
+  std::string* mutable_path();
+  std::string* release_path();
+  void set_allocated_path(std::string* path);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_path();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_path(
+      std::string* path);
+  private:
+  const std::string& _internal_path() const;
+  void _internal_set_path(const std::string& value);
+  std::string* _internal_mutable_path();
+  public:
+
+  // string name = 2;
   void clear_name();
   const std::string& name() const;
   void set_name(const std::string& value);
@@ -231,7 +257,7 @@ class JobRequest PROTOBUF_FINAL :
   std::string* _internal_mutable_name();
   public:
 
-  // int32 priority = 2;
+  // int32 priority = 3;
   void clear_priority();
   ::PROTOBUF_NAMESPACE_ID::int32 priority() const;
   void set_priority(::PROTOBUF_NAMESPACE_ID::int32 value);
@@ -271,6 +297,7 @@ class JobRequest PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr path_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::int32 priority_;
   union TypeUnion {
@@ -987,7 +1014,88 @@ class MultiJobResponse PROTOBUF_FINAL :
 #endif  // __GNUC__
 // JobRequest
 
-// string name = 1;
+// string path = 1;
+inline void JobRequest::clear_path() {
+  path_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& JobRequest::path() const {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.path)
+  return _internal_path();
+}
+inline void JobRequest::set_path(const std::string& value) {
+  _internal_set_path(value);
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.path)
+}
+inline std::string* JobRequest::mutable_path() {
+  // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.path)
+  return _internal_mutable_path();
+}
+inline const std::string& JobRequest::_internal_path() const {
+  return path_.Get();
+}
+inline void JobRequest::_internal_set_path(const std::string& value) {
+  
+  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void JobRequest::set_path(std::string&& value) {
+  
+  path_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:beeremote.JobRequest.path)
+}
+inline void JobRequest::set_path(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:beeremote.JobRequest.path)
+}
+inline void JobRequest::set_path(const char* value,
+    size_t size) {
+  
+  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:beeremote.JobRequest.path)
+}
+inline std::string* JobRequest::_internal_mutable_path() {
+  
+  return path_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* JobRequest::release_path() {
+  // @@protoc_insertion_point(field_release:beeremote.JobRequest.path)
+  return path_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void JobRequest::set_allocated_path(std::string* path) {
+  if (path != nullptr) {
+    
+  } else {
+    
+  }
+  path_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), path,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:beeremote.JobRequest.path)
+}
+inline std::string* JobRequest::unsafe_arena_release_path() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beeremote.JobRequest.path)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return path_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void JobRequest::unsafe_arena_set_allocated_path(
+    std::string* path) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (path != nullptr) {
+    
+  } else {
+    
+  }
+  path_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      path, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.JobRequest.path)
+}
+
+// string name = 2;
 inline void JobRequest::clear_name() {
   name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
@@ -1068,7 +1176,7 @@ inline void JobRequest::unsafe_arena_set_allocated_name(
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.JobRequest.name)
 }
 
-// int32 priority = 2;
+// int32 priority = 3;
 inline void JobRequest::clear_priority() {
   priority_ = 0;
 }

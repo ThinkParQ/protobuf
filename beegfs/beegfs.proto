@@ -2,16 +2,6 @@ syntax = "proto3";
 package beegfs;
 option go_package = "github.com/thinkparq/protobuf/beegfs/go;beegfs";
 
-message Entry {
-    string id = 1;
-    string path = 2;
-    // This is the string based ID, NOT an actual reference to an RST. 
-    // This ensures we don't have to include the full RST configuration,
-    // every time we send a Entry (commonly as part of a Job).
-    string remote_storage_target = 3;
-    uint64 file_size = 4; // This won't be a problem until we support ~18 exabytes files.
-}
-
 // Status codes used by BeeRemote and its worker nodes to track the progress of
 // a Job and its work requests. We use a common set of statuses across all types
 // of Jobs and worker nodes (such as BeeSync).
@@ -45,8 +35,9 @@ message JobMetadata {
 }
 
 message WorkResponse {
-    string id = 1;
-    RequestStatus status = 2; // TODO: Do we need a different list of statuses for WorkResponses?
+    string job_id = 1;
+    string request_id = 2;
+    RequestStatus status = 3; // TODO: Do we need a different list of statuses for WorkResponses?
 }
 
 // Note while there is a lot of data contained in RemoteStorageTarget,

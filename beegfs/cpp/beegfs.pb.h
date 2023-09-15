@@ -48,7 +48,7 @@ struct TableStruct_beegfs_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -56,9 +56,6 @@ struct TableStruct_beegfs_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beegfs_2eproto;
 namespace beegfs {
-class Entry;
-class EntryDefaultTypeInternal;
-extern EntryDefaultTypeInternal _Entry_default_instance_;
 class JobMetadata;
 class JobMetadataDefaultTypeInternal;
 extern JobMetadataDefaultTypeInternal _JobMetadata_default_instance_;
@@ -85,7 +82,6 @@ class WorkResponseDefaultTypeInternal;
 extern WorkResponseDefaultTypeInternal _WorkResponse_default_instance_;
 }  // namespace beegfs
 PROTOBUF_NAMESPACE_OPEN
-template<> ::beegfs::Entry* Arena::CreateMaybeMessage<::beegfs::Entry>(Arena*);
 template<> ::beegfs::JobMetadata* Arena::CreateMaybeMessage<::beegfs::JobMetadata>(Arena*);
 template<> ::beegfs::RemoteStorageTarget* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget>(Arena*);
 template<> ::beegfs::RemoteStorageTarget_Azure* Arena::CreateMaybeMessage<::beegfs::RemoteStorageTarget_Azure>(Arena*);
@@ -134,224 +130,6 @@ inline bool RequestStatus_Status_Parse(
 }
 // ===================================================================
 
-class Entry PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beegfs.Entry) */ {
- public:
-  inline Entry() : Entry(nullptr) {};
-  virtual ~Entry();
-
-  Entry(const Entry& from);
-  Entry(Entry&& from) noexcept
-    : Entry() {
-    *this = ::std::move(from);
-  }
-
-  inline Entry& operator=(const Entry& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Entry& operator=(Entry&& from) noexcept {
-    if (GetArena() == from.GetArena()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const Entry& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Entry* internal_default_instance() {
-    return reinterpret_cast<const Entry*>(
-               &_Entry_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
-
-  friend void swap(Entry& a, Entry& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Entry* other) {
-    if (other == this) return;
-    if (GetArena() == other->GetArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Entry* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline Entry* New() const final {
-    return CreateMaybeMessage<Entry>(nullptr);
-  }
-
-  Entry* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Entry>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Entry& from);
-  void MergeFrom(const Entry& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Entry* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "beegfs.Entry";
-  }
-  protected:
-  explicit Entry(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_beegfs_2eproto);
-    return ::descriptor_table_beegfs_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIdFieldNumber = 1,
-    kPathFieldNumber = 2,
-    kRemoteStorageTargetFieldNumber = 3,
-    kFileSizeFieldNumber = 4,
-  };
-  // string id = 1;
-  void clear_id();
-  const std::string& id() const;
-  void set_id(const std::string& value);
-  void set_id(std::string&& value);
-  void set_id(const char* value);
-  void set_id(const char* value, size_t size);
-  std::string* mutable_id();
-  std::string* release_id();
-  void set_allocated_id(std::string* id);
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  std::string* unsafe_arena_release_id();
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  void unsafe_arena_set_allocated_id(
-      std::string* id);
-  private:
-  const std::string& _internal_id() const;
-  void _internal_set_id(const std::string& value);
-  std::string* _internal_mutable_id();
-  public:
-
-  // string path = 2;
-  void clear_path();
-  const std::string& path() const;
-  void set_path(const std::string& value);
-  void set_path(std::string&& value);
-  void set_path(const char* value);
-  void set_path(const char* value, size_t size);
-  std::string* mutable_path();
-  std::string* release_path();
-  void set_allocated_path(std::string* path);
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  std::string* unsafe_arena_release_path();
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  void unsafe_arena_set_allocated_path(
-      std::string* path);
-  private:
-  const std::string& _internal_path() const;
-  void _internal_set_path(const std::string& value);
-  std::string* _internal_mutable_path();
-  public:
-
-  // string remote_storage_target = 3;
-  void clear_remote_storage_target();
-  const std::string& remote_storage_target() const;
-  void set_remote_storage_target(const std::string& value);
-  void set_remote_storage_target(std::string&& value);
-  void set_remote_storage_target(const char* value);
-  void set_remote_storage_target(const char* value, size_t size);
-  std::string* mutable_remote_storage_target();
-  std::string* release_remote_storage_target();
-  void set_allocated_remote_storage_target(std::string* remote_storage_target);
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  std::string* unsafe_arena_release_remote_storage_target();
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  void unsafe_arena_set_allocated_remote_storage_target(
-      std::string* remote_storage_target);
-  private:
-  const std::string& _internal_remote_storage_target() const;
-  void _internal_set_remote_storage_target(const std::string& value);
-  std::string* _internal_mutable_remote_storage_target();
-  public:
-
-  // uint64 file_size = 4;
-  void clear_file_size();
-  ::PROTOBUF_NAMESPACE_ID::uint64 file_size() const;
-  void set_file_size(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_file_size() const;
-  void _internal_set_file_size(::PROTOBUF_NAMESPACE_ID::uint64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:beegfs.Entry)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr path_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr remote_storage_target_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 file_size_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_beegfs_2eproto;
-};
-// -------------------------------------------------------------------
-
 class RequestStatus PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:beegfs.RequestStatus) */ {
  public:
@@ -394,7 +172,7 @@ class RequestStatus PROTOBUF_FINAL :
                &_RequestStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    0;
 
   friend void swap(RequestStatus& a, RequestStatus& b) {
     a.Swap(&b);
@@ -608,7 +386,7 @@ class JobMetadata PROTOBUF_FINAL :
                &_JobMetadata_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    1;
 
   friend void swap(JobMetadata& a, JobMetadata& b) {
     a.Swap(&b);
@@ -781,7 +559,7 @@ class WorkResponse PROTOBUF_FINAL :
                &_WorkResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    2;
 
   friend void swap(WorkResponse& a, WorkResponse& b) {
     a.Swap(&b);
@@ -852,35 +630,61 @@ class WorkResponse PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kIdFieldNumber = 1,
-    kStatusFieldNumber = 2,
+    kJobIdFieldNumber = 1,
+    kRequestIdFieldNumber = 2,
+    kStatusFieldNumber = 3,
   };
-  // string id = 1;
-  void clear_id();
-  const std::string& id() const;
-  void set_id(const std::string& value);
-  void set_id(std::string&& value);
-  void set_id(const char* value);
-  void set_id(const char* value, size_t size);
-  std::string* mutable_id();
-  std::string* release_id();
-  void set_allocated_id(std::string* id);
+  // string job_id = 1;
+  void clear_job_id();
+  const std::string& job_id() const;
+  void set_job_id(const std::string& value);
+  void set_job_id(std::string&& value);
+  void set_job_id(const char* value);
+  void set_job_id(const char* value, size_t size);
+  std::string* mutable_job_id();
+  std::string* release_job_id();
+  void set_allocated_job_id(std::string* job_id);
   GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
   "    string fields are deprecated and will be removed in a"
   "    future release.")
-  std::string* unsafe_arena_release_id();
+  std::string* unsafe_arena_release_job_id();
   GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
   "    string fields are deprecated and will be removed in a"
   "    future release.")
-  void unsafe_arena_set_allocated_id(
-      std::string* id);
+  void unsafe_arena_set_allocated_job_id(
+      std::string* job_id);
   private:
-  const std::string& _internal_id() const;
-  void _internal_set_id(const std::string& value);
-  std::string* _internal_mutable_id();
+  const std::string& _internal_job_id() const;
+  void _internal_set_job_id(const std::string& value);
+  std::string* _internal_mutable_job_id();
   public:
 
-  // .beegfs.RequestStatus status = 2;
+  // string request_id = 2;
+  void clear_request_id();
+  const std::string& request_id() const;
+  void set_request_id(const std::string& value);
+  void set_request_id(std::string&& value);
+  void set_request_id(const char* value);
+  void set_request_id(const char* value, size_t size);
+  std::string* mutable_request_id();
+  std::string* release_request_id();
+  void set_allocated_request_id(std::string* request_id);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_request_id();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_request_id(
+      std::string* request_id);
+  private:
+  const std::string& _internal_request_id() const;
+  void _internal_set_request_id(const std::string& value);
+  std::string* _internal_mutable_request_id();
+  public:
+
+  // .beegfs.RequestStatus status = 3;
   bool has_status() const;
   private:
   bool _internal_has_status() const;
@@ -905,7 +709,8 @@ class WorkResponse PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr job_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr request_id_;
   ::beegfs::RequestStatus* status_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_beegfs_2eproto;
@@ -954,7 +759,7 @@ class RemoteStorageTarget_Policies PROTOBUF_FINAL :
                &_RemoteStorageTarget_Policies_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    3;
 
   friend void swap(RemoteStorageTarget_Policies& a, RemoteStorageTarget_Policies& b) {
     a.Swap(&b);
@@ -1135,7 +940,7 @@ class RemoteStorageTarget_S3 PROTOBUF_FINAL :
                &_RemoteStorageTarget_S3_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    4;
 
   friend void swap(RemoteStorageTarget_S3& a, RemoteStorageTarget_S3& b) {
     a.Swap(&b);
@@ -1396,7 +1201,7 @@ class RemoteStorageTarget_Azure PROTOBUF_FINAL :
                &_RemoteStorageTarget_Azure_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    5;
 
   friend void swap(RemoteStorageTarget_Azure& a, RemoteStorageTarget_Azure& b) {
     a.Swap(&b);
@@ -1569,7 +1374,7 @@ class RemoteStorageTarget_POSIX PROTOBUF_FINAL :
                &_RemoteStorageTarget_POSIX_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    6;
 
   friend void swap(RemoteStorageTarget_POSIX& a, RemoteStorageTarget_POSIX& b) {
     a.Swap(&b);
@@ -1729,7 +1534,7 @@ class RemoteStorageTarget PROTOBUF_FINAL :
                &_RemoteStorageTarget_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    7;
 
   friend void swap(RemoteStorageTarget& a, RemoteStorageTarget& b) {
     a.Swap(&b);
@@ -1972,273 +1777,6 @@ class RemoteStorageTarget PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// Entry
-
-// string id = 1;
-inline void Entry::clear_id() {
-  id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline const std::string& Entry::id() const {
-  // @@protoc_insertion_point(field_get:beegfs.Entry.id)
-  return _internal_id();
-}
-inline void Entry::set_id(const std::string& value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:beegfs.Entry.id)
-}
-inline std::string* Entry::mutable_id() {
-  // @@protoc_insertion_point(field_mutable:beegfs.Entry.id)
-  return _internal_mutable_id();
-}
-inline const std::string& Entry::_internal_id() const {
-  return id_.Get();
-}
-inline void Entry::_internal_set_id(const std::string& value) {
-  
-  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
-}
-inline void Entry::set_id(std::string&& value) {
-  
-  id_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:beegfs.Entry.id)
-}
-inline void Entry::set_id(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:beegfs.Entry.id)
-}
-inline void Entry::set_id(const char* value,
-    size_t size) {
-  
-  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:beegfs.Entry.id)
-}
-inline std::string* Entry::_internal_mutable_id() {
-  
-  return id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* Entry::release_id() {
-  // @@protoc_insertion_point(field_release:beegfs.Entry.id)
-  return id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void Entry::set_allocated_id(std::string* id) {
-  if (id != nullptr) {
-    
-  } else {
-    
-  }
-  id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), id,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:beegfs.Entry.id)
-}
-inline std::string* Entry::unsafe_arena_release_id() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.Entry.id)
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  
-  return id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      GetArena());
-}
-inline void Entry::unsafe_arena_set_allocated_id(
-    std::string* id) {
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  if (id != nullptr) {
-    
-  } else {
-    
-  }
-  id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      id, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Entry.id)
-}
-
-// string path = 2;
-inline void Entry::clear_path() {
-  path_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline const std::string& Entry::path() const {
-  // @@protoc_insertion_point(field_get:beegfs.Entry.path)
-  return _internal_path();
-}
-inline void Entry::set_path(const std::string& value) {
-  _internal_set_path(value);
-  // @@protoc_insertion_point(field_set:beegfs.Entry.path)
-}
-inline std::string* Entry::mutable_path() {
-  // @@protoc_insertion_point(field_mutable:beegfs.Entry.path)
-  return _internal_mutable_path();
-}
-inline const std::string& Entry::_internal_path() const {
-  return path_.Get();
-}
-inline void Entry::_internal_set_path(const std::string& value) {
-  
-  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
-}
-inline void Entry::set_path(std::string&& value) {
-  
-  path_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:beegfs.Entry.path)
-}
-inline void Entry::set_path(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:beegfs.Entry.path)
-}
-inline void Entry::set_path(const char* value,
-    size_t size) {
-  
-  path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:beegfs.Entry.path)
-}
-inline std::string* Entry::_internal_mutable_path() {
-  
-  return path_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* Entry::release_path() {
-  // @@protoc_insertion_point(field_release:beegfs.Entry.path)
-  return path_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void Entry::set_allocated_path(std::string* path) {
-  if (path != nullptr) {
-    
-  } else {
-    
-  }
-  path_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), path,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:beegfs.Entry.path)
-}
-inline std::string* Entry::unsafe_arena_release_path() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.Entry.path)
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  
-  return path_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      GetArena());
-}
-inline void Entry::unsafe_arena_set_allocated_path(
-    std::string* path) {
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  if (path != nullptr) {
-    
-  } else {
-    
-  }
-  path_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      path, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Entry.path)
-}
-
-// string remote_storage_target = 3;
-inline void Entry::clear_remote_storage_target() {
-  remote_storage_target_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline const std::string& Entry::remote_storage_target() const {
-  // @@protoc_insertion_point(field_get:beegfs.Entry.remote_storage_target)
-  return _internal_remote_storage_target();
-}
-inline void Entry::set_remote_storage_target(const std::string& value) {
-  _internal_set_remote_storage_target(value);
-  // @@protoc_insertion_point(field_set:beegfs.Entry.remote_storage_target)
-}
-inline std::string* Entry::mutable_remote_storage_target() {
-  // @@protoc_insertion_point(field_mutable:beegfs.Entry.remote_storage_target)
-  return _internal_mutable_remote_storage_target();
-}
-inline const std::string& Entry::_internal_remote_storage_target() const {
-  return remote_storage_target_.Get();
-}
-inline void Entry::_internal_set_remote_storage_target(const std::string& value) {
-  
-  remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
-}
-inline void Entry::set_remote_storage_target(std::string&& value) {
-  
-  remote_storage_target_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:beegfs.Entry.remote_storage_target)
-}
-inline void Entry::set_remote_storage_target(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:beegfs.Entry.remote_storage_target)
-}
-inline void Entry::set_remote_storage_target(const char* value,
-    size_t size) {
-  
-  remote_storage_target_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:beegfs.Entry.remote_storage_target)
-}
-inline std::string* Entry::_internal_mutable_remote_storage_target() {
-  
-  return remote_storage_target_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* Entry::release_remote_storage_target() {
-  // @@protoc_insertion_point(field_release:beegfs.Entry.remote_storage_target)
-  return remote_storage_target_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void Entry::set_allocated_remote_storage_target(std::string* remote_storage_target) {
-  if (remote_storage_target != nullptr) {
-    
-  } else {
-    
-  }
-  remote_storage_target_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), remote_storage_target,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:beegfs.Entry.remote_storage_target)
-}
-inline std::string* Entry::unsafe_arena_release_remote_storage_target() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.Entry.remote_storage_target)
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  
-  return remote_storage_target_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      GetArena());
-}
-inline void Entry::unsafe_arena_set_allocated_remote_storage_target(
-    std::string* remote_storage_target) {
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  if (remote_storage_target != nullptr) {
-    
-  } else {
-    
-  }
-  remote_storage_target_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      remote_storage_target, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Entry.remote_storage_target)
-}
-
-// uint64 file_size = 4;
-inline void Entry::clear_file_size() {
-  file_size_ = PROTOBUF_ULONGLONG(0);
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint64 Entry::_internal_file_size() const {
-  return file_size_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::uint64 Entry::file_size() const {
-  // @@protoc_insertion_point(field_get:beegfs.Entry.file_size)
-  return _internal_file_size();
-}
-inline void Entry::_internal_set_file_size(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  
-  file_size_ = value;
-}
-inline void Entry::set_file_size(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_file_size(value);
-  // @@protoc_insertion_point(field_set:beegfs.Entry.file_size)
-}
-
-// -------------------------------------------------------------------
-
 // RequestStatus
 
 // .beegfs.RequestStatus.Status status = 1;
@@ -2512,88 +2050,169 @@ inline void JobMetadata::set_allocated_status(::beegfs::RequestStatus* status) {
 
 // WorkResponse
 
-// string id = 1;
-inline void WorkResponse::clear_id() {
-  id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+// string job_id = 1;
+inline void WorkResponse::clear_job_id() {
+  job_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& WorkResponse::id() const {
-  // @@protoc_insertion_point(field_get:beegfs.WorkResponse.id)
-  return _internal_id();
+inline const std::string& WorkResponse::job_id() const {
+  // @@protoc_insertion_point(field_get:beegfs.WorkResponse.job_id)
+  return _internal_job_id();
 }
-inline void WorkResponse::set_id(const std::string& value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:beegfs.WorkResponse.id)
+inline void WorkResponse::set_job_id(const std::string& value) {
+  _internal_set_job_id(value);
+  // @@protoc_insertion_point(field_set:beegfs.WorkResponse.job_id)
 }
-inline std::string* WorkResponse::mutable_id() {
-  // @@protoc_insertion_point(field_mutable:beegfs.WorkResponse.id)
-  return _internal_mutable_id();
+inline std::string* WorkResponse::mutable_job_id() {
+  // @@protoc_insertion_point(field_mutable:beegfs.WorkResponse.job_id)
+  return _internal_mutable_job_id();
 }
-inline const std::string& WorkResponse::_internal_id() const {
-  return id_.Get();
+inline const std::string& WorkResponse::_internal_job_id() const {
+  return job_id_.Get();
 }
-inline void WorkResponse::_internal_set_id(const std::string& value) {
+inline void WorkResponse::_internal_set_job_id(const std::string& value) {
   
-  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+  job_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void WorkResponse::set_id(std::string&& value) {
+inline void WorkResponse::set_job_id(std::string&& value) {
   
-  id_.Set(
+  job_id_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:beegfs.WorkResponse.id)
+  // @@protoc_insertion_point(field_set_rvalue:beegfs.WorkResponse.job_id)
 }
-inline void WorkResponse::set_id(const char* value) {
+inline void WorkResponse::set_job_id(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
-  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+  job_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:beegfs.WorkResponse.id)
+  // @@protoc_insertion_point(field_set_char:beegfs.WorkResponse.job_id)
 }
-inline void WorkResponse::set_id(const char* value,
+inline void WorkResponse::set_job_id(const char* value,
     size_t size) {
   
-  id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+  job_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:beegfs.WorkResponse.id)
+  // @@protoc_insertion_point(field_set_pointer:beegfs.WorkResponse.job_id)
 }
-inline std::string* WorkResponse::_internal_mutable_id() {
+inline std::string* WorkResponse::_internal_mutable_job_id() {
   
-  return id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  return job_id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* WorkResponse::release_id() {
-  // @@protoc_insertion_point(field_release:beegfs.WorkResponse.id)
-  return id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+inline std::string* WorkResponse::release_job_id() {
+  // @@protoc_insertion_point(field_release:beegfs.WorkResponse.job_id)
+  return job_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void WorkResponse::set_allocated_id(std::string* id) {
-  if (id != nullptr) {
+inline void WorkResponse::set_allocated_job_id(std::string* job_id) {
+  if (job_id != nullptr) {
     
   } else {
     
   }
-  id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), id,
+  job_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), job_id,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:beegfs.WorkResponse.id)
+  // @@protoc_insertion_point(field_set_allocated:beegfs.WorkResponse.job_id)
 }
-inline std::string* WorkResponse::unsafe_arena_release_id() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.WorkResponse.id)
+inline std::string* WorkResponse::unsafe_arena_release_job_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.WorkResponse.job_id)
   GOOGLE_DCHECK(GetArena() != nullptr);
   
-  return id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+  return job_id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       GetArena());
 }
-inline void WorkResponse::unsafe_arena_set_allocated_id(
-    std::string* id) {
+inline void WorkResponse::unsafe_arena_set_allocated_job_id(
+    std::string* job_id) {
   GOOGLE_DCHECK(GetArena() != nullptr);
-  if (id != nullptr) {
+  if (job_id != nullptr) {
     
   } else {
     
   }
-  id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      id, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.WorkResponse.id)
+  job_id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      job_id, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.WorkResponse.job_id)
 }
 
-// .beegfs.RequestStatus status = 2;
+// string request_id = 2;
+inline void WorkResponse::clear_request_id() {
+  request_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& WorkResponse::request_id() const {
+  // @@protoc_insertion_point(field_get:beegfs.WorkResponse.request_id)
+  return _internal_request_id();
+}
+inline void WorkResponse::set_request_id(const std::string& value) {
+  _internal_set_request_id(value);
+  // @@protoc_insertion_point(field_set:beegfs.WorkResponse.request_id)
+}
+inline std::string* WorkResponse::mutable_request_id() {
+  // @@protoc_insertion_point(field_mutable:beegfs.WorkResponse.request_id)
+  return _internal_mutable_request_id();
+}
+inline const std::string& WorkResponse::_internal_request_id() const {
+  return request_id_.Get();
+}
+inline void WorkResponse::_internal_set_request_id(const std::string& value) {
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void WorkResponse::set_request_id(std::string&& value) {
+  
+  request_id_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:beegfs.WorkResponse.request_id)
+}
+inline void WorkResponse::set_request_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:beegfs.WorkResponse.request_id)
+}
+inline void WorkResponse::set_request_id(const char* value,
+    size_t size) {
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:beegfs.WorkResponse.request_id)
+}
+inline std::string* WorkResponse::_internal_mutable_request_id() {
+  
+  return request_id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* WorkResponse::release_request_id() {
+  // @@protoc_insertion_point(field_release:beegfs.WorkResponse.request_id)
+  return request_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WorkResponse::set_allocated_request_id(std::string* request_id) {
+  if (request_id != nullptr) {
+    
+  } else {
+    
+  }
+  request_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), request_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:beegfs.WorkResponse.request_id)
+}
+inline std::string* WorkResponse::unsafe_arena_release_request_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.WorkResponse.request_id)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return request_id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void WorkResponse::unsafe_arena_set_allocated_request_id(
+    std::string* request_id) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (request_id != nullptr) {
+    
+  } else {
+    
+  }
+  request_id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      request_id, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.WorkResponse.request_id)
+}
+
+// .beegfs.RequestStatus status = 3;
 inline bool WorkResponse::_internal_has_status() const {
   return this != internal_default_instance() && status_ != nullptr;
 }
@@ -3916,8 +3535,6 @@ inline RemoteStorageTarget::TypeCase RemoteStorageTarget::type_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

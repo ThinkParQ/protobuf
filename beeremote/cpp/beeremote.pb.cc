@@ -19,7 +19,7 @@ extern PROTOBUF_INTERNAL_EXPORT_beegfs_2fbeegfs_2eproto ::PROTOBUF_NAMESPACE_ID:
 extern PROTOBUF_INTERNAL_EXPORT_beeremote_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_JobFilter_beeremote_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_beeremote_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_JobRequest_beeremote_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_beeremote_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_JobResponse_beeremote_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beesync_2fbeesync_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SyncJob_beesync_2fbeesync_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_beesync_2fbeesync_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SyncJob_beesync_2fbeesync_2eproto;
 namespace beeremote {
 class JobRequestDefaultTypeInternal {
  public:
@@ -130,6 +130,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_beeremote_2eproto::offsets[] P
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, path_),
   PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, name_),
   PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, priority_),
   offsetof(::beeremote::JobRequestDefaultTypeInternal, sync_),
@@ -168,10 +169,10 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_beeremote_2eproto::offsets[] P
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::beeremote::JobRequest)},
-  { 9, -1, sizeof(::beeremote::JobResponse)},
-  { 16, -1, sizeof(::beeremote::MultiJobRequest)},
-  { 24, -1, sizeof(::beeremote::JobFilter)},
-  { 32, -1, sizeof(::beeremote::MultiJobResponse)},
+  { 10, -1, sizeof(::beeremote::JobResponse)},
+  { 17, -1, sizeof(::beeremote::MultiJobRequest)},
+  { 25, -1, sizeof(::beeremote::JobFilter)},
+  { 33, -1, sizeof(::beeremote::MultiJobResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -184,28 +185,29 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_beeremote_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\017beeremote.proto\022\tbeeremote\032\025beesync/be"
-  "esync.proto\032\023beegfs/beegfs.proto\"V\n\nJobR"
-  "equest\022\014\n\004name\030\001 \001(\t\022\020\n\010priority\030\002 \001(\005\022 "
-  "\n\004sync\030\n \001(\0132\020.beesync.SyncJobH\000B\006\n\004type"
-  "\"\\\n\013JobResponse\022%\n\010metadata\030\001 \001(\0132\023.beeg"
-  "fs.JobMetadata\022&\n\007request\030\002 \001(\0132\025.beerem"
-  "ote.JobRequest\"f\n\017MultiJobRequest\022$\n\006fil"
-  "ter\030\001 \001(\0132\024.beeremote.JobFilter\022\023\n\013page_"
-  "number\030\002 \001(\005\022\030\n\020results_per_page\030\003 \001(\005\"f"
-  "\n\tJobFilter\022\n\n\002id\030\001 \003(\t\022%\n\006status\030\002 \003(\0132"
-  "\025.beegfs.RequestStatus\022&\n\007request\030\003 \003(\0132"
-  "\025.beeremote.JobRequest\"b\n\020MultiJobRespon"
-  "se\022$\n\004jobs\030\001 \003(\0132\026.beeremote.JobResponse"
-  "\022\023\n\013page_number\030\002 \001(\005\022\023\n\013total_pages\030\003 \001"
-  "(\0052\230\002\n\tBeeRemote\022:\n\tSubmitJob\022\025.beeremot"
-  "e.JobRequest\032\026.beeremote.JobResponse\022B\n\007"
-  "GetJobs\022\032.beeremote.MultiJobRequest\032\033.be"
-  "eremote.MultiJobResponse\022D\n\tPauseJobs\022\032."
-  "beeremote.MultiJobRequest\032\033.beeremote.Mu"
-  "ltiJobResponse\022E\n\nCancelJobs\022\032.beeremote"
-  ".MultiJobRequest\032\033.beeremote.MultiJobRes"
-  "ponseB6Z4github.com/thinkparq/protobuf/b"
-  "eeremote/go;beeremoteb\006proto3"
+  "esync.proto\032\023beegfs/beegfs.proto\"d\n\nJobR"
+  "equest\022\014\n\004path\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010pr"
+  "iority\030\003 \001(\005\022 \n\004sync\030\n \001(\0132\020.beesync.Syn"
+  "cJobH\000B\006\n\004type\"\\\n\013JobResponse\022%\n\010metadat"
+  "a\030\001 \001(\0132\023.beegfs.JobMetadata\022&\n\007request\030"
+  "\002 \001(\0132\025.beeremote.JobRequest\"f\n\017MultiJob"
+  "Request\022$\n\006filter\030\001 \001(\0132\024.beeremote.JobF"
+  "ilter\022\023\n\013page_number\030\002 \001(\005\022\030\n\020results_pe"
+  "r_page\030\003 \001(\005\"f\n\tJobFilter\022\n\n\002id\030\001 \003(\t\022%\n"
+  "\006status\030\002 \003(\0132\025.beegfs.RequestStatus\022&\n\007"
+  "request\030\003 \003(\0132\025.beeremote.JobRequest\"b\n\020"
+  "MultiJobResponse\022$\n\004jobs\030\001 \003(\0132\026.beeremo"
+  "te.JobResponse\022\023\n\013page_number\030\002 \001(\005\022\023\n\013t"
+  "otal_pages\030\003 \001(\0052\230\002\n\tBeeRemote\022:\n\tSubmit"
+  "Job\022\025.beeremote.JobRequest\032\026.beeremote.J"
+  "obResponse\022B\n\007GetJobs\022\032.beeremote.MultiJ"
+  "obRequest\032\033.beeremote.MultiJobResponse\022D"
+  "\n\tPauseJobs\022\032.beeremote.MultiJobRequest\032"
+  "\033.beeremote.MultiJobResponse\022E\n\nCancelJo"
+  "bs\022\032.beeremote.MultiJobRequest\032\033.beeremo"
+  "te.MultiJobResponseB6Z4github.com/thinkp"
+  "arq/protobuf/beeremote/go;beeremoteb\006pro"
+  "to3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beeremote_2eproto_deps[2] = {
   &::descriptor_table_beegfs_2fbeegfs_2eproto,
@@ -220,7 +222,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beeremote_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beeremote_2eproto = {
-  false, false, descriptor_table_protodef_beeremote_2eproto, "beeremote.proto", 909,
+  false, false, descriptor_table_protodef_beeremote_2eproto, "beeremote.proto", 923,
   &descriptor_table_beeremote_2eproto_once, descriptor_table_beeremote_2eproto_sccs, descriptor_table_beeremote_2eproto_deps, 5, 2,
   schemas, file_default_instances, TableStruct_beeremote_2eproto::offsets,
   file_level_metadata_beeremote_2eproto, 5, file_level_enum_descriptors_beeremote_2eproto, file_level_service_descriptors_beeremote_2eproto,
@@ -277,6 +279,11 @@ JobRequest::JobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 JobRequest::JobRequest(const JobRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_path().empty()) {
+    path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_path(),
+      GetArena());
+  }
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
     name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_name(),
@@ -298,6 +305,7 @@ JobRequest::JobRequest(const JobRequest& from)
 
 void JobRequest::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_JobRequest_beeremote_2eproto.base);
+  path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   priority_ = 0;
   clear_has_type();
@@ -311,6 +319,7 @@ JobRequest::~JobRequest() {
 
 void JobRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
+  path_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (has_type()) {
     clear_type();
@@ -355,6 +364,7 @@ void JobRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  path_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   priority_ = 0;
   clear_type();
@@ -369,18 +379,27 @@ const char* JobRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // string name = 1;
+      // string path = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_path();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beeremote.JobRequest.path"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_name();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beeremote.JobRequest.name"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // int32 priority = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+      // int32 priority = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           priority_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -420,20 +439,30 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string name = 1;
+  // string path = 1;
+  if (this->path().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_path().data(), static_cast<int>(this->_internal_path().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "beeremote.JobRequest.path");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_path(), target);
+  }
+
+  // string name = 2;
   if (this->name().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "beeremote.JobRequest.name");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_name(), target);
+        2, this->_internal_name(), target);
   }
 
-  // int32 priority = 2;
+  // int32 priority = 3;
   if (this->priority() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_priority(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_priority(), target);
   }
 
   // .beesync.SyncJob sync = 10;
@@ -460,14 +489,21 @@ size_t JobRequest::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string name = 1;
+  // string path = 1;
+  if (this->path().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_path());
+  }
+
+  // string name = 2;
   if (this->name().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
   }
 
-  // int32 priority = 2;
+  // int32 priority = 3;
   if (this->priority() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
@@ -517,6 +553,9 @@ void JobRequest::MergeFrom(const JobRequest& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.path().size() > 0) {
+    _internal_set_path(from._internal_path());
+  }
   if (from.name().size() > 0) {
     _internal_set_name(from._internal_name());
   }
@@ -555,6 +594,7 @@ bool JobRequest::IsInitialized() const {
 void JobRequest::InternalSwap(JobRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  path_.Swap(&other->path_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   swap(priority_, other->priority_);
   swap(type_, other->type_);

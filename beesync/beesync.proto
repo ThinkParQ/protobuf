@@ -6,7 +6,7 @@ import "beegfs/beegfs.proto";
 
 service BeeSync {
     rpc UpdateConfig(ConfigUpdateRequest) returns (ConfigUpdateResponse);    
-    rpc JobRequests(stream WorkRequest) returns (stream beegfs.WorkResponse);
+    rpc JobRequests(stream SyncRequest) returns (stream beegfs.WorkResponse);
     // TODO: All work requests should go through the same stream. This makes it
     // impossible for conflicting operations to occur. However do we want a
     // seperate (perhaps unary) RPC for checking status?
@@ -34,21 +34,24 @@ message ConfigUpdateResponse {
 // A SyncJob is WHAT work needs to be done. It is populated based on the
 // file system modification event or by a user describing some work that needs
 // to be done. It does not carry any details about HOW the request will be
-// fufilled (that is part of the generated WorkRequest).
+// fufilled (that is part of the generated SyncRequest).
 message SyncJob {
-    beegfs.Entry entry = 1;
-    Operation operation = 2;
+    Operation operation = 1;
     enum Operation {
         UNKNOWN = 0;
         UPLOAD = 1;
         DOWNLOAD = 2;
-    }    
+    }
+    // This is the string based ID, NOT an actual reference to an RST. 
+    // This ensures we don't have to include the full RST configuration,
+    // every time we send a Entry (commonly as part of a Job).
+    string remote_storage_target = 2;    
 }
 
-// A WorkRequest describes HOW a SyncJob should be carried out. It encapsulates
+// A SyncRequest describes HOW a SyncJob should be carried out. It encapsulates
 // the details of the part of a SyncJob assigned to a particular BeeSync node
 // along with its state including the auto generated ID, segment, and status
-// fields. It is expected the fields in a WorkRequest will be populated over
+// fields. It is expected the fields in a SyncRequest will be populated over
 // time as the job progresses. For example when BeeRemote initially starts a job
 // Segment will not be set so BeeSync can determine if it should determine this
 // (based on file size and autostart_max_size), or if it needs to send the job
@@ -57,10 +60,12 @@ message SyncJob {
 // presence in proto3: https://protobuf.dev/programming-guides/field_presence/
 // TL;DR - Generally expect fields to default to the language specific default
 // values for each type for any fields that were not set by the server.
-message WorkRequest {
-    beegfs.JobMetadata metadata = 1;
-    SyncJob job = 2;
-    Segment segment = 3;
+message SyncRequest {
+    string request_id = 1;
+    beegfs.JobMetadata metadata = 2;
+    string path = 3;
+    SyncJob job = 4;
+    Segment segment = 5;
 }
 
 // A segment indicates what portion of a file transfer a particular BeeSync node should work on.
