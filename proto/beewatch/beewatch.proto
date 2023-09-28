@@ -1,6 +1,6 @@
 syntax = "proto3";
 package beewatch;
-option go_package = "github.com/thinkparq/protobuf/beewatch";
+option go_package = "github.com/thinkparq/protobuf/go/beewatch";
 
 message Event {
     // The BeeGFS packet format defines these as a uint16 but protobuf does not support uint16 types (https://protobuf.dev/programming-guides/proto3/#scalar).
