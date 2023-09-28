@@ -108,8 +108,8 @@ const char descriptor_table_protodef_beewatch_2eproto[] PROTOBUF_SECTION_VARIABL
   "\010Response\022\025\n\rcompleted_seq\030\001 \001(\004\022\025\n\rshut"
   "ting_down\030\002 \001(\0102F\n\nSubscriber\0228\n\rReceive"
   "Events\022\017.beewatch.Event\032\022.beewatch.Respo"
-  "nse(\0010\001B(Z&github.com/thinkparq/protobuf"
-  "/beewatchb\006proto3"
+  "nse(\0010\001B+Z)github.com/thinkparq/protobuf"
+  "/go/beewatchb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beewatch_2eproto_deps[1] = {
 };
@@ -119,7 +119,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beewatch_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beewatch_2eproto = {
-  false, false, descriptor_table_protodef_beewatch_2eproto, "beewatch.proto", 657,
+  false, false, descriptor_table_protodef_beewatch_2eproto, "beewatch.proto", 660,
   &descriptor_table_beewatch_2eproto_once, descriptor_table_beewatch_2eproto_sccs, descriptor_table_beewatch_2eproto_deps, 2, 0,
   schemas, file_default_instances, TableStruct_beewatch_2eproto::offsets,
   file_level_metadata_beewatch_2eproto, 2, file_level_enum_descriptors_beewatch_2eproto, file_level_service_descriptors_beewatch_2eproto,
