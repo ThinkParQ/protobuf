@@ -1,0 +1,48 @@
+syntax = "proto3";
+package beegfs;
+option go_package = "github.com/thinkparq/protobuf/go/beegfs";
+
+message Nic {
+  enum Type {
+    ETHERNET = 0;
+    SDP = 1;
+    RDMA = 3;
+  }
+
+  string addr = 1;
+  string name = 2;
+  Type type = 3;
+}
+
+message GetNodeListReq { bool include_nics = 1; }
+message GetNodeListResp {
+  message Node {
+    enum Type {
+      CLIENT = 0;
+      META = 1;
+      STORAGE = 2;
+    }
+
+    int64 uid = 1;
+    uint32 node_id = 2;
+    Type type = 3;
+    string alias = 4;
+    uint32 beemsg_port = 5;
+    repeated Nic nics = 6;
+  }
+
+  repeated Node nodes = 1;
+}
+
+message GetNodeInfoReq {
+  oneof key {
+    int64 uid = 1;
+    string alias = 2;
+  }
+}
+message GetNodeInfoResp { repeated Nic nics = 1; }
+
+service Management {
+  rpc GetNodeList(GetNodeListReq) returns (GetNodeListResp);
+  rpc GetNodeInfo(GetNodeInfoReq) returns (GetNodeInfoResp);
+}
