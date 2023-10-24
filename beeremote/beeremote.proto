@@ -9,9 +9,8 @@ import "beegfs/beegfs.proto";
 // Externally facing RPCs and messages clients use to interact with BeeRemote.
 service BeeRemote {
     rpc SubmitJob(JobRequest) returns (JobResponse);
-    rpc GetJobs(MultiJobRequest) returns (MultiJobResponse);    
-    rpc PauseJobs(MultiJobRequest) returns(MultiJobResponse);    
-    rpc CancelJobs(MultiJobRequest) returns(MultiJobResponse);
+    rpc UpdateJob(UpdateJobRequest) returns(UpdateJobResponse);    
+    rpc GetJobs(GetJobsRequest) returns (GetJobsResponse);    
 }
 
 // A JobRequest contains all the information necessary for BeeRemote to trigger
@@ -36,8 +35,23 @@ message JobResponse {
     JobRequest request = 2;
 }
 
+message UpdateJobRequest { 
+    string path = 1;
+    string jobID = 2;
+    beegfs.NewState newState = 3;
+}
+
+// Updating jobs happens asynchronously. The caller should use GetJobs to check
+// on the status of the request. This message carries any errors that happened
+// executing the request.
+message UpdateJobResponse {
+    // If !ok the caller can inspect message to see what error(s) happened.
+    bool ok = 1;
+    string message = 2;
+}
+
 // Messages used to interact with one or more jobs.
-message MultiJobRequest {
+message GetJobsRequest {
     JobFilter filter = 1;
     // If more than results_per_page are returned we'll use pagination.
     int32 page_number = 2; 
@@ -62,7 +76,7 @@ message JobFilter {
 }
 
 // Return results using pagination to avoid overly large message sizes.
-message MultiJobResponse {
+message GetJobsResponse {
     repeated JobResponse jobs = 1;
     int32 page_number = 2;
     int32 total_pages = 3;

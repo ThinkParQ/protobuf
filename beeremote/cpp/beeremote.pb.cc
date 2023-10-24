@@ -4,349 +4,473 @@
 #include "beeremote.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_beegfs_2fbeegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_JobMetadata_beegfs_2fbeegfs_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beegfs_2fbeegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RequestStatus_beegfs_2fbeegfs_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beeremote_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_JobFilter_beeremote_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beeremote_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_JobRequest_beeremote_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beeremote_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_JobResponse_beeremote_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beesync_2fbeesync_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SyncJob_beesync_2fbeesync_2eproto;
+
+// Must be included last.
+#include "google/protobuf/port_def.inc"
+PROTOBUF_PRAGMA_INIT_SEG
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace beeremote {
-class JobRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<JobRequest> _instance;
-  const ::beesync::SyncJob* sync_;
-} _JobRequest_default_instance_;
-class JobResponseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<JobResponse> _instance;
-} _JobResponse_default_instance_;
-class MultiJobRequestDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MultiJobRequest> _instance;
-} _MultiJobRequest_default_instance_;
-class JobFilterDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<JobFilter> _instance;
-} _JobFilter_default_instance_;
-class MultiJobResponseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<MultiJobResponse> _instance;
-} _MultiJobResponse_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR JobRequest::JobRequest(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.path_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.name_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.priority_)*/ 0,
+      /*decltype(_impl_.type_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_._oneof_case_)*/ {},
+    } {}
+struct JobRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JobRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JobRequestDefaultTypeInternal() {}
+  union {
+    JobRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JobRequestDefaultTypeInternal _JobRequest_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR JobResponse::JobResponse(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.metadata_)*/ nullptr,
+      /*decltype(_impl_.request_)*/ nullptr,
+    } {}
+struct JobResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JobResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JobResponseDefaultTypeInternal() {}
+  union {
+    JobResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JobResponseDefaultTypeInternal _JobResponse_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR UpdateJobRequest::UpdateJobRequest(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.path_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.jobid_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.newstate_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct UpdateJobRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateJobRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateJobRequestDefaultTypeInternal() {}
+  union {
+    UpdateJobRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateJobRequestDefaultTypeInternal _UpdateJobRequest_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR UpdateJobResponse::UpdateJobResponse(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.message_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.ok_)*/ false,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct UpdateJobResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateJobResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateJobResponseDefaultTypeInternal() {}
+  union {
+    UpdateJobResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateJobResponseDefaultTypeInternal _UpdateJobResponse_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR GetJobsRequest::GetJobsRequest(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.filter_)*/ nullptr,
+      /*decltype(_impl_.page_number_)*/ 0,
+      /*decltype(_impl_.results_per_page_)*/ 0,
+    } {}
+struct GetJobsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetJobsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetJobsRequestDefaultTypeInternal() {}
+  union {
+    GetJobsRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetJobsRequestDefaultTypeInternal _GetJobsRequest_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR JobFilter::JobFilter(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.id_)*/ {},
+      /*decltype(_impl_.status_)*/ {},
+      /*decltype(_impl_.request_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct JobFilterDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JobFilterDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JobFilterDefaultTypeInternal() {}
+  union {
+    JobFilter _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JobFilterDefaultTypeInternal _JobFilter_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR GetJobsResponse::GetJobsResponse(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.jobs_)*/ {},
+      /*decltype(_impl_.page_number_)*/ 0,
+      /*decltype(_impl_.total_pages_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct GetJobsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetJobsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetJobsResponseDefaultTypeInternal() {}
+  union {
+    GetJobsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetJobsResponseDefaultTypeInternal _GetJobsResponse_default_instance_;
 }  // namespace beeremote
-static void InitDefaultsscc_info_JobFilter_beeremote_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
+static ::_pb::Metadata file_level_metadata_beeremote_2eproto[7];
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_beeremote_2eproto = nullptr;
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_beeremote_2eproto = nullptr;
+const ::uint32_t TableStruct_beeremote_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_._oneof_case_[0]),
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_.path_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_.priority_),
+    ::_pbi::kInvalidFieldOffsetTag,
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobResponse, _impl_.metadata_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobResponse, _impl_.request_),
+    0,
+    1,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _impl_.path_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _impl_.jobid_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _impl_.newstate_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobResponse, _impl_.ok_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsRequest, _impl_.filter_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsRequest, _impl_.page_number_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsRequest, _impl_.results_per_page_),
+    0,
+    ~0u,
+    ~0u,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobFilter, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobFilter, _impl_.id_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobFilter, _impl_.status_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobFilter, _impl_.request_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsResponse, _impl_.jobs_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsResponse, _impl_.page_number_),
+    PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsResponse, _impl_.total_pages_),
+};
 
-  {
-    void* ptr = &::beeremote::_JobFilter_default_instance_;
-    new (ptr) ::beeremote::JobFilter();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beeremote::JobFilter::InitAsDefaultInstance();
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, -1, -1, sizeof(::beeremote::JobRequest)},
+        {13, 23, -1, sizeof(::beeremote::JobResponse)},
+        {25, -1, -1, sizeof(::beeremote::UpdateJobRequest)},
+        {36, -1, -1, sizeof(::beeremote::UpdateJobResponse)},
+        {46, 57, -1, sizeof(::beeremote::GetJobsRequest)},
+        {60, -1, -1, sizeof(::beeremote::JobFilter)},
+        {71, -1, -1, sizeof(::beeremote::GetJobsResponse)},
+};
+
+static const ::_pb::Message* const file_default_instances[] = {
+    &::beeremote::_JobRequest_default_instance_._instance,
+    &::beeremote::_JobResponse_default_instance_._instance,
+    &::beeremote::_UpdateJobRequest_default_instance_._instance,
+    &::beeremote::_UpdateJobResponse_default_instance_._instance,
+    &::beeremote::_GetJobsRequest_default_instance_._instance,
+    &::beeremote::_JobFilter_default_instance_._instance,
+    &::beeremote::_GetJobsResponse_default_instance_._instance,
+};
+const char descriptor_table_protodef_beeremote_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n\017beeremote.proto\022\tbeeremote\032\025beesync/be"
+    "esync.proto\032\023beegfs/beegfs.proto\"d\n\nJobR"
+    "equest\022\014\n\004path\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010pr"
+    "iority\030\003 \001(\005\022 \n\004sync\030\n \001(\0132\020.beesync.Syn"
+    "cJobH\000B\006\n\004type\"\\\n\013JobResponse\022%\n\010metadat"
+    "a\030\001 \001(\0132\023.beegfs.JobMetadata\022&\n\007request\030"
+    "\002 \001(\0132\025.beeremote.JobRequest\"S\n\020UpdateJo"
+    "bRequest\022\014\n\004path\030\001 \001(\t\022\r\n\005jobID\030\002 \001(\t\022\"\n"
+    "\010newState\030\003 \001(\0162\020.beegfs.NewState\"0\n\021Upd"
+    "ateJobResponse\022\n\n\002ok\030\001 \001(\010\022\017\n\007message\030\002 "
+    "\001(\t\"e\n\016GetJobsRequest\022$\n\006filter\030\001 \001(\0132\024."
+    "beeremote.JobFilter\022\023\n\013page_number\030\002 \001(\005"
+    "\022\030\n\020results_per_page\030\003 \001(\005\"f\n\tJobFilter\022"
+    "\n\n\002id\030\001 \003(\t\022%\n\006status\030\002 \003(\0132\025.beegfs.Req"
+    "uestStatus\022&\n\007request\030\003 \003(\0132\025.beeremote."
+    "JobRequest\"a\n\017GetJobsResponse\022$\n\004jobs\030\001 "
+    "\003(\0132\026.beeremote.JobResponse\022\023\n\013page_numb"
+    "er\030\002 \001(\005\022\023\n\013total_pages\030\003 \001(\0052\321\001\n\tBeeRem"
+    "ote\022:\n\tSubmitJob\022\025.beeremote.JobRequest\032"
+    "\026.beeremote.JobResponse\022F\n\tUpdateJob\022\033.b"
+    "eeremote.UpdateJobRequest\032\034.beeremote.Up"
+    "dateJobResponse\022@\n\007GetJobs\022\031.beeremote.G"
+    "etJobsRequest\032\032.beeremote.GetJobsRespons"
+    "eB6Z4github.com/thinkparq/protobuf/beere"
+    "mote/go;beeremoteb\006proto3"
+};
+static const ::_pbi::DescriptorTable* const descriptor_table_beeremote_2eproto_deps[2] =
+    {
+        &::descriptor_table_beegfs_2fbeegfs_2eproto,
+        &::descriptor_table_beesync_2fbeesync_2eproto,
+};
+static ::absl::once_flag descriptor_table_beeremote_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_beeremote_2eproto = {
+    false,
+    false,
+    985,
+    descriptor_table_protodef_beeremote_2eproto,
+    "beeremote.proto",
+    &descriptor_table_beeremote_2eproto_once,
+    descriptor_table_beeremote_2eproto_deps,
+    2,
+    7,
+    schemas,
+    file_default_instances,
+    TableStruct_beeremote_2eproto::offsets,
+    file_level_metadata_beeremote_2eproto,
+    file_level_enum_descriptors_beeremote_2eproto,
+    file_level_service_descriptors_beeremote_2eproto,
+};
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
+PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_beeremote_2eproto_getter() {
+  return &descriptor_table_beeremote_2eproto;
 }
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_JobFilter_beeremote_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_JobFilter_beeremote_2eproto}, {
-      &scc_info_RequestStatus_beegfs_2fbeegfs_2eproto.base,
-      &scc_info_JobRequest_beeremote_2eproto.base,}};
-
-static void InitDefaultsscc_info_JobRequest_beeremote_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beeremote::_JobRequest_default_instance_;
-    new (ptr) ::beeremote::JobRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beeremote::JobRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_JobRequest_beeremote_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_JobRequest_beeremote_2eproto}, {
-      &scc_info_SyncJob_beesync_2fbeesync_2eproto.base,}};
-
-static void InitDefaultsscc_info_JobResponse_beeremote_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beeremote::_JobResponse_default_instance_;
-    new (ptr) ::beeremote::JobResponse();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beeremote::JobResponse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_JobResponse_beeremote_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_JobResponse_beeremote_2eproto}, {
-      &scc_info_JobMetadata_beegfs_2fbeegfs_2eproto.base,
-      &scc_info_JobRequest_beeremote_2eproto.base,}};
-
-static void InitDefaultsscc_info_MultiJobRequest_beeremote_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beeremote::_MultiJobRequest_default_instance_;
-    new (ptr) ::beeremote::MultiJobRequest();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beeremote::MultiJobRequest::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_MultiJobRequest_beeremote_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_MultiJobRequest_beeremote_2eproto}, {
-      &scc_info_JobFilter_beeremote_2eproto.base,}};
-
-static void InitDefaultsscc_info_MultiJobResponse_beeremote_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beeremote::_MultiJobResponse_default_instance_;
-    new (ptr) ::beeremote::MultiJobResponse();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beeremote::MultiJobResponse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_MultiJobResponse_beeremote_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_MultiJobResponse_beeremote_2eproto}, {
-      &scc_info_JobResponse_beeremote_2eproto.base,}};
-
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_beeremote_2eproto[5];
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_beeremote_2eproto = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_beeremote_2eproto = nullptr;
-
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_beeremote_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _oneof_case_[0]),
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, path_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, name_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, priority_),
-  offsetof(::beeremote::JobRequestDefaultTypeInternal, sync_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, type_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobResponse, metadata_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobResponse, request_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beeremote::MultiJobRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beeremote::MultiJobRequest, filter_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::MultiJobRequest, page_number_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::MultiJobRequest, results_per_page_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobFilter, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobFilter, id_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobFilter, status_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::JobFilter, request_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beeremote::MultiJobResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beeremote::MultiJobResponse, jobs_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::MultiJobResponse, page_number_),
-  PROTOBUF_FIELD_OFFSET(::beeremote::MultiJobResponse, total_pages_),
-};
-static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::beeremote::JobRequest)},
-  { 10, -1, sizeof(::beeremote::JobResponse)},
-  { 17, -1, sizeof(::beeremote::MultiJobRequest)},
-  { 25, -1, sizeof(::beeremote::JobFilter)},
-  { 33, -1, sizeof(::beeremote::MultiJobResponse)},
-};
-
-static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beeremote::_JobRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beeremote::_JobResponse_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beeremote::_MultiJobRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beeremote::_JobFilter_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beeremote::_MultiJobResponse_default_instance_),
-};
-
-const char descriptor_table_protodef_beeremote_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\017beeremote.proto\022\tbeeremote\032\025beesync/be"
-  "esync.proto\032\023beegfs/beegfs.proto\"d\n\nJobR"
-  "equest\022\014\n\004path\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010pr"
-  "iority\030\003 \001(\005\022 \n\004sync\030\n \001(\0132\020.beesync.Syn"
-  "cJobH\000B\006\n\004type\"\\\n\013JobResponse\022%\n\010metadat"
-  "a\030\001 \001(\0132\023.beegfs.JobMetadata\022&\n\007request\030"
-  "\002 \001(\0132\025.beeremote.JobRequest\"f\n\017MultiJob"
-  "Request\022$\n\006filter\030\001 \001(\0132\024.beeremote.JobF"
-  "ilter\022\023\n\013page_number\030\002 \001(\005\022\030\n\020results_pe"
-  "r_page\030\003 \001(\005\"f\n\tJobFilter\022\n\n\002id\030\001 \003(\t\022%\n"
-  "\006status\030\002 \003(\0132\025.beegfs.RequestStatus\022&\n\007"
-  "request\030\003 \003(\0132\025.beeremote.JobRequest\"b\n\020"
-  "MultiJobResponse\022$\n\004jobs\030\001 \003(\0132\026.beeremo"
-  "te.JobResponse\022\023\n\013page_number\030\002 \001(\005\022\023\n\013t"
-  "otal_pages\030\003 \001(\0052\230\002\n\tBeeRemote\022:\n\tSubmit"
-  "Job\022\025.beeremote.JobRequest\032\026.beeremote.J"
-  "obResponse\022B\n\007GetJobs\022\032.beeremote.MultiJ"
-  "obRequest\032\033.beeremote.MultiJobResponse\022D"
-  "\n\tPauseJobs\022\032.beeremote.MultiJobRequest\032"
-  "\033.beeremote.MultiJobResponse\022E\n\nCancelJo"
-  "bs\022\032.beeremote.MultiJobRequest\032\033.beeremo"
-  "te.MultiJobResponseB6Z4github.com/thinkp"
-  "arq/protobuf/beeremote/go;beeremoteb\006pro"
-  "to3"
-  ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beeremote_2eproto_deps[2] = {
-  &::descriptor_table_beegfs_2fbeegfs_2eproto,
-  &::descriptor_table_beesync_2fbeesync_2eproto,
-};
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_beeremote_2eproto_sccs[5] = {
-  &scc_info_JobFilter_beeremote_2eproto.base,
-  &scc_info_JobRequest_beeremote_2eproto.base,
-  &scc_info_JobResponse_beeremote_2eproto.base,
-  &scc_info_MultiJobRequest_beeremote_2eproto.base,
-  &scc_info_MultiJobResponse_beeremote_2eproto.base,
-};
-static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beeremote_2eproto_once;
-const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beeremote_2eproto = {
-  false, false, descriptor_table_protodef_beeremote_2eproto, "beeremote.proto", 923,
-  &descriptor_table_beeremote_2eproto_once, descriptor_table_beeremote_2eproto_sccs, descriptor_table_beeremote_2eproto_deps, 5, 2,
-  schemas, file_default_instances, TableStruct_beeremote_2eproto::offsets,
-  file_level_metadata_beeremote_2eproto, 5, file_level_enum_descriptors_beeremote_2eproto, file_level_service_descriptors_beeremote_2eproto,
-};
-
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_beeremote_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_beeremote_2eproto)), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_beeremote_2eproto(&descriptor_table_beeremote_2eproto);
 namespace beeremote {
-
 // ===================================================================
 
-void JobRequest::InitAsDefaultInstance() {
-  ::beeremote::_JobRequest_default_instance_.sync_ = const_cast< ::beesync::SyncJob*>(
-      ::beesync::SyncJob::internal_default_instance());
-}
 class JobRequest::_Internal {
  public:
+  static constexpr ::int32_t kOneofCaseOffset =
+    PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_._oneof_case_);
   static const ::beesync::SyncJob& sync(const JobRequest* msg);
 };
 
-const ::beesync::SyncJob&
-JobRequest::_Internal::sync(const JobRequest* msg) {
-  return *msg->type_.sync_;
+const ::beesync::SyncJob& JobRequest::_Internal::sync(const JobRequest* msg) {
+  return *msg->_impl_.type_.sync_;
 }
 void JobRequest::set_allocated_sync(::beesync::SyncJob* sync) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  ::google::protobuf::Arena* message_arena = GetArenaForAllocation();
   clear_type();
   if (sync) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(sync)->GetArena();
+    ::google::protobuf::Arena* submessage_arena =
+        ::google::protobuf::Arena::InternalGetOwningArena(
+                reinterpret_cast<::google::protobuf::MessageLite*>(sync));
     if (message_arena != submessage_arena) {
-      sync = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+      sync = ::google::protobuf::internal::GetOwnedMessage(
           message_arena, sync, submessage_arena);
     }
     set_has_sync();
-    type_.sync_ = sync;
+    _impl_.type_.sync_ = sync;
   }
   // @@protoc_insertion_point(field_set_allocated:beeremote.JobRequest.sync)
 }
 void JobRequest::clear_sync() {
-  if (_internal_has_sync()) {
-    if (GetArena() == nullptr) {
-      delete type_.sync_;
+  if (type_case() == kSync) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete _impl_.type_.sync_;
     }
     clear_has_type();
   }
 }
-JobRequest::JobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
+JobRequest::JobRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:beeremote.JobRequest)
 }
-JobRequest::JobRequest(const JobRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+JobRequest::JobRequest(const JobRequest& from) : ::google::protobuf::Message() {
+  JobRequest* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.path_){},
+      decltype(_impl_.name_){},
+      decltype(_impl_.priority_){},
+      decltype(_impl_.type_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_._oneof_case_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.path_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.path_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_path().empty()) {
-    path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_path(),
-      GetArena());
+    _this->_impl_.path_.Set(from._internal_path(), _this->GetArenaForAllocation());
   }
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_name(),
-      GetArena());
+    _this->_impl_.name_.Set(from._internal_name(), _this->GetArenaForAllocation());
   }
-  priority_ = from.priority_;
+  _this->_impl_.priority_ = from._impl_.priority_;
   clear_has_type();
   switch (from.type_case()) {
     case kSync: {
-      _internal_mutable_sync()->::beesync::SyncJob::MergeFrom(from._internal_sync());
+      _this->_internal_mutable_sync()->::beesync::SyncJob::MergeFrom(
+          from._internal_sync());
       break;
     }
     case TYPE_NOT_SET: {
       break;
     }
   }
+
   // @@protoc_insertion_point(copy_constructor:beeremote.JobRequest)
 }
-
-void JobRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_JobRequest_beeremote_2eproto.base);
-  path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  priority_ = 0;
+inline void JobRequest::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.path_){},
+      decltype(_impl_.name_){},
+      decltype(_impl_.priority_){0},
+      decltype(_impl_.type_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_._oneof_case_)*/ {},
+  };
+  _impl_.path_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.path_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.name_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   clear_has_type();
 }
-
 JobRequest::~JobRequest() {
   // @@protoc_insertion_point(destructor:beeremote.JobRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
-
-void JobRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  path_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+inline void JobRequest::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.path_.Destroy();
+  _impl_.name_.Destroy();
   if (has_type()) {
     clear_type();
   }
 }
-
-void JobRequest::ArenaDtor(void* object) {
-  JobRequest* _this = reinterpret_cast< JobRequest* >(object);
-  (void)_this;
-}
-void JobRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void JobRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-const JobRequest& JobRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_JobRequest_beeremote_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void JobRequest::clear_type() {
 // @@protoc_insertion_point(one_of_clear_start:beeremote.JobRequest)
   switch (type_case()) {
     case kSync: {
-      if (GetArena() == nullptr) {
-        delete type_.sync_;
+      if (GetArenaForAllocation() == nullptr) {
+        delete _impl_.type_.sync_;
       }
       break;
     }
@@ -354,159 +478,149 @@ void JobRequest::clear_type() {
       break;
     }
   }
-  _oneof_case_[0] = TYPE_NOT_SET;
+  _impl_._oneof_case_[0] = TYPE_NOT_SET;
 }
 
 
-void JobRequest::Clear() {
+PROTOBUF_NOINLINE void JobRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:beeremote.JobRequest)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  path_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  priority_ = 0;
+  _impl_.path_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
+  _impl_.priority_ = 0;
   clear_type();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* JobRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // string path = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_path();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beeremote.JobRequest.path"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string name = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beeremote.JobRequest.name"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // int32 priority = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          priority_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .beesync.SyncJob sync = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
-          ptr = ctx->ParseMessage(_internal_mutable_sync(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
+const char* JobRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* JobRequest::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 1, 37, 2> JobRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    10, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294966776,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_JobRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string path = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.path_)}},
+    // string name = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.name_)}},
+    // int32 priority = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(JobRequest, _impl_.priority_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.priority_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string path = 1;
+    {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.path_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string name = 2;
+    {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 priority = 3;
+    {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.priority_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // .beesync.SyncJob sync = 10;
+    {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.type_.sync_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beesync::SyncJob>()},
+  }}, {{
+    "\24\4\4\0\0\0\0\0"
+    "beeremote.JobRequest"
+    "path"
+    "name"
+  }},
+};
+
+::uint8_t* JobRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:beeremote.JobRequest)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string path = 1;
-  if (this->path().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_path().data(), static_cast<int>(this->_internal_path().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beeremote.JobRequest.path");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_path(), target);
+  if (!this->_internal_path().empty()) {
+    const std::string& _s = this->_internal_path();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.JobRequest.path");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string name = 2;
-  if (this->name().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beeremote.JobRequest.name");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_name(), target);
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.JobRequest.name");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   // int32 priority = 3;
-  if (this->priority() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_priority(), target);
+  if (this->_internal_priority() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_priority(), target);
   }
 
   // .beesync.SyncJob sync = 10;
-  if (_internal_has_sync()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        10, _Internal::sync(this), target, stream);
+  if (type_case() == kSync) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(10, _Internal::sync(this),
+        _Internal::sync(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:beeremote.JobRequest)
   return target;
 }
 
-size_t JobRequest::ByteSizeLong() const {
+::size_t JobRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:beeremote.JobRequest)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string path = 1;
-  if (this->path().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_path());
+  if (!this->_internal_path().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_path());
   }
 
   // string name = 2;
-  if (this->name().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
   }
 
   // int32 priority = 3;
-  if (this->priority() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+  if (this->_internal_priority() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_priority());
   }
 
@@ -514,70 +628,52 @@ size_t JobRequest::ByteSizeLong() const {
     // .beesync.SyncJob sync = 10;
     case kSync: {
       total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *type_.sync_);
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *_impl_.type_.sync_);
       break;
     }
     case TYPE_NOT_SET: {
       break;
     }
   }
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void JobRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beeremote.JobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const JobRequest* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<JobRequest>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beeremote.JobRequest)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beeremote.JobRequest)
-    MergeFrom(*source);
-  }
-}
+const ::google::protobuf::Message::ClassData JobRequest::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    JobRequest::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*JobRequest::GetClassData() const { return &_class_data_; }
 
-void JobRequest::MergeFrom(const JobRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beeremote.JobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void JobRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<JobRequest*>(&to_msg);
+  auto& from = static_cast<const JobRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.JobRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.path().size() > 0) {
-    _internal_set_path(from._internal_path());
+  if (!from._internal_path().empty()) {
+    _this->_internal_set_path(from._internal_path());
   }
-  if (from.name().size() > 0) {
-    _internal_set_name(from._internal_name());
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from.priority() != 0) {
-    _internal_set_priority(from._internal_priority());
+  if (from._internal_priority() != 0) {
+    _this->_internal_set_priority(from._internal_priority());
   }
   switch (from.type_case()) {
     case kSync: {
-      _internal_mutable_sync()->::beesync::SyncJob::MergeFrom(from._internal_sync());
+      _this->_internal_mutable_sync()->::beesync::SyncJob::MergeFrom(
+          from._internal_sync());
       break;
     }
     case TYPE_NOT_SET: {
       break;
     }
   }
-}
-
-void JobRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beeremote.JobRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void JobRequest::CopyFrom(const JobRequest& from) {
@@ -587,266 +683,255 @@ void JobRequest::CopyFrom(const JobRequest& from) {
   MergeFrom(from);
 }
 
-bool JobRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool JobRequest::IsInitialized() const {
   return true;
 }
 
 void JobRequest::InternalSwap(JobRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  path_.Swap(&other->path_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(priority_, other->priority_);
-  swap(type_, other->type_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, lhs_arena,
+                                       &other->_impl_.path_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, lhs_arena,
+                                       &other->_impl_.name_, rhs_arena);
+        swap(_impl_.priority_, other->_impl_.priority_);
+  swap(_impl_.type_, other->_impl_.type_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata JobRequest::GetMetadata() const {
-  return GetMetadataStatic();
+::google::protobuf::Metadata JobRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beeremote_2eproto_getter, &descriptor_table_beeremote_2eproto_once,
+      file_level_metadata_beeremote_2eproto[0]);
 }
-
-
 // ===================================================================
 
-void JobResponse::InitAsDefaultInstance() {
-  ::beeremote::_JobResponse_default_instance_._instance.get_mutable()->metadata_ = const_cast< ::beegfs::JobMetadata*>(
-      ::beegfs::JobMetadata::internal_default_instance());
-  ::beeremote::_JobResponse_default_instance_._instance.get_mutable()->request_ = const_cast< ::beeremote::JobRequest*>(
-      ::beeremote::JobRequest::internal_default_instance());
-}
 class JobResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<JobResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(JobResponse, _impl_._has_bits_);
   static const ::beegfs::JobMetadata& metadata(const JobResponse* msg);
+  static void set_has_metadata(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
   static const ::beeremote::JobRequest& request(const JobResponse* msg);
+  static void set_has_request(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
 };
 
-const ::beegfs::JobMetadata&
-JobResponse::_Internal::metadata(const JobResponse* msg) {
-  return *msg->metadata_;
+const ::beegfs::JobMetadata& JobResponse::_Internal::metadata(const JobResponse* msg) {
+  return *msg->_impl_.metadata_;
 }
-const ::beeremote::JobRequest&
-JobResponse::_Internal::request(const JobResponse* msg) {
-  return *msg->request_;
+const ::beeremote::JobRequest& JobResponse::_Internal::request(const JobResponse* msg) {
+  return *msg->_impl_.request_;
 }
 void JobResponse::clear_metadata() {
-  if (GetArena() == nullptr && metadata_ != nullptr) {
-    delete metadata_;
-  }
-  metadata_ = nullptr;
+  if (_impl_.metadata_ != nullptr) _impl_.metadata_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-JobResponse::JobResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
+JobResponse::JobResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:beeremote.JobResponse)
 }
-JobResponse::JobResponse(const JobResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_metadata()) {
-    metadata_ = new ::beegfs::JobMetadata(*from.metadata_);
-  } else {
-    metadata_ = nullptr;
+JobResponse::JobResponse(const JobResponse& from) : ::google::protobuf::Message() {
+  JobResponse* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.metadata_){nullptr},
+      decltype(_impl_.request_){nullptr},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.metadata_ = new ::beegfs::JobMetadata(*from._impl_.metadata_);
   }
-  if (from._internal_has_request()) {
-    request_ = new ::beeremote::JobRequest(*from.request_);
-  } else {
-    request_ = nullptr;
+  if ((from._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    _this->_impl_.request_ = new ::beeremote::JobRequest(*from._impl_.request_);
   }
+
   // @@protoc_insertion_point(copy_constructor:beeremote.JobResponse)
 }
-
-void JobResponse::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_JobResponse_beeremote_2eproto.base);
-  ::memset(&metadata_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&request_) -
-      reinterpret_cast<char*>(&metadata_)) + sizeof(request_));
+inline void JobResponse::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.metadata_){nullptr},
+      decltype(_impl_.request_){nullptr},
+  };
 }
-
 JobResponse::~JobResponse() {
   // @@protoc_insertion_point(destructor:beeremote.JobResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
-
-void JobResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  if (this != internal_default_instance()) delete metadata_;
-  if (this != internal_default_instance()) delete request_;
-}
-
-void JobResponse::ArenaDtor(void* object) {
-  JobResponse* _this = reinterpret_cast< JobResponse* >(object);
-  (void)_this;
-}
-void JobResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+inline void JobResponse::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.metadata_;
+  if (this != internal_default_instance()) delete _impl_.request_;
 }
 void JobResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const JobResponse& JobResponse::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_JobResponse_beeremote_2eproto.base);
-  return *internal_default_instance();
+  _impl_._cached_size_.Set(size);
 }
 
-
-void JobResponse::Clear() {
+PROTOBUF_NOINLINE void JobResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:beeremote.JobResponse)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArena() == nullptr && metadata_ != nullptr) {
-    delete metadata_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.metadata_ != nullptr);
+      _impl_.metadata_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.request_ != nullptr);
+      _impl_.request_->Clear();
+    }
   }
-  metadata_ = nullptr;
-  if (GetArena() == nullptr && request_ != nullptr) {
-    delete request_;
-  }
-  request_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* JobResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // .beegfs.JobMetadata metadata = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .beeremote.JobRequest request = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_request(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
+const char* JobResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* JobResponse::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beeremote.JobResponse)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
 
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> JobResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(JobResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_JobResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .beeremote.JobRequest request = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(JobResponse, _impl_.request_)}},
+    // .beegfs.JobMetadata metadata = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(JobResponse, _impl_.metadata_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .beegfs.JobMetadata metadata = 1;
+    {PROTOBUF_FIELD_OFFSET(JobResponse, _impl_.metadata_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .beeremote.JobRequest request = 2;
+    {PROTOBUF_FIELD_OFFSET(JobResponse, _impl_.request_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::JobMetadata>()},
+    {::_pbi::TcParser::GetTable<::beeremote::JobRequest>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* JobResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:beeremote.JobResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
   // .beegfs.JobMetadata metadata = 1;
-  if (this->has_metadata()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        1, _Internal::metadata(this), target, stream);
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::metadata(this),
+        _Internal::metadata(this).GetCachedSize(), target, stream);
   }
 
   // .beeremote.JobRequest request = 2;
-  if (this->has_request()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        2, _Internal::request(this), target, stream);
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::request(this),
+        _Internal::request(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:beeremote.JobResponse)
   return target;
 }
 
-size_t JobResponse::ByteSizeLong() const {
+::size_t JobResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:beeremote.JobResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .beegfs.JobMetadata metadata = 1;
-  if (this->has_metadata()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *metadata_);
-  }
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // .beegfs.JobMetadata metadata = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *_impl_.metadata_);
+    }
 
-  // .beeremote.JobRequest request = 2;
-  if (this->has_request()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *request_);
-  }
+    // .beeremote.JobRequest request = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          *_impl_.request_);
+    }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
   }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void JobResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beeremote.JobResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const JobResponse* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<JobResponse>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beeremote.JobResponse)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beeremote.JobResponse)
-    MergeFrom(*source);
-  }
-}
+const ::google::protobuf::Message::ClassData JobResponse::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    JobResponse::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*JobResponse::GetClassData() const { return &_class_data_; }
 
-void JobResponse::MergeFrom(const JobResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beeremote.JobResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void JobResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<JobResponse*>(&to_msg);
+  auto& from = static_cast<const JobResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.JobResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.has_metadata()) {
-    _internal_mutable_metadata()->::beegfs::JobMetadata::MergeFrom(from._internal_metadata());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_metadata()->::beegfs::JobMetadata::MergeFrom(
+          from._internal_metadata());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_request()->::beeremote::JobRequest::MergeFrom(
+          from._internal_request());
+    }
   }
-  if (from.has_request()) {
-    _internal_mutable_request()->::beeremote::JobRequest::MergeFrom(from._internal_request());
-  }
-}
-
-void JobResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beeremote.JobResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void JobResponse::CopyFrom(const JobResponse& from) {
@@ -856,549 +941,968 @@ void JobResponse::CopyFrom(const JobResponse& from) {
   MergeFrom(from);
 }
 
-bool JobResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool JobResponse::IsInitialized() const {
   return true;
 }
 
 void JobResponse::InternalSwap(JobResponse* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(JobResponse, request_)
-      + sizeof(JobResponse::request_)
-      - PROTOBUF_FIELD_OFFSET(JobResponse, metadata_)>(
-          reinterpret_cast<char*>(&metadata_),
-          reinterpret_cast<char*>(&other->metadata_));
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(JobResponse, _impl_.request_)
+      + sizeof(JobResponse::_impl_.request_)
+      - PROTOBUF_FIELD_OFFSET(JobResponse, _impl_.metadata_)>(
+          reinterpret_cast<char*>(&_impl_.metadata_),
+          reinterpret_cast<char*>(&other->_impl_.metadata_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata JobResponse::GetMetadata() const {
-  return GetMetadataStatic();
+::google::protobuf::Metadata JobResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beeremote_2eproto_getter, &descriptor_table_beeremote_2eproto_once,
+      file_level_metadata_beeremote_2eproto[1]);
 }
-
-
 // ===================================================================
 
-void MultiJobRequest::InitAsDefaultInstance() {
-  ::beeremote::_MultiJobRequest_default_instance_._instance.get_mutable()->filter_ = const_cast< ::beeremote::JobFilter*>(
-      ::beeremote::JobFilter::internal_default_instance());
-}
-class MultiJobRequest::_Internal {
+class UpdateJobRequest::_Internal {
  public:
-  static const ::beeremote::JobFilter& filter(const MultiJobRequest* msg);
 };
 
-const ::beeremote::JobFilter&
-MultiJobRequest::_Internal::filter(const MultiJobRequest* msg) {
-  return *msg->filter_;
+UpdateJobRequest::UpdateJobRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beeremote.UpdateJobRequest)
 }
-MultiJobRequest::MultiJobRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beeremote.MultiJobRequest)
-}
-MultiJobRequest::MultiJobRequest(const MultiJobRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_filter()) {
-    filter_ = new ::beeremote::JobFilter(*from.filter_);
-  } else {
-    filter_ = nullptr;
-  }
-  ::memcpy(&page_number_, &from.page_number_,
-    static_cast<size_t>(reinterpret_cast<char*>(&results_per_page_) -
-    reinterpret_cast<char*>(&page_number_)) + sizeof(results_per_page_));
-  // @@protoc_insertion_point(copy_constructor:beeremote.MultiJobRequest)
-}
-
-void MultiJobRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_MultiJobRequest_beeremote_2eproto.base);
-  ::memset(&filter_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&results_per_page_) -
-      reinterpret_cast<char*>(&filter_)) + sizeof(results_per_page_));
-}
-
-MultiJobRequest::~MultiJobRequest() {
-  // @@protoc_insertion_point(destructor:beeremote.MultiJobRequest)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void MultiJobRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  if (this != internal_default_instance()) delete filter_;
-}
-
-void MultiJobRequest::ArenaDtor(void* object) {
-  MultiJobRequest* _this = reinterpret_cast< MultiJobRequest* >(object);
+UpdateJobRequest::UpdateJobRequest(const UpdateJobRequest& from) : ::google::protobuf::Message() {
+  UpdateJobRequest* const _this = this;
   (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.path_){},
+      decltype(_impl_.jobid_){},
+      decltype(_impl_.newstate_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.path_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.path_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_path().empty()) {
+    _this->_impl_.path_.Set(from._internal_path(), _this->GetArenaForAllocation());
+  }
+  _impl_.jobid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.jobid_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_jobid().empty()) {
+    _this->_impl_.jobid_.Set(from._internal_jobid(), _this->GetArenaForAllocation());
+  }
+  _this->_impl_.newstate_ = from._impl_.newstate_;
+
+  // @@protoc_insertion_point(copy_constructor:beeremote.UpdateJobRequest)
 }
-void MultiJobRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+inline void UpdateJobRequest::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.path_){},
+      decltype(_impl_.jobid_){},
+      decltype(_impl_.newstate_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.path_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.path_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.jobid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.jobid_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
-void MultiJobRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+UpdateJobRequest::~UpdateJobRequest() {
+  // @@protoc_insertion_point(destructor:beeremote.UpdateJobRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
 }
-const MultiJobRequest& MultiJobRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_MultiJobRequest_beeremote_2eproto.base);
-  return *internal_default_instance();
+inline void UpdateJobRequest::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.path_.Destroy();
+  _impl_.jobid_.Destroy();
+}
+void UpdateJobRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
 }
 
-
-void MultiJobRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:beeremote.MultiJobRequest)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+PROTOBUF_NOINLINE void UpdateJobRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:beeremote.UpdateJobRequest)
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArena() == nullptr && filter_ != nullptr) {
-    delete filter_;
-  }
-  filter_ = nullptr;
-  ::memset(&page_number_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&results_per_page_) -
-      reinterpret_cast<char*>(&page_number_)) + sizeof(results_per_page_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.path_.ClearToEmpty();
+  _impl_.jobid_.ClearToEmpty();
+  _impl_.newstate_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* MultiJobRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // .beeremote.JobFilter filter = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_filter(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // int32 page_number = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          page_number_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // int32 results_per_page = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          results_per_page_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
+const char* UpdateJobRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* MultiJobRequest::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beeremote.MultiJobRequest)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
 
-  // .beeremote.JobFilter filter = 1;
-  if (this->has_filter()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        1, _Internal::filter(this), target, stream);
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 44, 2> UpdateJobRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdateJobRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string path = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.path_)}},
+    // string jobID = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.jobid_)}},
+    // .beegfs.NewState newState = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateJobRequest, _impl_.newstate_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.newstate_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string path = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.path_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string jobID = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.jobid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.NewState newState = 3;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.newstate_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+    "\32\4\5\0\0\0\0\0"
+    "beeremote.UpdateJobRequest"
+    "path"
+    "jobID"
+  }},
+};
+
+::uint8_t* UpdateJobRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:beeremote.UpdateJobRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string path = 1;
+  if (!this->_internal_path().empty()) {
+    const std::string& _s = this->_internal_path();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobRequest.path");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
-  // int32 page_number = 2;
-  if (this->page_number() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_page_number(), target);
+  // string jobID = 2;
+  if (!this->_internal_jobid().empty()) {
+    const std::string& _s = this->_internal_jobid();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobRequest.jobID");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
-  // int32 results_per_page = 3;
-  if (this->results_per_page() != 0) {
+  // .beegfs.NewState newState = 3;
+  if (this->_internal_newstate() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_results_per_page(), target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        3, this->_internal_newstate(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:beeremote.MultiJobRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:beeremote.UpdateJobRequest)
   return target;
 }
 
-size_t MultiJobRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beeremote.MultiJobRequest)
-  size_t total_size = 0;
+::size_t UpdateJobRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:beeremote.UpdateJobRequest)
+  ::size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string path = 1;
+  if (!this->_internal_path().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_path());
+  }
+
+  // string jobID = 2;
+  if (!this->_internal_jobid().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_jobid());
+  }
+
+  // .beegfs.NewState newState = 3;
+  if (this->_internal_newstate() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_newstate());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdateJobRequest::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    UpdateJobRequest::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*UpdateJobRequest::GetClassData() const { return &_class_data_; }
+
+
+void UpdateJobRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdateJobRequest*>(&to_msg);
+  auto& from = static_cast<const UpdateJobRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.UpdateJobRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_path().empty()) {
+    _this->_internal_set_path(from._internal_path());
+  }
+  if (!from._internal_jobid().empty()) {
+    _this->_internal_set_jobid(from._internal_jobid());
+  }
+  if (from._internal_newstate() != 0) {
+    _this->_internal_set_newstate(from._internal_newstate());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdateJobRequest::CopyFrom(const UpdateJobRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.UpdateJobRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdateJobRequest::IsInitialized() const {
+  return true;
+}
+
+void UpdateJobRequest::InternalSwap(UpdateJobRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, lhs_arena,
+                                       &other->_impl_.path_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.jobid_, lhs_arena,
+                                       &other->_impl_.jobid_, rhs_arena);
+  swap(_impl_.newstate_, other->_impl_.newstate_);
+}
+
+::google::protobuf::Metadata UpdateJobRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beeremote_2eproto_getter, &descriptor_table_beeremote_2eproto_once,
+      file_level_metadata_beeremote_2eproto[2]);
+}
+// ===================================================================
+
+class UpdateJobResponse::_Internal {
+ public:
+};
+
+UpdateJobResponse::UpdateJobResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beeremote.UpdateJobResponse)
+}
+UpdateJobResponse::UpdateJobResponse(const UpdateJobResponse& from) : ::google::protobuf::Message() {
+  UpdateJobResponse* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.message_){},
+      decltype(_impl_.ok_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.message_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_message().empty()) {
+    _this->_impl_.message_.Set(from._internal_message(), _this->GetArenaForAllocation());
+  }
+  _this->_impl_.ok_ = from._impl_.ok_;
+
+  // @@protoc_insertion_point(copy_constructor:beeremote.UpdateJobResponse)
+}
+inline void UpdateJobResponse::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.message_){},
+      decltype(_impl_.ok_){false},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.message_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+UpdateJobResponse::~UpdateJobResponse() {
+  // @@protoc_insertion_point(destructor:beeremote.UpdateJobResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdateJobResponse::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.message_.Destroy();
+}
+void UpdateJobResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void UpdateJobResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:beeremote.UpdateJobResponse)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.ok_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdateJobResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 43, 2> UpdateJobResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdateJobResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.message_)}},
+    // bool ok = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateJobResponse, _impl_.ok_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.ok_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool ok = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.ok_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\33\0\7\0\0\0\0\0"
+    "beeremote.UpdateJobResponse"
+    "message"
+  }},
+};
+
+::uint8_t* UpdateJobResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:beeremote.UpdateJobResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool ok = 1;
+  if (this->_internal_ok() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_ok(), target);
+  }
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobResponse.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:beeremote.UpdateJobResponse)
+  return target;
+}
+
+::size_t UpdateJobResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:beeremote.UpdateJobResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
+  }
+
+  // bool ok = 1;
+  if (this->_internal_ok() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdateJobResponse::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    UpdateJobResponse::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*UpdateJobResponse::GetClassData() const { return &_class_data_; }
+
+
+void UpdateJobResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdateJobResponse*>(&to_msg);
+  auto& from = static_cast<const UpdateJobResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.UpdateJobResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_ok() != 0) {
+    _this->_internal_set_ok(from._internal_ok());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdateJobResponse::CopyFrom(const UpdateJobResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.UpdateJobResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdateJobResponse::IsInitialized() const {
+  return true;
+}
+
+void UpdateJobResponse::InternalSwap(UpdateJobResponse* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, lhs_arena,
+                                       &other->_impl_.message_, rhs_arena);
+        swap(_impl_.ok_, other->_impl_.ok_);
+}
+
+::google::protobuf::Metadata UpdateJobResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beeremote_2eproto_getter, &descriptor_table_beeremote_2eproto_once,
+      file_level_metadata_beeremote_2eproto[3]);
+}
+// ===================================================================
+
+class GetJobsRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<GetJobsRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_._has_bits_);
+  static const ::beeremote::JobFilter& filter(const GetJobsRequest* msg);
+  static void set_has_filter(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::beeremote::JobFilter& GetJobsRequest::_Internal::filter(const GetJobsRequest* msg) {
+  return *msg->_impl_.filter_;
+}
+GetJobsRequest::GetJobsRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beeremote.GetJobsRequest)
+}
+GetJobsRequest::GetJobsRequest(const GetJobsRequest& from) : ::google::protobuf::Message() {
+  GetJobsRequest* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.filter_){nullptr},
+      decltype(_impl_.page_number_){},
+      decltype(_impl_.results_per_page_){},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.filter_ = new ::beeremote::JobFilter(*from._impl_.filter_);
+  }
+  ::memcpy(&_impl_.page_number_, &from._impl_.page_number_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.results_per_page_) -
+    reinterpret_cast<char*>(&_impl_.page_number_)) + sizeof(_impl_.results_per_page_));
+
+  // @@protoc_insertion_point(copy_constructor:beeremote.GetJobsRequest)
+}
+inline void GetJobsRequest::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.filter_){nullptr},
+      decltype(_impl_.page_number_){0},
+      decltype(_impl_.results_per_page_){0},
+  };
+}
+GetJobsRequest::~GetJobsRequest() {
+  // @@protoc_insertion_point(destructor:beeremote.GetJobsRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetJobsRequest::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete _impl_.filter_;
+}
+void GetJobsRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void GetJobsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:beeremote.GetJobsRequest)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.filter_ != nullptr);
+    _impl_.filter_->Clear();
+  }
+  ::memset(&_impl_.page_number_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.results_per_page_) -
+      reinterpret_cast<char*>(&_impl_.page_number_)) + sizeof(_impl_.results_per_page_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetJobsRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> GetJobsRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetJobsRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .beeremote.JobFilter filter = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_.filter_)}},
+    // int32 page_number = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetJobsRequest, _impl_.page_number_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_.page_number_)}},
+    // int32 results_per_page = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetJobsRequest, _impl_.results_per_page_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_.results_per_page_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .beeremote.JobFilter filter = 1;
+    {PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_.filter_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // int32 page_number = 2;
+    {PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_.page_number_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 results_per_page = 3;
+    {PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_.results_per_page_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beeremote::JobFilter>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* GetJobsRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:beeremote.GetJobsRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .beeremote.JobFilter filter = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::filter(this),
+        _Internal::filter(this).GetCachedSize(), target, stream);
+  }
+
+  // int32 page_number = 2;
+  if (this->_internal_page_number() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_page_number(), target);
+  }
+
+  // int32 results_per_page = 3;
+  if (this->_internal_results_per_page() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_results_per_page(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:beeremote.GetJobsRequest)
+  return target;
+}
+
+::size_t GetJobsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:beeremote.GetJobsRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .beeremote.JobFilter filter = 1;
-  if (this->has_filter()) {
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *filter_);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.filter_);
   }
 
   // int32 page_number = 2;
-  if (this->page_number() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+  if (this->_internal_page_number() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_page_number());
   }
 
   // int32 results_per_page = 3;
-  if (this->results_per_page() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+  if (this->_internal_results_per_page() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_results_per_page());
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void MultiJobRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beeremote.MultiJobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  const MultiJobRequest* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<MultiJobRequest>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beeremote.MultiJobRequest)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beeremote.MultiJobRequest)
-    MergeFrom(*source);
-  }
-}
+const ::google::protobuf::Message::ClassData GetJobsRequest::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    GetJobsRequest::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*GetJobsRequest::GetClassData() const { return &_class_data_; }
 
-void MultiJobRequest::MergeFrom(const MultiJobRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beeremote.MultiJobRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void GetJobsRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetJobsRequest*>(&to_msg);
+  auto& from = static_cast<const GetJobsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.GetJobsRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.has_filter()) {
-    _internal_mutable_filter()->::beeremote::JobFilter::MergeFrom(from._internal_filter());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_filter()->::beeremote::JobFilter::MergeFrom(
+        from._internal_filter());
   }
-  if (from.page_number() != 0) {
-    _internal_set_page_number(from._internal_page_number());
+  if (from._internal_page_number() != 0) {
+    _this->_internal_set_page_number(from._internal_page_number());
   }
-  if (from.results_per_page() != 0) {
-    _internal_set_results_per_page(from._internal_results_per_page());
+  if (from._internal_results_per_page() != 0) {
+    _this->_internal_set_results_per_page(from._internal_results_per_page());
   }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void MultiJobRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beeremote.MultiJobRequest)
+void GetJobsRequest::CopyFrom(const GetJobsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.GetJobsRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MultiJobRequest::CopyFrom(const MultiJobRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.MultiJobRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool MultiJobRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetJobsRequest::IsInitialized() const {
   return true;
 }
 
-void MultiJobRequest::InternalSwap(MultiJobRequest* other) {
+void GetJobsRequest::InternalSwap(GetJobsRequest* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MultiJobRequest, results_per_page_)
-      + sizeof(MultiJobRequest::results_per_page_)
-      - PROTOBUF_FIELD_OFFSET(MultiJobRequest, filter_)>(
-          reinterpret_cast<char*>(&filter_),
-          reinterpret_cast<char*>(&other->filter_));
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_.results_per_page_)
+      + sizeof(GetJobsRequest::_impl_.results_per_page_)
+      - PROTOBUF_FIELD_OFFSET(GetJobsRequest, _impl_.filter_)>(
+          reinterpret_cast<char*>(&_impl_.filter_),
+          reinterpret_cast<char*>(&other->_impl_.filter_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata MultiJobRequest::GetMetadata() const {
-  return GetMetadataStatic();
+::google::protobuf::Metadata GetJobsRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beeremote_2eproto_getter, &descriptor_table_beeremote_2eproto_once,
+      file_level_metadata_beeremote_2eproto[4]);
 }
-
-
 // ===================================================================
 
-void JobFilter::InitAsDefaultInstance() {
-}
 class JobFilter::_Internal {
  public:
 };
 
 void JobFilter::clear_status() {
-  status_.Clear();
+  _internal_mutable_status()->Clear();
 }
-JobFilter::JobFilter(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
-  id_(arena),
-  status_(arena),
-  request_(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
+JobFilter::JobFilter(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:beeremote.JobFilter)
 }
-JobFilter::JobFilter(const JobFilter& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      id_(from.id_),
-      status_(from.status_),
-      request_(from.request_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+JobFilter::JobFilter(const JobFilter& from) : ::google::protobuf::Message() {
+  JobFilter* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){from._impl_.id_},
+      decltype(_impl_.status_){from._impl_.status_},
+      decltype(_impl_.request_){from._impl_.request_},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:beeremote.JobFilter)
 }
-
-void JobFilter::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_JobFilter_beeremote_2eproto.base);
+inline void JobFilter::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.id_){arena},
+      decltype(_impl_.status_){arena},
+      decltype(_impl_.request_){arena},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
 }
-
 JobFilter::~JobFilter() {
   // @@protoc_insertion_point(destructor:beeremote.JobFilter)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
-
-void JobFilter::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-}
-
-void JobFilter::ArenaDtor(void* object) {
-  JobFilter* _this = reinterpret_cast< JobFilter* >(object);
-  (void)_this;
-}
-void JobFilter::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+inline void JobFilter::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _internal_mutable_id()->~RepeatedPtrField();
+  _impl_.status_.~RepeatedPtrField();
+  _impl_.request_.~RepeatedPtrField();
 }
 void JobFilter::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const JobFilter& JobFilter::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_JobFilter_beeremote_2eproto.base);
-  return *internal_default_instance();
+  _impl_._cached_size_.Set(size);
 }
 
-
-void JobFilter::Clear() {
+PROTOBUF_NOINLINE void JobFilter::Clear() {
 // @@protoc_insertion_point(message_clear_start:beeremote.JobFilter)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.Clear();
-  status_.Clear();
-  request_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_mutable_id()->Clear();
+  _internal_mutable_status()->Clear();
+  _internal_mutable_request()->Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* JobFilter::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // repeated string id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            auto str = _internal_add_id();
-            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beeremote.JobFilter.id"));
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else goto handle_unusual;
-        continue;
-      // repeated .beegfs.RequestStatus status = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_status(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
-        } else goto handle_unusual;
-        continue;
-      // repeated .beeremote.JobRequest request = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_request(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
+const char* JobFilter::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* JobFilter::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 2, 30, 2> JobFilter::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_JobFilter_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated string id = 1;
+    {::_pbi::TcParser::FastUR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(JobFilter, _impl_.id_)}},
+    // repeated .beegfs.RequestStatus status = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(JobFilter, _impl_.status_)}},
+    // repeated .beeremote.JobRequest request = 3;
+    {::_pbi::TcParser::FastMtR1,
+     {26, 63, 1, PROTOBUF_FIELD_OFFSET(JobFilter, _impl_.request_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated string id = 1;
+    {PROTOBUF_FIELD_OFFSET(JobFilter, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // repeated .beegfs.RequestStatus status = 2;
+    {PROTOBUF_FIELD_OFFSET(JobFilter, _impl_.status_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .beeremote.JobRequest request = 3;
+    {PROTOBUF_FIELD_OFFSET(JobFilter, _impl_.request_), 0, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::RequestStatus>()},
+    {::_pbi::TcParser::GetTable<::beeremote::JobRequest>()},
+  }}, {{
+    "\23\2\0\0\0\0\0\0"
+    "beeremote.JobFilter"
+    "id"
+  }},
+};
+
+::uint8_t* JobFilter::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:beeremote.JobFilter)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated string id = 1;
-  for (int i = 0, n = this->_internal_id_size(); i < n; i++) {
-    const auto& s = this->_internal_id(i);
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      s.data(), static_cast<int>(s.length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beeremote.JobFilter.id");
+  for (int i = 0, n = this->_internal_id_size(); i < n; ++i) {
+    const auto& s = this->_internal_id().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.JobFilter.id");
     target = stream->WriteString(1, s, target);
   }
 
   // repeated .beegfs.RequestStatus status = 2;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_status_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, this->_internal_status(i), target, stream);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_status_size()); i < n; i++) {
+    const auto& repfield = this->_internal_status().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // repeated .beeremote.JobRequest request = 3;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_request_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, this->_internal_request(i), target, stream);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_request_size()); i < n; i++) {
+    const auto& repfield = this->_internal_request().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:beeremote.JobFilter)
   return target;
 }
 
-size_t JobFilter::ByteSizeLong() const {
+::size_t JobFilter::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:beeremote.JobFilter)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated string id = 1;
-  total_size += 1 *
-      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(id_.size());
-  for (int i = 0, n = id_.size(); i < n; i++) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-      id_.Get(i));
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_id().size());
+  for (int i = 0, n = _internal_id().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_id().Get(i));
   }
-
   // repeated .beegfs.RequestStatus status = 2;
   total_size += 1UL * this->_internal_status_size();
-  for (const auto& msg : this->status_) {
+  for (const auto& msg : this->_internal_status()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // repeated .beeremote.JobRequest request = 3;
   total_size += 1UL * this->_internal_request_size();
-  for (const auto& msg : this->request_) {
+  for (const auto& msg : this->_internal_request()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void JobFilter::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beeremote.JobFilter)
-  GOOGLE_DCHECK_NE(&from, this);
-  const JobFilter* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<JobFilter>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beeremote.JobFilter)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beeremote.JobFilter)
-    MergeFrom(*source);
-  }
-}
+const ::google::protobuf::Message::ClassData JobFilter::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    JobFilter::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*JobFilter::GetClassData() const { return &_class_data_; }
 
-void JobFilter::MergeFrom(const JobFilter& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beeremote.JobFilter)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void JobFilter::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<JobFilter*>(&to_msg);
+  auto& from = static_cast<const JobFilter&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.JobFilter)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  id_.MergeFrom(from.id_);
-  status_.MergeFrom(from.status_);
-  request_.MergeFrom(from.request_);
-}
-
-void JobFilter::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beeremote.JobFilter)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _this->_internal_mutable_id()->MergeFrom(from._internal_id());
+  _this->_internal_mutable_status()->MergeFrom(from._internal_status());
+  _this->_internal_mutable_request()->MergeFrom(from._internal_request());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void JobFilter::CopyFrom(const JobFilter& from) {
@@ -1408,306 +1912,261 @@ void JobFilter::CopyFrom(const JobFilter& from) {
   MergeFrom(from);
 }
 
-bool JobFilter::IsInitialized() const {
+PROTOBUF_NOINLINE bool JobFilter::IsInitialized() const {
   return true;
 }
 
 void JobFilter::InternalSwap(JobFilter* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  id_.InternalSwap(&other->id_);
-  status_.InternalSwap(&other->status_);
-  request_.InternalSwap(&other->request_);
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.id_.InternalSwap(&other->_impl_.id_);
+  _impl_.status_.InternalSwap(&other->_impl_.status_);
+  _impl_.request_.InternalSwap(&other->_impl_.request_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata JobFilter::GetMetadata() const {
-  return GetMetadataStatic();
+::google::protobuf::Metadata JobFilter::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beeremote_2eproto_getter, &descriptor_table_beeremote_2eproto_once,
+      file_level_metadata_beeremote_2eproto[5]);
 }
-
-
 // ===================================================================
 
-void MultiJobResponse::InitAsDefaultInstance() {
-}
-class MultiJobResponse::_Internal {
+class GetJobsResponse::_Internal {
  public:
 };
 
-MultiJobResponse::MultiJobResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
-  jobs_(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beeremote.MultiJobResponse)
+GetJobsResponse::GetJobsResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beeremote.GetJobsResponse)
 }
-MultiJobResponse::MultiJobResponse(const MultiJobResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      jobs_(from.jobs_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&page_number_, &from.page_number_,
-    static_cast<size_t>(reinterpret_cast<char*>(&total_pages_) -
-    reinterpret_cast<char*>(&page_number_)) + sizeof(total_pages_));
-  // @@protoc_insertion_point(copy_constructor:beeremote.MultiJobResponse)
-}
-
-void MultiJobResponse::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_MultiJobResponse_beeremote_2eproto.base);
-  ::memset(&page_number_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&total_pages_) -
-      reinterpret_cast<char*>(&page_number_)) + sizeof(total_pages_));
-}
-
-MultiJobResponse::~MultiJobResponse() {
-  // @@protoc_insertion_point(destructor:beeremote.MultiJobResponse)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void MultiJobResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-}
-
-void MultiJobResponse::ArenaDtor(void* object) {
-  MultiJobResponse* _this = reinterpret_cast< MultiJobResponse* >(object);
+GetJobsResponse::GetJobsResponse(const GetJobsResponse& from) : ::google::protobuf::Message() {
+  GetJobsResponse* const _this = this;
   (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.jobs_){from._impl_.jobs_},
+      decltype(_impl_.page_number_){},
+      decltype(_impl_.total_pages_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  ::memcpy(&_impl_.page_number_, &from._impl_.page_number_,
+    static_cast<::size_t>(reinterpret_cast<char*>(&_impl_.total_pages_) -
+    reinterpret_cast<char*>(&_impl_.page_number_)) + sizeof(_impl_.total_pages_));
+
+  // @@protoc_insertion_point(copy_constructor:beeremote.GetJobsResponse)
 }
-void MultiJobResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+inline void GetJobsResponse::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.jobs_){arena},
+      decltype(_impl_.page_number_){0},
+      decltype(_impl_.total_pages_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
 }
-void MultiJobResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+GetJobsResponse::~GetJobsResponse() {
+  // @@protoc_insertion_point(destructor:beeremote.GetJobsResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
 }
-const MultiJobResponse& MultiJobResponse::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_MultiJobResponse_beeremote_2eproto.base);
-  return *internal_default_instance();
+inline void GetJobsResponse::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.jobs_.~RepeatedPtrField();
+}
+void GetJobsResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
 }
 
-
-void MultiJobResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:beeremote.MultiJobResponse)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+PROTOBUF_NOINLINE void GetJobsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:beeremote.GetJobsResponse)
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  jobs_.Clear();
-  ::memset(&page_number_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&total_pages_) -
-      reinterpret_cast<char*>(&page_number_)) + sizeof(total_pages_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_mutable_jobs()->Clear();
+  ::memset(&_impl_.page_number_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.total_pages_) -
+      reinterpret_cast<char*>(&_impl_.page_number_)) + sizeof(_impl_.total_pages_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* MultiJobResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // repeated .beeremote.JobResponse jobs = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_jobs(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else goto handle_unusual;
-        continue;
-      // int32 page_number = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          page_number_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // int32 total_pages = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          total_pages_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
+const char* GetJobsResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* MultiJobResponse::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beeremote.MultiJobResponse)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> GetJobsResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetJobsResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .beeremote.JobResponse jobs = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetJobsResponse, _impl_.jobs_)}},
+    // int32 page_number = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetJobsResponse, _impl_.page_number_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GetJobsResponse, _impl_.page_number_)}},
+    // int32 total_pages = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetJobsResponse, _impl_.total_pages_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetJobsResponse, _impl_.total_pages_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .beeremote.JobResponse jobs = 1;
+    {PROTOBUF_FIELD_OFFSET(GetJobsResponse, _impl_.jobs_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // int32 page_number = 2;
+    {PROTOBUF_FIELD_OFFSET(GetJobsResponse, _impl_.page_number_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 total_pages = 3;
+    {PROTOBUF_FIELD_OFFSET(GetJobsResponse, _impl_.total_pages_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beeremote::JobResponse>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* GetJobsResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:beeremote.GetJobsResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated .beeremote.JobResponse jobs = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_jobs_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, this->_internal_jobs(i), target, stream);
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_jobs_size()); i < n; i++) {
+    const auto& repfield = this->_internal_jobs().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // int32 page_number = 2;
-  if (this->page_number() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_page_number(), target);
+  if (this->_internal_page_number() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_page_number(), target);
   }
 
   // int32 total_pages = 3;
-  if (this->total_pages() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_total_pages(), target);
+  if (this->_internal_total_pages() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_total_pages(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:beeremote.MultiJobResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:beeremote.GetJobsResponse)
   return target;
 }
 
-size_t MultiJobResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beeremote.MultiJobResponse)
-  size_t total_size = 0;
+::size_t GetJobsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:beeremote.GetJobsResponse)
+  ::size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .beeremote.JobResponse jobs = 1;
   total_size += 1UL * this->_internal_jobs_size();
-  for (const auto& msg : this->jobs_) {
+  for (const auto& msg : this->_internal_jobs()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // int32 page_number = 2;
-  if (this->page_number() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+  if (this->_internal_page_number() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_page_number());
   }
 
   // int32 total_pages = 3;
-  if (this->total_pages() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+  if (this->_internal_total_pages() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_total_pages());
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void MultiJobResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beeremote.MultiJobResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const MultiJobResponse* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<MultiJobResponse>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beeremote.MultiJobResponse)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beeremote.MultiJobResponse)
-    MergeFrom(*source);
-  }
-}
+const ::google::protobuf::Message::ClassData GetJobsResponse::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    GetJobsResponse::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*GetJobsResponse::GetClassData() const { return &_class_data_; }
 
-void MultiJobResponse::MergeFrom(const MultiJobResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beeremote.MultiJobResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void GetJobsResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetJobsResponse*>(&to_msg);
+  auto& from = static_cast<const GetJobsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.GetJobsResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  jobs_.MergeFrom(from.jobs_);
-  if (from.page_number() != 0) {
-    _internal_set_page_number(from._internal_page_number());
+  _this->_internal_mutable_jobs()->MergeFrom(from._internal_jobs());
+  if (from._internal_page_number() != 0) {
+    _this->_internal_set_page_number(from._internal_page_number());
   }
-  if (from.total_pages() != 0) {
-    _internal_set_total_pages(from._internal_total_pages());
+  if (from._internal_total_pages() != 0) {
+    _this->_internal_set_total_pages(from._internal_total_pages());
   }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void MultiJobResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beeremote.MultiJobResponse)
+void GetJobsResponse::CopyFrom(const GetJobsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.GetJobsResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MultiJobResponse::CopyFrom(const MultiJobResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.MultiJobResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool MultiJobResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetJobsResponse::IsInitialized() const {
   return true;
 }
 
-void MultiJobResponse::InternalSwap(MultiJobResponse* other) {
+void GetJobsResponse::InternalSwap(GetJobsResponse* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  jobs_.InternalSwap(&other->jobs_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MultiJobResponse, total_pages_)
-      + sizeof(MultiJobResponse::total_pages_)
-      - PROTOBUF_FIELD_OFFSET(MultiJobResponse, page_number_)>(
-          reinterpret_cast<char*>(&page_number_),
-          reinterpret_cast<char*>(&other->page_number_));
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.jobs_.InternalSwap(&other->_impl_.jobs_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetJobsResponse, _impl_.total_pages_)
+      + sizeof(GetJobsResponse::_impl_.total_pages_)
+      - PROTOBUF_FIELD_OFFSET(GetJobsResponse, _impl_.page_number_)>(
+          reinterpret_cast<char*>(&_impl_.page_number_),
+          reinterpret_cast<char*>(&other->_impl_.page_number_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata MultiJobResponse::GetMetadata() const {
-  return GetMetadataStatic();
+::google::protobuf::Metadata GetJobsResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beeremote_2eproto_getter, &descriptor_table_beeremote_2eproto_once,
+      file_level_metadata_beeremote_2eproto[6]);
 }
-
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace beeremote
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::beeremote::JobRequest* Arena::CreateMaybeMessage< ::beeremote::JobRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beeremote::JobRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beeremote::JobResponse* Arena::CreateMaybeMessage< ::beeremote::JobResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beeremote::JobResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beeremote::MultiJobRequest* Arena::CreateMaybeMessage< ::beeremote::MultiJobRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beeremote::MultiJobRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beeremote::JobFilter* Arena::CreateMaybeMessage< ::beeremote::JobFilter >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beeremote::JobFilter >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beeremote::MultiJobResponse* Arena::CreateMaybeMessage< ::beeremote::MultiJobResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beeremote::MultiJobResponse >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"

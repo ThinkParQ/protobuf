@@ -4,336 +4,343 @@
 #include "beegfs.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_beegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_RemoteStorageTarget_Azure_beegfs_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RemoteStorageTarget_POSIX_beegfs_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RemoteStorageTarget_Policies_beegfs_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RemoteStorageTarget_S3_beegfs_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_beegfs_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RequestStatus_beegfs_2eproto;
+
+// Must be included last.
+#include "google/protobuf/port_def.inc"
+PROTOBUF_PRAGMA_INIT_SEG
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace beegfs {
-class RequestStatusDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RequestStatus> _instance;
-} _RequestStatus_default_instance_;
-class JobMetadataDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<JobMetadata> _instance;
-} _JobMetadata_default_instance_;
-class WorkResponseDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<WorkResponse> _instance;
-} _WorkResponse_default_instance_;
-class RemoteStorageTarget_PoliciesDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RemoteStorageTarget_Policies> _instance;
-} _RemoteStorageTarget_Policies_default_instance_;
-class RemoteStorageTarget_S3DefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RemoteStorageTarget_S3> _instance;
-} _RemoteStorageTarget_S3_default_instance_;
-class RemoteStorageTarget_AzureDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RemoteStorageTarget_Azure> _instance;
-} _RemoteStorageTarget_Azure_default_instance_;
-class RemoteStorageTarget_POSIXDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RemoteStorageTarget_POSIX> _instance;
-} _RemoteStorageTarget_POSIX_default_instance_;
-class RemoteStorageTargetDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RemoteStorageTarget> _instance;
-  const ::beegfs::RemoteStorageTarget_S3* s3_;
-  const ::beegfs::RemoteStorageTarget_POSIX* posix_;
-  const ::beegfs::RemoteStorageTarget_Azure* azure_;
-} _RemoteStorageTarget_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR UpdateWorkRequest::UpdateWorkRequest(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.jobid_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.requestid_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.newstate_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct UpdateWorkRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateWorkRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateWorkRequestDefaultTypeInternal() {}
+  union {
+    UpdateWorkRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateWorkRequestDefaultTypeInternal _UpdateWorkRequest_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR UpdateWorkRequests_job::UpdateWorkRequests_job(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.path_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.id_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.state_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct UpdateWorkRequests_jobDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateWorkRequests_jobDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateWorkRequests_jobDefaultTypeInternal() {}
+  union {
+    UpdateWorkRequests_job _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateWorkRequests_jobDefaultTypeInternal _UpdateWorkRequests_job_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR UpdateWorkRequests::UpdateWorkRequests(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.jobs_)*/ {},
+      /*decltype(_impl_.defaultstate_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct UpdateWorkRequestsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateWorkRequestsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateWorkRequestsDefaultTypeInternal() {}
+  union {
+    UpdateWorkRequests _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateWorkRequestsDefaultTypeInternal _UpdateWorkRequests_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR RequestStatus::RequestStatus(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_.message_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.status_)*/ 0,
+      /*decltype(_impl_._cached_size_)*/ {},
+    } {}
+struct RequestStatusDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RequestStatusDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RequestStatusDefaultTypeInternal() {}
+  union {
+    RequestStatus _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RequestStatusDefaultTypeInternal _RequestStatus_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR JobMetadata::JobMetadata(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.id_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.status_)*/ nullptr,
+    } {}
+struct JobMetadataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JobMetadataDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JobMetadataDefaultTypeInternal() {}
+  union {
+    JobMetadata _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JobMetadataDefaultTypeInternal _JobMetadata_default_instance_;
+        template <typename>
+PROTOBUF_CONSTEXPR WorkResponse::WorkResponse(::_pbi::ConstantInitialized)
+    : _impl_{
+      /*decltype(_impl_._has_bits_)*/ {},
+      /*decltype(_impl_._cached_size_)*/ {},
+      /*decltype(_impl_.job_id_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.request_id_)*/ {
+          &::_pbi::fixed_address_empty_string,
+          ::_pbi::ConstantInitialized{},
+      },
+      /*decltype(_impl_.status_)*/ nullptr,
+    } {}
+struct WorkResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WorkResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WorkResponseDefaultTypeInternal() {}
+  union {
+    WorkResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WorkResponseDefaultTypeInternal _WorkResponse_default_instance_;
 }  // namespace beegfs
-static void InitDefaultsscc_info_JobMetadata_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_JobMetadata_default_instance_;
-    new (ptr) ::beegfs::JobMetadata();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::JobMetadata::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_JobMetadata_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_JobMetadata_beegfs_2eproto}, {
-      &scc_info_RequestStatus_beegfs_2eproto.base,}};
-
-static void InitDefaultsscc_info_RemoteStorageTarget_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_RemoteStorageTarget_default_instance_;
-    new (ptr) ::beegfs::RemoteStorageTarget();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::RemoteStorageTarget::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_RemoteStorageTarget_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 4, 0, InitDefaultsscc_info_RemoteStorageTarget_beegfs_2eproto}, {
-      &scc_info_RemoteStorageTarget_Policies_beegfs_2eproto.base,
-      &scc_info_RemoteStorageTarget_S3_beegfs_2eproto.base,
-      &scc_info_RemoteStorageTarget_POSIX_beegfs_2eproto.base,
-      &scc_info_RemoteStorageTarget_Azure_beegfs_2eproto.base,}};
-
-static void InitDefaultsscc_info_RemoteStorageTarget_Azure_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_RemoteStorageTarget_Azure_default_instance_;
-    new (ptr) ::beegfs::RemoteStorageTarget_Azure();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::RemoteStorageTarget_Azure::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_RemoteStorageTarget_Azure_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_RemoteStorageTarget_Azure_beegfs_2eproto}, {
-      &scc_info_RemoteStorageTarget_S3_beegfs_2eproto.base,}};
-
-static void InitDefaultsscc_info_RemoteStorageTarget_POSIX_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_RemoteStorageTarget_POSIX_default_instance_;
-    new (ptr) ::beegfs::RemoteStorageTarget_POSIX();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::RemoteStorageTarget_POSIX::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RemoteStorageTarget_POSIX_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_RemoteStorageTarget_POSIX_beegfs_2eproto}, {}};
-
-static void InitDefaultsscc_info_RemoteStorageTarget_Policies_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_RemoteStorageTarget_Policies_default_instance_;
-    new (ptr) ::beegfs::RemoteStorageTarget_Policies();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::RemoteStorageTarget_Policies::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RemoteStorageTarget_Policies_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_RemoteStorageTarget_Policies_beegfs_2eproto}, {}};
-
-static void InitDefaultsscc_info_RemoteStorageTarget_S3_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_RemoteStorageTarget_S3_default_instance_;
-    new (ptr) ::beegfs::RemoteStorageTarget_S3();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::RemoteStorageTarget_S3::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RemoteStorageTarget_S3_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_RemoteStorageTarget_S3_beegfs_2eproto}, {}};
-
-static void InitDefaultsscc_info_RequestStatus_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_RequestStatus_default_instance_;
-    new (ptr) ::beegfs::RequestStatus();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::RequestStatus::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RequestStatus_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_RequestStatus_beegfs_2eproto}, {}};
-
-static void InitDefaultsscc_info_WorkResponse_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_WorkResponse_default_instance_;
-    new (ptr) ::beegfs::WorkResponse();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::WorkResponse::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_WorkResponse_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_WorkResponse_beegfs_2eproto}, {
-      &scc_info_RequestStatus_beegfs_2eproto.base,}};
-
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_beegfs_2eproto[8];
-static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_beegfs_2eproto[1];
-static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_beegfs_2eproto = nullptr;
-
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_beegfs_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RequestStatus, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RequestStatus, status_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RequestStatus, message_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::JobMetadata, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::JobMetadata, id_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::JobMetadata, status_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, job_id_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, request_id_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, status_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Policies, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Policies, local_flock_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Policies, remote_flock_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Policies, keep_dir_structure_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Policies, keep_beegfs_metadata_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Policies, autostart_max_size_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_S3, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_S3, bucket_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_S3, region_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_S3, endpoint_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_S3, access_key_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_S3, secret_key_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Azure, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Azure, s3_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_Azure, account_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_POSIX, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget_POSIX, path_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget, _internal_metadata_),
-  ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget, _oneof_case_[0]),
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget, id_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget, name_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget, policies_),
-  offsetof(::beegfs::RemoteStorageTargetDefaultTypeInternal, s3_),
-  offsetof(::beegfs::RemoteStorageTargetDefaultTypeInternal, posix_),
-  offsetof(::beegfs::RemoteStorageTargetDefaultTypeInternal, azure_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::RemoteStorageTarget, type_),
-};
-static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::beegfs::RequestStatus)},
-  { 7, -1, sizeof(::beegfs::JobMetadata)},
-  { 14, -1, sizeof(::beegfs::WorkResponse)},
-  { 22, -1, sizeof(::beegfs::RemoteStorageTarget_Policies)},
-  { 32, -1, sizeof(::beegfs::RemoteStorageTarget_S3)},
-  { 42, -1, sizeof(::beegfs::RemoteStorageTarget_Azure)},
-  { 49, -1, sizeof(::beegfs::RemoteStorageTarget_POSIX)},
-  { 55, -1, sizeof(::beegfs::RemoteStorageTarget)},
+static ::_pb::Metadata file_level_metadata_beegfs_2eproto[6];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_beegfs_2eproto[3];
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_beegfs_2eproto = nullptr;
+const ::uint32_t TableStruct_beegfs_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequest, _impl_.jobid_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequest, _impl_.requestid_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequest, _impl_.newstate_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequests_job, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequests_job, _impl_.path_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequests_job, _impl_.id_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequests_job, _impl_.state_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequests, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequests, _impl_.jobs_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::UpdateWorkRequests, _impl_.defaultstate_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::beegfs::RequestStatus, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beegfs::RequestStatus, _impl_.status_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::RequestStatus, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::JobMetadata, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::JobMetadata, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beegfs::JobMetadata, _impl_.id_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::JobMetadata, _impl_.status_),
+    ~0u,
+    0,
+    PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, _impl_.job_id_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, _impl_.request_id_),
+    PROTOBUF_FIELD_OFFSET(::beegfs::WorkResponse, _impl_.status_),
+    ~0u,
+    ~0u,
+    0,
 };
 
-static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_RequestStatus_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_JobMetadata_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_WorkResponse_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_RemoteStorageTarget_Policies_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_RemoteStorageTarget_S3_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_RemoteStorageTarget_Azure_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_RemoteStorageTarget_POSIX_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_RemoteStorageTarget_default_instance_),
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, -1, -1, sizeof(::beegfs::UpdateWorkRequest)},
+        {11, -1, -1, sizeof(::beegfs::UpdateWorkRequests_job)},
+        {22, -1, -1, sizeof(::beegfs::UpdateWorkRequests)},
+        {32, -1, -1, sizeof(::beegfs::RequestStatus)},
+        {42, 52, -1, sizeof(::beegfs::JobMetadata)},
+        {54, 65, -1, sizeof(::beegfs::WorkResponse)},
 };
 
-const char descriptor_table_protodef_beegfs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014beegfs.proto\022\006beegfs\"\201\002\n\rRequestStatus"
-  "\022,\n\006status\030\001 \001(\0162\034.beegfs.RequestStatus."
-  "Status\022\017\n\007message\030\002 \001(\t\"\260\001\n\006Status\022\013\n\007UN"
-  "KNOWN\020\000\022\016\n\nUNASSIGNED\020\001\022\014\n\010ASSIGNED\020\002\022\013\n"
-  "\007CREATED\020\003\022\017\n\013RESCHEDULED\020\004\022\r\n\tSCHEDULED"
-  "\020\005\022\013\n\007RUNNING\020\006\022\013\n\007STALLED\020\007\022\n\n\006PAUSED\020\010"
-  "\022\n\n\006FAILED\020\t\022\r\n\tCOMPLETED\020\n\022\r\n\tCANCELLED"
-  "\020\013\"@\n\013JobMetadata\022\n\n\002id\030\001 \001(\t\022%\n\006status\030"
-  "\002 \001(\0132\025.beegfs.RequestStatus\"Y\n\014WorkResp"
-  "onse\022\016\n\006job_id\030\001 \001(\t\022\022\n\nrequest_id\030\002 \001(\t"
-  "\022%\n\006status\030\003 \001(\0132\025.beegfs.RequestStatus\""
-  "\320\004\n\023RemoteStorageTarget\022\n\n\002id\030\001 \001(\t\022\014\n\004n"
-  "ame\030\002 \001(\t\0226\n\010policies\030\003 \001(\0132$.beegfs.Rem"
-  "oteStorageTarget.Policies\022,\n\002s3\030\004 \001(\0132\036."
-  "beegfs.RemoteStorageTarget.S3H\000\0222\n\005posix"
-  "\030\005 \001(\0132!.beegfs.RemoteStorageTarget.POSI"
-  "XH\000\0222\n\005azure\030\006 \001(\0132!.beegfs.RemoteStorag"
-  "eTarget.AzureH\000\032\213\001\n\010Policies\022\023\n\013local_fl"
-  "ock\030\001 \001(\010\022\024\n\014remote_flock\030\002 \001(\010\022\032\n\022keep_"
-  "dir_structure\030\003 \001(\010\022\034\n\024keep_beegfs_metad"
-  "ata\030\004 \001(\010\022\032\n\022autostart_max_size\030\005 \001(\r\032^\n"
-  "\002S3\022\016\n\006bucket\030\001 \001(\t\022\016\n\006region\030\002 \001(\t\022\020\n\010e"
-  "ndpoint\030\003 \001(\t\022\022\n\naccess_key\030\004 \001(\t\022\022\n\nsec"
-  "ret_key\030\005 \001(\t\032D\n\005Azure\022*\n\002s3\030\001 \001(\0132\036.bee"
-  "gfs.RemoteStorageTarget.S3\022\017\n\007account\030\002 "
-  "\001(\t\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\tB\006\n\004typeB0Z.gi"
-  "thub.com/thinkparq/protobuf/beegfs/go;be"
-  "egfsb\006proto3"
-  ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beegfs_2eproto_deps[1] = {
+static const ::_pb::Message* const file_default_instances[] = {
+    &::beegfs::_UpdateWorkRequest_default_instance_._instance,
+    &::beegfs::_UpdateWorkRequests_job_default_instance_._instance,
+    &::beegfs::_UpdateWorkRequests_default_instance_._instance,
+    &::beegfs::_RequestStatus_default_instance_._instance,
+    &::beegfs::_JobMetadata_default_instance_._instance,
+    &::beegfs::_WorkResponse_default_instance_._instance,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_beegfs_2eproto_sccs[8] = {
-  &scc_info_JobMetadata_beegfs_2eproto.base,
-  &scc_info_RemoteStorageTarget_beegfs_2eproto.base,
-  &scc_info_RemoteStorageTarget_Azure_beegfs_2eproto.base,
-  &scc_info_RemoteStorageTarget_POSIX_beegfs_2eproto.base,
-  &scc_info_RemoteStorageTarget_Policies_beegfs_2eproto.base,
-  &scc_info_RemoteStorageTarget_S3_beegfs_2eproto.base,
-  &scc_info_RequestStatus_beegfs_2eproto.base,
-  &scc_info_WorkResponse_beegfs_2eproto.base,
+const char descriptor_table_protodef_beegfs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n\014beegfs.proto\022\006beegfs\"Y\n\021UpdateWorkRequ"
+    "est\022\r\n\005jobID\030\001 \001(\t\022\021\n\trequestID\030\002 \001(\t\022\"\n"
+    "\010newState\030\003 \001(\0162\020.beegfs.NewState\"\374\001\n\022Up"
+    "dateWorkRequests\022,\n\004jobs\030\001 \003(\0132\036.beegfs."
+    "UpdateWorkRequests.job\0226\n\014defaultState\030\002"
+    " \001(\0162 .beegfs.UpdateWorkRequests.State\032P"
+    "\n\003job\022\014\n\004path\030\001 \001(\t\022\n\n\002id\030\002 \001(\t\022/\n\005state"
+    "\030\003 \001(\0162 .beegfs.UpdateWorkRequests.State"
+    "\".\n\005State\022\r\n\tUNCHANGED\020\000\022\n\n\006CANCEL\020\001\022\n\n\006"
+    "RESUME\020\002\"\325\001\n\rRequestStatus\022,\n\006status\030\001 \001"
+    "(\0162\034.beegfs.RequestStatus.Status\022\017\n\007mess"
+    "age\030\002 \001(\t\"\204\001\n\006Status\022\013\n\007UNKNOWN\020\000\022\016\n\nUNA"
+    "SSIGNED\020\001\022\r\n\tSCHEDULED\020\005\022\013\n\007RUNNING\020\006\022\013\n"
+    "\007STALLED\020\007\022\n\n\006PAUSED\020\010\022\n\n\006FAILED\020\t\022\r\n\tCO"
+    "MPLETED\020\n\022\r\n\tCANCELLED\020\013\"@\n\013JobMetadata\022"
+    "\n\n\002id\030\001 \001(\t\022%\n\006status\030\002 \001(\0132\025.beegfs.Req"
+    "uestStatus\"Y\n\014WorkResponse\022\016\n\006job_id\030\001 \001"
+    "(\t\022\022\n\nrequest_id\030\002 \001(\t\022%\n\006status\030\003 \001(\0132\025"
+    ".beegfs.RequestStatus*%\n\010NewState\022\r\n\tUNC"
+    "HANGED\020\000\022\n\n\006CANCEL\020\001B0Z.github.com/think"
+    "parq/protobuf/beegfs/go;beegfsb\006proto3"
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beegfs_2eproto_once;
-const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beegfs_2eproto = {
-  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 1092,
-  &descriptor_table_beegfs_2eproto_once, descriptor_table_beegfs_2eproto_sccs, descriptor_table_beegfs_2eproto_deps, 8, 0,
-  schemas, file_default_instances, TableStruct_beegfs_2eproto::offsets,
-  file_level_metadata_beegfs_2eproto, 8, file_level_enum_descriptors_beegfs_2eproto, file_level_service_descriptors_beegfs_2eproto,
+static ::absl::once_flag descriptor_table_beegfs_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_beegfs_2eproto = {
+    false,
+    false,
+    838,
+    descriptor_table_protodef_beegfs_2eproto,
+    "beegfs.proto",
+    &descriptor_table_beegfs_2eproto_once,
+    nullptr,
+    0,
+    6,
+    schemas,
+    file_default_instances,
+    TableStruct_beegfs_2eproto::offsets,
+    file_level_metadata_beegfs_2eproto,
+    file_level_enum_descriptors_beegfs_2eproto,
+    file_level_service_descriptors_beegfs_2eproto,
 };
 
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
+PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_beegfs_2eproto_getter() {
+  return &descriptor_table_beegfs_2eproto;
+}
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_beegfs_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_beegfs_2eproto)), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_beegfs_2eproto(&descriptor_table_beegfs_2eproto);
 namespace beegfs {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RequestStatus_Status_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
+const ::google::protobuf::EnumDescriptor* UpdateWorkRequests_State_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
   return file_level_enum_descriptors_beegfs_2eproto[0];
+}
+bool UpdateWorkRequests_State_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr UpdateWorkRequests_State UpdateWorkRequests::UNCHANGED;
+constexpr UpdateWorkRequests_State UpdateWorkRequests::CANCEL;
+constexpr UpdateWorkRequests_State UpdateWorkRequests::RESUME;
+constexpr UpdateWorkRequests_State UpdateWorkRequests::State_MIN;
+constexpr UpdateWorkRequests_State UpdateWorkRequests::State_MAX;
+constexpr int UpdateWorkRequests::State_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* RequestStatus_Status_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
+  return file_level_enum_descriptors_beegfs_2eproto[1];
 }
 bool RequestStatus_Status_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
-    case 2:
-    case 3:
-    case 4:
     case 5:
     case 6:
     case 7:
@@ -346,13 +353,11 @@ bool RequestStatus_Status_IsValid(int value) {
       return false;
   }
 }
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 constexpr RequestStatus_Status RequestStatus::UNKNOWN;
 constexpr RequestStatus_Status RequestStatus::UNASSIGNED;
-constexpr RequestStatus_Status RequestStatus::ASSIGNED;
-constexpr RequestStatus_Status RequestStatus::CREATED;
-constexpr RequestStatus_Status RequestStatus::RESCHEDULED;
 constexpr RequestStatus_Status RequestStatus::SCHEDULED;
 constexpr RequestStatus_Status RequestStatus::RUNNING;
 constexpr RequestStatus_Status RequestStatus::STALLED;
@@ -363,220 +368,931 @@ constexpr RequestStatus_Status RequestStatus::CANCELLED;
 constexpr RequestStatus_Status RequestStatus::Status_MIN;
 constexpr RequestStatus_Status RequestStatus::Status_MAX;
 constexpr int RequestStatus::Status_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
 
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* NewState_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
+  return file_level_enum_descriptors_beegfs_2eproto[2];
+}
+bool NewState_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
 // ===================================================================
 
-void RequestStatus::InitAsDefaultInstance() {
+class UpdateWorkRequest::_Internal {
+ public:
+};
+
+UpdateWorkRequest::UpdateWorkRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.UpdateWorkRequest)
 }
+UpdateWorkRequest::UpdateWorkRequest(const UpdateWorkRequest& from) : ::google::protobuf::Message() {
+  UpdateWorkRequest* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.jobid_){},
+      decltype(_impl_.requestid_){},
+      decltype(_impl_.newstate_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.jobid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.jobid_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_jobid().empty()) {
+    _this->_impl_.jobid_.Set(from._internal_jobid(), _this->GetArenaForAllocation());
+  }
+  _impl_.requestid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.requestid_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_requestid().empty()) {
+    _this->_impl_.requestid_.Set(from._internal_requestid(), _this->GetArenaForAllocation());
+  }
+  _this->_impl_.newstate_ = from._impl_.newstate_;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.UpdateWorkRequest)
+}
+inline void UpdateWorkRequest::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.jobid_){},
+      decltype(_impl_.requestid_){},
+      decltype(_impl_.newstate_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.jobid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.jobid_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.requestid_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.requestid_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+UpdateWorkRequest::~UpdateWorkRequest() {
+  // @@protoc_insertion_point(destructor:beegfs.UpdateWorkRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdateWorkRequest::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.jobid_.Destroy();
+  _impl_.requestid_.Destroy();
+}
+void UpdateWorkRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void UpdateWorkRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.UpdateWorkRequest)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.jobid_.ClearToEmpty();
+  _impl_.requestid_.ClearToEmpty();
+  _impl_.newstate_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdateWorkRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 47, 2> UpdateWorkRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdateWorkRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string jobID = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateWorkRequest, _impl_.jobid_)}},
+    // string requestID = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateWorkRequest, _impl_.requestid_)}},
+    // .beegfs.NewState newState = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateWorkRequest, _impl_.newstate_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateWorkRequest, _impl_.newstate_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string jobID = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdateWorkRequest, _impl_.jobid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string requestID = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdateWorkRequest, _impl_.requestid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.NewState newState = 3;
+    {PROTOBUF_FIELD_OFFSET(UpdateWorkRequest, _impl_.newstate_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+    "\30\5\11\0\0\0\0\0"
+    "beegfs.UpdateWorkRequest"
+    "jobID"
+    "requestID"
+  }},
+};
+
+::uint8_t* UpdateWorkRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:beegfs.UpdateWorkRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string jobID = 1;
+  if (!this->_internal_jobid().empty()) {
+    const std::string& _s = this->_internal_jobid();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.UpdateWorkRequest.jobID");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string requestID = 2;
+  if (!this->_internal_requestid().empty()) {
+    const std::string& _s = this->_internal_requestid();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.UpdateWorkRequest.requestID");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // .beegfs.NewState newState = 3;
+  if (this->_internal_newstate() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        3, this->_internal_newstate(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:beegfs.UpdateWorkRequest)
+  return target;
+}
+
+::size_t UpdateWorkRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:beegfs.UpdateWorkRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string jobID = 1;
+  if (!this->_internal_jobid().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_jobid());
+  }
+
+  // string requestID = 2;
+  if (!this->_internal_requestid().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_requestid());
+  }
+
+  // .beegfs.NewState newState = 3;
+  if (this->_internal_newstate() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_newstate());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdateWorkRequest::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    UpdateWorkRequest::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*UpdateWorkRequest::GetClassData() const { return &_class_data_; }
+
+
+void UpdateWorkRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdateWorkRequest*>(&to_msg);
+  auto& from = static_cast<const UpdateWorkRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.UpdateWorkRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_jobid().empty()) {
+    _this->_internal_set_jobid(from._internal_jobid());
+  }
+  if (!from._internal_requestid().empty()) {
+    _this->_internal_set_requestid(from._internal_requestid());
+  }
+  if (from._internal_newstate() != 0) {
+    _this->_internal_set_newstate(from._internal_newstate());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdateWorkRequest::CopyFrom(const UpdateWorkRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.UpdateWorkRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdateWorkRequest::IsInitialized() const {
+  return true;
+}
+
+void UpdateWorkRequest::InternalSwap(UpdateWorkRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.jobid_, lhs_arena,
+                                       &other->_impl_.jobid_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.requestid_, lhs_arena,
+                                       &other->_impl_.requestid_, rhs_arena);
+  swap(_impl_.newstate_, other->_impl_.newstate_);
+}
+
+::google::protobuf::Metadata UpdateWorkRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beegfs_2eproto_getter, &descriptor_table_beegfs_2eproto_once,
+      file_level_metadata_beegfs_2eproto[0]);
+}
+// ===================================================================
+
+class UpdateWorkRequests_job::_Internal {
+ public:
+};
+
+UpdateWorkRequests_job::UpdateWorkRequests_job(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.UpdateWorkRequests.job)
+}
+UpdateWorkRequests_job::UpdateWorkRequests_job(const UpdateWorkRequests_job& from) : ::google::protobuf::Message() {
+  UpdateWorkRequests_job* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.path_){},
+      decltype(_impl_.id_){},
+      decltype(_impl_.state_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.path_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.path_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_path().empty()) {
+    _this->_impl_.path_.Set(from._internal_path(), _this->GetArenaForAllocation());
+  }
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_id().empty()) {
+    _this->_impl_.id_.Set(from._internal_id(), _this->GetArenaForAllocation());
+  }
+  _this->_impl_.state_ = from._impl_.state_;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.UpdateWorkRequests.job)
+}
+inline void UpdateWorkRequests_job::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.path_){},
+      decltype(_impl_.id_){},
+      decltype(_impl_.state_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.path_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.path_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+UpdateWorkRequests_job::~UpdateWorkRequests_job() {
+  // @@protoc_insertion_point(destructor:beegfs.UpdateWorkRequests.job)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdateWorkRequests_job::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.path_.Destroy();
+  _impl_.id_.Destroy();
+}
+void UpdateWorkRequests_job::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void UpdateWorkRequests_job::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.UpdateWorkRequests.job)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.path_.ClearToEmpty();
+  _impl_.id_.ClearToEmpty();
+  _impl_.state_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdateWorkRequests_job::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 44, 2> UpdateWorkRequests_job::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdateWorkRequests_job_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string path = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateWorkRequests_job, _impl_.path_)}},
+    // string id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateWorkRequests_job, _impl_.id_)}},
+    // .beegfs.UpdateWorkRequests.State state = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateWorkRequests_job, _impl_.state_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateWorkRequests_job, _impl_.state_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string path = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdateWorkRequests_job, _impl_.path_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string id = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdateWorkRequests_job, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.UpdateWorkRequests.State state = 3;
+    {PROTOBUF_FIELD_OFFSET(UpdateWorkRequests_job, _impl_.state_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+    "\35\4\2\0\0\0\0\0"
+    "beegfs.UpdateWorkRequests.job"
+    "path"
+    "id"
+  }},
+};
+
+::uint8_t* UpdateWorkRequests_job::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:beegfs.UpdateWorkRequests.job)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string path = 1;
+  if (!this->_internal_path().empty()) {
+    const std::string& _s = this->_internal_path();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.UpdateWorkRequests.job.path");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string id = 2;
+  if (!this->_internal_id().empty()) {
+    const std::string& _s = this->_internal_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.UpdateWorkRequests.job.id");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // .beegfs.UpdateWorkRequests.State state = 3;
+  if (this->_internal_state() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        3, this->_internal_state(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:beegfs.UpdateWorkRequests.job)
+  return target;
+}
+
+::size_t UpdateWorkRequests_job::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:beegfs.UpdateWorkRequests.job)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string path = 1;
+  if (!this->_internal_path().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_path());
+  }
+
+  // string id = 2;
+  if (!this->_internal_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_id());
+  }
+
+  // .beegfs.UpdateWorkRequests.State state = 3;
+  if (this->_internal_state() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_state());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdateWorkRequests_job::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    UpdateWorkRequests_job::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*UpdateWorkRequests_job::GetClassData() const { return &_class_data_; }
+
+
+void UpdateWorkRequests_job::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdateWorkRequests_job*>(&to_msg);
+  auto& from = static_cast<const UpdateWorkRequests_job&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.UpdateWorkRequests.job)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_path().empty()) {
+    _this->_internal_set_path(from._internal_path());
+  }
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_state() != 0) {
+    _this->_internal_set_state(from._internal_state());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdateWorkRequests_job::CopyFrom(const UpdateWorkRequests_job& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.UpdateWorkRequests.job)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdateWorkRequests_job::IsInitialized() const {
+  return true;
+}
+
+void UpdateWorkRequests_job::InternalSwap(UpdateWorkRequests_job* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, lhs_arena,
+                                       &other->_impl_.path_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, lhs_arena,
+                                       &other->_impl_.id_, rhs_arena);
+  swap(_impl_.state_, other->_impl_.state_);
+}
+
+::google::protobuf::Metadata UpdateWorkRequests_job::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beegfs_2eproto_getter, &descriptor_table_beegfs_2eproto_once,
+      file_level_metadata_beegfs_2eproto[1]);
+}
+// ===================================================================
+
+class UpdateWorkRequests::_Internal {
+ public:
+};
+
+UpdateWorkRequests::UpdateWorkRequests(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.UpdateWorkRequests)
+}
+UpdateWorkRequests::UpdateWorkRequests(const UpdateWorkRequests& from) : ::google::protobuf::Message() {
+  UpdateWorkRequests* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.jobs_){from._impl_.jobs_},
+      decltype(_impl_.defaultstate_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _this->_impl_.defaultstate_ = from._impl_.defaultstate_;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.UpdateWorkRequests)
+}
+inline void UpdateWorkRequests::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.jobs_){arena},
+      decltype(_impl_.defaultstate_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+}
+UpdateWorkRequests::~UpdateWorkRequests() {
+  // @@protoc_insertion_point(destructor:beegfs.UpdateWorkRequests)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdateWorkRequests::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.jobs_.~RepeatedPtrField();
+}
+void UpdateWorkRequests::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+PROTOBUF_NOINLINE void UpdateWorkRequests::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.UpdateWorkRequests)
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_mutable_jobs()->Clear();
+  _impl_.defaultstate_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdateWorkRequests::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> UpdateWorkRequests::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_UpdateWorkRequests_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .beegfs.UpdateWorkRequests.State defaultState = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateWorkRequests, _impl_.defaultstate_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateWorkRequests, _impl_.defaultstate_)}},
+    // repeated .beegfs.UpdateWorkRequests.job jobs = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateWorkRequests, _impl_.jobs_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .beegfs.UpdateWorkRequests.job jobs = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdateWorkRequests, _impl_.jobs_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .beegfs.UpdateWorkRequests.State defaultState = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdateWorkRequests, _impl_.defaultstate_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::UpdateWorkRequests_job>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* UpdateWorkRequests::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:beegfs.UpdateWorkRequests)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .beegfs.UpdateWorkRequests.job jobs = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_jobs_size()); i < n; i++) {
+    const auto& repfield = this->_internal_jobs().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // .beegfs.UpdateWorkRequests.State defaultState = 2;
+  if (this->_internal_defaultstate() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        2, this->_internal_defaultstate(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:beegfs.UpdateWorkRequests)
+  return target;
+}
+
+::size_t UpdateWorkRequests::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:beegfs.UpdateWorkRequests)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .beegfs.UpdateWorkRequests.job jobs = 1;
+  total_size += 1UL * this->_internal_jobs_size();
+  for (const auto& msg : this->_internal_jobs()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // .beegfs.UpdateWorkRequests.State defaultState = 2;
+  if (this->_internal_defaultstate() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_defaultstate());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdateWorkRequests::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    UpdateWorkRequests::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*UpdateWorkRequests::GetClassData() const { return &_class_data_; }
+
+
+void UpdateWorkRequests::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdateWorkRequests*>(&to_msg);
+  auto& from = static_cast<const UpdateWorkRequests&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.UpdateWorkRequests)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_jobs()->MergeFrom(from._internal_jobs());
+  if (from._internal_defaultstate() != 0) {
+    _this->_internal_set_defaultstate(from._internal_defaultstate());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdateWorkRequests::CopyFrom(const UpdateWorkRequests& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.UpdateWorkRequests)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdateWorkRequests::IsInitialized() const {
+  return true;
+}
+
+void UpdateWorkRequests::InternalSwap(UpdateWorkRequests* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.jobs_.InternalSwap(&other->_impl_.jobs_);
+  swap(_impl_.defaultstate_, other->_impl_.defaultstate_);
+}
+
+::google::protobuf::Metadata UpdateWorkRequests::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beegfs_2eproto_getter, &descriptor_table_beegfs_2eproto_once,
+      file_level_metadata_beegfs_2eproto[2]);
+}
+// ===================================================================
+
 class RequestStatus::_Internal {
  public:
 };
 
-RequestStatus::RequestStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
+RequestStatus::RequestStatus(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:beegfs.RequestStatus)
 }
-RequestStatus::RequestStatus(const RequestStatus& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  message_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+RequestStatus::RequestStatus(const RequestStatus& from) : ::google::protobuf::Message() {
+  RequestStatus* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.message_){},
+      decltype(_impl_.status_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.message_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_message().empty()) {
-    message_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_message(),
-      GetArena());
+    _this->_impl_.message_.Set(from._internal_message(), _this->GetArenaForAllocation());
   }
-  status_ = from.status_;
+  _this->_impl_.status_ = from._impl_.status_;
+
   // @@protoc_insertion_point(copy_constructor:beegfs.RequestStatus)
 }
-
-void RequestStatus::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RequestStatus_beegfs_2eproto.base);
-  message_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  status_ = 0;
+inline void RequestStatus::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_.message_){},
+      decltype(_impl_.status_){0},
+      /*decltype(_impl_._cached_size_)*/ {},
+  };
+  _impl_.message_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.message_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
-
 RequestStatus::~RequestStatus() {
   // @@protoc_insertion_point(destructor:beegfs.RequestStatus)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
-
-void RequestStatus::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  message_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void RequestStatus::ArenaDtor(void* object) {
-  RequestStatus* _this = reinterpret_cast< RequestStatus* >(object);
-  (void)_this;
-}
-void RequestStatus::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+inline void RequestStatus::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.message_.Destroy();
 }
 void RequestStatus::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const RequestStatus& RequestStatus::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RequestStatus_beegfs_2eproto.base);
-  return *internal_default_instance();
+  _impl_._cached_size_.Set(size);
 }
 
-
-void RequestStatus::Clear() {
+PROTOBUF_NOINLINE void RequestStatus::Clear() {
 // @@protoc_insertion_point(message_clear_start:beegfs.RequestStatus)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  message_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  status_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_.message_.ClearToEmpty();
+  _impl_.status_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* RequestStatus::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // .beegfs.RequestStatus.Status status = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_status(static_cast<::beegfs::RequestStatus_Status>(val));
-        } else goto handle_unusual;
-        continue;
-      // string message = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_message();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RequestStatus.message"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
+const char* RequestStatus::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* RequestStatus::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 36, 2> RequestStatus::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_RequestStatus_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RequestStatus, _impl_.message_)}},
+    // .beegfs.RequestStatus.Status status = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RequestStatus, _impl_.status_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RequestStatus, _impl_.status_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .beegfs.RequestStatus.Status status = 1;
+    {PROTOBUF_FIELD_OFFSET(RequestStatus, _impl_.status_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(RequestStatus, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\24\0\7\0\0\0\0\0"
+    "beegfs.RequestStatus"
+    "message"
+  }},
+};
+
+::uint8_t* RequestStatus::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:beegfs.RequestStatus)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // .beegfs.RequestStatus.Status status = 1;
-  if (this->status() != 0) {
+  if (this->_internal_status() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_status(), target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_status(), target);
   }
 
   // string message = 2;
-  if (this->message().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_message().data(), static_cast<int>(this->_internal_message().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RequestStatus.message");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_message(), target);
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.RequestStatus.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:beegfs.RequestStatus)
   return target;
 }
 
-size_t RequestStatus::ByteSizeLong() const {
+::size_t RequestStatus::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:beegfs.RequestStatus)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string message = 2;
-  if (this->message().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_message());
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
   }
 
   // .beegfs.RequestStatus.Status status = 1;
-  if (this->status() != 0) {
+  if (this->_internal_status() != 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_status());
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_status());
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void RequestStatus::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.RequestStatus)
-  GOOGLE_DCHECK_NE(&from, this);
-  const RequestStatus* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RequestStatus>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.RequestStatus)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.RequestStatus)
-    MergeFrom(*source);
-  }
-}
+const ::google::protobuf::Message::ClassData RequestStatus::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    RequestStatus::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*RequestStatus::GetClassData() const { return &_class_data_; }
 
-void RequestStatus::MergeFrom(const RequestStatus& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.RequestStatus)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void RequestStatus::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<RequestStatus*>(&to_msg);
+  auto& from = static_cast<const RequestStatus&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.RequestStatus)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.message().size() > 0) {
-    _internal_set_message(from._internal_message());
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
   }
-  if (from.status() != 0) {
-    _internal_set_status(from._internal_status());
+  if (from._internal_status() != 0) {
+    _this->_internal_set_status(from._internal_status());
   }
-}
-
-void RequestStatus::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.RequestStatus)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void RequestStatus::CopyFrom(const RequestStatus& from) {
@@ -586,250 +1302,239 @@ void RequestStatus::CopyFrom(const RequestStatus& from) {
   MergeFrom(from);
 }
 
-bool RequestStatus::IsInitialized() const {
+PROTOBUF_NOINLINE bool RequestStatus::IsInitialized() const {
   return true;
 }
 
 void RequestStatus::InternalSwap(RequestStatus* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  message_.Swap(&other->message_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(status_, other->status_);
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, lhs_arena,
+                                       &other->_impl_.message_, rhs_arena);
+  swap(_impl_.status_, other->_impl_.status_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata RequestStatus::GetMetadata() const {
-  return GetMetadataStatic();
+::google::protobuf::Metadata RequestStatus::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beegfs_2eproto_getter, &descriptor_table_beegfs_2eproto_once,
+      file_level_metadata_beegfs_2eproto[3]);
 }
-
-
 // ===================================================================
 
-void JobMetadata::InitAsDefaultInstance() {
-  ::beegfs::_JobMetadata_default_instance_._instance.get_mutable()->status_ = const_cast< ::beegfs::RequestStatus*>(
-      ::beegfs::RequestStatus::internal_default_instance());
-}
 class JobMetadata::_Internal {
  public:
+  using HasBits = decltype(std::declval<JobMetadata>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(JobMetadata, _impl_._has_bits_);
   static const ::beegfs::RequestStatus& status(const JobMetadata* msg);
+  static void set_has_status(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::beegfs::RequestStatus&
-JobMetadata::_Internal::status(const JobMetadata* msg) {
-  return *msg->status_;
+const ::beegfs::RequestStatus& JobMetadata::_Internal::status(const JobMetadata* msg) {
+  return *msg->_impl_.status_;
 }
-JobMetadata::JobMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
+JobMetadata::JobMetadata(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:beegfs.JobMetadata)
 }
-JobMetadata::JobMetadata(const JobMetadata& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+JobMetadata::JobMetadata(const JobMetadata& from) : ::google::protobuf::Message() {
+  JobMetadata* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.id_){},
+      decltype(_impl_.status_){nullptr},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_id().empty()) {
-    id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_id(),
-      GetArena());
+    _this->_impl_.id_.Set(from._internal_id(), _this->GetArenaForAllocation());
   }
-  if (from._internal_has_status()) {
-    status_ = new ::beegfs::RequestStatus(*from.status_);
-  } else {
-    status_ = nullptr;
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.status_ = new ::beegfs::RequestStatus(*from._impl_.status_);
   }
+
   // @@protoc_insertion_point(copy_constructor:beegfs.JobMetadata)
 }
-
-void JobMetadata::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_JobMetadata_beegfs_2eproto.base);
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  status_ = nullptr;
+inline void JobMetadata::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.id_){},
+      decltype(_impl_.status_){nullptr},
+  };
+  _impl_.id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
-
 JobMetadata::~JobMetadata() {
   // @@protoc_insertion_point(destructor:beegfs.JobMetadata)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
-
-void JobMetadata::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (this != internal_default_instance()) delete status_;
-}
-
-void JobMetadata::ArenaDtor(void* object) {
-  JobMetadata* _this = reinterpret_cast< JobMetadata* >(object);
-  (void)_this;
-}
-void JobMetadata::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+inline void JobMetadata::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.id_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.status_;
 }
 void JobMetadata::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const JobMetadata& JobMetadata::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_JobMetadata_beegfs_2eproto.base);
-  return *internal_default_instance();
+  _impl_._cached_size_.Set(size);
 }
 
-
-void JobMetadata::Clear() {
+PROTOBUF_NOINLINE void JobMetadata::Clear() {
 // @@protoc_insertion_point(message_clear_start:beegfs.JobMetadata)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  if (GetArena() == nullptr && status_ != nullptr) {
-    delete status_;
+  _impl_.id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.status_ != nullptr);
+    _impl_.status_->Clear();
   }
-  status_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* JobMetadata::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // string id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_id();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.JobMetadata.id"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .beegfs.RequestStatus status = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_status(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
+const char* JobMetadata::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* JobMetadata::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 29, 2> JobMetadata::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(JobMetadata, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_JobMetadata_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .beegfs.RequestStatus status = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(JobMetadata, _impl_.status_)}},
+    // string id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(JobMetadata, _impl_.id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string id = 1;
+    {PROTOBUF_FIELD_OFFSET(JobMetadata, _impl_.id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.RequestStatus status = 2;
+    {PROTOBUF_FIELD_OFFSET(JobMetadata, _impl_.status_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::RequestStatus>()},
+  }}, {{
+    "\22\2\0\0\0\0\0\0"
+    "beegfs.JobMetadata"
+    "id"
+  }},
+};
+
+::uint8_t* JobMetadata::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:beegfs.JobMetadata)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string id = 1;
-  if (this->id().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.JobMetadata.id");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_id(), target);
+  if (!this->_internal_id().empty()) {
+    const std::string& _s = this->_internal_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.JobMetadata.id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .beegfs.RequestStatus status = 2;
-  if (this->has_status()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        2, _Internal::status(this), target, stream);
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::status(this),
+        _Internal::status(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:beegfs.JobMetadata)
   return target;
 }
 
-size_t JobMetadata::ByteSizeLong() const {
+::size_t JobMetadata::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:beegfs.JobMetadata)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string id = 1;
-  if (this->id().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_id());
+  if (!this->_internal_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_id());
   }
 
   // .beegfs.RequestStatus status = 2;
-  if (this->has_status()) {
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *status_);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.status_);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void JobMetadata::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.JobMetadata)
-  GOOGLE_DCHECK_NE(&from, this);
-  const JobMetadata* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<JobMetadata>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.JobMetadata)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.JobMetadata)
-    MergeFrom(*source);
-  }
-}
+const ::google::protobuf::Message::ClassData JobMetadata::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    JobMetadata::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*JobMetadata::GetClassData() const { return &_class_data_; }
 
-void JobMetadata::MergeFrom(const JobMetadata& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.JobMetadata)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void JobMetadata::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<JobMetadata*>(&to_msg);
+  auto& from = static_cast<const JobMetadata&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.JobMetadata)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.id().size() > 0) {
-    _internal_set_id(from._internal_id());
+  if (!from._internal_id().empty()) {
+    _this->_internal_set_id(from._internal_id());
   }
-  if (from.has_status()) {
-    _internal_mutable_status()->::beegfs::RequestStatus::MergeFrom(from._internal_status());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_status()->::beegfs::RequestStatus::MergeFrom(
+        from._internal_status());
   }
-}
-
-void JobMetadata::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.JobMetadata)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void JobMetadata::CopyFrom(const JobMetadata& from) {
@@ -839,287 +1544,280 @@ void JobMetadata::CopyFrom(const JobMetadata& from) {
   MergeFrom(from);
 }
 
-bool JobMetadata::IsInitialized() const {
+PROTOBUF_NOINLINE bool JobMetadata::IsInitialized() const {
   return true;
 }
 
 void JobMetadata::InternalSwap(JobMetadata* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(status_, other->status_);
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, lhs_arena,
+                                       &other->_impl_.id_, rhs_arena);
+  swap(_impl_.status_, other->_impl_.status_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata JobMetadata::GetMetadata() const {
-  return GetMetadataStatic();
+::google::protobuf::Metadata JobMetadata::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beegfs_2eproto_getter, &descriptor_table_beegfs_2eproto_once,
+      file_level_metadata_beegfs_2eproto[4]);
 }
-
-
 // ===================================================================
 
-void WorkResponse::InitAsDefaultInstance() {
-  ::beegfs::_WorkResponse_default_instance_._instance.get_mutable()->status_ = const_cast< ::beegfs::RequestStatus*>(
-      ::beegfs::RequestStatus::internal_default_instance());
-}
 class WorkResponse::_Internal {
  public:
+  using HasBits = decltype(std::declval<WorkResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(WorkResponse, _impl_._has_bits_);
   static const ::beegfs::RequestStatus& status(const WorkResponse* msg);
+  static void set_has_status(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::beegfs::RequestStatus&
-WorkResponse::_Internal::status(const WorkResponse* msg) {
-  return *msg->status_;
+const ::beegfs::RequestStatus& WorkResponse::_Internal::status(const WorkResponse* msg) {
+  return *msg->_impl_.status_;
 }
-WorkResponse::WorkResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
+WorkResponse::WorkResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:beegfs.WorkResponse)
 }
-WorkResponse::WorkResponse(const WorkResponse& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  job_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+WorkResponse::WorkResponse(const WorkResponse& from) : ::google::protobuf::Message() {
+  WorkResponse* const _this = this;
+  (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.job_id_){},
+      decltype(_impl_.request_id_){},
+      decltype(_impl_.status_){nullptr},
+  };
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  _impl_.job_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.job_id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_job_id().empty()) {
-    job_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_job_id(),
-      GetArena());
+    _this->_impl_.job_id_.Set(from._internal_job_id(), _this->GetArenaForAllocation());
   }
-  request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _impl_.request_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.request_id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_request_id().empty()) {
-    request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_request_id(),
-      GetArena());
+    _this->_impl_.request_id_.Set(from._internal_request_id(), _this->GetArenaForAllocation());
   }
-  if (from._internal_has_status()) {
-    status_ = new ::beegfs::RequestStatus(*from.status_);
-  } else {
-    status_ = nullptr;
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_impl_.status_ = new ::beegfs::RequestStatus(*from._impl_.status_);
   }
+
   // @@protoc_insertion_point(copy_constructor:beegfs.WorkResponse)
 }
-
-void WorkResponse::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_WorkResponse_beegfs_2eproto.base);
-  job_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  status_ = nullptr;
+inline void WorkResponse::SharedCtor(::_pb::Arena* arena) {
+  (void)arena;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){},
+      /*decltype(_impl_._cached_size_)*/ {},
+      decltype(_impl_.job_id_){},
+      decltype(_impl_.request_id_){},
+      decltype(_impl_.status_){nullptr},
+  };
+  _impl_.job_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.job_id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.request_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        _impl_.request_id_.Set("", GetArenaForAllocation());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
-
 WorkResponse::~WorkResponse() {
   // @@protoc_insertion_point(destructor:beegfs.WorkResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
-
-void WorkResponse::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  job_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  request_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (this != internal_default_instance()) delete status_;
-}
-
-void WorkResponse::ArenaDtor(void* object) {
-  WorkResponse* _this = reinterpret_cast< WorkResponse* >(object);
-  (void)_this;
-}
-void WorkResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+inline void WorkResponse::SharedDtor() {
+  ABSL_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.job_id_.Destroy();
+  _impl_.request_id_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.status_;
 }
 void WorkResponse::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const WorkResponse& WorkResponse::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_WorkResponse_beegfs_2eproto.base);
-  return *internal_default_instance();
+  _impl_._cached_size_.Set(size);
 }
 
-
-void WorkResponse::Clear() {
+PROTOBUF_NOINLINE void WorkResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:beegfs.WorkResponse)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  job_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  request_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  if (GetArena() == nullptr && status_ != nullptr) {
-    delete status_;
+  _impl_.job_id_.ClearToEmpty();
+  _impl_.request_id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.status_ != nullptr);
+    _impl_.status_->Clear();
   }
-  status_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* WorkResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // string job_id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_job_id();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.WorkResponse.job_id"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string request_id = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_request_id();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.WorkResponse.request_id"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .beegfs.RequestStatus status = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_status(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
+const char* WorkResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* WorkResponse::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 44, 2> WorkResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(WorkResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_WorkResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string job_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WorkResponse, _impl_.job_id_)}},
+    // string request_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WorkResponse, _impl_.request_id_)}},
+    // .beegfs.RequestStatus status = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(WorkResponse, _impl_.status_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string job_id = 1;
+    {PROTOBUF_FIELD_OFFSET(WorkResponse, _impl_.job_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string request_id = 2;
+    {PROTOBUF_FIELD_OFFSET(WorkResponse, _impl_.request_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.RequestStatus status = 3;
+    {PROTOBUF_FIELD_OFFSET(WorkResponse, _impl_.status_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::RequestStatus>()},
+  }}, {{
+    "\23\6\12\0\0\0\0\0"
+    "beegfs.WorkResponse"
+    "job_id"
+    "request_id"
+  }},
+};
+
+::uint8_t* WorkResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:beegfs.WorkResponse)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // string job_id = 1;
-  if (this->job_id().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_job_id().data(), static_cast<int>(this->_internal_job_id().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.WorkResponse.job_id");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_job_id(), target);
+  if (!this->_internal_job_id().empty()) {
+    const std::string& _s = this->_internal_job_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.WorkResponse.job_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   // string request_id = 2;
-  if (this->request_id().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_request_id().data(), static_cast<int>(this->_internal_request_id().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.WorkResponse.request_id");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_request_id(), target);
+  if (!this->_internal_request_id().empty()) {
+    const std::string& _s = this->_internal_request_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.WorkResponse.request_id");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .beegfs.RequestStatus status = 3;
-  if (this->has_status()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        3, _Internal::status(this), target, stream);
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::status(this),
+        _Internal::status(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:beegfs.WorkResponse)
   return target;
 }
 
-size_t WorkResponse::ByteSizeLong() const {
+::size_t WorkResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:beegfs.WorkResponse)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string job_id = 1;
-  if (this->job_id().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_job_id());
+  if (!this->_internal_job_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_job_id());
   }
 
   // string request_id = 2;
-  if (this->request_id().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_request_id());
+  if (!this->_internal_request_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_request_id());
   }
 
   // .beegfs.RequestStatus status = 3;
-  if (this->has_status()) {
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *status_);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *_impl_.status_);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void WorkResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.WorkResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  const WorkResponse* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<WorkResponse>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.WorkResponse)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.WorkResponse)
-    MergeFrom(*source);
-  }
-}
+const ::google::protobuf::Message::ClassData WorkResponse::_class_data_ = {
+    ::google::protobuf::Message::CopyWithSourceCheck,
+    WorkResponse::MergeImpl
+};
+const ::google::protobuf::Message::ClassData*WorkResponse::GetClassData() const { return &_class_data_; }
 
-void WorkResponse::MergeFrom(const WorkResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.WorkResponse)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void WorkResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<WorkResponse*>(&to_msg);
+  auto& from = static_cast<const WorkResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.WorkResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.job_id().size() > 0) {
-    _internal_set_job_id(from._internal_job_id());
+  if (!from._internal_job_id().empty()) {
+    _this->_internal_set_job_id(from._internal_job_id());
   }
-  if (from.request_id().size() > 0) {
-    _internal_set_request_id(from._internal_request_id());
+  if (!from._internal_request_id().empty()) {
+    _this->_internal_set_request_id(from._internal_request_id());
   }
-  if (from.has_status()) {
-    _internal_mutable_status()->::beegfs::RequestStatus::MergeFrom(from._internal_status());
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_status()->::beegfs::RequestStatus::MergeFrom(
+        from._internal_status());
   }
-}
-
-void WorkResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.WorkResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void WorkResponse::CopyFrom(const WorkResponse& from) {
@@ -1129,1665 +1827,33 @@ void WorkResponse::CopyFrom(const WorkResponse& from) {
   MergeFrom(from);
 }
 
-bool WorkResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool WorkResponse::IsInitialized() const {
   return true;
 }
 
 void WorkResponse::InternalSwap(WorkResponse* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  job_id_.Swap(&other->job_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  request_id_.Swap(&other->request_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(status_, other->status_);
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.job_id_, lhs_arena,
+                                       &other->_impl_.job_id_, rhs_arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.request_id_, lhs_arena,
+                                       &other->_impl_.request_id_, rhs_arena);
+  swap(_impl_.status_, other->_impl_.status_);
+}
+
+::google::protobuf::Metadata WorkResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_beegfs_2eproto_getter, &descriptor_table_beegfs_2eproto_once,
+      file_level_metadata_beegfs_2eproto[5]);
 }
-
-::PROTOBUF_NAMESPACE_ID::Metadata WorkResponse::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void RemoteStorageTarget_Policies::InitAsDefaultInstance() {
-}
-class RemoteStorageTarget_Policies::_Internal {
- public:
-};
-
-RemoteStorageTarget_Policies::RemoteStorageTarget_Policies(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beegfs.RemoteStorageTarget.Policies)
-}
-RemoteStorageTarget_Policies::RemoteStorageTarget_Policies(const RemoteStorageTarget_Policies& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&local_flock_, &from.local_flock_,
-    static_cast<size_t>(reinterpret_cast<char*>(&autostart_max_size_) -
-    reinterpret_cast<char*>(&local_flock_)) + sizeof(autostart_max_size_));
-  // @@protoc_insertion_point(copy_constructor:beegfs.RemoteStorageTarget.Policies)
-}
-
-void RemoteStorageTarget_Policies::SharedCtor() {
-  ::memset(&local_flock_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&autostart_max_size_) -
-      reinterpret_cast<char*>(&local_flock_)) + sizeof(autostart_max_size_));
-}
-
-RemoteStorageTarget_Policies::~RemoteStorageTarget_Policies() {
-  // @@protoc_insertion_point(destructor:beegfs.RemoteStorageTarget.Policies)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void RemoteStorageTarget_Policies::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-}
-
-void RemoteStorageTarget_Policies::ArenaDtor(void* object) {
-  RemoteStorageTarget_Policies* _this = reinterpret_cast< RemoteStorageTarget_Policies* >(object);
-  (void)_this;
-}
-void RemoteStorageTarget_Policies::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void RemoteStorageTarget_Policies::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const RemoteStorageTarget_Policies& RemoteStorageTarget_Policies::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RemoteStorageTarget_Policies_beegfs_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void RemoteStorageTarget_Policies::Clear() {
-// @@protoc_insertion_point(message_clear_start:beegfs.RemoteStorageTarget.Policies)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::memset(&local_flock_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&autostart_max_size_) -
-      reinterpret_cast<char*>(&local_flock_)) + sizeof(autostart_max_size_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* RemoteStorageTarget_Policies::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // bool local_flock = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          local_flock_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // bool remote_flock = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          remote_flock_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // bool keep_dir_structure = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
-          keep_dir_structure_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // bool keep_beegfs_metadata = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
-          keep_beegfs_metadata_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // uint32 autostart_max_size = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
-          autostart_max_size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* RemoteStorageTarget_Policies::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beegfs.RemoteStorageTarget.Policies)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // bool local_flock = 1;
-  if (this->local_flock() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_local_flock(), target);
-  }
-
-  // bool remote_flock = 2;
-  if (this->remote_flock() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_remote_flock(), target);
-  }
-
-  // bool keep_dir_structure = 3;
-  if (this->keep_dir_structure() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_keep_dir_structure(), target);
-  }
-
-  // bool keep_beegfs_metadata = 4;
-  if (this->keep_beegfs_metadata() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(4, this->_internal_keep_beegfs_metadata(), target);
-  }
-
-  // uint32 autostart_max_size = 5;
-  if (this->autostart_max_size() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(5, this->_internal_autostart_max_size(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:beegfs.RemoteStorageTarget.Policies)
-  return target;
-}
-
-size_t RemoteStorageTarget_Policies::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beegfs.RemoteStorageTarget.Policies)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // bool local_flock = 1;
-  if (this->local_flock() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // bool remote_flock = 2;
-  if (this->remote_flock() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // bool keep_dir_structure = 3;
-  if (this->keep_dir_structure() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // bool keep_beegfs_metadata = 4;
-  if (this->keep_beegfs_metadata() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // uint32 autostart_max_size = 5;
-  if (this->autostart_max_size() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
-        this->_internal_autostart_max_size());
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void RemoteStorageTarget_Policies::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.RemoteStorageTarget.Policies)
-  GOOGLE_DCHECK_NE(&from, this);
-  const RemoteStorageTarget_Policies* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RemoteStorageTarget_Policies>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.RemoteStorageTarget.Policies)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.RemoteStorageTarget.Policies)
-    MergeFrom(*source);
-  }
-}
-
-void RemoteStorageTarget_Policies::MergeFrom(const RemoteStorageTarget_Policies& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.RemoteStorageTarget.Policies)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.local_flock() != 0) {
-    _internal_set_local_flock(from._internal_local_flock());
-  }
-  if (from.remote_flock() != 0) {
-    _internal_set_remote_flock(from._internal_remote_flock());
-  }
-  if (from.keep_dir_structure() != 0) {
-    _internal_set_keep_dir_structure(from._internal_keep_dir_structure());
-  }
-  if (from.keep_beegfs_metadata() != 0) {
-    _internal_set_keep_beegfs_metadata(from._internal_keep_beegfs_metadata());
-  }
-  if (from.autostart_max_size() != 0) {
-    _internal_set_autostart_max_size(from._internal_autostart_max_size());
-  }
-}
-
-void RemoteStorageTarget_Policies::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.RemoteStorageTarget.Policies)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void RemoteStorageTarget_Policies::CopyFrom(const RemoteStorageTarget_Policies& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.RemoteStorageTarget.Policies)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool RemoteStorageTarget_Policies::IsInitialized() const {
-  return true;
-}
-
-void RemoteStorageTarget_Policies::InternalSwap(RemoteStorageTarget_Policies* other) {
-  using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Policies, autostart_max_size_)
-      + sizeof(RemoteStorageTarget_Policies::autostart_max_size_)
-      - PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Policies, local_flock_)>(
-          reinterpret_cast<char*>(&local_flock_),
-          reinterpret_cast<char*>(&other->local_flock_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata RemoteStorageTarget_Policies::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void RemoteStorageTarget_S3::InitAsDefaultInstance() {
-}
-class RemoteStorageTarget_S3::_Internal {
- public:
-};
-
-RemoteStorageTarget_S3::RemoteStorageTarget_S3(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beegfs.RemoteStorageTarget.S3)
-}
-RemoteStorageTarget_S3::RemoteStorageTarget_S3(const RemoteStorageTarget_S3& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  bucket_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_bucket().empty()) {
-    bucket_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_bucket(),
-      GetArena());
-  }
-  region_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_region().empty()) {
-    region_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_region(),
-      GetArena());
-  }
-  endpoint_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_endpoint().empty()) {
-    endpoint_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_endpoint(),
-      GetArena());
-  }
-  access_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_access_key().empty()) {
-    access_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_access_key(),
-      GetArena());
-  }
-  secret_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_secret_key().empty()) {
-    secret_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_secret_key(),
-      GetArena());
-  }
-  // @@protoc_insertion_point(copy_constructor:beegfs.RemoteStorageTarget.S3)
-}
-
-void RemoteStorageTarget_S3::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RemoteStorageTarget_S3_beegfs_2eproto.base);
-  bucket_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  region_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  endpoint_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  access_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  secret_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-RemoteStorageTarget_S3::~RemoteStorageTarget_S3() {
-  // @@protoc_insertion_point(destructor:beegfs.RemoteStorageTarget.S3)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void RemoteStorageTarget_S3::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  bucket_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  region_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  endpoint_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  access_key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  secret_key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void RemoteStorageTarget_S3::ArenaDtor(void* object) {
-  RemoteStorageTarget_S3* _this = reinterpret_cast< RemoteStorageTarget_S3* >(object);
-  (void)_this;
-}
-void RemoteStorageTarget_S3::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void RemoteStorageTarget_S3::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const RemoteStorageTarget_S3& RemoteStorageTarget_S3::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RemoteStorageTarget_S3_beegfs_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void RemoteStorageTarget_S3::Clear() {
-// @@protoc_insertion_point(message_clear_start:beegfs.RemoteStorageTarget.S3)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  bucket_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  region_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  endpoint_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  access_key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  secret_key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* RemoteStorageTarget_S3::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // string bucket = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_bucket();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.S3.bucket"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string region = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_region();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.S3.region"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string endpoint = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          auto str = _internal_mutable_endpoint();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.S3.endpoint"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string access_key = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          auto str = _internal_mutable_access_key();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.S3.access_key"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string secret_key = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
-          auto str = _internal_mutable_secret_key();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.S3.secret_key"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* RemoteStorageTarget_S3::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beegfs.RemoteStorageTarget.S3)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string bucket = 1;
-  if (this->bucket().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_bucket().data(), static_cast<int>(this->_internal_bucket().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.S3.bucket");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_bucket(), target);
-  }
-
-  // string region = 2;
-  if (this->region().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_region().data(), static_cast<int>(this->_internal_region().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.S3.region");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_region(), target);
-  }
-
-  // string endpoint = 3;
-  if (this->endpoint().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_endpoint().data(), static_cast<int>(this->_internal_endpoint().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.S3.endpoint");
-    target = stream->WriteStringMaybeAliased(
-        3, this->_internal_endpoint(), target);
-  }
-
-  // string access_key = 4;
-  if (this->access_key().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_access_key().data(), static_cast<int>(this->_internal_access_key().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.S3.access_key");
-    target = stream->WriteStringMaybeAliased(
-        4, this->_internal_access_key(), target);
-  }
-
-  // string secret_key = 5;
-  if (this->secret_key().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_secret_key().data(), static_cast<int>(this->_internal_secret_key().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.S3.secret_key");
-    target = stream->WriteStringMaybeAliased(
-        5, this->_internal_secret_key(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:beegfs.RemoteStorageTarget.S3)
-  return target;
-}
-
-size_t RemoteStorageTarget_S3::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beegfs.RemoteStorageTarget.S3)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string bucket = 1;
-  if (this->bucket().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_bucket());
-  }
-
-  // string region = 2;
-  if (this->region().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_region());
-  }
-
-  // string endpoint = 3;
-  if (this->endpoint().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_endpoint());
-  }
-
-  // string access_key = 4;
-  if (this->access_key().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_access_key());
-  }
-
-  // string secret_key = 5;
-  if (this->secret_key().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_secret_key());
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void RemoteStorageTarget_S3::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.RemoteStorageTarget.S3)
-  GOOGLE_DCHECK_NE(&from, this);
-  const RemoteStorageTarget_S3* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RemoteStorageTarget_S3>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.RemoteStorageTarget.S3)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.RemoteStorageTarget.S3)
-    MergeFrom(*source);
-  }
-}
-
-void RemoteStorageTarget_S3::MergeFrom(const RemoteStorageTarget_S3& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.RemoteStorageTarget.S3)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.bucket().size() > 0) {
-    _internal_set_bucket(from._internal_bucket());
-  }
-  if (from.region().size() > 0) {
-    _internal_set_region(from._internal_region());
-  }
-  if (from.endpoint().size() > 0) {
-    _internal_set_endpoint(from._internal_endpoint());
-  }
-  if (from.access_key().size() > 0) {
-    _internal_set_access_key(from._internal_access_key());
-  }
-  if (from.secret_key().size() > 0) {
-    _internal_set_secret_key(from._internal_secret_key());
-  }
-}
-
-void RemoteStorageTarget_S3::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.RemoteStorageTarget.S3)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void RemoteStorageTarget_S3::CopyFrom(const RemoteStorageTarget_S3& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.RemoteStorageTarget.S3)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool RemoteStorageTarget_S3::IsInitialized() const {
-  return true;
-}
-
-void RemoteStorageTarget_S3::InternalSwap(RemoteStorageTarget_S3* other) {
-  using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  bucket_.Swap(&other->bucket_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  region_.Swap(&other->region_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  endpoint_.Swap(&other->endpoint_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  access_key_.Swap(&other->access_key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  secret_key_.Swap(&other->secret_key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata RemoteStorageTarget_S3::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void RemoteStorageTarget_Azure::InitAsDefaultInstance() {
-  ::beegfs::_RemoteStorageTarget_Azure_default_instance_._instance.get_mutable()->s3_ = const_cast< ::beegfs::RemoteStorageTarget_S3*>(
-      ::beegfs::RemoteStorageTarget_S3::internal_default_instance());
-}
-class RemoteStorageTarget_Azure::_Internal {
- public:
-  static const ::beegfs::RemoteStorageTarget_S3& s3(const RemoteStorageTarget_Azure* msg);
-};
-
-const ::beegfs::RemoteStorageTarget_S3&
-RemoteStorageTarget_Azure::_Internal::s3(const RemoteStorageTarget_Azure* msg) {
-  return *msg->s3_;
-}
-RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beegfs.RemoteStorageTarget.Azure)
-}
-RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(const RemoteStorageTarget_Azure& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  account_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_account().empty()) {
-    account_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_account(),
-      GetArena());
-  }
-  if (from._internal_has_s3()) {
-    s3_ = new ::beegfs::RemoteStorageTarget_S3(*from.s3_);
-  } else {
-    s3_ = nullptr;
-  }
-  // @@protoc_insertion_point(copy_constructor:beegfs.RemoteStorageTarget.Azure)
-}
-
-void RemoteStorageTarget_Azure::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RemoteStorageTarget_Azure_beegfs_2eproto.base);
-  account_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  s3_ = nullptr;
-}
-
-RemoteStorageTarget_Azure::~RemoteStorageTarget_Azure() {
-  // @@protoc_insertion_point(destructor:beegfs.RemoteStorageTarget.Azure)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void RemoteStorageTarget_Azure::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  account_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (this != internal_default_instance()) delete s3_;
-}
-
-void RemoteStorageTarget_Azure::ArenaDtor(void* object) {
-  RemoteStorageTarget_Azure* _this = reinterpret_cast< RemoteStorageTarget_Azure* >(object);
-  (void)_this;
-}
-void RemoteStorageTarget_Azure::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void RemoteStorageTarget_Azure::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const RemoteStorageTarget_Azure& RemoteStorageTarget_Azure::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RemoteStorageTarget_Azure_beegfs_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void RemoteStorageTarget_Azure::Clear() {
-// @@protoc_insertion_point(message_clear_start:beegfs.RemoteStorageTarget.Azure)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  account_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  if (GetArena() == nullptr && s3_ != nullptr) {
-    delete s3_;
-  }
-  s3_ = nullptr;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* RemoteStorageTarget_Azure::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // .beegfs.RemoteStorageTarget.S3 s3 = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_s3(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string account = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_account();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.Azure.account"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* RemoteStorageTarget_Azure::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beegfs.RemoteStorageTarget.Azure)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .beegfs.RemoteStorageTarget.S3 s3 = 1;
-  if (this->has_s3()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        1, _Internal::s3(this), target, stream);
-  }
-
-  // string account = 2;
-  if (this->account().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_account().data(), static_cast<int>(this->_internal_account().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.Azure.account");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_account(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:beegfs.RemoteStorageTarget.Azure)
-  return target;
-}
-
-size_t RemoteStorageTarget_Azure::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beegfs.RemoteStorageTarget.Azure)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string account = 2;
-  if (this->account().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_account());
-  }
-
-  // .beegfs.RemoteStorageTarget.S3 s3 = 1;
-  if (this->has_s3()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *s3_);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void RemoteStorageTarget_Azure::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.RemoteStorageTarget.Azure)
-  GOOGLE_DCHECK_NE(&from, this);
-  const RemoteStorageTarget_Azure* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RemoteStorageTarget_Azure>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.RemoteStorageTarget.Azure)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.RemoteStorageTarget.Azure)
-    MergeFrom(*source);
-  }
-}
-
-void RemoteStorageTarget_Azure::MergeFrom(const RemoteStorageTarget_Azure& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.RemoteStorageTarget.Azure)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.account().size() > 0) {
-    _internal_set_account(from._internal_account());
-  }
-  if (from.has_s3()) {
-    _internal_mutable_s3()->::beegfs::RemoteStorageTarget_S3::MergeFrom(from._internal_s3());
-  }
-}
-
-void RemoteStorageTarget_Azure::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.RemoteStorageTarget.Azure)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void RemoteStorageTarget_Azure::CopyFrom(const RemoteStorageTarget_Azure& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.RemoteStorageTarget.Azure)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool RemoteStorageTarget_Azure::IsInitialized() const {
-  return true;
-}
-
-void RemoteStorageTarget_Azure::InternalSwap(RemoteStorageTarget_Azure* other) {
-  using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  account_.Swap(&other->account_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(s3_, other->s3_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata RemoteStorageTarget_Azure::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void RemoteStorageTarget_POSIX::InitAsDefaultInstance() {
-}
-class RemoteStorageTarget_POSIX::_Internal {
- public:
-};
-
-RemoteStorageTarget_POSIX::RemoteStorageTarget_POSIX(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beegfs.RemoteStorageTarget.POSIX)
-}
-RemoteStorageTarget_POSIX::RemoteStorageTarget_POSIX(const RemoteStorageTarget_POSIX& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_path().empty()) {
-    path_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_path(),
-      GetArena());
-  }
-  // @@protoc_insertion_point(copy_constructor:beegfs.RemoteStorageTarget.POSIX)
-}
-
-void RemoteStorageTarget_POSIX::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RemoteStorageTarget_POSIX_beegfs_2eproto.base);
-  path_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-RemoteStorageTarget_POSIX::~RemoteStorageTarget_POSIX() {
-  // @@protoc_insertion_point(destructor:beegfs.RemoteStorageTarget.POSIX)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void RemoteStorageTarget_POSIX::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  path_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void RemoteStorageTarget_POSIX::ArenaDtor(void* object) {
-  RemoteStorageTarget_POSIX* _this = reinterpret_cast< RemoteStorageTarget_POSIX* >(object);
-  (void)_this;
-}
-void RemoteStorageTarget_POSIX::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void RemoteStorageTarget_POSIX::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const RemoteStorageTarget_POSIX& RemoteStorageTarget_POSIX::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RemoteStorageTarget_POSIX_beegfs_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void RemoteStorageTarget_POSIX::Clear() {
-// @@protoc_insertion_point(message_clear_start:beegfs.RemoteStorageTarget.POSIX)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  path_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* RemoteStorageTarget_POSIX::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // string path = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_path();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.POSIX.path"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* RemoteStorageTarget_POSIX::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beegfs.RemoteStorageTarget.POSIX)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string path = 1;
-  if (this->path().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_path().data(), static_cast<int>(this->_internal_path().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.POSIX.path");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_path(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:beegfs.RemoteStorageTarget.POSIX)
-  return target;
-}
-
-size_t RemoteStorageTarget_POSIX::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beegfs.RemoteStorageTarget.POSIX)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string path = 1;
-  if (this->path().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_path());
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void RemoteStorageTarget_POSIX::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.RemoteStorageTarget.POSIX)
-  GOOGLE_DCHECK_NE(&from, this);
-  const RemoteStorageTarget_POSIX* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RemoteStorageTarget_POSIX>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.RemoteStorageTarget.POSIX)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.RemoteStorageTarget.POSIX)
-    MergeFrom(*source);
-  }
-}
-
-void RemoteStorageTarget_POSIX::MergeFrom(const RemoteStorageTarget_POSIX& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.RemoteStorageTarget.POSIX)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.path().size() > 0) {
-    _internal_set_path(from._internal_path());
-  }
-}
-
-void RemoteStorageTarget_POSIX::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.RemoteStorageTarget.POSIX)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void RemoteStorageTarget_POSIX::CopyFrom(const RemoteStorageTarget_POSIX& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.RemoteStorageTarget.POSIX)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool RemoteStorageTarget_POSIX::IsInitialized() const {
-  return true;
-}
-
-void RemoteStorageTarget_POSIX::InternalSwap(RemoteStorageTarget_POSIX* other) {
-  using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  path_.Swap(&other->path_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata RemoteStorageTarget_POSIX::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void RemoteStorageTarget::InitAsDefaultInstance() {
-  ::beegfs::_RemoteStorageTarget_default_instance_._instance.get_mutable()->policies_ = const_cast< ::beegfs::RemoteStorageTarget_Policies*>(
-      ::beegfs::RemoteStorageTarget_Policies::internal_default_instance());
-  ::beegfs::_RemoteStorageTarget_default_instance_.s3_ = const_cast< ::beegfs::RemoteStorageTarget_S3*>(
-      ::beegfs::RemoteStorageTarget_S3::internal_default_instance());
-  ::beegfs::_RemoteStorageTarget_default_instance_.posix_ = const_cast< ::beegfs::RemoteStorageTarget_POSIX*>(
-      ::beegfs::RemoteStorageTarget_POSIX::internal_default_instance());
-  ::beegfs::_RemoteStorageTarget_default_instance_.azure_ = const_cast< ::beegfs::RemoteStorageTarget_Azure*>(
-      ::beegfs::RemoteStorageTarget_Azure::internal_default_instance());
-}
-class RemoteStorageTarget::_Internal {
- public:
-  static const ::beegfs::RemoteStorageTarget_Policies& policies(const RemoteStorageTarget* msg);
-  static const ::beegfs::RemoteStorageTarget_S3& s3(const RemoteStorageTarget* msg);
-  static const ::beegfs::RemoteStorageTarget_POSIX& posix(const RemoteStorageTarget* msg);
-  static const ::beegfs::RemoteStorageTarget_Azure& azure(const RemoteStorageTarget* msg);
-};
-
-const ::beegfs::RemoteStorageTarget_Policies&
-RemoteStorageTarget::_Internal::policies(const RemoteStorageTarget* msg) {
-  return *msg->policies_;
-}
-const ::beegfs::RemoteStorageTarget_S3&
-RemoteStorageTarget::_Internal::s3(const RemoteStorageTarget* msg) {
-  return *msg->type_.s3_;
-}
-const ::beegfs::RemoteStorageTarget_POSIX&
-RemoteStorageTarget::_Internal::posix(const RemoteStorageTarget* msg) {
-  return *msg->type_.posix_;
-}
-const ::beegfs::RemoteStorageTarget_Azure&
-RemoteStorageTarget::_Internal::azure(const RemoteStorageTarget* msg) {
-  return *msg->type_.azure_;
-}
-void RemoteStorageTarget::set_allocated_s3(::beegfs::RemoteStorageTarget_S3* s3) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  clear_type();
-  if (s3) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(s3);
-    if (message_arena != submessage_arena) {
-      s3 = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, s3, submessage_arena);
-    }
-    set_has_s3();
-    type_.s3_ = s3;
-  }
-  // @@protoc_insertion_point(field_set_allocated:beegfs.RemoteStorageTarget.s3)
-}
-void RemoteStorageTarget::set_allocated_posix(::beegfs::RemoteStorageTarget_POSIX* posix) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  clear_type();
-  if (posix) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(posix);
-    if (message_arena != submessage_arena) {
-      posix = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, posix, submessage_arena);
-    }
-    set_has_posix();
-    type_.posix_ = posix;
-  }
-  // @@protoc_insertion_point(field_set_allocated:beegfs.RemoteStorageTarget.posix)
-}
-void RemoteStorageTarget::set_allocated_azure(::beegfs::RemoteStorageTarget_Azure* azure) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  clear_type();
-  if (azure) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(azure);
-    if (message_arena != submessage_arena) {
-      azure = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, azure, submessage_arena);
-    }
-    set_has_azure();
-    type_.azure_ = azure;
-  }
-  // @@protoc_insertion_point(field_set_allocated:beegfs.RemoteStorageTarget.azure)
-}
-RemoteStorageTarget::RemoteStorageTarget(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beegfs.RemoteStorageTarget)
-}
-RemoteStorageTarget::RemoteStorageTarget(const RemoteStorageTarget& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_id().empty()) {
-    id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_id(),
-      GetArena());
-  }
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_name().empty()) {
-    name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_name(),
-      GetArena());
-  }
-  if (from._internal_has_policies()) {
-    policies_ = new ::beegfs::RemoteStorageTarget_Policies(*from.policies_);
-  } else {
-    policies_ = nullptr;
-  }
-  clear_has_type();
-  switch (from.type_case()) {
-    case kS3: {
-      _internal_mutable_s3()->::beegfs::RemoteStorageTarget_S3::MergeFrom(from._internal_s3());
-      break;
-    }
-    case kPosix: {
-      _internal_mutable_posix()->::beegfs::RemoteStorageTarget_POSIX::MergeFrom(from._internal_posix());
-      break;
-    }
-    case kAzure: {
-      _internal_mutable_azure()->::beegfs::RemoteStorageTarget_Azure::MergeFrom(from._internal_azure());
-      break;
-    }
-    case TYPE_NOT_SET: {
-      break;
-    }
-  }
-  // @@protoc_insertion_point(copy_constructor:beegfs.RemoteStorageTarget)
-}
-
-void RemoteStorageTarget::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RemoteStorageTarget_beegfs_2eproto.base);
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  policies_ = nullptr;
-  clear_has_type();
-}
-
-RemoteStorageTarget::~RemoteStorageTarget() {
-  // @@protoc_insertion_point(destructor:beegfs.RemoteStorageTarget)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void RemoteStorageTarget::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (this != internal_default_instance()) delete policies_;
-  if (has_type()) {
-    clear_type();
-  }
-}
-
-void RemoteStorageTarget::ArenaDtor(void* object) {
-  RemoteStorageTarget* _this = reinterpret_cast< RemoteStorageTarget* >(object);
-  (void)_this;
-}
-void RemoteStorageTarget::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void RemoteStorageTarget::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const RemoteStorageTarget& RemoteStorageTarget::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RemoteStorageTarget_beegfs_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void RemoteStorageTarget::clear_type() {
-// @@protoc_insertion_point(one_of_clear_start:beegfs.RemoteStorageTarget)
-  switch (type_case()) {
-    case kS3: {
-      if (GetArena() == nullptr) {
-        delete type_.s3_;
-      }
-      break;
-    }
-    case kPosix: {
-      if (GetArena() == nullptr) {
-        delete type_.posix_;
-      }
-      break;
-    }
-    case kAzure: {
-      if (GetArena() == nullptr) {
-        delete type_.azure_;
-      }
-      break;
-    }
-    case TYPE_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = TYPE_NOT_SET;
-}
-
-
-void RemoteStorageTarget::Clear() {
-// @@protoc_insertion_point(message_clear_start:beegfs.RemoteStorageTarget)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  if (GetArena() == nullptr && policies_ != nullptr) {
-    delete policies_;
-  }
-  policies_ = nullptr;
-  clear_type();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* RemoteStorageTarget::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // string id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_id();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.id"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string name = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.RemoteStorageTarget.name"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .beegfs.RemoteStorageTarget.Policies policies = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_policies(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .beegfs.RemoteStorageTarget.S3 s3 = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_s3(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .beegfs.RemoteStorageTarget.POSIX posix = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
-          ptr = ctx->ParseMessage(_internal_mutable_posix(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .beegfs.RemoteStorageTarget.Azure azure = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
-          ptr = ctx->ParseMessage(_internal_mutable_azure(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* RemoteStorageTarget::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beegfs.RemoteStorageTarget)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string id = 1;
-  if (this->id().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.id");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_id(), target);
-  }
-
-  // string name = 2;
-  if (this->name().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.RemoteStorageTarget.name");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_name(), target);
-  }
-
-  // .beegfs.RemoteStorageTarget.Policies policies = 3;
-  if (this->has_policies()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        3, _Internal::policies(this), target, stream);
-  }
-
-  // .beegfs.RemoteStorageTarget.S3 s3 = 4;
-  if (_internal_has_s3()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        4, _Internal::s3(this), target, stream);
-  }
-
-  // .beegfs.RemoteStorageTarget.POSIX posix = 5;
-  if (_internal_has_posix()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        5, _Internal::posix(this), target, stream);
-  }
-
-  // .beegfs.RemoteStorageTarget.Azure azure = 6;
-  if (_internal_has_azure()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        6, _Internal::azure(this), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:beegfs.RemoteStorageTarget)
-  return target;
-}
-
-size_t RemoteStorageTarget::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beegfs.RemoteStorageTarget)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string id = 1;
-  if (this->id().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_id());
-  }
-
-  // string name = 2;
-  if (this->name().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_name());
-  }
-
-  // .beegfs.RemoteStorageTarget.Policies policies = 3;
-  if (this->has_policies()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *policies_);
-  }
-
-  switch (type_case()) {
-    // .beegfs.RemoteStorageTarget.S3 s3 = 4;
-    case kS3: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *type_.s3_);
-      break;
-    }
-    // .beegfs.RemoteStorageTarget.POSIX posix = 5;
-    case kPosix: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *type_.posix_);
-      break;
-    }
-    // .beegfs.RemoteStorageTarget.Azure azure = 6;
-    case kAzure: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *type_.azure_);
-      break;
-    }
-    case TYPE_NOT_SET: {
-      break;
-    }
-  }
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void RemoteStorageTarget::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.RemoteStorageTarget)
-  GOOGLE_DCHECK_NE(&from, this);
-  const RemoteStorageTarget* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RemoteStorageTarget>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.RemoteStorageTarget)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.RemoteStorageTarget)
-    MergeFrom(*source);
-  }
-}
-
-void RemoteStorageTarget::MergeFrom(const RemoteStorageTarget& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.RemoteStorageTarget)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.id().size() > 0) {
-    _internal_set_id(from._internal_id());
-  }
-  if (from.name().size() > 0) {
-    _internal_set_name(from._internal_name());
-  }
-  if (from.has_policies()) {
-    _internal_mutable_policies()->::beegfs::RemoteStorageTarget_Policies::MergeFrom(from._internal_policies());
-  }
-  switch (from.type_case()) {
-    case kS3: {
-      _internal_mutable_s3()->::beegfs::RemoteStorageTarget_S3::MergeFrom(from._internal_s3());
-      break;
-    }
-    case kPosix: {
-      _internal_mutable_posix()->::beegfs::RemoteStorageTarget_POSIX::MergeFrom(from._internal_posix());
-      break;
-    }
-    case kAzure: {
-      _internal_mutable_azure()->::beegfs::RemoteStorageTarget_Azure::MergeFrom(from._internal_azure());
-      break;
-    }
-    case TYPE_NOT_SET: {
-      break;
-    }
-  }
-}
-
-void RemoteStorageTarget::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.RemoteStorageTarget)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void RemoteStorageTarget::CopyFrom(const RemoteStorageTarget& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.RemoteStorageTarget)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool RemoteStorageTarget::IsInitialized() const {
-  return true;
-}
-
-void RemoteStorageTarget::InternalSwap(RemoteStorageTarget* other) {
-  using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(policies_, other->policies_);
-  swap(type_, other->type_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata RemoteStorageTarget::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace beegfs
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::beegfs::RequestStatus* Arena::CreateMaybeMessage< ::beegfs::RequestStatus >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::RequestStatus >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::JobMetadata* Arena::CreateMaybeMessage< ::beegfs::JobMetadata >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::JobMetadata >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::WorkResponse* Arena::CreateMaybeMessage< ::beegfs::WorkResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::WorkResponse >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::RemoteStorageTarget_Policies* Arena::CreateMaybeMessage< ::beegfs::RemoteStorageTarget_Policies >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::RemoteStorageTarget_Policies >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::RemoteStorageTarget_S3* Arena::CreateMaybeMessage< ::beegfs::RemoteStorageTarget_S3 >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::RemoteStorageTarget_S3 >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::RemoteStorageTarget_Azure* Arena::CreateMaybeMessage< ::beegfs::RemoteStorageTarget_Azure >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::RemoteStorageTarget_Azure >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::RemoteStorageTarget_POSIX* Arena::CreateMaybeMessage< ::beegfs::RemoteStorageTarget_POSIX >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::RemoteStorageTarget_POSIX >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::RemoteStorageTarget* Arena::CreateMaybeMessage< ::beegfs::RemoteStorageTarget >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::RemoteStorageTarget >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"
