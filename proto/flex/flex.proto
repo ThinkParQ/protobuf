@@ -1,0 +1,347 @@
+// Package Flex contains common messages used across multiple Flex services.
+syntax = "proto3";
+package flex;
+option go_package = "github.com/thinkparq/protobuf/go/flex";
+
+import "google/protobuf/timestamp.proto";
+
+// A WorkerNode is able to handle one or more types of work requests.
+service WorkerNode {
+    rpc UpdateConfig(UpdateConfigRequest) returns (UpdateConfigResponse);    
+    rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
+    rpc SubmitWork(SubmitWorkRequest) returns (SubmitWorkResponse);
+    // UpdateWork is used to change the state of existing work, such as cancelling work at a users
+    // request.    
+    rpc UpdateWork(UpdateWorkRequest) returns (UpdateWorkResponse);
+    // Used to change the state of all WRs assigned to a particular node. This is typically only
+    // used when initially connecting to a node, or if we want to drain the WRs assigned to a node
+    // if it is being removed.
+    rpc BulkUpdateWork(BulkUpdateWorkRequest) returns (BulkUpdateWorkResponse);
+}
+
+message HeartbeatRequest {
+    bool include_stats = 1;
+}
+
+message HeartbeatResponse {
+    bool is_ready = 1;
+    NodeStats node_stats = 2;
+}
+
+message NodeStats {
+    google.protobuf.Timestamp timestamp = 1;
+    int64 active_requests = 2;
+}
+
+message SubmitWorkRequest {
+    WorkRequest request = 1;
+}
+
+message SubmitWorkResponse {
+    Work work = 1;
+}
+
+// Used to change the state of a single work request.
+// The server will respond with a RequestStatus. 
+message UpdateWorkRequest {
+    string job_id = 1;
+    string request_id = 2;
+    NewState new_state = 3;
+    enum NewState {
+        // This state has no semantic value and the state should never be UNSPECIFIED unless there
+        // is a bug.        
+        UNSPECIFIED = 0;
+        // Cancelled work requests are also deleted from the worker node.
+        CANCELLED = 1;
+    }
+}
+
+message UpdateWorkResponse {
+    Work work = 1;
+}
+
+// Used to change the state of all work assigned to a particular node. This is typically only used
+// when initially connecting to a node, or if we want to drain the work assigned to a node if it is
+// being removed.
+message BulkUpdateWorkRequest {
+    NewState new_state = 1;
+    // TODO: https://github.com/ThinkParQ/bee-sync/issues/5
+    // Allow bulk updates to work requests
+    enum NewState {
+        // This state has no semantic value and the state should never be UNSPECIFIED unless there
+        // is a bug.        
+        UNSPECIFIED = 0;
+        UNCHANGED = 1;
+    }
+}
+
+// This is a bulk operation details about individual work entries is not returned. Instead the
+// response reflects if all outstanding work was successfully moved to the new state.
+message BulkUpdateWorkResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// BeeRemote assigns work for a job to one or more worker nodes.
+message WorkRequest {
+    string job_id = 1;
+    string request_id = 2;
+    // Used as the upload ID for multipart uploads, or any other time 
+    // an external identifer is needed to coordinate a distributed transfer.
+    string external_id = 3;
+    string path = 4;
+    Segment segment = 5;
+    string remote_storage_target = 6;
+    oneof Type {
+        MockJob mock = 10;
+        SyncJob sync = 11;
+    }
+
+    // A segment indicates what portion of the file a particular worker node should
+    // work on. Segments can be divided into one or more parts, which can be used to
+    // execute the requested operation in parallel if supported by the RST type.
+    message Segment {
+        int64 offset_start = 1;
+        // Inclusive of the last offset.
+        int64 offset_stop = 2;
+        // The amount of data in each part is calculated based on the offset start/stop.
+        int32 parts_start = 3;
+        // Inclusive of the last part.
+        int32 parts_stop = 4;
+    }
+
+}
+
+message MockJob {
+    int32 num_test_segments = 1;
+    int64 file_size = 2;
+    string external_id = 3;
+    bool should_fail = 4;
+    bool can_retry = 5;
+}
+
+// A SyncJob is WHAT work needs to be done. It is populated based on the
+// file system modification event or by a user describing some work that needs
+// to be done. It does not carry any details about HOW the request will be
+// fufilled (that is part of the generated SyncRequest).
+message SyncJob {
+    Operation operation = 1;
+    enum Operation {
+        UNSPECIFIED = 0;
+        UPLOAD = 1;
+        DOWNLOAD = 2;
+    }
+    // When an object already exists in BeeGFS (for downloads) an error is returned by default, or
+    // it can be optionally overwritten. This currently does nothing for uploads, the object is
+    // always uploaded and overwritten unless the S3 bucket has object versioning enabled.
+    bool overwrite = 2;
+    // By default the RemotePath (object ID/file path) in the RST is the same as the local path in
+    // BeeGFS. However for downloads, if the names/paths differ, the remote path can be specified,
+    // for example to restore a file in an RST to a different location in BeeGFS. This currently is
+    // ignored for uploads.
+    string remote_path = 3;
+}
+
+// Currently while requests types are specific to a particular worker node type,
+// we use the same work type for all nodes. This is what allow us to return
+// work results to BeeRemote using a generic unary RPC, instead of having to
+// establish a long-lived streaming RPC with each worker node to return work
+// results of a specific type.
+message Work {
+    string path = 1;
+    string job_id = 2;
+    string request_id = 3;
+    // The work status is only ever updated by BeeSync with two exceptions: (1) if a request
+    // was never scheduled, the work state should be CREATED with the message indicating the
+    // last RPC error returned trying to assign the WR to a BeeSync node. (2) If a request was
+    // assigned to a BeeSync node but BeeRemote cannot retrieve the status, the work state
+    // should be set to "Unknown" with a message indicating the last RPC error that was returned
+    // trying to retrieve the results from the BeeSync node. When the state/message are set by
+    // BeeRemote the message should always clearly indicate "error communicating to node" to clearly
+    // distinguish when the state was set locally by BeeRemote or by the remote BeeSync node. 
+    Status status = 4;
+    message Status {
+        State state = 1;
+        // See the guidelines for handling messages on Job.Status.Message.
+        string message = 2;
+    }
+
+    enum State {
+        // This state has no semantic value and the state should never be UNSPECIFIED unless there
+        // is a bug.
+        UNSPECIFIED = 0;        
+        // When the state of a request cannot be definitely determined. 
+        // For example if BeeRemote cannot contact a worker node.   
+        UNKNOWN = 1;
+        // BeeRemote may use this state if the work request has definitely never been assigned to
+        // any worker nodes and is safe to cancel without checking with all worker nodes first.
+        CREATED = 2;
+        // When the worker node has accepted a request but is waiting on cycles to run it.
+        SCHEDULED = 3;
+        // When a worker node is actively running a request. 
+        RUNNING = 4;
+        // A user manually requested the job be paused. 
+        // TODO: https://github.com/ThinkParQ/bee-remote/issues/16 
+        // PAUSED = 5;
+        //
+        // ERROR indicates one or more transient/ephemeral error(s) occurred carrying out the
+        // request, but the worker node is still retrying the request. Once the allowed number of
+        // retries or retry timeout is exceed, the work request will fail.
+        ERROR = 6;        
+        // FAILED indicates one or more unrecoverable errors occurred carrying out this request.
+        // Typically requests fail due to some condition that requires user intervention, such as
+        // updating the RST configuration, but can also fail if they exceeds the allowed number of
+        // retries or retry timeout. Once work reaches this state and a response is sent to
+        // BeeRemote, the worker node should no longer have a record or be acting on this request.
+        // In other words, this is a terminal state for requests from the worker node's perspective.
+        FAILED = 7;
+        // Work requests may be cancelled manually be a user. Once work reaches this state and a
+        // response is sent to BeeRemote, the worker node should no longer have a record or be
+        // acting on this request.
+        CANCELLED = 8;
+        // If the work request completed successfully. Once work reaches this state and a response
+        // is sent to BeeRemote, the worker node should no longer have a record or be acting on this
+        // request.
+        COMPLETED = 9;        
+    }
+
+    // Each work request is split into one or more parts so data can be
+    // transferred in parallel on each assigned node.
+    repeated Part parts = 5;
+    // A part is not the same as a segment. A segment is some part of a larger
+    // operation assigned to a particular worker node, and each segment is
+    // divided into one or more parts allowing operations to be executed in
+    // parallel on a worker node. We use a standard part definition for all RST
+    // types. The use of the fields in Part will vary depending on the type.
+    message Part {
+        int32 part_number = 1;
+        int64 offset_start = 2;
+        int64 offset_stop = 3;
+        // ETags primarily verify the completeness and sequence of the upload. They do indirectly
+        // verify parts were received correctly since ETags are generated based on the received
+        // parts data.
+        string entity_tag = 4;
+        // The SHA-256 checksum of the data contained in this part. Note the checksum differs from
+        // the ETag in that it is an application layer integrity check of the part's content.
+        string checksum_sha256 = 5;
+        bool completed = 6;
+    }
+}
+
+// We use a common configuration update request/response types for all worker
+// node types. 
+message UpdateConfigRequest {
+    // While worker nodes could infer BeeRemote network details, it is better we
+    // explicitly tell them where to send work results. Especially if we want to
+    // send and receive work requests on different interfaces or ports.
+    BeeRemoteNode bee_remote = 1;
+    // All RemoteStorageTarget(s) that should be configured need to be included in
+    // each message. Any that are not included will be deleted.
+    repeated RemoteStorageTarget rsts = 2;
+}
+
+message UpdateConfigResponse {
+    Result result = 1;
+    // Message should be used to return any additional details, particularly to aid in troubleshooting.
+    string message = 2;
+
+    enum Result {
+        UNSPECIFIED = 0; // Should not be used. Exists only as the default if there is a programming error.
+        SUCCESS = 1; // The configuration was successfully updated.
+        PARTIAL = 2; // The configuration was partially updated (see the message for details).
+        FAILURE = 3; // The configuration was not updated.
+    }
+}
+
+message BeeRemoteNode {
+    string id = 1;
+    string address = 2;
+}
+
+// Remote Storage Targets (RSTs) describe where data should be stored or
+// retrieved from. Different BeeRemote worker nodes like BeeSync nodes should
+// support one or more RST types. This is not currently enforced anywhere by the
+// protobuf defined structs. When submitting job requests it is the callers
+// responsibility to ensure the reference RST and job type are compatible.
+// Otherwise BeeRemote will reject the job.
+// 
+// Note while there is a lot of data contained in RemoteStorageTarget, gRPC will
+// not serialize fields to the wire unless they are set.
+// https://protobuf.dev/programming-guides/proto3/#specifying-field-rules This
+// allows us to define all possible fields that may need to be sent to BeeSync
+// to configure different target types, without extra overhead.
+message RemoteStorageTarget {
+    string id = 1;
+    string name = 2;
+    Policies policies = 3; 
+
+    message Policies { 
+        // If the file size is larger than this, BeeRemote handles creating/finishing the multipart
+        // upload (if applicable) and will assign the job to multiple worker nodes. If the file size
+        // is smaller than this, BeeRemote immediately assigns the job to a single worker node that
+        // handles creating/finishing the multipart upload (if needed).
+        int64 fast_start_max_size = 1;
+        // IMPORTANT: When implementing additional policies, decide if they make sense to apply to
+        // all RST types, or if they should only be defined for specific RSTs.
+        //
+        // TODO: https://github.com/ThinkParQ/bee-remote/issues/26
+        // Implement the ability to lock files while they have active jobs.
+        // bool local_flock = 2;   
+        // bool remote_flock = 3;
+        // TODO: https://github.com/ThinkParQ/bee-remote/issues/19
+        // Implement the ability to flatten the directory structure as part of allowing RSTs to
+        // be anchored to a subtree in BeeGFS.
+        // bool flatten_dir_structure = 4;
+        // TODO: https://github.com/ThinkParQ/bee-remote/issues/35
+        // Include BeeGFS specific metadata when uploading objects.
+        // If BeeGFS metadata should be stored as extended attributes/metadata (if supported).
+        // bool keep_beegfs_metadata = 5;
+        // Future fields could include ReplicationPolicy. 
+    }
+
+    // Type defines fields required to figure out "where" to transfer content.
+    // IMPORTANT: When adding a new RST type before it can be configured by
+    // BeeRemote/other it must also be added to the rst.SupportedRSTTypes map in
+    // so it can be used with config.SetRSTTypeHook() to allow its configuration
+    // to be unmarshalled into the Go structs generated by protoc. See the notes
+    // in the rst package for additional details.
+    oneof type { // Ref: https://groups.google.com/g/protobuf/c/ojpYHqx2l04
+        S3 s3 = 4;
+        POSIX posix = 5;
+        Azure azure = 6;
+        string mock = 7;
+    }
+
+    // The S3 type uses the AWS S3 SDK under the hood. To support non-AWS S3
+    // services we implement the EndPointResolverWithOptions interface to
+    // provide custom endpoint resolving behavior. By specifying the
+    // endpoint_url and optionally the parition_id and region we can support
+    // local S3 services like MinIO and theoretically other cloud providers like
+    // Azure or GCP.
+    message S3 {
+        // Endpoints should be formatted like: https://<ip-or-hostname>:<port>.
+        // Ex: https://localhost:9000. 
+        // Because we are overriding the default AWS S3 SDK behavior an endpoint
+        // must always be specified, even when using AWS.
+        string endpoint_url = 1;
+        // AWS infrastructure is divided into partitions, with each partition 
+        // as a grouping of regions. Partition ID may not make sense for all
+        // S3 services, and can sometimes be omitted (for example with MinIO).
+        // https://docs.aws.amazon.com/sdk-for-go/api/aws/endpoints/#pkg-constants
+        string partition_id = 2;
+        // Region can sometimes be omitted (for example with MinIO).
+        string region = 3;
+        string bucket = 4;        
+        string access_key = 5;
+        string secret_key = 6;
+    }
+
+    message Azure {
+        S3 s3 = 1;
+        string account = 2;
+    }
+    
+    message POSIX {
+        string path = 1;
+    }
+}
