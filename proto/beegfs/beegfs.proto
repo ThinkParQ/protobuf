@@ -14,7 +14,10 @@ message Nic {
   Type type = 3;
 }
 
-message GetNodeListReq { bool include_nics = 1; }
+message GetNodeListReq {
+  // Query the nic list for each node and include it in the response
+  bool include_nics = 1;
+}
 message GetNodeListResp {
   message Node {
     enum Type {
@@ -28,21 +31,14 @@ message GetNodeListResp {
     Type type = 3;
     string alias = 4;
     uint32 beemsg_port = 5;
+    // The nic list of this node. Meant to be populated only if include_nics =
+    // true is set in the request
     repeated Nic nics = 6;
   }
 
   repeated Node nodes = 1;
 }
 
-message GetNodeInfoReq {
-  oneof key {
-    int64 uid = 1;
-    string alias = 2;
-  }
-}
-message GetNodeInfoResp { repeated Nic nics = 1; }
-
 service Management {
   rpc GetNodeList(GetNodeListReq) returns (GetNodeListResp);
-  rpc GetNodeInfo(GetNodeInfoReq) returns (GetNodeInfoResp);
 }

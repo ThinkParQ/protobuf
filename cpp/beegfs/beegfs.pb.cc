@@ -33,46 +33,7 @@ class GetNodeListRespDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetNodeListResp> _instance;
 } _GetNodeListResp_default_instance_;
-class GetNodeInfoReqDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetNodeInfoReq> _instance;
-  ::PROTOBUF_NAMESPACE_ID::int64 uid_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr alias_;
-} _GetNodeInfoReq_default_instance_;
-class GetNodeInfoRespDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetNodeInfoResp> _instance;
-} _GetNodeInfoResp_default_instance_;
 }  // namespace beegfs
-static void InitDefaultsscc_info_GetNodeInfoReq_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_GetNodeInfoReq_default_instance_;
-    new (ptr) ::beegfs::GetNodeInfoReq();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::GetNodeInfoReq::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GetNodeInfoReq_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_GetNodeInfoReq_beegfs_2eproto}, {}};
-
-static void InitDefaultsscc_info_GetNodeInfoResp_beegfs_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::beegfs::_GetNodeInfoResp_default_instance_;
-    new (ptr) ::beegfs::GetNodeInfoResp();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::beegfs::GetNodeInfoResp::InitAsDefaultInstance();
-}
-
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetNodeInfoResp_beegfs_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_GetNodeInfoResp_beegfs_2eproto}, {
-      &scc_info_Nic_beegfs_2eproto.base,}};
-
 static void InitDefaultsscc_info_GetNodeListReq_beegfs_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -131,7 +92,7 @@ static void InitDefaultsscc_info_Nic_beegfs_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Nic_beegfs_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Nic_beegfs_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_beegfs_2eproto[6];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_beegfs_2eproto[4];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_beegfs_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_beegfs_2eproto = nullptr;
 
@@ -167,28 +128,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_beegfs_2eproto::offsets[] PROT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::beegfs::GetNodeListResp, nodes_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::GetNodeInfoReq, _internal_metadata_),
-  ~0u,  // no _extensions_
-  PROTOBUF_FIELD_OFFSET(::beegfs::GetNodeInfoReq, _oneof_case_[0]),
-  ~0u,  // no _weak_field_map_
-  offsetof(::beegfs::GetNodeInfoReqDefaultTypeInternal, uid_),
-  offsetof(::beegfs::GetNodeInfoReqDefaultTypeInternal, alias_),
-  PROTOBUF_FIELD_OFFSET(::beegfs::GetNodeInfoReq, key_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::beegfs::GetNodeInfoResp, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::beegfs::GetNodeInfoResp, nics_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::beegfs::Nic)},
   { 8, -1, sizeof(::beegfs::GetNodeListReq)},
   { 14, -1, sizeof(::beegfs::GetNodeListResp_Node)},
   { 25, -1, sizeof(::beegfs::GetNodeListResp)},
-  { 31, -1, sizeof(::beegfs::GetNodeInfoReq)},
-  { 39, -1, sizeof(::beegfs::GetNodeInfoResp)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -196,8 +141,6 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_GetNodeListReq_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_GetNodeListResp_Node_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_GetNodeListResp_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_GetNodeInfoReq_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::beegfs::_GetNodeInfoResp_default_instance_),
 };
 
 const char descriptor_table_protodef_beegfs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -211,21 +154,14 @@ const char descriptor_table_protodef_beegfs_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "pe\030\003 \001(\0162!.beegfs.GetNodeListResp.Node.T"
   "ype\022\r\n\005alias\030\004 \001(\t\022\023\n\013beemsg_port\030\005 \001(\r\022"
   "\031\n\004nics\030\006 \003(\0132\013.beegfs.Nic\")\n\004Type\022\n\n\006CL"
-  "IENT\020\000\022\010\n\004META\020\001\022\013\n\007STORAGE\020\002\"7\n\016GetNode"
-  "InfoReq\022\r\n\003uid\030\001 \001(\003H\000\022\017\n\005alias\030\002 \001(\tH\000B"
-  "\005\n\003key\",\n\017GetNodeInfoResp\022\031\n\004nics\030\001 \003(\0132"
-  "\013.beegfs.Nic2\214\001\n\nManagement\022>\n\013GetNodeLi"
-  "st\022\026.beegfs.GetNodeListReq\032\027.beegfs.GetN"
-  "odeListResp\022>\n\013GetNodeInfo\022\026.beegfs.GetN"
-  "odeInfoReq\032\027.beegfs.GetNodeInfoRespB)Z\'g"
-  "ithub.com/thinkparq/protobuf/go/beegfsb\006"
-  "proto3"
+  "IENT\020\000\022\010\n\004META\020\001\022\013\n\007STORAGE\020\0022L\n\nManagem"
+  "ent\022>\n\013GetNodeList\022\026.beegfs.GetNodeListR"
+  "eq\032\027.beegfs.GetNodeListRespB)Z\'github.co"
+  "m/thinkparq/protobuf/go/beegfsb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beegfs_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_beegfs_2eproto_sccs[6] = {
-  &scc_info_GetNodeInfoReq_beegfs_2eproto.base,
-  &scc_info_GetNodeInfoResp_beegfs_2eproto.base,
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_beegfs_2eproto_sccs[4] = {
   &scc_info_GetNodeListReq_beegfs_2eproto.base,
   &scc_info_GetNodeListResp_beegfs_2eproto.base,
   &scc_info_GetNodeListResp_Node_beegfs_2eproto.base,
@@ -233,10 +169,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beegfs_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beegfs_2eproto = {
-  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 726,
-  &descriptor_table_beegfs_2eproto_once, descriptor_table_beegfs_2eproto_sccs, descriptor_table_beegfs_2eproto_deps, 6, 0,
+  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 558,
+  &descriptor_table_beegfs_2eproto_once, descriptor_table_beegfs_2eproto_sccs, descriptor_table_beegfs_2eproto_deps, 4, 0,
   schemas, file_default_instances, TableStruct_beegfs_2eproto::offsets,
-  file_level_metadata_beegfs_2eproto, 6, file_level_enum_descriptors_beegfs_2eproto, file_level_service_descriptors_beegfs_2eproto,
+  file_level_metadata_beegfs_2eproto, 4, file_level_enum_descriptors_beegfs_2eproto, file_level_service_descriptors_beegfs_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -1311,487 +1247,6 @@ void GetNodeListResp::InternalSwap(GetNodeListResp* other) {
 }
 
 
-// ===================================================================
-
-void GetNodeInfoReq::InitAsDefaultInstance() {
-  ::beegfs::_GetNodeInfoReq_default_instance_.uid_ = PROTOBUF_LONGLONG(0);
-  ::beegfs::_GetNodeInfoReq_default_instance_.alias_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-class GetNodeInfoReq::_Internal {
- public:
-};
-
-GetNodeInfoReq::GetNodeInfoReq(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beegfs.GetNodeInfoReq)
-}
-GetNodeInfoReq::GetNodeInfoReq(const GetNodeInfoReq& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  clear_has_key();
-  switch (from.key_case()) {
-    case kUid: {
-      _internal_set_uid(from._internal_uid());
-      break;
-    }
-    case kAlias: {
-      _internal_set_alias(from._internal_alias());
-      break;
-    }
-    case KEY_NOT_SET: {
-      break;
-    }
-  }
-  // @@protoc_insertion_point(copy_constructor:beegfs.GetNodeInfoReq)
-}
-
-void GetNodeInfoReq::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetNodeInfoReq_beegfs_2eproto.base);
-  clear_has_key();
-}
-
-GetNodeInfoReq::~GetNodeInfoReq() {
-  // @@protoc_insertion_point(destructor:beegfs.GetNodeInfoReq)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void GetNodeInfoReq::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  if (has_key()) {
-    clear_key();
-  }
-}
-
-void GetNodeInfoReq::ArenaDtor(void* object) {
-  GetNodeInfoReq* _this = reinterpret_cast< GetNodeInfoReq* >(object);
-  (void)_this;
-}
-void GetNodeInfoReq::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void GetNodeInfoReq::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const GetNodeInfoReq& GetNodeInfoReq::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetNodeInfoReq_beegfs_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void GetNodeInfoReq::clear_key() {
-// @@protoc_insertion_point(one_of_clear_start:beegfs.GetNodeInfoReq)
-  switch (key_case()) {
-    case kUid: {
-      // No need to clear
-      break;
-    }
-    case kAlias: {
-      key_.alias_.Destroy(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-      break;
-    }
-    case KEY_NOT_SET: {
-      break;
-    }
-  }
-  _oneof_case_[0] = KEY_NOT_SET;
-}
-
-
-void GetNodeInfoReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:beegfs.GetNodeInfoReq)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  clear_key();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* GetNodeInfoReq::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // int64 uid = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _internal_set_uid(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string alias = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_alias();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "beegfs.GetNodeInfoReq.alias"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* GetNodeInfoReq::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beegfs.GetNodeInfoReq)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int64 uid = 1;
-  if (_internal_has_uid()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_uid(), target);
-  }
-
-  // string alias = 2;
-  if (_internal_has_alias()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_alias().data(), static_cast<int>(this->_internal_alias().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "beegfs.GetNodeInfoReq.alias");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_alias(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:beegfs.GetNodeInfoReq)
-  return target;
-}
-
-size_t GetNodeInfoReq::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beegfs.GetNodeInfoReq)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  switch (key_case()) {
-    // int64 uid = 1;
-    case kUid: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
-          this->_internal_uid());
-      break;
-    }
-    // string alias = 2;
-    case kAlias: {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_alias());
-      break;
-    }
-    case KEY_NOT_SET: {
-      break;
-    }
-  }
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void GetNodeInfoReq::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.GetNodeInfoReq)
-  GOOGLE_DCHECK_NE(&from, this);
-  const GetNodeInfoReq* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetNodeInfoReq>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.GetNodeInfoReq)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.GetNodeInfoReq)
-    MergeFrom(*source);
-  }
-}
-
-void GetNodeInfoReq::MergeFrom(const GetNodeInfoReq& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.GetNodeInfoReq)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  switch (from.key_case()) {
-    case kUid: {
-      _internal_set_uid(from._internal_uid());
-      break;
-    }
-    case kAlias: {
-      _internal_set_alias(from._internal_alias());
-      break;
-    }
-    case KEY_NOT_SET: {
-      break;
-    }
-  }
-}
-
-void GetNodeInfoReq::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.GetNodeInfoReq)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void GetNodeInfoReq::CopyFrom(const GetNodeInfoReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.GetNodeInfoReq)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool GetNodeInfoReq::IsInitialized() const {
-  return true;
-}
-
-void GetNodeInfoReq::InternalSwap(GetNodeInfoReq* other) {
-  using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(key_, other->key_);
-  swap(_oneof_case_[0], other->_oneof_case_[0]);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata GetNodeInfoReq::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
-// ===================================================================
-
-void GetNodeInfoResp::InitAsDefaultInstance() {
-}
-class GetNodeInfoResp::_Internal {
- public:
-};
-
-GetNodeInfoResp::GetNodeInfoResp(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
-  nics_(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beegfs.GetNodeInfoResp)
-}
-GetNodeInfoResp::GetNodeInfoResp(const GetNodeInfoResp& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      nics_(from.nics_) {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:beegfs.GetNodeInfoResp)
-}
-
-void GetNodeInfoResp::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetNodeInfoResp_beegfs_2eproto.base);
-}
-
-GetNodeInfoResp::~GetNodeInfoResp() {
-  // @@protoc_insertion_point(destructor:beegfs.GetNodeInfoResp)
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-void GetNodeInfoResp::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-}
-
-void GetNodeInfoResp::ArenaDtor(void* object) {
-  GetNodeInfoResp* _this = reinterpret_cast< GetNodeInfoResp* >(object);
-  (void)_this;
-}
-void GetNodeInfoResp::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void GetNodeInfoResp::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const GetNodeInfoResp& GetNodeInfoResp::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetNodeInfoResp_beegfs_2eproto.base);
-  return *internal_default_instance();
-}
-
-
-void GetNodeInfoResp::Clear() {
-// @@protoc_insertion_point(message_clear_start:beegfs.GetNodeInfoResp)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  nics_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* GetNodeInfoResp::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
-    switch (tag >> 3) {
-      // repeated .beegfs.Nic nics = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_nics(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* GetNodeInfoResp::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beegfs.GetNodeInfoResp)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated .beegfs.Nic nics = 1;
-  for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->_internal_nics_size()); i < n; i++) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, this->_internal_nics(i), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:beegfs.GetNodeInfoResp)
-  return target;
-}
-
-size_t GetNodeInfoResp::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beegfs.GetNodeInfoResp)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // repeated .beegfs.Nic nics = 1;
-  total_size += 1UL * this->_internal_nics_size();
-  for (const auto& msg : this->nics_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void GetNodeInfoResp::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:beegfs.GetNodeInfoResp)
-  GOOGLE_DCHECK_NE(&from, this);
-  const GetNodeInfoResp* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetNodeInfoResp>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:beegfs.GetNodeInfoResp)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:beegfs.GetNodeInfoResp)
-    MergeFrom(*source);
-  }
-}
-
-void GetNodeInfoResp::MergeFrom(const GetNodeInfoResp& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:beegfs.GetNodeInfoResp)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  nics_.MergeFrom(from.nics_);
-}
-
-void GetNodeInfoResp::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:beegfs.GetNodeInfoResp)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void GetNodeInfoResp::CopyFrom(const GetNodeInfoResp& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.GetNodeInfoResp)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool GetNodeInfoResp::IsInitialized() const {
-  return true;
-}
-
-void GetNodeInfoResp::InternalSwap(GetNodeInfoResp* other) {
-  using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  nics_.InternalSwap(&other->nics_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata GetNodeInfoResp::GetMetadata() const {
-  return GetMetadataStatic();
-}
-
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace beegfs
 PROTOBUF_NAMESPACE_OPEN
@@ -1806,12 +1261,6 @@ template<> PROTOBUF_NOINLINE ::beegfs::GetNodeListResp_Node* Arena::CreateMaybeM
 }
 template<> PROTOBUF_NOINLINE ::beegfs::GetNodeListResp* Arena::CreateMaybeMessage< ::beegfs::GetNodeListResp >(Arena* arena) {
   return Arena::CreateMessageInternal< ::beegfs::GetNodeListResp >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::GetNodeInfoReq* Arena::CreateMaybeMessage< ::beegfs::GetNodeInfoReq >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::GetNodeInfoReq >(arena);
-}
-template<> PROTOBUF_NOINLINE ::beegfs::GetNodeInfoResp* Arena::CreateMaybeMessage< ::beegfs::GetNodeInfoResp >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::beegfs::GetNodeInfoResp >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

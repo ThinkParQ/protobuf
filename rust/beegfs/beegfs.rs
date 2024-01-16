@@ -53,6 +53,7 @@ pub mod nic {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodeListReq {
+    /// Query the nic list for each node and include it in the response
     #[prost(bool, tag = "1")]
     pub include_nics: bool,
 }
@@ -77,6 +78,8 @@ pub mod get_node_list_resp {
         pub alias: ::prost::alloc::string::String,
         #[prost(uint32, tag = "5")]
         pub beemsg_port: u32,
+        /// The nic list of this node. Meant to be populated only if include_nics =
+        /// true is set in the request
         #[prost(message, repeated, tag = "6")]
         pub nics: ::prost::alloc::vec::Vec<super::Nic>,
     }
@@ -122,29 +125,6 @@ pub mod get_node_list_resp {
             }
         }
     }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetNodeInfoReq {
-    #[prost(oneof = "get_node_info_req::Key", tags = "1, 2")]
-    pub key: ::core::option::Option<get_node_info_req::Key>,
-}
-/// Nested message and enum types in `GetNodeInfoReq`.
-pub mod get_node_info_req {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Key {
-        #[prost(int64, tag = "1")]
-        Uid(i64),
-        #[prost(string, tag = "2")]
-        Alias(::prost::alloc::string::String),
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetNodeInfoResp {
-    #[prost(message, repeated, tag = "1")]
-    pub nics: ::prost::alloc::vec::Vec<Nic>,
 }
 /// Generated client implementations.
 pub mod management_client {
@@ -256,31 +236,6 @@ pub mod management_client {
                 .insert(GrpcMethod::new("beegfs.Management", "GetNodeList"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn get_node_info(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetNodeInfoReq>,
-        ) -> std::result::Result<
-            tonic::Response<super::GetNodeInfoResp>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/beegfs.Management/GetNodeInfo",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("beegfs.Management", "GetNodeInfo"));
-            self.inner.unary(req, path, codec).await
-        }
     }
 }
 /// Generated server implementations.
@@ -294,10 +249,6 @@ pub mod management_server {
             &self,
             request: tonic::Request<super::GetNodeListReq>,
         ) -> std::result::Result<tonic::Response<super::GetNodeListResp>, tonic::Status>;
-        async fn get_node_info(
-            &self,
-            request: tonic::Request<super::GetNodeInfoReq>,
-        ) -> std::result::Result<tonic::Response<super::GetNodeInfoResp>, tonic::Status>;
     }
     #[derive(Debug)]
     pub struct ManagementServer<T: Management> {
@@ -409,52 +360,6 @@ pub mod management_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetNodeListSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            )
-                            .apply_max_message_size_config(
-                                max_decoding_message_size,
-                                max_encoding_message_size,
-                            );
-                        let res = grpc.unary(method, req).await;
-                        Ok(res)
-                    };
-                    Box::pin(fut)
-                }
-                "/beegfs.Management/GetNodeInfo" => {
-                    #[allow(non_camel_case_types)]
-                    struct GetNodeInfoSvc<T: Management>(pub Arc<T>);
-                    impl<
-                        T: Management,
-                    > tonic::server::UnaryService<super::GetNodeInfoReq>
-                    for GetNodeInfoSvc<T> {
-                        type Response = super::GetNodeInfoResp;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
-                        fn call(
-                            &mut self,
-                            request: tonic::Request<super::GetNodeInfoReq>,
-                        ) -> Self::Future {
-                            let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                <T as Management>::get_node_info(&inner, request).await
-                            };
-                            Box::pin(fut)
-                        }
-                    }
-                    let accept_compression_encodings = self.accept_compression_encodings;
-                    let send_compression_encodings = self.send_compression_encodings;
-                    let max_decoding_message_size = self.max_decoding_message_size;
-                    let max_encoding_message_size = self.max_encoding_message_size;
-                    let inner = self.inner.clone();
-                    let fut = async move {
-                        let inner = inner.0;
-                        let method = GetNodeInfoSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

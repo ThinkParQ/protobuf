@@ -23,7 +23,6 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ManagementClient interface {
 	GetNodeList(ctx context.Context, in *GetNodeListReq, opts ...grpc.CallOption) (*GetNodeListResp, error)
-	GetNodeInfo(ctx context.Context, in *GetNodeInfoReq, opts ...grpc.CallOption) (*GetNodeInfoResp, error)
 }
 
 type managementClient struct {
@@ -43,21 +42,11 @@ func (c *managementClient) GetNodeList(ctx context.Context, in *GetNodeListReq, 
 	return out, nil
 }
 
-func (c *managementClient) GetNodeInfo(ctx context.Context, in *GetNodeInfoReq, opts ...grpc.CallOption) (*GetNodeInfoResp, error) {
-	out := new(GetNodeInfoResp)
-	err := c.cc.Invoke(ctx, "/beegfs.Management/GetNodeInfo", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ManagementServer is the server API for Management service.
 // All implementations must embed UnimplementedManagementServer
 // for forward compatibility
 type ManagementServer interface {
 	GetNodeList(context.Context, *GetNodeListReq) (*GetNodeListResp, error)
-	GetNodeInfo(context.Context, *GetNodeInfoReq) (*GetNodeInfoResp, error)
 	mustEmbedUnimplementedManagementServer()
 }
 
@@ -67,9 +56,6 @@ type UnimplementedManagementServer struct {
 
 func (UnimplementedManagementServer) GetNodeList(context.Context, *GetNodeListReq) (*GetNodeListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNodeList not implemented")
-}
-func (UnimplementedManagementServer) GetNodeInfo(context.Context, *GetNodeInfoReq) (*GetNodeInfoResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNodeInfo not implemented")
 }
 func (UnimplementedManagementServer) mustEmbedUnimplementedManagementServer() {}
 
@@ -102,24 +88,6 @@ func _Management_GetNodeList_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Management_GetNodeInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNodeInfoReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ManagementServer).GetNodeInfo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/beegfs.Management/GetNodeInfo",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagementServer).GetNodeInfo(ctx, req.(*GetNodeInfoReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Management_ServiceDesc is the grpc.ServiceDesc for Management service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -130,10 +98,6 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetNodeList",
 			Handler:    _Management_GetNodeList_Handler,
-		},
-		{
-			MethodName: "GetNodeInfo",
-			Handler:    _Management_GetNodeInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
