@@ -186,6 +186,7 @@ type GetNodeListReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Query the nic list for each node and include it in the response
 	IncludeNics bool `protobuf:"varint,1,opt,name=include_nics,json=includeNics,proto3" json:"include_nics,omitempty"`
 }
 
@@ -275,134 +276,6 @@ func (x *GetNodeListResp) GetNodes() []*GetNodeListResp_Node {
 	return nil
 }
 
-type GetNodeInfoReq struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// Types that are assignable to Key:
-	//
-	//	*GetNodeInfoReq_Uid
-	//	*GetNodeInfoReq_Alias
-	Key isGetNodeInfoReq_Key `protobuf_oneof:"key"`
-}
-
-func (x *GetNodeInfoReq) Reset() {
-	*x = GetNodeInfoReq{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_beegfs_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetNodeInfoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetNodeInfoReq) ProtoMessage() {}
-
-func (x *GetNodeInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_beegfs_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetNodeInfoReq.ProtoReflect.Descriptor instead.
-func (*GetNodeInfoReq) Descriptor() ([]byte, []int) {
-	return file_beegfs_proto_rawDescGZIP(), []int{3}
-}
-
-func (m *GetNodeInfoReq) GetKey() isGetNodeInfoReq_Key {
-	if m != nil {
-		return m.Key
-	}
-	return nil
-}
-
-func (x *GetNodeInfoReq) GetUid() int64 {
-	if x, ok := x.GetKey().(*GetNodeInfoReq_Uid); ok {
-		return x.Uid
-	}
-	return 0
-}
-
-func (x *GetNodeInfoReq) GetAlias() string {
-	if x, ok := x.GetKey().(*GetNodeInfoReq_Alias); ok {
-		return x.Alias
-	}
-	return ""
-}
-
-type isGetNodeInfoReq_Key interface {
-	isGetNodeInfoReq_Key()
-}
-
-type GetNodeInfoReq_Uid struct {
-	Uid int64 `protobuf:"varint,1,opt,name=uid,proto3,oneof"`
-}
-
-type GetNodeInfoReq_Alias struct {
-	Alias string `protobuf:"bytes,2,opt,name=alias,proto3,oneof"`
-}
-
-func (*GetNodeInfoReq_Uid) isGetNodeInfoReq_Key() {}
-
-func (*GetNodeInfoReq_Alias) isGetNodeInfoReq_Key() {}
-
-type GetNodeInfoResp struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Nics []*Nic `protobuf:"bytes,1,rep,name=nics,proto3" json:"nics,omitempty"`
-}
-
-func (x *GetNodeInfoResp) Reset() {
-	*x = GetNodeInfoResp{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_beegfs_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetNodeInfoResp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetNodeInfoResp) ProtoMessage() {}
-
-func (x *GetNodeInfoResp) ProtoReflect() protoreflect.Message {
-	mi := &file_beegfs_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetNodeInfoResp.ProtoReflect.Descriptor instead.
-func (*GetNodeInfoResp) Descriptor() ([]byte, []int) {
-	return file_beegfs_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetNodeInfoResp) GetNics() []*Nic {
-	if x != nil {
-		return x.Nics
-	}
-	return nil
-}
-
 type GetNodeListResp_Node struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -413,13 +286,15 @@ type GetNodeListResp_Node struct {
 	Type       GetNodeListResp_Node_Type `protobuf:"varint,3,opt,name=type,proto3,enum=beegfs.GetNodeListResp_Node_Type" json:"type,omitempty"`
 	Alias      string                    `protobuf:"bytes,4,opt,name=alias,proto3" json:"alias,omitempty"`
 	BeemsgPort uint32                    `protobuf:"varint,5,opt,name=beemsg_port,json=beemsgPort,proto3" json:"beemsg_port,omitempty"`
-	Nics       []*Nic                    `protobuf:"bytes,6,rep,name=nics,proto3" json:"nics,omitempty"`
+	// The nic list of this node. Meant to be populated only if include_nics =
+	// true is set in the request
+	Nics []*Nic `protobuf:"bytes,6,rep,name=nics,proto3" json:"nics,omitempty"`
 }
 
 func (x *GetNodeListResp_Node) Reset() {
 	*x = GetNodeListResp_Node{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_beegfs_proto_msgTypes[5]
+		mi := &file_beegfs_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -432,7 +307,7 @@ func (x *GetNodeListResp_Node) String() string {
 func (*GetNodeListResp_Node) ProtoMessage() {}
 
 func (x *GetNodeListResp_Node) ProtoReflect() protoreflect.Message {
-	mi := &file_beegfs_proto_msgTypes[5]
+	mi := &file_beegfs_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -524,27 +399,15 @@ var file_beegfs_proto_rawDesc = []byte{
 	0x0b, 0x32, 0x0b, 0x2e, 0x62, 0x65, 0x65, 0x67, 0x66, 0x73, 0x2e, 0x4e, 0x69, 0x63, 0x52, 0x04,
 	0x6e, 0x69, 0x63, 0x73, 0x22, 0x29, 0x0a, 0x04, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0a, 0x0a, 0x06,
 	0x43, 0x4c, 0x49, 0x45, 0x4e, 0x54, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x4d, 0x45, 0x54, 0x41,
-	0x10, 0x01, 0x12, 0x0b, 0x0a, 0x07, 0x53, 0x54, 0x4f, 0x52, 0x41, 0x47, 0x45, 0x10, 0x02, 0x22,
-	0x43, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65,
-	0x71, 0x12, 0x12, 0x0a, 0x03, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00,
-	0x52, 0x03, 0x75, 0x69, 0x64, 0x12, 0x16, 0x0a, 0x05, 0x61, 0x6c, 0x69, 0x61, 0x73, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x05, 0x61, 0x6c, 0x69, 0x61, 0x73, 0x42, 0x05, 0x0a,
-	0x03, 0x6b, 0x65, 0x79, 0x22, 0x32, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x49,
-	0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x12, 0x1f, 0x0a, 0x04, 0x6e, 0x69, 0x63, 0x73, 0x18,
-	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x62, 0x65, 0x65, 0x67, 0x66, 0x73, 0x2e, 0x4e,
-	0x69, 0x63, 0x52, 0x04, 0x6e, 0x69, 0x63, 0x73, 0x32, 0x8c, 0x01, 0x0a, 0x0a, 0x4d, 0x61, 0x6e,
-	0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x3e, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x4e, 0x6f,
-	0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x2e, 0x62, 0x65, 0x65, 0x67, 0x66, 0x73, 0x2e,
-	0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x1a, 0x17,
-	0x2e, 0x62, 0x65, 0x65, 0x67, 0x66, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x4c,
-	0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x12, 0x3e, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x4e, 0x6f,
-	0x64, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x16, 0x2e, 0x62, 0x65, 0x65, 0x67, 0x66, 0x73, 0x2e,
-	0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x1a, 0x17,
-	0x2e, 0x62, 0x65, 0x65, 0x67, 0x66, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x49,
-	0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x42, 0x29, 0x5a, 0x27, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x74, 0x68, 0x69, 0x6e, 0x6b, 0x70, 0x61, 0x72, 0x71, 0x2f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x67, 0x6f, 0x2f, 0x62, 0x65, 0x65, 0x67,
-	0x66, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x10, 0x01, 0x12, 0x0b, 0x0a, 0x07, 0x53, 0x54, 0x4f, 0x52, 0x41, 0x47, 0x45, 0x10, 0x02, 0x32,
+	0x4c, 0x0a, 0x0a, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x3e, 0x0a,
+	0x0b, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x2e, 0x62,
+	0x65, 0x65, 0x67, 0x66, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x69, 0x73,
+	0x74, 0x52, 0x65, 0x71, 0x1a, 0x17, 0x2e, 0x62, 0x65, 0x65, 0x67, 0x66, 0x73, 0x2e, 0x47, 0x65,
+	0x74, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x42, 0x29, 0x5a,
+	0x27, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x74, 0x68, 0x69, 0x6e,
+	0x6b, 0x70, 0x61, 0x72, 0x71, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x67,
+	0x6f, 0x2f, 0x62, 0x65, 0x65, 0x67, 0x66, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -560,32 +423,27 @@ func file_beegfs_proto_rawDescGZIP() []byte {
 }
 
 var file_beegfs_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_beegfs_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_beegfs_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_beegfs_proto_goTypes = []interface{}{
 	(Nic_Type)(0),                  // 0: beegfs.Nic.Type
 	(GetNodeListResp_Node_Type)(0), // 1: beegfs.GetNodeListResp.Node.Type
 	(*Nic)(nil),                    // 2: beegfs.Nic
 	(*GetNodeListReq)(nil),         // 3: beegfs.GetNodeListReq
 	(*GetNodeListResp)(nil),        // 4: beegfs.GetNodeListResp
-	(*GetNodeInfoReq)(nil),         // 5: beegfs.GetNodeInfoReq
-	(*GetNodeInfoResp)(nil),        // 6: beegfs.GetNodeInfoResp
-	(*GetNodeListResp_Node)(nil),   // 7: beegfs.GetNodeListResp.Node
+	(*GetNodeListResp_Node)(nil),   // 5: beegfs.GetNodeListResp.Node
 }
 var file_beegfs_proto_depIdxs = []int32{
 	0, // 0: beegfs.Nic.type:type_name -> beegfs.Nic.Type
-	7, // 1: beegfs.GetNodeListResp.nodes:type_name -> beegfs.GetNodeListResp.Node
-	2, // 2: beegfs.GetNodeInfoResp.nics:type_name -> beegfs.Nic
-	1, // 3: beegfs.GetNodeListResp.Node.type:type_name -> beegfs.GetNodeListResp.Node.Type
-	2, // 4: beegfs.GetNodeListResp.Node.nics:type_name -> beegfs.Nic
-	3, // 5: beegfs.Management.GetNodeList:input_type -> beegfs.GetNodeListReq
-	5, // 6: beegfs.Management.GetNodeInfo:input_type -> beegfs.GetNodeInfoReq
-	4, // 7: beegfs.Management.GetNodeList:output_type -> beegfs.GetNodeListResp
-	6, // 8: beegfs.Management.GetNodeInfo:output_type -> beegfs.GetNodeInfoResp
-	7, // [7:9] is the sub-list for method output_type
-	5, // [5:7] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	5, // 1: beegfs.GetNodeListResp.nodes:type_name -> beegfs.GetNodeListResp.Node
+	1, // 2: beegfs.GetNodeListResp.Node.type:type_name -> beegfs.GetNodeListResp.Node.Type
+	2, // 3: beegfs.GetNodeListResp.Node.nics:type_name -> beegfs.Nic
+	3, // 4: beegfs.Management.GetNodeList:input_type -> beegfs.GetNodeListReq
+	4, // 5: beegfs.Management.GetNodeList:output_type -> beegfs.GetNodeListResp
+	5, // [5:6] is the sub-list for method output_type
+	4, // [4:5] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_beegfs_proto_init() }
@@ -631,30 +489,6 @@ func file_beegfs_proto_init() {
 			}
 		}
 		file_beegfs_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetNodeInfoReq); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_beegfs_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetNodeInfoResp); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_beegfs_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetNodeListResp_Node); i {
 			case 0:
 				return &v.state
@@ -667,17 +501,13 @@ func file_beegfs_proto_init() {
 			}
 		}
 	}
-	file_beegfs_proto_msgTypes[3].OneofWrappers = []interface{}{
-		(*GetNodeInfoReq_Uid)(nil),
-		(*GetNodeInfoReq_Alias)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_beegfs_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   6,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
