@@ -37,6 +37,7 @@ message GetNodeListResp {
   }
 
   repeated Node nodes = 1;
+  int64 meta_root_node_uid = 2;
 }
 
 service Management {

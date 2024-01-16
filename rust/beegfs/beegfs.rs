@@ -62,6 +62,8 @@ pub struct GetNodeListReq {
 pub struct GetNodeListResp {
     #[prost(message, repeated, tag = "1")]
     pub nodes: ::prost::alloc::vec::Vec<get_node_list_resp::Node>,
+    #[prost(int64, tag = "2")]
+    pub meta_root_node_uid: i64,
 }
 /// Nested message and enum types in `GetNodeListResp`.
 pub mod get_node_list_resp {
