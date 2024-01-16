@@ -856,6 +856,7 @@ class GetNodeListResp PROTOBUF_FINAL :
 
   enum : int {
     kNodesFieldNumber = 1,
+    kMetaRootNodeUidFieldNumber = 2,
   };
   // repeated .beegfs.GetNodeListResp.Node nodes = 1;
   int nodes_size() const;
@@ -875,6 +876,15 @@ class GetNodeListResp PROTOBUF_FINAL :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::beegfs::GetNodeListResp_Node >&
       nodes() const;
 
+  // int64 meta_root_node_uid = 2;
+  void clear_meta_root_node_uid();
+  ::PROTOBUF_NAMESPACE_ID::int64 meta_root_node_uid() const;
+  void set_meta_root_node_uid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_meta_root_node_uid() const;
+  void _internal_set_meta_root_node_uid(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:beegfs.GetNodeListResp)
  private:
   class _Internal;
@@ -883,6 +893,7 @@ class GetNodeListResp PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::beegfs::GetNodeListResp_Node > nodes_;
+  ::PROTOBUF_NAMESPACE_ID::int64 meta_root_node_uid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_beegfs_2eproto;
 };
@@ -1348,6 +1359,26 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::beegfs::GetNodeListRes
 GetNodeListResp::nodes() const {
   // @@protoc_insertion_point(field_list:beegfs.GetNodeListResp.nodes)
   return nodes_;
+}
+
+// int64 meta_root_node_uid = 2;
+inline void GetNodeListResp::clear_meta_root_node_uid() {
+  meta_root_node_uid_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 GetNodeListResp::_internal_meta_root_node_uid() const {
+  return meta_root_node_uid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 GetNodeListResp::meta_root_node_uid() const {
+  // @@protoc_insertion_point(field_get:beegfs.GetNodeListResp.meta_root_node_uid)
+  return _internal_meta_root_node_uid();
+}
+inline void GetNodeListResp::_internal_set_meta_root_node_uid(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  meta_root_node_uid_ = value;
+}
+inline void GetNodeListResp::set_meta_root_node_uid(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_meta_root_node_uid(value);
+  // @@protoc_insertion_point(field_set:beegfs.GetNodeListResp.meta_root_node_uid)
 }
 
 #ifdef __GNUC__

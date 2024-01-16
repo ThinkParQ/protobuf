@@ -128,6 +128,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_beegfs_2eproto::offsets[] PROT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::beegfs::GetNodeListResp, nodes_),
+  PROTOBUF_FIELD_OFFSET(::beegfs::GetNodeListResp, meta_root_node_uid_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::beegfs::Nic)},
@@ -148,16 +149,17 @@ const char descriptor_table_protodef_beegfs_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\001(\t\022\014\n\004name\030\002 \001(\t\022\036\n\004type\030\003 \001(\0162\020.beegfs"
   ".Nic.Type\"\'\n\004Type\022\014\n\010ETHERNET\020\000\022\007\n\003SDP\020\001"
   "\022\010\n\004RDMA\020\003\"&\n\016GetNodeListReq\022\024\n\014include_"
-  "nics\030\001 \001(\010\"\200\002\n\017GetNodeListResp\022+\n\005nodes\030"
-  "\001 \003(\0132\034.beegfs.GetNodeListResp.Node\032\277\001\n\004"
-  "Node\022\013\n\003uid\030\001 \001(\003\022\017\n\007node_id\030\002 \001(\r\022/\n\004ty"
-  "pe\030\003 \001(\0162!.beegfs.GetNodeListResp.Node.T"
-  "ype\022\r\n\005alias\030\004 \001(\t\022\023\n\013beemsg_port\030\005 \001(\r\022"
-  "\031\n\004nics\030\006 \003(\0132\013.beegfs.Nic\")\n\004Type\022\n\n\006CL"
-  "IENT\020\000\022\010\n\004META\020\001\022\013\n\007STORAGE\020\0022L\n\nManagem"
-  "ent\022>\n\013GetNodeList\022\026.beegfs.GetNodeListR"
-  "eq\032\027.beegfs.GetNodeListRespB)Z\'github.co"
-  "m/thinkparq/protobuf/go/beegfsb\006proto3"
+  "nics\030\001 \001(\010\"\234\002\n\017GetNodeListResp\022+\n\005nodes\030"
+  "\001 \003(\0132\034.beegfs.GetNodeListResp.Node\022\032\n\022m"
+  "eta_root_node_uid\030\002 \001(\003\032\277\001\n\004Node\022\013\n\003uid\030"
+  "\001 \001(\003\022\017\n\007node_id\030\002 \001(\r\022/\n\004type\030\003 \001(\0162!.b"
+  "eegfs.GetNodeListResp.Node.Type\022\r\n\005alias"
+  "\030\004 \001(\t\022\023\n\013beemsg_port\030\005 \001(\r\022\031\n\004nics\030\006 \003("
+  "\0132\013.beegfs.Nic\")\n\004Type\022\n\n\006CLIENT\020\000\022\010\n\004ME"
+  "TA\020\001\022\013\n\007STORAGE\020\0022L\n\nManagement\022>\n\013GetNo"
+  "deList\022\026.beegfs.GetNodeListReq\032\027.beegfs."
+  "GetNodeListRespB)Z\'github.com/thinkparq/"
+  "protobuf/go/beegfsb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beegfs_2eproto_deps[1] = {
 };
@@ -169,7 +171,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beegfs_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beegfs_2eproto = {
-  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 558,
+  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 586,
   &descriptor_table_beegfs_2eproto_once, descriptor_table_beegfs_2eproto_sccs, descriptor_table_beegfs_2eproto_deps, 4, 0,
   schemas, file_default_instances, TableStruct_beegfs_2eproto::offsets,
   file_level_metadata_beegfs_2eproto, 4, file_level_enum_descriptors_beegfs_2eproto, file_level_service_descriptors_beegfs_2eproto,
@@ -1063,11 +1065,13 @@ GetNodeListResp::GetNodeListResp(const GetNodeListResp& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       nodes_(from.nodes_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  meta_root_node_uid_ = from.meta_root_node_uid_;
   // @@protoc_insertion_point(copy_constructor:beegfs.GetNodeListResp)
 }
 
 void GetNodeListResp::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetNodeListResp_beegfs_2eproto.base);
+  meta_root_node_uid_ = PROTOBUF_LONGLONG(0);
 }
 
 GetNodeListResp::~GetNodeListResp() {
@@ -1102,6 +1106,7 @@ void GetNodeListResp::Clear() {
   (void) cached_has_bits;
 
   nodes_.Clear();
+  meta_root_node_uid_ = PROTOBUF_LONGLONG(0);
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1123,6 +1128,13 @@ const char* GetNodeListResp::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // int64 meta_root_node_uid = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          meta_root_node_uid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -1161,6 +1173,12 @@ failure:
       InternalWriteMessage(1, this->_internal_nodes(i), target, stream);
   }
 
+  // int64 meta_root_node_uid = 2;
+  if (this->meta_root_node_uid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(2, this->_internal_meta_root_node_uid(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1182,6 +1200,13 @@ size_t GetNodeListResp::ByteSizeLong() const {
   for (const auto& msg : this->nodes_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // int64 meta_root_node_uid = 2;
+  if (this->meta_root_node_uid() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_meta_root_node_uid());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1216,6 +1241,9 @@ void GetNodeListResp::MergeFrom(const GetNodeListResp& from) {
   (void) cached_has_bits;
 
   nodes_.MergeFrom(from.nodes_);
+  if (from.meta_root_node_uid() != 0) {
+    _internal_set_meta_root_node_uid(from._internal_meta_root_node_uid());
+  }
 }
 
 void GetNodeListResp::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1240,6 +1268,7 @@ void GetNodeListResp::InternalSwap(GetNodeListResp* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   nodes_.InternalSwap(&other->nodes_);
+  swap(meta_root_node_uid_, other->meta_root_node_uid_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata GetNodeListResp::GetMetadata() const {
