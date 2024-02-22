@@ -6,7 +6,10 @@ message Event {
     // The BeeGFS packet format defines these as a uint16 but protobuf does not support uint16 types (https://protobuf.dev/programming-guides/proto3/#scalar).
     uint32 format_version_major = 1;
     uint32 format_version_minor = 2;
-    uint64 seq_id = 3; // TODO (BF-43): This is not implemented yet in the meta service, however for now we'll have BeeWatch generate sequence IDs. Update this as needed based on final meta implementation and remove current approach in socket.go.
+    // TODO (https://github.com/ThinkParQ/bee-watch/issues/15): 
+    // This is not implemented yet in the meta service, however for now we'll have BeeWatch generate sequence IDs. 
+    // Update this as needed based on final meta implementation and remove current approach in socket.go.
+    uint64 seq_id = 3;
     uint32 size = 4;
     uint64 dropped_seq = 5;
     uint64 missed_seq = 6;
@@ -18,19 +21,23 @@ message Event {
     string target_parent_id = 12;
     
     enum Type {
-        FLUSH        = 0;
-        TRUNCATE     = 1;
-        SETATTR      = 2;
-        CLOSE_WRITE  = 3;
-        CREATE       = 4;
-        MKDIR        = 5;
-        MKNOD        = 6;
-        SYMLINK      = 7;
-        RMDIR        = 8;
-        UNLINK       = 9;
-        HARDLINK     = 10;
-        RENAME       = 11;
-        READ         = 12;
+        INVALID            = 0;
+        FLUSH              = 1;
+        TRUNCATE           = 2;
+        SETATTR            = 3;
+        CLOSE_WRITE        = 4;
+        CREATE             = 5;
+        MKDIR              = 6;
+        MKNOD              = 7;
+        SYMLINK            = 8;
+        RMDIR              = 9;
+        UNLINK             = 10;
+        HARDLINK           = 11;
+        RENAME             = 12;
+        OPEN_READ          = 13;
+        OPEN_WRITE         = 14;
+        OPEN_READ_WRITE    = 15;
+        LAST_WRITER_CLOSED = 16;
     }
 
 }
