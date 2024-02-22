@@ -93,23 +93,25 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_beewatch_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\016beewatch.proto\022\010beewatch\"\300\003\n\005Event\022\034\n\024"
+  "\n\016beewatch.proto\022\010beewatch\"\217\004\n\005Event\022\034\n\024"
   "format_version_major\030\001 \001(\r\022\034\n\024format_ver"
   "sion_minor\030\002 \001(\r\022\016\n\006seq_id\030\003 \001(\004\022\014\n\004size"
   "\030\004 \001(\r\022\023\n\013dropped_seq\030\005 \001(\004\022\022\n\nmissed_se"
   "q\030\006 \001(\004\022\"\n\004type\030\007 \001(\0162\024.beewatch.Event.T"
   "ype\022\014\n\004path\030\010 \001(\t\022\020\n\010entry_id\030\t \001(\t\022\027\n\017p"
   "arent_entry_id\030\n \001(\t\022\023\n\013target_path\030\013 \001("
-  "\t\022\030\n\020target_parent_id\030\014 \001(\t\"\247\001\n\004Type\022\t\n\005"
-  "FLUSH\020\000\022\014\n\010TRUNCATE\020\001\022\013\n\007SETATTR\020\002\022\017\n\013CL"
-  "OSE_WRITE\020\003\022\n\n\006CREATE\020\004\022\t\n\005MKDIR\020\005\022\t\n\005MK"
-  "NOD\020\006\022\013\n\007SYMLINK\020\007\022\t\n\005RMDIR\020\010\022\n\n\006UNLINK\020"
-  "\t\022\014\n\010HARDLINK\020\n\022\n\n\006RENAME\020\013\022\010\n\004READ\020\014\"8\n"
-  "\010Response\022\025\n\rcompleted_seq\030\001 \001(\004\022\025\n\rshut"
-  "ting_down\030\002 \001(\0102F\n\nSubscriber\0228\n\rReceive"
-  "Events\022\017.beewatch.Event\032\022.beewatch.Respo"
-  "nse(\0010\001B+Z)github.com/thinkparq/protobuf"
-  "/go/beewatchb\006proto3"
+  "\t\022\030\n\020target_parent_id\030\014 \001(\t\"\366\001\n\004Type\022\013\n\007"
+  "INVALID\020\000\022\t\n\005FLUSH\020\001\022\014\n\010TRUNCATE\020\002\022\013\n\007SE"
+  "TATTR\020\003\022\017\n\013CLOSE_WRITE\020\004\022\n\n\006CREATE\020\005\022\t\n\005"
+  "MKDIR\020\006\022\t\n\005MKNOD\020\007\022\013\n\007SYMLINK\020\010\022\t\n\005RMDIR"
+  "\020\t\022\n\n\006UNLINK\020\n\022\014\n\010HARDLINK\020\013\022\n\n\006RENAME\020\014"
+  "\022\r\n\tOPEN_READ\020\r\022\016\n\nOPEN_WRITE\020\016\022\023\n\017OPEN_"
+  "READ_WRITE\020\017\022\026\n\022LAST_WRITER_CLOSED\020\020\"8\n\010"
+  "Response\022\025\n\rcompleted_seq\030\001 \001(\004\022\025\n\rshutt"
+  "ing_down\030\002 \001(\0102F\n\nSubscriber\0228\n\rReceiveE"
+  "vents\022\017.beewatch.Event\032\022.beewatch.Respon"
+  "se(\0010\001B+Z)github.com/thinkparq/protobuf/"
+  "go/beewatchb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beewatch_2eproto_deps[1] = {
 };
@@ -119,7 +121,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beewatch_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beewatch_2eproto = {
-  false, false, descriptor_table_protodef_beewatch_2eproto, "beewatch.proto", 660,
+  false, false, descriptor_table_protodef_beewatch_2eproto, "beewatch.proto", 739,
   &descriptor_table_beewatch_2eproto_once, descriptor_table_beewatch_2eproto_sccs, descriptor_table_beewatch_2eproto_deps, 2, 0,
   schemas, file_default_instances, TableStruct_beewatch_2eproto::offsets,
   file_level_metadata_beewatch_2eproto, 2, file_level_enum_descriptors_beewatch_2eproto, file_level_service_descriptors_beewatch_2eproto,
@@ -147,6 +149,10 @@ bool Event_Type_IsValid(int value) {
     case 10:
     case 11:
     case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
       return true;
     default:
       return false;
@@ -154,6 +160,7 @@ bool Event_Type_IsValid(int value) {
 }
 
 #if (__cplusplus < 201703) && (!defined(_MSC_VER) || _MSC_VER >= 1900)
+constexpr Event_Type Event::INVALID;
 constexpr Event_Type Event::FLUSH;
 constexpr Event_Type Event::TRUNCATE;
 constexpr Event_Type Event::SETATTR;
@@ -166,7 +173,10 @@ constexpr Event_Type Event::RMDIR;
 constexpr Event_Type Event::UNLINK;
 constexpr Event_Type Event::HARDLINK;
 constexpr Event_Type Event::RENAME;
-constexpr Event_Type Event::READ;
+constexpr Event_Type Event::OPEN_READ;
+constexpr Event_Type Event::OPEN_WRITE;
+constexpr Event_Type Event::OPEN_READ_WRITE;
+constexpr Event_Type Event::LAST_WRITER_CLOSED;
 constexpr Event_Type Event::Type_MIN;
 constexpr Event_Type Event::Type_MAX;
 constexpr int Event::Type_ARRAYSIZE;

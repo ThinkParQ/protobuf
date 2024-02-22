@@ -6,7 +6,9 @@ pub struct Event {
     pub format_version_major: u32,
     #[prost(uint32, tag = "2")]
     pub format_version_minor: u32,
-    /// TODO (BF-43): This is not implemented yet in the meta service, however for now we'll have BeeWatch generate sequence IDs. Update this as needed based on final meta implementation and remove current approach in socket.go.
+    /// TODO (<https://github.com/ThinkParQ/bee-watch/issues/15>):
+    /// This is not implemented yet in the meta service, however for now we'll have BeeWatch generate sequence IDs.
+    /// Update this as needed based on final meta implementation and remove current approach in socket.go.
     #[prost(uint64, tag = "3")]
     pub seq_id: u64,
     #[prost(uint32, tag = "4")]
@@ -43,19 +45,23 @@ pub mod event {
     )]
     #[repr(i32)]
     pub enum Type {
-        Flush = 0,
-        Truncate = 1,
-        Setattr = 2,
-        CloseWrite = 3,
-        Create = 4,
-        Mkdir = 5,
-        Mknod = 6,
-        Symlink = 7,
-        Rmdir = 8,
-        Unlink = 9,
-        Hardlink = 10,
-        Rename = 11,
-        Read = 12,
+        Invalid = 0,
+        Flush = 1,
+        Truncate = 2,
+        Setattr = 3,
+        CloseWrite = 4,
+        Create = 5,
+        Mkdir = 6,
+        Mknod = 7,
+        Symlink = 8,
+        Rmdir = 9,
+        Unlink = 10,
+        Hardlink = 11,
+        Rename = 12,
+        OpenRead = 13,
+        OpenWrite = 14,
+        OpenReadWrite = 15,
+        LastWriterClosed = 16,
     }
     impl Type {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -64,6 +70,7 @@ pub mod event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
+                Type::Invalid => "INVALID",
                 Type::Flush => "FLUSH",
                 Type::Truncate => "TRUNCATE",
                 Type::Setattr => "SETATTR",
@@ -76,12 +83,16 @@ pub mod event {
                 Type::Unlink => "UNLINK",
                 Type::Hardlink => "HARDLINK",
                 Type::Rename => "RENAME",
-                Type::Read => "READ",
+                Type::OpenRead => "OPEN_READ",
+                Type::OpenWrite => "OPEN_WRITE",
+                Type::OpenReadWrite => "OPEN_READ_WRITE",
+                Type::LastWriterClosed => "LAST_WRITER_CLOSED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
         pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
             match value {
+                "INVALID" => Some(Self::Invalid),
                 "FLUSH" => Some(Self::Flush),
                 "TRUNCATE" => Some(Self::Truncate),
                 "SETATTR" => Some(Self::Setattr),
@@ -94,7 +105,10 @@ pub mod event {
                 "UNLINK" => Some(Self::Unlink),
                 "HARDLINK" => Some(Self::Hardlink),
                 "RENAME" => Some(Self::Rename),
-                "READ" => Some(Self::Read),
+                "OPEN_READ" => Some(Self::OpenRead),
+                "OPEN_WRITE" => Some(Self::OpenWrite),
+                "OPEN_READ_WRITE" => Some(Self::OpenReadWrite),
+                "LAST_WRITER_CLOSED" => Some(Self::LastWriterClosed),
                 _ => None,
             }
         }
