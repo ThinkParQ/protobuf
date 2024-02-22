@@ -101,6 +101,10 @@ The reasons are:
 
 ## Prerequisites
 
+> These prerequisites can also be setup using the `make install-tools` target, however this presumes
+> you're using a Debian based system where apt is available, and the package repositories have a
+> reasonably new version of the protobuf-compiler available.
+
 * Necessary development tools and / or compiler of the supported languages.
     * For Rust: https://rustup.rs/
     * For Go: https://go.dev/doc/install
@@ -119,8 +123,10 @@ The reasons are:
   cargo install --git "https://github.com/thinkparq/protoc-rs"
 
   ```
-* Ensure all the necessary binaries are added to your `$PATH` variable using
-  `.bashrc` or similar. For `cargo`, the install directory is usually `~/.cargo/bin`.
+* Ensure all the necessary binaries are added to your `$PATH` variable using `.bashrc` or similar.
+  * For Rust's `cargo`, the install directory is usually `~/.cargo/bin`, but this is usually setup
+  automatically when installing Rust/Cargo. For Go you may need to add `export PATH=$PATH:$(go env
+  GOPATH)/bin` to your `~/bashrc` file.
 
 ## Generating Code for a New Language
 

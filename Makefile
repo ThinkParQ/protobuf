@@ -80,6 +80,8 @@ clean:
 install-tools:
 	sudo apt install --yes protobuf-compiler
 	cargo install --git "https://github.com/thinkparq/protoc-rs"
+	go get google.golang.org/protobuf/cmd/protoc-gen-go
 	go install google.golang.org/protobuf/cmd/protoc-gen-go
+	go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 	@echo "Tools installed. Make sure your PATH contains the install directories $$HOME/.cargo/bin and $$(go env GOPATH)/bin"
