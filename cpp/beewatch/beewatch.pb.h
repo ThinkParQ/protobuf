@@ -70,25 +70,29 @@ PROTOBUF_NAMESPACE_CLOSE
 namespace beewatch {
 
 enum Event_Type : int {
-  Event_Type_FLUSH = 0,
-  Event_Type_TRUNCATE = 1,
-  Event_Type_SETATTR = 2,
-  Event_Type_CLOSE_WRITE = 3,
-  Event_Type_CREATE = 4,
-  Event_Type_MKDIR = 5,
-  Event_Type_MKNOD = 6,
-  Event_Type_SYMLINK = 7,
-  Event_Type_RMDIR = 8,
-  Event_Type_UNLINK = 9,
-  Event_Type_HARDLINK = 10,
-  Event_Type_RENAME = 11,
-  Event_Type_READ = 12,
+  Event_Type_INVALID = 0,
+  Event_Type_FLUSH = 1,
+  Event_Type_TRUNCATE = 2,
+  Event_Type_SETATTR = 3,
+  Event_Type_CLOSE_WRITE = 4,
+  Event_Type_CREATE = 5,
+  Event_Type_MKDIR = 6,
+  Event_Type_MKNOD = 7,
+  Event_Type_SYMLINK = 8,
+  Event_Type_RMDIR = 9,
+  Event_Type_UNLINK = 10,
+  Event_Type_HARDLINK = 11,
+  Event_Type_RENAME = 12,
+  Event_Type_OPEN_READ = 13,
+  Event_Type_OPEN_WRITE = 14,
+  Event_Type_OPEN_READ_WRITE = 15,
+  Event_Type_LAST_WRITER_CLOSED = 16,
   Event_Type_Event_Type_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   Event_Type_Event_Type_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool Event_Type_IsValid(int value);
-constexpr Event_Type Event_Type_Type_MIN = Event_Type_FLUSH;
-constexpr Event_Type Event_Type_Type_MAX = Event_Type_READ;
+constexpr Event_Type Event_Type_Type_MIN = Event_Type_INVALID;
+constexpr Event_Type Event_Type_Type_MAX = Event_Type_LAST_WRITER_CLOSED;
 constexpr int Event_Type_Type_ARRAYSIZE = Event_Type_Type_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Event_Type_descriptor();
@@ -218,6 +222,8 @@ class Event PROTOBUF_FINAL :
   // nested types ----------------------------------------------------
 
   typedef Event_Type Type;
+  static constexpr Type INVALID =
+    Event_Type_INVALID;
   static constexpr Type FLUSH =
     Event_Type_FLUSH;
   static constexpr Type TRUNCATE =
@@ -242,8 +248,14 @@ class Event PROTOBUF_FINAL :
     Event_Type_HARDLINK;
   static constexpr Type RENAME =
     Event_Type_RENAME;
-  static constexpr Type READ =
-    Event_Type_READ;
+  static constexpr Type OPEN_READ =
+    Event_Type_OPEN_READ;
+  static constexpr Type OPEN_WRITE =
+    Event_Type_OPEN_WRITE;
+  static constexpr Type OPEN_READ_WRITE =
+    Event_Type_OPEN_READ_WRITE;
+  static constexpr Type LAST_WRITER_CLOSED =
+    Event_Type_LAST_WRITER_CLOSED;
   static inline bool Type_IsValid(int value) {
     return Event_Type_IsValid(value);
   }
