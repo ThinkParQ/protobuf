@@ -107,12 +107,13 @@ enum GetNodeListResp_Node_Type : int {
   GetNodeListResp_Node_Type_CLIENT = 0,
   GetNodeListResp_Node_Type_META = 1,
   GetNodeListResp_Node_Type_STORAGE = 2,
+  GetNodeListResp_Node_Type_MANAGEMENT = 3,
   GetNodeListResp_Node_Type_GetNodeListResp_Node_Type_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   GetNodeListResp_Node_Type_GetNodeListResp_Node_Type_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool GetNodeListResp_Node_Type_IsValid(int value);
 constexpr GetNodeListResp_Node_Type GetNodeListResp_Node_Type_Type_MIN = GetNodeListResp_Node_Type_CLIENT;
-constexpr GetNodeListResp_Node_Type GetNodeListResp_Node_Type_Type_MAX = GetNodeListResp_Node_Type_STORAGE;
+constexpr GetNodeListResp_Node_Type GetNodeListResp_Node_Type_Type_MAX = GetNodeListResp_Node_Type_MANAGEMENT;
 constexpr int GetNodeListResp_Node_Type_Type_ARRAYSIZE = GetNodeListResp_Node_Type_Type_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GetNodeListResp_Node_Type_descriptor();
@@ -608,6 +609,8 @@ class GetNodeListResp_Node PROTOBUF_FINAL :
     GetNodeListResp_Node_Type_META;
   static constexpr Type STORAGE =
     GetNodeListResp_Node_Type_STORAGE;
+  static constexpr Type MANAGEMENT =
+    GetNodeListResp_Node_Type_MANAGEMENT;
   static inline bool Type_IsValid(int value) {
     return GetNodeListResp_Node_Type_IsValid(value);
   }
