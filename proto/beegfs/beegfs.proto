@@ -24,6 +24,7 @@ message GetNodeListResp {
       CLIENT = 0;
       META = 1;
       STORAGE = 2;
+      MANAGEMENT = 3;
     }
 
     int64 uid = 1;

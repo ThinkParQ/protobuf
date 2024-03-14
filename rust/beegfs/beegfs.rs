@@ -103,6 +103,7 @@ pub mod get_node_list_resp {
             Client = 0,
             Meta = 1,
             Storage = 2,
+            Management = 3,
         }
         impl Type {
             /// String value of the enum field names used in the ProtoBuf definition.
@@ -114,6 +115,7 @@ pub mod get_node_list_resp {
                     Type::Client => "CLIENT",
                     Type::Meta => "META",
                     Type::Storage => "STORAGE",
+                    Type::Management => "MANAGEMENT",
                 }
             }
             /// Creates an enum from field names used in the ProtoBuf definition.
@@ -122,6 +124,7 @@ pub mod get_node_list_resp {
                     "CLIENT" => Some(Self::Client),
                     "META" => Some(Self::Meta),
                     "STORAGE" => Some(Self::Storage),
+                    "MANAGEMENT" => Some(Self::Management),
                     _ => None,
                 }
             }
