@@ -149,17 +149,18 @@ const char descriptor_table_protodef_beegfs_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\001(\t\022\014\n\004name\030\002 \001(\t\022\036\n\004type\030\003 \001(\0162\020.beegfs"
   ".Nic.Type\"\'\n\004Type\022\014\n\010ETHERNET\020\000\022\007\n\003SDP\020\001"
   "\022\010\n\004RDMA\020\003\"&\n\016GetNodeListReq\022\024\n\014include_"
-  "nics\030\001 \001(\010\"\234\002\n\017GetNodeListResp\022+\n\005nodes\030"
+  "nics\030\001 \001(\010\"\254\002\n\017GetNodeListResp\022+\n\005nodes\030"
   "\001 \003(\0132\034.beegfs.GetNodeListResp.Node\022\032\n\022m"
-  "eta_root_node_uid\030\002 \001(\003\032\277\001\n\004Node\022\013\n\003uid\030"
+  "eta_root_node_uid\030\002 \001(\003\032\317\001\n\004Node\022\013\n\003uid\030"
   "\001 \001(\003\022\017\n\007node_id\030\002 \001(\r\022/\n\004type\030\003 \001(\0162!.b"
   "eegfs.GetNodeListResp.Node.Type\022\r\n\005alias"
   "\030\004 \001(\t\022\023\n\013beemsg_port\030\005 \001(\r\022\031\n\004nics\030\006 \003("
-  "\0132\013.beegfs.Nic\")\n\004Type\022\n\n\006CLIENT\020\000\022\010\n\004ME"
-  "TA\020\001\022\013\n\007STORAGE\020\0022L\n\nManagement\022>\n\013GetNo"
-  "deList\022\026.beegfs.GetNodeListReq\032\027.beegfs."
-  "GetNodeListRespB)Z\'github.com/thinkparq/"
-  "protobuf/go/beegfsb\006proto3"
+  "\0132\013.beegfs.Nic\"9\n\004Type\022\n\n\006CLIENT\020\000\022\010\n\004ME"
+  "TA\020\001\022\013\n\007STORAGE\020\002\022\016\n\nMANAGEMENT\020\0032L\n\nMan"
+  "agement\022>\n\013GetNodeList\022\026.beegfs.GetNodeL"
+  "istReq\032\027.beegfs.GetNodeListRespB)Z\'githu"
+  "b.com/thinkparq/protobuf/go/beegfsb\006prot"
+  "o3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_beegfs_2eproto_deps[1] = {
 };
@@ -171,7 +172,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_bee
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_beegfs_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_beegfs_2eproto = {
-  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 586,
+  false, false, descriptor_table_protodef_beegfs_2eproto, "beegfs.proto", 602,
   &descriptor_table_beegfs_2eproto_once, descriptor_table_beegfs_2eproto_sccs, descriptor_table_beegfs_2eproto_deps, 4, 0,
   schemas, file_default_instances, TableStruct_beegfs_2eproto::offsets,
   file_level_metadata_beegfs_2eproto, 4, file_level_enum_descriptors_beegfs_2eproto, file_level_service_descriptors_beegfs_2eproto,
@@ -212,6 +213,7 @@ bool GetNodeListResp_Node_Type_IsValid(int value) {
     case 0:
     case 1:
     case 2:
+    case 3:
       return true;
     default:
       return false;
@@ -222,6 +224,7 @@ bool GetNodeListResp_Node_Type_IsValid(int value) {
 constexpr GetNodeListResp_Node_Type GetNodeListResp_Node::CLIENT;
 constexpr GetNodeListResp_Node_Type GetNodeListResp_Node::META;
 constexpr GetNodeListResp_Node_Type GetNodeListResp_Node::STORAGE;
+constexpr GetNodeListResp_Node_Type GetNodeListResp_Node::MANAGEMENT;
 constexpr GetNodeListResp_Node_Type GetNodeListResp_Node::Type_MIN;
 constexpr GetNodeListResp_Node_Type GetNodeListResp_Node::Type_MAX;
 constexpr int GetNodeListResp_Node::Type_ARRAYSIZE;
