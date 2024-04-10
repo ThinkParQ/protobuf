@@ -6,9 +6,12 @@
 - [Quick Start](#quick-start)
   - [Go](#go)
 - [Advanced: Generate / Compile `.proto` Files](#advanced-generate--compile-proto-files)
+  - [Important limitations when adding new .proto files](#important-limitations-when-adding-new-proto-files)
   - [Prerequisites](#prerequisites)
   - [Generating Code for a New Language](#generating-code-for-a-new-language)
   - [Generating Code for Golang](#generating-code-for-golang)
+  - [Generating Code for Rust](#generating-code-for-rust)
+- [Updating Existing Protocol Buffers](#updating-existing-protocol-buffers)
 - [References](#references)
 
 # Overview 
@@ -172,7 +175,17 @@ based on [Tonic](https://docs.rs/tonic/latest/tonic/), which replaces `protoc`. 
 compile the protobuf files but also generate the necessary Rust crate structure to be able to import
 and use the code as a dependency in Rust projects.
 
+# Updating Existing Protocol Buffers
+
+* Generally [field numbers](https://protobuf.dev/programming-guides/proto3/#assigning) should never
+  be changed after they are merged to main. If these are changed clients and servers with different
+  field numbers will no longer be compatible. This will also cause issues unmarshalling protobuf
+  messages stored on-disk that are not immediately obvious because the message will likely
+  unmarshall, but the fields may be populated partially or incorrectly depending on the changes.
+
 # References
 
 * [Style Guide](https://protobuf.dev/programming-guides/style/)
+* [Field Presence](https://protobuf.dev/programming-guides/field_presence/)
+  * TL;DR - Generally expect fields to default to the language specific default values for each type for any fields that were not set by the server.
 * [Go Generated Code Guide](https://protobuf.dev/reference/go/go-generated/)

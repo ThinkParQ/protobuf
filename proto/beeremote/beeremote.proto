@@ -1,0 +1,247 @@
+syntax = "proto3";
+package beeremote;
+option go_package = "github.com/thinkparq/protobuf/go/beeremote";
+
+import "flex/flex.proto";
+import "google/protobuf/timestamp.proto";
+
+// Externally facing RPCs and messages clients and worker nodes use to interact
+// with BeeRemote.
+service BeeRemote {
+    rpc SubmitJob(SubmitJobRequest) returns (SubmitJobResponse);
+    rpc UpdateJob(UpdateJobRequest) returns(UpdateJobResponse);    
+    rpc GetJobs(GetJobsRequest) returns (stream GetJobsResponse);
+    // Rather then BeeRemote connecting to a worker node and using a streaming
+    // RPC to return work results, we have BeeRemote expose a unary RPC that is
+    // used to send results back as they are available. This allows us to avoid
+    // complex error handling needed to reliably use streams, and more easily
+    // adhere to our requirement that work requests are always owned by
+    // BeeRemote or its worker nodes and no polling is needed to check on the
+    // state of the requests. With this approach either side can make an unary
+    // request for a particular work request, and look at the response to verify
+    // ownership has successfully move to the other node (i.e., the node has 
+    // committed the request to its on-disk database).
+    rpc UpdateWork(UpdateWorkRequest) returns (UpdateWorkResponse);
+}
+
+message SubmitJobRequest {
+    JobRequest request = 1;
+}
+
+message SubmitJobResponse {
+    JobResult result = 1;
+}
+
+// A JobRequest contains all the information necessary for BeeRemote to trigger
+// a job on the appropriate worker node(s) (like BeeSync nodes) based on the
+// particular request_type specified by the user. It is the external request
+// so it does not include automatically generated fields like the job ID or
+// anything about the work request(s) used to execute the job.
+message JobRequest {
+    string path = 1;    
+    // An arbitrary name for a job can be specified.
+    // Job names are optional and not need to be unique.
+    string name = 2;
+    int32 priority = 3;
+    // This is the string based ID, NOT an actual reference to an RST. 
+    // This ensures we don't have to include the full RST configuration,
+    // every time we send a Entry (commonly as part of a Job).
+    string remote_storage_target = 4;      
+    oneof type {
+        flex.SyncJob sync = 10;
+        flex.MockJob mock = 11;
+    }
+}
+
+// Job contains all the data from the original request plus the job ID and
+// current status. This is what is stored in the database for each path. We
+// don't embed results of a job in the Job because we store the Job and its
+// WorkResults (the latest work response from each worker node) in separate
+// key/value stores. This approach simplifies encoding and decoding these
+// messages and allows us to quickly look up jobs by path or ID.
+message Job {
+    string id = 1;
+    JobRequest request = 2;
+    google.protobuf.Timestamp created = 3;
+    // Status is usually updated using `GetStatus()` which returns a status a pointer to the status
+    // of the overall job. Because it returns a pointer the status and/or message can be updated
+    // directly. This allows you to modify one but not the other field (commonly message can change
+    // but status should not). The state should encompass the results for individual work requests.
+    // For example if some WRs are finished and others are still running the state would be RUNNING.
+    Status status = 4;
+    message Status {
+        State state = 1;
+        // Message should be used to return any additional details, particularly to aid in
+        // troubleshooting. When useful for troubleshooting, multiple historical messages may be
+        // concatenated together in the format: "oldest message; newer message; newest message".
+        // Especially if the request goes through multiple state transitions (for example error to
+        // failed) this can be helpful to troubleshoot the chain of events that lead to a failure.
+        // Note messages should not be concatenated for the entire life of a request, and should
+        // generally be reset when either the state transitions from an expected to another expected
+        // state (i.e., UNASSIGNED->SCHEDULED), or when a request experienced an error or failure and
+        // was automatically or manually retried. Don't keep the message intact across multiple failed
+        // retries as this (a) makes troubleshooting each failure difficult and (b) means the message
+        // size can eventually grow beyond a reasonable limit and cause other issues.
+        string message = 2;
+        google.protobuf.Timestamp updated = 3;
+    }
+    enum State {
+        // This state has no semantic value and the state should never be UNSPECIFIED unless there
+        // is a bug.
+        UNSPECIFIED = 0;
+        // Used when the state of a job cannot be definitively determined. For example if a work
+        // request is in an unknown state, or if all WRs are either in a terminal state or require
+        // user intervention, but they are not all in the same state.
+        UNKNOWN = 1;
+        // Initially all jobs start out in the UNASSIGNED state. This indicates BeeRemote has not
+        // had a chance to schedule work requests for the job to any worker node(s).
+        UNASSIGNED = 2;
+        // When all worker node(s) have accepted the job's work requests, but may be waiting on
+        // an available worker goroutine to pickup the request.
+        SCHEDULED = 3;
+        // When all work requests for this job are in progress.
+        RUNNING = 4;
+        // TODO: https://github.com/ThinkParQ/bee-remote/issues/16
+        // A user manually requested the job be paused.
+        // PAUSED = 5;
+        //
+        // ERROR indicates one or more transient/ephemeral error(s) occurred carrying out the job,
+        // but the worker nodes are still retrying the requests. Once the allowed number of retries
+        // or retry timeout is exceed, the work requests will fail, and the overall job state will
+        // be failed. In this state work requests are still active on the worker nodes, and jobs in
+        // the error state must be cancelled or complete successfully before new jobs are allowed
+        // for this RST+path combo.
+        ERROR = 6;
+        // FAILED indicates one or more unrecoverable errors occurred carrying out this job.
+        // Typically jobs fail due to some condition that requires user intervention, such as
+        // updating the RST configuration, but can also fail if work requests exceed the allowed
+        // number of retries or retry timeout. Failed indicates no work requests for this job are
+        // scheduled to the worker nodes (meaning it can be cancelled without talking to the
+        // workers), however any associated external IDs (such as a multipart upload) have not been
+        // invalidated, because (1) if we're able to resume the job later this avoids having to
+        // reupload/download data and (2) it is unlikely the RST is in a state we can interact with
+        // it anyway. As a result jobs in the failed state must be cancelled before new jobs are
+        // allowed for this RST+path combo.
+        //
+        // TODO: https://github.com/ThinkParQ/bee-remote/issues/27.
+        // Update the ERROR and FAILED state descriptions based on the decisions made around
+        // allowing jobs to be resumed after an error/failure occurs.
+        FAILED = 7;
+        // Jobs and their WRs may be cancelled manually be a user. This is a terminal state and no
+        // further changes are possible once a job enters this state.
+        CANCELLED = 8;
+        // If the job and its WRs completed successfully. This is a terminal state and no further 
+        // state changes are possible once a job enters this state.
+        COMPLETED = 9;
+    }
+    // Used as the upload ID for multipart uploads, or any other time 
+    // an external identifer is needed to coordinate a distributed transfer.    
+    string external_id = 5;
+}
+
+// The JobResult is used to return information about a job and its work results. Note the work
+// results are not directly embedded in the Job message to reduce the amount of data that needs to
+// be stored on-disk (notably work requests are deterministically generated).
+message JobResult {
+    Job job = 1;
+    repeated flex.WorkRequest work_requests = 2;
+    repeated WorkResult work_results = 3;
+
+    message WorkResult {
+        flex.Work work = 1;
+        string assigned_node = 2;
+        string assigned_pool = 3;
+    }
+}
+
+message UpdateJobRequest { 
+    oneof query {
+        // Updates at most one job.
+        QueryIdAndPath by_id_and_path = 1;
+        // Updates all jobs with this path.
+        string by_exact_path = 2;
+    }
+
+    message QueryIdAndPath {
+        string job_id = 1;
+        string path = 2;
+    }
+
+    NewState new_state = 3;
+    enum NewState {
+        UNSPECIFIED = 0;
+        CANCELLED = 1;
+        DELETED = 2;
+    }
+
+    // Normally completed jobs are ignored when making updates so some number of completed jobs can
+    // be automatically retained to determine when a path has been successfully synchronized with an
+    // RST. If a user wants to delete a completed job, or perhaps there was some bug and the user
+    // wants to go back through the steps to cancel a job to try and cleanup/recover, this can be
+    // done through a force update.
+    bool force_update = 4;
+}
+
+// Updating jobs can happen asynchronously or synchronously depending if wait is
+// set in the UpdateJobRequest.If wait == true then JobResponses will contain
+// one or morwe job responses with the updated status of the job(s). Otherwise
+// it will be empty.
+message UpdateJobResponse {
+    // If the newState could not be applied to any of the jobs then ok will be
+    // false. Inspect the message and individual job responses to troubleshoot
+    // further. Generally the message will indicate any internal errors whereas
+    // the status of individual jobs will indicate problems applying the new
+    // state to that particular job.
+    bool ok = 1;
+    string message = 2;
+    repeated JobResult results = 3;
+}
+
+// The number of query options is limited because we store jobs in a key/value
+// store where the key is essentially the equivalent of an index in a
+// traditional RDBMS. To optimize for multiple search terms we need to use
+// multiple k/v stores using a different item we want to query for as the key.
+// With the MapStore used as a wrapper around the BadgerDB k/v store we don't
+// have to duplicate all information and can use the Metadata field of the
+// MapStore to create references to data stored in other MapStores. 
+message GetJobsRequest {
+   oneof query {
+    // Returns at most one Job.
+    QueryIdAndPath by_job_id_and_path = 1;
+    // Returns all Jobs for the specified path.
+    string by_exact_path = 2;
+    // Returns all Jobs for the specified paths.
+    // All jobs can be returned by specifying "/".
+    string by_path_prefix = 3;
+   }
+
+    message QueryIdAndPath {
+        string job_id = 1;
+        string path = 2;
+    }
+   bool include_work_requests = 4;
+   // Set to true to also return work results details.
+   bool include_work_results = 5;
+   // By default we just return the latest results known to BeeRemote and don't
+   // pull the latest work results from worker nodes and update the job status.
+   // We can optionally request an update from all worker nodes for each job 
+   // and also update the job status, however this inccurs extra overhead as we'll
+   // have to lock the entries and send extra messages to get the latest status.
+   // Generally this should only be used to get the latest updates from a single 
+   // job or all jobs for a particular path. 
+   bool update_work_results = 6;
+}
+
+message GetJobsResponse {
+    string path = 1;
+    repeated JobResult results = 2;
+}
+
+message UpdateWorkRequest {
+    flex.Work work = 1;
+}
+
+message UpdateWorkResponse {
+    // We use our own empty message instead of google.protobuf.Empty to ensure backwards
+    // compatibility should we need to add fields in the future.
+}

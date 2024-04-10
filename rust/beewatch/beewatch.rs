@@ -6,7 +6,7 @@ pub struct Event {
     pub format_version_major: u32,
     #[prost(uint32, tag = "2")]
     pub format_version_minor: u32,
-    /// TODO (<https://github.com/ThinkParQ/bee-watch/issues/15>):
+    /// TODO: <https://github.com/ThinkParQ/bee-watch/issues/16>
     /// This is not implemented yet in the meta service, however for now we'll have BeeWatch generate sequence IDs.
     /// Update this as needed based on final meta implementation and remove current approach in socket.go.
     #[prost(uint64, tag = "3")]

@@ -1,0 +1,939 @@
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SubmitJobRequest {
+    #[prost(message, optional, tag = "1")]
+    pub request: ::core::option::Option<JobRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SubmitJobResponse {
+    #[prost(message, optional, tag = "1")]
+    pub result: ::core::option::Option<JobResult>,
+}
+/// A JobRequest contains all the information necessary for BeeRemote to trigger
+/// a job on the appropriate worker node(s) (like BeeSync nodes) based on the
+/// particular request_type specified by the user. It is the external request
+/// so it does not include automatically generated fields like the job ID or
+/// anything about the work request(s) used to execute the job.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobRequest {
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
+    /// An arbitrary name for a job can be specified.
+    /// Job names are optional and not need to be unique.
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(int32, tag = "3")]
+    pub priority: i32,
+    /// This is the string based ID, NOT an actual reference to an RST.
+    /// This ensures we don't have to include the full RST configuration,
+    /// every time we send a Entry (commonly as part of a Job).
+    #[prost(string, tag = "4")]
+    pub remote_storage_target: ::prost::alloc::string::String,
+    #[prost(oneof = "job_request::Type", tags = "10, 11")]
+    pub r#type: ::core::option::Option<job_request::Type>,
+}
+/// Nested message and enum types in `JobRequest`.
+pub mod job_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Type {
+        #[prost(message, tag = "10")]
+        Sync(super::super::flex::SyncJob),
+        #[prost(message, tag = "11")]
+        Mock(super::super::flex::MockJob),
+    }
+}
+/// Job contains all the data from the original request plus the job ID and
+/// current status. This is what is stored in the database for each path. We
+/// don't embed results of a job in the Job because we store the Job and its
+/// WorkResults (the latest work response from each worker node) in separate
+/// key/value stores. This approach simplifies encoding and decoding these
+/// messages and allows us to quickly look up jobs by path or ID.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Job {
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub request: ::core::option::Option<JobRequest>,
+    #[prost(message, optional, tag = "3")]
+    pub created: ::core::option::Option<::prost_types::Timestamp>,
+    /// Status is usually updated using `GetStatus()` which returns a status a pointer to the status
+    /// of the overall job. Because it returns a pointer the status and/or message can be updated
+    /// directly. This allows you to modify one but not the other field (commonly message can change
+    /// but status should not). The state should encompass the results for individual work requests.
+    /// For example if some WRs are finished and others are still running the state would be RUNNING.
+    #[prost(message, optional, tag = "4")]
+    pub status: ::core::option::Option<job::Status>,
+    /// Used as the upload ID for multipart uploads, or any other time
+    /// an external identifer is needed to coordinate a distributed transfer.
+    #[prost(string, tag = "5")]
+    pub external_id: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `Job`.
+pub mod job {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct Status {
+        #[prost(enumeration = "State", tag = "1")]
+        pub state: i32,
+        /// Message should be used to return any additional details, particularly to aid in
+        /// troubleshooting. When useful for troubleshooting, multiple historical messages may be
+        /// concatenated together in the format: "oldest message; newer message; newest message".
+        /// Especially if the request goes through multiple state transitions (for example error to
+        /// failed) this can be helpful to troubleshoot the chain of events that lead to a failure.
+        /// Note messages should not be concatenated for the entire life of a request, and should
+        /// generally be reset when either the state transitions from an expected to another expected
+        /// state (i.e., UNASSIGNED->SCHEDULED), or when a request experienced an error or failure and
+        /// was automatically or manually retried. Don't keep the message intact across multiple failed
+        /// retries as this (a) makes troubleshooting each failure difficult and (b) means the message
+        /// size can eventually grow beyond a reasonable limit and cause other issues.
+        #[prost(string, tag = "2")]
+        pub message: ::prost::alloc::string::String,
+        #[prost(message, optional, tag = "3")]
+        pub updated: ::core::option::Option<::prost_types::Timestamp>,
+    }
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// This state has no semantic value and the state should never be UNSPECIFIED unless there
+        /// is a bug.
+        Unspecified = 0,
+        /// Used when the state of a job cannot be definitively determined. For example if a work
+        /// request is in an unknown state, or if all WRs are either in a terminal state or require
+        /// user intervention, but they are not all in the same state.
+        Unknown = 1,
+        /// Initially all jobs start out in the UNASSIGNED state. This indicates BeeRemote has not
+        /// had a chance to schedule work requests for the job to any worker node(s).
+        Unassigned = 2,
+        /// When all worker node(s) have accepted the job's work requests, but may be waiting on
+        /// an available worker goroutine to pickup the request.
+        Scheduled = 3,
+        /// When all work requests for this job are in progress.
+        Running = 4,
+        /// TODO: <https://github.com/ThinkParQ/bee-remote/issues/16>
+        /// A user manually requested the job be paused.
+        /// PAUSED = 5;
+        ///
+        /// ERROR indicates one or more transient/ephemeral error(s) occurred carrying out the job,
+        /// but the worker nodes are still retrying the requests. Once the allowed number of retries
+        /// or retry timeout is exceed, the work requests will fail, and the overall job state will
+        /// be failed. In this state work requests are still active on the worker nodes, and jobs in
+        /// the error state must be cancelled or complete successfully before new jobs are allowed
+        /// for this RST+path combo.
+        Error = 6,
+        /// FAILED indicates one or more unrecoverable errors occurred carrying out this job.
+        /// Typically jobs fail due to some condition that requires user intervention, such as
+        /// updating the RST configuration, but can also fail if work requests exceed the allowed
+        /// number of retries or retry timeout. Failed indicates no work requests for this job are
+        /// scheduled to the worker nodes (meaning it can be cancelled without talking to the
+        /// workers), however any associated external IDs (such as a multipart upload) have not been
+        /// invalidated, because (1) if we're able to resume the job later this avoids having to
+        /// reupload/download data and (2) it is unlikely the RST is in a state we can interact with
+        /// it anyway. As a result jobs in the failed state must be cancelled before new jobs are
+        /// allowed for this RST+path combo.
+        ///
+        /// TODO: <https://github.com/ThinkParQ/bee-remote/issues/27.>
+        /// Update the ERROR and FAILED state descriptions based on the decisions made around
+        /// allowing jobs to be resumed after an error/failure occurs.
+        Failed = 7,
+        /// Jobs and their WRs may be cancelled manually be a user. This is a terminal state and no
+        /// further changes are possible once a job enters this state.
+        Cancelled = 8,
+        /// If the job and its WRs completed successfully. This is a terminal state and no further
+        /// state changes are possible once a job enters this state.
+        Completed = 9,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                State::Unspecified => "UNSPECIFIED",
+                State::Unknown => "UNKNOWN",
+                State::Unassigned => "UNASSIGNED",
+                State::Scheduled => "SCHEDULED",
+                State::Running => "RUNNING",
+                State::Error => "ERROR",
+                State::Failed => "FAILED",
+                State::Cancelled => "CANCELLED",
+                State::Completed => "COMPLETED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UNKNOWN" => Some(Self::Unknown),
+                "UNASSIGNED" => Some(Self::Unassigned),
+                "SCHEDULED" => Some(Self::Scheduled),
+                "RUNNING" => Some(Self::Running),
+                "ERROR" => Some(Self::Error),
+                "FAILED" => Some(Self::Failed),
+                "CANCELLED" => Some(Self::Cancelled),
+                "COMPLETED" => Some(Self::Completed),
+                _ => None,
+            }
+        }
+    }
+}
+/// The JobResult is used to return information about a job and its work results. Note the work
+/// results are not directly embedded in the Job message to reduce the amount of data that needs to
+/// be stored on-disk (notably work requests are deterministically generated).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobResult {
+    #[prost(message, optional, tag = "1")]
+    pub job: ::core::option::Option<Job>,
+    #[prost(message, repeated, tag = "2")]
+    pub work_requests: ::prost::alloc::vec::Vec<super::flex::WorkRequest>,
+    #[prost(message, repeated, tag = "3")]
+    pub work_results: ::prost::alloc::vec::Vec<job_result::WorkResult>,
+}
+/// Nested message and enum types in `JobResult`.
+pub mod job_result {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct WorkResult {
+        #[prost(message, optional, tag = "1")]
+        pub work: ::core::option::Option<super::super::flex::Work>,
+        #[prost(string, tag = "2")]
+        pub assigned_node: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub assigned_pool: ::prost::alloc::string::String,
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateJobRequest {
+    #[prost(enumeration = "update_job_request::NewState", tag = "3")]
+    pub new_state: i32,
+    /// Normally completed jobs are ignored when making updates so some number of completed jobs can
+    /// be automatically retained to determine when a path has been successfully synchronized with an
+    /// RST. If a user wants to delete a completed job, or perhaps there was some bug and the user
+    /// wants to go back through the steps to cancel a job to try and cleanup/recover, this can be
+    /// done through a force update.
+    #[prost(bool, tag = "4")]
+    pub force_update: bool,
+    #[prost(oneof = "update_job_request::Query", tags = "1, 2")]
+    pub query: ::core::option::Option<update_job_request::Query>,
+}
+/// Nested message and enum types in `UpdateJobRequest`.
+pub mod update_job_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct QueryIdAndPath {
+        #[prost(string, tag = "1")]
+        pub job_id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub path: ::prost::alloc::string::String,
+    }
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum NewState {
+        Unspecified = 0,
+        Cancelled = 1,
+        Deleted = 2,
+    }
+    impl NewState {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                NewState::Unspecified => "UNSPECIFIED",
+                NewState::Cancelled => "CANCELLED",
+                NewState::Deleted => "DELETED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "CANCELLED" => Some(Self::Cancelled),
+                "DELETED" => Some(Self::Deleted),
+                _ => None,
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Query {
+        /// Updates at most one job.
+        #[prost(message, tag = "1")]
+        ByIdAndPath(QueryIdAndPath),
+        /// Updates all jobs with this path.
+        #[prost(string, tag = "2")]
+        ByExactPath(::prost::alloc::string::String),
+    }
+}
+/// Updating jobs can happen asynchronously or synchronously depending if wait is
+/// set in the UpdateJobRequest.If wait == true then JobResponses will contain
+/// one or morwe job responses with the updated status of the job(s). Otherwise
+/// it will be empty.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateJobResponse {
+    /// If the newState could not be applied to any of the jobs then ok will be
+    /// false. Inspect the message and individual job responses to troubleshoot
+    /// further. Generally the message will indicate any internal errors whereas
+    /// the status of individual jobs will indicate problems applying the new
+    /// state to that particular job.
+    #[prost(bool, tag = "1")]
+    pub ok: bool,
+    #[prost(string, tag = "2")]
+    pub message: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub results: ::prost::alloc::vec::Vec<JobResult>,
+}
+/// The number of query options is limited because we store jobs in a key/value
+/// store where the key is essentially the equivalent of an index in a
+/// traditional RDBMS. To optimize for multiple search terms we need to use
+/// multiple k/v stores using a different item we want to query for as the key.
+/// With the MapStore used as a wrapper around the BadgerDB k/v store we don't
+/// have to duplicate all information and can use the Metadata field of the
+/// MapStore to create references to data stored in other MapStores.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetJobsRequest {
+    #[prost(bool, tag = "4")]
+    pub include_work_requests: bool,
+    /// Set to true to also return work results details.
+    #[prost(bool, tag = "5")]
+    pub include_work_results: bool,
+    /// By default we just return the latest results known to BeeRemote and don't
+    /// pull the latest work results from worker nodes and update the job status.
+    /// We can optionally request an update from all worker nodes for each job
+    /// and also update the job status, however this inccurs extra overhead as we'll
+    /// have to lock the entries and send extra messages to get the latest status.
+    /// Generally this should only be used to get the latest updates from a single
+    /// job or all jobs for a particular path.
+    #[prost(bool, tag = "6")]
+    pub update_work_results: bool,
+    #[prost(oneof = "get_jobs_request::Query", tags = "1, 2, 3")]
+    pub query: ::core::option::Option<get_jobs_request::Query>,
+}
+/// Nested message and enum types in `GetJobsRequest`.
+pub mod get_jobs_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct QueryIdAndPath {
+        #[prost(string, tag = "1")]
+        pub job_id: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub path: ::prost::alloc::string::String,
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Query {
+        /// Returns at most one Job.
+        #[prost(message, tag = "1")]
+        ByJobIdAndPath(QueryIdAndPath),
+        /// Returns all Jobs for the specified path.
+        #[prost(string, tag = "2")]
+        ByExactPath(::prost::alloc::string::String),
+        /// Returns all Jobs for the specified paths.
+        /// All jobs can be returned by specifying "/".
+        #[prost(string, tag = "3")]
+        ByPathPrefix(::prost::alloc::string::String),
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetJobsResponse {
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "2")]
+    pub results: ::prost::alloc::vec::Vec<JobResult>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateWorkRequest {
+    #[prost(message, optional, tag = "1")]
+    pub work: ::core::option::Option<super::flex::Work>,
+}
+/// We use our own empty message instead of google.protobuf.Empty to ensure backwards
+/// compatibility should we need to add fields in the future.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateWorkResponse {}
+/// Generated client implementations.
+pub mod bee_remote_client {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
+    /// Externally facing RPCs and messages clients and worker nodes use to interact
+    /// with BeeRemote.
+    #[derive(Debug, Clone)]
+    pub struct BeeRemoteClient<T> {
+        inner: tonic::client::Grpc<T>,
+    }
+    impl BeeRemoteClient<tonic::transport::Channel> {
+        /// Attempt to create a new client by connecting to a given endpoint.
+        pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
+        where
+            D: TryInto<tonic::transport::Endpoint>,
+            D::Error: Into<StdError>,
+        {
+            let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
+            Ok(Self::new(conn))
+        }
+    }
+    impl<T> BeeRemoteClient<T>
+    where
+        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+    {
+        pub fn new(inner: T) -> Self {
+            let inner = tonic::client::Grpc::new(inner);
+            Self { inner }
+        }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> BeeRemoteClient<InterceptedService<T, F>>
+        where
+            F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
+            T: tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+                Response = http::Response<
+                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                >,
+            >,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
+        {
+            BeeRemoteClient::new(InterceptedService::new(inner, interceptor))
+        }
+        /// Compress requests with the given encoding.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
+            self
+        }
+        /// Enable decompressing responses.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
+        pub async fn submit_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SubmitJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SubmitJobResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/SubmitJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "SubmitJob"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn update_job(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateJobResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/UpdateJob",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdateJob"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn get_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetJobsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::GetJobsResponse>>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/GetJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "GetJobs"));
+            self.inner.server_streaming(req, path, codec).await
+        }
+        /// Rather then BeeRemote connecting to a worker node and using a streaming
+        /// RPC to return work results, we have BeeRemote expose a unary RPC that is
+        /// used to send results back as they are available. This allows us to avoid
+        /// complex error handling needed to reliably use streams, and more easily
+        /// adhere to our requirement that work requests are always owned by
+        /// BeeRemote or its worker nodes and no polling is needed to check on the
+        /// state of the requests. With this approach either side can make an unary
+        /// request for a particular work request, and look at the response to verify
+        /// ownership has successfully move to the other node (i.e., the node has
+        /// committed the request to its on-disk database).
+        pub async fn update_work(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateWorkRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateWorkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/UpdateWork",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdateWork"));
+            self.inner.unary(req, path, codec).await
+        }
+    }
+}
+/// Generated server implementations.
+pub mod bee_remote_server {
+    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    use tonic::codegen::*;
+    /// Generated trait containing gRPC methods that should be implemented for use with BeeRemoteServer.
+    #[async_trait]
+    pub trait BeeRemote: Send + Sync + 'static {
+        async fn submit_job(
+            &self,
+            request: tonic::Request<super::SubmitJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SubmitJobResponse>,
+            tonic::Status,
+        >;
+        async fn update_job(
+            &self,
+            request: tonic::Request<super::UpdateJobRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateJobResponse>,
+            tonic::Status,
+        >;
+        /// Server streaming response type for the GetJobs method.
+        type GetJobsStream: tonic::codegen::tokio_stream::Stream<
+                Item = std::result::Result<super::GetJobsResponse, tonic::Status>,
+            >
+            + Send
+            + 'static;
+        async fn get_jobs(
+            &self,
+            request: tonic::Request<super::GetJobsRequest>,
+        ) -> std::result::Result<tonic::Response<Self::GetJobsStream>, tonic::Status>;
+        /// Rather then BeeRemote connecting to a worker node and using a streaming
+        /// RPC to return work results, we have BeeRemote expose a unary RPC that is
+        /// used to send results back as they are available. This allows us to avoid
+        /// complex error handling needed to reliably use streams, and more easily
+        /// adhere to our requirement that work requests are always owned by
+        /// BeeRemote or its worker nodes and no polling is needed to check on the
+        /// state of the requests. With this approach either side can make an unary
+        /// request for a particular work request, and look at the response to verify
+        /// ownership has successfully move to the other node (i.e., the node has
+        /// committed the request to its on-disk database).
+        async fn update_work(
+            &self,
+            request: tonic::Request<super::UpdateWorkRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateWorkResponse>,
+            tonic::Status,
+        >;
+    }
+    /// Externally facing RPCs and messages clients and worker nodes use to interact
+    /// with BeeRemote.
+    #[derive(Debug)]
+    pub struct BeeRemoteServer<T: BeeRemote> {
+        inner: _Inner<T>,
+        accept_compression_encodings: EnabledCompressionEncodings,
+        send_compression_encodings: EnabledCompressionEncodings,
+        max_decoding_message_size: Option<usize>,
+        max_encoding_message_size: Option<usize>,
+    }
+    struct _Inner<T>(Arc<T>);
+    impl<T: BeeRemote> BeeRemoteServer<T> {
+        pub fn new(inner: T) -> Self {
+            Self::from_arc(Arc::new(inner))
+        }
+        pub fn from_arc(inner: Arc<T>) -> Self {
+            let inner = _Inner(inner);
+            Self {
+                inner,
+                accept_compression_encodings: Default::default(),
+                send_compression_encodings: Default::default(),
+                max_decoding_message_size: None,
+                max_encoding_message_size: None,
+            }
+        }
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> InterceptedService<Self, F>
+        where
+            F: tonic::service::Interceptor,
+        {
+            InterceptedService::new(Self::new(inner), interceptor)
+        }
+        /// Enable decompressing requests with the given encoding.
+        #[must_use]
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.accept_compression_encodings.enable(encoding);
+            self
+        }
+        /// Compress responses with the given encoding, if the client supports it.
+        #[must_use]
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.send_compression_encodings.enable(encoding);
+            self
+        }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.max_decoding_message_size = Some(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.max_encoding_message_size = Some(limit);
+            self
+        }
+    }
+    impl<T, B> tonic::codegen::Service<http::Request<B>> for BeeRemoteServer<T>
+    where
+        T: BeeRemote,
+        B: Body + Send + 'static,
+        B::Error: Into<StdError> + Send + 'static,
+    {
+        type Response = http::Response<tonic::body::BoxBody>;
+        type Error = std::convert::Infallible;
+        type Future = BoxFuture<Self::Response, Self::Error>;
+        fn poll_ready(
+            &mut self,
+            _cx: &mut Context<'_>,
+        ) -> Poll<std::result::Result<(), Self::Error>> {
+            Poll::Ready(Ok(()))
+        }
+        fn call(&mut self, req: http::Request<B>) -> Self::Future {
+            let inner = self.inner.clone();
+            match req.uri().path() {
+                "/beeremote.BeeRemote/SubmitJob" => {
+                    #[allow(non_camel_case_types)]
+                    struct SubmitJobSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::SubmitJobRequest>
+                    for SubmitJobSvc<T> {
+                        type Response = super::SubmitJobResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::SubmitJobRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::submit_job(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = SubmitJobSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/UpdateJob" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateJobSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::UpdateJobRequest>
+                    for UpdateJobSvc<T> {
+                        type Response = super::UpdateJobResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::UpdateJobRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::update_job(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateJobSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/GetJobs" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetJobsSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::ServerStreamingService<super::GetJobsRequest>
+                    for GetJobsSvc<T> {
+                        type Response = super::GetJobsResponse;
+                        type ResponseStream = T::GetJobsStream;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::ResponseStream>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetJobsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::get_jobs(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = GetJobsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.server_streaming(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/UpdateWork" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateWorkSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::UpdateWorkRequest>
+                    for UpdateWorkSvc<T> {
+                        type Response = super::UpdateWorkResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::UpdateWorkRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::update_work(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateWorkSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                _ => {
+                    Box::pin(async move {
+                        Ok(
+                            http::Response::builder()
+                                .status(200)
+                                .header("grpc-status", "12")
+                                .header("content-type", "application/grpc")
+                                .body(empty_body())
+                                .unwrap(),
+                        )
+                    })
+                }
+            }
+        }
+    }
+    impl<T: BeeRemote> Clone for BeeRemoteServer<T> {
+        fn clone(&self) -> Self {
+            let inner = self.inner.clone();
+            Self {
+                inner,
+                accept_compression_encodings: self.accept_compression_encodings,
+                send_compression_encodings: self.send_compression_encodings,
+                max_decoding_message_size: self.max_decoding_message_size,
+                max_encoding_message_size: self.max_encoding_message_size,
+            }
+        }
+    }
+    impl<T: BeeRemote> Clone for _Inner<T> {
+        fn clone(&self) -> Self {
+            Self(Arc::clone(&self.0))
+        }
+    }
+    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
+        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            write!(f, "{:?}", self.0)
+        }
+    }
+    impl<T: BeeRemote> tonic::server::NamedService for BeeRemoteServer<T> {
+        const NAME: &'static str = "beeremote.BeeRemote";
+    }
+}
