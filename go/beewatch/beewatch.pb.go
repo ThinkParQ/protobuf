@@ -119,7 +119,7 @@ type Event struct {
 	// The BeeGFS packet format defines these as a uint16 but protobuf does not support uint16 types (https://protobuf.dev/programming-guides/proto3/#scalar).
 	FormatVersionMajor uint32 `protobuf:"varint,1,opt,name=format_version_major,json=formatVersionMajor,proto3" json:"format_version_major,omitempty"`
 	FormatVersionMinor uint32 `protobuf:"varint,2,opt,name=format_version_minor,json=formatVersionMinor,proto3" json:"format_version_minor,omitempty"`
-	// TODO (https://github.com/ThinkParQ/bee-watch/issues/15):
+	// TODO: https://github.com/ThinkParQ/bee-watch/issues/16
 	// This is not implemented yet in the meta service, however for now we'll have BeeWatch generate sequence IDs.
 	// Update this as needed based on final meta implementation and remove current approach in socket.go.
 	SeqId          uint64     `protobuf:"varint,3,opt,name=seq_id,json=seqId,proto3" json:"seq_id,omitempty"`
