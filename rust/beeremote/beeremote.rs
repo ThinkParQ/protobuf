@@ -382,6 +382,15 @@ pub struct UpdateWorkRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateWorkResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetRstConfigRequest {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetRstConfigResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub rsts: ::prost::alloc::vec::Vec<super::flex::RemoteStorageTarget>,
+}
 /// Generated client implementations.
 pub mod bee_remote_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -544,16 +553,15 @@ pub mod bee_remote_client {
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "GetJobs"));
             self.inner.server_streaming(req, path, codec).await
         }
-        /// Rather then BeeRemote connecting to a worker node and using a streaming
-        /// RPC to return work results, we have BeeRemote expose a unary RPC that is
-        /// used to send results back as they are available. This allows us to avoid
-        /// complex error handling needed to reliably use streams, and more easily
-        /// adhere to our requirement that work requests are always owned by
-        /// BeeRemote or its worker nodes and no polling is needed to check on the
-        /// state of the requests. With this approach either side can make an unary
-        /// request for a particular work request, and look at the response to verify
-        /// ownership has successfully move to the other node (i.e., the node has
-        /// committed the request to its on-disk database).
+        /// Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
+        /// results, we have BeeRemote expose a unary RPC that is used to send results back as they are
+        /// available. This allows us to avoid complex error handling needed to reliably use streams, and
+        /// more easily adhere to our requirement that work requests are always owned by BeeRemote or its
+        /// worker nodes and no polling is needed to check on the state of the requests. With this
+        /// approach either side can make an unary request for a particular work request, and look at the
+        /// response to verify ownership has successfully move to the other node (i.e., the node has
+        /// committed the request to its on-disk database). IMPORTANT: This is only intended to be called
+        /// by worker nodes.
         pub async fn update_work(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateWorkRequest>,
@@ -577,6 +585,31 @@ pub mod bee_remote_client {
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdateWork"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn get_rst_config(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetRstConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetRstConfigResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/GetRSTConfig",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "GetRSTConfig"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -612,21 +645,27 @@ pub mod bee_remote_server {
             &self,
             request: tonic::Request<super::GetJobsRequest>,
         ) -> std::result::Result<tonic::Response<Self::GetJobsStream>, tonic::Status>;
-        /// Rather then BeeRemote connecting to a worker node and using a streaming
-        /// RPC to return work results, we have BeeRemote expose a unary RPC that is
-        /// used to send results back as they are available. This allows us to avoid
-        /// complex error handling needed to reliably use streams, and more easily
-        /// adhere to our requirement that work requests are always owned by
-        /// BeeRemote or its worker nodes and no polling is needed to check on the
-        /// state of the requests. With this approach either side can make an unary
-        /// request for a particular work request, and look at the response to verify
-        /// ownership has successfully move to the other node (i.e., the node has
-        /// committed the request to its on-disk database).
+        /// Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
+        /// results, we have BeeRemote expose a unary RPC that is used to send results back as they are
+        /// available. This allows us to avoid complex error handling needed to reliably use streams, and
+        /// more easily adhere to our requirement that work requests are always owned by BeeRemote or its
+        /// worker nodes and no polling is needed to check on the state of the requests. With this
+        /// approach either side can make an unary request for a particular work request, and look at the
+        /// response to verify ownership has successfully move to the other node (i.e., the node has
+        /// committed the request to its on-disk database). IMPORTANT: This is only intended to be called
+        /// by worker nodes.
         async fn update_work(
             &self,
             request: tonic::Request<super::UpdateWorkRequest>,
         ) -> std::result::Result<
             tonic::Response<super::UpdateWorkResponse>,
+            tonic::Status,
+        >;
+        async fn get_rst_config(
+            &self,
+            request: tonic::Request<super::GetRstConfigRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetRstConfigResponse>,
             tonic::Status,
         >;
     }
@@ -881,6 +920,52 @@ pub mod bee_remote_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = UpdateWorkSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/GetRSTConfig" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetRSTConfigSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::GetRstConfigRequest>
+                    for GetRSTConfigSvc<T> {
+                        type Response = super::GetRstConfigResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetRstConfigRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::get_rst_config(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = GetRSTConfigSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
