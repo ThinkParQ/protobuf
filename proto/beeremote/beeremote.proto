@@ -11,17 +11,17 @@ service BeeRemote {
     rpc SubmitJob(SubmitJobRequest) returns (SubmitJobResponse);
     rpc UpdateJob(UpdateJobRequest) returns(UpdateJobResponse);    
     rpc GetJobs(GetJobsRequest) returns (stream GetJobsResponse);
-    // Rather then BeeRemote connecting to a worker node and using a streaming
-    // RPC to return work results, we have BeeRemote expose a unary RPC that is
-    // used to send results back as they are available. This allows us to avoid
-    // complex error handling needed to reliably use streams, and more easily
-    // adhere to our requirement that work requests are always owned by
-    // BeeRemote or its worker nodes and no polling is needed to check on the
-    // state of the requests. With this approach either side can make an unary
-    // request for a particular work request, and look at the response to verify
-    // ownership has successfully move to the other node (i.e., the node has 
-    // committed the request to its on-disk database).
+    // Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
+    // results, we have BeeRemote expose a unary RPC that is used to send results back as they are
+    // available. This allows us to avoid complex error handling needed to reliably use streams, and
+    // more easily adhere to our requirement that work requests are always owned by BeeRemote or its
+    // worker nodes and no polling is needed to check on the state of the requests. With this
+    // approach either side can make an unary request for a particular work request, and look at the
+    // response to verify ownership has successfully move to the other node (i.e., the node has
+    // committed the request to its on-disk database). IMPORTANT: This is only intended to be called
+    // by worker nodes.
     rpc UpdateWork(UpdateWorkRequest) returns (UpdateWorkResponse);
+    rpc GetRSTConfig(GetRSTConfigRequest) returns (GetRSTConfigResponse);
 }
 
 message SubmitJobRequest {
@@ -244,4 +244,11 @@ message UpdateWorkRequest {
 message UpdateWorkResponse {
     // We use our own empty message instead of google.protobuf.Empty to ensure backwards
     // compatibility should we need to add fields in the future.
+}
+
+message GetRSTConfigRequest {
+}
+
+message GetRSTConfigResponse {
+    repeated flex.RemoteStorageTarget rsts = 1;
 }
