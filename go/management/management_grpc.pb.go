@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v5.26.1
-// source: beegfs.proto
+// source: management.proto
 
-package beegfs
+package management
 
 import (
 	context "context"
@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Management_GetNodes_FullMethodName        = "/beegfs.Management/GetNodes"
-	Management_GetTargets_FullMethodName      = "/beegfs.Management/GetTargets"
-	Management_GetBuddyGroups_FullMethodName  = "/beegfs.Management/GetBuddyGroups"
-	Management_GetStoragePools_FullMethodName = "/beegfs.Management/GetStoragePools"
-	Management_SetAlias_FullMethodName        = "/beegfs.Management/SetAlias"
+	Management_GetNodes_FullMethodName        = "/management.Management/GetNodes"
+	Management_GetTargets_FullMethodName      = "/management.Management/GetTargets"
+	Management_GetBuddyGroups_FullMethodName  = "/management.Management/GetBuddyGroups"
+	Management_GetStoragePools_FullMethodName = "/management.Management/GetStoragePools"
+	Management_SetAlias_FullMethodName        = "/management.Management/SetAlias"
 )
 
 // ManagementClient is the client API for Management service.
@@ -34,7 +34,7 @@ type ManagementClient interface {
 	GetNodes(ctx context.Context, in *GetNodesRequest, opts ...grpc.CallOption) (*GetNodesResponse, error)
 	// Gets the full list of BeeGFS targets
 	GetTargets(ctx context.Context, in *GetTargetsRequest, opts ...grpc.CallOption) (*GetTargetsResponse, error)
-	// Gets the full list of BeeGFS buddy groups
+	// Gets the full list of BeeGFS buddbeegfsy groups
 	GetBuddyGroups(ctx context.Context, in *GetBuddyGroupsRequest, opts ...grpc.CallOption) (*GetBuddyGroupsResponse, error)
 	// Gets the full list of BeeGFS storage pools
 	GetStoragePools(ctx context.Context, in *GetStoragePoolsRequest, opts ...grpc.CallOption) (*GetStoragePoolsResponse, error)
@@ -103,7 +103,7 @@ type ManagementServer interface {
 	GetNodes(context.Context, *GetNodesRequest) (*GetNodesResponse, error)
 	// Gets the full list of BeeGFS targets
 	GetTargets(context.Context, *GetTargetsRequest) (*GetTargetsResponse, error)
-	// Gets the full list of BeeGFS buddy groups
+	// Gets the full list of BeeGFS buddbeegfsy groups
 	GetBuddyGroups(context.Context, *GetBuddyGroupsRequest) (*GetBuddyGroupsResponse, error)
 	// Gets the full list of BeeGFS storage pools
 	GetStoragePools(context.Context, *GetStoragePoolsRequest) (*GetStoragePoolsResponse, error)
@@ -238,7 +238,7 @@ func _Management_SetAlias_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Management_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "beegfs.Management",
+	ServiceName: "management.Management",
 	HandlerType: (*ManagementServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -263,5 +263,5 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "beegfs.proto",
+	Metadata: "management.proto",
 }

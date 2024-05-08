@@ -145,16 +145,9 @@ To add a new language amend the Makefile as follows:
    1. For example for Go something like `option go_package =
       "github.com/thinkparq/protobuf/go/beewatch";` is required so cross
       package imports work correctly.
-3. Add a new variable `<LANGUAGE>_GENERATED_FILES` that transforms the `.proto`
-   file names returned by `PROTO_FILES` into corresponding files to generate for
-   the target language within the correct output directory. 
-4. Modify the `protos` target to add the generated list of files as a
-   dependency.
-5. Create a new pattern rule for the target language to generate the appropriate
-   source files from the `.proto` files with the correct `protoc` (or other) command for
-   the new language in the correct output directory. Ensure to any `_out` flags or similar are set to the
-   correct language specific output directory (can be extracted from the target file using `$(dir $@)`).
-6. Add the new output directory to the find command in the `test` target.
+3. Modify the `protos` target to do whatever is needed to build the new language. Most likely
+   this will be adding some language specific output parameters to the existing `protoc` call.
+4. Add the new output directory to the find command in the `test` target.
 
 In general, you can likely just copy the code for one of the existing languages and modify it to your needs.
 

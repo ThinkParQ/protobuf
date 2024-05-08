@@ -2,7 +2,7 @@ syntax = "proto3";
 package beeremote;
 option go_package = "github.com/thinkparq/protobuf/go/beeremote";
 
-import "flex/flex.proto";
+import "flex.proto";
 import "google/protobuf/timestamp.proto";
 
 // Externally facing RPCs and messages clients and worker nodes use to interact
