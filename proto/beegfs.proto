@@ -7,7 +7,7 @@ enum EntityType {
   NODE = 1;
   TARGET = 2;
   BUDDY_GROUP = 3;
-  STORAGE_POOL = 4;
+  POOL = 4;
 }
 
 enum NodeType {
@@ -55,8 +55,6 @@ message LegacyId {
   // BeeGFS node type. Despite the name, also applies to other entity types (which currently can
   // only be on a node of their own type, so it's still correct).
   NodeType node_type = 2;
-  // The referred entities type.
-  EntityType entity_type = 3;
 }
 
 
@@ -70,22 +68,11 @@ message LegacyId {
 message EntityIdSet {
   // The new style globally unique identifier. Globally unique - identifies an entity from all types
   // without any additional context.
-  uint64 uid = 1;
+  optional int64 uid = 1;
   // The user definable alias of an entity. Globally unique - identifies an entity from all types
   // without any additional context.
-  string alias = 2;
+  optional string alias = 2;
   // The old style numeric Id-NodeType combination. NOT globally unique - entity type depends on
   // the context.
-  LegacyId legacy_id = 3;
-}
-
-// Contains one of the existing identifiers used to uniquely identify an entity like a specific
-// node, target, ... . This is meant for requests that identify one or more entities. Only one
-// unique identifier is needed.
-message EntityIdVariant {
-  oneof variant {
-    uint64 uid = 1;
-    LegacyId legacy_id = 2;
-    string alias = 3;
-  }
+  optional LegacyId legacy_id = 3;
 }
