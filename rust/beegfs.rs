@@ -11,9 +11,6 @@ pub struct LegacyId {
     /// only be on a node of their own type, so it's still correct).
     #[prost(enumeration = "NodeType", tag = "2")]
     pub node_type: i32,
-    /// The referred entities type.
-    #[prost(enumeration = "EntityType", tag = "3")]
-    pub entity_type: i32,
 }
 /// Contains all existing identifiers used to uniquely identify an entity like a specific node,
 /// target, ... . This is what should usually be returned by a server when referring to an entity,
@@ -27,38 +24,16 @@ pub struct LegacyId {
 pub struct EntityIdSet {
     /// The new style globally unique identifier. Globally unique - identifies an entity from all types
     /// without any additional context.
-    #[prost(uint64, tag = "1")]
-    pub uid: u64,
+    #[prost(int64, optional, tag = "1")]
+    pub uid: ::core::option::Option<i64>,
     /// The user definable alias of an entity. Globally unique - identifies an entity from all types
     /// without any additional context.
-    #[prost(string, tag = "2")]
-    pub alias: ::prost::alloc::string::String,
+    #[prost(string, optional, tag = "2")]
+    pub alias: ::core::option::Option<::prost::alloc::string::String>,
     /// The old style numeric Id-NodeType combination. NOT globally unique - entity type depends on
     /// the context.
     #[prost(message, optional, tag = "3")]
     pub legacy_id: ::core::option::Option<LegacyId>,
-}
-/// Contains one of the existing identifiers used to uniquely identify an entity like a specific
-/// node, target, ... . This is meant for requests that identify one or more entities. Only one
-/// unique identifier is needed.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EntityIdVariant {
-    #[prost(oneof = "entity_id_variant::Variant", tags = "1, 2, 3")]
-    pub variant: ::core::option::Option<entity_id_variant::Variant>,
-}
-/// Nested message and enum types in `EntityIdVariant`.
-pub mod entity_id_variant {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Variant {
-        #[prost(uint64, tag = "1")]
-        Uid(u64),
-        #[prost(message, tag = "2")]
-        LegacyId(super::LegacyId),
-        #[prost(string, tag = "3")]
-        Alias(::prost::alloc::string::String),
-    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
@@ -67,7 +42,7 @@ pub enum EntityType {
     Node = 1,
     Target = 2,
     BuddyGroup = 3,
-    StoragePool = 4,
+    Pool = 4,
 }
 impl EntityType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -80,7 +55,7 @@ impl EntityType {
             EntityType::Node => "NODE",
             EntityType::Target => "TARGET",
             EntityType::BuddyGroup => "BUDDY_GROUP",
-            EntityType::StoragePool => "STORAGE_POOL",
+            EntityType::Pool => "POOL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -90,7 +65,7 @@ impl EntityType {
             "NODE" => Some(Self::Node),
             "TARGET" => Some(Self::Target),
             "BUDDY_GROUP" => Some(Self::BuddyGroup),
-            "STORAGE_POOL" => Some(Self::StoragePool),
+            "POOL" => Some(Self::Pool),
             _ => None,
         }
     }
