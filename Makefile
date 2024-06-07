@@ -10,43 +10,20 @@ CPP_OUT_DIR := cpp
 # Output directory for compiled Rust files
 RUST_OUT_DIR := rust
 
-# Generate language specific files from protobuf files:
-# Find all .proto files relative to $(SRC_DIR)
-PROTO_FILES := $(shell cd $(SRC_DIR) && find . -name '*.proto')
-# Add the language specific output directory as a prefix and replace .proto file suffix by the
-# language specific one
-GO_GENERATED_FILES := $(patsubst %.proto, $(GO_OUT_DIR)/%.pb.go, $(PROTO_FILES))
-CPP_PROTO_GENERATED_FILES := $(patsubst %.proto, $(CPP_OUT_DIR)/%.pb.cc, $(PROTO_FILES))
-RUST_PROTO_GENERATED_FILES := $(patsubst %.proto, $(RUST_OUT_DIR)/%.rs, $(PROTO_FILES))
-
 all: protos
 
-# Builds all language specific files
 .PHONY: protos
-protos: $(GO_GENERATED_FILES) $(CPP_PROTO_GENERATED_FILES) $(RUST_PROTO_GENERATED_FILES)
-	@# Generate Rust library crate structure
+protos:
+	@mkdir -p $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)
+	protoc -I $(SRC_DIR) \
+		--go_opt=module="github.com/thinkparq/protobuf/go" \
+		--go_out=$(GO_OUT_DIR) \
+		--go-grpc_opt=module="github.com/thinkparq/protobuf/go" \
+		--go-grpc_out=$(GO_OUT_DIR) \
+		--cpp_out=$(CPP_OUT_DIR) \
+		$(SRC_DIR)/*.proto
+	protoc-rs compile -I $(SRC_DIR) --out=$(RUST_OUT_DIR) $(SRC_DIR)/*.proto
 	@protoc-rs generate-crate --src=$(RUST_OUT_DIR)
-
-
-# Build into Go
-$(GO_OUT_DIR)/%.pb.go: $(SRC_DIR)/%.proto
-	@echo "Compiling Go $<"
-	@mkdir -p $(dir $@)
-	@# In the protoc command the second `-I.` is required for imports to work correctly. 
-	@# It is also import the `-I.` is in the second position otherwise protoc will generate files at a location like `go/beewatch/beewatch`
-	protoc -I $(dir $<) -I $(SRC_DIR) --go_out=$(dir $@) --go_opt=paths=source_relative --go-grpc_out=$(dir $@) --go-grpc_opt=paths=source_relative $<
-
-# Build into C++
-$(CPP_OUT_DIR)/%.pb.cc: $(SRC_DIR)/%.proto
-	@echo "Compiling C++ $<"
-	@mkdir -p $(dir $@)
-	protoc -I $(dir $<) -I $(SRC_DIR) --cpp_out=$(dir $@) $<
-
-# Build into Rust
-$(RUST_OUT_DIR)/%.rs: $(SRC_DIR)/%.proto
-	@echo "Compiling Rust $<"
-	@mkdir -p $(dir $@)
-	protoc-rs compile -I $(dir $<) -I $(SRC_DIR) --out=$(dir $@) $<
 
 # Test targets: 
 # Test targets may make change to the local repository (e.g. try to generate protos) to

@@ -1,0 +1,141 @@
+syntax = "proto3";
+package management;
+option go_package = "github.com/thinkparq/protobuf/go/management";
+
+import "beegfs.proto";
+
+service Management {
+  // Gets the full list of BeeGFS nodes
+  rpc GetNodes(GetNodesRequest) returns (GetNodesResponse);
+  // Gets the full list of BeeGFS targets
+  rpc GetTargets(GetTargetsRequest) returns (GetTargetsResponse);
+  // Gets the full list of BeeGFS buddbeegfsy groups
+  rpc GetBuddyGroups(GetBuddyGroupsRequest) returns (GetBuddyGroupsResponse);
+  // Gets the full list of BeeGFS storage pools
+  rpc GetStoragePools(GetStoragePoolsRequest) returns (GetStoragePoolsResponse);
+  // Sets an entity alias
+  rpc SetAlias(SetAliasRequest) returns (SetAliasResponse);
+}
+
+message GetNodesRequest {
+  // Query the nic list for each node and include it in the response
+  bool include_nics = 1;
+}
+
+message GetNodesResponse {
+  // BeeGFS node related data
+  message Node {
+    // BeeGFS nic related data
+    message Nic {
+      // The nics IPv4 address in the form aaa.bbb.ccc.ddd:port
+      string addr = 1;
+      // The nics name (note that this is NOT an alias as a Nic is not considered an entity)
+      string name = 2;
+      // The nics type
+      beegfs.NicType nic_type = 3;
+    }
+    // The node identifiers
+    beegfs.EntityIdSet id = 1;
+    beegfs.NodeType node_type = 2;
+    // The nodes TCP and UDP port.
+    uint32 port = 3;
+    // The nodes Nics
+    repeated Nic nics = 4;
+  }
+
+  // The list of nodes
+  repeated Node nodes = 1;
+  // The node containing the root inode. Will be missing on a fresh system without any meta
+  // targets/nodes.
+  optional beegfs.EntityIdSet meta_root_node = 2;
+}
+
+
+message GetTargetsRequest {}
+
+message GetTargetsResponse {
+  // A BeeGFS target
+  message Target {
+    // The targets identifiers
+    beegfs.EntityIdSet id = 1;
+    // Node type the target is on
+    beegfs.NodeType node_type = 2;
+    // The targets reachability state as reported by management
+    beegfs.ReachabilityState reachability_state = 3;
+    // The targets reachability state as reported by management
+    beegfs.ConsistencyState consistency_state = 4;
+    // Duration since last contact to the target. Currently slightly inaccurate as it updates
+    // not on each received message.
+    optional uint64 last_contact_s = 5;
+    // Total space on the target as reported by management
+    optional uint64 total_space_bytes = 6;
+    // Free space on the target as reported by management
+    optional uint64 free_space_bytes = 7;
+    // Total inodes on the target as reported by management
+    optional uint64 total_inodes = 8;
+    // Free inodes on the target as reported by management
+    optional uint64 free_inodes = 9;
+    // The targets capacity pool as reported by the management
+    beegfs.CapacityPool cap_pool = 10;
+    // The targets owner node identifiers
+    beegfs.EntityIdSet node = 11;
+    // The targets storage pool identifiers. Explicitly optional since meta targets don't have a storage pool.
+    optional beegfs.EntityIdSet storage_pool = 12;
+  }
+
+  // The list of targets
+  repeated Target targets = 1;
+}
+
+
+message GetBuddyGroupsRequest {}
+
+message GetBuddyGroupsResponse {
+  message BuddyGroup {
+    // The buddy groups identifiers
+    beegfs.EntityIdSet id = 1;
+    // Node type the buddy group belongs to
+    beegfs.NodeType node_type = 2;
+    // The buddy groups current primary target identifiers
+    beegfs.EntityIdSet primary_target = 3;
+    // The buddy groups current secondary target identifiers
+    beegfs.EntityIdSet secondary_target = 4;
+    // The buddy groups primary target consistency state
+    beegfs.ConsistencyState primary_consistency_state = 5;
+    // The buddy groups secondary target consistency state
+    beegfs.ConsistencyState secondary_consistency_state = 6;
+    // The buddy groups storage pool. Explicitly optional since meta pools dont' have a storage
+    // pool.
+    optional beegfs.EntityIdSet storage_pool = 7;
+  }
+
+  // The list of buddy groups
+  repeated BuddyGroup buddy_groups = 1;
+}
+
+
+message GetStoragePoolsRequest {}
+
+message GetStoragePoolsResponse {
+  message StoragePool {
+    // The storage pools identifiers
+    beegfs.EntityIdSet id = 1;
+    // The storage pools assigned targets identifiers
+    repeated beegfs.EntityIdSet targets = 2;
+    // The storage pools assigned buddy groups identifiers
+    repeated beegfs.EntityIdSet buddy_groups = 3;
+  }
+
+  // The list of storage pools
+  repeated StoragePool pools = 1;
+}
+
+message SetAliasRequest {
+  // The identifier to set the alias for
+  beegfs.EntityIdVariant entity_id = 1;
+  // The new alias
+  string new_alias = 2;
+}
+
+message SetAliasResponse {}
+
