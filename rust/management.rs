@@ -1,65 +1,3 @@
-/// The "old" BeeGFS numeric Id-NodeType combination that can be used to identify entities like nodes,
-/// targets, ... .  Because each entity type has its own Id space (meaning a combination is NOT
-/// globally unique), this also requires the entities type it is related to.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LegacyId {
-    /// Old style BeeGFS numeric Id
-    #[prost(uint32, tag = "1")]
-    pub num_id: u32,
-    /// BeeGFS node type. Despite the name, also applies to other entity types (which currently can
-    /// only be on a node of their own type, so it's still correct).
-    #[prost(enumeration = "NodeType", tag = "2")]
-    pub node_type: i32,
-    /// The referred entities type.
-    #[prost(enumeration = "EntityType", tag = "3")]
-    pub entity_type: i32,
-}
-/// Contains all existing identifiers used to uniquely identify an entity like a specific node,
-/// target, ... . This is what should usually be returned by a server when referring to an entity,
-/// for example when requesting a list of nodes. The requestor/client can then decide which
-/// identifier to use depending on the use case.
-/// Note that all fields are explicitly optional. The server should try to fill all of them, but sometimes
-/// (e.g. for performance reasons), only some of them might be set. It's the requesters job to check
-/// that.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EntityIdSet {
-    /// The new style globally unique identifier. Globally unique - identifies an entity from all types
-    /// without any additional context.
-    #[prost(uint64, tag = "1")]
-    pub uid: u64,
-    /// The user definable alias of an entity. Globally unique - identifies an entity from all types
-    /// without any additional context.
-    #[prost(string, tag = "2")]
-    pub alias: ::prost::alloc::string::String,
-    /// The old style numeric Id-NodeType combination. NOT globally unique - entity type depends on
-    /// the context.
-    #[prost(message, optional, tag = "3")]
-    pub legacy_id: ::core::option::Option<LegacyId>,
-}
-/// Contains one of the existing identifiers used to uniquely identify an entity like a specific
-/// node, target, ... . This is meant for requests that identify one or more entities. Only one
-/// unique identifier is needed.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct EntityIdVariant {
-    #[prost(oneof = "entity_id_variant::Variant", tags = "1, 2, 3")]
-    pub variant: ::core::option::Option<entity_id_variant::Variant>,
-}
-/// Nested message and enum types in `EntityIdVariant`.
-pub mod entity_id_variant {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Variant {
-        #[prost(uint64, tag = "1")]
-        Uid(u64),
-        #[prost(message, tag = "2")]
-        LegacyId(super::LegacyId),
-        #[prost(string, tag = "3")]
-        Alias(::prost::alloc::string::String),
-    }
-}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodesRequest {
@@ -76,7 +14,7 @@ pub struct GetNodesResponse {
     /// The node containing the root inode. Will be missing on a fresh system without any meta
     /// targets/nodes.
     #[prost(message, optional, tag = "2")]
-    pub meta_root_node: ::core::option::Option<EntityIdSet>,
+    pub meta_root_node: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
 /// Nested message and enum types in `GetNodesResponse`.
 pub mod get_nodes_response {
@@ -86,8 +24,8 @@ pub mod get_nodes_response {
     pub struct Node {
         /// The node identifiers
         #[prost(message, optional, tag = "1")]
-        pub id: ::core::option::Option<super::EntityIdSet>,
-        #[prost(enumeration = "super::NodeType", tag = "2")]
+        pub id: ::core::option::Option<super::super::beegfs::EntityIdSet>,
+        #[prost(enumeration = "super::super::beegfs::NodeType", tag = "2")]
         pub node_type: i32,
         /// The nodes TCP and UDP port.
         #[prost(uint32, tag = "3")]
@@ -109,7 +47,7 @@ pub mod get_nodes_response {
             #[prost(string, tag = "2")]
             pub name: ::prost::alloc::string::String,
             /// The nics type
-            #[prost(enumeration = "super::super::NicType", tag = "3")]
+            #[prost(enumeration = "super::super::super::beegfs::NicType", tag = "3")]
             pub nic_type: i32,
         }
     }
@@ -132,15 +70,15 @@ pub mod get_targets_response {
     pub struct Target {
         /// The targets identifiers
         #[prost(message, optional, tag = "1")]
-        pub id: ::core::option::Option<super::EntityIdSet>,
+        pub id: ::core::option::Option<super::super::beegfs::EntityIdSet>,
         /// Node type the target is on
-        #[prost(enumeration = "super::NodeType", tag = "2")]
+        #[prost(enumeration = "super::super::beegfs::NodeType", tag = "2")]
         pub node_type: i32,
         /// The targets reachability state as reported by management
-        #[prost(enumeration = "super::ReachabilityState", tag = "3")]
+        #[prost(enumeration = "super::super::beegfs::ReachabilityState", tag = "3")]
         pub reachability_state: i32,
         /// The targets reachability state as reported by management
-        #[prost(enumeration = "super::ConsistencyState", tag = "4")]
+        #[prost(enumeration = "super::super::beegfs::ConsistencyState", tag = "4")]
         pub consistency_state: i32,
         /// Duration since last contact to the target. Currently slightly inaccurate as it updates
         /// not on each received message.
@@ -159,14 +97,14 @@ pub mod get_targets_response {
         #[prost(uint64, optional, tag = "9")]
         pub free_inodes: ::core::option::Option<u64>,
         /// The targets capacity pool as reported by the management
-        #[prost(enumeration = "super::CapacityPool", tag = "10")]
+        #[prost(enumeration = "super::super::beegfs::CapacityPool", tag = "10")]
         pub cap_pool: i32,
         /// The targets owner node identifiers
         #[prost(message, optional, tag = "11")]
-        pub node: ::core::option::Option<super::EntityIdSet>,
+        pub node: ::core::option::Option<super::super::beegfs::EntityIdSet>,
         /// The targets storage pool identifiers. Explicitly optional since meta targets don't have a storage pool.
         #[prost(message, optional, tag = "12")]
-        pub storage_pool: ::core::option::Option<super::EntityIdSet>,
+        pub storage_pool: ::core::option::Option<super::super::beegfs::EntityIdSet>,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -186,26 +124,26 @@ pub mod get_buddy_groups_response {
     pub struct BuddyGroup {
         /// The buddy groups identifiers
         #[prost(message, optional, tag = "1")]
-        pub id: ::core::option::Option<super::EntityIdSet>,
+        pub id: ::core::option::Option<super::super::beegfs::EntityIdSet>,
         /// Node type the buddy group belongs to
-        #[prost(enumeration = "super::NodeType", tag = "2")]
+        #[prost(enumeration = "super::super::beegfs::NodeType", tag = "2")]
         pub node_type: i32,
         /// The buddy groups current primary target identifiers
         #[prost(message, optional, tag = "3")]
-        pub primary_target: ::core::option::Option<super::EntityIdSet>,
+        pub primary_target: ::core::option::Option<super::super::beegfs::EntityIdSet>,
         /// The buddy groups current secondary target identifiers
         #[prost(message, optional, tag = "4")]
-        pub secondary_target: ::core::option::Option<super::EntityIdSet>,
+        pub secondary_target: ::core::option::Option<super::super::beegfs::EntityIdSet>,
         /// The buddy groups primary target consistency state
-        #[prost(enumeration = "super::ConsistencyState", tag = "5")]
+        #[prost(enumeration = "super::super::beegfs::ConsistencyState", tag = "5")]
         pub primary_consistency_state: i32,
         /// The buddy groups secondary target consistency state
-        #[prost(enumeration = "super::ConsistencyState", tag = "6")]
+        #[prost(enumeration = "super::super::beegfs::ConsistencyState", tag = "6")]
         pub secondary_consistency_state: i32,
         /// The buddy groups storage pool. Explicitly optional since meta pools dont' have a storage
         /// pool.
         #[prost(message, optional, tag = "7")]
-        pub storage_pool: ::core::option::Option<super::EntityIdSet>,
+        pub storage_pool: ::core::option::Option<super::super::beegfs::EntityIdSet>,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -225,13 +163,13 @@ pub mod get_storage_pools_response {
     pub struct StoragePool {
         /// The storage pools identifiers
         #[prost(message, optional, tag = "1")]
-        pub id: ::core::option::Option<super::EntityIdSet>,
+        pub id: ::core::option::Option<super::super::beegfs::EntityIdSet>,
         /// The storage pools assigned targets identifiers
         #[prost(message, repeated, tag = "2")]
-        pub targets: ::prost::alloc::vec::Vec<super::EntityIdSet>,
+        pub targets: ::prost::alloc::vec::Vec<super::super::beegfs::EntityIdSet>,
         /// The storage pools assigned buddy groups identifiers
         #[prost(message, repeated, tag = "3")]
-        pub buddy_groups: ::prost::alloc::vec::Vec<super::EntityIdSet>,
+        pub buddy_groups: ::prost::alloc::vec::Vec<super::super::beegfs::EntityIdSet>,
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -239,7 +177,7 @@ pub mod get_storage_pools_response {
 pub struct SetAliasRequest {
     /// The identifier to set the alias for
     #[prost(message, optional, tag = "1")]
-    pub entity_id: ::core::option::Option<EntityIdVariant>,
+    pub entity_id: ::core::option::Option<super::beegfs::EntityIdVariant>,
     /// The new alias
     #[prost(string, tag = "2")]
     pub new_alias: ::prost::alloc::string::String,
@@ -247,205 +185,6 @@ pub struct SetAliasRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SetAliasResponse {}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum EntityType {
-    Unspecified = 0,
-    Node = 1,
-    Target = 2,
-    BuddyGroup = 3,
-    StoragePool = 4,
-}
-impl EntityType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            EntityType::Unspecified => "ENTITY_TYPE_UNSPECIFIED",
-            EntityType::Node => "NODE",
-            EntityType::Target => "TARGET",
-            EntityType::BuddyGroup => "BUDDY_GROUP",
-            EntityType::StoragePool => "STORAGE_POOL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ENTITY_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "NODE" => Some(Self::Node),
-            "TARGET" => Some(Self::Target),
-            "BUDDY_GROUP" => Some(Self::BuddyGroup),
-            "STORAGE_POOL" => Some(Self::StoragePool),
-            _ => None,
-        }
-    }
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum NodeType {
-    Unspecified = 0,
-    Client = 1,
-    Meta = 2,
-    Storage = 3,
-    Management = 4,
-}
-impl NodeType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            NodeType::Unspecified => "NODE_TYPE_UNSPECIFIED",
-            NodeType::Client => "CLIENT",
-            NodeType::Meta => "META",
-            NodeType::Storage => "STORAGE",
-            NodeType::Management => "MANAGEMENT",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "NODE_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "CLIENT" => Some(Self::Client),
-            "META" => Some(Self::Meta),
-            "STORAGE" => Some(Self::Storage),
-            "MANAGEMENT" => Some(Self::Management),
-            _ => None,
-        }
-    }
-}
-/// A nodes reachability state as calculated by the management
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ReachabilityState {
-    Unspecified = 0,
-    Online = 1,
-    Poffline = 2,
-    Offline = 3,
-}
-impl ReachabilityState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ReachabilityState::Unspecified => "REACHABILITY_STATE_UNSPECIFIED",
-            ReachabilityState::Online => "ONLINE",
-            ReachabilityState::Poffline => "POFFLINE",
-            ReachabilityState::Offline => "OFFLINE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "REACHABILITY_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "ONLINE" => Some(Self::Online),
-            "POFFLINE" => Some(Self::Poffline),
-            "OFFLINE" => Some(Self::Offline),
-            _ => None,
-        }
-    }
-}
-/// A targets consistency state as known by the management
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ConsistencyState {
-    Unspecified = 0,
-    Good = 1,
-    NeedsResync = 2,
-    Bad = 3,
-}
-impl ConsistencyState {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ConsistencyState::Unspecified => "CONSISTENCY_STATE_UNSPECIFIED",
-            ConsistencyState::Good => "GOOD",
-            ConsistencyState::NeedsResync => "NEEDS_RESYNC",
-            ConsistencyState::Bad => "BAD",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "CONSISTENCY_STATE_UNSPECIFIED" => Some(Self::Unspecified),
-            "GOOD" => Some(Self::Good),
-            "NEEDS_RESYNC" => Some(Self::NeedsResync),
-            "BAD" => Some(Self::Bad),
-            _ => None,
-        }
-    }
-}
-/// A targets capacity pool as calculated by management
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum CapacityPool {
-    Unspecified = 0,
-    Normal = 1,
-    Low = 2,
-    Emergency = 3,
-}
-impl CapacityPool {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            CapacityPool::Unspecified => "CAPACITY_POOL_UNSPECIFIED",
-            CapacityPool::Normal => "NORMAL",
-            CapacityPool::Low => "LOW",
-            CapacityPool::Emergency => "EMERGENCY",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "CAPACITY_POOL_UNSPECIFIED" => Some(Self::Unspecified),
-            "NORMAL" => Some(Self::Normal),
-            "LOW" => Some(Self::Low),
-            "EMERGENCY" => Some(Self::Emergency),
-            _ => None,
-        }
-    }
-}
-/// A Nics NicType
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum NicType {
-    Unspecified = 0,
-    Ethernet = 1,
-    Rdma = 2,
-}
-impl NicType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            NicType::Unspecified => "NIC_TYPE_UNSPECIFIED",
-            NicType::Ethernet => "ETHERNET",
-            NicType::Rdma => "RDMA",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "NIC_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
-            "ETHERNET" => Some(Self::Ethernet),
-            "RDMA" => Some(Self::Rdma),
-            _ => None,
-        }
-    }
-}
 /// Generated client implementations.
 pub mod management_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -550,11 +289,11 @@ pub mod management_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/beegfs.Management/GetNodes",
+                "/management.Management/GetNodes",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("beegfs.Management", "GetNodes"));
+                .insert(GrpcMethod::new("management.Management", "GetNodes"));
             self.inner.unary(req, path, codec).await
         }
         /// Gets the full list of BeeGFS targets
@@ -576,14 +315,14 @@ pub mod management_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/beegfs.Management/GetTargets",
+                "/management.Management/GetTargets",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("beegfs.Management", "GetTargets"));
+                .insert(GrpcMethod::new("management.Management", "GetTargets"));
             self.inner.unary(req, path, codec).await
         }
-        /// Gets the full list of BeeGFS buddy groups
+        /// Gets the full list of BeeGFS buddbeegfsy groups
         pub async fn get_buddy_groups(
             &mut self,
             request: impl tonic::IntoRequest<super::GetBuddyGroupsRequest>,
@@ -602,11 +341,11 @@ pub mod management_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/beegfs.Management/GetBuddyGroups",
+                "/management.Management/GetBuddyGroups",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("beegfs.Management", "GetBuddyGroups"));
+                .insert(GrpcMethod::new("management.Management", "GetBuddyGroups"));
             self.inner.unary(req, path, codec).await
         }
         /// Gets the full list of BeeGFS storage pools
@@ -628,11 +367,11 @@ pub mod management_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/beegfs.Management/GetStoragePools",
+                "/management.Management/GetStoragePools",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("beegfs.Management", "GetStoragePools"));
+                .insert(GrpcMethod::new("management.Management", "GetStoragePools"));
             self.inner.unary(req, path, codec).await
         }
         /// Sets an entity alias
@@ -654,11 +393,11 @@ pub mod management_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/beegfs.Management/SetAlias",
+                "/management.Management/SetAlias",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("beegfs.Management", "SetAlias"));
+                .insert(GrpcMethod::new("management.Management", "SetAlias"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -686,7 +425,7 @@ pub mod management_server {
             tonic::Response<super::GetTargetsResponse>,
             tonic::Status,
         >;
-        /// Gets the full list of BeeGFS buddy groups
+        /// Gets the full list of BeeGFS buddbeegfsy groups
         async fn get_buddy_groups(
             &self,
             request: tonic::Request<super::GetBuddyGroupsRequest>,
@@ -790,7 +529,7 @@ pub mod management_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/beegfs.Management/GetNodes" => {
+                "/management.Management/GetNodes" => {
                     #[allow(non_camel_case_types)]
                     struct GetNodesSvc<T: Management>(pub Arc<T>);
                     impl<
@@ -836,7 +575,7 @@ pub mod management_server {
                     };
                     Box::pin(fut)
                 }
-                "/beegfs.Management/GetTargets" => {
+                "/management.Management/GetTargets" => {
                     #[allow(non_camel_case_types)]
                     struct GetTargetsSvc<T: Management>(pub Arc<T>);
                     impl<
@@ -882,7 +621,7 @@ pub mod management_server {
                     };
                     Box::pin(fut)
                 }
-                "/beegfs.Management/GetBuddyGroups" => {
+                "/management.Management/GetBuddyGroups" => {
                     #[allow(non_camel_case_types)]
                     struct GetBuddyGroupsSvc<T: Management>(pub Arc<T>);
                     impl<
@@ -928,7 +667,7 @@ pub mod management_server {
                     };
                     Box::pin(fut)
                 }
-                "/beegfs.Management/GetStoragePools" => {
+                "/management.Management/GetStoragePools" => {
                     #[allow(non_camel_case_types)]
                     struct GetStoragePoolsSvc<T: Management>(pub Arc<T>);
                     impl<
@@ -974,7 +713,7 @@ pub mod management_server {
                     };
                     Box::pin(fut)
                 }
-                "/beegfs.Management/SetAlias" => {
+                "/management.Management/SetAlias" => {
                     #[allow(non_camel_case_types)]
                     struct SetAliasSvc<T: Management>(pub Arc<T>);
                     impl<
@@ -1058,6 +797,6 @@ pub mod management_server {
         }
     }
     impl<T: Management> tonic::server::NamedService for ManagementServer<T> {
-        const NAME: &'static str = "beegfs.Management";
+        const NAME: &'static str = "management.Management";
     }
 }

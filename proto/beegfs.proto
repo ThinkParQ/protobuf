@@ -1,0 +1,91 @@
+syntax = "proto3";
+package beegfs;
+option go_package = "github.com/thinkparq/protobuf/go/beegfs";
+
+enum EntityType {
+  ENTITY_TYPE_UNSPECIFIED = 0;
+  NODE = 1;
+  TARGET = 2;
+  BUDDY_GROUP = 3;
+  STORAGE_POOL = 4;
+}
+
+enum NodeType {
+  NODE_TYPE_UNSPECIFIED = 0;
+  CLIENT = 1;
+  META = 2;
+  STORAGE = 3;
+  MANAGEMENT = 4;
+}
+
+enum ReachabilityState {
+  REACHABILITY_STATE_UNSPECIFIED = 0;
+  ONLINE = 1;
+  POFFLINE = 2;
+  OFFLINE = 3;
+}
+
+enum ConsistencyState {
+  CONSISTENCY_STATE_UNSPECIFIED = 0;
+  GOOD = 1;
+  NEEDS_RESYNC = 2;
+  BAD = 3;
+}
+
+enum CapacityPool {
+  CAPACITY_POOL_UNSPECIFIED = 0;
+  NORMAL = 1;
+  LOW = 2;
+  EMERGENCY = 3;
+}
+
+// A Nics NicType
+enum NicType {
+  NIC_TYPE_UNSPECIFIED = 0;
+  ETHERNET = 1;
+  RDMA = 2;
+}
+
+// The "old" BeeGFS numeric Id-NodeType combination that can be used to identify entities like nodes,
+// targets, ... .  Because each entity type has its own Id space (meaning a combination is NOT
+// globally unique), this also requires the entities type it is related to.
+message LegacyId {
+  // Old style BeeGFS numeric Id
+  uint32 num_id = 1;
+  // BeeGFS node type. Despite the name, also applies to other entity types (which currently can
+  // only be on a node of their own type, so it's still correct).
+  NodeType node_type = 2;
+  // The referred entities type.
+  EntityType entity_type = 3;
+}
+
+
+// Contains all existing identifiers used to uniquely identify an entity like a specific node,
+// target, ... . This is what should usually be returned by a server when referring to an entity,
+// for example when requesting a list of nodes. The requestor/client can then decide which
+// identifier to use depending on the use case.
+// Note that all fields are explicitly optional. The server should try to fill all of them, but sometimes
+// (e.g. for performance reasons), only some of them might be set. It's the requesters job to check
+// that.
+message EntityIdSet {
+  // The new style globally unique identifier. Globally unique - identifies an entity from all types
+  // without any additional context.
+  uint64 uid = 1;
+  // The user definable alias of an entity. Globally unique - identifies an entity from all types
+  // without any additional context.
+  string alias = 2;
+  // The old style numeric Id-NodeType combination. NOT globally unique - entity type depends on
+  // the context.
+  LegacyId legacy_id = 3;
+}
+
+// Contains one of the existing identifiers used to uniquely identify an entity like a specific
+// node, target, ... . This is meant for requests that identify one or more entities. Only one
+// unique identifier is needed.
+message EntityIdVariant {
+  oneof variant {
+    uint64 uid = 1;
+    LegacyId legacy_id = 2;
+    string alias = 3;
+  }
+}
