@@ -5,23 +5,56 @@ option go_package = "github.com/thinkparq/protobuf/go/management";
 import "beegfs.proto";
 
 service Management {
-  // Gets the full list of BeeGFS nodes
-  rpc GetNodes(GetNodesRequest) returns (GetNodesResponse);
-  // Gets the full list of BeeGFS targets
-  rpc GetTargets(GetTargetsRequest) returns (GetTargetsResponse);
-  // Gets the full list of BeeGFS buddbeegfsy groups
-  rpc GetBuddyGroups(GetBuddyGroupsRequest) returns (GetBuddyGroupsResponse);
-  // Gets the full list of BeeGFS storage pools
-  rpc GetStoragePools(GetStoragePoolsRequest) returns (GetStoragePoolsResponse);
   // Sets an entity alias
   rpc SetAlias(SetAliasRequest) returns (SetAliasResponse);
+
+  // Nodes
+  // Gets the full list of  nodes
+  rpc GetNodes(GetNodesRequest) returns (GetNodesResponse);
+  // Deletes a node
+  rpc DeleteNode(DeleteNodeRequest) returns (DeleteNodeResponse);
+
+  // Targets
+  // Gets the full list of targets
+  rpc GetTargets(GetTargetsRequest) returns (GetTargetsResponse);
+  // Deletes a target
+  rpc DeleteTarget(DeleteTargetRequest) returns (DeleteTargetResponse);
+  
+  // (Storage) pools
+  // Gets the full list of pools
+  rpc GetPools(GetPoolsRequest) returns (GetPoolsResponse);
+  // Creates a new pool
+  rpc CreatePool(CreatePoolRequest) returns (CreatePoolResponse);
+  // Assigns targets and buddy groups to a pool
+  rpc AssignPool(AssignPoolRequest) returns (AssignPoolResponse);
+  // Deletes a pool
+  rpc DeletePool(DeletePoolRequest) returns (DeletePoolResponse);
+
+  // Buddy groups
+  // Gets the full list of buddy groups
+  rpc GetBuddyGroups(GetBuddyGroupsRequest) returns (GetBuddyGroupsResponse);
+  // Creates a new buddy group
+  rpc CreateBuddyGroup(CreateBuddyGroupRequest) returns (CreateBuddyGroupResponse);
+  // Deletes a buddy group
+  rpc DeleteBuddyGroup(DeleteBuddyGroupRequest) returns (DeleteBuddyGroupResponse);
 }
+
+message SetAliasRequest {
+  // The identifier to set the alias for
+  beegfs.EntityIdSet entity_id = 1;
+  // The entity type to set the alias for
+  beegfs.EntityType entity_type = 2;
+  // The new alias
+  string new_alias = 3;
+}
+message SetAliasResponse {}
+
+// Nodes
 
 message GetNodesRequest {
   // Query the nic list for each node and include it in the response
   bool include_nics = 1;
 }
-
 message GetNodesResponse {
   // BeeGFS node related data
   message Node {
@@ -50,9 +83,18 @@ message GetNodesResponse {
   optional beegfs.EntityIdSet meta_root_node = 2;
 }
 
+message DeleteNodeRequest {
+  // The node to delete
+  optional beegfs.EntityIdSet node = 1;
+}
+message DeleteNodeResponse {
+  // The ids of the deleted node
+  optional beegfs.EntityIdSet node = 1;
+}
+
+// Targets
 
 message GetTargetsRequest {}
-
 message GetTargetsResponse {
   // A BeeGFS target
   message Target {
@@ -87,9 +129,74 @@ message GetTargetsResponse {
   repeated Target targets = 1;
 }
 
+message DeleteTargetRequest {
+  // The target to delete
+  optional beegfs.EntityIdSet target = 1;
+}
+message DeleteTargetResponse {
+  // The ids of the deleted target
+  optional beegfs.EntityIdSet target = 1;
+}
+
+// (Storage) pools
+
+message GetPoolsRequest {}
+message GetPoolsResponse {
+  message StoragePool {
+    // The storage pools identifiers
+    beegfs.EntityIdSet id = 1;
+    // The storage pools assigned targets identifiers
+    repeated beegfs.EntityIdSet targets = 2;
+    // The storage pools assigned buddy groups identifiers
+    repeated beegfs.EntityIdSet buddy_groups = 3;
+  }
+
+  // The list of storage pools
+  repeated StoragePool pools = 1;
+}
+
+message CreatePoolRequest {
+  // The node type of the new pool (currently, only storage is allowed)
+  optional beegfs.NodeType node_type = 1;
+  // The numeric id of the new pool. Chosen automatically if omitted.
+  optional uint32 num_id = 2;
+  // The alias of the new pool
+  optional string alias = 3;
+  // Targets assigned to the new pool
+  repeated beegfs.EntityIdSet targets = 4;
+  // Buddy groups assigned to the new pool
+  repeated beegfs.EntityIdSet buddy_groups = 5;
+}
+message CreatePoolResponse {
+  // The ids of the new pool
+  optional beegfs.EntityIdSet pool = 1;
+}
+
+message AssignPoolRequest {
+  // The pool to assign to
+  optional beegfs.EntityIdSet pool = 1;
+  // Targets to assign
+  repeated beegfs.EntityIdSet targets = 2;
+  // Buddy groups to assign
+  repeated beegfs.EntityIdSet buddy_groups = 3;
+}
+message AssignPoolResponse {
+  // The ids of the pool assigned to
+  optional beegfs.EntityIdSet pool = 1;
+}
+
+message DeletePoolRequest {
+  // The pool to delete
+  optional beegfs.EntityIdSet pool = 1;
+}
+message DeletePoolResponse {
+  // The ids of the deleted pool
+  optional beegfs.EntityIdSet pool = 1;
+}
+
+// Buddy groups
 
 message GetBuddyGroupsRequest {}
-
 message GetBuddyGroupsResponse {
   message BuddyGroup {
     // The buddy groups identifiers
@@ -113,29 +220,28 @@ message GetBuddyGroupsResponse {
   repeated BuddyGroup buddy_groups = 1;
 }
 
-
-message GetStoragePoolsRequest {}
-
-message GetStoragePoolsResponse {
-  message StoragePool {
-    // The storage pools identifiers
-    beegfs.EntityIdSet id = 1;
-    // The storage pools assigned targets identifiers
-    repeated beegfs.EntityIdSet targets = 2;
-    // The storage pools assigned buddy groups identifiers
-    repeated beegfs.EntityIdSet buddy_groups = 3;
-  }
-
-  // The list of storage pools
-  repeated StoragePool pools = 1;
+message CreateBuddyGroupRequest {
+  // The node type of the new buddy group
+  optional beegfs.NodeType node_type = 1;
+  // The numeric id of the new buddy group. Chosen automatically if omitted.
+  optional uint32 num_id = 2;
+  // The alias of the new buddy group
+  optional string alias = 3;
+  // The primary target of the new buddy group
+  optional beegfs.EntityIdSet primary_target = 4;
+  // The secondary target of the new buddy group
+  optional beegfs.EntityIdSet secondary_target = 5;
+}
+message CreateBuddyGroupResponse {
+  // The ids of the new buddy group
+  optional beegfs.EntityIdSet group = 1;
 }
 
-message SetAliasRequest {
-  // The identifier to set the alias for
-  beegfs.EntityIdVariant entity_id = 1;
-  // The new alias
-  string new_alias = 2;
+message DeleteBuddyGroupRequest {
+  // The buddy group to delete
+  optional beegfs.EntityIdSet group = 1;
 }
-
-message SetAliasResponse {}
-
+message DeleteBuddyGroupResponse {
+  // The ids of the deleted buddy group
+  optional beegfs.EntityIdSet group = 1;
+}

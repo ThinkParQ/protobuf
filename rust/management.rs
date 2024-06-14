@@ -1,5 +1,21 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SetAliasRequest {
+    /// The identifier to set the alias for
+    #[prost(message, optional, tag = "1")]
+    pub entity_id: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// The entity type to set the alias for
+    #[prost(enumeration = "super::beegfs::EntityType", tag = "2")]
+    pub entity_type: i32,
+    /// The new alias
+    #[prost(string, tag = "3")]
+    pub new_alias: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SetAliasResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodesRequest {
     /// Query the nic list for each node and include it in the response
     #[prost(bool, tag = "1")]
@@ -51,6 +67,20 @@ pub mod get_nodes_response {
             pub nic_type: i32,
         }
     }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteNodeRequest {
+    /// The node to delete
+    #[prost(message, optional, tag = "1")]
+    pub node: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteNodeResponse {
+    /// The ids of the deleted node
+    #[prost(message, optional, tag = "1")]
+    pub node: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -109,6 +139,106 @@ pub mod get_targets_response {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteTargetRequest {
+    /// The target to delete
+    #[prost(message, optional, tag = "1")]
+    pub target: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteTargetResponse {
+    /// The ids of the deleted target
+    #[prost(message, optional, tag = "1")]
+    pub target: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPoolsRequest {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPoolsResponse {
+    /// The list of storage pools
+    #[prost(message, repeated, tag = "1")]
+    pub pools: ::prost::alloc::vec::Vec<get_pools_response::StoragePool>,
+}
+/// Nested message and enum types in `GetPoolsResponse`.
+pub mod get_pools_response {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct StoragePool {
+        /// The storage pools identifiers
+        #[prost(message, optional, tag = "1")]
+        pub id: ::core::option::Option<super::super::beegfs::EntityIdSet>,
+        /// The storage pools assigned targets identifiers
+        #[prost(message, repeated, tag = "2")]
+        pub targets: ::prost::alloc::vec::Vec<super::super::beegfs::EntityIdSet>,
+        /// The storage pools assigned buddy groups identifiers
+        #[prost(message, repeated, tag = "3")]
+        pub buddy_groups: ::prost::alloc::vec::Vec<super::super::beegfs::EntityIdSet>,
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreatePoolRequest {
+    /// The node type of the new pool (currently, only storage is allowed)
+    #[prost(enumeration = "super::beegfs::NodeType", optional, tag = "1")]
+    pub node_type: ::core::option::Option<i32>,
+    /// The numeric id of the new pool. Chosen automatically if omitted.
+    #[prost(uint32, optional, tag = "2")]
+    pub num_id: ::core::option::Option<u32>,
+    /// The alias of the new pool
+    #[prost(string, optional, tag = "3")]
+    pub alias: ::core::option::Option<::prost::alloc::string::String>,
+    /// Targets assigned to the new pool
+    #[prost(message, repeated, tag = "4")]
+    pub targets: ::prost::alloc::vec::Vec<super::beegfs::EntityIdSet>,
+    /// Buddy groups assigned to the new pool
+    #[prost(message, repeated, tag = "5")]
+    pub buddy_groups: ::prost::alloc::vec::Vec<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreatePoolResponse {
+    /// The ids of the new pool
+    #[prost(message, optional, tag = "1")]
+    pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssignPoolRequest {
+    /// The pool to assign to
+    #[prost(message, optional, tag = "1")]
+    pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// Targets to assign
+    #[prost(message, repeated, tag = "2")]
+    pub targets: ::prost::alloc::vec::Vec<super::beegfs::EntityIdSet>,
+    /// Buddy groups to assign
+    #[prost(message, repeated, tag = "3")]
+    pub buddy_groups: ::prost::alloc::vec::Vec<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AssignPoolResponse {
+    /// The ids of the pool assigned to
+    #[prost(message, optional, tag = "1")]
+    pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeletePoolRequest {
+    /// The pool to delete
+    #[prost(message, optional, tag = "1")]
+    pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeletePoolResponse {
+    /// The ids of the deleted pool
+    #[prost(message, optional, tag = "1")]
+    pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetBuddyGroupsRequest {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -148,43 +278,44 @@ pub mod get_buddy_groups_response {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetStoragePoolsRequest {}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetStoragePoolsResponse {
-    /// The list of storage pools
-    #[prost(message, repeated, tag = "1")]
-    pub pools: ::prost::alloc::vec::Vec<get_storage_pools_response::StoragePool>,
-}
-/// Nested message and enum types in `GetStoragePoolsResponse`.
-pub mod get_storage_pools_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct StoragePool {
-        /// The storage pools identifiers
-        #[prost(message, optional, tag = "1")]
-        pub id: ::core::option::Option<super::super::beegfs::EntityIdSet>,
-        /// The storage pools assigned targets identifiers
-        #[prost(message, repeated, tag = "2")]
-        pub targets: ::prost::alloc::vec::Vec<super::super::beegfs::EntityIdSet>,
-        /// The storage pools assigned buddy groups identifiers
-        #[prost(message, repeated, tag = "3")]
-        pub buddy_groups: ::prost::alloc::vec::Vec<super::super::beegfs::EntityIdSet>,
-    }
+pub struct CreateBuddyGroupRequest {
+    /// The node type of the new buddy group
+    #[prost(enumeration = "super::beegfs::NodeType", optional, tag = "1")]
+    pub node_type: ::core::option::Option<i32>,
+    /// The numeric id of the new buddy group. Chosen automatically if omitted.
+    #[prost(uint32, optional, tag = "2")]
+    pub num_id: ::core::option::Option<u32>,
+    /// The alias of the new buddy group
+    #[prost(string, optional, tag = "3")]
+    pub alias: ::core::option::Option<::prost::alloc::string::String>,
+    /// The primary target of the new buddy group
+    #[prost(message, optional, tag = "4")]
+    pub primary_target: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// The secondary target of the new buddy group
+    #[prost(message, optional, tag = "5")]
+    pub secondary_target: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SetAliasRequest {
-    /// The identifier to set the alias for
+pub struct CreateBuddyGroupResponse {
+    /// The ids of the new buddy group
     #[prost(message, optional, tag = "1")]
-    pub entity_id: ::core::option::Option<super::beegfs::EntityIdVariant>,
-    /// The new alias
-    #[prost(string, tag = "2")]
-    pub new_alias: ::prost::alloc::string::String,
+    pub group: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct SetAliasResponse {}
+pub struct DeleteBuddyGroupRequest {
+    /// The buddy group to delete
+    #[prost(message, optional, tag = "1")]
+    pub group: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeleteBuddyGroupResponse {
+    /// The ids of the deleted buddy group
+    #[prost(message, optional, tag = "1")]
+    pub group: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
 /// Generated client implementations.
 pub mod management_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -270,110 +401,6 @@ pub mod management_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        /// Gets the full list of BeeGFS nodes
-        pub async fn get_nodes(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetNodesRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GetNodesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/management.Management/GetNodes",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("management.Management", "GetNodes"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the full list of BeeGFS targets
-        pub async fn get_targets(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetTargetsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GetTargetsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/management.Management/GetTargets",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("management.Management", "GetTargets"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the full list of BeeGFS buddbeegfsy groups
-        pub async fn get_buddy_groups(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetBuddyGroupsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GetBuddyGroupsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/management.Management/GetBuddyGroups",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("management.Management", "GetBuddyGroups"));
-            self.inner.unary(req, path, codec).await
-        }
-        /// Gets the full list of BeeGFS storage pools
-        pub async fn get_storage_pools(
-            &mut self,
-            request: impl tonic::IntoRequest<super::GetStoragePoolsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GetStoragePoolsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/management.Management/GetStoragePools",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("management.Management", "GetStoragePools"));
-            self.inner.unary(req, path, codec).await
-        }
         /// Sets an entity alias
         pub async fn set_alias(
             &mut self,
@@ -400,6 +427,296 @@ pub mod management_client {
                 .insert(GrpcMethod::new("management.Management", "SetAlias"));
             self.inner.unary(req, path, codec).await
         }
+        /// Nodes
+        /// Gets the full list of  nodes
+        pub async fn get_nodes(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetNodesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetNodesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/GetNodes",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "GetNodes"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a node
+        pub async fn delete_node(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteNodeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeleteNodeResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/DeleteNode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "DeleteNode"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Targets
+        /// Gets the full list of targets
+        pub async fn get_targets(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetTargetsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetTargetsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/GetTargets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "GetTargets"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a target
+        pub async fn delete_target(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteTargetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeleteTargetResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/DeleteTarget",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "DeleteTarget"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// (Storage) pools
+        /// Gets the full list of pools
+        pub async fn get_pools(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetPoolsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetPoolsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/GetPools",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "GetPools"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new pool
+        pub async fn create_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreatePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CreatePoolResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/CreatePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "CreatePool"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Assigns targets and buddy groups to a pool
+        pub async fn assign_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::AssignPoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AssignPoolResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/AssignPool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "AssignPool"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a pool
+        pub async fn delete_pool(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeletePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeletePoolResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/DeletePool",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "DeletePool"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Buddy groups
+        /// Gets the full list of buddy groups
+        pub async fn get_buddy_groups(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetBuddyGroupsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetBuddyGroupsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/GetBuddyGroups",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "GetBuddyGroups"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Creates a new buddy group
+        pub async fn create_buddy_group(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateBuddyGroupRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CreateBuddyGroupResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/CreateBuddyGroup",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "CreateBuddyGroup"));
+            self.inner.unary(req, path, codec).await
+        }
+        /// Deletes a buddy group
+        pub async fn delete_buddy_group(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteBuddyGroupRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeleteBuddyGroupResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/DeleteBuddyGroup",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "DeleteBuddyGroup"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -409,7 +726,16 @@ pub mod management_server {
     /// Generated trait containing gRPC methods that should be implemented for use with ManagementServer.
     #[async_trait]
     pub trait Management: Send + Sync + 'static {
-        /// Gets the full list of BeeGFS nodes
+        /// Sets an entity alias
+        async fn set_alias(
+            &self,
+            request: tonic::Request<super::SetAliasRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SetAliasResponse>,
+            tonic::Status,
+        >;
+        /// Nodes
+        /// Gets the full list of  nodes
         async fn get_nodes(
             &self,
             request: tonic::Request<super::GetNodesRequest>,
@@ -417,7 +743,16 @@ pub mod management_server {
             tonic::Response<super::GetNodesResponse>,
             tonic::Status,
         >;
-        /// Gets the full list of BeeGFS targets
+        /// Deletes a node
+        async fn delete_node(
+            &self,
+            request: tonic::Request<super::DeleteNodeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeleteNodeResponse>,
+            tonic::Status,
+        >;
+        /// Targets
+        /// Gets the full list of targets
         async fn get_targets(
             &self,
             request: tonic::Request<super::GetTargetsRequest>,
@@ -425,7 +760,49 @@ pub mod management_server {
             tonic::Response<super::GetTargetsResponse>,
             tonic::Status,
         >;
-        /// Gets the full list of BeeGFS buddbeegfsy groups
+        /// Deletes a target
+        async fn delete_target(
+            &self,
+            request: tonic::Request<super::DeleteTargetRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeleteTargetResponse>,
+            tonic::Status,
+        >;
+        /// (Storage) pools
+        /// Gets the full list of pools
+        async fn get_pools(
+            &self,
+            request: tonic::Request<super::GetPoolsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetPoolsResponse>,
+            tonic::Status,
+        >;
+        /// Creates a new pool
+        async fn create_pool(
+            &self,
+            request: tonic::Request<super::CreatePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CreatePoolResponse>,
+            tonic::Status,
+        >;
+        /// Assigns targets and buddy groups to a pool
+        async fn assign_pool(
+            &self,
+            request: tonic::Request<super::AssignPoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::AssignPoolResponse>,
+            tonic::Status,
+        >;
+        /// Deletes a pool
+        async fn delete_pool(
+            &self,
+            request: tonic::Request<super::DeletePoolRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeletePoolResponse>,
+            tonic::Status,
+        >;
+        /// Buddy groups
+        /// Gets the full list of buddy groups
         async fn get_buddy_groups(
             &self,
             request: tonic::Request<super::GetBuddyGroupsRequest>,
@@ -433,20 +810,20 @@ pub mod management_server {
             tonic::Response<super::GetBuddyGroupsResponse>,
             tonic::Status,
         >;
-        /// Gets the full list of BeeGFS storage pools
-        async fn get_storage_pools(
+        /// Creates a new buddy group
+        async fn create_buddy_group(
             &self,
-            request: tonic::Request<super::GetStoragePoolsRequest>,
+            request: tonic::Request<super::CreateBuddyGroupRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::GetStoragePoolsResponse>,
+            tonic::Response<super::CreateBuddyGroupResponse>,
             tonic::Status,
         >;
-        /// Sets an entity alias
-        async fn set_alias(
+        /// Deletes a buddy group
+        async fn delete_buddy_group(
             &self,
-            request: tonic::Request<super::SetAliasRequest>,
+            request: tonic::Request<super::DeleteBuddyGroupRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::SetAliasResponse>,
+            tonic::Response<super::DeleteBuddyGroupResponse>,
             tonic::Status,
         >;
     }
@@ -529,6 +906,52 @@ pub mod management_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
+                "/management.Management/SetAlias" => {
+                    #[allow(non_camel_case_types)]
+                    struct SetAliasSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::SetAliasRequest>
+                    for SetAliasSvc<T> {
+                        type Response = super::SetAliasResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::SetAliasRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::set_alias(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = SetAliasSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
                 "/management.Management/GetNodes" => {
                     #[allow(non_camel_case_types)]
                     struct GetNodesSvc<T: Management>(pub Arc<T>);
@@ -560,6 +983,52 @@ pub mod management_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = GetNodesSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/DeleteNode" => {
+                    #[allow(non_camel_case_types)]
+                    struct DeleteNodeSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::DeleteNodeRequest>
+                    for DeleteNodeSvc<T> {
+                        type Response = super::DeleteNodeResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::DeleteNodeRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::delete_node(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DeleteNodeSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -621,6 +1090,236 @@ pub mod management_server {
                     };
                     Box::pin(fut)
                 }
+                "/management.Management/DeleteTarget" => {
+                    #[allow(non_camel_case_types)]
+                    struct DeleteTargetSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::DeleteTargetRequest>
+                    for DeleteTargetSvc<T> {
+                        type Response = super::DeleteTargetResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::DeleteTargetRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::delete_target(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DeleteTargetSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/GetPools" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetPoolsSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::GetPoolsRequest>
+                    for GetPoolsSvc<T> {
+                        type Response = super::GetPoolsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetPoolsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::get_pools(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = GetPoolsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/CreatePool" => {
+                    #[allow(non_camel_case_types)]
+                    struct CreatePoolSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::CreatePoolRequest>
+                    for CreatePoolSvc<T> {
+                        type Response = super::CreatePoolResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::CreatePoolRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::create_pool(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = CreatePoolSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/AssignPool" => {
+                    #[allow(non_camel_case_types)]
+                    struct AssignPoolSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::AssignPoolRequest>
+                    for AssignPoolSvc<T> {
+                        type Response = super::AssignPoolResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::AssignPoolRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::assign_pool(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = AssignPoolSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/DeletePool" => {
+                    #[allow(non_camel_case_types)]
+                    struct DeletePoolSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::DeletePoolRequest>
+                    for DeletePoolSvc<T> {
+                        type Response = super::DeletePoolResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::DeletePoolRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::delete_pool(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = DeletePoolSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
                 "/management.Management/GetBuddyGroups" => {
                     #[allow(non_camel_case_types)]
                     struct GetBuddyGroupsSvc<T: Management>(pub Arc<T>);
@@ -667,25 +1366,25 @@ pub mod management_server {
                     };
                     Box::pin(fut)
                 }
-                "/management.Management/GetStoragePools" => {
+                "/management.Management/CreateBuddyGroup" => {
                     #[allow(non_camel_case_types)]
-                    struct GetStoragePoolsSvc<T: Management>(pub Arc<T>);
+                    struct CreateBuddyGroupSvc<T: Management>(pub Arc<T>);
                     impl<
                         T: Management,
-                    > tonic::server::UnaryService<super::GetStoragePoolsRequest>
-                    for GetStoragePoolsSvc<T> {
-                        type Response = super::GetStoragePoolsResponse;
+                    > tonic::server::UnaryService<super::CreateBuddyGroupRequest>
+                    for CreateBuddyGroupSvc<T> {
+                        type Response = super::CreateBuddyGroupResponse;
                         type Future = BoxFuture<
                             tonic::Response<Self::Response>,
                             tonic::Status,
                         >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::GetStoragePoolsRequest>,
+                            request: tonic::Request<super::CreateBuddyGroupRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
                             let fut = async move {
-                                <T as Management>::get_storage_pools(&inner, request).await
+                                <T as Management>::create_buddy_group(&inner, request).await
                             };
                             Box::pin(fut)
                         }
@@ -697,7 +1396,7 @@ pub mod management_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = GetStoragePoolsSvc(inner);
+                        let method = CreateBuddyGroupSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -713,25 +1412,25 @@ pub mod management_server {
                     };
                     Box::pin(fut)
                 }
-                "/management.Management/SetAlias" => {
+                "/management.Management/DeleteBuddyGroup" => {
                     #[allow(non_camel_case_types)]
-                    struct SetAliasSvc<T: Management>(pub Arc<T>);
+                    struct DeleteBuddyGroupSvc<T: Management>(pub Arc<T>);
                     impl<
                         T: Management,
-                    > tonic::server::UnaryService<super::SetAliasRequest>
-                    for SetAliasSvc<T> {
-                        type Response = super::SetAliasResponse;
+                    > tonic::server::UnaryService<super::DeleteBuddyGroupRequest>
+                    for DeleteBuddyGroupSvc<T> {
+                        type Response = super::DeleteBuddyGroupResponse;
                         type Future = BoxFuture<
                             tonic::Response<Self::Response>,
                             tonic::Status,
                         >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::SetAliasRequest>,
+                            request: tonic::Request<super::DeleteBuddyGroupRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
                             let fut = async move {
-                                <T as Management>::set_alias(&inner, request).await
+                                <T as Management>::delete_buddy_group(&inner, request).await
                             };
                             Box::pin(fut)
                         }
@@ -743,7 +1442,7 @@ pub mod management_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = SetAliasSvc(inner);
+                        let method = DeleteBuddyGroupSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
