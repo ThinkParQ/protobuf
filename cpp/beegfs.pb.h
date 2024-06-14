@@ -54,9 +54,6 @@ namespace beegfs {
 class EntityIdSet;
 struct EntityIdSetDefaultTypeInternal;
 extern EntityIdSetDefaultTypeInternal _EntityIdSet_default_instance_;
-class EntityIdVariant;
-struct EntityIdVariantDefaultTypeInternal;
-extern EntityIdVariantDefaultTypeInternal _EntityIdVariant_default_instance_;
 class LegacyId;
 struct LegacyIdDefaultTypeInternal;
 extern LegacyIdDefaultTypeInternal _LegacyId_default_instance_;
@@ -72,7 +69,7 @@ enum EntityType : int {
   NODE = 1,
   TARGET = 2,
   BUDDY_GROUP = 3,
-  STORAGE_POOL = 4,
+  POOL = 4,
   EntityType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   EntityType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -411,7 +408,6 @@ class LegacyId final : public ::google::protobuf::Message
   enum : int {
     kNumIdFieldNumber = 1,
     kNodeTypeFieldNumber = 2,
-    kEntityTypeFieldNumber = 3,
   };
   // uint32 num_id = 1;
   void clear_num_id() ;
@@ -433,22 +429,12 @@ class LegacyId final : public ::google::protobuf::Message
   void _internal_set_node_type(::beegfs::NodeType value);
 
   public:
-  // .beegfs.EntityType entity_type = 3;
-  void clear_entity_type() ;
-  ::beegfs::EntityType entity_type() const;
-  void set_entity_type(::beegfs::EntityType value);
-
-  private:
-  ::beegfs::EntityType _internal_entity_type() const;
-  void _internal_set_entity_type(::beegfs::EntityType value);
-
-  public:
   // @@protoc_insertion_point(class_scope:beegfs.LegacyId)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
+      1, 2, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -466,234 +452,7 @@ class LegacyId final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from);
     ::uint32_t num_id_;
     int node_type_;
-    int entity_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_beegfs_2eproto;
-};
-// -------------------------------------------------------------------
-
-class EntityIdVariant final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:beegfs.EntityIdVariant) */ {
- public:
-  inline EntityIdVariant() : EntityIdVariant(nullptr) {}
-  ~EntityIdVariant() override;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR EntityIdVariant(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline EntityIdVariant(const EntityIdVariant& from) : EntityIdVariant(nullptr, from) {}
-  inline EntityIdVariant(EntityIdVariant&& from) noexcept
-      : EntityIdVariant(nullptr, std::move(from)) {}
-  inline EntityIdVariant& operator=(const EntityIdVariant& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline EntityIdVariant& operator=(EntityIdVariant&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const EntityIdVariant& default_instance() {
-    return *internal_default_instance();
-  }
-  enum VariantCase {
-    kUid = 1,
-    kLegacyId = 2,
-    kAlias = 3,
-    VARIANT_NOT_SET = 0,
-  };
-  static inline const EntityIdVariant* internal_default_instance() {
-    return reinterpret_cast<const EntityIdVariant*>(
-        &_EntityIdVariant_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 2;
-  friend void swap(EntityIdVariant& a, EntityIdVariant& b) { a.Swap(&b); }
-  inline void Swap(EntityIdVariant* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(EntityIdVariant* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  EntityIdVariant* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<EntityIdVariant>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const EntityIdVariant& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const EntityIdVariant& from) { EntityIdVariant::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(EntityIdVariant* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "beegfs.EntityIdVariant"; }
-
- protected:
-  explicit EntityIdVariant(::google::protobuf::Arena* arena);
-  EntityIdVariant(::google::protobuf::Arena* arena, const EntityIdVariant& from);
-  EntityIdVariant(::google::protobuf::Arena* arena, EntityIdVariant&& from) noexcept
-      : EntityIdVariant(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::MessageLite::ClassData* GetClassData()
-      const final;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const final;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kUidFieldNumber = 1,
-    kLegacyIdFieldNumber = 2,
-    kAliasFieldNumber = 3,
-  };
-  // uint64 uid = 1;
-  bool has_uid() const;
-  void clear_uid() ;
-  ::uint64_t uid() const;
-  void set_uid(::uint64_t value);
-
-  private:
-  ::uint64_t _internal_uid() const;
-  void _internal_set_uid(::uint64_t value);
-
-  public:
-  // .beegfs.LegacyId legacy_id = 2;
-  bool has_legacy_id() const;
-  private:
-  bool _internal_has_legacy_id() const;
-
-  public:
-  void clear_legacy_id() ;
-  const ::beegfs::LegacyId& legacy_id() const;
-  PROTOBUF_NODISCARD ::beegfs::LegacyId* release_legacy_id();
-  ::beegfs::LegacyId* mutable_legacy_id();
-  void set_allocated_legacy_id(::beegfs::LegacyId* value);
-  void unsafe_arena_set_allocated_legacy_id(::beegfs::LegacyId* value);
-  ::beegfs::LegacyId* unsafe_arena_release_legacy_id();
-
-  private:
-  const ::beegfs::LegacyId& _internal_legacy_id() const;
-  ::beegfs::LegacyId* _internal_mutable_legacy_id();
-
-  public:
-  // string alias = 3;
-  bool has_alias() const;
-  void clear_alias() ;
-  const std::string& alias() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_alias(Arg_&& arg, Args_... args);
-  std::string* mutable_alias();
-  PROTOBUF_NODISCARD std::string* release_alias();
-  void set_allocated_alias(std::string* value);
-
-  private:
-  const std::string& _internal_alias() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_alias(
-      const std::string& value);
-  std::string* _internal_mutable_alias();
-
-  public:
-  void clear_variant();
-  VariantCase variant_case() const;
-  // @@protoc_insertion_point(class_scope:beegfs.EntityIdVariant)
- private:
-  class _Internal;
-  void set_has_uid();
-  void set_has_legacy_id();
-  void set_has_alias();
-  inline bool has_variant() const;
-  inline void clear_has_variant();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 3, 1,
-      36, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from);
-    union VariantUnion {
-      constexpr VariantUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::uint64_t uid_;
-      ::beegfs::LegacyId* legacy_id_;
-      ::google::protobuf::internal::ArenaStringPtr alias_;
-    } variant_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -830,7 +589,8 @@ class EntityIdSet final : public ::google::protobuf::Message
     kLegacyIdFieldNumber = 3,
     kUidFieldNumber = 1,
   };
-  // string alias = 2;
+  // optional string alias = 2;
+  bool has_alias() const;
   void clear_alias() ;
   const std::string& alias() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -846,7 +606,7 @@ class EntityIdSet final : public ::google::protobuf::Message
   std::string* _internal_mutable_alias();
 
   public:
-  // .beegfs.LegacyId legacy_id = 3;
+  // optional .beegfs.LegacyId legacy_id = 3;
   bool has_legacy_id() const;
   void clear_legacy_id() ;
   const ::beegfs::LegacyId& legacy_id() const;
@@ -861,14 +621,15 @@ class EntityIdSet final : public ::google::protobuf::Message
   ::beegfs::LegacyId* _internal_mutable_legacy_id();
 
   public:
-  // uint64 uid = 1;
+  // optional int64 uid = 1;
+  bool has_uid() const;
   void clear_uid() ;
-  ::uint64_t uid() const;
-  void set_uid(::uint64_t value);
+  ::int64_t uid() const;
+  void set_uid(::int64_t value);
 
   private:
-  ::uint64_t _internal_uid() const;
-  void _internal_set_uid(::uint64_t value);
+  ::int64_t _internal_uid() const;
+  void _internal_set_uid(::int64_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:beegfs.EntityIdSet)
@@ -896,7 +657,7 @@ class EntityIdSet final : public ::google::protobuf::Message
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr alias_;
     ::beegfs::LegacyId* legacy_id_;
-    ::uint64_t uid_;
+    ::int64_t uid_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -963,58 +724,47 @@ inline void LegacyId::_internal_set_node_type(::beegfs::NodeType value) {
   _impl_.node_type_ = value;
 }
 
-// .beegfs.EntityType entity_type = 3;
-inline void LegacyId::clear_entity_type() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.entity_type_ = 0;
-}
-inline ::beegfs::EntityType LegacyId::entity_type() const {
-  // @@protoc_insertion_point(field_get:beegfs.LegacyId.entity_type)
-  return _internal_entity_type();
-}
-inline void LegacyId::set_entity_type(::beegfs::EntityType value) {
-  _internal_set_entity_type(value);
-  // @@protoc_insertion_point(field_set:beegfs.LegacyId.entity_type)
-}
-inline ::beegfs::EntityType LegacyId::_internal_entity_type() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::beegfs::EntityType>(_impl_.entity_type_);
-}
-inline void LegacyId::_internal_set_entity_type(::beegfs::EntityType value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.entity_type_ = value;
-}
-
 // -------------------------------------------------------------------
 
 // EntityIdSet
 
-// uint64 uid = 1;
+// optional int64 uid = 1;
+inline bool EntityIdSet::has_uid() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
 inline void EntityIdSet::clear_uid() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.uid_ = ::uint64_t{0u};
+  _impl_.uid_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline ::uint64_t EntityIdSet::uid() const {
+inline ::int64_t EntityIdSet::uid() const {
   // @@protoc_insertion_point(field_get:beegfs.EntityIdSet.uid)
   return _internal_uid();
 }
-inline void EntityIdSet::set_uid(::uint64_t value) {
+inline void EntityIdSet::set_uid(::int64_t value) {
   _internal_set_uid(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
   // @@protoc_insertion_point(field_set:beegfs.EntityIdSet.uid)
 }
-inline ::uint64_t EntityIdSet::_internal_uid() const {
+inline ::int64_t EntityIdSet::_internal_uid() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.uid_;
 }
-inline void EntityIdSet::_internal_set_uid(::uint64_t value) {
+inline void EntityIdSet::_internal_set_uid(::int64_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.uid_ = value;
 }
 
-// string alias = 2;
+// optional string alias = 2;
+inline bool EntityIdSet::has_alias() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
 inline void EntityIdSet::clear_alias() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.alias_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& EntityIdSet::alias() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1025,6 +775,7 @@ template <typename Arg_, typename... Args_>
 inline PROTOBUF_ALWAYS_INLINE void EntityIdSet::set_alias(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.alias_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:beegfs.EntityIdSet.alias)
 }
@@ -1039,19 +790,34 @@ inline const std::string& EntityIdSet::_internal_alias() const {
 }
 inline void EntityIdSet::_internal_set_alias(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.alias_.Set(value, GetArena());
 }
 inline std::string* EntityIdSet::_internal_mutable_alias() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.alias_.Mutable( GetArena());
 }
 inline std::string* EntityIdSet::release_alias() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:beegfs.EntityIdSet.alias)
-  return _impl_.alias_.Release();
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.alias_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.alias_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
 }
 inline void EntityIdSet::set_allocated_alias(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
   _impl_.alias_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
         if (_impl_.alias_.IsDefault()) {
@@ -1061,16 +827,16 @@ inline void EntityIdSet::set_allocated_alias(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:beegfs.EntityIdSet.alias)
 }
 
-// .beegfs.LegacyId legacy_id = 3;
+// optional .beegfs.LegacyId legacy_id = 3;
 inline bool EntityIdSet::has_legacy_id() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.legacy_id_ != nullptr);
   return value;
 }
 inline void EntityIdSet::clear_legacy_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.legacy_id_ != nullptr) _impl_.legacy_id_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 inline const ::beegfs::LegacyId& EntityIdSet::_internal_legacy_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -1088,16 +854,16 @@ inline void EntityIdSet::unsafe_arena_set_allocated_legacy_id(::beegfs::LegacyId
   }
   _impl_.legacy_id_ = reinterpret_cast<::beegfs::LegacyId*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.EntityIdSet.legacy_id)
 }
 inline ::beegfs::LegacyId* EntityIdSet::release_legacy_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::beegfs::LegacyId* released = _impl_.legacy_id_;
   _impl_.legacy_id_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -1117,7 +883,7 @@ inline ::beegfs::LegacyId* EntityIdSet::unsafe_arena_release_legacy_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:beegfs.EntityIdSet.legacy_id)
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::beegfs::LegacyId* temp = _impl_.legacy_id_;
   _impl_.legacy_id_ = nullptr;
   return temp;
@@ -1131,7 +897,7 @@ inline ::beegfs::LegacyId* EntityIdSet::_internal_mutable_legacy_id() {
   return _impl_.legacy_id_;
 }
 inline ::beegfs::LegacyId* EntityIdSet::mutable_legacy_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   ::beegfs::LegacyId* _msg = _internal_mutable_legacy_id();
   // @@protoc_insertion_point(field_mutable:beegfs.EntityIdSet.legacy_id)
   return _msg;
@@ -1148,223 +914,15 @@ inline void EntityIdSet::set_allocated_legacy_id(::beegfs::LegacyId* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.legacy_id_ = reinterpret_cast<::beegfs::LegacyId*>(value);
   // @@protoc_insertion_point(field_set_allocated:beegfs.EntityIdSet.legacy_id)
 }
 
-// -------------------------------------------------------------------
-
-// EntityIdVariant
-
-// uint64 uid = 1;
-inline bool EntityIdVariant::has_uid() const {
-  return variant_case() == kUid;
-}
-inline void EntityIdVariant::set_has_uid() {
-  _impl_._oneof_case_[0] = kUid;
-}
-inline void EntityIdVariant::clear_uid() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (variant_case() == kUid) {
-    _impl_.variant_.uid_ = ::uint64_t{0u};
-    clear_has_variant();
-  }
-}
-inline ::uint64_t EntityIdVariant::uid() const {
-  // @@protoc_insertion_point(field_get:beegfs.EntityIdVariant.uid)
-  return _internal_uid();
-}
-inline void EntityIdVariant::set_uid(::uint64_t value) {
-  if (variant_case() != kUid) {
-    clear_variant();
-    set_has_uid();
-  }
-  _impl_.variant_.uid_ = value;
-  // @@protoc_insertion_point(field_set:beegfs.EntityIdVariant.uid)
-}
-inline ::uint64_t EntityIdVariant::_internal_uid() const {
-  if (variant_case() == kUid) {
-    return _impl_.variant_.uid_;
-  }
-  return ::uint64_t{0u};
-}
-
-// .beegfs.LegacyId legacy_id = 2;
-inline bool EntityIdVariant::has_legacy_id() const {
-  return variant_case() == kLegacyId;
-}
-inline bool EntityIdVariant::_internal_has_legacy_id() const {
-  return variant_case() == kLegacyId;
-}
-inline void EntityIdVariant::set_has_legacy_id() {
-  _impl_._oneof_case_[0] = kLegacyId;
-}
-inline void EntityIdVariant::clear_legacy_id() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (variant_case() == kLegacyId) {
-    if (GetArena() == nullptr) {
-      delete _impl_.variant_.legacy_id_;
-    }
-    clear_has_variant();
-  }
-}
-inline ::beegfs::LegacyId* EntityIdVariant::release_legacy_id() {
-  // @@protoc_insertion_point(field_release:beegfs.EntityIdVariant.legacy_id)
-  if (variant_case() == kLegacyId) {
-    clear_has_variant();
-    auto* temp = _impl_.variant_.legacy_id_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.variant_.legacy_id_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::beegfs::LegacyId& EntityIdVariant::_internal_legacy_id() const {
-  return variant_case() == kLegacyId ? *_impl_.variant_.legacy_id_ : reinterpret_cast<::beegfs::LegacyId&>(::beegfs::_LegacyId_default_instance_);
-}
-inline const ::beegfs::LegacyId& EntityIdVariant::legacy_id() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:beegfs.EntityIdVariant.legacy_id)
-  return _internal_legacy_id();
-}
-inline ::beegfs::LegacyId* EntityIdVariant::unsafe_arena_release_legacy_id() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beegfs.EntityIdVariant.legacy_id)
-  if (variant_case() == kLegacyId) {
-    clear_has_variant();
-    auto* temp = _impl_.variant_.legacy_id_;
-    _impl_.variant_.legacy_id_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void EntityIdVariant::unsafe_arena_set_allocated_legacy_id(::beegfs::LegacyId* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_variant();
-  if (value) {
-    set_has_legacy_id();
-    _impl_.variant_.legacy_id_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.EntityIdVariant.legacy_id)
-}
-inline ::beegfs::LegacyId* EntityIdVariant::_internal_mutable_legacy_id() {
-  if (variant_case() != kLegacyId) {
-    clear_variant();
-    set_has_legacy_id();
-    _impl_.variant_.legacy_id_ =
-        ::google::protobuf::Message::DefaultConstruct<::beegfs::LegacyId>(GetArena());
-  }
-  return _impl_.variant_.legacy_id_;
-}
-inline ::beegfs::LegacyId* EntityIdVariant::mutable_legacy_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::beegfs::LegacyId* _msg = _internal_mutable_legacy_id();
-  // @@protoc_insertion_point(field_mutable:beegfs.EntityIdVariant.legacy_id)
-  return _msg;
-}
-
-// string alias = 3;
-inline bool EntityIdVariant::has_alias() const {
-  return variant_case() == kAlias;
-}
-inline void EntityIdVariant::set_has_alias() {
-  _impl_._oneof_case_[0] = kAlias;
-}
-inline void EntityIdVariant::clear_alias() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (variant_case() == kAlias) {
-    _impl_.variant_.alias_.Destroy();
-    clear_has_variant();
-  }
-}
-inline const std::string& EntityIdVariant::alias() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:beegfs.EntityIdVariant.alias)
-  return _internal_alias();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void EntityIdVariant::set_alias(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (variant_case() != kAlias) {
-    clear_variant();
-
-    set_has_alias();
-    _impl_.variant_.alias_.InitDefault();
-  }
-  _impl_.variant_.alias_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:beegfs.EntityIdVariant.alias)
-}
-inline std::string* EntityIdVariant::mutable_alias() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_alias();
-  // @@protoc_insertion_point(field_mutable:beegfs.EntityIdVariant.alias)
-  return _s;
-}
-inline const std::string& EntityIdVariant::_internal_alias() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  if (variant_case() != kAlias) {
-    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
-  }
-  return _impl_.variant_.alias_.Get();
-}
-inline void EntityIdVariant::_internal_set_alias(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (variant_case() != kAlias) {
-    clear_variant();
-
-    set_has_alias();
-    _impl_.variant_.alias_.InitDefault();
-  }
-  _impl_.variant_.alias_.Set(value, GetArena());
-}
-inline std::string* EntityIdVariant::_internal_mutable_alias() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (variant_case() != kAlias) {
-    clear_variant();
-
-    set_has_alias();
-    _impl_.variant_.alias_.InitDefault();
-  }
-  return _impl_.variant_.alias_.Mutable( GetArena());
-}
-inline std::string* EntityIdVariant::release_alias() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:beegfs.EntityIdVariant.alias)
-  if (variant_case() != kAlias) {
-    return nullptr;
-  }
-  clear_has_variant();
-  return _impl_.variant_.alias_.Release();
-}
-inline void EntityIdVariant::set_allocated_alias(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (has_variant()) {
-    clear_variant();
-  }
-  if (value != nullptr) {
-    set_has_alias();
-    _impl_.variant_.alias_.InitAllocated(value, GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:beegfs.EntityIdVariant.alias)
-}
-
-inline bool EntityIdVariant::has_variant() const {
-  return variant_case() != VARIANT_NOT_SET;
-}
-inline void EntityIdVariant::clear_has_variant() {
-  _impl_._oneof_case_[0] = VARIANT_NOT_SET;
-}
-inline EntityIdVariant::VariantCase EntityIdVariant::variant_case() const {
-  return EntityIdVariant::VariantCase(_impl_._oneof_case_[0]);
-}
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__

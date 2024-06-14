@@ -27,7 +27,6 @@ inline constexpr LegacyId::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : num_id_{0u},
         node_type_{static_cast< ::beegfs::NodeType >(0)},
-        entity_type_{static_cast< ::beegfs::EntityType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -44,26 +43,6 @@ struct LegacyIdDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LegacyIdDefaultTypeInternal _LegacyId_default_instance_;
 
-inline constexpr EntityIdVariant::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : variant_{},
-        _cached_size_{0},
-        _oneof_case_{} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR EntityIdVariant::EntityIdVariant(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct EntityIdVariantDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EntityIdVariantDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EntityIdVariantDefaultTypeInternal() {}
-  union {
-    EntityIdVariant _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EntityIdVariantDefaultTypeInternal _EntityIdVariant_default_instance_;
-
 inline constexpr EntityIdSet::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -71,7 +50,7 @@ inline constexpr EntityIdSet::Impl_::Impl_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         legacy_id_{nullptr},
-        uid_{::uint64_t{0u}} {}
+        uid_{::int64_t{0}} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR EntityIdSet::EntityIdSet(::_pbi::ConstantInitialized)
@@ -87,7 +66,7 @@ struct EntityIdSetDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EntityIdSetDefaultTypeInternal _EntityIdSet_default_instance_;
 }  // namespace beegfs
-static ::_pb::Metadata file_level_metadata_beegfs_2eproto[3];
+static ::_pb::Metadata file_level_metadata_beegfs_2eproto[2];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_beegfs_2eproto[6];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_beegfs_2eproto = nullptr;
@@ -104,7 +83,6 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::beegfs::LegacyId, _impl_.num_id_),
         PROTOBUF_FIELD_OFFSET(::beegfs::LegacyId, _impl_.node_type_),
-        PROTOBUF_FIELD_OFFSET(::beegfs::LegacyId, _impl_.entity_type_),
         PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdSet, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdSet, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -116,71 +94,54 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdSet, _impl_.uid_),
         PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdSet, _impl_.alias_),
         PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdSet, _impl_.legacy_id_),
-        ~0u,
-        ~0u,
+        2,
         0,
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdVariant, _internal_metadata_),
-        ~0u,  // no _extensions_
-        PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdVariant, _impl_._oneof_case_[0]),
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        ::_pbi::kInvalidFieldOffsetTag,
-        ::_pbi::kInvalidFieldOffsetTag,
-        ::_pbi::kInvalidFieldOffsetTag,
-        PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdVariant, _impl_.variant_),
+        1,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::beegfs::LegacyId)},
-        {11, 22, -1, sizeof(::beegfs::EntityIdSet)},
-        {25, -1, -1, sizeof(::beegfs::EntityIdVariant)},
+        {10, 21, -1, sizeof(::beegfs::EntityIdSet)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::beegfs::_LegacyId_default_instance_._instance,
     &::beegfs::_EntityIdSet_default_instance_._instance,
-    &::beegfs::_EntityIdVariant_default_instance_._instance,
 };
 const char descriptor_table_protodef_beegfs_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\014beegfs.proto\022\006beegfs\"h\n\010LegacyId\022\016\n\006nu"
+    "\n\014beegfs.proto\022\006beegfs\"\?\n\010LegacyId\022\016\n\006nu"
     "m_id\030\001 \001(\r\022#\n\tnode_type\030\002 \001(\0162\020.beegfs.N"
-    "odeType\022\'\n\013entity_type\030\003 \001(\0162\022.beegfs.En"
-    "tityType\"N\n\013EntityIdSet\022\013\n\003uid\030\001 \001(\004\022\r\n\005"
-    "alias\030\002 \001(\t\022#\n\tlegacy_id\030\003 \001(\0132\020.beegfs."
-    "LegacyId\"c\n\017EntityIdVariant\022\r\n\003uid\030\001 \001(\004"
-    "H\000\022%\n\tlegacy_id\030\002 \001(\0132\020.beegfs.LegacyIdH"
-    "\000\022\017\n\005alias\030\003 \001(\tH\000B\t\n\007variant*b\n\nEntityT"
-    "ype\022\033\n\027ENTITY_TYPE_UNSPECIFIED\020\000\022\010\n\004NODE"
-    "\020\001\022\n\n\006TARGET\020\002\022\017\n\013BUDDY_GROUP\020\003\022\020\n\014STORA"
-    "GE_POOL\020\004*X\n\010NodeType\022\031\n\025NODE_TYPE_UNSPE"
-    "CIFIED\020\000\022\n\n\006CLIENT\020\001\022\010\n\004META\020\002\022\013\n\007STORAG"
-    "E\020\003\022\016\n\nMANAGEMENT\020\004*^\n\021ReachabilityState"
-    "\022\"\n\036REACHABILITY_STATE_UNSPECIFIED\020\000\022\n\n\006"
-    "ONLINE\020\001\022\014\n\010POFFLINE\020\002\022\013\n\007OFFLINE\020\003*Z\n\020C"
-    "onsistencyState\022!\n\035CONSISTENCY_STATE_UNS"
-    "PECIFIED\020\000\022\010\n\004GOOD\020\001\022\020\n\014NEEDS_RESYNC\020\002\022\007"
-    "\n\003BAD\020\003*Q\n\014CapacityPool\022\035\n\031CAPACITY_POOL"
-    "_UNSPECIFIED\020\000\022\n\n\006NORMAL\020\001\022\007\n\003LOW\020\002\022\r\n\tE"
-    "MERGENCY\020\003*;\n\007NicType\022\030\n\024NIC_TYPE_UNSPEC"
-    "IFIED\020\000\022\014\n\010ETHERNET\020\001\022\010\n\004RDMA\020\002B)Z\'githu"
-    "b.com/thinkparq/protobuf/go/beegfsb\006prot"
-    "o3"
+    "odeType\"}\n\013EntityIdSet\022\020\n\003uid\030\001 \001(\003H\000\210\001\001"
+    "\022\022\n\005alias\030\002 \001(\tH\001\210\001\001\022(\n\tlegacy_id\030\003 \001(\0132"
+    "\020.beegfs.LegacyIdH\002\210\001\001B\006\n\004_uidB\010\n\006_alias"
+    "B\014\n\n_legacy_id*Z\n\nEntityType\022\033\n\027ENTITY_T"
+    "YPE_UNSPECIFIED\020\000\022\010\n\004NODE\020\001\022\n\n\006TARGET\020\002\022"
+    "\017\n\013BUDDY_GROUP\020\003\022\010\n\004POOL\020\004*X\n\010NodeType\022\031"
+    "\n\025NODE_TYPE_UNSPECIFIED\020\000\022\n\n\006CLIENT\020\001\022\010\n"
+    "\004META\020\002\022\013\n\007STORAGE\020\003\022\016\n\nMANAGEMENT\020\004*^\n\021"
+    "ReachabilityState\022\"\n\036REACHABILITY_STATE_"
+    "UNSPECIFIED\020\000\022\n\n\006ONLINE\020\001\022\014\n\010POFFLINE\020\002\022"
+    "\013\n\007OFFLINE\020\003*Z\n\020ConsistencyState\022!\n\035CONS"
+    "ISTENCY_STATE_UNSPECIFIED\020\000\022\010\n\004GOOD\020\001\022\020\n"
+    "\014NEEDS_RESYNC\020\002\022\007\n\003BAD\020\003*Q\n\014CapacityPool"
+    "\022\035\n\031CAPACITY_POOL_UNSPECIFIED\020\000\022\n\n\006NORMA"
+    "L\020\001\022\007\n\003LOW\020\002\022\r\n\tEMERGENCY\020\003*;\n\007NicType\022\030"
+    "\n\024NIC_TYPE_UNSPECIFIED\020\000\022\014\n\010ETHERNET\020\001\022\010"
+    "\n\004RDMA\020\002B)Z\'github.com/thinkparq/protobu"
+    "f/go/beegfsb\006proto3"
 };
 static ::absl::once_flag descriptor_table_beegfs_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_beegfs_2eproto = {
     false,
     false,
-    882,
+    779,
     descriptor_table_protodef_beegfs_2eproto,
     "beegfs.proto",
     &descriptor_table_beegfs_2eproto_once,
     nullptr,
     0,
-    3,
+    2,
     schemas,
     file_default_instances,
     TableStruct_beegfs_2eproto::offsets,
@@ -284,9 +245,9 @@ inline void LegacyId::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, num_id_),
            0,
-           offsetof(Impl_, entity_type_) -
+           offsetof(Impl_, node_type_) -
                offsetof(Impl_, num_id_) +
-               sizeof(Impl_::entity_type_));
+               sizeof(Impl_::node_type_));
 }
 LegacyId::~LegacyId() {
   // @@protoc_insertion_point(destructor:beegfs.LegacyId)
@@ -320,8 +281,8 @@ PROTOBUF_NOINLINE void LegacyId::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.num_id_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.entity_type_) -
-      reinterpret_cast<char*>(&_impl_.num_id_)) + sizeof(_impl_.entity_type_));
+      reinterpret_cast<char*>(&_impl_.node_type_) -
+      reinterpret_cast<char*>(&_impl_.num_id_)) + sizeof(_impl_.node_type_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -333,15 +294,15 @@ const char* LegacyId::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2> LegacyId::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> LegacyId::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_LegacyId_default_instance_._instance,
@@ -350,16 +311,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> LegacyId::_table_ = {
     ::_pbi::TcParser::GetTable<::beegfs::LegacyId>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // uint32 num_id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LegacyId, _impl_.num_id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.num_id_)}},
     // .beegfs.NodeType node_type = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LegacyId, _impl_.node_type_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.node_type_)}},
-    // .beegfs.EntityType entity_type = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LegacyId, _impl_.entity_type_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.entity_type_)}},
+    // uint32 num_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LegacyId, _impl_.num_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.num_id_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -368,9 +325,6 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> LegacyId::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // .beegfs.NodeType node_type = 2;
     {PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.node_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // .beegfs.EntityType entity_type = 3;
-    {PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.entity_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
@@ -397,13 +351,6 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> LegacyId::_table_ = {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         2, this->_internal_node_type(), target);
-  }
-
-  // .beegfs.EntityType entity_type = 3;
-  if (this->_internal_entity_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        3, this->_internal_entity_type(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -435,12 +382,6 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> LegacyId::_table_ = {
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_node_type());
   }
 
-  // .beegfs.EntityType entity_type = 3;
-  if (this->_internal_entity_type() != 0) {
-    total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_entity_type());
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -458,9 +399,6 @@ void LegacyId::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
   }
   if (from._internal_node_type() != 0) {
     _this->_impl_.node_type_ = from._impl_.node_type_;
-  }
-  if (from._internal_entity_type() != 0) {
-    _this->_impl_.entity_type_ = from._impl_.entity_type_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -480,8 +418,8 @@ void LegacyId::InternalSwap(LegacyId* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.entity_type_)
-      + sizeof(LegacyId::_impl_.entity_type_)
+      PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.node_type_)
+      + sizeof(LegacyId::_impl_.node_type_)
       - PROTOBUF_FIELD_OFFSET(LegacyId, _impl_.num_id_)>(
           reinterpret_cast<char*>(&_impl_.num_id_),
           reinterpret_cast<char*>(&other->_impl_.num_id_));
@@ -523,7 +461,7 @@ EntityIdSet::EntityIdSet(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.legacy_id_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::LegacyId>(
+  _impl_.legacy_id_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::LegacyId>(
                               arena, *from._impl_.legacy_id_)
                         : nullptr;
   _impl_.uid_ = from._impl_.uid_;
@@ -578,13 +516,17 @@ PROTOBUF_NOINLINE void EntityIdSet::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.alias_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.legacy_id_ != nullptr);
-    _impl_.legacy_id_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.alias_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.legacy_id_ != nullptr);
+      _impl_.legacy_id_->Clear();
+    }
   }
-  _impl_.uid_ = ::uint64_t{0u};
+  _impl_.uid_ = ::int64_t{0};
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -615,26 +557,26 @@ const ::_pbi::TcParseTable<2, 3, 1, 32, 2> EntityIdSet::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // uint64 uid = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(EntityIdSet, _impl_.uid_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.uid_)}},
-    // string alias = 2;
+    // optional int64 uid = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(EntityIdSet, _impl_.uid_), 2>(),
+     {8, 2, 0, PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.uid_)}},
+    // optional string alias = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.alias_)}},
-    // .beegfs.LegacyId legacy_id = 3;
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.alias_)}},
+    // optional .beegfs.LegacyId legacy_id = 3;
     {::_pbi::TcParser::FastMtS1,
-     {26, 0, 0, PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.legacy_id_)}},
+     {26, 1, 0, PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.legacy_id_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint64 uid = 1;
-    {PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.uid_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
-    // string alias = 2;
-    {PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.alias_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .beegfs.LegacyId legacy_id = 3;
-    {PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.legacy_id_), _Internal::kHasBitsOffset + 0, 0,
+    // optional int64 uid = 1;
+    {PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.uid_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional string alias = 2;
+    {PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.alias_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional .beegfs.LegacyId legacy_id = 3;
+    {PROTOBUF_FIELD_OFFSET(EntityIdSet, _impl_.legacy_id_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beegfs::LegacyId>()},
@@ -652,24 +594,24 @@ const ::_pbi::TcParseTable<2, 3, 1, 32, 2> EntityIdSet::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint64 uid = 1;
-  if (this->_internal_uid() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-        1, this->_internal_uid(), target);
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional int64 uid = 1;
+  if (cached_has_bits & 0x00000004u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<1>(
+            stream, this->_internal_uid(), target);
   }
 
-  // string alias = 2;
-  if (!this->_internal_alias().empty()) {
+  // optional string alias = 2;
+  if (cached_has_bits & 0x00000001u) {
     const std::string& _s = this->_internal_alias();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.EntityIdSet.alias");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
-  // .beegfs.LegacyId legacy_id = 3;
-  if (cached_has_bits & 0x00000001u) {
+  // optional .beegfs.LegacyId legacy_id = 3;
+  if (cached_has_bits & 0x00000002u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         3, *_impl_.legacy_id_, _impl_.legacy_id_->GetCachedSize(), target, stream);
   }
@@ -691,25 +633,27 @@ const ::_pbi::TcParseTable<2, 3, 1, 32, 2> EntityIdSet::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string alias = 2;
-  if (!this->_internal_alias().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_alias());
-  }
-
-  // .beegfs.LegacyId legacy_id = 3;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.legacy_id_);
-  }
+  if (cached_has_bits & 0x00000007u) {
+    // optional string alias = 2;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this->_internal_alias());
+    }
 
-  // uint64 uid = 1;
-  if (this->_internal_uid() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
-        this->_internal_uid());
-  }
+    // optional .beegfs.LegacyId legacy_id = 3;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.legacy_id_);
+    }
 
+    // optional int64 uid = 1;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_uid());
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -723,21 +667,23 @@ void EntityIdSet::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_alias().empty()) {
-    _this->_internal_set_alias(from._internal_alias());
-  }
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.legacy_id_ != nullptr);
-    if (_this->_impl_.legacy_id_ == nullptr) {
-      _this->_impl_.legacy_id_ =
-          ::google::protobuf::Message::CopyConstruct<::beegfs::LegacyId>(arena, *from._impl_.legacy_id_);
-    } else {
-      _this->_impl_.legacy_id_->MergeFrom(*from._impl_.legacy_id_);
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_alias(from._internal_alias());
     }
-  }
-  if (from._internal_uid() != 0) {
-    _this->_impl_.uid_ = from._impl_.uid_;
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.legacy_id_ != nullptr);
+      if (_this->_impl_.legacy_id_ == nullptr) {
+        _this->_impl_.legacy_id_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::LegacyId>(arena, *from._impl_.legacy_id_);
+      } else {
+        _this->_impl_.legacy_id_->MergeFrom(*from._impl_.legacy_id_);
+      }
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.uid_ = from._impl_.uid_;
+    }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
@@ -773,328 +719,6 @@ void EntityIdSet::InternalSwap(EntityIdSet* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(&descriptor_table_beegfs_2eproto_getter,
                                    &descriptor_table_beegfs_2eproto_once,
                                    file_level_metadata_beegfs_2eproto[1]);
-}
-// ===================================================================
-
-class EntityIdVariant::_Internal {
- public:
-  static constexpr ::int32_t kOneofCaseOffset =
-    PROTOBUF_FIELD_OFFSET(::beegfs::EntityIdVariant, _impl_._oneof_case_);
-};
-
-void EntityIdVariant::set_allocated_legacy_id(::beegfs::LegacyId* legacy_id) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_variant();
-  if (legacy_id) {
-    ::google::protobuf::Arena* submessage_arena = legacy_id->GetArena();
-    if (message_arena != submessage_arena) {
-      legacy_id = ::google::protobuf::internal::GetOwnedMessage(message_arena, legacy_id, submessage_arena);
-    }
-    set_has_legacy_id();
-    _impl_.variant_.legacy_id_ = legacy_id;
-  }
-  // @@protoc_insertion_point(field_set_allocated:beegfs.EntityIdVariant.legacy_id)
-}
-EntityIdVariant::EntityIdVariant(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beegfs.EntityIdVariant)
-}
-inline PROTOBUF_NDEBUG_INLINE EntityIdVariant::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : variant_{},
-        _cached_size_{0},
-        _oneof_case_{from._oneof_case_[0]} {}
-
-EntityIdVariant::EntityIdVariant(
-    ::google::protobuf::Arena* arena,
-    const EntityIdVariant& from)
-    : ::google::protobuf::Message(arena) {
-  EntityIdVariant* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  switch (variant_case()) {
-    case VARIANT_NOT_SET:
-      break;
-      case kUid:
-        _impl_.variant_.uid_ = from._impl_.variant_.uid_;
-        break;
-      case kLegacyId:
-        _impl_.variant_.legacy_id_ = ::google::protobuf::Message::CopyConstruct<::beegfs::LegacyId>(arena, *from._impl_.variant_.legacy_id_);
-        break;
-      case kAlias:
-        new (&_impl_.variant_.alias_) decltype(_impl_.variant_.alias_){arena, from._impl_.variant_.alias_};
-        break;
-  }
-
-  // @@protoc_insertion_point(copy_constructor:beegfs.EntityIdVariant)
-}
-inline PROTOBUF_NDEBUG_INLINE EntityIdVariant::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : variant_{},
-        _cached_size_{0},
-        _oneof_case_{} {}
-
-inline void EntityIdVariant::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-}
-EntityIdVariant::~EntityIdVariant() {
-  // @@protoc_insertion_point(destructor:beegfs.EntityIdVariant)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void EntityIdVariant::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  if (has_variant()) {
-    clear_variant();
-  }
-  _impl_.~Impl_();
-}
-
-void EntityIdVariant::clear_variant() {
-// @@protoc_insertion_point(one_of_clear_start:beegfs.EntityIdVariant)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  switch (variant_case()) {
-    case kUid: {
-      // No need to clear
-      break;
-    }
-    case kLegacyId: {
-      if (GetArena() == nullptr) {
-        delete _impl_.variant_.legacy_id_;
-      }
-      break;
-    }
-    case kAlias: {
-      _impl_.variant_.alias_.Destroy();
-      break;
-    }
-    case VARIANT_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = VARIANT_NOT_SET;
-}
-
-
-const ::google::protobuf::MessageLite::ClassData*
-EntityIdVariant::GetClassData() const {
-  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
-      ClassDataFull _data_ = {
-          {
-              nullptr,  // OnDemandRegisterArenaDtor
-              PROTOBUF_FIELD_OFFSET(EntityIdVariant, _impl_._cached_size_),
-              false,
-          },
-          &EntityIdVariant::MergeImpl,
-          &EntityIdVariant::kDescriptorMethods,
-      };
-  return &_data_;
-}
-PROTOBUF_NOINLINE void EntityIdVariant::Clear() {
-// @@protoc_insertion_point(message_clear_start:beegfs.EntityIdVariant)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  clear_variant();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* EntityIdVariant::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 3, 1, 36, 2> EntityIdVariant::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    3, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_EntityIdVariant_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::beegfs::EntityIdVariant>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // uint64 uid = 1;
-    {PROTOBUF_FIELD_OFFSET(EntityIdVariant, _impl_.variant_.uid_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUInt64)},
-    // .beegfs.LegacyId legacy_id = 2;
-    {PROTOBUF_FIELD_OFFSET(EntityIdVariant, _impl_.variant_.legacy_id_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string alias = 3;
-    {PROTOBUF_FIELD_OFFSET(EntityIdVariant, _impl_.variant_.alias_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::beegfs::LegacyId>()},
-  }}, {{
-    "\26\0\0\5\0\0\0\0"
-    "beegfs.EntityIdVariant"
-    "alias"
-  }},
-};
-
-::uint8_t* EntityIdVariant::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:beegfs.EntityIdVariant)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  switch (variant_case()) {
-    case kUid: {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          1, this->_internal_uid(), target);
-      break;
-    }
-    case kLegacyId: {
-      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          2, *_impl_.variant_.legacy_id_, _impl_.variant_.legacy_id_->GetCachedSize(), target, stream);
-      break;
-    }
-    case kAlias: {
-      const std::string& _s = this->_internal_alias();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.EntityIdVariant.alias");
-      target = stream->WriteStringMaybeAliased(3, _s, target);
-      break;
-    }
-    default:
-      break;
-  }
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:beegfs.EntityIdVariant)
-  return target;
-}
-
-::size_t EntityIdVariant::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:beegfs.EntityIdVariant)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  switch (variant_case()) {
-    // uint64 uid = 1;
-    case kUid: {
-      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
-          this->_internal_uid());
-      break;
-    }
-    // .beegfs.LegacyId legacy_id = 2;
-    case kLegacyId: {
-      total_size +=
-          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.variant_.legacy_id_);
-      break;
-    }
-    // string alias = 3;
-    case kAlias: {
-      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                      this->_internal_alias());
-      break;
-    }
-    case VARIANT_NOT_SET: {
-      break;
-    }
-  }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-
-void EntityIdVariant::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<EntityIdVariant*>(&to_msg);
-  auto& from = static_cast<const EntityIdVariant&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.EntityIdVariant)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
-    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
-    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
-    if (oneof_needs_init) {
-      if (oneof_to_case != 0) {
-        _this->clear_variant();
-      }
-      _this->_impl_._oneof_case_[0] = oneof_from_case;
-    }
-
-    switch (oneof_from_case) {
-      case kUid: {
-        _this->_impl_.variant_.uid_ = from._impl_.variant_.uid_;
-        break;
-      }
-      case kLegacyId: {
-        if (oneof_needs_init) {
-          _this->_impl_.variant_.legacy_id_ =
-              ::google::protobuf::Message::CopyConstruct<::beegfs::LegacyId>(arena, *from._impl_.variant_.legacy_id_);
-        } else {
-          _this->_impl_.variant_.legacy_id_->MergeFrom(from._internal_legacy_id());
-        }
-        break;
-      }
-      case kAlias: {
-        if (oneof_needs_init) {
-          _this->_impl_.variant_.alias_.InitDefault();
-        }
-        _this->_impl_.variant_.alias_.Set(from._internal_alias(), arena);
-        break;
-      }
-      case VARIANT_NOT_SET:
-        break;
-    }
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void EntityIdVariant::CopyFrom(const EntityIdVariant& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.EntityIdVariant)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool EntityIdVariant::IsInitialized() const {
-  return true;
-}
-
-void EntityIdVariant::InternalSwap(EntityIdVariant* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.variant_, other->_impl_.variant_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
-}
-
-::google::protobuf::Metadata EntityIdVariant::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(&descriptor_table_beegfs_2eproto_getter,
-                                   &descriptor_table_beegfs_2eproto_once,
-                                   file_level_metadata_beegfs_2eproto[2]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace beegfs

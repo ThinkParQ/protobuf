@@ -19,27 +19,52 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Management_GetNodes_FullMethodName        = "/management.Management/GetNodes"
-	Management_GetTargets_FullMethodName      = "/management.Management/GetTargets"
-	Management_GetBuddyGroups_FullMethodName  = "/management.Management/GetBuddyGroups"
-	Management_GetStoragePools_FullMethodName = "/management.Management/GetStoragePools"
-	Management_SetAlias_FullMethodName        = "/management.Management/SetAlias"
+	Management_SetAlias_FullMethodName         = "/management.Management/SetAlias"
+	Management_GetNodes_FullMethodName         = "/management.Management/GetNodes"
+	Management_DeleteNode_FullMethodName       = "/management.Management/DeleteNode"
+	Management_GetTargets_FullMethodName       = "/management.Management/GetTargets"
+	Management_DeleteTarget_FullMethodName     = "/management.Management/DeleteTarget"
+	Management_GetPools_FullMethodName         = "/management.Management/GetPools"
+	Management_CreatePool_FullMethodName       = "/management.Management/CreatePool"
+	Management_AssignPool_FullMethodName       = "/management.Management/AssignPool"
+	Management_DeletePool_FullMethodName       = "/management.Management/DeletePool"
+	Management_GetBuddyGroups_FullMethodName   = "/management.Management/GetBuddyGroups"
+	Management_CreateBuddyGroup_FullMethodName = "/management.Management/CreateBuddyGroup"
+	Management_DeleteBuddyGroup_FullMethodName = "/management.Management/DeleteBuddyGroup"
 )
 
 // ManagementClient is the client API for Management service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ManagementClient interface {
-	// Gets the full list of BeeGFS nodes
-	GetNodes(ctx context.Context, in *GetNodesRequest, opts ...grpc.CallOption) (*GetNodesResponse, error)
-	// Gets the full list of BeeGFS targets
-	GetTargets(ctx context.Context, in *GetTargetsRequest, opts ...grpc.CallOption) (*GetTargetsResponse, error)
-	// Gets the full list of BeeGFS buddbeegfsy groups
-	GetBuddyGroups(ctx context.Context, in *GetBuddyGroupsRequest, opts ...grpc.CallOption) (*GetBuddyGroupsResponse, error)
-	// Gets the full list of BeeGFS storage pools
-	GetStoragePools(ctx context.Context, in *GetStoragePoolsRequest, opts ...grpc.CallOption) (*GetStoragePoolsResponse, error)
 	// Sets an entity alias
 	SetAlias(ctx context.Context, in *SetAliasRequest, opts ...grpc.CallOption) (*SetAliasResponse, error)
+	// Nodes
+	// Gets the full list of  nodes
+	GetNodes(ctx context.Context, in *GetNodesRequest, opts ...grpc.CallOption) (*GetNodesResponse, error)
+	// Deletes a node
+	DeleteNode(ctx context.Context, in *DeleteNodeRequest, opts ...grpc.CallOption) (*DeleteNodeResponse, error)
+	// Targets
+	// Gets the full list of targets
+	GetTargets(ctx context.Context, in *GetTargetsRequest, opts ...grpc.CallOption) (*GetTargetsResponse, error)
+	// Deletes a target
+	DeleteTarget(ctx context.Context, in *DeleteTargetRequest, opts ...grpc.CallOption) (*DeleteTargetResponse, error)
+	// (Storage) pools
+	// Gets the full list of pools
+	GetPools(ctx context.Context, in *GetPoolsRequest, opts ...grpc.CallOption) (*GetPoolsResponse, error)
+	// Creates a new pool
+	CreatePool(ctx context.Context, in *CreatePoolRequest, opts ...grpc.CallOption) (*CreatePoolResponse, error)
+	// Assigns targets and buddy groups to a pool
+	AssignPool(ctx context.Context, in *AssignPoolRequest, opts ...grpc.CallOption) (*AssignPoolResponse, error)
+	// Deletes a pool
+	DeletePool(ctx context.Context, in *DeletePoolRequest, opts ...grpc.CallOption) (*DeletePoolResponse, error)
+	// Buddy groups
+	// Gets the full list of buddy groups
+	GetBuddyGroups(ctx context.Context, in *GetBuddyGroupsRequest, opts ...grpc.CallOption) (*GetBuddyGroupsResponse, error)
+	// Creates a new buddy group
+	CreateBuddyGroup(ctx context.Context, in *CreateBuddyGroupRequest, opts ...grpc.CallOption) (*CreateBuddyGroupResponse, error)
+	// Deletes a buddy group
+	DeleteBuddyGroup(ctx context.Context, in *DeleteBuddyGroupRequest, opts ...grpc.CallOption) (*DeleteBuddyGroupResponse, error)
 }
 
 type managementClient struct {
@@ -50,9 +75,27 @@ func NewManagementClient(cc grpc.ClientConnInterface) ManagementClient {
 	return &managementClient{cc}
 }
 
+func (c *managementClient) SetAlias(ctx context.Context, in *SetAliasRequest, opts ...grpc.CallOption) (*SetAliasResponse, error) {
+	out := new(SetAliasResponse)
+	err := c.cc.Invoke(ctx, Management_SetAlias_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *managementClient) GetNodes(ctx context.Context, in *GetNodesRequest, opts ...grpc.CallOption) (*GetNodesResponse, error) {
 	out := new(GetNodesResponse)
 	err := c.cc.Invoke(ctx, Management_GetNodes_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) DeleteNode(ctx context.Context, in *DeleteNodeRequest, opts ...grpc.CallOption) (*DeleteNodeResponse, error) {
+	out := new(DeleteNodeResponse)
+	err := c.cc.Invoke(ctx, Management_DeleteNode_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,6 +111,51 @@ func (c *managementClient) GetTargets(ctx context.Context, in *GetTargetsRequest
 	return out, nil
 }
 
+func (c *managementClient) DeleteTarget(ctx context.Context, in *DeleteTargetRequest, opts ...grpc.CallOption) (*DeleteTargetResponse, error) {
+	out := new(DeleteTargetResponse)
+	err := c.cc.Invoke(ctx, Management_DeleteTarget_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) GetPools(ctx context.Context, in *GetPoolsRequest, opts ...grpc.CallOption) (*GetPoolsResponse, error) {
+	out := new(GetPoolsResponse)
+	err := c.cc.Invoke(ctx, Management_GetPools_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) CreatePool(ctx context.Context, in *CreatePoolRequest, opts ...grpc.CallOption) (*CreatePoolResponse, error) {
+	out := new(CreatePoolResponse)
+	err := c.cc.Invoke(ctx, Management_CreatePool_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) AssignPool(ctx context.Context, in *AssignPoolRequest, opts ...grpc.CallOption) (*AssignPoolResponse, error) {
+	out := new(AssignPoolResponse)
+	err := c.cc.Invoke(ctx, Management_AssignPool_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) DeletePool(ctx context.Context, in *DeletePoolRequest, opts ...grpc.CallOption) (*DeletePoolResponse, error) {
+	out := new(DeletePoolResponse)
+	err := c.cc.Invoke(ctx, Management_DeletePool_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *managementClient) GetBuddyGroups(ctx context.Context, in *GetBuddyGroupsRequest, opts ...grpc.CallOption) (*GetBuddyGroupsResponse, error) {
 	out := new(GetBuddyGroupsResponse)
 	err := c.cc.Invoke(ctx, Management_GetBuddyGroups_FullMethodName, in, out, opts...)
@@ -77,18 +165,18 @@ func (c *managementClient) GetBuddyGroups(ctx context.Context, in *GetBuddyGroup
 	return out, nil
 }
 
-func (c *managementClient) GetStoragePools(ctx context.Context, in *GetStoragePoolsRequest, opts ...grpc.CallOption) (*GetStoragePoolsResponse, error) {
-	out := new(GetStoragePoolsResponse)
-	err := c.cc.Invoke(ctx, Management_GetStoragePools_FullMethodName, in, out, opts...)
+func (c *managementClient) CreateBuddyGroup(ctx context.Context, in *CreateBuddyGroupRequest, opts ...grpc.CallOption) (*CreateBuddyGroupResponse, error) {
+	out := new(CreateBuddyGroupResponse)
+	err := c.cc.Invoke(ctx, Management_CreateBuddyGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *managementClient) SetAlias(ctx context.Context, in *SetAliasRequest, opts ...grpc.CallOption) (*SetAliasResponse, error) {
-	out := new(SetAliasResponse)
-	err := c.cc.Invoke(ctx, Management_SetAlias_FullMethodName, in, out, opts...)
+func (c *managementClient) DeleteBuddyGroup(ctx context.Context, in *DeleteBuddyGroupRequest, opts ...grpc.CallOption) (*DeleteBuddyGroupResponse, error) {
+	out := new(DeleteBuddyGroupResponse)
+	err := c.cc.Invoke(ctx, Management_DeleteBuddyGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,16 +187,34 @@ func (c *managementClient) SetAlias(ctx context.Context, in *SetAliasRequest, op
 // All implementations must embed UnimplementedManagementServer
 // for forward compatibility
 type ManagementServer interface {
-	// Gets the full list of BeeGFS nodes
-	GetNodes(context.Context, *GetNodesRequest) (*GetNodesResponse, error)
-	// Gets the full list of BeeGFS targets
-	GetTargets(context.Context, *GetTargetsRequest) (*GetTargetsResponse, error)
-	// Gets the full list of BeeGFS buddbeegfsy groups
-	GetBuddyGroups(context.Context, *GetBuddyGroupsRequest) (*GetBuddyGroupsResponse, error)
-	// Gets the full list of BeeGFS storage pools
-	GetStoragePools(context.Context, *GetStoragePoolsRequest) (*GetStoragePoolsResponse, error)
 	// Sets an entity alias
 	SetAlias(context.Context, *SetAliasRequest) (*SetAliasResponse, error)
+	// Nodes
+	// Gets the full list of  nodes
+	GetNodes(context.Context, *GetNodesRequest) (*GetNodesResponse, error)
+	// Deletes a node
+	DeleteNode(context.Context, *DeleteNodeRequest) (*DeleteNodeResponse, error)
+	// Targets
+	// Gets the full list of targets
+	GetTargets(context.Context, *GetTargetsRequest) (*GetTargetsResponse, error)
+	// Deletes a target
+	DeleteTarget(context.Context, *DeleteTargetRequest) (*DeleteTargetResponse, error)
+	// (Storage) pools
+	// Gets the full list of pools
+	GetPools(context.Context, *GetPoolsRequest) (*GetPoolsResponse, error)
+	// Creates a new pool
+	CreatePool(context.Context, *CreatePoolRequest) (*CreatePoolResponse, error)
+	// Assigns targets and buddy groups to a pool
+	AssignPool(context.Context, *AssignPoolRequest) (*AssignPoolResponse, error)
+	// Deletes a pool
+	DeletePool(context.Context, *DeletePoolRequest) (*DeletePoolResponse, error)
+	// Buddy groups
+	// Gets the full list of buddy groups
+	GetBuddyGroups(context.Context, *GetBuddyGroupsRequest) (*GetBuddyGroupsResponse, error)
+	// Creates a new buddy group
+	CreateBuddyGroup(context.Context, *CreateBuddyGroupRequest) (*CreateBuddyGroupResponse, error)
+	// Deletes a buddy group
+	DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error)
 	mustEmbedUnimplementedManagementServer()
 }
 
@@ -116,20 +222,41 @@ type ManagementServer interface {
 type UnimplementedManagementServer struct {
 }
 
+func (UnimplementedManagementServer) SetAlias(context.Context, *SetAliasRequest) (*SetAliasResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetAlias not implemented")
+}
 func (UnimplementedManagementServer) GetNodes(context.Context, *GetNodesRequest) (*GetNodesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNodes not implemented")
+}
+func (UnimplementedManagementServer) DeleteNode(context.Context, *DeleteNodeRequest) (*DeleteNodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteNode not implemented")
 }
 func (UnimplementedManagementServer) GetTargets(context.Context, *GetTargetsRequest) (*GetTargetsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTargets not implemented")
 }
+func (UnimplementedManagementServer) DeleteTarget(context.Context, *DeleteTargetRequest) (*DeleteTargetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTarget not implemented")
+}
+func (UnimplementedManagementServer) GetPools(context.Context, *GetPoolsRequest) (*GetPoolsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPools not implemented")
+}
+func (UnimplementedManagementServer) CreatePool(context.Context, *CreatePoolRequest) (*CreatePoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePool not implemented")
+}
+func (UnimplementedManagementServer) AssignPool(context.Context, *AssignPoolRequest) (*AssignPoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AssignPool not implemented")
+}
+func (UnimplementedManagementServer) DeletePool(context.Context, *DeletePoolRequest) (*DeletePoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePool not implemented")
+}
 func (UnimplementedManagementServer) GetBuddyGroups(context.Context, *GetBuddyGroupsRequest) (*GetBuddyGroupsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBuddyGroups not implemented")
 }
-func (UnimplementedManagementServer) GetStoragePools(context.Context, *GetStoragePoolsRequest) (*GetStoragePoolsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStoragePools not implemented")
+func (UnimplementedManagementServer) CreateBuddyGroup(context.Context, *CreateBuddyGroupRequest) (*CreateBuddyGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBuddyGroup not implemented")
 }
-func (UnimplementedManagementServer) SetAlias(context.Context, *SetAliasRequest) (*SetAliasResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetAlias not implemented")
+func (UnimplementedManagementServer) DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBuddyGroup not implemented")
 }
 func (UnimplementedManagementServer) mustEmbedUnimplementedManagementServer() {}
 
@@ -142,6 +269,24 @@ type UnsafeManagementServer interface {
 
 func RegisterManagementServer(s grpc.ServiceRegistrar, srv ManagementServer) {
 	s.RegisterService(&Management_ServiceDesc, srv)
+}
+
+func _Management_SetAlias_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetAliasRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).SetAlias(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_SetAlias_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).SetAlias(ctx, req.(*SetAliasRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Management_GetNodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -158,6 +303,24 @@ func _Management_GetNodes_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ManagementServer).GetNodes(ctx, req.(*GetNodesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_DeleteNode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteNodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).DeleteNode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_DeleteNode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).DeleteNode(ctx, req.(*DeleteNodeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -180,6 +343,96 @@ func _Management_GetTargets_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Management_DeleteTarget_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTargetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).DeleteTarget(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_DeleteTarget_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).DeleteTarget(ctx, req.(*DeleteTargetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_GetPools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPoolsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).GetPools(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_GetPools_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).GetPools(ctx, req.(*GetPoolsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_CreatePool_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePoolRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).CreatePool(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_CreatePool_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).CreatePool(ctx, req.(*CreatePoolRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_AssignPool_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AssignPoolRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).AssignPool(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_AssignPool_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).AssignPool(ctx, req.(*AssignPoolRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_DeletePool_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePoolRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).DeletePool(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_DeletePool_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).DeletePool(ctx, req.(*DeletePoolRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Management_GetBuddyGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetBuddyGroupsRequest)
 	if err := dec(in); err != nil {
@@ -198,38 +451,38 @@ func _Management_GetBuddyGroups_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Management_GetStoragePools_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetStoragePoolsRequest)
+func _Management_CreateBuddyGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBuddyGroupRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagementServer).GetStoragePools(ctx, in)
+		return srv.(ManagementServer).CreateBuddyGroup(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Management_GetStoragePools_FullMethodName,
+		FullMethod: Management_CreateBuddyGroup_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagementServer).GetStoragePools(ctx, req.(*GetStoragePoolsRequest))
+		return srv.(ManagementServer).CreateBuddyGroup(ctx, req.(*CreateBuddyGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Management_SetAlias_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SetAliasRequest)
+func _Management_DeleteBuddyGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBuddyGroupRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagementServer).SetAlias(ctx, in)
+		return srv.(ManagementServer).DeleteBuddyGroup(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Management_SetAlias_FullMethodName,
+		FullMethod: Management_DeleteBuddyGroup_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagementServer).SetAlias(ctx, req.(*SetAliasRequest))
+		return srv.(ManagementServer).DeleteBuddyGroup(ctx, req.(*DeleteBuddyGroupRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -242,24 +495,52 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ManagementServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "SetAlias",
+			Handler:    _Management_SetAlias_Handler,
+		},
+		{
 			MethodName: "GetNodes",
 			Handler:    _Management_GetNodes_Handler,
+		},
+		{
+			MethodName: "DeleteNode",
+			Handler:    _Management_DeleteNode_Handler,
 		},
 		{
 			MethodName: "GetTargets",
 			Handler:    _Management_GetTargets_Handler,
 		},
 		{
+			MethodName: "DeleteTarget",
+			Handler:    _Management_DeleteTarget_Handler,
+		},
+		{
+			MethodName: "GetPools",
+			Handler:    _Management_GetPools_Handler,
+		},
+		{
+			MethodName: "CreatePool",
+			Handler:    _Management_CreatePool_Handler,
+		},
+		{
+			MethodName: "AssignPool",
+			Handler:    _Management_AssignPool_Handler,
+		},
+		{
+			MethodName: "DeletePool",
+			Handler:    _Management_DeletePool_Handler,
+		},
+		{
 			MethodName: "GetBuddyGroups",
 			Handler:    _Management_GetBuddyGroups_Handler,
 		},
 		{
-			MethodName: "GetStoragePools",
-			Handler:    _Management_GetStoragePools_Handler,
+			MethodName: "CreateBuddyGroup",
+			Handler:    _Management_CreateBuddyGroup_Handler,
 		},
 		{
-			MethodName: "SetAlias",
-			Handler:    _Management_SetAlias_Handler,
+			MethodName: "DeleteBuddyGroup",
+			Handler:    _Management_DeleteBuddyGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
