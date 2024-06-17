@@ -2544,6 +2544,7 @@ class DeleteTargetRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kTargetFieldNumber = 1,
+    kExecuteFieldNumber = 2,
   };
   // optional .beegfs.EntityIdSet target = 1;
   bool has_target() const;
@@ -2560,12 +2561,23 @@ class DeleteTargetRequest final : public ::google::protobuf::Message
   ::beegfs::EntityIdSet* _internal_mutable_target();
 
   public:
+  // optional bool execute = 2;
+  bool has_execute() const;
+  void clear_execute() ;
+  bool execute() const;
+  void set_execute(bool value);
+
+  private:
+  bool _internal_execute() const;
+  void _internal_set_execute(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:management.DeleteTargetRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 1,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -2584,6 +2596,7 @@ class DeleteTargetRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::beegfs::EntityIdSet* target_;
+    bool execute_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2890,6 +2903,7 @@ class DeletePoolRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kPoolFieldNumber = 1,
+    kExecuteFieldNumber = 2,
   };
   // optional .beegfs.EntityIdSet pool = 1;
   bool has_pool() const;
@@ -2906,12 +2920,23 @@ class DeletePoolRequest final : public ::google::protobuf::Message
   ::beegfs::EntityIdSet* _internal_mutable_pool();
 
   public:
+  // optional bool execute = 2;
+  bool has_execute() const;
+  void clear_execute() ;
+  bool execute() const;
+  void set_execute(bool value);
+
+  private:
+  bool _internal_execute() const;
+  void _internal_set_execute(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:management.DeletePoolRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 1,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -2930,6 +2955,7 @@ class DeletePoolRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::beegfs::EntityIdSet* pool_;
+    bool execute_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3236,6 +3262,7 @@ class DeleteNodeRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kNodeFieldNumber = 1,
+    kExecuteFieldNumber = 2,
   };
   // optional .beegfs.EntityIdSet node = 1;
   bool has_node() const;
@@ -3252,12 +3279,23 @@ class DeleteNodeRequest final : public ::google::protobuf::Message
   ::beegfs::EntityIdSet* _internal_mutable_node();
 
   public:
+  // optional bool execute = 2;
+  bool has_execute() const;
+  void clear_execute() ;
+  bool execute() const;
+  void set_execute(bool value);
+
+  private:
+  bool _internal_execute() const;
+  void _internal_set_execute(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:management.DeleteNodeRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 1,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -3276,6 +3314,7 @@ class DeleteNodeRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::beegfs::EntityIdSet* node_;
+    bool execute_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3582,6 +3621,7 @@ class DeleteBuddyGroupRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kGroupFieldNumber = 1,
+    kExecuteFieldNumber = 2,
   };
   // optional .beegfs.EntityIdSet group = 1;
   bool has_group() const;
@@ -3598,12 +3638,23 @@ class DeleteBuddyGroupRequest final : public ::google::protobuf::Message
   ::beegfs::EntityIdSet* _internal_mutable_group();
 
   public:
+  // optional bool execute = 2;
+  bool has_execute() const;
+  void clear_execute() ;
+  bool execute() const;
+  void set_execute(bool value);
+
+  private:
+  bool _internal_execute() const;
+  void _internal_set_execute(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:management.DeleteBuddyGroupRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 1,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -3622,6 +3673,7 @@ class DeleteBuddyGroupRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::beegfs::EntityIdSet* group_;
+    bool execute_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6312,6 +6364,34 @@ inline void DeleteNodeRequest::set_allocated_node(::beegfs::EntityIdSet* value) 
   // @@protoc_insertion_point(field_set_allocated:management.DeleteNodeRequest.node)
 }
 
+// optional bool execute = 2;
+inline bool DeleteNodeRequest::has_execute() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void DeleteNodeRequest::clear_execute() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.execute_ = false;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline bool DeleteNodeRequest::execute() const {
+  // @@protoc_insertion_point(field_get:management.DeleteNodeRequest.execute)
+  return _internal_execute();
+}
+inline void DeleteNodeRequest::set_execute(bool value) {
+  _internal_set_execute(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.DeleteNodeRequest.execute)
+}
+inline bool DeleteNodeRequest::_internal_execute() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.execute_;
+}
+inline void DeleteNodeRequest::_internal_set_execute(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.execute_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // DeleteNodeResponse
@@ -7062,6 +7142,34 @@ inline void DeleteTargetRequest::set_allocated_target(::beegfs::EntityIdSet* val
 
   _impl_.target_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
   // @@protoc_insertion_point(field_set_allocated:management.DeleteTargetRequest.target)
+}
+
+// optional bool execute = 2;
+inline bool DeleteTargetRequest::has_execute() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void DeleteTargetRequest::clear_execute() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.execute_ = false;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline bool DeleteTargetRequest::execute() const {
+  // @@protoc_insertion_point(field_get:management.DeleteTargetRequest.execute)
+  return _internal_execute();
+}
+inline void DeleteTargetRequest::set_execute(bool value) {
+  _internal_set_execute(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.DeleteTargetRequest.execute)
+}
+inline bool DeleteTargetRequest::_internal_execute() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.execute_;
+}
+inline void DeleteTargetRequest::_internal_set_execute(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.execute_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -8090,6 +8198,34 @@ inline void DeletePoolRequest::set_allocated_pool(::beegfs::EntityIdSet* value) 
 
   _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
   // @@protoc_insertion_point(field_set_allocated:management.DeletePoolRequest.pool)
+}
+
+// optional bool execute = 2;
+inline bool DeletePoolRequest::has_execute() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void DeletePoolRequest::clear_execute() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.execute_ = false;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline bool DeletePoolRequest::execute() const {
+  // @@protoc_insertion_point(field_get:management.DeletePoolRequest.execute)
+  return _internal_execute();
+}
+inline void DeletePoolRequest::set_execute(bool value) {
+  _internal_set_execute(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.DeletePoolRequest.execute)
+}
+inline bool DeletePoolRequest::_internal_execute() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.execute_;
+}
+inline void DeletePoolRequest::_internal_set_execute(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.execute_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -9179,6 +9315,34 @@ inline void DeleteBuddyGroupRequest::set_allocated_group(::beegfs::EntityIdSet* 
 
   _impl_.group_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
   // @@protoc_insertion_point(field_set_allocated:management.DeleteBuddyGroupRequest.group)
+}
+
+// optional bool execute = 2;
+inline bool DeleteBuddyGroupRequest::has_execute() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void DeleteBuddyGroupRequest::clear_execute() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.execute_ = false;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline bool DeleteBuddyGroupRequest::execute() const {
+  // @@protoc_insertion_point(field_get:management.DeleteBuddyGroupRequest.execute)
+  return _internal_execute();
+}
+inline void DeleteBuddyGroupRequest::set_execute(bool value) {
+  _internal_set_execute(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.DeleteBuddyGroupRequest.execute)
+}
+inline bool DeleteBuddyGroupRequest::_internal_execute() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.execute_;
+}
+inline void DeleteBuddyGroupRequest::_internal_set_execute(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.execute_ = value;
 }
 
 // -------------------------------------------------------------------

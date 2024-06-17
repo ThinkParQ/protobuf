@@ -258,7 +258,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr DeleteTargetRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        target_{nullptr} {}
+        target_{nullptr},
+        execute_{false} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR DeleteTargetRequest::DeleteTargetRequest(::_pbi::ConstantInitialized)
@@ -296,7 +297,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr DeletePoolRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        pool_{nullptr} {}
+        pool_{nullptr},
+        execute_{false} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR DeletePoolRequest::DeletePoolRequest(::_pbi::ConstantInitialized)
@@ -334,7 +336,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr DeleteNodeRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        node_{nullptr} {}
+        node_{nullptr},
+        execute_{false} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR DeleteNodeRequest::DeleteNodeRequest(::_pbi::ConstantInitialized)
@@ -372,7 +375,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr DeleteBuddyGroupRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        group_{nullptr} {}
+        group_{nullptr},
+        execute_{false} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR DeleteBuddyGroupRequest::DeleteBuddyGroupRequest(::_pbi::ConstantInitialized)
@@ -680,7 +684,9 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::management::DeleteNodeRequest, _impl_.node_),
+        PROTOBUF_FIELD_OFFSET(::management::DeleteNodeRequest, _impl_.execute_),
         0,
+        1,
         PROTOBUF_FIELD_OFFSET(::management::DeleteNodeResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::DeleteNodeResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -749,7 +755,9 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::management::DeleteTargetRequest, _impl_.target_),
+        PROTOBUF_FIELD_OFFSET(::management::DeleteTargetRequest, _impl_.execute_),
         0,
+        1,
         PROTOBUF_FIELD_OFFSET(::management::DeleteTargetResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::DeleteTargetResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -852,7 +860,9 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::management::DeletePoolRequest, _impl_.pool_),
+        PROTOBUF_FIELD_OFFSET(::management::DeletePoolRequest, _impl_.execute_),
         0,
+        1,
         PROTOBUF_FIELD_OFFSET(::management::DeletePoolResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::DeletePoolResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -939,7 +949,9 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::management::DeleteBuddyGroupRequest, _impl_.group_),
+        PROTOBUF_FIELD_OFFSET(::management::DeleteBuddyGroupRequest, _impl_.execute_),
         0,
+        1,
         PROTOBUF_FIELD_OFFSET(::management::DeleteBuddyGroupResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::DeleteBuddyGroupResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -960,29 +972,29 @@ static const ::_pbi::MigrationSchema
         {31, -1, -1, sizeof(::management::GetNodesResponse_Node_Nic)},
         {42, 54, -1, sizeof(::management::GetNodesResponse_Node)},
         {58, 68, -1, sizeof(::management::GetNodesResponse)},
-        {70, 79, -1, sizeof(::management::DeleteNodeRequest)},
-        {80, 89, -1, sizeof(::management::DeleteNodeResponse)},
-        {90, -1, -1, sizeof(::management::GetTargetsRequest)},
-        {98, 118, -1, sizeof(::management::GetTargetsResponse_Target)},
-        {130, -1, -1, sizeof(::management::GetTargetsResponse)},
-        {139, 148, -1, sizeof(::management::DeleteTargetRequest)},
-        {149, 158, -1, sizeof(::management::DeleteTargetResponse)},
-        {159, -1, -1, sizeof(::management::GetPoolsRequest)},
-        {167, 178, -1, sizeof(::management::GetPoolsResponse_StoragePool)},
-        {181, -1, -1, sizeof(::management::GetPoolsResponse)},
-        {190, 203, -1, sizeof(::management::CreatePoolRequest)},
-        {208, 217, -1, sizeof(::management::CreatePoolResponse)},
-        {218, 229, -1, sizeof(::management::AssignPoolRequest)},
-        {232, 241, -1, sizeof(::management::AssignPoolResponse)},
-        {242, 251, -1, sizeof(::management::DeletePoolRequest)},
-        {252, 261, -1, sizeof(::management::DeletePoolResponse)},
-        {262, -1, -1, sizeof(::management::GetBuddyGroupsRequest)},
-        {270, 285, -1, sizeof(::management::GetBuddyGroupsResponse_BuddyGroup)},
-        {292, -1, -1, sizeof(::management::GetBuddyGroupsResponse)},
-        {301, 314, -1, sizeof(::management::CreateBuddyGroupRequest)},
-        {319, 328, -1, sizeof(::management::CreateBuddyGroupResponse)},
-        {329, 338, -1, sizeof(::management::DeleteBuddyGroupRequest)},
-        {339, 348, -1, sizeof(::management::DeleteBuddyGroupResponse)},
+        {70, 80, -1, sizeof(::management::DeleteNodeRequest)},
+        {82, 91, -1, sizeof(::management::DeleteNodeResponse)},
+        {92, -1, -1, sizeof(::management::GetTargetsRequest)},
+        {100, 120, -1, sizeof(::management::GetTargetsResponse_Target)},
+        {132, -1, -1, sizeof(::management::GetTargetsResponse)},
+        {141, 151, -1, sizeof(::management::DeleteTargetRequest)},
+        {153, 162, -1, sizeof(::management::DeleteTargetResponse)},
+        {163, -1, -1, sizeof(::management::GetPoolsRequest)},
+        {171, 182, -1, sizeof(::management::GetPoolsResponse_StoragePool)},
+        {185, -1, -1, sizeof(::management::GetPoolsResponse)},
+        {194, 207, -1, sizeof(::management::CreatePoolRequest)},
+        {212, 221, -1, sizeof(::management::CreatePoolResponse)},
+        {222, 233, -1, sizeof(::management::AssignPoolRequest)},
+        {236, 245, -1, sizeof(::management::AssignPoolResponse)},
+        {246, 256, -1, sizeof(::management::DeletePoolRequest)},
+        {258, 267, -1, sizeof(::management::DeletePoolResponse)},
+        {268, -1, -1, sizeof(::management::GetBuddyGroupsRequest)},
+        {276, 291, -1, sizeof(::management::GetBuddyGroupsResponse_BuddyGroup)},
+        {298, -1, -1, sizeof(::management::GetBuddyGroupsResponse)},
+        {307, 320, -1, sizeof(::management::CreateBuddyGroupRequest)},
+        {325, 334, -1, sizeof(::management::CreateBuddyGroupResponse)},
+        {335, 345, -1, sizeof(::management::DeleteBuddyGroupRequest)},
+        {347, 356, -1, sizeof(::management::DeleteBuddyGroupResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::management::_SetAliasRequest_default_instance_._instance,
@@ -1031,104 +1043,108 @@ const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION
     "\n\004nics\030\004 \003(\0132%.management.GetNodesRespon"
     "se.Node.Nic\032D\n\003Nic\022\014\n\004addr\030\001 \001(\t\022\014\n\004name"
     "\030\002 \001(\t\022!\n\010nic_type\030\003 \001(\0162\017.beegfs.NicTyp"
-    "eB\021\n\017_meta_root_node\"D\n\021DeleteNodeReques"
+    "eB\021\n\017_meta_root_node\"f\n\021DeleteNodeReques"
     "t\022&\n\004node\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001"
-    "\001B\007\n\005_node\"E\n\022DeleteNodeResponse\022&\n\004node"
-    "\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_nod"
-    "e\"\023\n\021GetTargetsRequest\"\205\005\n\022GetTargetsRes"
-    "ponse\0226\n\007targets\030\001 \003(\0132%.management.GetT"
-    "argetsResponse.Target\032\266\004\n\006Target\022\037\n\002id\030\001"
-    " \001(\0132\023.beegfs.EntityIdSet\022#\n\tnode_type\030\002"
-    " \001(\0162\020.beegfs.NodeType\0225\n\022reachability_s"
-    "tate\030\003 \001(\0162\031.beegfs.ReachabilityState\0223\n"
-    "\021consistency_state\030\004 \001(\0162\030.beegfs.Consis"
-    "tencyState\022\033\n\016last_contact_s\030\005 \001(\004H\000\210\001\001\022"
-    "\036\n\021total_space_bytes\030\006 \001(\004H\001\210\001\001\022\035\n\020free_"
-    "space_bytes\030\007 \001(\004H\002\210\001\001\022\031\n\014total_inodes\030\010"
-    " \001(\004H\003\210\001\001\022\030\n\013free_inodes\030\t \001(\004H\004\210\001\001\022&\n\010c"
-    "ap_pool\030\n \001(\0162\024.beegfs.CapacityPool\022!\n\004n"
-    "ode\030\013 \001(\0132\023.beegfs.EntityIdSet\022.\n\014storag"
-    "e_pool\030\014 \001(\0132\023.beegfs.EntityIdSetH\005\210\001\001B\021"
-    "\n\017_last_contact_sB\024\n\022_total_space_bytesB"
-    "\023\n\021_free_space_bytesB\017\n\r_total_inodesB\016\n"
-    "\014_free_inodesB\017\n\r_storage_pool\"J\n\023Delete"
-    "TargetRequest\022(\n\006target\030\001 \001(\0132\023.beegfs.E"
-    "ntityIdSetH\000\210\001\001B\t\n\007_target\"K\n\024DeleteTarg"
-    "etResponse\022(\n\006target\030\001 \001(\0132\023.beegfs.Enti"
-    "tyIdSetH\000\210\001\001B\t\n\007_target\"\021\n\017GetPoolsReque"
-    "st\"\314\001\n\020GetPoolsResponse\0227\n\005pools\030\001 \003(\0132("
-    ".management.GetPoolsResponse.StoragePool"
-    "\032\177\n\013StoragePool\022\037\n\002id\030\001 \001(\0132\023.beegfs.Ent"
-    "ityIdSet\022$\n\007targets\030\002 \003(\0132\023.beegfs.Entit"
-    "yIdSet\022)\n\014buddy_groups\030\003 \003(\0132\023.beegfs.En"
-    "tityIdSet\"\332\001\n\021CreatePoolRequest\022(\n\tnode_"
-    "type\030\001 \001(\0162\020.beegfs.NodeTypeH\000\210\001\001\022\023\n\006num"
-    "_id\030\002 \001(\rH\001\210\001\001\022\022\n\005alias\030\003 \001(\tH\002\210\001\001\022$\n\007ta"
-    "rgets\030\004 \003(\0132\023.beegfs.EntityIdSet\022)\n\014budd"
-    "y_groups\030\005 \003(\0132\023.beegfs.EntityIdSetB\014\n\n_"
-    "node_typeB\t\n\007_num_idB\010\n\006_alias\"E\n\022Create"
-    "PoolResponse\022&\n\004pool\030\001 \001(\0132\023.beegfs.Enti"
-    "tyIdSetH\000\210\001\001B\007\n\005_pool\"\225\001\n\021AssignPoolRequ"
-    "est\022&\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000"
-    "\210\001\001\022$\n\007targets\030\002 \003(\0132\023.beegfs.EntityIdSe"
-    "t\022)\n\014buddy_groups\030\003 \003(\0132\023.beegfs.EntityI"
-    "dSetB\007\n\005_pool\"E\n\022AssignPoolResponse\022&\n\004p"
-    "ool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_"
-    "pool\"D\n\021DeletePoolRequest\022&\n\004pool\030\001 \001(\0132"
-    "\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_pool\"E\n\022De"
-    "letePoolResponse\022&\n\004pool\030\001 \001(\0132\023.beegfs."
-    "EntityIdSetH\000\210\001\001B\007\n\005_pool\"\027\n\025GetBuddyGro"
-    "upsRequest\"\313\003\n\026GetBuddyGroupsResponse\022C\n"
-    "\014buddy_groups\030\001 \003(\0132-.management.GetBudd"
-    "yGroupsResponse.BuddyGroup\032\353\002\n\nBuddyGrou"
-    "p\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdSet\022#\n\tno"
-    "de_type\030\002 \001(\0162\020.beegfs.NodeType\022+\n\016prima"
-    "ry_target\030\003 \001(\0132\023.beegfs.EntityIdSet\022-\n\020"
-    "secondary_target\030\004 \001(\0132\023.beegfs.EntityId"
-    "Set\022;\n\031primary_consistency_state\030\005 \001(\0162\030"
-    ".beegfs.ConsistencyState\022=\n\033secondary_co"
-    "nsistency_state\030\006 \001(\0162\030.beegfs.Consisten"
-    "cyState\022.\n\014storage_pool\030\007 \001(\0132\023.beegfs.E"
-    "ntityIdSetH\000\210\001\001B\017\n\r_storage_pool\"\235\002\n\027Cre"
-    "ateBuddyGroupRequest\022(\n\tnode_type\030\001 \001(\0162"
-    "\020.beegfs.NodeTypeH\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001"
-    "\210\001\001\022\022\n\005alias\030\003 \001(\tH\002\210\001\001\0220\n\016primary_targe"
-    "t\030\004 \001(\0132\023.beegfs.EntityIdSetH\003\210\001\001\0222\n\020sec"
-    "ondary_target\030\005 \001(\0132\023.beegfs.EntityIdSet"
-    "H\004\210\001\001B\014\n\n_node_typeB\t\n\007_num_idB\010\n\006_alias"
-    "B\021\n\017_primary_targetB\023\n\021_secondary_target"
-    "\"M\n\030CreateBuddyGroupResponse\022\'\n\005group\030\001 "
-    "\001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\010\n\006_group\""
-    "L\n\027DeleteBuddyGroupRequest\022\'\n\005group\030\001 \001("
-    "\0132\023.beegfs.EntityIdSetH\000\210\001\001B\010\n\006_group\"M\n"
-    "\030DeleteBuddyGroupResponse\022\'\n\005group\030\001 \001(\013"
-    "2\023.beegfs.EntityIdSetH\000\210\001\001B\010\n\006_group2\314\007\n"
-    "\nManagement\022E\n\010SetAlias\022\033.management.Set"
-    "AliasRequest\032\034.management.SetAliasRespon"
-    "se\022E\n\010GetNodes\022\033.management.GetNodesRequ"
-    "est\032\034.management.GetNodesResponse\022K\n\nDel"
-    "eteNode\022\035.management.DeleteNodeRequest\032\036"
-    ".management.DeleteNodeResponse\022K\n\nGetTar"
-    "gets\022\035.management.GetTargetsRequest\032\036.ma"
-    "nagement.GetTargetsResponse\022Q\n\014DeleteTar"
-    "get\022\037.management.DeleteTargetRequest\032 .m"
-    "anagement.DeleteTargetResponse\022E\n\010GetPoo"
-    "ls\022\033.management.GetPoolsRequest\032\034.manage"
-    "ment.GetPoolsResponse\022K\n\nCreatePool\022\035.ma"
-    "nagement.CreatePoolRequest\032\036.management."
-    "CreatePoolResponse\022K\n\nAssignPool\022\035.manag"
-    "ement.AssignPoolRequest\032\036.management.Ass"
-    "ignPoolResponse\022K\n\nDeletePool\022\035.manageme"
-    "nt.DeletePoolRequest\032\036.management.Delete"
-    "PoolResponse\022W\n\016GetBuddyGroups\022!.managem"
-    "ent.GetBuddyGroupsRequest\032\".management.G"
-    "etBuddyGroupsResponse\022]\n\020CreateBuddyGrou"
-    "p\022#.management.CreateBuddyGroupRequest\032$"
-    ".management.CreateBuddyGroupResponse\022]\n\020"
-    "DeleteBuddyGroup\022#.management.DeleteBudd"
-    "yGroupRequest\032$.management.DeleteBuddyGr"
-    "oupResponseB-Z+github.com/thinkparq/prot"
-    "obuf/go/managementb\006proto3"
+    "\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007\n\005_nodeB\n\n\010_exe"
+    "cute\"E\n\022DeleteNodeResponse\022&\n\004node\030\001 \001(\013"
+    "2\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_node\"\023\n\021G"
+    "etTargetsRequest\"\205\005\n\022GetTargetsResponse\022"
+    "6\n\007targets\030\001 \003(\0132%.management.GetTargets"
+    "Response.Target\032\266\004\n\006Target\022\037\n\002id\030\001 \001(\0132\023"
+    ".beegfs.EntityIdSet\022#\n\tnode_type\030\002 \001(\0162\020"
+    ".beegfs.NodeType\0225\n\022reachability_state\030\003"
+    " \001(\0162\031.beegfs.ReachabilityState\0223\n\021consi"
+    "stency_state\030\004 \001(\0162\030.beegfs.ConsistencyS"
+    "tate\022\033\n\016last_contact_s\030\005 \001(\004H\000\210\001\001\022\036\n\021tot"
+    "al_space_bytes\030\006 \001(\004H\001\210\001\001\022\035\n\020free_space_"
+    "bytes\030\007 \001(\004H\002\210\001\001\022\031\n\014total_inodes\030\010 \001(\004H\003"
+    "\210\001\001\022\030\n\013free_inodes\030\t \001(\004H\004\210\001\001\022&\n\010cap_poo"
+    "l\030\n \001(\0162\024.beegfs.CapacityPool\022!\n\004node\030\013 "
+    "\001(\0132\023.beegfs.EntityIdSet\022.\n\014storage_pool"
+    "\030\014 \001(\0132\023.beegfs.EntityIdSetH\005\210\001\001B\021\n\017_las"
+    "t_contact_sB\024\n\022_total_space_bytesB\023\n\021_fr"
+    "ee_space_bytesB\017\n\r_total_inodesB\016\n\014_free"
+    "_inodesB\017\n\r_storage_pool\"l\n\023DeleteTarget"
+    "Request\022(\n\006target\030\001 \001(\0132\023.beegfs.EntityI"
+    "dSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\t\n\007_targ"
+    "etB\n\n\010_execute\"K\n\024DeleteTargetResponse\022("
+    "\n\006target\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001"
+    "B\t\n\007_target\"\021\n\017GetPoolsRequest\"\314\001\n\020GetPo"
+    "olsResponse\0227\n\005pools\030\001 \003(\0132(.management."
+    "GetPoolsResponse.StoragePool\032\177\n\013StorageP"
+    "ool\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdSet\022$\n\007"
+    "targets\030\002 \003(\0132\023.beegfs.EntityIdSet\022)\n\014bu"
+    "ddy_groups\030\003 \003(\0132\023.beegfs.EntityIdSet\"\332\001"
+    "\n\021CreatePoolRequest\022(\n\tnode_type\030\001 \001(\0162\020"
+    ".beegfs.NodeTypeH\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210"
+    "\001\001\022\022\n\005alias\030\003 \001(\tH\002\210\001\001\022$\n\007targets\030\004 \003(\0132"
+    "\023.beegfs.EntityIdSet\022)\n\014buddy_groups\030\005 \003"
+    "(\0132\023.beegfs.EntityIdSetB\014\n\n_node_typeB\t\n"
+    "\007_num_idB\010\n\006_alias\"E\n\022CreatePoolResponse"
+    "\022&\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001"
+    "B\007\n\005_pool\"\225\001\n\021AssignPoolRequest\022&\n\004pool\030"
+    "\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001\022$\n\007targe"
+    "ts\030\002 \003(\0132\023.beegfs.EntityIdSet\022)\n\014buddy_g"
+    "roups\030\003 \003(\0132\023.beegfs.EntityIdSetB\007\n\005_poo"
+    "l\"E\n\022AssignPoolResponse\022&\n\004pool\030\001 \001(\0132\023."
+    "beegfs.EntityIdSetH\000\210\001\001B\007\n\005_pool\"f\n\021Dele"
+    "tePoolRequest\022&\n\004pool\030\001 \001(\0132\023.beegfs.Ent"
+    "ityIdSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007\n\005_"
+    "poolB\n\n\010_execute\"E\n\022DeletePoolResponse\022&"
+    "\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\007"
+    "\n\005_pool\"\027\n\025GetBuddyGroupsRequest\"\313\003\n\026Get"
+    "BuddyGroupsResponse\022C\n\014buddy_groups\030\001 \003("
+    "\0132-.management.GetBuddyGroupsResponse.Bu"
+    "ddyGroup\032\353\002\n\nBuddyGroup\022\037\n\002id\030\001 \001(\0132\023.be"
+    "egfs.EntityIdSet\022#\n\tnode_type\030\002 \001(\0162\020.be"
+    "egfs.NodeType\022+\n\016primary_target\030\003 \001(\0132\023."
+    "beegfs.EntityIdSet\022-\n\020secondary_target\030\004"
+    " \001(\0132\023.beegfs.EntityIdSet\022;\n\031primary_con"
+    "sistency_state\030\005 \001(\0162\030.beegfs.Consistenc"
+    "yState\022=\n\033secondary_consistency_state\030\006 "
+    "\001(\0162\030.beegfs.ConsistencyState\022.\n\014storage"
+    "_pool\030\007 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\017\n"
+    "\r_storage_pool\"\235\002\n\027CreateBuddyGroupReque"
+    "st\022(\n\tnode_type\030\001 \001(\0162\020.beegfs.NodeTypeH"
+    "\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210\001\001\022\022\n\005alias\030\003 \001(\t"
+    "H\002\210\001\001\0220\n\016primary_target\030\004 \001(\0132\023.beegfs.E"
+    "ntityIdSetH\003\210\001\001\0222\n\020secondary_target\030\005 \001("
+    "\0132\023.beegfs.EntityIdSetH\004\210\001\001B\014\n\n_node_typ"
+    "eB\t\n\007_num_idB\010\n\006_aliasB\021\n\017_primary_targe"
+    "tB\023\n\021_secondary_target\"M\n\030CreateBuddyGro"
+    "upResponse\022\'\n\005group\030\001 \001(\0132\023.beegfs.Entit"
+    "yIdSetH\000\210\001\001B\010\n\006_group\"n\n\027DeleteBuddyGrou"
+    "pRequest\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityI"
+    "dSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\010\n\006_grou"
+    "pB\n\n\010_execute\"M\n\030DeleteBuddyGroupRespons"
+    "e\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210"
+    "\001\001B\010\n\006_group2\314\007\n\nManagement\022E\n\010SetAlias\022"
+    "\033.management.SetAliasRequest\032\034.managemen"
+    "t.SetAliasResponse\022E\n\010GetNodes\022\033.managem"
+    "ent.GetNodesRequest\032\034.management.GetNode"
+    "sResponse\022K\n\nDeleteNode\022\035.management.Del"
+    "eteNodeRequest\032\036.management.DeleteNodeRe"
+    "sponse\022K\n\nGetTargets\022\035.management.GetTar"
+    "getsRequest\032\036.management.GetTargetsRespo"
+    "nse\022Q\n\014DeleteTarget\022\037.management.DeleteT"
+    "argetRequest\032 .management.DeleteTargetRe"
+    "sponse\022E\n\010GetPools\022\033.management.GetPools"
+    "Request\032\034.management.GetPoolsResponse\022K\n"
+    "\nCreatePool\022\035.management.CreatePoolReque"
+    "st\032\036.management.CreatePoolResponse\022K\n\nAs"
+    "signPool\022\035.management.AssignPoolRequest\032"
+    "\036.management.AssignPoolResponse\022K\n\nDelet"
+    "ePool\022\035.management.DeletePoolRequest\032\036.m"
+    "anagement.DeletePoolResponse\022W\n\016GetBuddy"
+    "Groups\022!.management.GetBuddyGroupsReques"
+    "t\032\".management.GetBuddyGroupsResponse\022]\n"
+    "\020CreateBuddyGroup\022#.management.CreateBud"
+    "dyGroupRequest\032$.management.CreateBuddyG"
+    "roupResponse\022]\n\020DeleteBuddyGroup\022#.manag"
+    "ement.DeleteBuddyGroupRequest\032$.manageme"
+    "nt.DeleteBuddyGroupResponseB-Z+github.co"
+    "m/thinkparq/protobuf/go/managementb\006prot"
+    "o3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_management_2eproto_deps[1] =
     {
@@ -1138,7 +1154,7 @@ static ::absl::once_flag descriptor_table_management_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_management_2eproto = {
     false,
     false,
-    4466,
+    4602,
     descriptor_table_protodef_management_2eproto,
     "management.proto",
     &descriptor_table_management_2eproto_once,
@@ -2517,6 +2533,7 @@ DeleteNodeRequest::DeleteNodeRequest(
   _impl_.node_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
                               arena, *from._impl_.node_)
                         : nullptr;
+  _impl_.execute_ = from._impl_.execute_;
 
   // @@protoc_insertion_point(copy_constructor:management.DeleteNodeRequest)
 }
@@ -2527,7 +2544,12 @@ inline PROTOBUF_NDEBUG_INLINE DeleteNodeRequest::Impl_::Impl_(
 
 inline void DeleteNodeRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.node_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, node_),
+           0,
+           offsetof(Impl_, execute_) -
+               offsetof(Impl_, node_) +
+               sizeof(Impl_::execute_));
 }
 DeleteNodeRequest::~DeleteNodeRequest() {
   // @@protoc_insertion_point(destructor:management.DeleteNodeRequest)
@@ -2566,6 +2588,7 @@ PROTOBUF_NOINLINE void DeleteNodeRequest::Clear() {
     ABSL_DCHECK(_impl_.node_ != nullptr);
     _impl_.node_->Clear();
   }
+  _impl_.execute_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -2578,15 +2601,15 @@ const char* DeleteNodeRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteNodeRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> DeleteNodeRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(DeleteNodeRequest, _impl_._has_bits_),
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    2,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_DeleteNodeRequest_default_instance_._instance,
@@ -2595,6 +2618,9 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteNodeRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::management::DeleteNodeRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
+    // optional bool execute = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DeleteNodeRequest, _impl_.execute_), 1>(),
+     {16, 1, 0, PROTOBUF_FIELD_OFFSET(DeleteNodeRequest, _impl_.execute_)}},
     // optional .beegfs.EntityIdSet node = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(DeleteNodeRequest, _impl_.node_)}},
@@ -2604,6 +2630,9 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteNodeRequest::_table_ = {
     // optional .beegfs.EntityIdSet node = 1;
     {PROTOBUF_FIELD_OFFSET(DeleteNodeRequest, _impl_.node_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional bool execute = 2;
+    {PROTOBUF_FIELD_OFFSET(DeleteNodeRequest, _impl_.execute_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
   }}, {{
@@ -2624,6 +2653,13 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteNodeRequest::_table_ = {
         1, *_impl_.node_, _impl_.node_->GetCachedSize(), target, stream);
   }
 
+  // optional bool execute = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_execute(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -2641,13 +2677,20 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteNodeRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional .beegfs.EntityIdSet node = 1;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.node_);
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // optional .beegfs.EntityIdSet node = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.node_);
+    }
 
+    // optional bool execute = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 2;
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -2662,13 +2705,18 @@ void DeleteNodeRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.node_ != nullptr);
-    if (_this->_impl_.node_ == nullptr) {
-      _this->_impl_.node_ =
-          ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.node_);
-    } else {
-      _this->_impl_.node_->MergeFrom(*from._impl_.node_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.node_ != nullptr);
+      if (_this->_impl_.node_ == nullptr) {
+        _this->_impl_.node_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.node_);
+      } else {
+        _this->_impl_.node_->MergeFrom(*from._impl_.node_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.execute_ = from._impl_.execute_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -2690,7 +2738,12 @@ void DeleteNodeRequest::InternalSwap(DeleteNodeRequest* PROTOBUF_RESTRICT other)
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.node_, other->_impl_.node_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DeleteNodeRequest, _impl_.execute_)
+      + sizeof(DeleteNodeRequest::_impl_.execute_)
+      - PROTOBUF_FIELD_OFFSET(DeleteNodeRequest, _impl_.node_)>(
+          reinterpret_cast<char*>(&_impl_.node_),
+          reinterpret_cast<char*>(&other->_impl_.node_));
 }
 
 ::google::protobuf::Metadata DeleteNodeRequest::GetMetadata() const {
@@ -3732,6 +3785,7 @@ DeleteTargetRequest::DeleteTargetRequest(
   _impl_.target_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
                               arena, *from._impl_.target_)
                         : nullptr;
+  _impl_.execute_ = from._impl_.execute_;
 
   // @@protoc_insertion_point(copy_constructor:management.DeleteTargetRequest)
 }
@@ -3742,7 +3796,12 @@ inline PROTOBUF_NDEBUG_INLINE DeleteTargetRequest::Impl_::Impl_(
 
 inline void DeleteTargetRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.target_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, target_),
+           0,
+           offsetof(Impl_, execute_) -
+               offsetof(Impl_, target_) +
+               sizeof(Impl_::execute_));
 }
 DeleteTargetRequest::~DeleteTargetRequest() {
   // @@protoc_insertion_point(destructor:management.DeleteTargetRequest)
@@ -3781,6 +3840,7 @@ PROTOBUF_NOINLINE void DeleteTargetRequest::Clear() {
     ABSL_DCHECK(_impl_.target_ != nullptr);
     _impl_.target_->Clear();
   }
+  _impl_.execute_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -3793,15 +3853,15 @@ const char* DeleteTargetRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteTargetRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> DeleteTargetRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(DeleteTargetRequest, _impl_._has_bits_),
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    2,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_DeleteTargetRequest_default_instance_._instance,
@@ -3810,6 +3870,9 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteTargetRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::management::DeleteTargetRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
+    // optional bool execute = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DeleteTargetRequest, _impl_.execute_), 1>(),
+     {16, 1, 0, PROTOBUF_FIELD_OFFSET(DeleteTargetRequest, _impl_.execute_)}},
     // optional .beegfs.EntityIdSet target = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(DeleteTargetRequest, _impl_.target_)}},
@@ -3819,6 +3882,9 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteTargetRequest::_table_ = {
     // optional .beegfs.EntityIdSet target = 1;
     {PROTOBUF_FIELD_OFFSET(DeleteTargetRequest, _impl_.target_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional bool execute = 2;
+    {PROTOBUF_FIELD_OFFSET(DeleteTargetRequest, _impl_.execute_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
   }}, {{
@@ -3839,6 +3905,13 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteTargetRequest::_table_ = {
         1, *_impl_.target_, _impl_.target_->GetCachedSize(), target, stream);
   }
 
+  // optional bool execute = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_execute(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -3856,13 +3929,20 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteTargetRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional .beegfs.EntityIdSet target = 1;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.target_);
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // optional .beegfs.EntityIdSet target = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.target_);
+    }
 
+    // optional bool execute = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 2;
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3877,13 +3957,18 @@ void DeleteTargetRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, con
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.target_ != nullptr);
-    if (_this->_impl_.target_ == nullptr) {
-      _this->_impl_.target_ =
-          ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.target_);
-    } else {
-      _this->_impl_.target_->MergeFrom(*from._impl_.target_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.target_ != nullptr);
+      if (_this->_impl_.target_ == nullptr) {
+        _this->_impl_.target_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.target_);
+      } else {
+        _this->_impl_.target_->MergeFrom(*from._impl_.target_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.execute_ = from._impl_.execute_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -3905,7 +3990,12 @@ void DeleteTargetRequest::InternalSwap(DeleteTargetRequest* PROTOBUF_RESTRICT ot
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.target_, other->_impl_.target_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DeleteTargetRequest, _impl_.execute_)
+      + sizeof(DeleteTargetRequest::_impl_.execute_)
+      - PROTOBUF_FIELD_OFFSET(DeleteTargetRequest, _impl_.target_)>(
+          reinterpret_cast<char*>(&_impl_.target_),
+          reinterpret_cast<char*>(&other->_impl_.target_));
 }
 
 ::google::protobuf::Metadata DeleteTargetRequest::GetMetadata() const {
@@ -5757,6 +5847,7 @@ DeletePoolRequest::DeletePoolRequest(
   _impl_.pool_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
                               arena, *from._impl_.pool_)
                         : nullptr;
+  _impl_.execute_ = from._impl_.execute_;
 
   // @@protoc_insertion_point(copy_constructor:management.DeletePoolRequest)
 }
@@ -5767,7 +5858,12 @@ inline PROTOBUF_NDEBUG_INLINE DeletePoolRequest::Impl_::Impl_(
 
 inline void DeletePoolRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.pool_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, pool_),
+           0,
+           offsetof(Impl_, execute_) -
+               offsetof(Impl_, pool_) +
+               sizeof(Impl_::execute_));
 }
 DeletePoolRequest::~DeletePoolRequest() {
   // @@protoc_insertion_point(destructor:management.DeletePoolRequest)
@@ -5806,6 +5902,7 @@ PROTOBUF_NOINLINE void DeletePoolRequest::Clear() {
     ABSL_DCHECK(_impl_.pool_ != nullptr);
     _impl_.pool_->Clear();
   }
+  _impl_.execute_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -5818,15 +5915,15 @@ const char* DeletePoolRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeletePoolRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> DeletePoolRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(DeletePoolRequest, _impl_._has_bits_),
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    2,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_DeletePoolRequest_default_instance_._instance,
@@ -5835,6 +5932,9 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeletePoolRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::management::DeletePoolRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
+    // optional bool execute = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DeletePoolRequest, _impl_.execute_), 1>(),
+     {16, 1, 0, PROTOBUF_FIELD_OFFSET(DeletePoolRequest, _impl_.execute_)}},
     // optional .beegfs.EntityIdSet pool = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(DeletePoolRequest, _impl_.pool_)}},
@@ -5844,6 +5944,9 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeletePoolRequest::_table_ = {
     // optional .beegfs.EntityIdSet pool = 1;
     {PROTOBUF_FIELD_OFFSET(DeletePoolRequest, _impl_.pool_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional bool execute = 2;
+    {PROTOBUF_FIELD_OFFSET(DeletePoolRequest, _impl_.execute_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
   }}, {{
@@ -5864,6 +5967,13 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeletePoolRequest::_table_ = {
         1, *_impl_.pool_, _impl_.pool_->GetCachedSize(), target, stream);
   }
 
+  // optional bool execute = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_execute(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -5881,13 +5991,20 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeletePoolRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional .beegfs.EntityIdSet pool = 1;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.pool_);
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // optional .beegfs.EntityIdSet pool = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.pool_);
+    }
 
+    // optional bool execute = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 2;
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -5902,13 +6019,18 @@ void DeletePoolRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.pool_ != nullptr);
-    if (_this->_impl_.pool_ == nullptr) {
-      _this->_impl_.pool_ =
-          ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.pool_);
-    } else {
-      _this->_impl_.pool_->MergeFrom(*from._impl_.pool_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.pool_ != nullptr);
+      if (_this->_impl_.pool_ == nullptr) {
+        _this->_impl_.pool_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.pool_);
+      } else {
+        _this->_impl_.pool_->MergeFrom(*from._impl_.pool_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.execute_ = from._impl_.execute_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -5930,7 +6052,12 @@ void DeletePoolRequest::InternalSwap(DeletePoolRequest* PROTOBUF_RESTRICT other)
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.pool_, other->_impl_.pool_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DeletePoolRequest, _impl_.execute_)
+      + sizeof(DeletePoolRequest::_impl_.execute_)
+      - PROTOBUF_FIELD_OFFSET(DeletePoolRequest, _impl_.pool_)>(
+          reinterpret_cast<char*>(&_impl_.pool_),
+          reinterpret_cast<char*>(&other->_impl_.pool_));
 }
 
 ::google::protobuf::Metadata DeletePoolRequest::GetMetadata() const {
@@ -7446,6 +7573,7 @@ DeleteBuddyGroupRequest::DeleteBuddyGroupRequest(
   _impl_.group_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
                               arena, *from._impl_.group_)
                         : nullptr;
+  _impl_.execute_ = from._impl_.execute_;
 
   // @@protoc_insertion_point(copy_constructor:management.DeleteBuddyGroupRequest)
 }
@@ -7456,7 +7584,12 @@ inline PROTOBUF_NDEBUG_INLINE DeleteBuddyGroupRequest::Impl_::Impl_(
 
 inline void DeleteBuddyGroupRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.group_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, group_),
+           0,
+           offsetof(Impl_, execute_) -
+               offsetof(Impl_, group_) +
+               sizeof(Impl_::execute_));
 }
 DeleteBuddyGroupRequest::~DeleteBuddyGroupRequest() {
   // @@protoc_insertion_point(destructor:management.DeleteBuddyGroupRequest)
@@ -7495,6 +7628,7 @@ PROTOBUF_NOINLINE void DeleteBuddyGroupRequest::Clear() {
     ABSL_DCHECK(_impl_.group_ != nullptr);
     _impl_.group_->Clear();
   }
+  _impl_.execute_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -7507,15 +7641,15 @@ const char* DeleteBuddyGroupRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteBuddyGroupRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> DeleteBuddyGroupRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(DeleteBuddyGroupRequest, _impl_._has_bits_),
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    2,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_DeleteBuddyGroupRequest_default_instance_._instance,
@@ -7524,6 +7658,9 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteBuddyGroupRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::management::DeleteBuddyGroupRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
+    // optional bool execute = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DeleteBuddyGroupRequest, _impl_.execute_), 1>(),
+     {16, 1, 0, PROTOBUF_FIELD_OFFSET(DeleteBuddyGroupRequest, _impl_.execute_)}},
     // optional .beegfs.EntityIdSet group = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(DeleteBuddyGroupRequest, _impl_.group_)}},
@@ -7533,6 +7670,9 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteBuddyGroupRequest::_table_ = {
     // optional .beegfs.EntityIdSet group = 1;
     {PROTOBUF_FIELD_OFFSET(DeleteBuddyGroupRequest, _impl_.group_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional bool execute = 2;
+    {PROTOBUF_FIELD_OFFSET(DeleteBuddyGroupRequest, _impl_.execute_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
   }}, {{
@@ -7553,6 +7693,13 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteBuddyGroupRequest::_table_ = {
         1, *_impl_.group_, _impl_.group_->GetCachedSize(), target, stream);
   }
 
+  // optional bool execute = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_execute(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -7570,13 +7717,20 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> DeleteBuddyGroupRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // optional .beegfs.EntityIdSet group = 1;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.group_);
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // optional .beegfs.EntityIdSet group = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.group_);
+    }
 
+    // optional bool execute = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 2;
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -7591,13 +7745,18 @@ void DeleteBuddyGroupRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.group_ != nullptr);
-    if (_this->_impl_.group_ == nullptr) {
-      _this->_impl_.group_ =
-          ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.group_);
-    } else {
-      _this->_impl_.group_->MergeFrom(*from._impl_.group_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.group_ != nullptr);
+      if (_this->_impl_.group_ == nullptr) {
+        _this->_impl_.group_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.group_);
+      } else {
+        _this->_impl_.group_->MergeFrom(*from._impl_.group_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.execute_ = from._impl_.execute_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -7619,7 +7778,12 @@ void DeleteBuddyGroupRequest::InternalSwap(DeleteBuddyGroupRequest* PROTOBUF_RES
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.group_, other->_impl_.group_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DeleteBuddyGroupRequest, _impl_.execute_)
+      + sizeof(DeleteBuddyGroupRequest::_impl_.execute_)
+      - PROTOBUF_FIELD_OFFSET(DeleteBuddyGroupRequest, _impl_.group_)>(
+          reinterpret_cast<char*>(&_impl_.group_),
+          reinterpret_cast<char*>(&other->_impl_.group_));
 }
 
 ::google::protobuf::Metadata DeleteBuddyGroupRequest::GetMetadata() const {
