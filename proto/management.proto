@@ -84,8 +84,10 @@ message GetNodesResponse {
 }
 
 message DeleteNodeRequest {
-  // The node to delete
+  // The node to delete.
   optional beegfs.EntityIdSet node = 1;
+  // If set to false, check if delete is possible but don't execute it
+  optional bool execute = 2;
 }
 message DeleteNodeResponse {
   // The ids of the deleted node
@@ -132,6 +134,8 @@ message GetTargetsResponse {
 message DeleteTargetRequest {
   // The target to delete
   optional beegfs.EntityIdSet target = 1;
+  // If set to false, check if delete is possible but don't execute it
+  optional bool execute = 2;
 }
 message DeleteTargetResponse {
   // The ids of the deleted target
@@ -188,6 +192,8 @@ message AssignPoolResponse {
 message DeletePoolRequest {
   // The pool to delete
   optional beegfs.EntityIdSet pool = 1;
+  // If set to false, check if delete is possible but don't execute it
+  optional bool execute = 2;
 }
 message DeletePoolResponse {
   // The ids of the deleted pool
@@ -240,6 +246,8 @@ message CreateBuddyGroupResponse {
 message DeleteBuddyGroupRequest {
   // The buddy group to delete
   optional beegfs.EntityIdSet group = 1;
+  // If set to false, check if delete is possible but don't execute it
+  optional bool execute = 2;
 }
 message DeleteBuddyGroupResponse {
   // The ids of the deleted buddy group
