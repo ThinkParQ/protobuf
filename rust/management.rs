@@ -71,9 +71,12 @@ pub mod get_nodes_response {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeleteNodeRequest {
-    /// The node to delete
+    /// The node to delete.
     #[prost(message, optional, tag = "1")]
     pub node: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// If set to false, check if delete is possible but don't execute it
+    #[prost(bool, optional, tag = "2")]
+    pub execute: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -143,6 +146,9 @@ pub struct DeleteTargetRequest {
     /// The target to delete
     #[prost(message, optional, tag = "1")]
     pub target: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// If set to false, check if delete is possible but don't execute it
+    #[prost(bool, optional, tag = "2")]
+    pub execute: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -229,6 +235,9 @@ pub struct DeletePoolRequest {
     /// The pool to delete
     #[prost(message, optional, tag = "1")]
     pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// If set to false, check if delete is possible but don't execute it
+    #[prost(bool, optional, tag = "2")]
+    pub execute: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -308,6 +317,9 @@ pub struct DeleteBuddyGroupRequest {
     /// The buddy group to delete
     #[prost(message, optional, tag = "1")]
     pub group: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// If set to false, check if delete is possible but don't execute it
+    #[prost(bool, optional, tag = "2")]
+    pub execute: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
