@@ -131,6 +131,18 @@ extern GetPoolsResponseDefaultTypeInternal _GetPoolsResponse_default_instance_;
 class GetPoolsResponse_StoragePool;
 struct GetPoolsResponse_StoragePoolDefaultTypeInternal;
 extern GetPoolsResponse_StoragePoolDefaultTypeInternal _GetPoolsResponse_StoragePool_default_instance_;
+class GetQuotaLimitsRequest;
+struct GetQuotaLimitsRequestDefaultTypeInternal;
+extern GetQuotaLimitsRequestDefaultTypeInternal _GetQuotaLimitsRequest_default_instance_;
+class GetQuotaLimitsResponse;
+struct GetQuotaLimitsResponseDefaultTypeInternal;
+extern GetQuotaLimitsResponseDefaultTypeInternal _GetQuotaLimitsResponse_default_instance_;
+class GetQuotaUsageRequest;
+struct GetQuotaUsageRequestDefaultTypeInternal;
+extern GetQuotaUsageRequestDefaultTypeInternal _GetQuotaUsageRequest_default_instance_;
+class GetQuotaUsageResponse;
+struct GetQuotaUsageResponseDefaultTypeInternal;
+extern GetQuotaUsageResponseDefaultTypeInternal _GetQuotaUsageResponse_default_instance_;
 class GetTargetsRequest;
 struct GetTargetsRequestDefaultTypeInternal;
 extern GetTargetsRequestDefaultTypeInternal _GetTargetsRequest_default_instance_;
@@ -146,12 +158,27 @@ extern MirrorRootInodeRequestDefaultTypeInternal _MirrorRootInodeRequest_default
 class MirrorRootInodeResponse;
 struct MirrorRootInodeResponseDefaultTypeInternal;
 extern MirrorRootInodeResponseDefaultTypeInternal _MirrorRootInodeResponse_default_instance_;
+class QuotaInfo;
+struct QuotaInfoDefaultTypeInternal;
+extern QuotaInfoDefaultTypeInternal _QuotaInfo_default_instance_;
 class SetAliasRequest;
 struct SetAliasRequestDefaultTypeInternal;
 extern SetAliasRequestDefaultTypeInternal _SetAliasRequest_default_instance_;
 class SetAliasResponse;
 struct SetAliasResponseDefaultTypeInternal;
 extern SetAliasResponseDefaultTypeInternal _SetAliasResponse_default_instance_;
+class SetDefaultQuotaLimitsRequest;
+struct SetDefaultQuotaLimitsRequestDefaultTypeInternal;
+extern SetDefaultQuotaLimitsRequestDefaultTypeInternal _SetDefaultQuotaLimitsRequest_default_instance_;
+class SetDefaultQuotaLimitsResponse;
+struct SetDefaultQuotaLimitsResponseDefaultTypeInternal;
+extern SetDefaultQuotaLimitsResponseDefaultTypeInternal _SetDefaultQuotaLimitsResponse_default_instance_;
+class SetQuotaLimitsRequest;
+struct SetQuotaLimitsRequestDefaultTypeInternal;
+extern SetQuotaLimitsRequestDefaultTypeInternal _SetQuotaLimitsRequest_default_instance_;
+class SetQuotaLimitsResponse;
+struct SetQuotaLimitsResponseDefaultTypeInternal;
+extern SetQuotaLimitsResponseDefaultTypeInternal _SetQuotaLimitsResponse_default_instance_;
 class SetTargetStateRequest;
 struct SetTargetStateRequestDefaultTypeInternal;
 extern SetTargetStateRequestDefaultTypeInternal _SetTargetStateRequest_default_instance_;
@@ -307,6 +334,290 @@ class SetTargetStateResponse final : public ::google::protobuf::internal::ZeroFi
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const SetTargetStateResponse& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetQuotaLimitsResponse final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:management.SetQuotaLimitsResponse) */ {
+ public:
+  inline SetQuotaLimitsResponse() : SetQuotaLimitsResponse(nullptr) {}
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SetQuotaLimitsResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SetQuotaLimitsResponse(const SetQuotaLimitsResponse& from) : SetQuotaLimitsResponse(nullptr, from) {}
+  inline SetQuotaLimitsResponse(SetQuotaLimitsResponse&& from) noexcept
+      : SetQuotaLimitsResponse(nullptr, std::move(from)) {}
+  inline SetQuotaLimitsResponse& operator=(const SetQuotaLimitsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetQuotaLimitsResponse& operator=(SetQuotaLimitsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetQuotaLimitsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetQuotaLimitsResponse* internal_default_instance() {
+    return reinterpret_cast<const SetQuotaLimitsResponse*>(
+        &_SetQuotaLimitsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 37;
+  friend void swap(SetQuotaLimitsResponse& a, SetQuotaLimitsResponse& b) { a.Swap(&b); }
+  inline void Swap(SetQuotaLimitsResponse* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetQuotaLimitsResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetQuotaLimitsResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<SetQuotaLimitsResponse>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SetQuotaLimitsResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SetQuotaLimitsResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.SetQuotaLimitsResponse"; }
+
+ protected:
+  explicit SetQuotaLimitsResponse(::google::protobuf::Arena* arena);
+  SetQuotaLimitsResponse(::google::protobuf::Arena* arena, const SetQuotaLimitsResponse& from);
+  SetQuotaLimitsResponse(::google::protobuf::Arena* arena, SetQuotaLimitsResponse&& from) noexcept
+      : SetQuotaLimitsResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ZeroFieldsBase::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:management.SetQuotaLimitsResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_SetQuotaLimitsResponse_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SetQuotaLimitsResponse& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetDefaultQuotaLimitsResponse final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:management.SetDefaultQuotaLimitsResponse) */ {
+ public:
+  inline SetDefaultQuotaLimitsResponse() : SetDefaultQuotaLimitsResponse(nullptr) {}
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SetDefaultQuotaLimitsResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SetDefaultQuotaLimitsResponse(const SetDefaultQuotaLimitsResponse& from) : SetDefaultQuotaLimitsResponse(nullptr, from) {}
+  inline SetDefaultQuotaLimitsResponse(SetDefaultQuotaLimitsResponse&& from) noexcept
+      : SetDefaultQuotaLimitsResponse(nullptr, std::move(from)) {}
+  inline SetDefaultQuotaLimitsResponse& operator=(const SetDefaultQuotaLimitsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetDefaultQuotaLimitsResponse& operator=(SetDefaultQuotaLimitsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetDefaultQuotaLimitsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetDefaultQuotaLimitsResponse* internal_default_instance() {
+    return reinterpret_cast<const SetDefaultQuotaLimitsResponse*>(
+        &_SetDefaultQuotaLimitsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 35;
+  friend void swap(SetDefaultQuotaLimitsResponse& a, SetDefaultQuotaLimitsResponse& b) { a.Swap(&b); }
+  inline void Swap(SetDefaultQuotaLimitsResponse* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetDefaultQuotaLimitsResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetDefaultQuotaLimitsResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<SetDefaultQuotaLimitsResponse>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SetDefaultQuotaLimitsResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SetDefaultQuotaLimitsResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.SetDefaultQuotaLimitsResponse"; }
+
+ protected:
+  explicit SetDefaultQuotaLimitsResponse(::google::protobuf::Arena* arena);
+  SetDefaultQuotaLimitsResponse(::google::protobuf::Arena* arena, const SetDefaultQuotaLimitsResponse& from);
+  SetDefaultQuotaLimitsResponse(::google::protobuf::Arena* arena, SetDefaultQuotaLimitsResponse&& from) noexcept
+      : SetDefaultQuotaLimitsResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ZeroFieldsBase::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:management.SetDefaultQuotaLimitsResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_SetDefaultQuotaLimitsResponse_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SetDefaultQuotaLimitsResponse& from_msg);
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   friend struct ::TableStruct_management_2eproto;
@@ -881,10 +1192,11 @@ class GetTargetsRequest final : public ::google::protobuf::internal::ZeroFieldsB
 };
 // -------------------------------------------------------------------
 
-class GetPoolsRequest final : public ::google::protobuf::internal::ZeroFieldsBase
+class GetPoolsRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:management.GetPoolsRequest) */ {
  public:
   inline GetPoolsRequest() : GetPoolsRequest(nullptr) {}
+  ~GetPoolsRequest() override;
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR GetPoolsRequest(
       ::google::protobuf::internal::ConstantInitialized);
@@ -958,21 +1270,33 @@ class GetPoolsRequest final : public ::google::protobuf::internal::ZeroFieldsBas
   // implements Message ----------------------------------------------
 
   GetPoolsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<GetPoolsRequest>(arena);
+    return ::google::protobuf::Message::DefaultConstruct<GetPoolsRequest>(arena);
   }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const GetPoolsRequest& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const GetPoolsRequest& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetPoolsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetPoolsRequest& from) { GetPoolsRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
 
   public:
   bool IsInitialized() const {
     return true;
   }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetPoolsRequest* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() { return "management.GetPoolsRequest"; }
@@ -984,19 +1308,32 @@ class GetPoolsRequest final : public ::google::protobuf::internal::ZeroFieldsBas
       : GetPoolsRequest(arena) {
     *this = ::std::move(from);
   }
-  const ::google::protobuf::internal::ZeroFieldsBase::ClassData* GetClassData() const final;
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
 
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
 
   // accessors -------------------------------------------------------
+  enum : int {
+    kWithQuotaLimitsFieldNumber = 1,
+  };
+  // bool with_quota_limits = 1;
+  void clear_with_quota_limits() ;
+  bool with_quota_limits() const;
+  void set_with_quota_limits(bool value);
+
+  private:
+  bool _internal_with_quota_limits() const;
+  void _internal_set_with_quota_limits(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:management.GetPoolsRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 0, 0,
+      0, 1, 0,
       0, 2>
       _table_;
 
@@ -1017,8 +1354,11 @@ class GetPoolsRequest final : public ::google::protobuf::internal::ZeroFieldsBas
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const GetPoolsRequest& from_msg);
+    bool with_quota_limits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_management_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1456,7 +1796,7 @@ class GetLicenseRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetLicenseRequest*>(
         &_GetLicenseRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 33;
+  static constexpr int kIndexInFileMessages = 42;
   friend void swap(GetLicenseRequest& a, GetLicenseRequest& b) { a.Swap(&b); }
   inline void Swap(GetLicenseRequest* other) {
     if (other == this) return;
@@ -1906,6 +2246,235 @@ class SetTargetStateRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class SetDefaultQuotaLimitsRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.SetDefaultQuotaLimitsRequest) */ {
+ public:
+  inline SetDefaultQuotaLimitsRequest() : SetDefaultQuotaLimitsRequest(nullptr) {}
+  ~SetDefaultQuotaLimitsRequest() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SetDefaultQuotaLimitsRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SetDefaultQuotaLimitsRequest(const SetDefaultQuotaLimitsRequest& from) : SetDefaultQuotaLimitsRequest(nullptr, from) {}
+  inline SetDefaultQuotaLimitsRequest(SetDefaultQuotaLimitsRequest&& from) noexcept
+      : SetDefaultQuotaLimitsRequest(nullptr, std::move(from)) {}
+  inline SetDefaultQuotaLimitsRequest& operator=(const SetDefaultQuotaLimitsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetDefaultQuotaLimitsRequest& operator=(SetDefaultQuotaLimitsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetDefaultQuotaLimitsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetDefaultQuotaLimitsRequest* internal_default_instance() {
+    return reinterpret_cast<const SetDefaultQuotaLimitsRequest*>(
+        &_SetDefaultQuotaLimitsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 34;
+  friend void swap(SetDefaultQuotaLimitsRequest& a, SetDefaultQuotaLimitsRequest& b) { a.Swap(&b); }
+  inline void Swap(SetDefaultQuotaLimitsRequest* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetDefaultQuotaLimitsRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetDefaultQuotaLimitsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<SetDefaultQuotaLimitsRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetDefaultQuotaLimitsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SetDefaultQuotaLimitsRequest& from) { SetDefaultQuotaLimitsRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetDefaultQuotaLimitsRequest* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.SetDefaultQuotaLimitsRequest"; }
+
+ protected:
+  explicit SetDefaultQuotaLimitsRequest(::google::protobuf::Arena* arena);
+  SetDefaultQuotaLimitsRequest(::google::protobuf::Arena* arena, const SetDefaultQuotaLimitsRequest& from);
+  SetDefaultQuotaLimitsRequest(::google::protobuf::Arena* arena, SetDefaultQuotaLimitsRequest&& from) noexcept
+      : SetDefaultQuotaLimitsRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPoolFieldNumber = 1,
+    kUserSpaceLimitFieldNumber = 2,
+    kUserInodeLimitFieldNumber = 3,
+    kGroupSpaceLimitFieldNumber = 4,
+    kGroupInodeLimitFieldNumber = 5,
+  };
+  // optional .beegfs.EntityIdSet pool = 1;
+  bool has_pool() const;
+  void clear_pool() ;
+  const ::beegfs::EntityIdSet& pool() const;
+  PROTOBUF_NODISCARD ::beegfs::EntityIdSet* release_pool();
+  ::beegfs::EntityIdSet* mutable_pool();
+  void set_allocated_pool(::beegfs::EntityIdSet* value);
+  void unsafe_arena_set_allocated_pool(::beegfs::EntityIdSet* value);
+  ::beegfs::EntityIdSet* unsafe_arena_release_pool();
+
+  private:
+  const ::beegfs::EntityIdSet& _internal_pool() const;
+  ::beegfs::EntityIdSet* _internal_mutable_pool();
+
+  public:
+  // optional int64 user_space_limit = 2;
+  bool has_user_space_limit() const;
+  void clear_user_space_limit() ;
+  ::int64_t user_space_limit() const;
+  void set_user_space_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_user_space_limit() const;
+  void _internal_set_user_space_limit(::int64_t value);
+
+  public:
+  // optional int64 user_inode_limit = 3;
+  bool has_user_inode_limit() const;
+  void clear_user_inode_limit() ;
+  ::int64_t user_inode_limit() const;
+  void set_user_inode_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_user_inode_limit() const;
+  void _internal_set_user_inode_limit(::int64_t value);
+
+  public:
+  // optional int64 group_space_limit = 4;
+  bool has_group_space_limit() const;
+  void clear_group_space_limit() ;
+  ::int64_t group_space_limit() const;
+  void set_group_space_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_group_space_limit() const;
+  void _internal_set_group_space_limit(::int64_t value);
+
+  public:
+  // optional int64 group_inode_limit = 5;
+  bool has_group_inode_limit() const;
+  void clear_group_inode_limit() ;
+  ::int64_t group_inode_limit() const;
+  void set_group_inode_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_group_inode_limit() const;
+  void _internal_set_group_inode_limit(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.SetDefaultQuotaLimitsRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 5, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_SetDefaultQuotaLimitsRequest_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SetDefaultQuotaLimitsRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::beegfs::EntityIdSet* pool_;
+    ::int64_t user_space_limit_;
+    ::int64_t user_inode_limit_;
+    ::int64_t group_space_limit_;
+    ::int64_t group_inode_limit_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SetAliasRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:management.SetAliasRequest) */ {
  public:
@@ -2106,6 +2675,260 @@ class SetAliasRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr new_alias_;
     ::beegfs::EntityIdSet* entity_id_;
     int entity_type_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class QuotaInfo final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.QuotaInfo) */ {
+ public:
+  inline QuotaInfo() : QuotaInfo(nullptr) {}
+  ~QuotaInfo() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR QuotaInfo(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline QuotaInfo(const QuotaInfo& from) : QuotaInfo(nullptr, from) {}
+  inline QuotaInfo(QuotaInfo&& from) noexcept
+      : QuotaInfo(nullptr, std::move(from)) {}
+  inline QuotaInfo& operator=(const QuotaInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline QuotaInfo& operator=(QuotaInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const QuotaInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const QuotaInfo* internal_default_instance() {
+    return reinterpret_cast<const QuotaInfo*>(
+        &_QuotaInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 33;
+  friend void swap(QuotaInfo& a, QuotaInfo& b) { a.Swap(&b); }
+  inline void Swap(QuotaInfo* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(QuotaInfo* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  QuotaInfo* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<QuotaInfo>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const QuotaInfo& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const QuotaInfo& from) { QuotaInfo::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(QuotaInfo* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.QuotaInfo"; }
+
+ protected:
+  explicit QuotaInfo(::google::protobuf::Arena* arena);
+  QuotaInfo(::google::protobuf::Arena* arena, const QuotaInfo& from);
+  QuotaInfo(::google::protobuf::Arena* arena, QuotaInfo&& from) noexcept
+      : QuotaInfo(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPoolFieldNumber = 3,
+    kQuotaIdFieldNumber = 1,
+    kIdTypeFieldNumber = 2,
+    kSpaceLimitFieldNumber = 4,
+    kInodeLimitFieldNumber = 5,
+    kSpaceUsedFieldNumber = 6,
+    kInodeUsedFieldNumber = 7,
+  };
+  // optional .beegfs.EntityIdSet pool = 3;
+  bool has_pool() const;
+  void clear_pool() ;
+  const ::beegfs::EntityIdSet& pool() const;
+  PROTOBUF_NODISCARD ::beegfs::EntityIdSet* release_pool();
+  ::beegfs::EntityIdSet* mutable_pool();
+  void set_allocated_pool(::beegfs::EntityIdSet* value);
+  void unsafe_arena_set_allocated_pool(::beegfs::EntityIdSet* value);
+  ::beegfs::EntityIdSet* unsafe_arena_release_pool();
+
+  private:
+  const ::beegfs::EntityIdSet& _internal_pool() const;
+  ::beegfs::EntityIdSet* _internal_mutable_pool();
+
+  public:
+  // optional uint32 quota_id = 1;
+  bool has_quota_id() const;
+  void clear_quota_id() ;
+  ::uint32_t quota_id() const;
+  void set_quota_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_quota_id() const;
+  void _internal_set_quota_id(::uint32_t value);
+
+  public:
+  // .beegfs.QuotaIdType id_type = 2;
+  void clear_id_type() ;
+  ::beegfs::QuotaIdType id_type() const;
+  void set_id_type(::beegfs::QuotaIdType value);
+
+  private:
+  ::beegfs::QuotaIdType _internal_id_type() const;
+  void _internal_set_id_type(::beegfs::QuotaIdType value);
+
+  public:
+  // optional int64 space_limit = 4;
+  bool has_space_limit() const;
+  void clear_space_limit() ;
+  ::int64_t space_limit() const;
+  void set_space_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_space_limit() const;
+  void _internal_set_space_limit(::int64_t value);
+
+  public:
+  // optional int64 inode_limit = 5;
+  bool has_inode_limit() const;
+  void clear_inode_limit() ;
+  ::int64_t inode_limit() const;
+  void set_inode_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_inode_limit() const;
+  void _internal_set_inode_limit(::int64_t value);
+
+  public:
+  // optional int64 space_used = 6;
+  bool has_space_used() const;
+  void clear_space_used() ;
+  ::int64_t space_used() const;
+  void set_space_used(::int64_t value);
+
+  private:
+  ::int64_t _internal_space_used() const;
+  void _internal_set_space_used(::int64_t value);
+
+  public:
+  // optional int64 inode_used = 7;
+  bool has_inode_used() const;
+  void clear_inode_used() ;
+  ::int64_t inode_used() const;
+  void set_inode_used(::int64_t value);
+
+  private:
+  ::int64_t _internal_inode_used() const;
+  void _internal_set_inode_used(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.QuotaInfo)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 7, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_QuotaInfo_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const QuotaInfo& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::beegfs::EntityIdSet* pool_;
+    ::uint32_t quota_id_;
+    int id_type_;
+    ::int64_t space_limit_;
+    ::int64_t inode_limit_;
+    ::int64_t space_used_;
+    ::int64_t inode_used_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2437,6 +3260,449 @@ class GetTargetsResponse_Target final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class GetQuotaUsageRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.GetQuotaUsageRequest) */ {
+ public:
+  inline GetQuotaUsageRequest() : GetQuotaUsageRequest(nullptr) {}
+  ~GetQuotaUsageRequest() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetQuotaUsageRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetQuotaUsageRequest(const GetQuotaUsageRequest& from) : GetQuotaUsageRequest(nullptr, from) {}
+  inline GetQuotaUsageRequest(GetQuotaUsageRequest&& from) noexcept
+      : GetQuotaUsageRequest(nullptr, std::move(from)) {}
+  inline GetQuotaUsageRequest& operator=(const GetQuotaUsageRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetQuotaUsageRequest& operator=(GetQuotaUsageRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetQuotaUsageRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetQuotaUsageRequest* internal_default_instance() {
+    return reinterpret_cast<const GetQuotaUsageRequest*>(
+        &_GetQuotaUsageRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 40;
+  friend void swap(GetQuotaUsageRequest& a, GetQuotaUsageRequest& b) { a.Swap(&b); }
+  inline void Swap(GetQuotaUsageRequest* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetQuotaUsageRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetQuotaUsageRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<GetQuotaUsageRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetQuotaUsageRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetQuotaUsageRequest& from) { GetQuotaUsageRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetQuotaUsageRequest* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.GetQuotaUsageRequest"; }
+
+ protected:
+  explicit GetQuotaUsageRequest(::google::protobuf::Arena* arena);
+  GetQuotaUsageRequest(::google::protobuf::Arena* arena, const GetQuotaUsageRequest& from);
+  GetQuotaUsageRequest(::google::protobuf::Arena* arena, GetQuotaUsageRequest&& from) noexcept
+      : GetQuotaUsageRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPoolFieldNumber = 4,
+    kQuotaIdMinFieldNumber = 1,
+    kQuotaIdMaxFieldNumber = 2,
+    kIdTypeFieldNumber = 3,
+    kExceededFieldNumber = 5,
+  };
+  // optional .beegfs.EntityIdSet pool = 4;
+  bool has_pool() const;
+  void clear_pool() ;
+  const ::beegfs::EntityIdSet& pool() const;
+  PROTOBUF_NODISCARD ::beegfs::EntityIdSet* release_pool();
+  ::beegfs::EntityIdSet* mutable_pool();
+  void set_allocated_pool(::beegfs::EntityIdSet* value);
+  void unsafe_arena_set_allocated_pool(::beegfs::EntityIdSet* value);
+  ::beegfs::EntityIdSet* unsafe_arena_release_pool();
+
+  private:
+  const ::beegfs::EntityIdSet& _internal_pool() const;
+  ::beegfs::EntityIdSet* _internal_mutable_pool();
+
+  public:
+  // optional uint32 quota_id_min = 1;
+  bool has_quota_id_min() const;
+  void clear_quota_id_min() ;
+  ::uint32_t quota_id_min() const;
+  void set_quota_id_min(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_quota_id_min() const;
+  void _internal_set_quota_id_min(::uint32_t value);
+
+  public:
+  // optional uint32 quota_id_max = 2;
+  bool has_quota_id_max() const;
+  void clear_quota_id_max() ;
+  ::uint32_t quota_id_max() const;
+  void set_quota_id_max(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_quota_id_max() const;
+  void _internal_set_quota_id_max(::uint32_t value);
+
+  public:
+  // .beegfs.QuotaIdType id_type = 3;
+  void clear_id_type() ;
+  ::beegfs::QuotaIdType id_type() const;
+  void set_id_type(::beegfs::QuotaIdType value);
+
+  private:
+  ::beegfs::QuotaIdType _internal_id_type() const;
+  void _internal_set_id_type(::beegfs::QuotaIdType value);
+
+  public:
+  // optional bool exceeded = 5;
+  bool has_exceeded() const;
+  void clear_exceeded() ;
+  bool exceeded() const;
+  void set_exceeded(bool value);
+
+  private:
+  bool _internal_exceeded() const;
+  void _internal_set_exceeded(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.GetQuotaUsageRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 5, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_GetQuotaUsageRequest_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetQuotaUsageRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::beegfs::EntityIdSet* pool_;
+    ::uint32_t quota_id_min_;
+    ::uint32_t quota_id_max_;
+    int id_type_;
+    bool exceeded_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetQuotaLimitsRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.GetQuotaLimitsRequest) */ {
+ public:
+  inline GetQuotaLimitsRequest() : GetQuotaLimitsRequest(nullptr) {}
+  ~GetQuotaLimitsRequest() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetQuotaLimitsRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetQuotaLimitsRequest(const GetQuotaLimitsRequest& from) : GetQuotaLimitsRequest(nullptr, from) {}
+  inline GetQuotaLimitsRequest(GetQuotaLimitsRequest&& from) noexcept
+      : GetQuotaLimitsRequest(nullptr, std::move(from)) {}
+  inline GetQuotaLimitsRequest& operator=(const GetQuotaLimitsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetQuotaLimitsRequest& operator=(GetQuotaLimitsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetQuotaLimitsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetQuotaLimitsRequest* internal_default_instance() {
+    return reinterpret_cast<const GetQuotaLimitsRequest*>(
+        &_GetQuotaLimitsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 38;
+  friend void swap(GetQuotaLimitsRequest& a, GetQuotaLimitsRequest& b) { a.Swap(&b); }
+  inline void Swap(GetQuotaLimitsRequest* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetQuotaLimitsRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetQuotaLimitsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<GetQuotaLimitsRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetQuotaLimitsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetQuotaLimitsRequest& from) { GetQuotaLimitsRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetQuotaLimitsRequest* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.GetQuotaLimitsRequest"; }
+
+ protected:
+  explicit GetQuotaLimitsRequest(::google::protobuf::Arena* arena);
+  GetQuotaLimitsRequest(::google::protobuf::Arena* arena, const GetQuotaLimitsRequest& from);
+  GetQuotaLimitsRequest(::google::protobuf::Arena* arena, GetQuotaLimitsRequest&& from) noexcept
+      : GetQuotaLimitsRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPoolFieldNumber = 4,
+    kQuotaIdMinFieldNumber = 1,
+    kQuotaIdMaxFieldNumber = 2,
+    kIdTypeFieldNumber = 3,
+  };
+  // optional .beegfs.EntityIdSet pool = 4;
+  bool has_pool() const;
+  void clear_pool() ;
+  const ::beegfs::EntityIdSet& pool() const;
+  PROTOBUF_NODISCARD ::beegfs::EntityIdSet* release_pool();
+  ::beegfs::EntityIdSet* mutable_pool();
+  void set_allocated_pool(::beegfs::EntityIdSet* value);
+  void unsafe_arena_set_allocated_pool(::beegfs::EntityIdSet* value);
+  ::beegfs::EntityIdSet* unsafe_arena_release_pool();
+
+  private:
+  const ::beegfs::EntityIdSet& _internal_pool() const;
+  ::beegfs::EntityIdSet* _internal_mutable_pool();
+
+  public:
+  // optional uint32 quota_id_min = 1;
+  bool has_quota_id_min() const;
+  void clear_quota_id_min() ;
+  ::uint32_t quota_id_min() const;
+  void set_quota_id_min(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_quota_id_min() const;
+  void _internal_set_quota_id_min(::uint32_t value);
+
+  public:
+  // optional uint32 quota_id_max = 2;
+  bool has_quota_id_max() const;
+  void clear_quota_id_max() ;
+  ::uint32_t quota_id_max() const;
+  void set_quota_id_max(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_quota_id_max() const;
+  void _internal_set_quota_id_max(::uint32_t value);
+
+  public:
+  // .beegfs.QuotaIdType id_type = 3;
+  void clear_id_type() ;
+  ::beegfs::QuotaIdType id_type() const;
+  void set_id_type(::beegfs::QuotaIdType value);
+
+  private:
+  ::beegfs::QuotaIdType _internal_id_type() const;
+  void _internal_set_id_type(::beegfs::QuotaIdType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.GetQuotaLimitsRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_GetQuotaLimitsRequest_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetQuotaLimitsRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::beegfs::EntityIdSet* pool_;
+    ::uint32_t quota_id_min_;
+    ::uint32_t quota_id_max_;
+    int id_type_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetPoolsResponse_StoragePool final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:management.GetPoolsResponse.StoragePool) */ {
  public:
@@ -2564,6 +3830,10 @@ class GetPoolsResponse_StoragePool final : public ::google::protobuf::Message
     kTargetsFieldNumber = 2,
     kBuddyGroupsFieldNumber = 3,
     kIdFieldNumber = 1,
+    kUserSpaceLimitFieldNumber = 4,
+    kUserInodeLimitFieldNumber = 5,
+    kGroupSpaceLimitFieldNumber = 6,
+    kGroupInodeLimitFieldNumber = 7,
   };
   // repeated .beegfs.EntityIdSet targets = 2;
   int targets_size() const;
@@ -2614,12 +3884,56 @@ class GetPoolsResponse_StoragePool final : public ::google::protobuf::Message
   ::beegfs::EntityIdSet* _internal_mutable_id();
 
   public:
+  // optional int64 user_space_limit = 4;
+  bool has_user_space_limit() const;
+  void clear_user_space_limit() ;
+  ::int64_t user_space_limit() const;
+  void set_user_space_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_user_space_limit() const;
+  void _internal_set_user_space_limit(::int64_t value);
+
+  public:
+  // optional int64 user_inode_limit = 5;
+  bool has_user_inode_limit() const;
+  void clear_user_inode_limit() ;
+  ::int64_t user_inode_limit() const;
+  void set_user_inode_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_user_inode_limit() const;
+  void _internal_set_user_inode_limit(::int64_t value);
+
+  public:
+  // optional int64 group_space_limit = 6;
+  bool has_group_space_limit() const;
+  void clear_group_space_limit() ;
+  ::int64_t group_space_limit() const;
+  void set_group_space_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_group_space_limit() const;
+  void _internal_set_group_space_limit(::int64_t value);
+
+  public:
+  // optional int64 group_inode_limit = 7;
+  bool has_group_inode_limit() const;
+  void clear_group_inode_limit() ;
+  ::int64_t group_inode_limit() const;
+  void set_group_inode_limit(::int64_t value);
+
+  private:
+  ::int64_t _internal_group_inode_limit() const;
+  void _internal_set_group_inode_limit(::int64_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:management.GetPoolsResponse.StoragePool)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 3,
+      3, 7, 3,
       0, 2>
       _table_;
 
@@ -2645,6 +3959,10 @@ class GetPoolsResponse_StoragePool final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedPtrField< ::beegfs::EntityIdSet > targets_;
     ::google::protobuf::RepeatedPtrField< ::beegfs::EntityIdSet > buddy_groups_;
     ::beegfs::EntityIdSet* id_;
+    ::int64_t user_space_limit_;
+    ::int64_t user_inode_limit_;
+    ::int64_t group_space_limit_;
+    ::int64_t group_inode_limit_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5833,6 +7151,184 @@ class AssignPoolRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class SetQuotaLimitsRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.SetQuotaLimitsRequest) */ {
+ public:
+  inline SetQuotaLimitsRequest() : SetQuotaLimitsRequest(nullptr) {}
+  ~SetQuotaLimitsRequest() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SetQuotaLimitsRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SetQuotaLimitsRequest(const SetQuotaLimitsRequest& from) : SetQuotaLimitsRequest(nullptr, from) {}
+  inline SetQuotaLimitsRequest(SetQuotaLimitsRequest&& from) noexcept
+      : SetQuotaLimitsRequest(nullptr, std::move(from)) {}
+  inline SetQuotaLimitsRequest& operator=(const SetQuotaLimitsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetQuotaLimitsRequest& operator=(SetQuotaLimitsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetQuotaLimitsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetQuotaLimitsRequest* internal_default_instance() {
+    return reinterpret_cast<const SetQuotaLimitsRequest*>(
+        &_SetQuotaLimitsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 36;
+  friend void swap(SetQuotaLimitsRequest& a, SetQuotaLimitsRequest& b) { a.Swap(&b); }
+  inline void Swap(SetQuotaLimitsRequest* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetQuotaLimitsRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetQuotaLimitsRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<SetQuotaLimitsRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetQuotaLimitsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SetQuotaLimitsRequest& from) { SetQuotaLimitsRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetQuotaLimitsRequest* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.SetQuotaLimitsRequest"; }
+
+ protected:
+  explicit SetQuotaLimitsRequest(::google::protobuf::Arena* arena);
+  SetQuotaLimitsRequest(::google::protobuf::Arena* arena, const SetQuotaLimitsRequest& from);
+  SetQuotaLimitsRequest(::google::protobuf::Arena* arena, SetQuotaLimitsRequest&& from) noexcept
+      : SetQuotaLimitsRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLimitsFieldNumber = 1,
+  };
+  // repeated .management.QuotaInfo limits = 1;
+  int limits_size() const;
+  private:
+  int _internal_limits_size() const;
+
+  public:
+  void clear_limits() ;
+  ::management::QuotaInfo* mutable_limits(int index);
+  ::google::protobuf::RepeatedPtrField<::management::QuotaInfo>* mutable_limits();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::management::QuotaInfo>& _internal_limits() const;
+  ::google::protobuf::RepeatedPtrField<::management::QuotaInfo>* _internal_mutable_limits();
+  public:
+  const ::management::QuotaInfo& limits(int index) const;
+  ::management::QuotaInfo* add_limits();
+  const ::google::protobuf::RepeatedPtrField<::management::QuotaInfo>& limits() const;
+  // @@protoc_insertion_point(class_scope:management.SetQuotaLimitsRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_SetQuotaLimitsRequest_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SetQuotaLimitsRequest& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::management::QuotaInfo > limits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetTargetsResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:management.GetTargetsResponse) */ {
  public:
@@ -6005,6 +7501,373 @@ class GetTargetsResponse final : public ::google::protobuf::Message
                           const GetTargetsResponse& from_msg);
     ::google::protobuf::RepeatedPtrField< ::management::GetTargetsResponse_Target > targets_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetQuotaUsageResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.GetQuotaUsageResponse) */ {
+ public:
+  inline GetQuotaUsageResponse() : GetQuotaUsageResponse(nullptr) {}
+  ~GetQuotaUsageResponse() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetQuotaUsageResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetQuotaUsageResponse(const GetQuotaUsageResponse& from) : GetQuotaUsageResponse(nullptr, from) {}
+  inline GetQuotaUsageResponse(GetQuotaUsageResponse&& from) noexcept
+      : GetQuotaUsageResponse(nullptr, std::move(from)) {}
+  inline GetQuotaUsageResponse& operator=(const GetQuotaUsageResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetQuotaUsageResponse& operator=(GetQuotaUsageResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetQuotaUsageResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetQuotaUsageResponse* internal_default_instance() {
+    return reinterpret_cast<const GetQuotaUsageResponse*>(
+        &_GetQuotaUsageResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 41;
+  friend void swap(GetQuotaUsageResponse& a, GetQuotaUsageResponse& b) { a.Swap(&b); }
+  inline void Swap(GetQuotaUsageResponse* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetQuotaUsageResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetQuotaUsageResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<GetQuotaUsageResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetQuotaUsageResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetQuotaUsageResponse& from) { GetQuotaUsageResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetQuotaUsageResponse* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.GetQuotaUsageResponse"; }
+
+ protected:
+  explicit GetQuotaUsageResponse(::google::protobuf::Arena* arena);
+  GetQuotaUsageResponse(::google::protobuf::Arena* arena, const GetQuotaUsageResponse& from);
+  GetQuotaUsageResponse(::google::protobuf::Arena* arena, GetQuotaUsageResponse&& from) noexcept
+      : GetQuotaUsageResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEntryFieldNumber = 1,
+    kRefreshPeriodSFieldNumber = 2,
+  };
+  // optional .management.QuotaInfo entry = 1;
+  bool has_entry() const;
+  void clear_entry() ;
+  const ::management::QuotaInfo& entry() const;
+  PROTOBUF_NODISCARD ::management::QuotaInfo* release_entry();
+  ::management::QuotaInfo* mutable_entry();
+  void set_allocated_entry(::management::QuotaInfo* value);
+  void unsafe_arena_set_allocated_entry(::management::QuotaInfo* value);
+  ::management::QuotaInfo* unsafe_arena_release_entry();
+
+  private:
+  const ::management::QuotaInfo& _internal_entry() const;
+  ::management::QuotaInfo* _internal_mutable_entry();
+
+  public:
+  // optional uint64 refresh_period_s = 2;
+  bool has_refresh_period_s() const;
+  void clear_refresh_period_s() ;
+  ::uint64_t refresh_period_s() const;
+  void set_refresh_period_s(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_refresh_period_s() const;
+  void _internal_set_refresh_period_s(::uint64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.GetQuotaUsageResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_GetQuotaUsageResponse_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetQuotaUsageResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::management::QuotaInfo* entry_;
+    ::uint64_t refresh_period_s_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetQuotaLimitsResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.GetQuotaLimitsResponse) */ {
+ public:
+  inline GetQuotaLimitsResponse() : GetQuotaLimitsResponse(nullptr) {}
+  ~GetQuotaLimitsResponse() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetQuotaLimitsResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetQuotaLimitsResponse(const GetQuotaLimitsResponse& from) : GetQuotaLimitsResponse(nullptr, from) {}
+  inline GetQuotaLimitsResponse(GetQuotaLimitsResponse&& from) noexcept
+      : GetQuotaLimitsResponse(nullptr, std::move(from)) {}
+  inline GetQuotaLimitsResponse& operator=(const GetQuotaLimitsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetQuotaLimitsResponse& operator=(GetQuotaLimitsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetQuotaLimitsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetQuotaLimitsResponse* internal_default_instance() {
+    return reinterpret_cast<const GetQuotaLimitsResponse*>(
+        &_GetQuotaLimitsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 39;
+  friend void swap(GetQuotaLimitsResponse& a, GetQuotaLimitsResponse& b) { a.Swap(&b); }
+  inline void Swap(GetQuotaLimitsResponse* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetQuotaLimitsResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetQuotaLimitsResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<GetQuotaLimitsResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetQuotaLimitsResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetQuotaLimitsResponse& from) { GetQuotaLimitsResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetQuotaLimitsResponse* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.GetQuotaLimitsResponse"; }
+
+ protected:
+  explicit GetQuotaLimitsResponse(::google::protobuf::Arena* arena);
+  GetQuotaLimitsResponse(::google::protobuf::Arena* arena, const GetQuotaLimitsResponse& from);
+  GetQuotaLimitsResponse(::google::protobuf::Arena* arena, GetQuotaLimitsResponse&& from) noexcept
+      : GetQuotaLimitsResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLimitsFieldNumber = 1,
+  };
+  // optional .management.QuotaInfo limits = 1;
+  bool has_limits() const;
+  void clear_limits() ;
+  const ::management::QuotaInfo& limits() const;
+  PROTOBUF_NODISCARD ::management::QuotaInfo* release_limits();
+  ::management::QuotaInfo* mutable_limits();
+  void set_allocated_limits(::management::QuotaInfo* value);
+  void unsafe_arena_set_allocated_limits(::management::QuotaInfo* value);
+  ::management::QuotaInfo* unsafe_arena_release_limits();
+
+  private:
+  const ::management::QuotaInfo& _internal_limits() const;
+  ::management::QuotaInfo* _internal_mutable_limits();
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.GetQuotaLimitsResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_GetQuotaLimitsResponse_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetQuotaLimitsResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::management::QuotaInfo* limits_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6443,7 +8306,7 @@ class GetLicenseResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetLicenseResponse*>(
         &_GetLicenseResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 34;
+  static constexpr int kIndexInFileMessages = 43;
   friend void swap(GetLicenseResponse& a, GetLicenseResponse& b) { a.Swap(&b); }
   inline void Swap(GetLicenseResponse* other) {
     if (other == this) return;
@@ -8539,6 +10402,28 @@ inline void SetTargetStateRequest::_internal_set_consistency_state(::beegfs::Con
 
 // GetPoolsRequest
 
+// bool with_quota_limits = 1;
+inline void GetPoolsRequest::clear_with_quota_limits() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.with_quota_limits_ = false;
+}
+inline bool GetPoolsRequest::with_quota_limits() const {
+  // @@protoc_insertion_point(field_get:management.GetPoolsRequest.with_quota_limits)
+  return _internal_with_quota_limits();
+}
+inline void GetPoolsRequest::set_with_quota_limits(bool value) {
+  _internal_set_with_quota_limits(value);
+  // @@protoc_insertion_point(field_set:management.GetPoolsRequest.with_quota_limits)
+}
+inline bool GetPoolsRequest::_internal_with_quota_limits() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.with_quota_limits_;
+}
+inline void GetPoolsRequest::_internal_set_with_quota_limits(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.with_quota_limits_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // GetPoolsResponse_StoragePool
@@ -8722,6 +10607,118 @@ inline ::google::protobuf::RepeatedPtrField<::beegfs::EntityIdSet>*
 GetPoolsResponse_StoragePool::_internal_mutable_buddy_groups() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.buddy_groups_;
+}
+
+// optional int64 user_space_limit = 4;
+inline bool GetPoolsResponse_StoragePool::has_user_space_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void GetPoolsResponse_StoragePool::clear_user_space_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_space_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::int64_t GetPoolsResponse_StoragePool::user_space_limit() const {
+  // @@protoc_insertion_point(field_get:management.GetPoolsResponse.StoragePool.user_space_limit)
+  return _internal_user_space_limit();
+}
+inline void GetPoolsResponse_StoragePool::set_user_space_limit(::int64_t value) {
+  _internal_set_user_space_limit(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.GetPoolsResponse.StoragePool.user_space_limit)
+}
+inline ::int64_t GetPoolsResponse_StoragePool::_internal_user_space_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.user_space_limit_;
+}
+inline void GetPoolsResponse_StoragePool::_internal_set_user_space_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_space_limit_ = value;
+}
+
+// optional int64 user_inode_limit = 5;
+inline bool GetPoolsResponse_StoragePool::has_user_inode_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void GetPoolsResponse_StoragePool::clear_user_inode_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_inode_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::int64_t GetPoolsResponse_StoragePool::user_inode_limit() const {
+  // @@protoc_insertion_point(field_get:management.GetPoolsResponse.StoragePool.user_inode_limit)
+  return _internal_user_inode_limit();
+}
+inline void GetPoolsResponse_StoragePool::set_user_inode_limit(::int64_t value) {
+  _internal_set_user_inode_limit(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:management.GetPoolsResponse.StoragePool.user_inode_limit)
+}
+inline ::int64_t GetPoolsResponse_StoragePool::_internal_user_inode_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.user_inode_limit_;
+}
+inline void GetPoolsResponse_StoragePool::_internal_set_user_inode_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_inode_limit_ = value;
+}
+
+// optional int64 group_space_limit = 6;
+inline bool GetPoolsResponse_StoragePool::has_group_space_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void GetPoolsResponse_StoragePool::clear_group_space_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_space_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::int64_t GetPoolsResponse_StoragePool::group_space_limit() const {
+  // @@protoc_insertion_point(field_get:management.GetPoolsResponse.StoragePool.group_space_limit)
+  return _internal_group_space_limit();
+}
+inline void GetPoolsResponse_StoragePool::set_group_space_limit(::int64_t value) {
+  _internal_set_group_space_limit(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:management.GetPoolsResponse.StoragePool.group_space_limit)
+}
+inline ::int64_t GetPoolsResponse_StoragePool::_internal_group_space_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.group_space_limit_;
+}
+inline void GetPoolsResponse_StoragePool::_internal_set_group_space_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_space_limit_ = value;
+}
+
+// optional int64 group_inode_limit = 7;
+inline bool GetPoolsResponse_StoragePool::has_group_inode_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline void GetPoolsResponse_StoragePool::clear_group_inode_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_inode_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::int64_t GetPoolsResponse_StoragePool::group_inode_limit() const {
+  // @@protoc_insertion_point(field_get:management.GetPoolsResponse.StoragePool.group_inode_limit)
+  return _internal_group_inode_limit();
+}
+inline void GetPoolsResponse_StoragePool::set_group_inode_limit(::int64_t value) {
+  _internal_set_group_inode_limit(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:management.GetPoolsResponse.StoragePool.group_inode_limit)
+}
+inline ::int64_t GetPoolsResponse_StoragePool::_internal_group_inode_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.group_inode_limit_;
+}
+inline void GetPoolsResponse_StoragePool::_internal_set_group_inode_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_inode_limit_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -10715,6 +12712,1133 @@ inline void DeleteBuddyGroupResponse::set_allocated_group(::beegfs::EntityIdSet*
 // -------------------------------------------------------------------
 
 // MirrorRootInodeResponse
+
+// -------------------------------------------------------------------
+
+// QuotaInfo
+
+// optional uint32 quota_id = 1;
+inline bool QuotaInfo::has_quota_id() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void QuotaInfo::clear_quota_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::uint32_t QuotaInfo::quota_id() const {
+  // @@protoc_insertion_point(field_get:management.QuotaInfo.quota_id)
+  return _internal_quota_id();
+}
+inline void QuotaInfo::set_quota_id(::uint32_t value) {
+  _internal_set_quota_id(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.QuotaInfo.quota_id)
+}
+inline ::uint32_t QuotaInfo::_internal_quota_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.quota_id_;
+}
+inline void QuotaInfo::_internal_set_quota_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_ = value;
+}
+
+// .beegfs.QuotaIdType id_type = 2;
+inline void QuotaInfo::clear_id_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_type_ = 0;
+}
+inline ::beegfs::QuotaIdType QuotaInfo::id_type() const {
+  // @@protoc_insertion_point(field_get:management.QuotaInfo.id_type)
+  return _internal_id_type();
+}
+inline void QuotaInfo::set_id_type(::beegfs::QuotaIdType value) {
+  _internal_set_id_type(value);
+  // @@protoc_insertion_point(field_set:management.QuotaInfo.id_type)
+}
+inline ::beegfs::QuotaIdType QuotaInfo::_internal_id_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beegfs::QuotaIdType>(_impl_.id_type_);
+}
+inline void QuotaInfo::_internal_set_id_type(::beegfs::QuotaIdType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_type_ = value;
+}
+
+// optional .beegfs.EntityIdSet pool = 3;
+inline bool QuotaInfo::has_pool() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.pool_ != nullptr);
+  return value;
+}
+inline const ::beegfs::EntityIdSet& QuotaInfo::_internal_pool() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::EntityIdSet* p = _impl_.pool_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::EntityIdSet&>(::beegfs::_EntityIdSet_default_instance_);
+}
+inline const ::beegfs::EntityIdSet& QuotaInfo::pool() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.QuotaInfo.pool)
+  return _internal_pool();
+}
+inline void QuotaInfo::unsafe_arena_set_allocated_pool(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pool_);
+  }
+  _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.QuotaInfo.pool)
+}
+inline ::beegfs::EntityIdSet* QuotaInfo::release_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* released = _impl_.pool_;
+  _impl_.pool_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::beegfs::EntityIdSet* QuotaInfo::unsafe_arena_release_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.QuotaInfo.pool)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* temp = _impl_.pool_;
+  _impl_.pool_ = nullptr;
+  return temp;
+}
+inline ::beegfs::EntityIdSet* QuotaInfo::_internal_mutable_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pool_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::EntityIdSet>(GetArena());
+    _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(p);
+  }
+  return _impl_.pool_;
+}
+inline ::beegfs::EntityIdSet* QuotaInfo::mutable_pool() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::EntityIdSet* _msg = _internal_mutable_pool();
+  // @@protoc_insertion_point(field_mutable:management.QuotaInfo.pool)
+  return _msg;
+}
+inline void QuotaInfo::set_allocated_pool(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pool_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.QuotaInfo.pool)
+}
+
+// optional int64 space_limit = 4;
+inline bool QuotaInfo::has_space_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void QuotaInfo::clear_space_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.space_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::int64_t QuotaInfo::space_limit() const {
+  // @@protoc_insertion_point(field_get:management.QuotaInfo.space_limit)
+  return _internal_space_limit();
+}
+inline void QuotaInfo::set_space_limit(::int64_t value) {
+  _internal_set_space_limit(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:management.QuotaInfo.space_limit)
+}
+inline ::int64_t QuotaInfo::_internal_space_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.space_limit_;
+}
+inline void QuotaInfo::_internal_set_space_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.space_limit_ = value;
+}
+
+// optional int64 inode_limit = 5;
+inline bool QuotaInfo::has_inode_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void QuotaInfo::clear_inode_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.inode_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::int64_t QuotaInfo::inode_limit() const {
+  // @@protoc_insertion_point(field_get:management.QuotaInfo.inode_limit)
+  return _internal_inode_limit();
+}
+inline void QuotaInfo::set_inode_limit(::int64_t value) {
+  _internal_set_inode_limit(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:management.QuotaInfo.inode_limit)
+}
+inline ::int64_t QuotaInfo::_internal_inode_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.inode_limit_;
+}
+inline void QuotaInfo::_internal_set_inode_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.inode_limit_ = value;
+}
+
+// optional int64 space_used = 6;
+inline bool QuotaInfo::has_space_used() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline void QuotaInfo::clear_space_used() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.space_used_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::int64_t QuotaInfo::space_used() const {
+  // @@protoc_insertion_point(field_get:management.QuotaInfo.space_used)
+  return _internal_space_used();
+}
+inline void QuotaInfo::set_space_used(::int64_t value) {
+  _internal_set_space_used(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:management.QuotaInfo.space_used)
+}
+inline ::int64_t QuotaInfo::_internal_space_used() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.space_used_;
+}
+inline void QuotaInfo::_internal_set_space_used(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.space_used_ = value;
+}
+
+// optional int64 inode_used = 7;
+inline bool QuotaInfo::has_inode_used() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline void QuotaInfo::clear_inode_used() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.inode_used_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+inline ::int64_t QuotaInfo::inode_used() const {
+  // @@protoc_insertion_point(field_get:management.QuotaInfo.inode_used)
+  return _internal_inode_used();
+}
+inline void QuotaInfo::set_inode_used(::int64_t value) {
+  _internal_set_inode_used(value);
+  _impl_._has_bits_[0] |= 0x00000020u;
+  // @@protoc_insertion_point(field_set:management.QuotaInfo.inode_used)
+}
+inline ::int64_t QuotaInfo::_internal_inode_used() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.inode_used_;
+}
+inline void QuotaInfo::_internal_set_inode_used(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.inode_used_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// SetDefaultQuotaLimitsRequest
+
+// optional .beegfs.EntityIdSet pool = 1;
+inline bool SetDefaultQuotaLimitsRequest::has_pool() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.pool_ != nullptr);
+  return value;
+}
+inline const ::beegfs::EntityIdSet& SetDefaultQuotaLimitsRequest::_internal_pool() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::EntityIdSet* p = _impl_.pool_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::EntityIdSet&>(::beegfs::_EntityIdSet_default_instance_);
+}
+inline const ::beegfs::EntityIdSet& SetDefaultQuotaLimitsRequest::pool() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.SetDefaultQuotaLimitsRequest.pool)
+  return _internal_pool();
+}
+inline void SetDefaultQuotaLimitsRequest::unsafe_arena_set_allocated_pool(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pool_);
+  }
+  _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.SetDefaultQuotaLimitsRequest.pool)
+}
+inline ::beegfs::EntityIdSet* SetDefaultQuotaLimitsRequest::release_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* released = _impl_.pool_;
+  _impl_.pool_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::beegfs::EntityIdSet* SetDefaultQuotaLimitsRequest::unsafe_arena_release_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.SetDefaultQuotaLimitsRequest.pool)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* temp = _impl_.pool_;
+  _impl_.pool_ = nullptr;
+  return temp;
+}
+inline ::beegfs::EntityIdSet* SetDefaultQuotaLimitsRequest::_internal_mutable_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pool_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::EntityIdSet>(GetArena());
+    _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(p);
+  }
+  return _impl_.pool_;
+}
+inline ::beegfs::EntityIdSet* SetDefaultQuotaLimitsRequest::mutable_pool() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::EntityIdSet* _msg = _internal_mutable_pool();
+  // @@protoc_insertion_point(field_mutable:management.SetDefaultQuotaLimitsRequest.pool)
+  return _msg;
+}
+inline void SetDefaultQuotaLimitsRequest::set_allocated_pool(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pool_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.SetDefaultQuotaLimitsRequest.pool)
+}
+
+// optional int64 user_space_limit = 2;
+inline bool SetDefaultQuotaLimitsRequest::has_user_space_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void SetDefaultQuotaLimitsRequest::clear_user_space_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_space_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::int64_t SetDefaultQuotaLimitsRequest::user_space_limit() const {
+  // @@protoc_insertion_point(field_get:management.SetDefaultQuotaLimitsRequest.user_space_limit)
+  return _internal_user_space_limit();
+}
+inline void SetDefaultQuotaLimitsRequest::set_user_space_limit(::int64_t value) {
+  _internal_set_user_space_limit(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.SetDefaultQuotaLimitsRequest.user_space_limit)
+}
+inline ::int64_t SetDefaultQuotaLimitsRequest::_internal_user_space_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.user_space_limit_;
+}
+inline void SetDefaultQuotaLimitsRequest::_internal_set_user_space_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_space_limit_ = value;
+}
+
+// optional int64 user_inode_limit = 3;
+inline bool SetDefaultQuotaLimitsRequest::has_user_inode_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void SetDefaultQuotaLimitsRequest::clear_user_inode_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_inode_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::int64_t SetDefaultQuotaLimitsRequest::user_inode_limit() const {
+  // @@protoc_insertion_point(field_get:management.SetDefaultQuotaLimitsRequest.user_inode_limit)
+  return _internal_user_inode_limit();
+}
+inline void SetDefaultQuotaLimitsRequest::set_user_inode_limit(::int64_t value) {
+  _internal_set_user_inode_limit(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:management.SetDefaultQuotaLimitsRequest.user_inode_limit)
+}
+inline ::int64_t SetDefaultQuotaLimitsRequest::_internal_user_inode_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.user_inode_limit_;
+}
+inline void SetDefaultQuotaLimitsRequest::_internal_set_user_inode_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.user_inode_limit_ = value;
+}
+
+// optional int64 group_space_limit = 4;
+inline bool SetDefaultQuotaLimitsRequest::has_group_space_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void SetDefaultQuotaLimitsRequest::clear_group_space_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_space_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::int64_t SetDefaultQuotaLimitsRequest::group_space_limit() const {
+  // @@protoc_insertion_point(field_get:management.SetDefaultQuotaLimitsRequest.group_space_limit)
+  return _internal_group_space_limit();
+}
+inline void SetDefaultQuotaLimitsRequest::set_group_space_limit(::int64_t value) {
+  _internal_set_group_space_limit(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:management.SetDefaultQuotaLimitsRequest.group_space_limit)
+}
+inline ::int64_t SetDefaultQuotaLimitsRequest::_internal_group_space_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.group_space_limit_;
+}
+inline void SetDefaultQuotaLimitsRequest::_internal_set_group_space_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_space_limit_ = value;
+}
+
+// optional int64 group_inode_limit = 5;
+inline bool SetDefaultQuotaLimitsRequest::has_group_inode_limit() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline void SetDefaultQuotaLimitsRequest::clear_group_inode_limit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_inode_limit_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::int64_t SetDefaultQuotaLimitsRequest::group_inode_limit() const {
+  // @@protoc_insertion_point(field_get:management.SetDefaultQuotaLimitsRequest.group_inode_limit)
+  return _internal_group_inode_limit();
+}
+inline void SetDefaultQuotaLimitsRequest::set_group_inode_limit(::int64_t value) {
+  _internal_set_group_inode_limit(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:management.SetDefaultQuotaLimitsRequest.group_inode_limit)
+}
+inline ::int64_t SetDefaultQuotaLimitsRequest::_internal_group_inode_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.group_inode_limit_;
+}
+inline void SetDefaultQuotaLimitsRequest::_internal_set_group_inode_limit(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_inode_limit_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// SetDefaultQuotaLimitsResponse
+
+// -------------------------------------------------------------------
+
+// SetQuotaLimitsRequest
+
+// repeated .management.QuotaInfo limits = 1;
+inline int SetQuotaLimitsRequest::_internal_limits_size() const {
+  return _internal_limits().size();
+}
+inline int SetQuotaLimitsRequest::limits_size() const {
+  return _internal_limits_size();
+}
+inline void SetQuotaLimitsRequest::clear_limits() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.limits_.Clear();
+}
+inline ::management::QuotaInfo* SetQuotaLimitsRequest::mutable_limits(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:management.SetQuotaLimitsRequest.limits)
+  return _internal_mutable_limits()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::management::QuotaInfo>* SetQuotaLimitsRequest::mutable_limits()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:management.SetQuotaLimitsRequest.limits)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_limits();
+}
+inline const ::management::QuotaInfo& SetQuotaLimitsRequest::limits(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.SetQuotaLimitsRequest.limits)
+  return _internal_limits().Get(index);
+}
+inline ::management::QuotaInfo* SetQuotaLimitsRequest::add_limits() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::management::QuotaInfo* _add = _internal_mutable_limits()->Add();
+  // @@protoc_insertion_point(field_add:management.SetQuotaLimitsRequest.limits)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::management::QuotaInfo>& SetQuotaLimitsRequest::limits() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:management.SetQuotaLimitsRequest.limits)
+  return _internal_limits();
+}
+inline const ::google::protobuf::RepeatedPtrField<::management::QuotaInfo>&
+SetQuotaLimitsRequest::_internal_limits() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.limits_;
+}
+inline ::google::protobuf::RepeatedPtrField<::management::QuotaInfo>*
+SetQuotaLimitsRequest::_internal_mutable_limits() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.limits_;
+}
+
+// -------------------------------------------------------------------
+
+// SetQuotaLimitsResponse
+
+// -------------------------------------------------------------------
+
+// GetQuotaLimitsRequest
+
+// optional uint32 quota_id_min = 1;
+inline bool GetQuotaLimitsRequest::has_quota_id_min() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void GetQuotaLimitsRequest::clear_quota_id_min() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_min_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::uint32_t GetQuotaLimitsRequest::quota_id_min() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.quota_id_min)
+  return _internal_quota_id_min();
+}
+inline void GetQuotaLimitsRequest::set_quota_id_min(::uint32_t value) {
+  _internal_set_quota_id_min(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.quota_id_min)
+}
+inline ::uint32_t GetQuotaLimitsRequest::_internal_quota_id_min() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.quota_id_min_;
+}
+inline void GetQuotaLimitsRequest::_internal_set_quota_id_min(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_min_ = value;
+}
+
+// optional uint32 quota_id_max = 2;
+inline bool GetQuotaLimitsRequest::has_quota_id_max() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void GetQuotaLimitsRequest::clear_quota_id_max() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_max_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::uint32_t GetQuotaLimitsRequest::quota_id_max() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.quota_id_max)
+  return _internal_quota_id_max();
+}
+inline void GetQuotaLimitsRequest::set_quota_id_max(::uint32_t value) {
+  _internal_set_quota_id_max(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.quota_id_max)
+}
+inline ::uint32_t GetQuotaLimitsRequest::_internal_quota_id_max() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.quota_id_max_;
+}
+inline void GetQuotaLimitsRequest::_internal_set_quota_id_max(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_max_ = value;
+}
+
+// .beegfs.QuotaIdType id_type = 3;
+inline void GetQuotaLimitsRequest::clear_id_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_type_ = 0;
+}
+inline ::beegfs::QuotaIdType GetQuotaLimitsRequest::id_type() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.id_type)
+  return _internal_id_type();
+}
+inline void GetQuotaLimitsRequest::set_id_type(::beegfs::QuotaIdType value) {
+  _internal_set_id_type(value);
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.id_type)
+}
+inline ::beegfs::QuotaIdType GetQuotaLimitsRequest::_internal_id_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beegfs::QuotaIdType>(_impl_.id_type_);
+}
+inline void GetQuotaLimitsRequest::_internal_set_id_type(::beegfs::QuotaIdType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_type_ = value;
+}
+
+// optional .beegfs.EntityIdSet pool = 4;
+inline bool GetQuotaLimitsRequest::has_pool() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.pool_ != nullptr);
+  return value;
+}
+inline const ::beegfs::EntityIdSet& GetQuotaLimitsRequest::_internal_pool() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::EntityIdSet* p = _impl_.pool_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::EntityIdSet&>(::beegfs::_EntityIdSet_default_instance_);
+}
+inline const ::beegfs::EntityIdSet& GetQuotaLimitsRequest::pool() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.pool)
+  return _internal_pool();
+}
+inline void GetQuotaLimitsRequest::unsafe_arena_set_allocated_pool(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pool_);
+  }
+  _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.GetQuotaLimitsRequest.pool)
+}
+inline ::beegfs::EntityIdSet* GetQuotaLimitsRequest::release_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* released = _impl_.pool_;
+  _impl_.pool_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::beegfs::EntityIdSet* GetQuotaLimitsRequest::unsafe_arena_release_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.GetQuotaLimitsRequest.pool)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* temp = _impl_.pool_;
+  _impl_.pool_ = nullptr;
+  return temp;
+}
+inline ::beegfs::EntityIdSet* GetQuotaLimitsRequest::_internal_mutable_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pool_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::EntityIdSet>(GetArena());
+    _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(p);
+  }
+  return _impl_.pool_;
+}
+inline ::beegfs::EntityIdSet* GetQuotaLimitsRequest::mutable_pool() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::EntityIdSet* _msg = _internal_mutable_pool();
+  // @@protoc_insertion_point(field_mutable:management.GetQuotaLimitsRequest.pool)
+  return _msg;
+}
+inline void GetQuotaLimitsRequest::set_allocated_pool(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pool_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.GetQuotaLimitsRequest.pool)
+}
+
+// -------------------------------------------------------------------
+
+// GetQuotaLimitsResponse
+
+// optional .management.QuotaInfo limits = 1;
+inline bool GetQuotaLimitsResponse::has_limits() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.limits_ != nullptr);
+  return value;
+}
+inline void GetQuotaLimitsResponse::clear_limits() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.limits_ != nullptr) _impl_.limits_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::management::QuotaInfo& GetQuotaLimitsResponse::_internal_limits() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::management::QuotaInfo* p = _impl_.limits_;
+  return p != nullptr ? *p : reinterpret_cast<const ::management::QuotaInfo&>(::management::_QuotaInfo_default_instance_);
+}
+inline const ::management::QuotaInfo& GetQuotaLimitsResponse::limits() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsResponse.limits)
+  return _internal_limits();
+}
+inline void GetQuotaLimitsResponse::unsafe_arena_set_allocated_limits(::management::QuotaInfo* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.limits_);
+  }
+  _impl_.limits_ = reinterpret_cast<::management::QuotaInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.GetQuotaLimitsResponse.limits)
+}
+inline ::management::QuotaInfo* GetQuotaLimitsResponse::release_limits() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::management::QuotaInfo* released = _impl_.limits_;
+  _impl_.limits_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::management::QuotaInfo* GetQuotaLimitsResponse::unsafe_arena_release_limits() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.GetQuotaLimitsResponse.limits)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::management::QuotaInfo* temp = _impl_.limits_;
+  _impl_.limits_ = nullptr;
+  return temp;
+}
+inline ::management::QuotaInfo* GetQuotaLimitsResponse::_internal_mutable_limits() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.limits_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::management::QuotaInfo>(GetArena());
+    _impl_.limits_ = reinterpret_cast<::management::QuotaInfo*>(p);
+  }
+  return _impl_.limits_;
+}
+inline ::management::QuotaInfo* GetQuotaLimitsResponse::mutable_limits() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::management::QuotaInfo* _msg = _internal_mutable_limits();
+  // @@protoc_insertion_point(field_mutable:management.GetQuotaLimitsResponse.limits)
+  return _msg;
+}
+inline void GetQuotaLimitsResponse::set_allocated_limits(::management::QuotaInfo* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.limits_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.limits_ = reinterpret_cast<::management::QuotaInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.GetQuotaLimitsResponse.limits)
+}
+
+// -------------------------------------------------------------------
+
+// GetQuotaUsageRequest
+
+// optional uint32 quota_id_min = 1;
+inline bool GetQuotaUsageRequest::has_quota_id_min() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void GetQuotaUsageRequest::clear_quota_id_min() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_min_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::uint32_t GetQuotaUsageRequest::quota_id_min() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.quota_id_min)
+  return _internal_quota_id_min();
+}
+inline void GetQuotaUsageRequest::set_quota_id_min(::uint32_t value) {
+  _internal_set_quota_id_min(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.quota_id_min)
+}
+inline ::uint32_t GetQuotaUsageRequest::_internal_quota_id_min() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.quota_id_min_;
+}
+inline void GetQuotaUsageRequest::_internal_set_quota_id_min(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_min_ = value;
+}
+
+// optional uint32 quota_id_max = 2;
+inline bool GetQuotaUsageRequest::has_quota_id_max() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void GetQuotaUsageRequest::clear_quota_id_max() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_max_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::uint32_t GetQuotaUsageRequest::quota_id_max() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.quota_id_max)
+  return _internal_quota_id_max();
+}
+inline void GetQuotaUsageRequest::set_quota_id_max(::uint32_t value) {
+  _internal_set_quota_id_max(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.quota_id_max)
+}
+inline ::uint32_t GetQuotaUsageRequest::_internal_quota_id_max() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.quota_id_max_;
+}
+inline void GetQuotaUsageRequest::_internal_set_quota_id_max(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_max_ = value;
+}
+
+// .beegfs.QuotaIdType id_type = 3;
+inline void GetQuotaUsageRequest::clear_id_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_type_ = 0;
+}
+inline ::beegfs::QuotaIdType GetQuotaUsageRequest::id_type() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.id_type)
+  return _internal_id_type();
+}
+inline void GetQuotaUsageRequest::set_id_type(::beegfs::QuotaIdType value) {
+  _internal_set_id_type(value);
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.id_type)
+}
+inline ::beegfs::QuotaIdType GetQuotaUsageRequest::_internal_id_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beegfs::QuotaIdType>(_impl_.id_type_);
+}
+inline void GetQuotaUsageRequest::_internal_set_id_type(::beegfs::QuotaIdType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_type_ = value;
+}
+
+// optional .beegfs.EntityIdSet pool = 4;
+inline bool GetQuotaUsageRequest::has_pool() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.pool_ != nullptr);
+  return value;
+}
+inline const ::beegfs::EntityIdSet& GetQuotaUsageRequest::_internal_pool() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::EntityIdSet* p = _impl_.pool_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::EntityIdSet&>(::beegfs::_EntityIdSet_default_instance_);
+}
+inline const ::beegfs::EntityIdSet& GetQuotaUsageRequest::pool() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.pool)
+  return _internal_pool();
+}
+inline void GetQuotaUsageRequest::unsafe_arena_set_allocated_pool(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pool_);
+  }
+  _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.GetQuotaUsageRequest.pool)
+}
+inline ::beegfs::EntityIdSet* GetQuotaUsageRequest::release_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* released = _impl_.pool_;
+  _impl_.pool_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::beegfs::EntityIdSet* GetQuotaUsageRequest::unsafe_arena_release_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.GetQuotaUsageRequest.pool)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* temp = _impl_.pool_;
+  _impl_.pool_ = nullptr;
+  return temp;
+}
+inline ::beegfs::EntityIdSet* GetQuotaUsageRequest::_internal_mutable_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pool_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::EntityIdSet>(GetArena());
+    _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(p);
+  }
+  return _impl_.pool_;
+}
+inline ::beegfs::EntityIdSet* GetQuotaUsageRequest::mutable_pool() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::EntityIdSet* _msg = _internal_mutable_pool();
+  // @@protoc_insertion_point(field_mutable:management.GetQuotaUsageRequest.pool)
+  return _msg;
+}
+inline void GetQuotaUsageRequest::set_allocated_pool(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pool_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.pool_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.GetQuotaUsageRequest.pool)
+}
+
+// optional bool exceeded = 5;
+inline bool GetQuotaUsageRequest::has_exceeded() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void GetQuotaUsageRequest::clear_exceeded() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.exceeded_ = false;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline bool GetQuotaUsageRequest::exceeded() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.exceeded)
+  return _internal_exceeded();
+}
+inline void GetQuotaUsageRequest::set_exceeded(bool value) {
+  _internal_set_exceeded(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.exceeded)
+}
+inline bool GetQuotaUsageRequest::_internal_exceeded() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.exceeded_;
+}
+inline void GetQuotaUsageRequest::_internal_set_exceeded(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.exceeded_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GetQuotaUsageResponse
+
+// optional .management.QuotaInfo entry = 1;
+inline bool GetQuotaUsageResponse::has_entry() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.entry_ != nullptr);
+  return value;
+}
+inline void GetQuotaUsageResponse::clear_entry() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.entry_ != nullptr) _impl_.entry_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::management::QuotaInfo& GetQuotaUsageResponse::_internal_entry() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::management::QuotaInfo* p = _impl_.entry_;
+  return p != nullptr ? *p : reinterpret_cast<const ::management::QuotaInfo&>(::management::_QuotaInfo_default_instance_);
+}
+inline const ::management::QuotaInfo& GetQuotaUsageResponse::entry() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageResponse.entry)
+  return _internal_entry();
+}
+inline void GetQuotaUsageResponse::unsafe_arena_set_allocated_entry(::management::QuotaInfo* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.entry_);
+  }
+  _impl_.entry_ = reinterpret_cast<::management::QuotaInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.GetQuotaUsageResponse.entry)
+}
+inline ::management::QuotaInfo* GetQuotaUsageResponse::release_entry() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::management::QuotaInfo* released = _impl_.entry_;
+  _impl_.entry_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::management::QuotaInfo* GetQuotaUsageResponse::unsafe_arena_release_entry() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.GetQuotaUsageResponse.entry)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::management::QuotaInfo* temp = _impl_.entry_;
+  _impl_.entry_ = nullptr;
+  return temp;
+}
+inline ::management::QuotaInfo* GetQuotaUsageResponse::_internal_mutable_entry() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.entry_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::management::QuotaInfo>(GetArena());
+    _impl_.entry_ = reinterpret_cast<::management::QuotaInfo*>(p);
+  }
+  return _impl_.entry_;
+}
+inline ::management::QuotaInfo* GetQuotaUsageResponse::mutable_entry() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::management::QuotaInfo* _msg = _internal_mutable_entry();
+  // @@protoc_insertion_point(field_mutable:management.GetQuotaUsageResponse.entry)
+  return _msg;
+}
+inline void GetQuotaUsageResponse::set_allocated_entry(::management::QuotaInfo* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.entry_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.entry_ = reinterpret_cast<::management::QuotaInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.GetQuotaUsageResponse.entry)
+}
+
+// optional uint64 refresh_period_s = 2;
+inline bool GetQuotaUsageResponse::has_refresh_period_s() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void GetQuotaUsageResponse::clear_refresh_period_s() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.refresh_period_s_ = ::uint64_t{0u};
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::uint64_t GetQuotaUsageResponse::refresh_period_s() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageResponse.refresh_period_s)
+  return _internal_refresh_period_s();
+}
+inline void GetQuotaUsageResponse::set_refresh_period_s(::uint64_t value) {
+  _internal_set_refresh_period_s(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageResponse.refresh_period_s)
+}
+inline ::uint64_t GetQuotaUsageResponse::_internal_refresh_period_s() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.refresh_period_s_;
+}
+inline void GetQuotaUsageResponse::_internal_set_refresh_period_s(::uint64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.refresh_period_s_ = value;
+}
 
 // -------------------------------------------------------------------
 

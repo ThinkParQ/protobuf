@@ -275,6 +275,74 @@ inline bool NicType_Parse(absl::string_view name, NicType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<NicType>(
       NicType_descriptor(), name, value);
 }
+enum QuotaIdType : int {
+  QUOTA_ID_TYPE_UNSPECIFIED = 0,
+  QUOTA_ID_TYPE_USER = 1,
+  QUOTA_ID_TYPE_GROUP = 2,
+  QuotaIdType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  QuotaIdType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool QuotaIdType_IsValid(int value);
+extern const uint32_t QuotaIdType_internal_data_[];
+constexpr QuotaIdType QuotaIdType_MIN = static_cast<QuotaIdType>(0);
+constexpr QuotaIdType QuotaIdType_MAX = static_cast<QuotaIdType>(2);
+constexpr int QuotaIdType_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+QuotaIdType_descriptor();
+template <typename T>
+const std::string& QuotaIdType_Name(T value) {
+  static_assert(std::is_same<T, QuotaIdType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to QuotaIdType_Name().");
+  return QuotaIdType_Name(static_cast<QuotaIdType>(value));
+}
+template <>
+inline const std::string& QuotaIdType_Name(QuotaIdType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<QuotaIdType_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool QuotaIdType_Parse(absl::string_view name, QuotaIdType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<QuotaIdType>(
+      QuotaIdType_descriptor(), name, value);
+}
+enum QuotaType : int {
+  QUOTA_TYPE_UNSPECIFIED = 0,
+  QUOTA_TYPE_SPACE = 1,
+  QUOTA_TYPE_INODE = 2,
+  QuotaType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  QuotaType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool QuotaType_IsValid(int value);
+extern const uint32_t QuotaType_internal_data_[];
+constexpr QuotaType QuotaType_MIN = static_cast<QuotaType>(0);
+constexpr QuotaType QuotaType_MAX = static_cast<QuotaType>(2);
+constexpr int QuotaType_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+QuotaType_descriptor();
+template <typename T>
+const std::string& QuotaType_Name(T value) {
+  static_assert(std::is_same<T, QuotaType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to QuotaType_Name().");
+  return QuotaType_Name(static_cast<QuotaType>(value));
+}
+template <>
+inline const std::string& QuotaType_Name(QuotaType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<QuotaType_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool QuotaType_Parse(absl::string_view name, QuotaType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<QuotaType>(
+      QuotaType_descriptor(), name, value);
+}
 
 // ===================================================================
 
@@ -977,6 +1045,18 @@ struct is_proto_enum<::beegfs::NicType> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::beegfs::NicType>() {
   return ::beegfs::NicType_descriptor();
+}
+template <>
+struct is_proto_enum<::beegfs::QuotaIdType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::beegfs::QuotaIdType>() {
+  return ::beegfs::QuotaIdType_descriptor();
+}
+template <>
+struct is_proto_enum<::beegfs::QuotaType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::beegfs::QuotaType>() {
+  return ::beegfs::QuotaType_descriptor();
 }
 
 }  // namespace protobuf
