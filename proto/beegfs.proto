@@ -46,6 +46,18 @@ enum NicType {
   RDMA = 2;
 }
 
+enum QuotaIdType {
+  QUOTA_ID_TYPE_UNSPECIFIED = 0;
+  QUOTA_ID_TYPE_USER = 1;
+  QUOTA_ID_TYPE_GROUP = 2;
+}
+
+enum QuotaType {
+  QUOTA_TYPE_UNSPECIFIED = 0;
+  QUOTA_TYPE_SPACE = 1;
+  QUOTA_TYPE_INODE = 2;
+}
+
 // The "old" BeeGFS numeric Id-NodeType combination that can be used to identify entities like nodes,
 // targets, ... .  Because each entity type has its own Id space (meaning a combination is NOT
 // globally unique), this also requires the entities type it is related to.

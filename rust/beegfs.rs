@@ -232,3 +232,61 @@ impl NicType {
         }
     }
 }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum QuotaIdType {
+    Unspecified = 0,
+    User = 1,
+    Group = 2,
+}
+impl QuotaIdType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            QuotaIdType::Unspecified => "QUOTA_ID_TYPE_UNSPECIFIED",
+            QuotaIdType::User => "QUOTA_ID_TYPE_USER",
+            QuotaIdType::Group => "QUOTA_ID_TYPE_GROUP",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "QUOTA_ID_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "QUOTA_ID_TYPE_USER" => Some(Self::User),
+            "QUOTA_ID_TYPE_GROUP" => Some(Self::Group),
+            _ => None,
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum QuotaType {
+    Unspecified = 0,
+    Space = 1,
+    Inode = 2,
+}
+impl QuotaType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            QuotaType::Unspecified => "QUOTA_TYPE_UNSPECIFIED",
+            QuotaType::Space => "QUOTA_TYPE_SPACE",
+            QuotaType::Inode => "QUOTA_TYPE_INODE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "QUOTA_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
+            "QUOTA_TYPE_SPACE" => Some(Self::Space),
+            "QUOTA_TYPE_INODE" => Some(Self::Inode),
+            _ => None,
+        }
+    }
+}

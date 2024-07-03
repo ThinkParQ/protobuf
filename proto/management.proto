@@ -6,48 +6,41 @@ import "beegfs.proto";
 import "license.proto";
 
 service Management {
-  // Sets an entity alias
   rpc SetAlias(SetAliasRequest) returns (SetAliasResponse);
 
   // Nodes
-  // Gets the full list of  nodes
   rpc GetNodes(GetNodesRequest) returns (GetNodesResponse);
-  // Deletes a node
   rpc DeleteNode(DeleteNodeRequest) returns (DeleteNodeResponse);
 
   // Targets
-  // Gets the full list of targets
   rpc GetTargets(GetTargetsRequest) returns (GetTargetsResponse);
-  // Deletes a target
   rpc DeleteTarget(DeleteTargetRequest) returns (DeleteTargetResponse);
   // Manually set a target consistency state 
   rpc SetTargetState(SetTargetStateRequest) returns (SetTargetStateResponse);
   
   // (Storage) pools
-  // Gets the full list of pools
   rpc GetPools(GetPoolsRequest) returns (GetPoolsResponse);
-  // Creates a new pool
   rpc CreatePool(CreatePoolRequest) returns (CreatePoolResponse);
-  // Assigns targets and buddy groups to a pool
   rpc AssignPool(AssignPoolRequest) returns (AssignPoolResponse);
-  // Deletes a pool
   rpc DeletePool(DeletePoolRequest) returns (DeletePoolResponse);
 
   // Buddy groups
-  // Gets the full list of buddy groups
   rpc GetBuddyGroups(GetBuddyGroupsRequest) returns (GetBuddyGroupsResponse);
-  // Creates a new buddy group
   rpc CreateBuddyGroup(CreateBuddyGroupRequest) returns (CreateBuddyGroupResponse);
-  // Deletes a buddy group
   rpc DeleteBuddyGroup(DeleteBuddyGroupRequest) returns (DeleteBuddyGroupResponse);
-  // Enable metadata buddy mirroring for the root directory 
   rpc MirrorRootInode(MirrorRootInodeRequest) returns (MirrorRootInodeResponse);
 
+  // Quota
+  rpc SetDefaultQuotaLimits(SetDefaultQuotaLimitsRequest) returns (SetDefaultQuotaLimitsResponse);
+  rpc SetQuotaLimits(SetQuotaLimitsRequest) returns (SetQuotaLimitsResponse);
+  rpc GetQuotaLimits(GetQuotaLimitsRequest) returns (stream GetQuotaLimitsResponse);
+  rpc GetQuotaUsage(GetQuotaUsageRequest) returns (stream GetQuotaUsageResponse);
+
   // Licensing
-  // Gets license information
   rpc GetLicense(GetLicenseRequest) returns (GetLicenseResponse);
 }
 
+// Sets an entity alias
 message SetAliasRequest {
   // The identifier to set the alias for
   beegfs.EntityIdSet entity_id = 1;
@@ -60,6 +53,7 @@ message SetAliasResponse {}
 
 // Nodes
 
+// Gets the full list of nodes
 message GetNodesRequest {
   // Query the nic list for each node and include it in the response
   bool include_nics = 1;
@@ -78,6 +72,7 @@ message GetNodesResponse {
     }
     // The node identifiers
     beegfs.EntityIdSet id = 1;
+    // The node type
     beegfs.NodeType node_type = 2;
     // The nodes TCP and UDP port.
     uint32 port = 3;
@@ -92,8 +87,9 @@ message GetNodesResponse {
   optional beegfs.EntityIdSet meta_root_node = 2;
 }
 
+// Deletes a node from the system
 message DeleteNodeRequest {
-  // The node to delete.
+  // The node to delete
   optional beegfs.EntityIdSet node = 1;
   // If set to false, check if delete is possible but don't execute it
   optional bool execute = 2;
@@ -105,6 +101,7 @@ message DeleteNodeResponse {
 
 // Targets
 
+// Gets the full list of targets
 message GetTargetsRequest {}
 message GetTargetsResponse {
   // A BeeGFS target
@@ -140,6 +137,7 @@ message GetTargetsResponse {
   repeated Target targets = 1;
 }
 
+// Deletes a target from the system
 message DeleteTargetRequest {
   // The target to delete
   optional beegfs.EntityIdSet target = 1;
@@ -162,7 +160,11 @@ message SetTargetStateResponse{}
 
 // (Storage) pools
 
-message GetPoolsRequest {}
+// Gets the full list of pools
+message GetPoolsRequest {
+  // Include quota limits in the response
+  bool with_quota_limits = 1;
+}
 message GetPoolsResponse {
   message StoragePool {
     // The storage pools identifiers
@@ -171,12 +173,21 @@ message GetPoolsResponse {
     repeated beegfs.EntityIdSet targets = 2;
     // The storage pools assigned buddy groups identifiers
     repeated beegfs.EntityIdSet buddy_groups = 3;
+    // -1 means unlimited. May be unset.
+    optional int64 user_space_limit = 4;
+    // -1 means unlimited. May be unset.
+    optional int64 user_inode_limit = 5;
+    // -1 means unlimited. May be unset.
+    optional int64 group_space_limit = 6;
+    // -1 means unlimited. May be unset.
+    optional int64 group_inode_limit = 7;
   }
 
   // The list of storage pools
   repeated StoragePool pools = 1;
 }
 
+// Creates a new pool
 message CreatePoolRequest {
   // The node type of the new pool (currently, only storage is allowed)
   optional beegfs.NodeType node_type = 1;
@@ -194,6 +205,7 @@ message CreatePoolResponse {
   optional beegfs.EntityIdSet pool = 1;
 }
 
+// Assigns targets and buddy groups to a pool
 message AssignPoolRequest {
   // The pool to assign to
   optional beegfs.EntityIdSet pool = 1;
@@ -207,6 +219,7 @@ message AssignPoolResponse {
   optional beegfs.EntityIdSet pool = 1;
 }
 
+  // Deletes a pool from the system
 message DeletePoolRequest {
   // The pool to delete
   optional beegfs.EntityIdSet pool = 1;
@@ -220,6 +233,7 @@ message DeletePoolResponse {
 
 // Buddy groups
 
+// Gets the full list of buddy groups
 message GetBuddyGroupsRequest {}
 message GetBuddyGroupsResponse {
   message BuddyGroup {
@@ -244,6 +258,7 @@ message GetBuddyGroupsResponse {
   repeated BuddyGroup buddy_groups = 1;
 }
 
+// Creates a new buddy group
 message CreateBuddyGroupRequest {
   // The node type of the new buddy group
   optional beegfs.NodeType node_type = 1;
@@ -261,6 +276,7 @@ message CreateBuddyGroupResponse {
   optional beegfs.EntityIdSet group = 1;
 }
 
+// Deletes a buddy group from the system
 message DeleteBuddyGroupRequest {
   // The buddy group to delete
   optional beegfs.EntityIdSet group = 1;
@@ -272,15 +288,101 @@ message DeleteBuddyGroupResponse {
   optional beegfs.EntityIdSet group = 1;
 }
 
+// Enable metadata mirroring for the root directory
 message MirrorRootInodeRequest{}
 message MirrorRootInodeResponse{}
 
+// Quota
+
+// Contains info belonging to a quota_id + id_type + pool entry (e.g. user 1000 on storage pool 1).
+// Depending on the message, some fields are unused.
+message QuotaInfo {
+  // The system user/group id the info belongs to
+  optional uint32 quota_id = 1;
+  // The id type (user or group)
+  beegfs.QuotaIdType id_type = 2;
+  // The storage pool the info belongs to
+  optional beegfs.EntityIdSet pool = 3;
+  // -1 means unlimited
+  optional int64 space_limit = 4;
+  // -1 means unlimited
+  optional int64 inode_limit = 5;
+  // -1 means unlimited
+  optional int64 space_used = 6;
+  // -1 means unlimited
+  optional int64 inode_used = 7;
+}
+
+// Sets the default quota limits for a pool. -1 means unlimited.
+message SetDefaultQuotaLimitsRequest {
+  // The pool to set the limits for
+  optional beegfs.EntityIdSet pool = 1;
+  // -1 means unlimited
+  optional int64 user_space_limit = 2;
+  // -1 means unlimited
+  optional int64 user_inode_limit = 3;
+  // -1 means unlimited
+  optional int64 group_space_limit = 4;
+  // -1 means unlimited
+  optional int64 group_inode_limit = 5;
+}
+message SetDefaultQuotaLimitsResponse {}
+
+// Sets the individually set per-id-and-pool quota limits
+message SetQuotaLimitsRequest {
+  // The explicit quota limit entries to set on the management. The _used fields are ignored.
+  repeated QuotaInfo limits = 1;
+}
+message SetQuotaLimitsResponse {}
+
+// Gets the individually set per-id-and-pool quota limits. Retrieves all explicitly set entries.
+message GetQuotaLimitsRequest {
+  // The minimum id to return. Only applies when set.
+  optional uint32 quota_id_min = 1;
+  // The maximum id to return. Only applies when set.
+  optional uint32 quota_id_max = 2;
+  // Return only user or group ids. Only applies when set.
+  beegfs.QuotaIdType id_type = 3;
+  // Return only a specific pool. Only applies when set.
+  optional beegfs.EntityIdSet pool = 4;
+}
+message GetQuotaLimitsResponse {
+  // The explicit quota limit entries known by the management.
+  // The _used fields are unused in this response.
+  optional QuotaInfo limits = 1;
+}
+
+// Gets the quota usage info for all the ids the management knows about. In addition, contains
+// the effective limits for each entry.
+message GetQuotaUsageRequest {
+  // The minimum id to return. Only applies when set.
+  optional uint32 quota_id_min = 1;
+  // The maximum id to return. Only applies when set.
+  optional uint32 quota_id_max = 2;
+  // Return only user or group ids. Only applies when set.
+  beegfs.QuotaIdType id_type = 3;
+  // Return only a specific pool. Only applies when set.
+  optional beegfs.EntityIdSet pool = 4;
+  // Return only exceeded or not exceeded entries. Only applies when set.
+  optional bool exceeded = 5;
+}
+message GetQuotaUsageResponse {
+  // The quota usage entry
+  optional QuotaInfo entry = 1;
+  // The refresh period of the quota usage info in seconds. Since this is not related to a quota
+  // usage entry, it is supposed to be only set on the first message.
+  optional uint64 refresh_period_s = 2;
+}
+
+// Licensing
+
+// Gets license information
 message GetLicenseRequest {
   // Whether to reload and re-verify the license on the server
   optional bool reload = 1;
 }
-
 message GetLicenseResponse {
   // A CertData structure as defined in beecert.proto
   optional license.GetCertDataResult cert_data = 1;
 }
+
