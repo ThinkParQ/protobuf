@@ -23,7 +23,6 @@ protos: check-tools
 		--cpp_out=$(CPP_OUT_DIR) \
 		$(SRC_DIR)/*.proto
 	protoc-rs compile -I $(SRC_DIR) --out=$(RUST_OUT_DIR) $(SRC_DIR)/*.proto
-	protoc-rs generate-crate --src=$(RUST_OUT_DIR)
 
 
 # Test targets: 
@@ -54,10 +53,10 @@ clean:
 
 
 # The tools versions we want to use
-PROTOC_VERSION := 26.1
-PROTOC_GEN_GO_VERSION := 1.31.0
-PROTOC_GEN_GO_GRPC_VERSION := 1.3.0
-PROTOC_RS_VERSION := 0.2.0
+PROTOC_VERSION := 27.2
+PROTOC_GEN_GO_VERSION := 1.34.2
+PROTOC_GEN_GO_GRPC_VERSION := 1.4.0
+PROTOC_RS_VERSION := 0.3.0
 
 # Checks the versions of the installed tools, making sure they are what we expect
 .PHONY: check-tools
