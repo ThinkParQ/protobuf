@@ -1,0 +1,42 @@
+name: checks
+
+on: [pull_request]
+
+env:
+  # Cargo must use git cli for checkouts instead of builtin functionality to respect the replace
+  CARGO_NET_GIT_FETCH_WITH_CLI: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    container:
+      image: rust
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.local/bin
+            ~/.local/include
+            ~/.cargo
+            ~/go
+            /usr/local/go
+          key: ${{ runner.os }}-${{ hashFiles('Makefile') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: apt-get update && apt-get install --yes golang
+      - name: Install tools
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          git config --global url."https://${{ secrets.CI_PROTOBUF_ACCESS }}@github.com/thinkparq/protoc-rs".insteadOf https://github.com/thinkparq/protoc-rs
+          make install-tools
+      - run: echo "${HOME}/.local/bin" >> $GITHUB_PATH
+      - name: Check diff
+        # For some reason, the checked out repo causes a `fatal: detected dubious ownership` error
+        # Setting safe.directory prevents it
+        run: |
+          git config --global --add safe.directory /__w/protobuf/protobuf
+          make clean && make test-protos

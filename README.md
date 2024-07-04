@@ -104,32 +104,38 @@ The reasons are:
 
 ## Prerequisites
 
-> These prerequisites can also be setup using the `make install-tools` target, however this presumes
-> you're using a Debian based system where apt is available, and the package repositories have a
-> reasonably new version of the protobuf-compiler available.
-
-* Necessary development tools and / or compiler of the supported languages.
+* Before you can start, you need to setup the development tools and / or compiler of the supported
+  languages:
     * For Rust: https://rustup.rs/
     * For Go: https://go.dev/doc/install
-* Install the Protocol buffer compiler `protoc` version 3.
-  * Generally it is recommended to install the [pre-compiled
-    binaries](https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os)
-    instead of installing the version from your package manager as it is likely
-    out of date.
-* Install any language specific plugins, including anything required to work
-  with gRPC.
-  * For example [for Go](https://grpc.io/docs/languages/go/quickstart/) you need
-    `protoc-gen-go` and `protoc-gen-go-grpc`.
-* Install the custom Rust protocol buffer compiler from https://github.com/thinkparq/protoc-rs.
-  This can be done using `cargo`:
-  ```
-  cargo install --git "https://github.com/thinkparq/protoc-rs"
+* You need read access to the private [protoc-rs](https://github.com/thinkparq/protoc-rs) repository.
+* The simplest way to install all the tooling is to run `make install-tools` (requires `curl).
+  This will install all the necessary tools using the correct versions to your `$HOME/.local/bin`
+  (the default folder for user programs). Note that if you already have them installed in different
+  locations (e.g. the default `$GOBIN`), they might have higher priority depending on your `$PATH`
+  and still be run instead. Make sure to you remove those manually.
+* If you want to install the tools manually, you can do that as well.
+  * The Makefile defines which tools on which versions you need - make sure you use exactly the
+    same. Do not use your package manager as it will most likely provide a different version.
+  * Install the Protocol buffer compiler `protoc`.
+    * Generally it is recommended to install the [pre-compiled
+      binaries](https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os).
+  * Install any language specific plugins, including anything required to work
+    with gRPC.
+    * For example [for Go](https://grpc.io/docs/languages/go/quickstart/) you need
+      `protoc-gen-go` and `protoc-gen-go-grpc`.
+  * Install the custom Rust protocol buffer compiler from https://github.com/thinkparq/protoc-rs.
+    * This can be done using `cargo`:
+      ```
+      cargo install --git "https://github.com/thinkparq/protoc-rs --tag "$VERSION" --locked"
 
-  ```
-* Ensure all the necessary binaries are added to your `$PATH` variable using `.bashrc` or similar.
-  * For Rust's `cargo`, the install directory is usually `~/.cargo/bin`, but this is usually setup
-  automatically when installing Rust/Cargo. For Go you may need to add `export PATH=$PATH:$(go env
-  GOPATH)/bin` to your `~/bashrc` file.
+      ```
+* Ensure all the necessary paths are added to your `$PATH` variable using `.bashrc` or similar.
+  * If you use `make install-tools`, you only need to add `$HOME/.local/bin` if it is not already
+    part of your `$PATH`.
+  * If you installed manually, it depends on where you installed it.
+    * For Rusts `cargo install`, the default install directory is usually `~/.cargo/bin`.
+    * For Gos `go install` it is usually put to `$GOBIN` or `$GOPATH/bin`. 
 
 ## Generating Code for a New Language
 
