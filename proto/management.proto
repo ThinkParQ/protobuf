@@ -37,6 +37,8 @@ service Management {
   rpc CreateBuddyGroup(CreateBuddyGroupRequest) returns (CreateBuddyGroupResponse);
   // Deletes a buddy group
   rpc DeleteBuddyGroup(DeleteBuddyGroupRequest) returns (DeleteBuddyGroupResponse);
+  // Enable metadata buddy mirroring for the root directory 
+  rpc MirrorRootInode(MirrorRootInodeRequest) returns (MirrorRootInodeResponse);
 }
 
 message SetAliasRequest {
@@ -253,3 +255,6 @@ message DeleteBuddyGroupResponse {
   // The ids of the deleted buddy group
   optional beegfs.EntityIdSet group = 1;
 }
+
+message MirrorRootInodeRequest{}
+message MirrorRootInodeResponse{}
