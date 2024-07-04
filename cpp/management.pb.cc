@@ -35,6 +35,30 @@ struct SetAliasResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetAliasResponseDefaultTypeInternal _SetAliasResponse_default_instance_;
       template <typename>
+PROTOBUF_CONSTEXPR MirrorRootInodeResponse::MirrorRootInodeResponse(::_pbi::ConstantInitialized) {}
+struct MirrorRootInodeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MirrorRootInodeResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MirrorRootInodeResponseDefaultTypeInternal() {}
+  union {
+    MirrorRootInodeResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MirrorRootInodeResponseDefaultTypeInternal _MirrorRootInodeResponse_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR MirrorRootInodeRequest::MirrorRootInodeRequest(::_pbi::ConstantInitialized) {}
+struct MirrorRootInodeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MirrorRootInodeRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MirrorRootInodeRequestDefaultTypeInternal() {}
+  union {
+    MirrorRootInodeRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MirrorRootInodeRequestDefaultTypeInternal _MirrorRootInodeRequest_default_instance_;
+      template <typename>
 PROTOBUF_CONSTEXPR GetTargetsRequest::GetTargetsRequest(::_pbi::ConstantInitialized) {}
 struct GetTargetsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetTargetsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -597,7 +621,7 @@ struct GetBuddyGroupsResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetBuddyGroupsResponseDefaultTypeInternal _GetBuddyGroupsResponse_default_instance_;
 }  // namespace management
-static ::_pb::Metadata file_level_metadata_management_2eproto[29];
+static ::_pb::Metadata file_level_metadata_management_2eproto[31];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_management_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -962,6 +986,22 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::management::DeleteBuddyGroupResponse, _impl_.group_),
         0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::management::MirrorRootInodeRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::management::MirrorRootInodeResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
 };
 
 static const ::_pbi::MigrationSchema
@@ -995,6 +1035,8 @@ static const ::_pbi::MigrationSchema
         {325, 334, -1, sizeof(::management::CreateBuddyGroupResponse)},
         {335, 345, -1, sizeof(::management::DeleteBuddyGroupRequest)},
         {347, 356, -1, sizeof(::management::DeleteBuddyGroupResponse)},
+        {357, -1, -1, sizeof(::management::MirrorRootInodeRequest)},
+        {365, -1, -1, sizeof(::management::MirrorRootInodeResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::management::_SetAliasRequest_default_instance_._instance,
@@ -1026,6 +1068,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::management::_CreateBuddyGroupResponse_default_instance_._instance,
     &::management::_DeleteBuddyGroupRequest_default_instance_._instance,
     &::management::_DeleteBuddyGroupResponse_default_instance_._instance,
+    &::management::_MirrorRootInodeRequest_default_instance_._instance,
+    &::management::_MirrorRootInodeResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -1118,33 +1162,36 @@ const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION
     "dSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\010\n\006_grou"
     "pB\n\n\010_execute\"M\n\030DeleteBuddyGroupRespons"
     "e\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210"
-    "\001\001B\010\n\006_group2\314\007\n\nManagement\022E\n\010SetAlias\022"
-    "\033.management.SetAliasRequest\032\034.managemen"
-    "t.SetAliasResponse\022E\n\010GetNodes\022\033.managem"
-    "ent.GetNodesRequest\032\034.management.GetNode"
-    "sResponse\022K\n\nDeleteNode\022\035.management.Del"
-    "eteNodeRequest\032\036.management.DeleteNodeRe"
-    "sponse\022K\n\nGetTargets\022\035.management.GetTar"
-    "getsRequest\032\036.management.GetTargetsRespo"
-    "nse\022Q\n\014DeleteTarget\022\037.management.DeleteT"
-    "argetRequest\032 .management.DeleteTargetRe"
-    "sponse\022E\n\010GetPools\022\033.management.GetPools"
-    "Request\032\034.management.GetPoolsResponse\022K\n"
-    "\nCreatePool\022\035.management.CreatePoolReque"
-    "st\032\036.management.CreatePoolResponse\022K\n\nAs"
-    "signPool\022\035.management.AssignPoolRequest\032"
-    "\036.management.AssignPoolResponse\022K\n\nDelet"
-    "ePool\022\035.management.DeletePoolRequest\032\036.m"
-    "anagement.DeletePoolResponse\022W\n\016GetBuddy"
-    "Groups\022!.management.GetBuddyGroupsReques"
-    "t\032\".management.GetBuddyGroupsResponse\022]\n"
-    "\020CreateBuddyGroup\022#.management.CreateBud"
-    "dyGroupRequest\032$.management.CreateBuddyG"
-    "roupResponse\022]\n\020DeleteBuddyGroup\022#.manag"
-    "ement.DeleteBuddyGroupRequest\032$.manageme"
-    "nt.DeleteBuddyGroupResponseB-Z+github.co"
-    "m/thinkparq/protobuf/go/managementb\006prot"
-    "o3"
+    "\001\001B\010\n\006_group\"\030\n\026MirrorRootInodeRequest\"\031"
+    "\n\027MirrorRootInodeResponse2\250\010\n\nManagement"
+    "\022E\n\010SetAlias\022\033.management.SetAliasReques"
+    "t\032\034.management.SetAliasResponse\022E\n\010GetNo"
+    "des\022\033.management.GetNodesRequest\032\034.manag"
+    "ement.GetNodesResponse\022K\n\nDeleteNode\022\035.m"
+    "anagement.DeleteNodeRequest\032\036.management"
+    ".DeleteNodeResponse\022K\n\nGetTargets\022\035.mana"
+    "gement.GetTargetsRequest\032\036.management.Ge"
+    "tTargetsResponse\022Q\n\014DeleteTarget\022\037.manag"
+    "ement.DeleteTargetRequest\032 .management.D"
+    "eleteTargetResponse\022E\n\010GetPools\022\033.manage"
+    "ment.GetPoolsRequest\032\034.management.GetPoo"
+    "lsResponse\022K\n\nCreatePool\022\035.management.Cr"
+    "eatePoolRequest\032\036.management.CreatePoolR"
+    "esponse\022K\n\nAssignPool\022\035.management.Assig"
+    "nPoolRequest\032\036.management.AssignPoolResp"
+    "onse\022K\n\nDeletePool\022\035.management.DeletePo"
+    "olRequest\032\036.management.DeletePoolRespons"
+    "e\022W\n\016GetBuddyGroups\022!.management.GetBudd"
+    "yGroupsRequest\032\".management.GetBuddyGrou"
+    "psResponse\022]\n\020CreateBuddyGroup\022#.managem"
+    "ent.CreateBuddyGroupRequest\032$.management"
+    ".CreateBuddyGroupResponse\022]\n\020DeleteBuddy"
+    "Group\022#.management.DeleteBuddyGroupReque"
+    "st\032$.management.DeleteBuddyGroupResponse"
+    "\022Z\n\017MirrorRootInode\022\".management.MirrorR"
+    "ootInodeRequest\032#.management.MirrorRootI"
+    "nodeResponseB-Z+github.com/thinkparq/pro"
+    "tobuf/go/managementb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_management_2eproto_deps[1] =
     {
@@ -1154,13 +1201,13 @@ static ::absl::once_flag descriptor_table_management_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_management_2eproto = {
     false,
     false,
-    4602,
+    4747,
     descriptor_table_protodef_management_2eproto,
     "management.proto",
     &descriptor_table_management_2eproto_once,
     descriptor_table_management_2eproto_deps,
     1,
-    29,
+    31,
     schemas,
     file_default_instances,
     TableStruct_management_2eproto::offsets,
@@ -8009,6 +8056,76 @@ void DeleteBuddyGroupResponse::InternalSwap(DeleteBuddyGroupResponse* PROTOBUF_R
   return ::_pbi::AssignDescriptors(&descriptor_table_management_2eproto_getter,
                                    &descriptor_table_management_2eproto_once,
                                    file_level_metadata_management_2eproto[28]);
+}
+// ===================================================================
+
+class MirrorRootInodeRequest::_Internal {
+ public:
+};
+
+MirrorRootInodeRequest::MirrorRootInodeRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:management.MirrorRootInodeRequest)
+}
+MirrorRootInodeRequest::MirrorRootInodeRequest(
+    ::google::protobuf::Arena* arena,
+    const MirrorRootInodeRequest& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  MirrorRootInodeRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:management.MirrorRootInodeRequest)
+}
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata MirrorRootInodeRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_management_2eproto_getter,
+                                   &descriptor_table_management_2eproto_once,
+                                   file_level_metadata_management_2eproto[29]);
+}
+// ===================================================================
+
+class MirrorRootInodeResponse::_Internal {
+ public:
+};
+
+MirrorRootInodeResponse::MirrorRootInodeResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:management.MirrorRootInodeResponse)
+}
+MirrorRootInodeResponse::MirrorRootInodeResponse(
+    ::google::protobuf::Arena* arena,
+    const MirrorRootInodeResponse& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  MirrorRootInodeResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:management.MirrorRootInodeResponse)
+}
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata MirrorRootInodeResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_management_2eproto_getter,
+                                   &descriptor_table_management_2eproto_once,
+                                   file_level_metadata_management_2eproto[30]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace management
