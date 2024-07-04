@@ -31,6 +31,7 @@ const (
 	Management_GetBuddyGroups_FullMethodName   = "/management.Management/GetBuddyGroups"
 	Management_CreateBuddyGroup_FullMethodName = "/management.Management/CreateBuddyGroup"
 	Management_DeleteBuddyGroup_FullMethodName = "/management.Management/DeleteBuddyGroup"
+	Management_MirrorRootInode_FullMethodName  = "/management.Management/MirrorRootInode"
 )
 
 // ManagementClient is the client API for Management service.
@@ -65,6 +66,8 @@ type ManagementClient interface {
 	CreateBuddyGroup(ctx context.Context, in *CreateBuddyGroupRequest, opts ...grpc.CallOption) (*CreateBuddyGroupResponse, error)
 	// Deletes a buddy group
 	DeleteBuddyGroup(ctx context.Context, in *DeleteBuddyGroupRequest, opts ...grpc.CallOption) (*DeleteBuddyGroupResponse, error)
+	// Enable metadata buddy mirroring for the root directory
+	MirrorRootInode(ctx context.Context, in *MirrorRootInodeRequest, opts ...grpc.CallOption) (*MirrorRootInodeResponse, error)
 }
 
 type managementClient struct {
@@ -183,6 +186,15 @@ func (c *managementClient) DeleteBuddyGroup(ctx context.Context, in *DeleteBuddy
 	return out, nil
 }
 
+func (c *managementClient) MirrorRootInode(ctx context.Context, in *MirrorRootInodeRequest, opts ...grpc.CallOption) (*MirrorRootInodeResponse, error) {
+	out := new(MirrorRootInodeResponse)
+	err := c.cc.Invoke(ctx, Management_MirrorRootInode_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ManagementServer is the server API for Management service.
 // All implementations must embed UnimplementedManagementServer
 // for forward compatibility
@@ -215,6 +227,8 @@ type ManagementServer interface {
 	CreateBuddyGroup(context.Context, *CreateBuddyGroupRequest) (*CreateBuddyGroupResponse, error)
 	// Deletes a buddy group
 	DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error)
+	// Enable metadata buddy mirroring for the root directory
+	MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error)
 	mustEmbedUnimplementedManagementServer()
 }
 
@@ -257,6 +271,9 @@ func (UnimplementedManagementServer) CreateBuddyGroup(context.Context, *CreateBu
 }
 func (UnimplementedManagementServer) DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBuddyGroup not implemented")
+}
+func (UnimplementedManagementServer) MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MirrorRootInode not implemented")
 }
 func (UnimplementedManagementServer) mustEmbedUnimplementedManagementServer() {}
 
@@ -487,6 +504,24 @@ func _Management_DeleteBuddyGroup_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Management_MirrorRootInode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MirrorRootInodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).MirrorRootInode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_MirrorRootInode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).MirrorRootInode(ctx, req.(*MirrorRootInodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Management_ServiceDesc is the grpc.ServiceDesc for Management service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -541,6 +576,10 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteBuddyGroup",
 			Handler:    _Management_DeleteBuddyGroup_Handler,
+		},
+		{
+			MethodName: "MirrorRootInode",
+			Handler:    _Management_MirrorRootInode_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

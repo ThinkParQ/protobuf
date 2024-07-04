@@ -133,6 +133,12 @@ extern GetTargetsResponseDefaultTypeInternal _GetTargetsResponse_default_instanc
 class GetTargetsResponse_Target;
 struct GetTargetsResponse_TargetDefaultTypeInternal;
 extern GetTargetsResponse_TargetDefaultTypeInternal _GetTargetsResponse_Target_default_instance_;
+class MirrorRootInodeRequest;
+struct MirrorRootInodeRequestDefaultTypeInternal;
+extern MirrorRootInodeRequestDefaultTypeInternal _MirrorRootInodeRequest_default_instance_;
+class MirrorRootInodeResponse;
+struct MirrorRootInodeResponseDefaultTypeInternal;
+extern MirrorRootInodeResponseDefaultTypeInternal _MirrorRootInodeResponse_default_instance_;
 class SetAliasRequest;
 struct SetAliasRequestDefaultTypeInternal;
 extern SetAliasRequestDefaultTypeInternal _SetAliasRequest_default_instance_;
@@ -259,6 +265,262 @@ class SetAliasResponse final : public ::google::protobuf::internal::ZeroFieldsBa
 
   // accessors -------------------------------------------------------
   // @@protoc_insertion_point(class_scope:management.SetAliasResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MirrorRootInodeResponse final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:management.MirrorRootInodeResponse) */ {
+ public:
+  inline MirrorRootInodeResponse() : MirrorRootInodeResponse(nullptr) {}
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MirrorRootInodeResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MirrorRootInodeResponse(const MirrorRootInodeResponse& from) : MirrorRootInodeResponse(nullptr, from) {}
+  inline MirrorRootInodeResponse(MirrorRootInodeResponse&& from) noexcept
+      : MirrorRootInodeResponse(nullptr, std::move(from)) {}
+  inline MirrorRootInodeResponse& operator=(const MirrorRootInodeResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MirrorRootInodeResponse& operator=(MirrorRootInodeResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MirrorRootInodeResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MirrorRootInodeResponse* internal_default_instance() {
+    return reinterpret_cast<const MirrorRootInodeResponse*>(
+        &_MirrorRootInodeResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 30;
+  friend void swap(MirrorRootInodeResponse& a, MirrorRootInodeResponse& b) { a.Swap(&b); }
+  inline void Swap(MirrorRootInodeResponse* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MirrorRootInodeResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MirrorRootInodeResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<MirrorRootInodeResponse>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const MirrorRootInodeResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const MirrorRootInodeResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.MirrorRootInodeResponse"; }
+
+ protected:
+  explicit MirrorRootInodeResponse(::google::protobuf::Arena* arena);
+  MirrorRootInodeResponse(::google::protobuf::Arena* arena, const MirrorRootInodeResponse& from);
+  MirrorRootInodeResponse(::google::protobuf::Arena* arena, MirrorRootInodeResponse&& from) noexcept
+      : MirrorRootInodeResponse(arena) {
+    *this = ::std::move(from);
+  }
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:management.MirrorRootInodeResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MirrorRootInodeRequest final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:management.MirrorRootInodeRequest) */ {
+ public:
+  inline MirrorRootInodeRequest() : MirrorRootInodeRequest(nullptr) {}
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MirrorRootInodeRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MirrorRootInodeRequest(const MirrorRootInodeRequest& from) : MirrorRootInodeRequest(nullptr, from) {}
+  inline MirrorRootInodeRequest(MirrorRootInodeRequest&& from) noexcept
+      : MirrorRootInodeRequest(nullptr, std::move(from)) {}
+  inline MirrorRootInodeRequest& operator=(const MirrorRootInodeRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MirrorRootInodeRequest& operator=(MirrorRootInodeRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MirrorRootInodeRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MirrorRootInodeRequest* internal_default_instance() {
+    return reinterpret_cast<const MirrorRootInodeRequest*>(
+        &_MirrorRootInodeRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 29;
+  friend void swap(MirrorRootInodeRequest& a, MirrorRootInodeRequest& b) { a.Swap(&b); }
+  inline void Swap(MirrorRootInodeRequest* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MirrorRootInodeRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MirrorRootInodeRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<MirrorRootInodeRequest>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const MirrorRootInodeRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const MirrorRootInodeRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.MirrorRootInodeRequest"; }
+
+ protected:
+  explicit MirrorRootInodeRequest(::google::protobuf::Arena* arena);
+  MirrorRootInodeRequest(::google::protobuf::Arena* arena, const MirrorRootInodeRequest& from);
+  MirrorRootInodeRequest(::google::protobuf::Arena* arena, MirrorRootInodeRequest&& from) noexcept
+      : MirrorRootInodeRequest(arena) {
+    *this = ::std::move(from);
+  }
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:management.MirrorRootInodeRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::MessageLite;
@@ -9439,6 +9701,14 @@ inline void DeleteBuddyGroupResponse::set_allocated_group(::beegfs::EntityIdSet*
   _impl_.group_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
   // @@protoc_insertion_point(field_set_allocated:management.DeleteBuddyGroupResponse.group)
 }
+
+// -------------------------------------------------------------------
+
+// MirrorRootInodeRequest
+
+// -------------------------------------------------------------------
+
+// MirrorRootInodeResponse
 
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
