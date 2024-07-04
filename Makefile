@@ -13,8 +13,8 @@ RUST_OUT_DIR := rust
 all: protos
 
 .PHONY: protos
-protos:
-	@mkdir -p $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)
+protos: check-tools
+	mkdir -p $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)
 	protoc -I $(SRC_DIR) \
 		--go_opt=module="github.com/thinkparq/protobuf/go" \
 		--go_out=$(GO_OUT_DIR) \
@@ -23,7 +23,8 @@ protos:
 		--cpp_out=$(CPP_OUT_DIR) \
 		$(SRC_DIR)/*.proto
 	protoc-rs compile -I $(SRC_DIR) --out=$(RUST_OUT_DIR) $(SRC_DIR)/*.proto
-	@protoc-rs generate-crate --src=$(RUST_OUT_DIR)
+	protoc-rs generate-crate --src=$(RUST_OUT_DIR)
+
 
 # Test targets: 
 # Test targets may make change to the local repository (e.g. try to generate protos) to
@@ -51,14 +52,47 @@ clean:
 	rm -rf target/
 	rm -f Cargo.lock
 
-# Install the specialized tools needed for building protobuf. Does not add the install directories
-# to PATH.
+
+# The tools versions we want to use
+PROTOC_VERSION := 26.1
+PROTOC_GEN_GO_VERSION := 1.31.0
+PROTOC_GEN_GO_GRPC_VERSION := 1.3.0
+PROTOC_RS_VERSION := 0.2.0
+
+# Checks the versions of the installed tools, making sure they are what we expect
+.PHONY: check-tools
+.ONESHELL: check-tools
+check-tools:
+	@function check() { [[ "$$1" == "$$2" ]] || { echo "tool version mismatch: expected $$1, got $$2" ; exit 1 ; } }
+	check "libprotoc $(PROTOC_VERSION)" "$$(protoc --version)"
+	check "protoc-gen-go v$(PROTOC_GEN_GO_VERSION)" "$$(protoc-gen-go --version)"
+	check "protoc-gen-go-grpc $(PROTOC_GEN_GO_GRPC_VERSION)" "$$(protoc-gen-go-grpc --version)"
+	check "protoc-rs $(PROTOC_RS_VERSION)" "$$(protoc-rs --version)"
+
+# Installs the specialized tools needed for building protobuf on an x86_64 machine to the user
+# program files directory $HOME/.local/bin . If that directory is not part of $PATH yet, the user
+# must add it manually.
+# Overwrites existing tools with a newer version. Requires curl, cargo, go.
 .PHONY: install-tools
+.ONESHELL: install-tools
 install-tools:
-	sudo apt install --yes protobuf-compiler
-	cargo install --git "https://github.com/thinkparq/protoc-rs"
-	go get google.golang.org/protobuf/cmd/protoc-gen-go
-	go install google.golang.org/protobuf/cmd/protoc-gen-go
-	go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
-	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
-	@echo "Tools installed. Make sure your PATH contains the install directories $$HOME/.cargo/bin and $$(go env GOPATH)/bin"
+	@set -e
+
+	ARCH=$$(uname -m)
+	if [[ "$${ARCH}" == "aarch64" ]]; then
+		ARCH=aarch_64
+	fi
+
+	(
+		set -x
+		# protoc
+		curl -LfsSo /tmp/protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v$(PROTOC_VERSION)/protoc-$(PROTOC_VERSION)-linux-$${ARCH}.zip
+		rm -rf "$${HOME}/.local/bin/protoc" "$${HOME}/.local/include/google/protobuf"
+		unzip -o -q -d "$${HOME}/.local" /tmp/protoc.zip "bin/protoc" "include/google/protobuf/*"
+		# other tools
+		GOBIN="$${HOME}/.local/bin" go install google.golang.org/protobuf/cmd/protoc-gen-go@v$(PROTOC_GEN_GO_VERSION)
+		GOBIN="$${HOME}/.local/bin" go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v$(PROTOC_GEN_GO_GRPC_VERSION)
+		cargo install --root "$${HOME}/.local" --git "https://github.com/thinkparq/protoc-rs" --tag "v$(PROTOC_RS_VERSION)" --locked
+	)
+
+	echo ""; echo "Tools installed. Make sure your PATH contains the install directory $${HOME}/.local/bin"
