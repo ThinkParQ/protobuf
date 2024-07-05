@@ -3,6 +3,7 @@ package management;
 option go_package = "github.com/thinkparq/protobuf/go/management";
 
 import "beegfs.proto";
+import "license.proto";
 
 service Management {
   // Sets an entity alias
@@ -41,6 +42,10 @@ service Management {
   rpc DeleteBuddyGroup(DeleteBuddyGroupRequest) returns (DeleteBuddyGroupResponse);
   // Enable metadata buddy mirroring for the root directory 
   rpc MirrorRootInode(MirrorRootInodeRequest) returns (MirrorRootInodeResponse);
+
+  // Licensing
+  // Gets license information
+  rpc GetLicense(GetLicenseRequest) returns (GetLicenseResponse);
 }
 
 message SetAliasRequest {
@@ -269,3 +274,13 @@ message DeleteBuddyGroupResponse {
 
 message MirrorRootInodeRequest{}
 message MirrorRootInodeResponse{}
+
+message GetLicenseRequest {
+  // Whether to reload and re-verify the license on the server
+  optional bool reload = 1;
+}
+
+message GetLicenseResponse {
+  // A CertData structure as defined in beecert.proto
+  optional license.GetCertDataResult cert_data = 1;
+}
