@@ -30,6 +30,7 @@
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
 #include "google/protobuf/unknown_field_set.h"
 #include "beegfs.pb.h"
+#include "license.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -103,6 +104,12 @@ extern GetBuddyGroupsResponseDefaultTypeInternal _GetBuddyGroupsResponse_default
 class GetBuddyGroupsResponse_BuddyGroup;
 struct GetBuddyGroupsResponse_BuddyGroupDefaultTypeInternal;
 extern GetBuddyGroupsResponse_BuddyGroupDefaultTypeInternal _GetBuddyGroupsResponse_BuddyGroup_default_instance_;
+class GetLicenseRequest;
+struct GetLicenseRequestDefaultTypeInternal;
+extern GetLicenseRequestDefaultTypeInternal _GetLicenseRequest_default_instance_;
+class GetLicenseResponse;
+struct GetLicenseResponseDefaultTypeInternal;
+extern GetLicenseResponseDefaultTypeInternal _GetLicenseResponse_default_instance_;
 class GetNodesRequest;
 struct GetNodesRequestDefaultTypeInternal;
 extern GetNodesRequestDefaultTypeInternal _GetNodesRequest_default_instance_;
@@ -1239,6 +1246,179 @@ class GetNodesRequest final : public ::google::protobuf::Message
                           const GetNodesRequest& from_msg);
     bool include_nics_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetLicenseRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.GetLicenseRequest) */ {
+ public:
+  inline GetLicenseRequest() : GetLicenseRequest(nullptr) {}
+  ~GetLicenseRequest() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetLicenseRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetLicenseRequest(const GetLicenseRequest& from) : GetLicenseRequest(nullptr, from) {}
+  inline GetLicenseRequest(GetLicenseRequest&& from) noexcept
+      : GetLicenseRequest(nullptr, std::move(from)) {}
+  inline GetLicenseRequest& operator=(const GetLicenseRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetLicenseRequest& operator=(GetLicenseRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetLicenseRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetLicenseRequest* internal_default_instance() {
+    return reinterpret_cast<const GetLicenseRequest*>(
+        &_GetLicenseRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 31;
+  friend void swap(GetLicenseRequest& a, GetLicenseRequest& b) { a.Swap(&b); }
+  inline void Swap(GetLicenseRequest* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetLicenseRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetLicenseRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<GetLicenseRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetLicenseRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetLicenseRequest& from) { GetLicenseRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetLicenseRequest* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.GetLicenseRequest"; }
+
+ protected:
+  explicit GetLicenseRequest(::google::protobuf::Arena* arena);
+  GetLicenseRequest(::google::protobuf::Arena* arena, const GetLicenseRequest& from);
+  GetLicenseRequest(::google::protobuf::Arena* arena, GetLicenseRequest&& from) noexcept
+      : GetLicenseRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kReloadFieldNumber = 1,
+  };
+  // optional bool reload = 1;
+  bool has_reload() const;
+  void clear_reload() ;
+  bool reload() const;
+  void set_reload(bool value);
+
+  private:
+  bool _internal_reload() const;
+  void _internal_set_reload(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.GetLicenseRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_GetLicenseRequest_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetLicenseRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    bool reload_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5870,6 +6050,183 @@ class GetNodesResponse final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class GetLicenseResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.GetLicenseResponse) */ {
+ public:
+  inline GetLicenseResponse() : GetLicenseResponse(nullptr) {}
+  ~GetLicenseResponse() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetLicenseResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetLicenseResponse(const GetLicenseResponse& from) : GetLicenseResponse(nullptr, from) {}
+  inline GetLicenseResponse(GetLicenseResponse&& from) noexcept
+      : GetLicenseResponse(nullptr, std::move(from)) {}
+  inline GetLicenseResponse& operator=(const GetLicenseResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetLicenseResponse& operator=(GetLicenseResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetLicenseResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetLicenseResponse* internal_default_instance() {
+    return reinterpret_cast<const GetLicenseResponse*>(
+        &_GetLicenseResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 32;
+  friend void swap(GetLicenseResponse& a, GetLicenseResponse& b) { a.Swap(&b); }
+  inline void Swap(GetLicenseResponse* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetLicenseResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetLicenseResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<GetLicenseResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetLicenseResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetLicenseResponse& from) { GetLicenseResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(GetLicenseResponse* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.GetLicenseResponse"; }
+
+ protected:
+  explicit GetLicenseResponse(::google::protobuf::Arena* arena);
+  GetLicenseResponse(::google::protobuf::Arena* arena, const GetLicenseResponse& from);
+  GetLicenseResponse(::google::protobuf::Arena* arena, GetLicenseResponse&& from) noexcept
+      : GetLicenseResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kCertDataFieldNumber = 1,
+  };
+  // optional .license.GetCertDataResult cert_data = 1;
+  bool has_cert_data() const;
+  void clear_cert_data() ;
+  const ::license::GetCertDataResult& cert_data() const;
+  PROTOBUF_NODISCARD ::license::GetCertDataResult* release_cert_data();
+  ::license::GetCertDataResult* mutable_cert_data();
+  void set_allocated_cert_data(::license::GetCertDataResult* value);
+  void unsafe_arena_set_allocated_cert_data(::license::GetCertDataResult* value);
+  ::license::GetCertDataResult* unsafe_arena_release_cert_data();
+
+  private:
+  const ::license::GetCertDataResult& _internal_cert_data() const;
+  ::license::GetCertDataResult* _internal_mutable_cert_data();
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.GetLicenseResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_GetLicenseResponse_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetLicenseResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::license::GetCertDataResult* cert_data_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetBuddyGroupsResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:management.GetBuddyGroupsResponse) */ {
  public:
@@ -9893,6 +10250,133 @@ inline void DeleteBuddyGroupResponse::set_allocated_group(::beegfs::EntityIdSet*
 // -------------------------------------------------------------------
 
 // MirrorRootInodeResponse
+
+// -------------------------------------------------------------------
+
+// GetLicenseRequest
+
+// optional bool reload = 1;
+inline bool GetLicenseRequest::has_reload() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void GetLicenseRequest::clear_reload() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.reload_ = false;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline bool GetLicenseRequest::reload() const {
+  // @@protoc_insertion_point(field_get:management.GetLicenseRequest.reload)
+  return _internal_reload();
+}
+inline void GetLicenseRequest::set_reload(bool value) {
+  _internal_set_reload(value);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  // @@protoc_insertion_point(field_set:management.GetLicenseRequest.reload)
+}
+inline bool GetLicenseRequest::_internal_reload() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.reload_;
+}
+inline void GetLicenseRequest::_internal_set_reload(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.reload_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GetLicenseResponse
+
+// optional .license.GetCertDataResult cert_data = 1;
+inline bool GetLicenseResponse::has_cert_data() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.cert_data_ != nullptr);
+  return value;
+}
+inline const ::license::GetCertDataResult& GetLicenseResponse::_internal_cert_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::license::GetCertDataResult* p = _impl_.cert_data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::license::GetCertDataResult&>(::license::_GetCertDataResult_default_instance_);
+}
+inline const ::license::GetCertDataResult& GetLicenseResponse::cert_data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.GetLicenseResponse.cert_data)
+  return _internal_cert_data();
+}
+inline void GetLicenseResponse::unsafe_arena_set_allocated_cert_data(::license::GetCertDataResult* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.cert_data_);
+  }
+  _impl_.cert_data_ = reinterpret_cast<::license::GetCertDataResult*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.GetLicenseResponse.cert_data)
+}
+inline ::license::GetCertDataResult* GetLicenseResponse::release_cert_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::license::GetCertDataResult* released = _impl_.cert_data_;
+  _impl_.cert_data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::license::GetCertDataResult* GetLicenseResponse::unsafe_arena_release_cert_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.GetLicenseResponse.cert_data)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::license::GetCertDataResult* temp = _impl_.cert_data_;
+  _impl_.cert_data_ = nullptr;
+  return temp;
+}
+inline ::license::GetCertDataResult* GetLicenseResponse::_internal_mutable_cert_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.cert_data_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::license::GetCertDataResult>(GetArena());
+    _impl_.cert_data_ = reinterpret_cast<::license::GetCertDataResult*>(p);
+  }
+  return _impl_.cert_data_;
+}
+inline ::license::GetCertDataResult* GetLicenseResponse::mutable_cert_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::license::GetCertDataResult* _msg = _internal_mutable_cert_data();
+  // @@protoc_insertion_point(field_mutable:management.GetLicenseResponse.cert_data)
+  return _msg;
+}
+inline void GetLicenseResponse::set_allocated_cert_data(::license::GetCertDataResult* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.cert_data_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.cert_data_ = reinterpret_cast<::license::GetCertDataResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.GetLicenseResponse.cert_data)
+}
 
 #ifdef __GNUC__
 #pragma GCC diagnostic pop

@@ -4,4 +4,5 @@ pub mod beegfs;
 pub mod beeremote;
 pub mod beewatch;
 pub mod flex;
+pub mod license;
 pub mod management;
