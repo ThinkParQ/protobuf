@@ -19,6 +19,8 @@ service Management {
   rpc GetTargets(GetTargetsRequest) returns (GetTargetsResponse);
   // Deletes a target
   rpc DeleteTarget(DeleteTargetRequest) returns (DeleteTargetResponse);
+  // Manually set a target consistency state 
+  rpc SetTargetState(SetTargetStateRequest) returns (SetTargetStateResponse);
   
   // (Storage) pools
   // Gets the full list of pools
@@ -147,6 +149,15 @@ message DeleteTargetResponse {
   // The ids of the deleted target
   optional beegfs.EntityIdSet target = 1;
 }
+
+message SetTargetStateRequest{
+    // Identifier of the target whose state is to be changed
+    optional beegfs.EntityIdSet target = 1;
+    // Consistency state to set for the target
+    optional beegfs.ConsistencyState consistency_state = 2;
+}
+message SetTargetStateResponse{}
+
 
 // (Storage) pools
 
