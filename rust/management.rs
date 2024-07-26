@@ -160,6 +160,19 @@ pub struct DeleteTargetResponse {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SetTargetStateRequest {
+    /// Identifier of the target whose state is to be changed
+    #[prost(message, optional, tag = "1")]
+    pub target: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// Consistency state to set for the target
+    #[prost(enumeration = "super::beegfs::ConsistencyState", optional, tag = "2")]
+    pub consistency_state: ::core::option::Option<i32>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct SetTargetStateResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetPoolsRequest {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -566,6 +579,32 @@ pub mod management_client {
                 .insert(GrpcMethod::new("management.Management", "DeleteTarget"));
             self.inner.unary(req, path, codec).await
         }
+        /// Manually set a target consistency state
+        pub async fn set_target_state(
+            &mut self,
+            request: impl tonic::IntoRequest<super::SetTargetStateRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SetTargetStateResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/SetTargetState",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "SetTargetState"));
+            self.inner.unary(req, path, codec).await
+        }
         /// (Storage) pools
         /// Gets the full list of pools
         pub async fn get_pools(
@@ -852,6 +891,14 @@ pub mod management_server {
             request: tonic::Request<super::DeleteTargetRequest>,
         ) -> std::result::Result<
             tonic::Response<super::DeleteTargetResponse>,
+            tonic::Status,
+        >;
+        /// Manually set a target consistency state
+        async fn set_target_state(
+            &self,
+            request: tonic::Request<super::SetTargetStateRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::SetTargetStateResponse>,
             tonic::Status,
         >;
         /// (Storage) pools
@@ -1224,6 +1271,52 @@ pub mod management_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = DeleteTargetSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/SetTargetState" => {
+                    #[allow(non_camel_case_types)]
+                    struct SetTargetStateSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::SetTargetStateRequest>
+                    for SetTargetStateSvc<T> {
+                        type Response = super::SetTargetStateResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::SetTargetStateRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::set_target_state(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = SetTargetStateSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
