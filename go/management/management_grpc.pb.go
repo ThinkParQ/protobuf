@@ -24,6 +24,7 @@ const (
 	Management_DeleteNode_FullMethodName       = "/management.Management/DeleteNode"
 	Management_GetTargets_FullMethodName       = "/management.Management/GetTargets"
 	Management_DeleteTarget_FullMethodName     = "/management.Management/DeleteTarget"
+	Management_SetTargetState_FullMethodName   = "/management.Management/SetTargetState"
 	Management_GetPools_FullMethodName         = "/management.Management/GetPools"
 	Management_CreatePool_FullMethodName       = "/management.Management/CreatePool"
 	Management_AssignPool_FullMethodName       = "/management.Management/AssignPool"
@@ -51,6 +52,8 @@ type ManagementClient interface {
 	GetTargets(ctx context.Context, in *GetTargetsRequest, opts ...grpc.CallOption) (*GetTargetsResponse, error)
 	// Deletes a target
 	DeleteTarget(ctx context.Context, in *DeleteTargetRequest, opts ...grpc.CallOption) (*DeleteTargetResponse, error)
+	// Manually set a target consistency state
+	SetTargetState(ctx context.Context, in *SetTargetStateRequest, opts ...grpc.CallOption) (*SetTargetStateResponse, error)
 	// (Storage) pools
 	// Gets the full list of pools
 	GetPools(ctx context.Context, in *GetPoolsRequest, opts ...grpc.CallOption) (*GetPoolsResponse, error)
@@ -126,6 +129,16 @@ func (c *managementClient) DeleteTarget(ctx context.Context, in *DeleteTargetReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteTargetResponse)
 	err := c.cc.Invoke(ctx, Management_DeleteTarget_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) SetTargetState(ctx context.Context, in *SetTargetStateRequest, opts ...grpc.CallOption) (*SetTargetStateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetTargetStateResponse)
+	err := c.cc.Invoke(ctx, Management_SetTargetState_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -238,6 +251,8 @@ type ManagementServer interface {
 	GetTargets(context.Context, *GetTargetsRequest) (*GetTargetsResponse, error)
 	// Deletes a target
 	DeleteTarget(context.Context, *DeleteTargetRequest) (*DeleteTargetResponse, error)
+	// Manually set a target consistency state
+	SetTargetState(context.Context, *SetTargetStateRequest) (*SetTargetStateResponse, error)
 	// (Storage) pools
 	// Gets the full list of pools
 	GetPools(context.Context, *GetPoolsRequest) (*GetPoolsResponse, error)
@@ -280,6 +295,9 @@ func (UnimplementedManagementServer) GetTargets(context.Context, *GetTargetsRequ
 }
 func (UnimplementedManagementServer) DeleteTarget(context.Context, *DeleteTargetRequest) (*DeleteTargetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTarget not implemented")
+}
+func (UnimplementedManagementServer) SetTargetState(context.Context, *SetTargetStateRequest) (*SetTargetStateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetTargetState not implemented")
 }
 func (UnimplementedManagementServer) GetPools(context.Context, *GetPoolsRequest) (*GetPoolsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPools not implemented")
@@ -407,6 +425,24 @@ func _Management_DeleteTarget_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ManagementServer).DeleteTarget(ctx, req.(*DeleteTargetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_SetTargetState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetTargetStateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).SetTargetState(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_SetTargetState_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).SetTargetState(ctx, req.(*SetTargetStateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -599,6 +635,10 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteTarget",
 			Handler:    _Management_DeleteTarget_Handler,
+		},
+		{
+			MethodName: "SetTargetState",
+			Handler:    _Management_SetTargetState_Handler,
 		},
 		{
 			MethodName: "GetPools",
