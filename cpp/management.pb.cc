@@ -140,25 +140,6 @@ struct GetNodesRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetNodesRequestDefaultTypeInternal _GetNodesRequest_default_instance_;
-
-inline constexpr GetLicenseRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        reload_{false} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GetLicenseRequest::GetLicenseRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct GetLicenseRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetLicenseRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetLicenseRequestDefaultTypeInternal() {}
-  union {
-    GetLicenseRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLicenseRequestDefaultTypeInternal _GetLicenseRequest_default_instance_;
       template <typename>
 PROTOBUF_CONSTEXPR GetBuddyGroupsRequest::GetBuddyGroupsRequest(::_pbi::ConstantInitialized) {}
 struct GetBuddyGroupsRequestDefaultTypeInternal {
@@ -655,25 +636,6 @@ struct GetNodesResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetNodesResponseDefaultTypeInternal _GetNodesResponse_default_instance_;
 
-inline constexpr GetLicenseResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        cert_data_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GetLicenseResponse::GetLicenseResponse(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct GetLicenseResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetLicenseResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetLicenseResponseDefaultTypeInternal() {}
-  union {
-    GetLicenseResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetLicenseResponseDefaultTypeInternal _GetLicenseResponse_default_instance_;
-
 inline constexpr GetBuddyGroupsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : buddy_groups_{},
@@ -1093,26 +1055,6 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::management::GetLicenseRequest, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::management::GetLicenseRequest, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::management::GetLicenseRequest, _impl_.reload_),
-        0,
-        PROTOBUF_FIELD_OFFSET(::management::GetLicenseResponse, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::management::GetLicenseResponse, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::management::GetLicenseResponse, _impl_.cert_data_),
-        0,
 };
 
 static const ::_pbi::MigrationSchema
@@ -1150,8 +1092,6 @@ static const ::_pbi::MigrationSchema
         {367, 376, -1, sizeof(::management::DeleteBuddyGroupResponse)},
         {377, -1, -1, sizeof(::management::MirrorRootInodeRequest)},
         {385, -1, -1, sizeof(::management::MirrorRootInodeResponse)},
-        {393, 402, -1, sizeof(::management::GetLicenseRequest)},
-        {403, 412, -1, sizeof(::management::GetLicenseResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::management::_SetAliasRequest_default_instance_._instance,
@@ -1187,160 +1127,151 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::management::_DeleteBuddyGroupResponse_default_instance_._instance,
     &::management::_MirrorRootInodeRequest_default_instance_._instance,
     &::management::_MirrorRootInodeResponse_default_instance_._instance,
-    &::management::_GetLicenseRequest_default_instance_._instance,
-    &::management::_GetLicenseResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\020management.proto\022\nmanagement\032\014beegfs.p"
-    "roto\032\rlicense.proto\"u\n\017SetAliasRequest\022&"
-    "\n\tentity_id\030\001 \001(\0132\023.beegfs.EntityIdSet\022\'"
-    "\n\013entity_type\030\002 \001(\0162\022.beegfs.EntityType\022"
-    "\021\n\tnew_alias\030\003 \001(\t\"\022\n\020SetAliasResponse\"\'"
-    "\n\017GetNodesRequest\022\024\n\014include_nics\030\001 \001(\010\""
-    "\341\002\n\020GetNodesResponse\0220\n\005nodes\030\001 \003(\0132!.ma"
-    "nagement.GetNodesResponse.Node\0220\n\016meta_r"
-    "oot_node\030\002 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001"
-    "\032\325\001\n\004Node\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdS"
-    "et\022#\n\tnode_type\030\002 \001(\0162\020.beegfs.NodeType\022"
-    "\014\n\004port\030\003 \001(\r\0223\n\004nics\030\004 \003(\0132%.management"
-    ".GetNodesResponse.Node.Nic\032D\n\003Nic\022\014\n\004add"
-    "r\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022!\n\010nic_type\030\003 \001(\0162"
-    "\017.beegfs.NicTypeB\021\n\017_meta_root_node\"f\n\021D"
-    "eleteNodeRequest\022&\n\004node\030\001 \001(\0132\023.beegfs."
-    "EntityIdSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007"
-    "\n\005_nodeB\n\n\010_execute\"E\n\022DeleteNodeRespons"
-    "e\022&\n\004node\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001"
-    "\001B\007\n\005_node\"\023\n\021GetTargetsRequest\"\205\005\n\022GetT"
-    "argetsResponse\0226\n\007targets\030\001 \003(\0132%.manage"
-    "ment.GetTargetsResponse.Target\032\266\004\n\006Targe"
-    "t\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdSet\022#\n\tno"
-    "de_type\030\002 \001(\0162\020.beegfs.NodeType\0225\n\022reach"
-    "ability_state\030\003 \001(\0162\031.beegfs.Reachabilit"
-    "yState\0223\n\021consistency_state\030\004 \001(\0162\030.beeg"
-    "fs.ConsistencyState\022\033\n\016last_contact_s\030\005 "
-    "\001(\004H\000\210\001\001\022\036\n\021total_space_bytes\030\006 \001(\004H\001\210\001\001"
-    "\022\035\n\020free_space_bytes\030\007 \001(\004H\002\210\001\001\022\031\n\014total"
-    "_inodes\030\010 \001(\004H\003\210\001\001\022\030\n\013free_inodes\030\t \001(\004H"
-    "\004\210\001\001\022&\n\010cap_pool\030\n \001(\0162\024.beegfs.Capacity"
-    "Pool\022!\n\004node\030\013 \001(\0132\023.beegfs.EntityIdSet\022"
-    ".\n\014storage_pool\030\014 \001(\0132\023.beegfs.EntityIdS"
-    "etH\005\210\001\001B\021\n\017_last_contact_sB\024\n\022_total_spa"
-    "ce_bytesB\023\n\021_free_space_bytesB\017\n\r_total_"
-    "inodesB\016\n\014_free_inodesB\017\n\r_storage_pool\""
-    "l\n\023DeleteTargetRequest\022(\n\006target\030\001 \001(\0132\023"
-    ".beegfs.EntityIdSetH\000\210\001\001\022\024\n\007execute\030\002 \001("
-    "\010H\001\210\001\001B\t\n\007_targetB\n\n\010_execute\"K\n\024DeleteT"
-    "argetResponse\022(\n\006target\030\001 \001(\0132\023.beegfs.E"
-    "ntityIdSetH\000\210\001\001B\t\n\007_target\"\234\001\n\025SetTarget"
-    "StateRequest\022(\n\006target\030\001 \001(\0132\023.beegfs.En"
-    "tityIdSetH\000\210\001\001\0228\n\021consistency_state\030\002 \001("
-    "\0162\030.beegfs.ConsistencyStateH\001\210\001\001B\t\n\007_tar"
-    "getB\024\n\022_consistency_state\"\030\n\026SetTargetSt"
-    "ateResponse\"\021\n\017GetPoolsRequest\"\314\001\n\020GetPo"
-    "olsResponse\0227\n\005pools\030\001 \003(\0132(.management."
-    "GetPoolsResponse.StoragePool\032\177\n\013StorageP"
-    "ool\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdSet\022$\n\007"
-    "targets\030\002 \003(\0132\023.beegfs.EntityIdSet\022)\n\014bu"
-    "ddy_groups\030\003 \003(\0132\023.beegfs.EntityIdSet\"\332\001"
-    "\n\021CreatePoolRequest\022(\n\tnode_type\030\001 \001(\0162\020"
-    ".beegfs.NodeTypeH\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210"
-    "\001\001\022\022\n\005alias\030\003 \001(\tH\002\210\001\001\022$\n\007targets\030\004 \003(\0132"
-    "\023.beegfs.EntityIdSet\022)\n\014buddy_groups\030\005 \003"
-    "(\0132\023.beegfs.EntityIdSetB\014\n\n_node_typeB\t\n"
-    "\007_num_idB\010\n\006_alias\"E\n\022CreatePoolResponse"
-    "\022&\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001"
-    "B\007\n\005_pool\"\225\001\n\021AssignPoolRequest\022&\n\004pool\030"
-    "\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001\022$\n\007targe"
-    "ts\030\002 \003(\0132\023.beegfs.EntityIdSet\022)\n\014buddy_g"
-    "roups\030\003 \003(\0132\023.beegfs.EntityIdSetB\007\n\005_poo"
-    "l\"E\n\022AssignPoolResponse\022&\n\004pool\030\001 \001(\0132\023."
-    "beegfs.EntityIdSetH\000\210\001\001B\007\n\005_pool\"f\n\021Dele"
-    "tePoolRequest\022&\n\004pool\030\001 \001(\0132\023.beegfs.Ent"
-    "ityIdSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007\n\005_"
-    "poolB\n\n\010_execute\"E\n\022DeletePoolResponse\022&"
-    "\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\007"
-    "\n\005_pool\"\027\n\025GetBuddyGroupsRequest\"\313\003\n\026Get"
-    "BuddyGroupsResponse\022C\n\014buddy_groups\030\001 \003("
-    "\0132-.management.GetBuddyGroupsResponse.Bu"
-    "ddyGroup\032\353\002\n\nBuddyGroup\022\037\n\002id\030\001 \001(\0132\023.be"
-    "egfs.EntityIdSet\022#\n\tnode_type\030\002 \001(\0162\020.be"
-    "egfs.NodeType\022+\n\016primary_target\030\003 \001(\0132\023."
-    "beegfs.EntityIdSet\022-\n\020secondary_target\030\004"
-    " \001(\0132\023.beegfs.EntityIdSet\022;\n\031primary_con"
-    "sistency_state\030\005 \001(\0162\030.beegfs.Consistenc"
-    "yState\022=\n\033secondary_consistency_state\030\006 "
-    "\001(\0162\030.beegfs.ConsistencyState\022.\n\014storage"
-    "_pool\030\007 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\017\n"
-    "\r_storage_pool\"\235\002\n\027CreateBuddyGroupReque"
-    "st\022(\n\tnode_type\030\001 \001(\0162\020.beegfs.NodeTypeH"
-    "\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210\001\001\022\022\n\005alias\030\003 \001(\t"
-    "H\002\210\001\001\0220\n\016primary_target\030\004 \001(\0132\023.beegfs.E"
-    "ntityIdSetH\003\210\001\001\0222\n\020secondary_target\030\005 \001("
-    "\0132\023.beegfs.EntityIdSetH\004\210\001\001B\014\n\n_node_typ"
-    "eB\t\n\007_num_idB\010\n\006_aliasB\021\n\017_primary_targe"
-    "tB\023\n\021_secondary_target\"M\n\030CreateBuddyGro"
-    "upResponse\022\'\n\005group\030\001 \001(\0132\023.beegfs.Entit"
-    "yIdSetH\000\210\001\001B\010\n\006_group\"n\n\027DeleteBuddyGrou"
-    "pRequest\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityI"
-    "dSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\010\n\006_grou"
-    "pB\n\n\010_execute\"M\n\030DeleteBuddyGroupRespons"
-    "e\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210"
-    "\001\001B\010\n\006_group\"\030\n\026MirrorRootInodeRequest\"\031"
-    "\n\027MirrorRootInodeResponse\"3\n\021GetLicenseR"
-    "equest\022\023\n\006reload\030\001 \001(\010H\000\210\001\001B\t\n\007_reload\"V"
-    "\n\022GetLicenseResponse\0222\n\tcert_data\030\001 \001(\0132"
-    "\032.license.GetCertDataResultH\000\210\001\001B\014\n\n_cer"
-    "t_data2\316\t\n\nManagement\022E\n\010SetAlias\022\033.mana"
-    "gement.SetAliasRequest\032\034.management.SetA"
-    "liasResponse\022E\n\010GetNodes\022\033.management.Ge"
-    "tNodesRequest\032\034.management.GetNodesRespo"
-    "nse\022K\n\nDeleteNode\022\035.management.DeleteNod"
-    "eRequest\032\036.management.DeleteNodeResponse"
-    "\022K\n\nGetTargets\022\035.management.GetTargetsRe"
-    "quest\032\036.management.GetTargetsResponse\022Q\n"
-    "\014DeleteTarget\022\037.management.DeleteTargetR"
-    "equest\032 .management.DeleteTargetResponse"
-    "\022W\n\016SetTargetState\022!.management.SetTarge"
-    "tStateRequest\032\".management.SetTargetStat"
-    "eResponse\022E\n\010GetPools\022\033.management.GetPo"
-    "olsRequest\032\034.management.GetPoolsResponse"
-    "\022K\n\nCreatePool\022\035.management.CreatePoolRe"
-    "quest\032\036.management.CreatePoolResponse\022K\n"
-    "\nAssignPool\022\035.management.AssignPoolReque"
-    "st\032\036.management.AssignPoolResponse\022K\n\nDe"
-    "letePool\022\035.management.DeletePoolRequest\032"
-    "\036.management.DeletePoolResponse\022W\n\016GetBu"
-    "ddyGroups\022!.management.GetBuddyGroupsReq"
-    "uest\032\".management.GetBuddyGroupsResponse"
-    "\022]\n\020CreateBuddyGroup\022#.management.Create"
-    "BuddyGroupRequest\032$.management.CreateBud"
-    "dyGroupResponse\022]\n\020DeleteBuddyGroup\022#.ma"
-    "nagement.DeleteBuddyGroupRequest\032$.manag"
-    "ement.DeleteBuddyGroupResponse\022Z\n\017Mirror"
-    "RootInode\022\".management.MirrorRootInodeRe"
-    "quest\032#.management.MirrorRootInodeRespon"
-    "se\022K\n\nGetLicense\022\035.management.GetLicense"
-    "Request\032\036.management.GetLicenseResponseB"
-    "-Z+github.com/thinkparq/protobuf/go/mana"
-    "gementb\006proto3"
+    "roto\"u\n\017SetAliasRequest\022&\n\tentity_id\030\001 \001"
+    "(\0132\023.beegfs.EntityIdSet\022\'\n\013entity_type\030\002"
+    " \001(\0162\022.beegfs.EntityType\022\021\n\tnew_alias\030\003 "
+    "\001(\t\"\022\n\020SetAliasResponse\"\'\n\017GetNodesReque"
+    "st\022\024\n\014include_nics\030\001 \001(\010\"\341\002\n\020GetNodesRes"
+    "ponse\0220\n\005nodes\030\001 \003(\0132!.management.GetNod"
+    "esResponse.Node\0220\n\016meta_root_node\030\002 \001(\0132"
+    "\023.beegfs.EntityIdSetH\000\210\001\001\032\325\001\n\004Node\022\037\n\002id"
+    "\030\001 \001(\0132\023.beegfs.EntityIdSet\022#\n\tnode_type"
+    "\030\002 \001(\0162\020.beegfs.NodeType\022\014\n\004port\030\003 \001(\r\0223"
+    "\n\004nics\030\004 \003(\0132%.management.GetNodesRespon"
+    "se.Node.Nic\032D\n\003Nic\022\014\n\004addr\030\001 \001(\t\022\014\n\004name"
+    "\030\002 \001(\t\022!\n\010nic_type\030\003 \001(\0162\017.beegfs.NicTyp"
+    "eB\021\n\017_meta_root_node\"f\n\021DeleteNodeReques"
+    "t\022&\n\004node\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001"
+    "\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007\n\005_nodeB\n\n\010_exe"
+    "cute\"E\n\022DeleteNodeResponse\022&\n\004node\030\001 \001(\013"
+    "2\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_node\"\023\n\021G"
+    "etTargetsRequest\"\205\005\n\022GetTargetsResponse\022"
+    "6\n\007targets\030\001 \003(\0132%.management.GetTargets"
+    "Response.Target\032\266\004\n\006Target\022\037\n\002id\030\001 \001(\0132\023"
+    ".beegfs.EntityIdSet\022#\n\tnode_type\030\002 \001(\0162\020"
+    ".beegfs.NodeType\0225\n\022reachability_state\030\003"
+    " \001(\0162\031.beegfs.ReachabilityState\0223\n\021consi"
+    "stency_state\030\004 \001(\0162\030.beegfs.ConsistencyS"
+    "tate\022\033\n\016last_contact_s\030\005 \001(\004H\000\210\001\001\022\036\n\021tot"
+    "al_space_bytes\030\006 \001(\004H\001\210\001\001\022\035\n\020free_space_"
+    "bytes\030\007 \001(\004H\002\210\001\001\022\031\n\014total_inodes\030\010 \001(\004H\003"
+    "\210\001\001\022\030\n\013free_inodes\030\t \001(\004H\004\210\001\001\022&\n\010cap_poo"
+    "l\030\n \001(\0162\024.beegfs.CapacityPool\022!\n\004node\030\013 "
+    "\001(\0132\023.beegfs.EntityIdSet\022.\n\014storage_pool"
+    "\030\014 \001(\0132\023.beegfs.EntityIdSetH\005\210\001\001B\021\n\017_las"
+    "t_contact_sB\024\n\022_total_space_bytesB\023\n\021_fr"
+    "ee_space_bytesB\017\n\r_total_inodesB\016\n\014_free"
+    "_inodesB\017\n\r_storage_pool\"l\n\023DeleteTarget"
+    "Request\022(\n\006target\030\001 \001(\0132\023.beegfs.EntityI"
+    "dSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\t\n\007_targ"
+    "etB\n\n\010_execute\"K\n\024DeleteTargetResponse\022("
+    "\n\006target\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001"
+    "B\t\n\007_target\"\234\001\n\025SetTargetStateRequest\022(\n"
+    "\006target\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001\022"
+    "8\n\021consistency_state\030\002 \001(\0162\030.beegfs.Cons"
+    "istencyStateH\001\210\001\001B\t\n\007_targetB\024\n\022_consist"
+    "ency_state\"\030\n\026SetTargetStateResponse\"\021\n\017"
+    "GetPoolsRequest\"\314\001\n\020GetPoolsResponse\0227\n\005"
+    "pools\030\001 \003(\0132(.management.GetPoolsRespons"
+    "e.StoragePool\032\177\n\013StoragePool\022\037\n\002id\030\001 \001(\013"
+    "2\023.beegfs.EntityIdSet\022$\n\007targets\030\002 \003(\0132\023"
+    ".beegfs.EntityIdSet\022)\n\014buddy_groups\030\003 \003("
+    "\0132\023.beegfs.EntityIdSet\"\332\001\n\021CreatePoolReq"
+    "uest\022(\n\tnode_type\030\001 \001(\0162\020.beegfs.NodeTyp"
+    "eH\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210\001\001\022\022\n\005alias\030\003 \001"
+    "(\tH\002\210\001\001\022$\n\007targets\030\004 \003(\0132\023.beegfs.Entity"
+    "IdSet\022)\n\014buddy_groups\030\005 \003(\0132\023.beegfs.Ent"
+    "ityIdSetB\014\n\n_node_typeB\t\n\007_num_idB\010\n\006_al"
+    "ias\"E\n\022CreatePoolResponse\022&\n\004pool\030\001 \001(\0132"
+    "\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_pool\"\225\001\n\021A"
+    "ssignPoolRequest\022&\n\004pool\030\001 \001(\0132\023.beegfs."
+    "EntityIdSetH\000\210\001\001\022$\n\007targets\030\002 \003(\0132\023.beeg"
+    "fs.EntityIdSet\022)\n\014buddy_groups\030\003 \003(\0132\023.b"
+    "eegfs.EntityIdSetB\007\n\005_pool\"E\n\022AssignPool"
+    "Response\022&\n\004pool\030\001 \001(\0132\023.beegfs.EntityId"
+    "SetH\000\210\001\001B\007\n\005_pool\"f\n\021DeletePoolRequest\022&"
+    "\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001\022\024"
+    "\n\007execute\030\002 \001(\010H\001\210\001\001B\007\n\005_poolB\n\n\010_execut"
+    "e\"E\n\022DeletePoolResponse\022&\n\004pool\030\001 \001(\0132\023."
+    "beegfs.EntityIdSetH\000\210\001\001B\007\n\005_pool\"\027\n\025GetB"
+    "uddyGroupsRequest\"\313\003\n\026GetBuddyGroupsResp"
+    "onse\022C\n\014buddy_groups\030\001 \003(\0132-.management."
+    "GetBuddyGroupsResponse.BuddyGroup\032\353\002\n\nBu"
+    "ddyGroup\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdSe"
+    "t\022#\n\tnode_type\030\002 \001(\0162\020.beegfs.NodeType\022+"
+    "\n\016primary_target\030\003 \001(\0132\023.beegfs.EntityId"
+    "Set\022-\n\020secondary_target\030\004 \001(\0132\023.beegfs.E"
+    "ntityIdSet\022;\n\031primary_consistency_state\030"
+    "\005 \001(\0162\030.beegfs.ConsistencyState\022=\n\033secon"
+    "dary_consistency_state\030\006 \001(\0162\030.beegfs.Co"
+    "nsistencyState\022.\n\014storage_pool\030\007 \001(\0132\023.b"
+    "eegfs.EntityIdSetH\000\210\001\001B\017\n\r_storage_pool\""
+    "\235\002\n\027CreateBuddyGroupRequest\022(\n\tnode_type"
+    "\030\001 \001(\0162\020.beegfs.NodeTypeH\000\210\001\001\022\023\n\006num_id\030"
+    "\002 \001(\rH\001\210\001\001\022\022\n\005alias\030\003 \001(\tH\002\210\001\001\0220\n\016primar"
+    "y_target\030\004 \001(\0132\023.beegfs.EntityIdSetH\003\210\001\001"
+    "\0222\n\020secondary_target\030\005 \001(\0132\023.beegfs.Enti"
+    "tyIdSetH\004\210\001\001B\014\n\n_node_typeB\t\n\007_num_idB\010\n"
+    "\006_aliasB\021\n\017_primary_targetB\023\n\021_secondary"
+    "_target\"M\n\030CreateBuddyGroupResponse\022\'\n\005g"
+    "roup\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\010\n\006"
+    "_group\"n\n\027DeleteBuddyGroupRequest\022\'\n\005gro"
+    "up\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001\022\024\n\007ex"
+    "ecute\030\002 \001(\010H\001\210\001\001B\010\n\006_groupB\n\n\010_execute\"M"
+    "\n\030DeleteBuddyGroupResponse\022\'\n\005group\030\001 \001("
+    "\0132\023.beegfs.EntityIdSetH\000\210\001\001B\010\n\006_group\"\030\n"
+    "\026MirrorRootInodeRequest\"\031\n\027MirrorRootIno"
+    "deResponse2\201\t\n\nManagement\022E\n\010SetAlias\022\033."
+    "management.SetAliasRequest\032\034.management."
+    "SetAliasResponse\022E\n\010GetNodes\022\033.managemen"
+    "t.GetNodesRequest\032\034.management.GetNodesR"
+    "esponse\022K\n\nDeleteNode\022\035.management.Delet"
+    "eNodeRequest\032\036.management.DeleteNodeResp"
+    "onse\022K\n\nGetTargets\022\035.management.GetTarge"
+    "tsRequest\032\036.management.GetTargetsRespons"
+    "e\022Q\n\014DeleteTarget\022\037.management.DeleteTar"
+    "getRequest\032 .management.DeleteTargetResp"
+    "onse\022W\n\016SetTargetState\022!.management.SetT"
+    "argetStateRequest\032\".management.SetTarget"
+    "StateResponse\022E\n\010GetPools\022\033.management.G"
+    "etPoolsRequest\032\034.management.GetPoolsResp"
+    "onse\022K\n\nCreatePool\022\035.management.CreatePo"
+    "olRequest\032\036.management.CreatePoolRespons"
+    "e\022K\n\nAssignPool\022\035.management.AssignPoolR"
+    "equest\032\036.management.AssignPoolResponse\022K"
+    "\n\nDeletePool\022\035.management.DeletePoolRequ"
+    "est\032\036.management.DeletePoolResponse\022W\n\016G"
+    "etBuddyGroups\022!.management.GetBuddyGroup"
+    "sRequest\032\".management.GetBuddyGroupsResp"
+    "onse\022]\n\020CreateBuddyGroup\022#.management.Cr"
+    "eateBuddyGroupRequest\032$.management.Creat"
+    "eBuddyGroupResponse\022]\n\020DeleteBuddyGroup\022"
+    "#.management.DeleteBuddyGroupRequest\032$.m"
+    "anagement.DeleteBuddyGroupResponse\022Z\n\017Mi"
+    "rrorRootInode\022\".management.MirrorRootIno"
+    "deRequest\032#.management.MirrorRootInodeRe"
+    "sponseB-Z+github.com/thinkparq/protobuf/"
+    "go/managementb\006proto3"
 };
-static const ::_pbi::DescriptorTable* const descriptor_table_management_2eproto_deps[2] =
+static const ::_pbi::DescriptorTable* const descriptor_table_management_2eproto_deps[1] =
     {
         &::descriptor_table_beegfs_2eproto,
-        &::descriptor_table_license_2eproto,
 };
 static ::absl::once_flag descriptor_table_management_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_management_2eproto = {
     false,
     false,
-    5254,
+    5021,
     descriptor_table_protodef_management_2eproto,
     "management.proto",
     &descriptor_table_management_2eproto_once,
     descriptor_table_management_2eproto_deps,
-    2,
-    35,
+    1,
+    33,
     schemas,
     file_default_instances,
     TableStruct_management_2eproto::offsets,
@@ -8766,402 +8697,6 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> MirrorRootInodeResponse::_table_ = {
 
 ::google::protobuf::Metadata MirrorRootInodeResponse::GetMetadata() const {
   return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class GetLicenseRequest::_Internal {
- public:
-  using HasBits =
-      decltype(std::declval<GetLicenseRequest>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(GetLicenseRequest, _impl_._has_bits_);
-};
-
-GetLicenseRequest::GetLicenseRequest(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:management.GetLicenseRequest)
-}
-GetLicenseRequest::GetLicenseRequest(
-    ::google::protobuf::Arena* arena, const GetLicenseRequest& from)
-    : GetLicenseRequest(arena) {
-  MergeFrom(from);
-}
-inline PROTOBUF_NDEBUG_INLINE GetLicenseRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
-
-inline void GetLicenseRequest::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.reload_ = {};
-}
-GetLicenseRequest::~GetLicenseRequest() {
-  // @@protoc_insertion_point(destructor:management.GetLicenseRequest)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void GetLicenseRequest::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.~Impl_();
-}
-
-const ::google::protobuf::MessageLite::ClassData*
-GetLicenseRequest::GetClassData() const {
-  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
-      ClassDataFull _data_ = {
-          {
-              &_table_.header,
-              nullptr,  // OnDemandRegisterArenaDtor
-              nullptr,  // IsInitialized
-              PROTOBUF_FIELD_OFFSET(GetLicenseRequest, _impl_._cached_size_),
-              false,
-          },
-          &GetLicenseRequest::MergeImpl,
-          &GetLicenseRequest::kDescriptorMethods,
-          &descriptor_table_management_2eproto,
-          nullptr,  // tracker
-      };
-  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
-  return _data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetLicenseRequest::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(GetLicenseRequest, _impl_._has_bits_),
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_GetLicenseRequest_default_instance_._instance,
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::management::GetLicenseRequest>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // optional bool reload = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetLicenseRequest, _impl_.reload_), 0>(),
-     {8, 0, 0, PROTOBUF_FIELD_OFFSET(GetLicenseRequest, _impl_.reload_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // optional bool reload = 1;
-    {PROTOBUF_FIELD_OFFSET(GetLicenseRequest, _impl_.reload_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
-
-PROTOBUF_NOINLINE void GetLicenseRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:management.GetLicenseRequest)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.reload_ = false;
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-::uint8_t* GetLicenseRequest::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:management.GetLicenseRequest)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // optional bool reload = 1;
-  if (cached_has_bits & 0x00000001u) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(
-        1, this->_internal_reload(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:management.GetLicenseRequest)
-  return target;
-}
-
-::size_t GetLicenseRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:management.GetLicenseRequest)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // optional bool reload = 1;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += 2;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-
-void GetLicenseRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<GetLicenseRequest*>(&to_msg);
-  auto& from = static_cast<const GetLicenseRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:management.GetLicenseRequest)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    _this->_impl_.reload_ = from._impl_.reload_;
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void GetLicenseRequest::CopyFrom(const GetLicenseRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:management.GetLicenseRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void GetLicenseRequest::InternalSwap(GetLicenseRequest* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-        swap(_impl_.reload_, other->_impl_.reload_);
-}
-
-::google::protobuf::Metadata GetLicenseRequest::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class GetLicenseResponse::_Internal {
- public:
-  using HasBits =
-      decltype(std::declval<GetLicenseResponse>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(GetLicenseResponse, _impl_._has_bits_);
-};
-
-void GetLicenseResponse::clear_cert_data() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.cert_data_ != nullptr) _impl_.cert_data_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-GetLicenseResponse::GetLicenseResponse(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:management.GetLicenseResponse)
-}
-inline PROTOBUF_NDEBUG_INLINE GetLicenseResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::management::GetLicenseResponse& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
-
-GetLicenseResponse::GetLicenseResponse(
-    ::google::protobuf::Arena* arena,
-    const GetLicenseResponse& from)
-    : ::google::protobuf::Message(arena) {
-  GetLicenseResponse* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.cert_data_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::license::GetCertDataResult>(
-                              arena, *from._impl_.cert_data_)
-                        : nullptr;
-
-  // @@protoc_insertion_point(copy_constructor:management.GetLicenseResponse)
-}
-inline PROTOBUF_NDEBUG_INLINE GetLicenseResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
-
-inline void GetLicenseResponse::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.cert_data_ = {};
-}
-GetLicenseResponse::~GetLicenseResponse() {
-  // @@protoc_insertion_point(destructor:management.GetLicenseResponse)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void GetLicenseResponse::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  delete _impl_.cert_data_;
-  _impl_.~Impl_();
-}
-
-const ::google::protobuf::MessageLite::ClassData*
-GetLicenseResponse::GetClassData() const {
-  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
-      ClassDataFull _data_ = {
-          {
-              &_table_.header,
-              nullptr,  // OnDemandRegisterArenaDtor
-              nullptr,  // IsInitialized
-              PROTOBUF_FIELD_OFFSET(GetLicenseResponse, _impl_._cached_size_),
-              false,
-          },
-          &GetLicenseResponse::MergeImpl,
-          &GetLicenseResponse::kDescriptorMethods,
-          &descriptor_table_management_2eproto,
-          nullptr,  // tracker
-      };
-  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
-  return _data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetLicenseResponse::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(GetLicenseResponse, _impl_._has_bits_),
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GetLicenseResponse_default_instance_._instance,
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::management::GetLicenseResponse>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // optional .license.GetCertDataResult cert_data = 1;
-    {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetLicenseResponse, _impl_.cert_data_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // optional .license.GetCertDataResult cert_data = 1;
-    {PROTOBUF_FIELD_OFFSET(GetLicenseResponse, _impl_.cert_data_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::license::GetCertDataResult>()},
-  }}, {{
-  }},
-};
-
-PROTOBUF_NOINLINE void GetLicenseResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:management.GetLicenseResponse)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.cert_data_ != nullptr);
-    _impl_.cert_data_->Clear();
-  }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-::uint8_t* GetLicenseResponse::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:management.GetLicenseResponse)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // optional .license.GetCertDataResult cert_data = 1;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *_impl_.cert_data_, _impl_.cert_data_->GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:management.GetLicenseResponse)
-  return target;
-}
-
-::size_t GetLicenseResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:management.GetLicenseResponse)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // optional .license.GetCertDataResult cert_data = 1;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.cert_data_);
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-
-void GetLicenseResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<GetLicenseResponse*>(&to_msg);
-  auto& from = static_cast<const GetLicenseResponse&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:management.GetLicenseResponse)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.cert_data_ != nullptr);
-    if (_this->_impl_.cert_data_ == nullptr) {
-      _this->_impl_.cert_data_ =
-          ::google::protobuf::Message::CopyConstruct<::license::GetCertDataResult>(arena, *from._impl_.cert_data_);
-    } else {
-      _this->_impl_.cert_data_->MergeFrom(*from._impl_.cert_data_);
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void GetLicenseResponse::CopyFrom(const GetLicenseResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:management.GetLicenseResponse)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void GetLicenseResponse::InternalSwap(GetLicenseResponse* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  swap(_impl_.cert_data_, other->_impl_.cert_data_);
-}
-
-::google::protobuf::Metadata GetLicenseResponse::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace management
