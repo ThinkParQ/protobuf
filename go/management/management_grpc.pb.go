@@ -33,7 +33,6 @@ const (
 	Management_CreateBuddyGroup_FullMethodName = "/management.Management/CreateBuddyGroup"
 	Management_DeleteBuddyGroup_FullMethodName = "/management.Management/DeleteBuddyGroup"
 	Management_MirrorRootInode_FullMethodName  = "/management.Management/MirrorRootInode"
-	Management_GetLicense_FullMethodName       = "/management.Management/GetLicense"
 )
 
 // ManagementClient is the client API for Management service.
@@ -72,9 +71,6 @@ type ManagementClient interface {
 	DeleteBuddyGroup(ctx context.Context, in *DeleteBuddyGroupRequest, opts ...grpc.CallOption) (*DeleteBuddyGroupResponse, error)
 	// Enable metadata buddy mirroring for the root directory
 	MirrorRootInode(ctx context.Context, in *MirrorRootInodeRequest, opts ...grpc.CallOption) (*MirrorRootInodeResponse, error)
-	// Licensing
-	// Gets license information
-	GetLicense(ctx context.Context, in *GetLicenseRequest, opts ...grpc.CallOption) (*GetLicenseResponse, error)
 }
 
 type managementClient struct {
@@ -225,16 +221,6 @@ func (c *managementClient) MirrorRootInode(ctx context.Context, in *MirrorRootIn
 	return out, nil
 }
 
-func (c *managementClient) GetLicense(ctx context.Context, in *GetLicenseRequest, opts ...grpc.CallOption) (*GetLicenseResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetLicenseResponse)
-	err := c.cc.Invoke(ctx, Management_GetLicense_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ManagementServer is the server API for Management service.
 // All implementations must embed UnimplementedManagementServer
 // for forward compatibility
@@ -271,9 +257,6 @@ type ManagementServer interface {
 	DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error)
 	// Enable metadata buddy mirroring for the root directory
 	MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error)
-	// Licensing
-	// Gets license information
-	GetLicense(context.Context, *GetLicenseRequest) (*GetLicenseResponse, error)
 	mustEmbedUnimplementedManagementServer()
 }
 
@@ -322,9 +305,6 @@ func (UnimplementedManagementServer) DeleteBuddyGroup(context.Context, *DeleteBu
 }
 func (UnimplementedManagementServer) MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MirrorRootInode not implemented")
-}
-func (UnimplementedManagementServer) GetLicense(context.Context, *GetLicenseRequest) (*GetLicenseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetLicense not implemented")
 }
 func (UnimplementedManagementServer) mustEmbedUnimplementedManagementServer() {}
 
@@ -591,24 +571,6 @@ func _Management_MirrorRootInode_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Management_GetLicense_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetLicenseRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ManagementServer).GetLicense(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Management_GetLicense_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagementServer).GetLicense(ctx, req.(*GetLicenseRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Management_ServiceDesc is the grpc.ServiceDesc for Management service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -671,10 +633,6 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MirrorRootInode",
 			Handler:    _Management_MirrorRootInode_Handler,
-		},
-		{
-			MethodName: "GetLicense",
-			Handler:    _Management_GetLicense_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
