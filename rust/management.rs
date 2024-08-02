@@ -348,6 +348,20 @@ pub struct MirrorRootInodeRequest {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MirrorRootInodeResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetLicenseRequest {
+    /// Whether to reload and re-verify the license on the server
+    #[prost(bool, optional, tag = "1")]
+    pub reload: ::core::option::Option<bool>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetLicenseResponse {
+    /// A CertData structure as defined in beecert.proto
+    #[prost(message, optional, tag = "1")]
+    pub cert_data: ::core::option::Option<super::license::GetCertDataResult>,
+}
 /// Generated client implementations.
 pub mod management_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
@@ -801,6 +815,33 @@ pub mod management_client {
                 .insert(GrpcMethod::new("management.Management", "MirrorRootInode"));
             self.inner.unary(req, path, codec).await
         }
+        /// Licensing
+        /// Gets license information
+        pub async fn get_license(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetLicenseRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetLicenseResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/GetLicense",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "GetLicense"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -924,6 +965,15 @@ pub mod management_server {
             request: tonic::Request<super::MirrorRootInodeRequest>,
         ) -> std::result::Result<
             tonic::Response<super::MirrorRootInodeResponse>,
+            tonic::Status,
+        >;
+        /// Licensing
+        /// Gets license information
+        async fn get_license(
+            &self,
+            request: tonic::Request<super::GetLicenseRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetLicenseResponse>,
             tonic::Status,
         >;
     }
@@ -1635,6 +1685,52 @@ pub mod management_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = MirrorRootInodeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/GetLicense" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetLicenseSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::GetLicenseRequest>
+                    for GetLicenseSvc<T> {
+                        type Response = super::GetLicenseResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetLicenseRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::get_license(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = GetLicenseSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
