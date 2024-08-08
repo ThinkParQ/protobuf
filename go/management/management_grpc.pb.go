@@ -19,61 +19,56 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Management_SetAlias_FullMethodName         = "/management.Management/SetAlias"
-	Management_GetNodes_FullMethodName         = "/management.Management/GetNodes"
-	Management_DeleteNode_FullMethodName       = "/management.Management/DeleteNode"
-	Management_GetTargets_FullMethodName       = "/management.Management/GetTargets"
-	Management_DeleteTarget_FullMethodName     = "/management.Management/DeleteTarget"
-	Management_SetTargetState_FullMethodName   = "/management.Management/SetTargetState"
-	Management_GetPools_FullMethodName         = "/management.Management/GetPools"
-	Management_CreatePool_FullMethodName       = "/management.Management/CreatePool"
-	Management_AssignPool_FullMethodName       = "/management.Management/AssignPool"
-	Management_DeletePool_FullMethodName       = "/management.Management/DeletePool"
-	Management_GetBuddyGroups_FullMethodName   = "/management.Management/GetBuddyGroups"
-	Management_CreateBuddyGroup_FullMethodName = "/management.Management/CreateBuddyGroup"
-	Management_DeleteBuddyGroup_FullMethodName = "/management.Management/DeleteBuddyGroup"
-	Management_MirrorRootInode_FullMethodName  = "/management.Management/MirrorRootInode"
-	Management_GetLicense_FullMethodName       = "/management.Management/GetLicense"
+	Management_SetAlias_FullMethodName              = "/management.Management/SetAlias"
+	Management_GetNodes_FullMethodName              = "/management.Management/GetNodes"
+	Management_DeleteNode_FullMethodName            = "/management.Management/DeleteNode"
+	Management_GetTargets_FullMethodName            = "/management.Management/GetTargets"
+	Management_DeleteTarget_FullMethodName          = "/management.Management/DeleteTarget"
+	Management_SetTargetState_FullMethodName        = "/management.Management/SetTargetState"
+	Management_GetPools_FullMethodName              = "/management.Management/GetPools"
+	Management_CreatePool_FullMethodName            = "/management.Management/CreatePool"
+	Management_AssignPool_FullMethodName            = "/management.Management/AssignPool"
+	Management_DeletePool_FullMethodName            = "/management.Management/DeletePool"
+	Management_GetBuddyGroups_FullMethodName        = "/management.Management/GetBuddyGroups"
+	Management_CreateBuddyGroup_FullMethodName      = "/management.Management/CreateBuddyGroup"
+	Management_DeleteBuddyGroup_FullMethodName      = "/management.Management/DeleteBuddyGroup"
+	Management_MirrorRootInode_FullMethodName       = "/management.Management/MirrorRootInode"
+	Management_SetDefaultQuotaLimits_FullMethodName = "/management.Management/SetDefaultQuotaLimits"
+	Management_SetQuotaLimits_FullMethodName        = "/management.Management/SetQuotaLimits"
+	Management_GetQuotaLimits_FullMethodName        = "/management.Management/GetQuotaLimits"
+	Management_GetQuotaUsage_FullMethodName         = "/management.Management/GetQuotaUsage"
+	Management_GetLicense_FullMethodName            = "/management.Management/GetLicense"
 )
 
 // ManagementClient is the client API for Management service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ManagementClient interface {
-	// Sets an entity alias
 	SetAlias(ctx context.Context, in *SetAliasRequest, opts ...grpc.CallOption) (*SetAliasResponse, error)
 	// Nodes
-	// Gets the full list of  nodes
 	GetNodes(ctx context.Context, in *GetNodesRequest, opts ...grpc.CallOption) (*GetNodesResponse, error)
-	// Deletes a node
 	DeleteNode(ctx context.Context, in *DeleteNodeRequest, opts ...grpc.CallOption) (*DeleteNodeResponse, error)
 	// Targets
-	// Gets the full list of targets
 	GetTargets(ctx context.Context, in *GetTargetsRequest, opts ...grpc.CallOption) (*GetTargetsResponse, error)
-	// Deletes a target
 	DeleteTarget(ctx context.Context, in *DeleteTargetRequest, opts ...grpc.CallOption) (*DeleteTargetResponse, error)
 	// Manually set a target consistency state
 	SetTargetState(ctx context.Context, in *SetTargetStateRequest, opts ...grpc.CallOption) (*SetTargetStateResponse, error)
 	// (Storage) pools
-	// Gets the full list of pools
 	GetPools(ctx context.Context, in *GetPoolsRequest, opts ...grpc.CallOption) (*GetPoolsResponse, error)
-	// Creates a new pool
 	CreatePool(ctx context.Context, in *CreatePoolRequest, opts ...grpc.CallOption) (*CreatePoolResponse, error)
-	// Assigns targets and buddy groups to a pool
 	AssignPool(ctx context.Context, in *AssignPoolRequest, opts ...grpc.CallOption) (*AssignPoolResponse, error)
-	// Deletes a pool
 	DeletePool(ctx context.Context, in *DeletePoolRequest, opts ...grpc.CallOption) (*DeletePoolResponse, error)
 	// Buddy groups
-	// Gets the full list of buddy groups
 	GetBuddyGroups(ctx context.Context, in *GetBuddyGroupsRequest, opts ...grpc.CallOption) (*GetBuddyGroupsResponse, error)
-	// Creates a new buddy group
 	CreateBuddyGroup(ctx context.Context, in *CreateBuddyGroupRequest, opts ...grpc.CallOption) (*CreateBuddyGroupResponse, error)
-	// Deletes a buddy group
 	DeleteBuddyGroup(ctx context.Context, in *DeleteBuddyGroupRequest, opts ...grpc.CallOption) (*DeleteBuddyGroupResponse, error)
-	// Enable metadata buddy mirroring for the root directory
 	MirrorRootInode(ctx context.Context, in *MirrorRootInodeRequest, opts ...grpc.CallOption) (*MirrorRootInodeResponse, error)
+	// Quota
+	SetDefaultQuotaLimits(ctx context.Context, in *SetDefaultQuotaLimitsRequest, opts ...grpc.CallOption) (*SetDefaultQuotaLimitsResponse, error)
+	SetQuotaLimits(ctx context.Context, in *SetQuotaLimitsRequest, opts ...grpc.CallOption) (*SetQuotaLimitsResponse, error)
+	GetQuotaLimits(ctx context.Context, in *GetQuotaLimitsRequest, opts ...grpc.CallOption) (Management_GetQuotaLimitsClient, error)
+	GetQuotaUsage(ctx context.Context, in *GetQuotaUsageRequest, opts ...grpc.CallOption) (Management_GetQuotaUsageClient, error)
 	// Licensing
-	// Gets license information
 	GetLicense(ctx context.Context, in *GetLicenseRequest, opts ...grpc.CallOption) (*GetLicenseResponse, error)
 }
 
@@ -225,6 +220,92 @@ func (c *managementClient) MirrorRootInode(ctx context.Context, in *MirrorRootIn
 	return out, nil
 }
 
+func (c *managementClient) SetDefaultQuotaLimits(ctx context.Context, in *SetDefaultQuotaLimitsRequest, opts ...grpc.CallOption) (*SetDefaultQuotaLimitsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetDefaultQuotaLimitsResponse)
+	err := c.cc.Invoke(ctx, Management_SetDefaultQuotaLimits_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) SetQuotaLimits(ctx context.Context, in *SetQuotaLimitsRequest, opts ...grpc.CallOption) (*SetQuotaLimitsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetQuotaLimitsResponse)
+	err := c.cc.Invoke(ctx, Management_SetQuotaLimits_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) GetQuotaLimits(ctx context.Context, in *GetQuotaLimitsRequest, opts ...grpc.CallOption) (Management_GetQuotaLimitsClient, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Management_ServiceDesc.Streams[0], Management_GetQuotaLimits_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &managementGetQuotaLimitsClient{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Management_GetQuotaLimitsClient interface {
+	Recv() (*GetQuotaLimitsResponse, error)
+	grpc.ClientStream
+}
+
+type managementGetQuotaLimitsClient struct {
+	grpc.ClientStream
+}
+
+func (x *managementGetQuotaLimitsClient) Recv() (*GetQuotaLimitsResponse, error) {
+	m := new(GetQuotaLimitsResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *managementClient) GetQuotaUsage(ctx context.Context, in *GetQuotaUsageRequest, opts ...grpc.CallOption) (Management_GetQuotaUsageClient, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Management_ServiceDesc.Streams[1], Management_GetQuotaUsage_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &managementGetQuotaUsageClient{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Management_GetQuotaUsageClient interface {
+	Recv() (*GetQuotaUsageResponse, error)
+	grpc.ClientStream
+}
+
+type managementGetQuotaUsageClient struct {
+	grpc.ClientStream
+}
+
+func (x *managementGetQuotaUsageClient) Recv() (*GetQuotaUsageResponse, error) {
+	m := new(GetQuotaUsageResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *managementClient) GetLicense(ctx context.Context, in *GetLicenseRequest, opts ...grpc.CallOption) (*GetLicenseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetLicenseResponse)
@@ -239,40 +320,31 @@ func (c *managementClient) GetLicense(ctx context.Context, in *GetLicenseRequest
 // All implementations must embed UnimplementedManagementServer
 // for forward compatibility
 type ManagementServer interface {
-	// Sets an entity alias
 	SetAlias(context.Context, *SetAliasRequest) (*SetAliasResponse, error)
 	// Nodes
-	// Gets the full list of  nodes
 	GetNodes(context.Context, *GetNodesRequest) (*GetNodesResponse, error)
-	// Deletes a node
 	DeleteNode(context.Context, *DeleteNodeRequest) (*DeleteNodeResponse, error)
 	// Targets
-	// Gets the full list of targets
 	GetTargets(context.Context, *GetTargetsRequest) (*GetTargetsResponse, error)
-	// Deletes a target
 	DeleteTarget(context.Context, *DeleteTargetRequest) (*DeleteTargetResponse, error)
 	// Manually set a target consistency state
 	SetTargetState(context.Context, *SetTargetStateRequest) (*SetTargetStateResponse, error)
 	// (Storage) pools
-	// Gets the full list of pools
 	GetPools(context.Context, *GetPoolsRequest) (*GetPoolsResponse, error)
-	// Creates a new pool
 	CreatePool(context.Context, *CreatePoolRequest) (*CreatePoolResponse, error)
-	// Assigns targets and buddy groups to a pool
 	AssignPool(context.Context, *AssignPoolRequest) (*AssignPoolResponse, error)
-	// Deletes a pool
 	DeletePool(context.Context, *DeletePoolRequest) (*DeletePoolResponse, error)
 	// Buddy groups
-	// Gets the full list of buddy groups
 	GetBuddyGroups(context.Context, *GetBuddyGroupsRequest) (*GetBuddyGroupsResponse, error)
-	// Creates a new buddy group
 	CreateBuddyGroup(context.Context, *CreateBuddyGroupRequest) (*CreateBuddyGroupResponse, error)
-	// Deletes a buddy group
 	DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error)
-	// Enable metadata buddy mirroring for the root directory
 	MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error)
+	// Quota
+	SetDefaultQuotaLimits(context.Context, *SetDefaultQuotaLimitsRequest) (*SetDefaultQuotaLimitsResponse, error)
+	SetQuotaLimits(context.Context, *SetQuotaLimitsRequest) (*SetQuotaLimitsResponse, error)
+	GetQuotaLimits(*GetQuotaLimitsRequest, Management_GetQuotaLimitsServer) error
+	GetQuotaUsage(*GetQuotaUsageRequest, Management_GetQuotaUsageServer) error
 	// Licensing
-	// Gets license information
 	GetLicense(context.Context, *GetLicenseRequest) (*GetLicenseResponse, error)
 	mustEmbedUnimplementedManagementServer()
 }
@@ -322,6 +394,18 @@ func (UnimplementedManagementServer) DeleteBuddyGroup(context.Context, *DeleteBu
 }
 func (UnimplementedManagementServer) MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MirrorRootInode not implemented")
+}
+func (UnimplementedManagementServer) SetDefaultQuotaLimits(context.Context, *SetDefaultQuotaLimitsRequest) (*SetDefaultQuotaLimitsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultQuotaLimits not implemented")
+}
+func (UnimplementedManagementServer) SetQuotaLimits(context.Context, *SetQuotaLimitsRequest) (*SetQuotaLimitsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetQuotaLimits not implemented")
+}
+func (UnimplementedManagementServer) GetQuotaLimits(*GetQuotaLimitsRequest, Management_GetQuotaLimitsServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetQuotaLimits not implemented")
+}
+func (UnimplementedManagementServer) GetQuotaUsage(*GetQuotaUsageRequest, Management_GetQuotaUsageServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetQuotaUsage not implemented")
 }
 func (UnimplementedManagementServer) GetLicense(context.Context, *GetLicenseRequest) (*GetLicenseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLicense not implemented")
@@ -591,6 +675,84 @@ func _Management_MirrorRootInode_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Management_SetDefaultQuotaLimits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetDefaultQuotaLimitsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).SetDefaultQuotaLimits(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_SetDefaultQuotaLimits_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).SetDefaultQuotaLimits(ctx, req.(*SetDefaultQuotaLimitsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_SetQuotaLimits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetQuotaLimitsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).SetQuotaLimits(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_SetQuotaLimits_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).SetQuotaLimits(ctx, req.(*SetQuotaLimitsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_GetQuotaLimits_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetQuotaLimitsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ManagementServer).GetQuotaLimits(m, &managementGetQuotaLimitsServer{ServerStream: stream})
+}
+
+type Management_GetQuotaLimitsServer interface {
+	Send(*GetQuotaLimitsResponse) error
+	grpc.ServerStream
+}
+
+type managementGetQuotaLimitsServer struct {
+	grpc.ServerStream
+}
+
+func (x *managementGetQuotaLimitsServer) Send(m *GetQuotaLimitsResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Management_GetQuotaUsage_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetQuotaUsageRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ManagementServer).GetQuotaUsage(m, &managementGetQuotaUsageServer{ServerStream: stream})
+}
+
+type Management_GetQuotaUsageServer interface {
+	Send(*GetQuotaUsageResponse) error
+	grpc.ServerStream
+}
+
+type managementGetQuotaUsageServer struct {
+	grpc.ServerStream
+}
+
+func (x *managementGetQuotaUsageServer) Send(m *GetQuotaUsageResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 func _Management_GetLicense_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetLicenseRequest)
 	if err := dec(in); err != nil {
@@ -673,10 +835,29 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Management_MirrorRootInode_Handler,
 		},
 		{
+			MethodName: "SetDefaultQuotaLimits",
+			Handler:    _Management_SetDefaultQuotaLimits_Handler,
+		},
+		{
+			MethodName: "SetQuotaLimits",
+			Handler:    _Management_SetQuotaLimits_Handler,
+		},
+		{
 			MethodName: "GetLicense",
 			Handler:    _Management_GetLicense_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GetQuotaLimits",
+			Handler:       _Management_GetQuotaLimits_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetQuotaUsage",
+			Handler:       _Management_GetQuotaUsage_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "management.proto",
 }

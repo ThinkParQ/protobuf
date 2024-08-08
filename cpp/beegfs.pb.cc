@@ -68,7 +68,7 @@ struct EntityIdSetDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EntityIdSetDefaultTypeInternal _EntityIdSet_default_instance_;
 }  // namespace beegfs
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_beegfs_2eproto[6];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_beegfs_2eproto[8];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_beegfs_2eproto = nullptr;
 const ::uint32_t
@@ -129,14 +129,18 @@ const char descriptor_table_protodef_beegfs_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "\022\035\n\031CAPACITY_POOL_UNSPECIFIED\020\000\022\n\n\006NORMA"
     "L\020\001\022\007\n\003LOW\020\002\022\r\n\tEMERGENCY\020\003*;\n\007NicType\022\030"
     "\n\024NIC_TYPE_UNSPECIFIED\020\000\022\014\n\010ETHERNET\020\001\022\010"
-    "\n\004RDMA\020\002B)Z\'github.com/thinkparq/protobu"
-    "f/go/beegfsb\006proto3"
+    "\n\004RDMA\020\002*]\n\013QuotaIdType\022\035\n\031QUOTA_ID_TYPE"
+    "_UNSPECIFIED\020\000\022\026\n\022QUOTA_ID_TYPE_USER\020\001\022\027"
+    "\n\023QUOTA_ID_TYPE_GROUP\020\002*S\n\tQuotaType\022\032\n\026"
+    "QUOTA_TYPE_UNSPECIFIED\020\000\022\024\n\020QUOTA_TYPE_S"
+    "PACE\020\001\022\024\n\020QUOTA_TYPE_INODE\020\002B)Z\'github.c"
+    "om/thinkparq/protobuf/go/beegfsb\006proto3"
 };
 static ::absl::once_flag descriptor_table_beegfs_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beegfs_2eproto = {
     false,
     false,
-    779,
+    959,
     descriptor_table_protodef_beegfs_2eproto,
     "beegfs.proto",
     &descriptor_table_beegfs_2eproto_once,
@@ -202,6 +206,24 @@ const ::google::protobuf::EnumDescriptor* NicType_descriptor() {
 PROTOBUF_CONSTINIT const uint32_t NicType_internal_data_[] = {
     196608u, 0u, };
 bool NicType_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+const ::google::protobuf::EnumDescriptor* QuotaIdType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
+  return file_level_enum_descriptors_beegfs_2eproto[6];
+}
+PROTOBUF_CONSTINIT const uint32_t QuotaIdType_internal_data_[] = {
+    196608u, 0u, };
+bool QuotaIdType_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+const ::google::protobuf::EnumDescriptor* QuotaType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
+  return file_level_enum_descriptors_beegfs_2eproto[7];
+}
+PROTOBUF_CONSTINIT const uint32_t QuotaType_internal_data_[] = {
+    196608u, 0u, };
+bool QuotaType_IsValid(int value) {
   return 0 <= value && value <= 2;
 }
 // ===================================================================
