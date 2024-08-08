@@ -37,6 +37,30 @@ struct SetTargetStateResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetTargetStateResponseDefaultTypeInternal _SetTargetStateResponse_default_instance_;
       template <typename>
+PROTOBUF_CONSTEXPR SetQuotaLimitsResponse::SetQuotaLimitsResponse(::_pbi::ConstantInitialized) {}
+struct SetQuotaLimitsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetQuotaLimitsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetQuotaLimitsResponseDefaultTypeInternal() {}
+  union {
+    SetQuotaLimitsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetQuotaLimitsResponseDefaultTypeInternal _SetQuotaLimitsResponse_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR SetDefaultQuotaLimitsResponse::SetDefaultQuotaLimitsResponse(::_pbi::ConstantInitialized) {}
+struct SetDefaultQuotaLimitsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetDefaultQuotaLimitsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetDefaultQuotaLimitsResponseDefaultTypeInternal() {}
+  union {
+    SetDefaultQuotaLimitsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetDefaultQuotaLimitsResponseDefaultTypeInternal _SetDefaultQuotaLimitsResponse_default_instance_;
+      template <typename>
 PROTOBUF_CONSTEXPR SetAliasResponse::SetAliasResponse(::_pbi::ConstantInitialized) {}
 struct SetAliasResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetAliasResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -84,8 +108,15 @@ struct GetTargetsRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTargetsRequestDefaultTypeInternal _GetTargetsRequest_default_instance_;
-      template <typename>
-PROTOBUF_CONSTEXPR GetPoolsRequest::GetPoolsRequest(::_pbi::ConstantInitialized) {}
+
+inline constexpr GetPoolsRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : with_quota_limits_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPoolsRequest::GetPoolsRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct GetPoolsRequestDefaultTypeInternal {
   PROTOBUF_CONSTEXPR GetPoolsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~GetPoolsRequestDefaultTypeInternal() {}
@@ -192,6 +223,29 @@ struct SetTargetStateRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetTargetStateRequestDefaultTypeInternal _SetTargetStateRequest_default_instance_;
 
+inline constexpr SetDefaultQuotaLimitsRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        pool_{nullptr},
+        user_space_limit_{::int64_t{0}},
+        user_inode_limit_{::int64_t{0}},
+        group_space_limit_{::int64_t{0}},
+        group_inode_limit_{::int64_t{0}} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetDefaultQuotaLimitsRequest::SetDefaultQuotaLimitsRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetDefaultQuotaLimitsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetDefaultQuotaLimitsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetDefaultQuotaLimitsRequestDefaultTypeInternal() {}
+  union {
+    SetDefaultQuotaLimitsRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetDefaultQuotaLimitsRequestDefaultTypeInternal _SetDefaultQuotaLimitsRequest_default_instance_;
+
 inline constexpr SetAliasRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -214,6 +268,31 @@ struct SetAliasRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetAliasRequestDefaultTypeInternal _SetAliasRequest_default_instance_;
+
+inline constexpr QuotaInfo::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        pool_{nullptr},
+        quota_id_{0u},
+        id_type_{static_cast< ::beegfs::QuotaIdType >(0)},
+        space_limit_{::int64_t{0}},
+        inode_limit_{::int64_t{0}},
+        space_used_{::int64_t{0}},
+        inode_used_{::int64_t{0}} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR QuotaInfo::QuotaInfo(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct QuotaInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR QuotaInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~QuotaInfoDefaultTypeInternal() {}
+  union {
+    QuotaInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QuotaInfoDefaultTypeInternal _QuotaInfo_default_instance_;
 
 inline constexpr GetTargetsResponse_Target::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -245,12 +324,61 @@ struct GetTargetsResponse_TargetDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTargetsResponse_TargetDefaultTypeInternal _GetTargetsResponse_Target_default_instance_;
 
+inline constexpr GetQuotaUsageRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        pool_{nullptr},
+        quota_id_min_{0u},
+        quota_id_max_{0u},
+        id_type_{static_cast< ::beegfs::QuotaIdType >(0)},
+        exceeded_{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetQuotaUsageRequest::GetQuotaUsageRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetQuotaUsageRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetQuotaUsageRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetQuotaUsageRequestDefaultTypeInternal() {}
+  union {
+    GetQuotaUsageRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetQuotaUsageRequestDefaultTypeInternal _GetQuotaUsageRequest_default_instance_;
+
+inline constexpr GetQuotaLimitsRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        pool_{nullptr},
+        quota_id_min_{0u},
+        quota_id_max_{0u},
+        id_type_{static_cast< ::beegfs::QuotaIdType >(0)} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetQuotaLimitsRequest::GetQuotaLimitsRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetQuotaLimitsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetQuotaLimitsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetQuotaLimitsRequestDefaultTypeInternal() {}
+  union {
+    GetQuotaLimitsRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetQuotaLimitsRequestDefaultTypeInternal _GetQuotaLimitsRequest_default_instance_;
+
 inline constexpr GetPoolsResponse_StoragePool::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         targets_{},
         buddy_groups_{},
-        id_{nullptr} {}
+        id_{nullptr},
+        user_space_limit_{::int64_t{0}},
+        user_inode_limit_{::int64_t{0}},
+        group_space_limit_{::int64_t{0}},
+        group_inode_limit_{::int64_t{0}} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR GetPoolsResponse_StoragePool::GetPoolsResponse_StoragePool(::_pbi::ConstantInitialized)
@@ -597,6 +725,25 @@ struct AssignPoolRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AssignPoolRequestDefaultTypeInternal _AssignPoolRequest_default_instance_;
 
+inline constexpr SetQuotaLimitsRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : limits_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetQuotaLimitsRequest::SetQuotaLimitsRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetQuotaLimitsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetQuotaLimitsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetQuotaLimitsRequestDefaultTypeInternal() {}
+  union {
+    SetQuotaLimitsRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetQuotaLimitsRequestDefaultTypeInternal _SetQuotaLimitsRequest_default_instance_;
+
 inline constexpr GetTargetsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : targets_{},
@@ -615,6 +762,45 @@ struct GetTargetsResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetTargetsResponseDefaultTypeInternal _GetTargetsResponse_default_instance_;
+
+inline constexpr GetQuotaUsageResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        entry_{nullptr},
+        refresh_period_s_{::uint64_t{0u}} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetQuotaUsageResponse::GetQuotaUsageResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetQuotaUsageResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetQuotaUsageResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetQuotaUsageResponseDefaultTypeInternal() {}
+  union {
+    GetQuotaUsageResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetQuotaUsageResponseDefaultTypeInternal _GetQuotaUsageResponse_default_instance_;
+
+inline constexpr GetQuotaLimitsResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        limits_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetQuotaLimitsResponse::GetQuotaLimitsResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetQuotaLimitsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetQuotaLimitsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetQuotaLimitsResponseDefaultTypeInternal() {}
+  union {
+    GetQuotaLimitsResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetQuotaLimitsResponseDefaultTypeInternal _GetQuotaLimitsResponse_default_instance_;
 
 inline constexpr GetPoolsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -891,6 +1077,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::GetPoolsRequest, _impl_.with_quota_limits_),
         PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -902,9 +1089,17 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _impl_.targets_),
         PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _impl_.buddy_groups_),
+        PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _impl_.user_space_limit_),
+        PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _impl_.user_inode_limit_),
+        PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _impl_.group_space_limit_),
+        PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse_StoragePool, _impl_.group_inode_limit_),
         0,
         ~0u,
         ~0u,
+        1,
+        2,
+        3,
+        4,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::management::GetPoolsResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1093,6 +1288,127 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_.quota_id_),
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_.id_type_),
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_.pool_),
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_.space_limit_),
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_.inode_limit_),
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_.space_used_),
+        PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_.inode_used_),
+        1,
+        ~0u,
+        0,
+        2,
+        3,
+        4,
+        5,
+        PROTOBUF_FIELD_OFFSET(::management::SetDefaultQuotaLimitsRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::management::SetDefaultQuotaLimitsRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::SetDefaultQuotaLimitsRequest, _impl_.pool_),
+        PROTOBUF_FIELD_OFFSET(::management::SetDefaultQuotaLimitsRequest, _impl_.user_space_limit_),
+        PROTOBUF_FIELD_OFFSET(::management::SetDefaultQuotaLimitsRequest, _impl_.user_inode_limit_),
+        PROTOBUF_FIELD_OFFSET(::management::SetDefaultQuotaLimitsRequest, _impl_.group_space_limit_),
+        PROTOBUF_FIELD_OFFSET(::management::SetDefaultQuotaLimitsRequest, _impl_.group_inode_limit_),
+        0,
+        1,
+        2,
+        3,
+        4,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::management::SetDefaultQuotaLimitsResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::management::SetQuotaLimitsRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::SetQuotaLimitsRequest, _impl_.limits_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::management::SetQuotaLimitsResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.quota_id_min_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.quota_id_max_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.id_type_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.pool_),
+        1,
+        2,
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsResponse, _impl_.limits_),
+        0,
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.quota_id_min_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.quota_id_max_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.id_type_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.pool_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.exceeded_),
+        1,
+        2,
+        ~0u,
+        0,
+        3,
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageResponse, _impl_.entry_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageResponse, _impl_.refresh_period_s_),
+        0,
+        1,
         PROTOBUF_FIELD_OFFSET(::management::GetLicenseRequest, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::GetLicenseRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1133,25 +1449,34 @@ static const ::_pbi::MigrationSchema
         {163, 173, -1, sizeof(::management::SetTargetStateRequest)},
         {175, -1, -1, sizeof(::management::SetTargetStateResponse)},
         {183, -1, -1, sizeof(::management::GetPoolsRequest)},
-        {191, 202, -1, sizeof(::management::GetPoolsResponse_StoragePool)},
-        {205, -1, -1, sizeof(::management::GetPoolsResponse)},
-        {214, 227, -1, sizeof(::management::CreatePoolRequest)},
-        {232, 241, -1, sizeof(::management::CreatePoolResponse)},
-        {242, 253, -1, sizeof(::management::AssignPoolRequest)},
-        {256, 265, -1, sizeof(::management::AssignPoolResponse)},
-        {266, 276, -1, sizeof(::management::DeletePoolRequest)},
-        {278, 287, -1, sizeof(::management::DeletePoolResponse)},
-        {288, -1, -1, sizeof(::management::GetBuddyGroupsRequest)},
-        {296, 311, -1, sizeof(::management::GetBuddyGroupsResponse_BuddyGroup)},
-        {318, -1, -1, sizeof(::management::GetBuddyGroupsResponse)},
-        {327, 340, -1, sizeof(::management::CreateBuddyGroupRequest)},
-        {345, 354, -1, sizeof(::management::CreateBuddyGroupResponse)},
-        {355, 365, -1, sizeof(::management::DeleteBuddyGroupRequest)},
-        {367, 376, -1, sizeof(::management::DeleteBuddyGroupResponse)},
-        {377, -1, -1, sizeof(::management::MirrorRootInodeRequest)},
-        {385, -1, -1, sizeof(::management::MirrorRootInodeResponse)},
-        {393, 402, -1, sizeof(::management::GetLicenseRequest)},
-        {403, 412, -1, sizeof(::management::GetLicenseResponse)},
+        {192, 207, -1, sizeof(::management::GetPoolsResponse_StoragePool)},
+        {214, -1, -1, sizeof(::management::GetPoolsResponse)},
+        {223, 236, -1, sizeof(::management::CreatePoolRequest)},
+        {241, 250, -1, sizeof(::management::CreatePoolResponse)},
+        {251, 262, -1, sizeof(::management::AssignPoolRequest)},
+        {265, 274, -1, sizeof(::management::AssignPoolResponse)},
+        {275, 285, -1, sizeof(::management::DeletePoolRequest)},
+        {287, 296, -1, sizeof(::management::DeletePoolResponse)},
+        {297, -1, -1, sizeof(::management::GetBuddyGroupsRequest)},
+        {305, 320, -1, sizeof(::management::GetBuddyGroupsResponse_BuddyGroup)},
+        {327, -1, -1, sizeof(::management::GetBuddyGroupsResponse)},
+        {336, 349, -1, sizeof(::management::CreateBuddyGroupRequest)},
+        {354, 363, -1, sizeof(::management::CreateBuddyGroupResponse)},
+        {364, 374, -1, sizeof(::management::DeleteBuddyGroupRequest)},
+        {376, 385, -1, sizeof(::management::DeleteBuddyGroupResponse)},
+        {386, -1, -1, sizeof(::management::MirrorRootInodeRequest)},
+        {394, -1, -1, sizeof(::management::MirrorRootInodeResponse)},
+        {402, 417, -1, sizeof(::management::QuotaInfo)},
+        {424, 437, -1, sizeof(::management::SetDefaultQuotaLimitsRequest)},
+        {442, -1, -1, sizeof(::management::SetDefaultQuotaLimitsResponse)},
+        {450, -1, -1, sizeof(::management::SetQuotaLimitsRequest)},
+        {459, -1, -1, sizeof(::management::SetQuotaLimitsResponse)},
+        {467, 479, -1, sizeof(::management::GetQuotaLimitsRequest)},
+        {483, 492, -1, sizeof(::management::GetQuotaLimitsResponse)},
+        {493, 506, -1, sizeof(::management::GetQuotaUsageRequest)},
+        {511, 521, -1, sizeof(::management::GetQuotaUsageResponse)},
+        {523, 532, -1, sizeof(::management::GetLicenseRequest)},
+        {533, 542, -1, sizeof(::management::GetLicenseResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::management::_SetAliasRequest_default_instance_._instance,
@@ -1187,6 +1512,15 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::management::_DeleteBuddyGroupResponse_default_instance_._instance,
     &::management::_MirrorRootInodeRequest_default_instance_._instance,
     &::management::_MirrorRootInodeResponse_default_instance_._instance,
+    &::management::_QuotaInfo_default_instance_._instance,
+    &::management::_SetDefaultQuotaLimitsRequest_default_instance_._instance,
+    &::management::_SetDefaultQuotaLimitsResponse_default_instance_._instance,
+    &::management::_SetQuotaLimitsRequest_default_instance_._instance,
+    &::management::_SetQuotaLimitsResponse_default_instance_._instance,
+    &::management::_GetQuotaLimitsRequest_default_instance_._instance,
+    &::management::_GetQuotaLimitsResponse_default_instance_._instance,
+    &::management::_GetQuotaUsageRequest_default_instance_._instance,
+    &::management::_GetQuotaUsageResponse_default_instance_._instance,
     &::management::_GetLicenseRequest_default_instance_._instance,
     &::management::_GetLicenseResponse_default_instance_._instance,
 };
@@ -1237,12 +1571,18 @@ const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION
     "tityIdSetH\000\210\001\001\0228\n\021consistency_state\030\002 \001("
     "\0162\030.beegfs.ConsistencyStateH\001\210\001\001B\t\n\007_tar"
     "getB\024\n\022_consistency_state\"\030\n\026SetTargetSt"
-    "ateResponse\"\021\n\017GetPoolsRequest\"\314\001\n\020GetPo"
-    "olsResponse\0227\n\005pools\030\001 \003(\0132(.management."
-    "GetPoolsResponse.StoragePool\032\177\n\013StorageP"
-    "ool\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdSet\022$\n\007"
-    "targets\030\002 \003(\0132\023.beegfs.EntityIdSet\022)\n\014bu"
-    "ddy_groups\030\003 \003(\0132\023.beegfs.EntityIdSet\"\332\001"
+    "ateResponse\",\n\017GetPoolsRequest\022\031\n\021with_q"
+    "uota_limits\030\001 \001(\010\"\241\003\n\020GetPoolsResponse\0227"
+    "\n\005pools\030\001 \003(\0132(.management.GetPoolsRespo"
+    "nse.StoragePool\032\323\002\n\013StoragePool\022\037\n\002id\030\001 "
+    "\001(\0132\023.beegfs.EntityIdSet\022$\n\007targets\030\002 \003("
+    "\0132\023.beegfs.EntityIdSet\022)\n\014buddy_groups\030\003"
+    " \003(\0132\023.beegfs.EntityIdSet\022\035\n\020user_space_"
+    "limit\030\004 \001(\003H\000\210\001\001\022\035\n\020user_inode_limit\030\005 \001"
+    "(\003H\001\210\001\001\022\036\n\021group_space_limit\030\006 \001(\003H\002\210\001\001\022"
+    "\036\n\021group_inode_limit\030\007 \001(\003H\003\210\001\001B\023\n\021_user"
+    "_space_limitB\023\n\021_user_inode_limitB\024\n\022_gr"
+    "oup_space_limitB\024\n\022_group_inode_limit\"\332\001"
     "\n\021CreatePoolRequest\022(\n\tnode_type\030\001 \001(\0162\020"
     ".beegfs.NodeTypeH\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210"
     "\001\001\022\022\n\005alias\030\003 \001(\tH\002\210\001\001\022$\n\007targets\030\004 \003(\0132"
@@ -1287,43 +1627,86 @@ const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION
     "pB\n\n\010_execute\"M\n\030DeleteBuddyGroupRespons"
     "e\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210"
     "\001\001B\010\n\006_group\"\030\n\026MirrorRootInodeRequest\"\031"
-    "\n\027MirrorRootInodeResponse\"3\n\021GetLicenseR"
-    "equest\022\023\n\006reload\030\001 \001(\010H\000\210\001\001B\t\n\007_reload\"V"
-    "\n\022GetLicenseResponse\0222\n\tcert_data\030\001 \001(\0132"
-    "\032.license.GetCertDataResultH\000\210\001\001B\014\n\n_cer"
-    "t_data2\316\t\n\nManagement\022E\n\010SetAlias\022\033.mana"
-    "gement.SetAliasRequest\032\034.management.SetA"
-    "liasResponse\022E\n\010GetNodes\022\033.management.Ge"
-    "tNodesRequest\032\034.management.GetNodesRespo"
-    "nse\022K\n\nDeleteNode\022\035.management.DeleteNod"
-    "eRequest\032\036.management.DeleteNodeResponse"
-    "\022K\n\nGetTargets\022\035.management.GetTargetsRe"
-    "quest\032\036.management.GetTargetsResponse\022Q\n"
-    "\014DeleteTarget\022\037.management.DeleteTargetR"
-    "equest\032 .management.DeleteTargetResponse"
-    "\022W\n\016SetTargetState\022!.management.SetTarge"
-    "tStateRequest\032\".management.SetTargetStat"
-    "eResponse\022E\n\010GetPools\022\033.management.GetPo"
-    "olsRequest\032\034.management.GetPoolsResponse"
-    "\022K\n\nCreatePool\022\035.management.CreatePoolRe"
-    "quest\032\036.management.CreatePoolResponse\022K\n"
-    "\nAssignPool\022\035.management.AssignPoolReque"
-    "st\032\036.management.AssignPoolResponse\022K\n\nDe"
-    "letePool\022\035.management.DeletePoolRequest\032"
-    "\036.management.DeletePoolResponse\022W\n\016GetBu"
-    "ddyGroups\022!.management.GetBuddyGroupsReq"
-    "uest\032\".management.GetBuddyGroupsResponse"
-    "\022]\n\020CreateBuddyGroup\022#.management.Create"
-    "BuddyGroupRequest\032$.management.CreateBud"
-    "dyGroupResponse\022]\n\020DeleteBuddyGroup\022#.ma"
-    "nagement.DeleteBuddyGroupRequest\032$.manag"
-    "ement.DeleteBuddyGroupResponse\022Z\n\017Mirror"
-    "RootInode\022\".management.MirrorRootInodeRe"
-    "quest\032#.management.MirrorRootInodeRespon"
-    "se\022K\n\nGetLicense\022\035.management.GetLicense"
-    "Request\032\036.management.GetLicenseResponseB"
-    "-Z+github.com/thinkparq/protobuf/go/mana"
-    "gementb\006proto3"
+    "\n\027MirrorRootInodeResponse\"\252\002\n\tQuotaInfo\022"
+    "\025\n\010quota_id\030\001 \001(\rH\000\210\001\001\022$\n\007id_type\030\002 \001(\0162"
+    "\023.beegfs.QuotaIdType\022&\n\004pool\030\003 \001(\0132\023.bee"
+    "gfs.EntityIdSetH\001\210\001\001\022\030\n\013space_limit\030\004 \001("
+    "\003H\002\210\001\001\022\030\n\013inode_limit\030\005 \001(\003H\003\210\001\001\022\027\n\nspac"
+    "e_used\030\006 \001(\003H\004\210\001\001\022\027\n\ninode_used\030\007 \001(\003H\005\210"
+    "\001\001B\013\n\t_quota_idB\007\n\005_poolB\016\n\014_space_limit"
+    "B\016\n\014_inode_limitB\r\n\013_space_usedB\r\n\013_inod"
+    "e_used\"\243\002\n\034SetDefaultQuotaLimitsRequest\022"
+    "&\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001\022"
+    "\035\n\020user_space_limit\030\002 \001(\003H\001\210\001\001\022\035\n\020user_i"
+    "node_limit\030\003 \001(\003H\002\210\001\001\022\036\n\021group_space_lim"
+    "it\030\004 \001(\003H\003\210\001\001\022\036\n\021group_inode_limit\030\005 \001(\003"
+    "H\004\210\001\001B\007\n\005_poolB\023\n\021_user_space_limitB\023\n\021_"
+    "user_inode_limitB\024\n\022_group_space_limitB\024"
+    "\n\022_group_inode_limit\"\037\n\035SetDefaultQuotaL"
+    "imitsResponse\">\n\025SetQuotaLimitsRequest\022%"
+    "\n\006limits\030\001 \003(\0132\025.management.QuotaInfo\"\030\n"
+    "\026SetQuotaLimitsResponse\"\306\001\n\025GetQuotaLimi"
+    "tsRequest\022\031\n\014quota_id_min\030\001 \001(\rH\000\210\001\001\022\031\n\014"
+    "quota_id_max\030\002 \001(\rH\001\210\001\001\022$\n\007id_type\030\003 \001(\016"
+    "2\023.beegfs.QuotaIdType\022&\n\004pool\030\004 \001(\0132\023.be"
+    "egfs.EntityIdSetH\002\210\001\001B\017\n\r_quota_id_minB\017"
+    "\n\r_quota_id_maxB\007\n\005_pool\"O\n\026GetQuotaLimi"
+    "tsResponse\022*\n\006limits\030\001 \001(\0132\025.management."
+    "QuotaInfoH\000\210\001\001B\t\n\007_limits\"\351\001\n\024GetQuotaUs"
+    "ageRequest\022\031\n\014quota_id_min\030\001 \001(\rH\000\210\001\001\022\031\n"
+    "\014quota_id_max\030\002 \001(\rH\001\210\001\001\022$\n\007id_type\030\003 \001("
+    "\0162\023.beegfs.QuotaIdType\022&\n\004pool\030\004 \001(\0132\023.b"
+    "eegfs.EntityIdSetH\002\210\001\001\022\025\n\010exceeded\030\005 \001(\010"
+    "H\003\210\001\001B\017\n\r_quota_id_minB\017\n\r_quota_id_maxB"
+    "\007\n\005_poolB\013\n\t_exceeded\"\200\001\n\025GetQuotaUsageR"
+    "esponse\022)\n\005entry\030\001 \001(\0132\025.management.Quot"
+    "aInfoH\000\210\001\001\022\035\n\020refresh_period_s\030\002 \001(\004H\001\210\001"
+    "\001B\010\n\006_entryB\023\n\021_refresh_period_s\"3\n\021GetL"
+    "icenseRequest\022\023\n\006reload\030\001 \001(\010H\000\210\001\001B\t\n\007_r"
+    "eload\"V\n\022GetLicenseResponse\0222\n\tcert_data"
+    "\030\001 \001(\0132\032.license.GetCertDataResultH\000\210\001\001B"
+    "\014\n\n_cert_data2\310\014\n\nManagement\022E\n\010SetAlias"
+    "\022\033.management.SetAliasRequest\032\034.manageme"
+    "nt.SetAliasResponse\022E\n\010GetNodes\022\033.manage"
+    "ment.GetNodesRequest\032\034.management.GetNod"
+    "esResponse\022K\n\nDeleteNode\022\035.management.De"
+    "leteNodeRequest\032\036.management.DeleteNodeR"
+    "esponse\022K\n\nGetTargets\022\035.management.GetTa"
+    "rgetsRequest\032\036.management.GetTargetsResp"
+    "onse\022Q\n\014DeleteTarget\022\037.management.Delete"
+    "TargetRequest\032 .management.DeleteTargetR"
+    "esponse\022W\n\016SetTargetState\022!.management.S"
+    "etTargetStateRequest\032\".management.SetTar"
+    "getStateResponse\022E\n\010GetPools\022\033.managemen"
+    "t.GetPoolsRequest\032\034.management.GetPoolsR"
+    "esponse\022K\n\nCreatePool\022\035.management.Creat"
+    "ePoolRequest\032\036.management.CreatePoolResp"
+    "onse\022K\n\nAssignPool\022\035.management.AssignPo"
+    "olRequest\032\036.management.AssignPoolRespons"
+    "e\022K\n\nDeletePool\022\035.management.DeletePoolR"
+    "equest\032\036.management.DeletePoolResponse\022W"
+    "\n\016GetBuddyGroups\022!.management.GetBuddyGr"
+    "oupsRequest\032\".management.GetBuddyGroupsR"
+    "esponse\022]\n\020CreateBuddyGroup\022#.management"
+    ".CreateBuddyGroupRequest\032$.management.Cr"
+    "eateBuddyGroupResponse\022]\n\020DeleteBuddyGro"
+    "up\022#.management.DeleteBuddyGroupRequest\032"
+    "$.management.DeleteBuddyGroupResponse\022Z\n"
+    "\017MirrorRootInode\022\".management.MirrorRoot"
+    "InodeRequest\032#.management.MirrorRootInod"
+    "eResponse\022l\n\025SetDefaultQuotaLimits\022(.man"
+    "agement.SetDefaultQuotaLimitsRequest\032).m"
+    "anagement.SetDefaultQuotaLimitsResponse\022"
+    "W\n\016SetQuotaLimits\022!.management.SetQuotaL"
+    "imitsRequest\032\".management.SetQuotaLimits"
+    "Response\022Y\n\016GetQuotaLimits\022!.management."
+    "GetQuotaLimitsRequest\032\".management.GetQu"
+    "otaLimitsResponse0\001\022V\n\rGetQuotaUsage\022 .m"
+    "anagement.GetQuotaUsageRequest\032!.managem"
+    "ent.GetQuotaUsageResponse0\001\022K\n\nGetLicens"
+    "e\022\035.management.GetLicenseRequest\032\036.manag"
+    "ement.GetLicenseResponseB-Z+github.com/t"
+    "hinkparq/protobuf/go/managementb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_management_2eproto_deps[2] =
     {
@@ -1334,13 +1717,13 @@ static ::absl::once_flag descriptor_table_management_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_management_2eproto = {
     false,
     false,
-    5254,
+    7239,
     descriptor_table_protodef_management_2eproto,
     "management.proto",
     &descriptor_table_management_2eproto_once,
     descriptor_table_management_2eproto_deps,
     2,
-    35,
+    44,
     schemas,
     file_default_instances,
     TableStruct_management_2eproto::offsets,
@@ -4781,19 +5164,32 @@ class GetPoolsRequest::_Internal {
 };
 
 GetPoolsRequest::GetPoolsRequest(::google::protobuf::Arena* arena)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:management.GetPoolsRequest)
 }
 GetPoolsRequest::GetPoolsRequest(
-    ::google::protobuf::Arena* arena,
-    const GetPoolsRequest& from)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-  GetPoolsRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+    ::google::protobuf::Arena* arena, const GetPoolsRequest& from)
+    : GetPoolsRequest(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE GetPoolsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-  // @@protoc_insertion_point(copy_constructor:management.GetPoolsRequest)
+inline void GetPoolsRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.with_quota_limits_ = {};
+}
+GetPoolsRequest::~GetPoolsRequest() {
+  // @@protoc_insertion_point(destructor:management.GetPoolsRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetPoolsRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
 const ::google::protobuf::MessageLite::ClassData*
@@ -4817,15 +5213,15 @@ GetPoolsRequest::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2> GetPoolsRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetPoolsRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    0, 0,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967295,  // skipmap
-    offsetof(decltype(_table_), field_names),  // no field_entries
-    0,  // num_field_entries
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_GetPoolsRequest_default_instance_._instance,
@@ -4835,25 +5231,102 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> GetPoolsRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::management::GetPoolsRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // bool with_quota_limits = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetPoolsRequest, _impl_.with_quota_limits_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GetPoolsRequest, _impl_.with_quota_limits_)}},
   }}, {{
     65535, 65535
+  }}, {{
+    // bool with_quota_limits = 1;
+    {PROTOBUF_FIELD_OFFSET(GetPoolsRequest, _impl_.with_quota_limits_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
-  // no field_entries, or aux_entries
+  // no aux_entries
   {{
   }},
 };
 
+PROTOBUF_NOINLINE void GetPoolsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.GetPoolsRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.with_quota_limits_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* GetPoolsRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.GetPoolsRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool with_quota_limits = 1;
+  if (this->_internal_with_quota_limits() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_with_quota_limits(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.GetPoolsRequest)
+  return target;
+}
+
+::size_t GetPoolsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.GetPoolsRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool with_quota_limits = 1;
+  if (this->_internal_with_quota_limits() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
 
 
+void GetPoolsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetPoolsRequest*>(&to_msg);
+  auto& from = static_cast<const GetPoolsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.GetPoolsRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_with_quota_limits() != 0) {
+    _this->_impl_.with_quota_limits_ = from._impl_.with_quota_limits_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPoolsRequest::CopyFrom(const GetPoolsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.GetPoolsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
 
-
-
-
+void GetPoolsRequest::InternalSwap(GetPoolsRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.with_quota_limits_, other->_impl_.with_quota_limits_);
+}
 
 ::google::protobuf::Metadata GetPoolsRequest::GetMetadata() const {
-  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
@@ -4904,6 +5377,13 @@ GetPoolsResponse_StoragePool::GetPoolsResponse_StoragePool(
   _impl_.id_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
                               arena, *from._impl_.id_)
                         : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, user_space_limit_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, user_space_limit_),
+           offsetof(Impl_, group_inode_limit_) -
+               offsetof(Impl_, user_space_limit_) +
+               sizeof(Impl_::group_inode_limit_));
 
   // @@protoc_insertion_point(copy_constructor:management.GetPoolsResponse.StoragePool)
 }
@@ -4916,7 +5396,12 @@ inline PROTOBUF_NDEBUG_INLINE GetPoolsResponse_StoragePool::Impl_::Impl_(
 
 inline void GetPoolsResponse_StoragePool::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.id_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, id_),
+           0,
+           offsetof(Impl_, group_inode_limit_) -
+               offsetof(Impl_, id_) +
+               sizeof(Impl_::group_inode_limit_));
 }
 GetPoolsResponse_StoragePool::~GetPoolsResponse_StoragePool() {
   // @@protoc_insertion_point(destructor:management.GetPoolsResponse.StoragePool)
@@ -4950,15 +5435,15 @@ GetPoolsResponse_StoragePool::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 3, 0, 2> GetPoolsResponse_StoragePool::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 3, 0, 2> GetPoolsResponse_StoragePool::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967168,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    7,  // num_field_entries
     3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_GetPoolsResponse_StoragePool_default_instance_._instance,
@@ -4978,6 +5463,18 @@ const ::_pbi::TcParseTable<2, 3, 3, 0, 2> GetPoolsResponse_StoragePool::_table_ 
     // repeated .beegfs.EntityIdSet buddy_groups = 3;
     {::_pbi::TcParser::FastMtR1,
      {26, 63, 2, PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.buddy_groups_)}},
+    // optional int64 user_space_limit = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(GetPoolsResponse_StoragePool, _impl_.user_space_limit_), 1>(),
+     {32, 1, 0, PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.user_space_limit_)}},
+    // optional int64 user_inode_limit = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(GetPoolsResponse_StoragePool, _impl_.user_inode_limit_), 2>(),
+     {40, 2, 0, PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.user_inode_limit_)}},
+    // optional int64 group_space_limit = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(GetPoolsResponse_StoragePool, _impl_.group_space_limit_), 3>(),
+     {48, 3, 0, PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.group_space_limit_)}},
+    // optional int64 group_inode_limit = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(GetPoolsResponse_StoragePool, _impl_.group_inode_limit_), 4>(),
+     {56, 4, 0, PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.group_inode_limit_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -4990,6 +5487,18 @@ const ::_pbi::TcParseTable<2, 3, 3, 0, 2> GetPoolsResponse_StoragePool::_table_ 
     // repeated .beegfs.EntityIdSet buddy_groups = 3;
     {PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.buddy_groups_), -1, 2,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional int64 user_space_limit = 4;
+    {PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.user_space_limit_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 user_inode_limit = 5;
+    {PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.user_inode_limit_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 group_space_limit = 6;
+    {PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.group_space_limit_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 group_inode_limit = 7;
+    {PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.group_inode_limit_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
@@ -5011,6 +5520,11 @@ PROTOBUF_NOINLINE void GetPoolsResponse_StoragePool::Clear() {
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.id_ != nullptr);
     _impl_.id_->Clear();
+  }
+  if (cached_has_bits & 0x0000001eu) {
+    ::memset(&_impl_.user_space_limit_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.group_inode_limit_) -
+        reinterpret_cast<char*>(&_impl_.user_space_limit_)) + sizeof(_impl_.group_inode_limit_));
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -5052,6 +5566,34 @@ PROTOBUF_NOINLINE void GetPoolsResponse_StoragePool::Clear() {
             target, stream);
   }
 
+  // optional int64 user_space_limit = 4;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<4>(
+            stream, this->_internal_user_space_limit(), target);
+  }
+
+  // optional int64 user_inode_limit = 5;
+  if (cached_has_bits & 0x00000004u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<5>(
+            stream, this->_internal_user_inode_limit(), target);
+  }
+
+  // optional int64 group_space_limit = 6;
+  if (cached_has_bits & 0x00000008u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<6>(
+            stream, this->_internal_group_space_limit(), target);
+  }
+
+  // optional int64 group_inode_limit = 7;
+  if (cached_has_bits & 0x00000010u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<7>(
+            stream, this->_internal_group_inode_limit(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -5080,13 +5622,39 @@ PROTOBUF_NOINLINE void GetPoolsResponse_StoragePool::Clear() {
   for (const auto& msg : this->_internal_buddy_groups()) {
     total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-  // .beegfs.EntityIdSet id = 1;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.id_);
-  }
+  if (cached_has_bits & 0x0000001fu) {
+    // .beegfs.EntityIdSet id = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.id_);
+    }
 
+    // optional int64 user_space_limit = 4;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_user_space_limit());
+    }
+
+    // optional int64 user_inode_limit = 5;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_user_inode_limit());
+    }
+
+    // optional int64 group_space_limit = 6;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_group_space_limit());
+    }
+
+    // optional int64 group_inode_limit = 7;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_group_inode_limit());
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -5105,13 +5673,27 @@ void GetPoolsResponse_StoragePool::MergeImpl(::google::protobuf::MessageLite& to
   _this->_internal_mutable_buddy_groups()->MergeFrom(
       from._internal_buddy_groups());
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.id_ != nullptr);
-    if (_this->_impl_.id_ == nullptr) {
-      _this->_impl_.id_ =
-          ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.id_);
-    } else {
-      _this->_impl_.id_->MergeFrom(*from._impl_.id_);
+  if (cached_has_bits & 0x0000001fu) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.id_ != nullptr);
+      if (_this->_impl_.id_ == nullptr) {
+        _this->_impl_.id_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.id_);
+      } else {
+        _this->_impl_.id_->MergeFrom(*from._impl_.id_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.user_space_limit_ = from._impl_.user_space_limit_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.user_inode_limit_ = from._impl_.user_inode_limit_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _this->_impl_.group_space_limit_ = from._impl_.group_space_limit_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_impl_.group_inode_limit_ = from._impl_.group_inode_limit_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -5132,7 +5714,12 @@ void GetPoolsResponse_StoragePool::InternalSwap(GetPoolsResponse_StoragePool* PR
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.targets_.InternalSwap(&other->_impl_.targets_);
   _impl_.buddy_groups_.InternalSwap(&other->_impl_.buddy_groups_);
-  swap(_impl_.id_, other->_impl_.id_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.group_inode_limit_)
+      + sizeof(GetPoolsResponse_StoragePool::_impl_.group_inode_limit_)
+      - PROTOBUF_FIELD_OFFSET(GetPoolsResponse_StoragePool, _impl_.id_)>(
+          reinterpret_cast<char*>(&_impl_.id_),
+          reinterpret_cast<char*>(&other->_impl_.id_));
 }
 
 ::google::protobuf::Metadata GetPoolsResponse_StoragePool::GetMetadata() const {
@@ -8766,6 +9353,2172 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> MirrorRootInodeResponse::_table_ = {
 
 ::google::protobuf::Metadata MirrorRootInodeResponse::GetMetadata() const {
   return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class QuotaInfo::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<QuotaInfo>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_._has_bits_);
+};
+
+void QuotaInfo::clear_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pool_ != nullptr) _impl_.pool_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+QuotaInfo::QuotaInfo(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:management.QuotaInfo)
+}
+inline PROTOBUF_NDEBUG_INLINE QuotaInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::management::QuotaInfo& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+QuotaInfo::QuotaInfo(
+    ::google::protobuf::Arena* arena,
+    const QuotaInfo& from)
+    : ::google::protobuf::Message(arena) {
+  QuotaInfo* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pool_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
+                              arena, *from._impl_.pool_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, quota_id_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, quota_id_),
+           offsetof(Impl_, inode_used_) -
+               offsetof(Impl_, quota_id_) +
+               sizeof(Impl_::inode_used_));
+
+  // @@protoc_insertion_point(copy_constructor:management.QuotaInfo)
+}
+inline PROTOBUF_NDEBUG_INLINE QuotaInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void QuotaInfo::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, pool_),
+           0,
+           offsetof(Impl_, inode_used_) -
+               offsetof(Impl_, pool_) +
+               sizeof(Impl_::inode_used_));
+}
+QuotaInfo::~QuotaInfo() {
+  // @@protoc_insertion_point(destructor:management.QuotaInfo)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void QuotaInfo::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.pool_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+QuotaInfo::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_._cached_size_),
+              false,
+          },
+          &QuotaInfo::MergeImpl,
+          &QuotaInfo::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 1, 0, 2> QuotaInfo::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_._has_bits_),
+    0, // no _extensions_
+    7, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967168,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_QuotaInfo_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::QuotaInfo>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // optional uint32 quota_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(QuotaInfo, _impl_.quota_id_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.quota_id_)}},
+    // .beegfs.QuotaIdType id_type = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(QuotaInfo, _impl_.id_type_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.id_type_)}},
+    // optional .beegfs.EntityIdSet pool = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.pool_)}},
+    // optional int64 space_limit = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(QuotaInfo, _impl_.space_limit_), 2>(),
+     {32, 2, 0, PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.space_limit_)}},
+    // optional int64 inode_limit = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(QuotaInfo, _impl_.inode_limit_), 3>(),
+     {40, 3, 0, PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.inode_limit_)}},
+    // optional int64 space_used = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(QuotaInfo, _impl_.space_used_), 4>(),
+     {48, 4, 0, PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.space_used_)}},
+    // optional int64 inode_used = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(QuotaInfo, _impl_.inode_used_), 5>(),
+     {56, 5, 0, PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.inode_used_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // optional uint32 quota_id = 1;
+    {PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.quota_id_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // .beegfs.QuotaIdType id_type = 2;
+    {PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.id_type_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // optional .beegfs.EntityIdSet pool = 3;
+    {PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.pool_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional int64 space_limit = 4;
+    {PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.space_limit_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 inode_limit = 5;
+    {PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.inode_limit_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 space_used = 6;
+    {PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.space_used_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 inode_used = 7;
+    {PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.inode_used_), _Internal::kHasBitsOffset + 5, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void QuotaInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.QuotaInfo)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.pool_ != nullptr);
+    _impl_.pool_->Clear();
+  }
+  _impl_.quota_id_ = 0u;
+  _impl_.id_type_ = 0;
+  if (cached_has_bits & 0x0000003cu) {
+    ::memset(&_impl_.space_limit_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.inode_used_) -
+        reinterpret_cast<char*>(&_impl_.space_limit_)) + sizeof(_impl_.inode_used_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* QuotaInfo::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.QuotaInfo)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional uint32 quota_id = 1;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_quota_id(), target);
+  }
+
+  // .beegfs.QuotaIdType id_type = 2;
+  if (this->_internal_id_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        2, this->_internal_id_type(), target);
+  }
+
+  // optional .beegfs.EntityIdSet pool = 3;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, *_impl_.pool_, _impl_.pool_->GetCachedSize(), target, stream);
+  }
+
+  // optional int64 space_limit = 4;
+  if (cached_has_bits & 0x00000004u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<4>(
+            stream, this->_internal_space_limit(), target);
+  }
+
+  // optional int64 inode_limit = 5;
+  if (cached_has_bits & 0x00000008u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<5>(
+            stream, this->_internal_inode_limit(), target);
+  }
+
+  // optional int64 space_used = 6;
+  if (cached_has_bits & 0x00000010u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<6>(
+            stream, this->_internal_space_used(), target);
+  }
+
+  // optional int64 inode_used = 7;
+  if (cached_has_bits & 0x00000020u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<7>(
+            stream, this->_internal_inode_used(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.QuotaInfo)
+  return target;
+}
+
+::size_t QuotaInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.QuotaInfo)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional .beegfs.EntityIdSet pool = 3;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.pool_);
+    }
+
+    // optional uint32 quota_id = 1;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+          this->_internal_quota_id());
+    }
+
+  }
+  // .beegfs.QuotaIdType id_type = 2;
+  if (this->_internal_id_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_id_type());
+  }
+
+  if (cached_has_bits & 0x0000003cu) {
+    // optional int64 space_limit = 4;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_space_limit());
+    }
+
+    // optional int64 inode_limit = 5;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_inode_limit());
+    }
+
+    // optional int64 space_used = 6;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_space_used());
+    }
+
+    // optional int64 inode_used = 7;
+    if (cached_has_bits & 0x00000020u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_inode_used());
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void QuotaInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<QuotaInfo*>(&to_msg);
+  auto& from = static_cast<const QuotaInfo&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.QuotaInfo)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.pool_ != nullptr);
+      if (_this->_impl_.pool_ == nullptr) {
+        _this->_impl_.pool_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.pool_);
+      } else {
+        _this->_impl_.pool_->MergeFrom(*from._impl_.pool_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.quota_id_ = from._impl_.quota_id_;
+    }
+  }
+  if (from._internal_id_type() != 0) {
+    _this->_impl_.id_type_ = from._impl_.id_type_;
+  }
+  if (cached_has_bits & 0x0000003cu) {
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.space_limit_ = from._impl_.space_limit_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _this->_impl_.inode_limit_ = from._impl_.inode_limit_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_impl_.space_used_ = from._impl_.space_used_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      _this->_impl_.inode_used_ = from._impl_.inode_used_;
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void QuotaInfo::CopyFrom(const QuotaInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.QuotaInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void QuotaInfo::InternalSwap(QuotaInfo* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.inode_used_)
+      + sizeof(QuotaInfo::_impl_.inode_used_)
+      - PROTOBUF_FIELD_OFFSET(QuotaInfo, _impl_.pool_)>(
+          reinterpret_cast<char*>(&_impl_.pool_),
+          reinterpret_cast<char*>(&other->_impl_.pool_));
+}
+
+::google::protobuf::Metadata QuotaInfo::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SetDefaultQuotaLimitsRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<SetDefaultQuotaLimitsRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_._has_bits_);
+};
+
+void SetDefaultQuotaLimitsRequest::clear_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pool_ != nullptr) _impl_.pool_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+SetDefaultQuotaLimitsRequest::SetDefaultQuotaLimitsRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:management.SetDefaultQuotaLimitsRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetDefaultQuotaLimitsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::management::SetDefaultQuotaLimitsRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetDefaultQuotaLimitsRequest::SetDefaultQuotaLimitsRequest(
+    ::google::protobuf::Arena* arena,
+    const SetDefaultQuotaLimitsRequest& from)
+    : ::google::protobuf::Message(arena) {
+  SetDefaultQuotaLimitsRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pool_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
+                              arena, *from._impl_.pool_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, user_space_limit_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, user_space_limit_),
+           offsetof(Impl_, group_inode_limit_) -
+               offsetof(Impl_, user_space_limit_) +
+               sizeof(Impl_::group_inode_limit_));
+
+  // @@protoc_insertion_point(copy_constructor:management.SetDefaultQuotaLimitsRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetDefaultQuotaLimitsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetDefaultQuotaLimitsRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, pool_),
+           0,
+           offsetof(Impl_, group_inode_limit_) -
+               offsetof(Impl_, pool_) +
+               sizeof(Impl_::group_inode_limit_));
+}
+SetDefaultQuotaLimitsRequest::~SetDefaultQuotaLimitsRequest() {
+  // @@protoc_insertion_point(destructor:management.SetDefaultQuotaLimitsRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetDefaultQuotaLimitsRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.pool_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+SetDefaultQuotaLimitsRequest::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_._cached_size_),
+              false,
+          },
+          &SetDefaultQuotaLimitsRequest::MergeImpl,
+          &SetDefaultQuotaLimitsRequest::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 1, 0, 2> SetDefaultQuotaLimitsRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetDefaultQuotaLimitsRequest_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::SetDefaultQuotaLimitsRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // optional .beegfs.EntityIdSet pool = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.pool_)}},
+    // optional int64 user_space_limit = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SetDefaultQuotaLimitsRequest, _impl_.user_space_limit_), 1>(),
+     {16, 1, 0, PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.user_space_limit_)}},
+    // optional int64 user_inode_limit = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SetDefaultQuotaLimitsRequest, _impl_.user_inode_limit_), 2>(),
+     {24, 2, 0, PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.user_inode_limit_)}},
+    // optional int64 group_space_limit = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SetDefaultQuotaLimitsRequest, _impl_.group_space_limit_), 3>(),
+     {32, 3, 0, PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.group_space_limit_)}},
+    // optional int64 group_inode_limit = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SetDefaultQuotaLimitsRequest, _impl_.group_inode_limit_), 4>(),
+     {40, 4, 0, PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.group_inode_limit_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // optional .beegfs.EntityIdSet pool = 1;
+    {PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.pool_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional int64 user_space_limit = 2;
+    {PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.user_space_limit_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 user_inode_limit = 3;
+    {PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.user_inode_limit_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 group_space_limit = 4;
+    {PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.group_space_limit_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional int64 group_inode_limit = 5;
+    {PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.group_inode_limit_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void SetDefaultQuotaLimitsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.SetDefaultQuotaLimitsRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.pool_ != nullptr);
+    _impl_.pool_->Clear();
+  }
+  if (cached_has_bits & 0x0000001eu) {
+    ::memset(&_impl_.user_space_limit_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.group_inode_limit_) -
+        reinterpret_cast<char*>(&_impl_.user_space_limit_)) + sizeof(_impl_.group_inode_limit_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* SetDefaultQuotaLimitsRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.SetDefaultQuotaLimitsRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional .beegfs.EntityIdSet pool = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *_impl_.pool_, _impl_.pool_->GetCachedSize(), target, stream);
+  }
+
+  // optional int64 user_space_limit = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<2>(
+            stream, this->_internal_user_space_limit(), target);
+  }
+
+  // optional int64 user_inode_limit = 3;
+  if (cached_has_bits & 0x00000004u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<3>(
+            stream, this->_internal_user_inode_limit(), target);
+  }
+
+  // optional int64 group_space_limit = 4;
+  if (cached_has_bits & 0x00000008u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<4>(
+            stream, this->_internal_group_space_limit(), target);
+  }
+
+  // optional int64 group_inode_limit = 5;
+  if (cached_has_bits & 0x00000010u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<5>(
+            stream, this->_internal_group_inode_limit(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.SetDefaultQuotaLimitsRequest)
+  return target;
+}
+
+::size_t SetDefaultQuotaLimitsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.SetDefaultQuotaLimitsRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    // optional .beegfs.EntityIdSet pool = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.pool_);
+    }
+
+    // optional int64 user_space_limit = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_user_space_limit());
+    }
+
+    // optional int64 user_inode_limit = 3;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_user_inode_limit());
+    }
+
+    // optional int64 group_space_limit = 4;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_group_space_limit());
+    }
+
+    // optional int64 group_inode_limit = 5;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_group_inode_limit());
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void SetDefaultQuotaLimitsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SetDefaultQuotaLimitsRequest*>(&to_msg);
+  auto& from = static_cast<const SetDefaultQuotaLimitsRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.SetDefaultQuotaLimitsRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.pool_ != nullptr);
+      if (_this->_impl_.pool_ == nullptr) {
+        _this->_impl_.pool_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.pool_);
+      } else {
+        _this->_impl_.pool_->MergeFrom(*from._impl_.pool_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.user_space_limit_ = from._impl_.user_space_limit_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.user_inode_limit_ = from._impl_.user_inode_limit_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _this->_impl_.group_space_limit_ = from._impl_.group_space_limit_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_impl_.group_inode_limit_ = from._impl_.group_inode_limit_;
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetDefaultQuotaLimitsRequest::CopyFrom(const SetDefaultQuotaLimitsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.SetDefaultQuotaLimitsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SetDefaultQuotaLimitsRequest::InternalSwap(SetDefaultQuotaLimitsRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.group_inode_limit_)
+      + sizeof(SetDefaultQuotaLimitsRequest::_impl_.group_inode_limit_)
+      - PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsRequest, _impl_.pool_)>(
+          reinterpret_cast<char*>(&_impl_.pool_),
+          reinterpret_cast<char*>(&other->_impl_.pool_));
+}
+
+::google::protobuf::Metadata SetDefaultQuotaLimitsRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SetDefaultQuotaLimitsResponse::_Internal {
+ public:
+};
+
+SetDefaultQuotaLimitsResponse::SetDefaultQuotaLimitsResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:management.SetDefaultQuotaLimitsResponse)
+}
+SetDefaultQuotaLimitsResponse::SetDefaultQuotaLimitsResponse(
+    ::google::protobuf::Arena* arena,
+    const SetDefaultQuotaLimitsResponse& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  SetDefaultQuotaLimitsResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:management.SetDefaultQuotaLimitsResponse)
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+SetDefaultQuotaLimitsResponse::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(SetDefaultQuotaLimitsResponse, _impl_._cached_size_),
+              false,
+          },
+          &SetDefaultQuotaLimitsResponse::MergeImpl,
+          &SetDefaultQuotaLimitsResponse::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> SetDefaultQuotaLimitsResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SetDefaultQuotaLimitsResponse_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::SetDefaultQuotaLimitsResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata SetDefaultQuotaLimitsResponse::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SetQuotaLimitsRequest::_Internal {
+ public:
+};
+
+SetQuotaLimitsRequest::SetQuotaLimitsRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:management.SetQuotaLimitsRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetQuotaLimitsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::management::SetQuotaLimitsRequest& from_msg)
+      : limits_{visibility, arena, from.limits_},
+        _cached_size_{0} {}
+
+SetQuotaLimitsRequest::SetQuotaLimitsRequest(
+    ::google::protobuf::Arena* arena,
+    const SetQuotaLimitsRequest& from)
+    : ::google::protobuf::Message(arena) {
+  SetQuotaLimitsRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:management.SetQuotaLimitsRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetQuotaLimitsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : limits_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void SetQuotaLimitsRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+SetQuotaLimitsRequest::~SetQuotaLimitsRequest() {
+  // @@protoc_insertion_point(destructor:management.SetQuotaLimitsRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetQuotaLimitsRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+SetQuotaLimitsRequest::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(SetQuotaLimitsRequest, _impl_._cached_size_),
+              false,
+          },
+          &SetQuotaLimitsRequest::MergeImpl,
+          &SetQuotaLimitsRequest::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetQuotaLimitsRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetQuotaLimitsRequest_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::SetQuotaLimitsRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .management.QuotaInfo limits = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SetQuotaLimitsRequest, _impl_.limits_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .management.QuotaInfo limits = 1;
+    {PROTOBUF_FIELD_OFFSET(SetQuotaLimitsRequest, _impl_.limits_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::management::QuotaInfo>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void SetQuotaLimitsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.SetQuotaLimitsRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.limits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* SetQuotaLimitsRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.SetQuotaLimitsRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .management.QuotaInfo limits = 1;
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this->_internal_limits_size());
+       i < n; i++) {
+    const auto& repfield = this->_internal_limits().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.SetQuotaLimitsRequest)
+  return target;
+}
+
+::size_t SetQuotaLimitsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.SetQuotaLimitsRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // repeated .management.QuotaInfo limits = 1;
+  total_size += 1UL * this->_internal_limits_size();
+  for (const auto& msg : this->_internal_limits()) {
+    total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void SetQuotaLimitsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SetQuotaLimitsRequest*>(&to_msg);
+  auto& from = static_cast<const SetQuotaLimitsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.SetQuotaLimitsRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_limits()->MergeFrom(
+      from._internal_limits());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetQuotaLimitsRequest::CopyFrom(const SetQuotaLimitsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.SetQuotaLimitsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SetQuotaLimitsRequest::InternalSwap(SetQuotaLimitsRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.limits_.InternalSwap(&other->_impl_.limits_);
+}
+
+::google::protobuf::Metadata SetQuotaLimitsRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SetQuotaLimitsResponse::_Internal {
+ public:
+};
+
+SetQuotaLimitsResponse::SetQuotaLimitsResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:management.SetQuotaLimitsResponse)
+}
+SetQuotaLimitsResponse::SetQuotaLimitsResponse(
+    ::google::protobuf::Arena* arena,
+    const SetQuotaLimitsResponse& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  SetQuotaLimitsResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:management.SetQuotaLimitsResponse)
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+SetQuotaLimitsResponse::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(SetQuotaLimitsResponse, _impl_._cached_size_),
+              false,
+          },
+          &SetQuotaLimitsResponse::MergeImpl,
+          &SetQuotaLimitsResponse::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> SetQuotaLimitsResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SetQuotaLimitsResponse_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::SetQuotaLimitsResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata SetQuotaLimitsResponse::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class GetQuotaLimitsRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<GetQuotaLimitsRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_._has_bits_);
+};
+
+void GetQuotaLimitsRequest::clear_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pool_ != nullptr) _impl_.pool_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+GetQuotaLimitsRequest::GetQuotaLimitsRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:management.GetQuotaLimitsRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE GetQuotaLimitsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::management::GetQuotaLimitsRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetQuotaLimitsRequest::GetQuotaLimitsRequest(
+    ::google::protobuf::Arena* arena,
+    const GetQuotaLimitsRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetQuotaLimitsRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pool_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
+                              arena, *from._impl_.pool_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, quota_id_min_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, quota_id_min_),
+           offsetof(Impl_, id_type_) -
+               offsetof(Impl_, quota_id_min_) +
+               sizeof(Impl_::id_type_));
+
+  // @@protoc_insertion_point(copy_constructor:management.GetQuotaLimitsRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE GetQuotaLimitsRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void GetQuotaLimitsRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, pool_),
+           0,
+           offsetof(Impl_, id_type_) -
+               offsetof(Impl_, pool_) +
+               sizeof(Impl_::id_type_));
+}
+GetQuotaLimitsRequest::~GetQuotaLimitsRequest() {
+  // @@protoc_insertion_point(destructor:management.GetQuotaLimitsRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetQuotaLimitsRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.pool_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+GetQuotaLimitsRequest::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_._cached_size_),
+              false,
+          },
+          &GetQuotaLimitsRequest::MergeImpl,
+          &GetQuotaLimitsRequest::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 1, 0, 2> GetQuotaLimitsRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetQuotaLimitsRequest_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::GetQuotaLimitsRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // optional .beegfs.EntityIdSet pool = 4;
+    {::_pbi::TcParser::FastMtS1,
+     {34, 0, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.pool_)}},
+    // optional uint32 quota_id_min = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.quota_id_min_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_min_)}},
+    // optional uint32 quota_id_max = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.quota_id_max_), 2>(),
+     {16, 2, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_max_)}},
+    // .beegfs.QuotaIdType id_type = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.id_type_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.id_type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // optional uint32 quota_id_min = 1;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_min_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // optional uint32 quota_id_max = 2;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_max_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // .beegfs.QuotaIdType id_type = 3;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.id_type_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // optional .beegfs.EntityIdSet pool = 4;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.pool_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void GetQuotaLimitsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.GetQuotaLimitsRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.pool_ != nullptr);
+    _impl_.pool_->Clear();
+  }
+  if (cached_has_bits & 0x00000006u) {
+    ::memset(&_impl_.quota_id_min_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.quota_id_max_) -
+        reinterpret_cast<char*>(&_impl_.quota_id_min_)) + sizeof(_impl_.quota_id_max_));
+  }
+  _impl_.id_type_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* GetQuotaLimitsRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.GetQuotaLimitsRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional uint32 quota_id_min = 1;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_quota_id_min(), target);
+  }
+
+  // optional uint32 quota_id_max = 2;
+  if (cached_has_bits & 0x00000004u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_quota_id_max(), target);
+  }
+
+  // .beegfs.QuotaIdType id_type = 3;
+  if (this->_internal_id_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        3, this->_internal_id_type(), target);
+  }
+
+  // optional .beegfs.EntityIdSet pool = 4;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        4, *_impl_.pool_, _impl_.pool_->GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.GetQuotaLimitsRequest)
+  return target;
+}
+
+::size_t GetQuotaLimitsRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.GetQuotaLimitsRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    // optional .beegfs.EntityIdSet pool = 4;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.pool_);
+    }
+
+    // optional uint32 quota_id_min = 1;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+          this->_internal_quota_id_min());
+    }
+
+    // optional uint32 quota_id_max = 2;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+          this->_internal_quota_id_max());
+    }
+
+  }
+  // .beegfs.QuotaIdType id_type = 3;
+  if (this->_internal_id_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_id_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void GetQuotaLimitsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetQuotaLimitsRequest*>(&to_msg);
+  auto& from = static_cast<const GetQuotaLimitsRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.GetQuotaLimitsRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.pool_ != nullptr);
+      if (_this->_impl_.pool_ == nullptr) {
+        _this->_impl_.pool_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.pool_);
+      } else {
+        _this->_impl_.pool_->MergeFrom(*from._impl_.pool_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.quota_id_min_ = from._impl_.quota_id_min_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.quota_id_max_ = from._impl_.quota_id_max_;
+    }
+  }
+  if (from._internal_id_type() != 0) {
+    _this->_impl_.id_type_ = from._impl_.id_type_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetQuotaLimitsRequest::CopyFrom(const GetQuotaLimitsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.GetQuotaLimitsRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void GetQuotaLimitsRequest::InternalSwap(GetQuotaLimitsRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.id_type_)
+      + sizeof(GetQuotaLimitsRequest::_impl_.id_type_)
+      - PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.pool_)>(
+          reinterpret_cast<char*>(&_impl_.pool_),
+          reinterpret_cast<char*>(&other->_impl_.pool_));
+}
+
+::google::protobuf::Metadata GetQuotaLimitsRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class GetQuotaLimitsResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<GetQuotaLimitsResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(GetQuotaLimitsResponse, _impl_._has_bits_);
+};
+
+GetQuotaLimitsResponse::GetQuotaLimitsResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:management.GetQuotaLimitsResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE GetQuotaLimitsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::management::GetQuotaLimitsResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetQuotaLimitsResponse::GetQuotaLimitsResponse(
+    ::google::protobuf::Arena* arena,
+    const GetQuotaLimitsResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetQuotaLimitsResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.limits_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::management::QuotaInfo>(
+                              arena, *from._impl_.limits_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:management.GetQuotaLimitsResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE GetQuotaLimitsResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void GetQuotaLimitsResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.limits_ = {};
+}
+GetQuotaLimitsResponse::~GetQuotaLimitsResponse() {
+  // @@protoc_insertion_point(destructor:management.GetQuotaLimitsResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetQuotaLimitsResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.limits_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+GetQuotaLimitsResponse::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(GetQuotaLimitsResponse, _impl_._cached_size_),
+              false,
+          },
+          &GetQuotaLimitsResponse::MergeImpl,
+          &GetQuotaLimitsResponse::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> GetQuotaLimitsResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetQuotaLimitsResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetQuotaLimitsResponse_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::GetQuotaLimitsResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // optional .management.QuotaInfo limits = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsResponse, _impl_.limits_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // optional .management.QuotaInfo limits = 1;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsResponse, _impl_.limits_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::management::QuotaInfo>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void GetQuotaLimitsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.GetQuotaLimitsResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.limits_ != nullptr);
+    _impl_.limits_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* GetQuotaLimitsResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.GetQuotaLimitsResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional .management.QuotaInfo limits = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *_impl_.limits_, _impl_.limits_->GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.GetQuotaLimitsResponse)
+  return target;
+}
+
+::size_t GetQuotaLimitsResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.GetQuotaLimitsResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // optional .management.QuotaInfo limits = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.limits_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void GetQuotaLimitsResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetQuotaLimitsResponse*>(&to_msg);
+  auto& from = static_cast<const GetQuotaLimitsResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.GetQuotaLimitsResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.limits_ != nullptr);
+    if (_this->_impl_.limits_ == nullptr) {
+      _this->_impl_.limits_ =
+          ::google::protobuf::Message::CopyConstruct<::management::QuotaInfo>(arena, *from._impl_.limits_);
+    } else {
+      _this->_impl_.limits_->MergeFrom(*from._impl_.limits_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetQuotaLimitsResponse::CopyFrom(const GetQuotaLimitsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.GetQuotaLimitsResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void GetQuotaLimitsResponse::InternalSwap(GetQuotaLimitsResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.limits_, other->_impl_.limits_);
+}
+
+::google::protobuf::Metadata GetQuotaLimitsResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class GetQuotaUsageRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<GetQuotaUsageRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_._has_bits_);
+};
+
+void GetQuotaUsageRequest::clear_pool() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pool_ != nullptr) _impl_.pool_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+GetQuotaUsageRequest::GetQuotaUsageRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:management.GetQuotaUsageRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE GetQuotaUsageRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::management::GetQuotaUsageRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetQuotaUsageRequest::GetQuotaUsageRequest(
+    ::google::protobuf::Arena* arena,
+    const GetQuotaUsageRequest& from)
+    : ::google::protobuf::Message(arena) {
+  GetQuotaUsageRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.pool_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
+                              arena, *from._impl_.pool_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, quota_id_min_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, quota_id_min_),
+           offsetof(Impl_, exceeded_) -
+               offsetof(Impl_, quota_id_min_) +
+               sizeof(Impl_::exceeded_));
+
+  // @@protoc_insertion_point(copy_constructor:management.GetQuotaUsageRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE GetQuotaUsageRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void GetQuotaUsageRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, pool_),
+           0,
+           offsetof(Impl_, exceeded_) -
+               offsetof(Impl_, pool_) +
+               sizeof(Impl_::exceeded_));
+}
+GetQuotaUsageRequest::~GetQuotaUsageRequest() {
+  // @@protoc_insertion_point(destructor:management.GetQuotaUsageRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetQuotaUsageRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.pool_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+GetQuotaUsageRequest::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_._cached_size_),
+              false,
+          },
+          &GetQuotaUsageRequest::MergeImpl,
+          &GetQuotaUsageRequest::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 1, 0, 2> GetQuotaUsageRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetQuotaUsageRequest_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::GetQuotaUsageRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // optional uint32 quota_id_min = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.quota_id_min_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_min_)}},
+    // optional uint32 quota_id_max = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.quota_id_max_), 2>(),
+     {16, 2, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_max_)}},
+    // .beegfs.QuotaIdType id_type = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.id_type_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.id_type_)}},
+    // optional .beegfs.EntityIdSet pool = 4;
+    {::_pbi::TcParser::FastMtS1,
+     {34, 0, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.pool_)}},
+    // optional bool exceeded = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetQuotaUsageRequest, _impl_.exceeded_), 3>(),
+     {40, 3, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.exceeded_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // optional uint32 quota_id_min = 1;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_min_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // optional uint32 quota_id_max = 2;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_max_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // .beegfs.QuotaIdType id_type = 3;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.id_type_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // optional .beegfs.EntityIdSet pool = 4;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.pool_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional bool exceeded = 5;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.exceeded_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void GetQuotaUsageRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.GetQuotaUsageRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.pool_ != nullptr);
+    _impl_.pool_->Clear();
+  }
+  if (cached_has_bits & 0x00000006u) {
+    ::memset(&_impl_.quota_id_min_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.quota_id_max_) -
+        reinterpret_cast<char*>(&_impl_.quota_id_min_)) + sizeof(_impl_.quota_id_max_));
+  }
+  _impl_.id_type_ = 0;
+  _impl_.exceeded_ = false;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* GetQuotaUsageRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.GetQuotaUsageRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional uint32 quota_id_min = 1;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_quota_id_min(), target);
+  }
+
+  // optional uint32 quota_id_max = 2;
+  if (cached_has_bits & 0x00000004u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_quota_id_max(), target);
+  }
+
+  // .beegfs.QuotaIdType id_type = 3;
+  if (this->_internal_id_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        3, this->_internal_id_type(), target);
+  }
+
+  // optional .beegfs.EntityIdSet pool = 4;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        4, *_impl_.pool_, _impl_.pool_->GetCachedSize(), target, stream);
+  }
+
+  // optional bool exceeded = 5;
+  if (cached_has_bits & 0x00000008u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        5, this->_internal_exceeded(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.GetQuotaUsageRequest)
+  return target;
+}
+
+::size_t GetQuotaUsageRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.GetQuotaUsageRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    // optional .beegfs.EntityIdSet pool = 4;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.pool_);
+    }
+
+    // optional uint32 quota_id_min = 1;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+          this->_internal_quota_id_min());
+    }
+
+    // optional uint32 quota_id_max = 2;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+          this->_internal_quota_id_max());
+    }
+
+  }
+  // .beegfs.QuotaIdType id_type = 3;
+  if (this->_internal_id_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_id_type());
+  }
+
+  // optional bool exceeded = 5;
+  if (cached_has_bits & 0x00000008u) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void GetQuotaUsageRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetQuotaUsageRequest*>(&to_msg);
+  auto& from = static_cast<const GetQuotaUsageRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.GetQuotaUsageRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.pool_ != nullptr);
+      if (_this->_impl_.pool_ == nullptr) {
+        _this->_impl_.pool_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.pool_);
+      } else {
+        _this->_impl_.pool_->MergeFrom(*from._impl_.pool_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.quota_id_min_ = from._impl_.quota_id_min_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.quota_id_max_ = from._impl_.quota_id_max_;
+    }
+  }
+  if (from._internal_id_type() != 0) {
+    _this->_impl_.id_type_ = from._impl_.id_type_;
+  }
+  if (cached_has_bits & 0x00000008u) {
+    _this->_impl_.exceeded_ = from._impl_.exceeded_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetQuotaUsageRequest::CopyFrom(const GetQuotaUsageRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.GetQuotaUsageRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void GetQuotaUsageRequest::InternalSwap(GetQuotaUsageRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.exceeded_)
+      + sizeof(GetQuotaUsageRequest::_impl_.exceeded_)
+      - PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.pool_)>(
+          reinterpret_cast<char*>(&_impl_.pool_),
+          reinterpret_cast<char*>(&other->_impl_.pool_));
+}
+
+::google::protobuf::Metadata GetQuotaUsageRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class GetQuotaUsageResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<GetQuotaUsageResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_._has_bits_);
+};
+
+GetQuotaUsageResponse::GetQuotaUsageResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:management.GetQuotaUsageResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE GetQuotaUsageResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::management::GetQuotaUsageResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+GetQuotaUsageResponse::GetQuotaUsageResponse(
+    ::google::protobuf::Arena* arena,
+    const GetQuotaUsageResponse& from)
+    : ::google::protobuf::Message(arena) {
+  GetQuotaUsageResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.entry_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::management::QuotaInfo>(
+                              arena, *from._impl_.entry_)
+                        : nullptr;
+  _impl_.refresh_period_s_ = from._impl_.refresh_period_s_;
+
+  // @@protoc_insertion_point(copy_constructor:management.GetQuotaUsageResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE GetQuotaUsageResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void GetQuotaUsageResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, entry_),
+           0,
+           offsetof(Impl_, refresh_period_s_) -
+               offsetof(Impl_, entry_) +
+               sizeof(Impl_::refresh_period_s_));
+}
+GetQuotaUsageResponse::~GetQuotaUsageResponse() {
+  // @@protoc_insertion_point(destructor:management.GetQuotaUsageResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetQuotaUsageResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.entry_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+GetQuotaUsageResponse::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_._cached_size_),
+              false,
+          },
+          &GetQuotaUsageResponse::MergeImpl,
+          &GetQuotaUsageResponse::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> GetQuotaUsageResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_GetQuotaUsageResponse_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::GetQuotaUsageResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // optional uint64 refresh_period_s = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(GetQuotaUsageResponse, _impl_.refresh_period_s_), 1>(),
+     {16, 1, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_.refresh_period_s_)}},
+    // optional .management.QuotaInfo entry = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_.entry_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // optional .management.QuotaInfo entry = 1;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_.entry_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional uint64 refresh_period_s = 2;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_.refresh_period_s_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::management::QuotaInfo>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void GetQuotaUsageResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.GetQuotaUsageResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.entry_ != nullptr);
+    _impl_.entry_->Clear();
+  }
+  _impl_.refresh_period_s_ = ::uint64_t{0u};
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* GetQuotaUsageResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.GetQuotaUsageResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional .management.QuotaInfo entry = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *_impl_.entry_, _impl_.entry_->GetCachedSize(), target, stream);
+  }
+
+  // optional uint64 refresh_period_s = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        2, this->_internal_refresh_period_s(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.GetQuotaUsageResponse)
+  return target;
+}
+
+::size_t GetQuotaUsageResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.GetQuotaUsageResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional .management.QuotaInfo entry = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.entry_);
+    }
+
+    // optional uint64 refresh_period_s = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+          this->_internal_refresh_period_s());
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void GetQuotaUsageResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetQuotaUsageResponse*>(&to_msg);
+  auto& from = static_cast<const GetQuotaUsageResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.GetQuotaUsageResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.entry_ != nullptr);
+      if (_this->_impl_.entry_ == nullptr) {
+        _this->_impl_.entry_ =
+            ::google::protobuf::Message::CopyConstruct<::management::QuotaInfo>(arena, *from._impl_.entry_);
+      } else {
+        _this->_impl_.entry_->MergeFrom(*from._impl_.entry_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.refresh_period_s_ = from._impl_.refresh_period_s_;
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetQuotaUsageResponse::CopyFrom(const GetQuotaUsageResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.GetQuotaUsageResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void GetQuotaUsageResponse::InternalSwap(GetQuotaUsageResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_.refresh_period_s_)
+      + sizeof(GetQuotaUsageResponse::_impl_.refresh_period_s_)
+      - PROTOBUF_FIELD_OFFSET(GetQuotaUsageResponse, _impl_.entry_)>(
+          reinterpret_cast<char*>(&_impl_.entry_),
+          reinterpret_cast<char*>(&other->_impl_.entry_));
+}
+
+::google::protobuf::Metadata GetQuotaUsageResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
