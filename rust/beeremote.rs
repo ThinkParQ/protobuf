@@ -27,11 +27,11 @@ pub struct JobRequest {
     pub name: ::prost::alloc::string::String,
     #[prost(int32, tag = "3")]
     pub priority: i32,
-    /// This is the string based ID, NOT an actual reference to an RST.
+    /// This is the uint32 ID, NOT an actual reference to an RST.
     /// This ensures we don't have to include the full RST configuration,
     /// every time we send a Entry (commonly as part of a Job).
-    #[prost(string, tag = "4")]
-    pub remote_storage_target: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "4")]
+    pub remote_storage_target: u32,
     #[prost(oneof = "job_request::Type", tags = "10, 11")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }

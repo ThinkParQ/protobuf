@@ -91,7 +91,7 @@ message WorkRequest {
     string external_id = 3;
     string path = 4;
     Segment segment = 5;
-    string remote_storage_target = 6;
+    uint32 remote_storage_target = 6;
     oneof Type {
         MockJob mock = 10;
         SyncJob sync = 11;
@@ -271,7 +271,7 @@ message BeeRemoteNode {
 // allows us to define all possible fields that may need to be sent to BeeSync
 // to configure different target types, without extra overhead.
 message RemoteStorageTarget {
-    string id = 1;
+    uint32 id = 1;
     string name = 2;
     Policies policies = 3; 
 

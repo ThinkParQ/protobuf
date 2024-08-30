@@ -43,10 +43,10 @@ message JobRequest {
     // Job names are optional and not need to be unique.
     string name = 2;
     int32 priority = 3;
-    // This is the string based ID, NOT an actual reference to an RST. 
+    // This is the uint32 ID, NOT an actual reference to an RST.
     // This ensures we don't have to include the full RST configuration,
     // every time we send a Entry (commonly as part of a Job).
-    string remote_storage_target = 4;      
+    uint32 remote_storage_target = 4;
     oneof type {
         flex.SyncJob sync = 10;
         flex.MockJob mock = 11;
