@@ -367,10 +367,8 @@ inline constexpr WorkRequest::Impl_::Impl_(
         path_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        remote_storage_target_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         segment_{nullptr},
+        remote_storage_target_{0u},
         Type_{},
         _oneof_case_{} {}
 
@@ -519,13 +517,11 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr RemoteStorageTarget::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         policies_{nullptr},
+        id_{0u},
         type_{},
         _oneof_case_{} {}
 
@@ -963,7 +959,7 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "quest\022\016\n\006job_id\030\001 \001(\t\022\022\n\nrequest_id\030\002 \001("
     "\t\022\023\n\013external_id\030\003 \001(\t\022\014\n\004path\030\004 \001(\t\022*\n\007"
     "segment\030\005 \001(\0132\031.flex.WorkRequest.Segment"
-    "\022\035\n\025remote_storage_target\030\006 \001(\t\022\035\n\004mock\030"
+    "\022\035\n\025remote_storage_target\030\006 \001(\r\022\035\n\004mock\030"
     "\n \001(\0132\r.flex.MockJobH\000\022\035\n\004sync\030\013 \001(\0132\r.f"
     "lex.SyncJobH\000\032]\n\007Segment\022\024\n\014offset_start"
     "\030\001 \001(\003\022\023\n\013offset_stop\030\002 \001(\003\022\023\n\013parts_sta"
@@ -994,7 +990,7 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\t\"@\n\006Result\022\017\n\013UNSPECIFIED\020\000\022\013\n\007SUCCESS\020"
     "\001\022\013\n\007PARTIAL\020\002\022\013\n\007FAILURE\020\003\",\n\rBeeRemote"
     "Node\022\n\n\002id\030\001 \001(\t\022\017\n\007address\030\002 \001(\t\"\213\004\n\023Re"
-    "moteStorageTarget\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 "
+    "moteStorageTarget\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 "
     "\001(\t\0224\n\010policies\030\003 \001(\0132\".flex.RemoteStora"
     "geTarget.Policies\022*\n\002s3\030\004 \001(\0132\034.flex.Rem"
     "oteStorageTarget.S3H\000\0220\n\005posix\030\005 \001(\0132\037.f"
@@ -3388,7 +3384,6 @@ inline PROTOBUF_NDEBUG_INLINE WorkRequest::Impl_::Impl_(
         request_id_(arena, from.request_id_),
         external_id_(arena, from.external_id_),
         path_(arena, from.path_),
-        remote_storage_target_(arena, from.remote_storage_target_),
         Type_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
@@ -3405,6 +3400,7 @@ WorkRequest::WorkRequest(
   _impl_.segment_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::flex::WorkRequest_Segment>(
                               arena, *from._impl_.segment_)
                         : nullptr;
+  _impl_.remote_storage_target_ = from._impl_.remote_storage_target_;
   switch (Type_case()) {
     case TYPE_NOT_SET:
       break;
@@ -3426,13 +3422,17 @@ inline PROTOBUF_NDEBUG_INLINE WorkRequest::Impl_::Impl_(
         request_id_(arena),
         external_id_(arena),
         path_(arena),
-        remote_storage_target_(arena),
         Type_{},
         _oneof_case_{} {}
 
 inline void WorkRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.segment_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, segment_),
+           0,
+           offsetof(Impl_, remote_storage_target_) -
+               offsetof(Impl_, segment_) +
+               sizeof(Impl_::remote_storage_target_));
 }
 WorkRequest::~WorkRequest() {
   // @@protoc_insertion_point(destructor:flex.WorkRequest)
@@ -3445,7 +3445,6 @@ inline void WorkRequest::SharedDtor() {
   _impl_.request_id_.Destroy();
   _impl_.external_id_.Destroy();
   _impl_.path_.Destroy();
-  _impl_.remote_storage_target_.Destroy();
   delete _impl_.segment_;
   if (has_Type()) {
     clear_Type();
@@ -3502,7 +3501,7 @@ WorkRequest::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 8, 3, 85, 2> WorkRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 3, 64, 2> WorkRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_._has_bits_),
     0, // no _extensions_
@@ -3536,9 +3535,9 @@ const ::_pbi::TcParseTable<3, 8, 3, 85, 2> WorkRequest::_table_ = {
     // .flex.WorkRequest.Segment segment = 5;
     {::_pbi::TcParser::FastMtS1,
      {42, 0, 0, PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.segment_)}},
-    // string remote_storage_target = 6;
-    {::_pbi::TcParser::FastUS1,
-     {50, 63, 0, PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.remote_storage_target_)}},
+    // uint32 remote_storage_target = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WorkRequest, _impl_.remote_storage_target_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.remote_storage_target_)}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
@@ -3558,9 +3557,9 @@ const ::_pbi::TcParseTable<3, 8, 3, 85, 2> WorkRequest::_table_ = {
     // .flex.WorkRequest.Segment segment = 5;
     {PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.segment_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string remote_storage_target = 6;
+    // uint32 remote_storage_target = 6;
     {PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.remote_storage_target_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // .flex.MockJob mock = 10;
     {PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.Type_.mock_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -3572,13 +3571,12 @@ const ::_pbi::TcParseTable<3, 8, 3, 85, 2> WorkRequest::_table_ = {
     {::_pbi::TcParser::GetTable<::flex::MockJob>()},
     {::_pbi::TcParser::GetTable<::flex::SyncJob>()},
   }}, {{
-    "\20\6\12\13\4\0\25\0\0\0\0\0\0\0\0\0"
+    "\20\6\12\13\4\0\0\0\0\0\0\0\0\0\0\0"
     "flex.WorkRequest"
     "job_id"
     "request_id"
     "external_id"
     "path"
-    "remote_storage_target"
   }},
 };
 
@@ -3593,12 +3591,12 @@ PROTOBUF_NOINLINE void WorkRequest::Clear() {
   _impl_.request_id_.ClearToEmpty();
   _impl_.external_id_.ClearToEmpty();
   _impl_.path_.ClearToEmpty();
-  _impl_.remote_storage_target_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.segment_ != nullptr);
     _impl_.segment_->Clear();
   }
+  _impl_.remote_storage_target_ = 0u;
   clear_Type();
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -3650,12 +3648,11 @@ PROTOBUF_NOINLINE void WorkRequest::Clear() {
         5, *_impl_.segment_, _impl_.segment_->GetCachedSize(), target, stream);
   }
 
-  // string remote_storage_target = 6;
-  if (!this->_internal_remote_storage_target().empty()) {
-    const std::string& _s = this->_internal_remote_storage_target();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.WorkRequest.remote_storage_target");
-    target = stream->WriteStringMaybeAliased(6, _s, target);
+  // uint32 remote_storage_target = 6;
+  if (this->_internal_remote_storage_target() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        6, this->_internal_remote_storage_target(), target);
   }
 
   switch (Type_case()) {
@@ -3714,17 +3711,17 @@ PROTOBUF_NOINLINE void WorkRequest::Clear() {
                                     this->_internal_path());
   }
 
-  // string remote_storage_target = 6;
-  if (!this->_internal_remote_storage_target().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_remote_storage_target());
-  }
-
   // .flex.WorkRequest.Segment segment = 5;
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size +=
         1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.segment_);
+  }
+
+  // uint32 remote_storage_target = 6;
+  if (this->_internal_remote_storage_target() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_remote_storage_target());
   }
 
   switch (Type_case()) {
@@ -3769,9 +3766,6 @@ void WorkRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   if (!from._internal_path().empty()) {
     _this->_internal_set_path(from._internal_path());
   }
-  if (!from._internal_remote_storage_target().empty()) {
-    _this->_internal_set_remote_storage_target(from._internal_remote_storage_target());
-  }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(from._impl_.segment_ != nullptr);
@@ -3781,6 +3775,9 @@ void WorkRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
     } else {
       _this->_impl_.segment_->MergeFrom(*from._impl_.segment_);
     }
+  }
+  if (from._internal_remote_storage_target() != 0) {
+    _this->_impl_.remote_storage_target_ = from._impl_.remote_storage_target_;
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
@@ -3837,8 +3834,12 @@ void WorkRequest::InternalSwap(WorkRequest* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.request_id_, &other->_impl_.request_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.external_id_, &other->_impl_.external_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, &other->_impl_.path_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.remote_storage_target_, &other->_impl_.remote_storage_target_, arena);
-  swap(_impl_.segment_, other->_impl_.segment_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.remote_storage_target_)
+      + sizeof(WorkRequest::_impl_.remote_storage_target_)
+      - PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.segment_)>(
+          reinterpret_cast<char*>(&_impl_.segment_),
+          reinterpret_cast<char*>(&other->_impl_.segment_));
   swap(_impl_.Type_, other->_impl_.Type_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
@@ -6985,7 +6986,6 @@ inline PROTOBUF_NDEBUG_INLINE RemoteStorageTarget::Impl_::Impl_(
     const Impl_& from, const ::flex::RemoteStorageTarget& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        id_(arena, from.id_),
         name_(arena, from.name_),
         type_{},
         _oneof_case_{from._oneof_case_[0]} {}
@@ -7003,6 +7003,7 @@ RemoteStorageTarget::RemoteStorageTarget(
   _impl_.policies_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::flex::RemoteStorageTarget_Policies>(
                               arena, *from._impl_.policies_)
                         : nullptr;
+  _impl_.id_ = from._impl_.id_;
   switch (type_case()) {
     case TYPE_NOT_SET:
       break;
@@ -7026,14 +7027,18 @@ inline PROTOBUF_NDEBUG_INLINE RemoteStorageTarget::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        id_(arena),
         name_(arena),
         type_{},
         _oneof_case_{} {}
 
 inline void RemoteStorageTarget::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.policies_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, policies_),
+           0,
+           offsetof(Impl_, id_) -
+               offsetof(Impl_, policies_) +
+               sizeof(Impl_::id_));
 }
 RemoteStorageTarget::~RemoteStorageTarget() {
   // @@protoc_insertion_point(destructor:flex.RemoteStorageTarget)
@@ -7042,7 +7047,6 @@ RemoteStorageTarget::~RemoteStorageTarget() {
 }
 inline void RemoteStorageTarget::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.id_.Destroy();
   _impl_.name_.Destroy();
   delete _impl_.policies_;
   if (has_type()) {
@@ -7112,7 +7116,7 @@ RemoteStorageTarget::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 7, 4, 43, 2> RemoteStorageTarget::_table_ = {
+const ::_pbi::TcParseTable<2, 7, 4, 41, 2> RemoteStorageTarget::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(RemoteStorageTarget, _impl_._has_bits_),
     0, // no _extensions_
@@ -7131,9 +7135,9 @@ const ::_pbi::TcParseTable<2, 7, 4, 43, 2> RemoteStorageTarget::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // string id = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget, _impl_.id_)}},
+    // uint32 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RemoteStorageTarget, _impl_.id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget, _impl_.id_)}},
     // string name = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget, _impl_.name_)}},
@@ -7143,9 +7147,9 @@ const ::_pbi::TcParseTable<2, 7, 4, 43, 2> RemoteStorageTarget::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // string id = 1;
+    // uint32 id = 1;
     {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget, _impl_.id_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // string name = 2;
     {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget, _impl_.name_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -7170,9 +7174,8 @@ const ::_pbi::TcParseTable<2, 7, 4, 43, 2> RemoteStorageTarget::_table_ = {
     {::_pbi::TcParser::GetTable<::flex::RemoteStorageTarget_POSIX>()},
     {::_pbi::TcParser::GetTable<::flex::RemoteStorageTarget_Azure>()},
   }}, {{
-    "\30\2\4\0\0\0\0\4"
+    "\30\0\4\0\0\0\0\4"
     "flex.RemoteStorageTarget"
-    "id"
     "name"
     "mock"
   }},
@@ -7185,13 +7188,13 @@ PROTOBUF_NOINLINE void RemoteStorageTarget::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.id_.ClearToEmpty();
   _impl_.name_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.policies_ != nullptr);
     _impl_.policies_->Clear();
   }
+  _impl_.id_ = 0u;
   clear_type();
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -7204,12 +7207,11 @@ PROTOBUF_NOINLINE void RemoteStorageTarget::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string id = 1;
-  if (!this->_internal_id().empty()) {
-    const std::string& _s = this->_internal_id();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.RemoteStorageTarget.id");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+  // uint32 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_id(), target);
   }
 
   // string name = 2;
@@ -7271,12 +7273,6 @@ PROTOBUF_NOINLINE void RemoteStorageTarget::Clear() {
   (void) cached_has_bits;
 
   ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // string id = 1;
-  if (!this->_internal_id().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_id());
-  }
-
   // string name = 2;
   if (!this->_internal_name().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -7288,6 +7284,12 @@ PROTOBUF_NOINLINE void RemoteStorageTarget::Clear() {
   if (cached_has_bits & 0x00000001u) {
     total_size +=
         1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.policies_);
+  }
+
+  // uint32 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_id());
   }
 
   switch (type_case()) {
@@ -7332,9 +7334,6 @@ void RemoteStorageTarget::MergeImpl(::google::protobuf::MessageLite& to_msg, con
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_id().empty()) {
-    _this->_internal_set_id(from._internal_id());
-  }
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
   }
@@ -7347,6 +7346,9 @@ void RemoteStorageTarget::MergeImpl(::google::protobuf::MessageLite& to_msg, con
     } else {
       _this->_impl_.policies_->MergeFrom(*from._impl_.policies_);
     }
+  }
+  if (from._internal_id() != 0) {
+    _this->_impl_.id_ = from._impl_.id_;
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
@@ -7415,9 +7417,13 @@ void RemoteStorageTarget::InternalSwap(RemoteStorageTarget* PROTOBUF_RESTRICT ot
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-  swap(_impl_.policies_, other->_impl_.policies_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RemoteStorageTarget, _impl_.id_)
+      + sizeof(RemoteStorageTarget::_impl_.id_)
+      - PROTOBUF_FIELD_OFFSET(RemoteStorageTarget, _impl_.policies_)>(
+          reinterpret_cast<char*>(&_impl_.policies_),
+          reinterpret_cast<char*>(&other->_impl_.policies_));
   swap(_impl_.type_, other->_impl_.type_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }

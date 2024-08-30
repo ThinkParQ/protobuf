@@ -171,8 +171,8 @@ pub struct WorkRequest {
     pub path: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "5")]
     pub segment: ::core::option::Option<work_request::Segment>,
-    #[prost(string, tag = "6")]
-    pub remote_storage_target: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "6")]
+    pub remote_storage_target: u32,
     #[prost(oneof = "work_request::Type", tags = "10, 11")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
@@ -529,8 +529,8 @@ pub struct BeeRemoteNode {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RemoteStorageTarget {
-    #[prost(string, tag = "1")]
-    pub id: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "1")]
+    pub id: u32,
     #[prost(string, tag = "2")]
     pub name: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
