@@ -127,10 +127,8 @@ inline constexpr JobRequest::Impl_::Impl_(
         name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        remote_storage_target_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         priority_{0},
+        remote_storage_target_{0u},
         type_{},
         _cached_size_{0},
         _oneof_case_{} {}
@@ -644,7 +642,7 @@ const char descriptor_table_protodef_beeremote_2eproto[] ABSL_ATTRIBUTE_SECTION_
     "sult\030\001 \001(\0132\024.beeremote.JobResult\"\237\001\n\nJob"
     "Request\022\014\n\004path\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010p"
     "riority\030\003 \001(\005\022\035\n\025remote_storage_target\030\004"
-    " \001(\t\022\035\n\004sync\030\n \001(\0132\r.flex.SyncJobH\000\022\035\n\004m"
+    " \001(\r\022\035\n\004sync\030\n \001(\0132\r.flex.SyncJobH\000\022\035\n\004m"
     "ock\030\013 \001(\0132\r.flex.MockJobH\000B\006\n\004type\"\230\003\n\003J"
     "ob\022\n\n\002id\030\001 \001(\t\022&\n\007request\030\002 \001(\0132\025.beerem"
     "ote.JobRequest\022+\n\007created\030\003 \001(\0132\032.google"
@@ -1254,7 +1252,6 @@ inline PROTOBUF_NDEBUG_INLINE JobRequest::Impl_::Impl_(
     const Impl_& from, const ::beeremote::JobRequest& from_msg)
       : path_(arena, from.path_),
         name_(arena, from.name_),
-        remote_storage_target_(arena, from.remote_storage_target_),
         type_{},
         _cached_size_{0},
         _oneof_case_{from._oneof_case_[0]} {}
@@ -1268,7 +1265,13 @@ JobRequest::JobRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.priority_ = from._impl_.priority_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, priority_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, priority_),
+           offsetof(Impl_, remote_storage_target_) -
+               offsetof(Impl_, priority_) +
+               sizeof(Impl_::remote_storage_target_));
   switch (type_case()) {
     case TYPE_NOT_SET:
       break;
@@ -1287,14 +1290,18 @@ inline PROTOBUF_NDEBUG_INLINE JobRequest::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : path_(arena),
         name_(arena),
-        remote_storage_target_(arena),
         type_{},
         _cached_size_{0},
         _oneof_case_{} {}
 
 inline void JobRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.priority_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, priority_),
+           0,
+           offsetof(Impl_, remote_storage_target_) -
+               offsetof(Impl_, priority_) +
+               sizeof(Impl_::remote_storage_target_));
 }
 JobRequest::~JobRequest() {
   // @@protoc_insertion_point(destructor:beeremote.JobRequest)
@@ -1305,7 +1312,6 @@ inline void JobRequest::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.path_.Destroy();
   _impl_.name_.Destroy();
-  _impl_.remote_storage_target_.Destroy();
   if (has_type()) {
     clear_type();
   }
@@ -1361,7 +1367,7 @@ JobRequest::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 6, 2, 58, 2> JobRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 6, 2, 37, 2> JobRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1379,9 +1385,9 @@ const ::_pbi::TcParseTable<2, 6, 2, 58, 2> JobRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::beeremote::JobRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string remote_storage_target = 4;
-    {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.remote_storage_target_)}},
+    // uint32 remote_storage_target = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(JobRequest, _impl_.remote_storage_target_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.remote_storage_target_)}},
     // string path = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.path_)}},
@@ -1403,9 +1409,9 @@ const ::_pbi::TcParseTable<2, 6, 2, 58, 2> JobRequest::_table_ = {
     // int32 priority = 3;
     {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.priority_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // string remote_storage_target = 4;
+    // uint32 remote_storage_target = 4;
     {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.remote_storage_target_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // .flex.SyncJob sync = 10;
     {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.type_.sync_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -1416,11 +1422,10 @@ const ::_pbi::TcParseTable<2, 6, 2, 58, 2> JobRequest::_table_ = {
     {::_pbi::TcParser::GetTable<::flex::SyncJob>()},
     {::_pbi::TcParser::GetTable<::flex::MockJob>()},
   }}, {{
-    "\24\4\4\0\25\0\0\0"
+    "\24\4\4\0\0\0\0\0"
     "beeremote.JobRequest"
     "path"
     "name"
-    "remote_storage_target"
   }},
 };
 
@@ -1433,8 +1438,9 @@ PROTOBUF_NOINLINE void JobRequest::Clear() {
 
   _impl_.path_.ClearToEmpty();
   _impl_.name_.ClearToEmpty();
-  _impl_.remote_storage_target_.ClearToEmpty();
-  _impl_.priority_ = 0;
+  ::memset(&_impl_.priority_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.remote_storage_target_) -
+      reinterpret_cast<char*>(&_impl_.priority_)) + sizeof(_impl_.remote_storage_target_));
   clear_type();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -1469,12 +1475,11 @@ PROTOBUF_NOINLINE void JobRequest::Clear() {
             stream, this->_internal_priority(), target);
   }
 
-  // string remote_storage_target = 4;
-  if (!this->_internal_remote_storage_target().empty()) {
-    const std::string& _s = this->_internal_remote_storage_target();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.JobRequest.remote_storage_target");
-    target = stream->WriteStringMaybeAliased(4, _s, target);
+  // uint32 remote_storage_target = 4;
+  if (this->_internal_remote_storage_target() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        4, this->_internal_remote_storage_target(), target);
   }
 
   switch (type_case()) {
@@ -1521,16 +1526,16 @@ PROTOBUF_NOINLINE void JobRequest::Clear() {
                                     this->_internal_name());
   }
 
-  // string remote_storage_target = 4;
-  if (!this->_internal_remote_storage_target().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_remote_storage_target());
-  }
-
   // int32 priority = 3;
   if (this->_internal_priority() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_priority());
+  }
+
+  // uint32 remote_storage_target = 4;
+  if (this->_internal_remote_storage_target() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_remote_storage_target());
   }
 
   switch (type_case()) {
@@ -1569,11 +1574,11 @@ void JobRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
   }
-  if (!from._internal_remote_storage_target().empty()) {
-    _this->_internal_set_remote_storage_target(from._internal_remote_storage_target());
-  }
   if (from._internal_priority() != 0) {
     _this->_impl_.priority_ = from._impl_.priority_;
+  }
+  if (from._internal_remote_storage_target() != 0) {
+    _this->_impl_.remote_storage_target_ = from._impl_.remote_storage_target_;
   }
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
     const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
@@ -1626,8 +1631,12 @@ void JobRequest::InternalSwap(JobRequest* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, &other->_impl_.path_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.remote_storage_target_, &other->_impl_.remote_storage_target_, arena);
-        swap(_impl_.priority_, other->_impl_.priority_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.remote_storage_target_)
+      + sizeof(JobRequest::_impl_.remote_storage_target_)
+      - PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.priority_)>(
+          reinterpret_cast<char*>(&_impl_.priority_),
+          reinterpret_cast<char*>(&other->_impl_.priority_));
   swap(_impl_.type_, other->_impl_.type_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }

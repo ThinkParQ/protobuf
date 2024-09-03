@@ -1257,8 +1257,8 @@ class JobRequest final : public ::google::protobuf::Message
   enum : int {
     kPathFieldNumber = 1,
     kNameFieldNumber = 2,
-    kRemoteStorageTargetFieldNumber = 4,
     kPriorityFieldNumber = 3,
+    kRemoteStorageTargetFieldNumber = 4,
     kSyncFieldNumber = 10,
     kMockFieldNumber = 11,
   };
@@ -1294,22 +1294,6 @@ class JobRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_name();
 
   public:
-  // string remote_storage_target = 4;
-  void clear_remote_storage_target() ;
-  const std::string& remote_storage_target() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_remote_storage_target(Arg_&& arg, Args_... args);
-  std::string* mutable_remote_storage_target();
-  PROTOBUF_NODISCARD std::string* release_remote_storage_target();
-  void set_allocated_remote_storage_target(std::string* value);
-
-  private:
-  const std::string& _internal_remote_storage_target() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_remote_storage_target(
-      const std::string& value);
-  std::string* _internal_mutable_remote_storage_target();
-
-  public:
   // int32 priority = 3;
   void clear_priority() ;
   ::int32_t priority() const;
@@ -1318,6 +1302,16 @@ class JobRequest final : public ::google::protobuf::Message
   private:
   ::int32_t _internal_priority() const;
   void _internal_set_priority(::int32_t value);
+
+  public:
+  // uint32 remote_storage_target = 4;
+  void clear_remote_storage_target() ;
+  ::uint32_t remote_storage_target() const;
+  void set_remote_storage_target(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_remote_storage_target() const;
+  void _internal_set_remote_storage_target(::uint32_t value);
 
   public:
   // .flex.SyncJob sync = 10;
@@ -1370,7 +1364,7 @@ class JobRequest final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 6, 2,
-      58, 2>
+      37, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -1392,8 +1386,8 @@ class JobRequest final : public ::google::protobuf::Message
                           const JobRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr path_;
     ::google::protobuf::internal::ArenaStringPtr name_;
-    ::google::protobuf::internal::ArenaStringPtr remote_storage_target_;
     ::int32_t priority_;
+    ::uint32_t remote_storage_target_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -4042,54 +4036,26 @@ inline void JobRequest::_internal_set_priority(::int32_t value) {
   _impl_.priority_ = value;
 }
 
-// string remote_storage_target = 4;
+// uint32 remote_storage_target = 4;
 inline void JobRequest::clear_remote_storage_target() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.remote_storage_target_.ClearToEmpty();
+  _impl_.remote_storage_target_ = 0u;
 }
-inline const std::string& JobRequest::remote_storage_target() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::uint32_t JobRequest::remote_storage_target() const {
   // @@protoc_insertion_point(field_get:beeremote.JobRequest.remote_storage_target)
   return _internal_remote_storage_target();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void JobRequest::set_remote_storage_target(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.remote_storage_target_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+inline void JobRequest::set_remote_storage_target(::uint32_t value) {
+  _internal_set_remote_storage_target(value);
   // @@protoc_insertion_point(field_set:beeremote.JobRequest.remote_storage_target)
 }
-inline std::string* JobRequest::mutable_remote_storage_target() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_remote_storage_target();
-  // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.remote_storage_target)
-  return _s;
-}
-inline const std::string& JobRequest::_internal_remote_storage_target() const {
+inline ::uint32_t JobRequest::_internal_remote_storage_target() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.remote_storage_target_.Get();
+  return _impl_.remote_storage_target_;
 }
-inline void JobRequest::_internal_set_remote_storage_target(const std::string& value) {
+inline void JobRequest::_internal_set_remote_storage_target(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.remote_storage_target_.Set(value, GetArena());
-}
-inline std::string* JobRequest::_internal_mutable_remote_storage_target() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.remote_storage_target_.Mutable( GetArena());
-}
-inline std::string* JobRequest::release_remote_storage_target() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:beeremote.JobRequest.remote_storage_target)
-  return _impl_.remote_storage_target_.Release();
-}
-inline void JobRequest::set_allocated_remote_storage_target(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.remote_storage_target_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.remote_storage_target_.IsDefault()) {
-          _impl_.remote_storage_target_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:beeremote.JobRequest.remote_storage_target)
+  _impl_.remote_storage_target_ = value;
 }
 
 // .flex.SyncJob sync = 10;
