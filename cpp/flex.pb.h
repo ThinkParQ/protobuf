@@ -3327,8 +3327,8 @@ class WorkRequest final : public ::google::protobuf::Message
     kRequestIdFieldNumber = 2,
     kExternalIdFieldNumber = 3,
     kPathFieldNumber = 4,
-    kRemoteStorageTargetFieldNumber = 6,
     kSegmentFieldNumber = 5,
+    kRemoteStorageTargetFieldNumber = 6,
     kMockFieldNumber = 10,
     kSyncFieldNumber = 11,
   };
@@ -3396,22 +3396,6 @@ class WorkRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_path();
 
   public:
-  // string remote_storage_target = 6;
-  void clear_remote_storage_target() ;
-  const std::string& remote_storage_target() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_remote_storage_target(Arg_&& arg, Args_... args);
-  std::string* mutable_remote_storage_target();
-  PROTOBUF_NODISCARD std::string* release_remote_storage_target();
-  void set_allocated_remote_storage_target(std::string* value);
-
-  private:
-  const std::string& _internal_remote_storage_target() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_remote_storage_target(
-      const std::string& value);
-  std::string* _internal_mutable_remote_storage_target();
-
-  public:
   // .flex.WorkRequest.Segment segment = 5;
   bool has_segment() const;
   void clear_segment() ;
@@ -3425,6 +3409,16 @@ class WorkRequest final : public ::google::protobuf::Message
   private:
   const ::flex::WorkRequest_Segment& _internal_segment() const;
   ::flex::WorkRequest_Segment* _internal_mutable_segment();
+
+  public:
+  // uint32 remote_storage_target = 6;
+  void clear_remote_storage_target() ;
+  ::uint32_t remote_storage_target() const;
+  void set_remote_storage_target(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_remote_storage_target() const;
+  void _internal_set_remote_storage_target(::uint32_t value);
 
   public:
   // .flex.MockJob mock = 10;
@@ -3477,7 +3471,7 @@ class WorkRequest final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       3, 8, 3,
-      85, 2>
+      64, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -3503,8 +3497,8 @@ class WorkRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr request_id_;
     ::google::protobuf::internal::ArenaStringPtr external_id_;
     ::google::protobuf::internal::ArenaStringPtr path_;
-    ::google::protobuf::internal::ArenaStringPtr remote_storage_target_;
     ::flex::WorkRequest_Segment* segment_;
+    ::uint32_t remote_storage_target_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -4847,30 +4841,14 @@ class RemoteStorageTarget final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kPoliciesFieldNumber = 3,
+    kIdFieldNumber = 1,
     kS3FieldNumber = 4,
     kPosixFieldNumber = 5,
     kAzureFieldNumber = 6,
     kMockFieldNumber = 7,
   };
-  // string id = 1;
-  void clear_id() ;
-  const std::string& id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_id(Arg_&& arg, Args_... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* value);
-
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
-      const std::string& value);
-  std::string* _internal_mutable_id();
-
-  public:
   // string name = 2;
   void clear_name() ;
   const std::string& name() const;
@@ -4900,6 +4878,16 @@ class RemoteStorageTarget final : public ::google::protobuf::Message
   private:
   const ::flex::RemoteStorageTarget_Policies& _internal_policies() const;
   ::flex::RemoteStorageTarget_Policies* _internal_mutable_policies();
+
+  public:
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
 
   public:
   // .flex.RemoteStorageTarget.S3 s3 = 4;
@@ -4990,7 +4978,7 @@ class RemoteStorageTarget final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 7, 4,
-      43, 2>
+      41, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -5012,9 +5000,9 @@ class RemoteStorageTarget final : public ::google::protobuf::Message
                           const RemoteStorageTarget& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::flex::RemoteStorageTarget_Policies* policies_;
+    ::uint32_t id_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -6612,54 +6600,26 @@ inline void WorkRequest::set_allocated_segment(::flex::WorkRequest_Segment* valu
   // @@protoc_insertion_point(field_set_allocated:flex.WorkRequest.segment)
 }
 
-// string remote_storage_target = 6;
+// uint32 remote_storage_target = 6;
 inline void WorkRequest::clear_remote_storage_target() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.remote_storage_target_.ClearToEmpty();
+  _impl_.remote_storage_target_ = 0u;
 }
-inline const std::string& WorkRequest::remote_storage_target() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::uint32_t WorkRequest::remote_storage_target() const {
   // @@protoc_insertion_point(field_get:flex.WorkRequest.remote_storage_target)
   return _internal_remote_storage_target();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void WorkRequest::set_remote_storage_target(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.remote_storage_target_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+inline void WorkRequest::set_remote_storage_target(::uint32_t value) {
+  _internal_set_remote_storage_target(value);
   // @@protoc_insertion_point(field_set:flex.WorkRequest.remote_storage_target)
 }
-inline std::string* WorkRequest::mutable_remote_storage_target() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_remote_storage_target();
-  // @@protoc_insertion_point(field_mutable:flex.WorkRequest.remote_storage_target)
-  return _s;
-}
-inline const std::string& WorkRequest::_internal_remote_storage_target() const {
+inline ::uint32_t WorkRequest::_internal_remote_storage_target() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.remote_storage_target_.Get();
+  return _impl_.remote_storage_target_;
 }
-inline void WorkRequest::_internal_set_remote_storage_target(const std::string& value) {
+inline void WorkRequest::_internal_set_remote_storage_target(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.remote_storage_target_.Set(value, GetArena());
-}
-inline std::string* WorkRequest::_internal_mutable_remote_storage_target() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.remote_storage_target_.Mutable( GetArena());
-}
-inline std::string* WorkRequest::release_remote_storage_target() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:flex.WorkRequest.remote_storage_target)
-  return _impl_.remote_storage_target_.Release();
-}
-inline void WorkRequest::set_allocated_remote_storage_target(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.remote_storage_target_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.remote_storage_target_.IsDefault()) {
-          _impl_.remote_storage_target_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:flex.WorkRequest.remote_storage_target)
+  _impl_.remote_storage_target_ = value;
 }
 
 // .flex.MockJob mock = 10;
@@ -8503,54 +8463,26 @@ inline void RemoteStorageTarget_POSIX::set_allocated_path(std::string* value) {
 
 // RemoteStorageTarget
 
-// string id = 1;
+// uint32 id = 1;
 inline void RemoteStorageTarget::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_.ClearToEmpty();
+  _impl_.id_ = 0u;
 }
-inline const std::string& RemoteStorageTarget::id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::uint32_t RemoteStorageTarget::id() const {
   // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.id)
   return _internal_id();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RemoteStorageTarget::set_id(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+inline void RemoteStorageTarget::set_id(::uint32_t value) {
+  _internal_set_id(value);
   // @@protoc_insertion_point(field_set:flex.RemoteStorageTarget.id)
 }
-inline std::string* RemoteStorageTarget::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:flex.RemoteStorageTarget.id)
-  return _s;
-}
-inline const std::string& RemoteStorageTarget::_internal_id() const {
+inline ::uint32_t RemoteStorageTarget::_internal_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.id_.Get();
+  return _impl_.id_;
 }
-inline void RemoteStorageTarget::_internal_set_id(const std::string& value) {
+inline void RemoteStorageTarget::_internal_set_id(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_.Set(value, GetArena());
-}
-inline std::string* RemoteStorageTarget::_internal_mutable_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.id_.Mutable( GetArena());
-}
-inline std::string* RemoteStorageTarget::release_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:flex.RemoteStorageTarget.id)
-  return _impl_.id_.Release();
-}
-inline void RemoteStorageTarget::set_allocated_id(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.id_.IsDefault()) {
-          _impl_.id_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.id)
+  _impl_.id_ = value;
 }
 
 // string name = 2;
