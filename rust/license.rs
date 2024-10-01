@@ -124,6 +124,7 @@ pub enum CertType {
     CaIntermediate = 2,
     Partner = 3,
     Customer = 4,
+    Temporary = 5,
 }
 impl CertType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -137,6 +138,7 @@ impl CertType {
             CertType::CaIntermediate => "CERT_TYPE_CA_INTERMEDIATE",
             CertType::Partner => "CERT_TYPE_PARTNER",
             CertType::Customer => "CERT_TYPE_CUSTOMER",
+            CertType::Temporary => "CERT_TYPE_TEMPORARY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -147,6 +149,7 @@ impl CertType {
             "CERT_TYPE_CA_INTERMEDIATE" => Some(Self::CaIntermediate),
             "CERT_TYPE_PARTNER" => Some(Self::Partner),
             "CERT_TYPE_CUSTOMER" => Some(Self::Customer),
+            "CERT_TYPE_TEMPORARY" => Some(Self::Temporary),
             _ => None,
         }
     }
