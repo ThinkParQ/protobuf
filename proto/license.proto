@@ -24,6 +24,7 @@ enum CertType {
   CERT_TYPE_CA_INTERMEDIATE = 2;
   CERT_TYPE_PARTNER = 3;
   CERT_TYPE_CUSTOMER = 4;
+  CERT_TYPE_TEMPORARY = 5;
 }
 
 // The result of a certificate verfication operation.
