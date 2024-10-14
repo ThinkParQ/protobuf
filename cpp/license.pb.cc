@@ -245,11 +245,12 @@ const char descriptor_table_protodef_license_2eproto[] ABSL_ATTRIBUTE_SECTION_VA
     "DataH\000\210\001\001B\016\n\014_parent_data*^\n\014VerifyResul"
     "t\022\026\n\022VERIFY_UNSPECIFIED\020\000\022\020\n\014VERIFY_ERRO"
     "R\020\001\022\020\n\014VERIFY_VALID\020\002\022\022\n\016VERIFY_INVALID\020"
-    "\003*\212\001\n\010CertType\022\031\n\025CERT_TYPE_UNSPECIFIED\020"
+    "\003*\243\001\n\010CertType\022\031\n\025CERT_TYPE_UNSPECIFIED\020"
     "\000\022\025\n\021CERT_TYPE_CA_ROOT\020\001\022\035\n\031CERT_TYPE_CA"
     "_INTERMEDIATE\020\002\022\025\n\021CERT_TYPE_PARTNER\020\003\022\026"
-    "\n\022CERT_TYPE_CUSTOMER\020\004B*Z(github.com/thi"
-    "nkparq/protobuf/go/licenseb\006proto3"
+    "\n\022CERT_TYPE_CUSTOMER\020\004\022\027\n\023CERT_TYPE_TEMP"
+    "ORARY\020\005B*Z(github.com/thinkparq/protobuf"
+    "/go/licenseb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_license_2eproto_deps[1] =
     {
@@ -259,7 +260,7 @@ static ::absl::once_flag descriptor_table_license_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_license_2eproto = {
     false,
     false,
-    994,
+    1019,
     descriptor_table_protodef_license_2eproto,
     "license.proto",
     &descriptor_table_license_2eproto_once,
@@ -287,9 +288,9 @@ const ::google::protobuf::EnumDescriptor* CertType_descriptor() {
   return file_level_enum_descriptors_license_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t CertType_internal_data_[] = {
-    327680u, 0u, };
+    393216u, 0u, };
 bool CertType_IsValid(int value) {
-  return 0 <= value && value <= 4;
+  return 0 <= value && value <= 5;
 }
 // ===================================================================
 
