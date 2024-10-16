@@ -2,23 +2,58 @@ syntax = "proto3";
 package beewatch;
 option go_package = "github.com/thinkparq/protobuf/go/beewatch";
 
+// The event message provides common header fields and wraps all event versions that can be handled
+// by BeeGFS Watch. It notably does not provide a way to differentiate between minor versions of the
+// API. Those should only affect the serialization format between the meta and watch services, and
+// should adhere to standard protocol buffer best practices. Notably minor updates should be
+// additive and not remove or change the meaning of existing fields.
 message Event {
-    // The BeeGFS packet format defines these as a uint16 but protobuf does not support uint16 types (https://protobuf.dev/programming-guides/proto3/#scalar).
-    uint32 format_version_major = 1;
-    uint32 format_version_minor = 2;
-    // TODO: https://github.com/ThinkParQ/bee-watch/issues/16
-    // This is not implemented yet in the meta service, however for now we'll have BeeWatch generate sequence IDs. 
-    // Update this as needed based on final meta implementation and remove current approach in socket.go.
-    uint64 seq_id = 3;
-    uint32 size = 4;
-    uint64 dropped_seq = 5;
-    uint64 missed_seq = 6;
-    Type type = 7;
-    string path = 8;
-    string entry_id = 9;
-    string parent_entry_id = 10;
-    string target_path = 11;
-    string target_parent_id = 12;
+    uint64 seq_id = 1;
+    uint64 dropped_seq = 2;
+    oneof event_data {
+        V1Event v1 = 11;
+        V2Event v2 = 12;
+    }
+}
+
+// The v1 event format is the legacy format from BeeGFS v7.
+message V1Event {
+    Type type = 1;
+    uint64 missed_seq = 2;
+    string path = 3;
+    string entry_id = 4;
+    string parent_entry_id = 5;
+    string target_path = 6;
+    string target_parent_id = 7;
+    
+    enum Type {
+        FLUSH        = 0;
+        TRUNCATE     = 1;
+        SETATTR      = 2;
+        CLOSE_WRITE  = 3;
+        CREATE       = 4;
+        MKDIR        = 5;
+        MKNOD        = 6;
+        SYMLINK      = 7;
+        RMDIR        = 8;
+        UNLINK       = 9;
+        HARDLINK     = 10;
+        RENAME       = 11;
+        READ         = 12;
+    }
+}
+
+// The v2 event format was introduced in BeeGFS v8. 
+message V2Event {
+    Type type = 1;
+    uint64 num_links = 2;
+    string path = 3;
+    string entry_id = 4;
+    string parent_entry_id = 5;
+    string target_path = 6;
+    string target_parent_id = 7;
+    uint32 msg_user_id = 8;
+    int64 timestamp = 9;
     
     enum Type {
         INVALID            = 0;
@@ -39,7 +74,6 @@ message Event {
         OPEN_READ_WRITE    = 15;
         LAST_WRITER_CLOSED = 16;
     }
-
 }
 
 // Response messages allow the subscribers to acknowledge events they have processed and request a graceful shutdown.
