@@ -669,20 +669,21 @@ class CertData final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kDnsNamesFieldNumber = 10,
+    kDnsNamesFieldNumber = 11,
     kOrganizationFieldNumber = 3,
     kOrganizationalUnitFieldNumber = 4,
     kCountryFieldNumber = 5,
     kLocalityFieldNumber = 6,
     kCommonNameFieldNumber = 7,
-    kValidFromFieldNumber = 8,
-    kValidUntilFieldNumber = 9,
-    kParentDataFieldNumber = 12,
+    kSerialNumberFieldNumber = 8,
+    kValidFromFieldNumber = 9,
+    kValidUntilFieldNumber = 10,
+    kParentDataFieldNumber = 13,
     kSerialFieldNumber = 2,
     kTypeFieldNumber = 1,
-    kIsCaFieldNumber = 11,
+    kIsCaFieldNumber = 12,
   };
-  // repeated string dns_names = 10 [json_name = "DNSNames"];
+  // repeated string dns_names = 11 [json_name = "DNSNames"];
   int dns_names_size() const;
   private:
   int _internal_dns_names_size() const;
@@ -790,7 +791,23 @@ class CertData final : public ::google::protobuf::Message
   std::string* _internal_mutable_commonname();
 
   public:
-  // .google.protobuf.Timestamp validFrom = 8;
+  // string serialNumber = 8;
+  void clear_serialnumber() ;
+  const std::string& serialnumber() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_serialnumber(Arg_&& arg, Args_... args);
+  std::string* mutable_serialnumber();
+  PROTOBUF_NODISCARD std::string* release_serialnumber();
+  void set_allocated_serialnumber(std::string* value);
+
+  private:
+  const std::string& _internal_serialnumber() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_serialnumber(
+      const std::string& value);
+  std::string* _internal_mutable_serialnumber();
+
+  public:
+  // .google.protobuf.Timestamp validFrom = 9;
   bool has_validfrom() const;
   void clear_validfrom() ;
   const ::google::protobuf::Timestamp& validfrom() const;
@@ -805,7 +822,7 @@ class CertData final : public ::google::protobuf::Message
   ::google::protobuf::Timestamp* _internal_mutable_validfrom();
 
   public:
-  // .google.protobuf.Timestamp validUntil = 9;
+  // .google.protobuf.Timestamp validUntil = 10;
   bool has_validuntil() const;
   void clear_validuntil() ;
   const ::google::protobuf::Timestamp& validuntil() const;
@@ -820,7 +837,7 @@ class CertData final : public ::google::protobuf::Message
   ::google::protobuf::Timestamp* _internal_mutable_validuntil();
 
   public:
-  // optional .license.CertData parent_data = 12;
+  // optional .license.CertData parent_data = 13;
   bool has_parent_data() const;
   void clear_parent_data() ;
   const ::license::CertData& parent_data() const;
@@ -855,7 +872,7 @@ class CertData final : public ::google::protobuf::Message
   void _internal_set_type(::license::CertType value);
 
   public:
-  // bool is_ca = 11;
+  // bool is_ca = 12;
   void clear_is_ca() ;
   bool is_ca() const;
   void set_is_ca(bool value);
@@ -870,8 +887,8 @@ class CertData final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 12, 3,
-      97, 2>
+      4, 13, 3,
+      109, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -899,6 +916,7 @@ class CertData final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr country_;
     ::google::protobuf::internal::ArenaStringPtr locality_;
     ::google::protobuf::internal::ArenaStringPtr commonname_;
+    ::google::protobuf::internal::ArenaStringPtr serialnumber_;
     ::google::protobuf::Timestamp* validfrom_;
     ::google::protobuf::Timestamp* validuntil_;
     ::license::CertData* parent_data_;
@@ -1802,7 +1820,57 @@ inline void CertData::set_allocated_commonname(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:license.CertData.commonName)
 }
 
-// .google.protobuf.Timestamp validFrom = 8;
+// string serialNumber = 8;
+inline void CertData::clear_serialnumber() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.serialnumber_.ClearToEmpty();
+}
+inline const std::string& CertData::serialnumber() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:license.CertData.serialNumber)
+  return _internal_serialnumber();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CertData::set_serialnumber(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.serialnumber_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:license.CertData.serialNumber)
+}
+inline std::string* CertData::mutable_serialnumber() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_serialnumber();
+  // @@protoc_insertion_point(field_mutable:license.CertData.serialNumber)
+  return _s;
+}
+inline const std::string& CertData::_internal_serialnumber() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.serialnumber_.Get();
+}
+inline void CertData::_internal_set_serialnumber(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.serialnumber_.Set(value, GetArena());
+}
+inline std::string* CertData::_internal_mutable_serialnumber() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.serialnumber_.Mutable( GetArena());
+}
+inline std::string* CertData::release_serialnumber() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:license.CertData.serialNumber)
+  return _impl_.serialnumber_.Release();
+}
+inline void CertData::set_allocated_serialnumber(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.serialnumber_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.serialnumber_.IsDefault()) {
+          _impl_.serialnumber_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:license.CertData.serialNumber)
+}
+
+// .google.protobuf.Timestamp validFrom = 9;
 inline bool CertData::has_validfrom() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.validfrom_ != nullptr);
@@ -1893,7 +1961,7 @@ inline void CertData::set_allocated_validfrom(::google::protobuf::Timestamp* val
   // @@protoc_insertion_point(field_set_allocated:license.CertData.validFrom)
 }
 
-// .google.protobuf.Timestamp validUntil = 9;
+// .google.protobuf.Timestamp validUntil = 10;
 inline bool CertData::has_validuntil() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.validuntil_ != nullptr);
@@ -1984,7 +2052,7 @@ inline void CertData::set_allocated_validuntil(::google::protobuf::Timestamp* va
   // @@protoc_insertion_point(field_set_allocated:license.CertData.validUntil)
 }
 
-// repeated string dns_names = 10 [json_name = "DNSNames"];
+// repeated string dns_names = 11 [json_name = "DNSNames"];
 inline int CertData::_internal_dns_names_size() const {
   return _internal_dns_names().size();
 }
@@ -2086,7 +2154,7 @@ CertData::_internal_mutable_dns_names() {
   return &_impl_.dns_names_;
 }
 
-// bool is_ca = 11;
+// bool is_ca = 12;
 inline void CertData::clear_is_ca() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.is_ca_ = false;
@@ -2108,7 +2176,7 @@ inline void CertData::_internal_set_is_ca(bool value) {
   _impl_.is_ca_ = value;
 }
 
-// optional .license.CertData parent_data = 12;
+// optional .license.CertData parent_data = 13;
 inline bool CertData::has_parent_data() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.parent_data_ != nullptr);

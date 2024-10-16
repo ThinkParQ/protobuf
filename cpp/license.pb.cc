@@ -91,6 +91,9 @@ inline constexpr CertData::Impl_::Impl_(
         commonname_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        serialnumber_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         validfrom_{nullptr},
         validuntil_{nullptr},
         parent_data_{nullptr},
@@ -191,11 +194,13 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.country_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.locality_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.commonname_),
+        PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.serialnumber_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.validfrom_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.validuntil_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.dns_names_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.is_ca_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.parent_data_),
+        ~0u,
         ~0u,
         ~0u,
         ~0u,
@@ -215,7 +220,7 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::license::VerifyCertResult)},
         {11, -1, -1, sizeof(::license::VerifyFeatureResult)},
         {21, 32, -1, sizeof(::license::GetCertDataResult)},
-        {35, 55, -1, sizeof(::license::CertData)},
+        {35, 56, -1, sizeof(::license::CertData)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::license::_VerifyCertResult_default_instance_._instance,
@@ -233,24 +238,25 @@ const char descriptor_table_protodef_license_2eproto[] ABSL_ATTRIBUTE_SECTION_VA
     "erifyResult\022\017\n\007message\030\002 \001(\t\"l\n\021GetCertD"
     "ataResult\022%\n\006result\030\001 \001(\0162\025.license.Veri"
     "fyResult\022\037\n\004data\030\002 \001(\0132\021.license.CertDat"
-    "a\022\017\n\007message\030\003 \001(\t\"\354\002\n\010CertData\022\037\n\004type\030"
+    "a\022\017\n\007message\030\003 \001(\t\"\202\003\n\010CertData\022\037\n\004type\030"
     "\001 \001(\0162\021.license.CertType\022\016\n\006serial\030\002 \001(\003"
     "\022\024\n\014organization\030\003 \001(\t\022\032\n\022organizational"
     "Unit\030\004 \001(\t\022\017\n\007country\030\005 \001(\t\022\020\n\010locality\030"
-    "\006 \001(\t\022\022\n\ncommonName\030\007 \001(\t\022-\n\tvalidFrom\030\010"
-    " \001(\0132\032.google.protobuf.Timestamp\022.\n\nvali"
-    "dUntil\030\t \001(\0132\032.google.protobuf.Timestamp"
-    "\022\033\n\tdns_names\030\n \003(\tR\010DNSNames\022\r\n\005is_ca\030\013"
-    " \001(\010\022+\n\013parent_data\030\014 \001(\0132\021.license.Cert"
-    "DataH\000\210\001\001B\016\n\014_parent_data*^\n\014VerifyResul"
-    "t\022\026\n\022VERIFY_UNSPECIFIED\020\000\022\020\n\014VERIFY_ERRO"
-    "R\020\001\022\020\n\014VERIFY_VALID\020\002\022\022\n\016VERIFY_INVALID\020"
-    "\003*\243\001\n\010CertType\022\031\n\025CERT_TYPE_UNSPECIFIED\020"
-    "\000\022\025\n\021CERT_TYPE_CA_ROOT\020\001\022\035\n\031CERT_TYPE_CA"
-    "_INTERMEDIATE\020\002\022\025\n\021CERT_TYPE_PARTNER\020\003\022\026"
-    "\n\022CERT_TYPE_CUSTOMER\020\004\022\027\n\023CERT_TYPE_TEMP"
-    "ORARY\020\005B*Z(github.com/thinkparq/protobuf"
-    "/go/licenseb\006proto3"
+    "\006 \001(\t\022\022\n\ncommonName\030\007 \001(\t\022\024\n\014serialNumbe"
+    "r\030\010 \001(\t\022-\n\tvalidFrom\030\t \001(\0132\032.google.prot"
+    "obuf.Timestamp\022.\n\nvalidUntil\030\n \001(\0132\032.goo"
+    "gle.protobuf.Timestamp\022\033\n\tdns_names\030\013 \003("
+    "\tR\010DNSNames\022\r\n\005is_ca\030\014 \001(\010\022+\n\013parent_dat"
+    "a\030\r \001(\0132\021.license.CertDataH\000\210\001\001B\016\n\014_pare"
+    "nt_data*^\n\014VerifyResult\022\026\n\022VERIFY_UNSPEC"
+    "IFIED\020\000\022\020\n\014VERIFY_ERROR\020\001\022\020\n\014VERIFY_VALI"
+    "D\020\002\022\022\n\016VERIFY_INVALID\020\003*\243\001\n\010CertType\022\031\n\025"
+    "CERT_TYPE_UNSPECIFIED\020\000\022\025\n\021CERT_TYPE_CA_"
+    "ROOT\020\001\022\035\n\031CERT_TYPE_CA_INTERMEDIATE\020\002\022\025\n"
+    "\021CERT_TYPE_PARTNER\020\003\022\026\n\022CERT_TYPE_CUSTOM"
+    "ER\020\004\022\027\n\023CERT_TYPE_TEMPORARY\020\005B*Z(github."
+    "com/thinkparq/protobuf/go/licenseb\006proto"
+    "3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_license_2eproto_deps[1] =
     {
@@ -260,7 +266,7 @@ static ::absl::once_flag descriptor_table_license_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_license_2eproto = {
     false,
     false,
-    1019,
+    1041,
     descriptor_table_protodef_license_2eproto,
     "license.proto",
     &descriptor_table_license_2eproto_once,
@@ -1074,7 +1080,8 @@ inline PROTOBUF_NDEBUG_INLINE CertData::Impl_::Impl_(
         organizationalunit_(arena, from.organizationalunit_),
         country_(arena, from.country_),
         locality_(arena, from.locality_),
-        commonname_(arena, from.commonname_) {}
+        commonname_(arena, from.commonname_),
+        serialnumber_(arena, from.serialnumber_) {}
 
 CertData::CertData(
     ::google::protobuf::Arena* arena,
@@ -1114,7 +1121,8 @@ inline PROTOBUF_NDEBUG_INLINE CertData::Impl_::Impl_(
         organizationalunit_(arena),
         country_(arena),
         locality_(arena),
-        commonname_(arena) {}
+        commonname_(arena),
+        serialnumber_(arena) {}
 
 inline void CertData::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -1137,6 +1145,7 @@ inline void CertData::SharedDtor() {
   _impl_.country_.Destroy();
   _impl_.locality_.Destroy();
   _impl_.commonname_.Destroy();
+  _impl_.serialnumber_.Destroy();
   delete _impl_.validfrom_;
   delete _impl_.validuntil_;
   delete _impl_.parent_data_;
@@ -1164,15 +1173,15 @@ CertData::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 12, 3, 97, 2> CertData::_table_ = {
+const ::_pbi::TcParseTable<4, 13, 3, 109, 2> CertData::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(CertData, _impl_._has_bits_),
     0, // no _extensions_
-    12, 120,  // max_field_number, fast_idx_mask
+    13, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294963200,  // skipmap
+    4294959104,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    12,  // num_field_entries
+    13,  // num_field_entries
     3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_CertData_default_instance_._instance,
@@ -1204,22 +1213,24 @@ const ::_pbi::TcParseTable<4, 12, 3, 97, 2> CertData::_table_ = {
     // string commonName = 7;
     {::_pbi::TcParser::FastUS1,
      {58, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.commonname_)}},
-    // .google.protobuf.Timestamp validFrom = 8;
+    // string serialNumber = 8;
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.serialnumber_)}},
+    // .google.protobuf.Timestamp validFrom = 9;
     {::_pbi::TcParser::FastMtS1,
-     {66, 0, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.validfrom_)}},
-    // .google.protobuf.Timestamp validUntil = 9;
+     {74, 0, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.validfrom_)}},
+    // .google.protobuf.Timestamp validUntil = 10;
     {::_pbi::TcParser::FastMtS1,
-     {74, 1, 1, PROTOBUF_FIELD_OFFSET(CertData, _impl_.validuntil_)}},
-    // repeated string dns_names = 10 [json_name = "DNSNames"];
+     {82, 1, 1, PROTOBUF_FIELD_OFFSET(CertData, _impl_.validuntil_)}},
+    // repeated string dns_names = 11 [json_name = "DNSNames"];
     {::_pbi::TcParser::FastUR1,
-     {82, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.dns_names_)}},
-    // bool is_ca = 11;
+     {90, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.dns_names_)}},
+    // bool is_ca = 12;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CertData, _impl_.is_ca_), 63>(),
-     {88, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.is_ca_)}},
-    // optional .license.CertData parent_data = 12;
+     {96, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.is_ca_)}},
+    // optional .license.CertData parent_data = 13;
     {::_pbi::TcParser::FastMtS1,
-     {98, 2, 2, PROTOBUF_FIELD_OFFSET(CertData, _impl_.parent_data_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+     {106, 2, 2, PROTOBUF_FIELD_OFFSET(CertData, _impl_.parent_data_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
@@ -1246,19 +1257,22 @@ const ::_pbi::TcParseTable<4, 12, 3, 97, 2> CertData::_table_ = {
     // string commonName = 7;
     {PROTOBUF_FIELD_OFFSET(CertData, _impl_.commonname_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .google.protobuf.Timestamp validFrom = 8;
+    // string serialNumber = 8;
+    {PROTOBUF_FIELD_OFFSET(CertData, _impl_.serialnumber_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .google.protobuf.Timestamp validFrom = 9;
     {PROTOBUF_FIELD_OFFSET(CertData, _impl_.validfrom_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .google.protobuf.Timestamp validUntil = 9;
+    // .google.protobuf.Timestamp validUntil = 10;
     {PROTOBUF_FIELD_OFFSET(CertData, _impl_.validuntil_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated string dns_names = 10 [json_name = "DNSNames"];
+    // repeated string dns_names = 11 [json_name = "DNSNames"];
     {PROTOBUF_FIELD_OFFSET(CertData, _impl_.dns_names_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
-    // bool is_ca = 11;
+    // bool is_ca = 12;
     {PROTOBUF_FIELD_OFFSET(CertData, _impl_.is_ca_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // optional .license.CertData parent_data = 12;
+    // optional .license.CertData parent_data = 13;
     {PROTOBUF_FIELD_OFFSET(CertData, _impl_.parent_data_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
@@ -1266,13 +1280,14 @@ const ::_pbi::TcParseTable<4, 12, 3, 97, 2> CertData::_table_ = {
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
     {::_pbi::TcParser::GetTable<::license::CertData>()},
   }}, {{
-    "\20\0\0\14\22\7\10\12\0\0\11\0\0\0\0\0"
+    "\20\0\0\14\22\7\10\12\14\0\0\11\0\0\0\0"
     "license.CertData"
     "organization"
     "organizationalUnit"
     "country"
     "locality"
     "commonName"
+    "serialNumber"
     "dns_names"
   }},
 };
@@ -1290,6 +1305,7 @@ PROTOBUF_NOINLINE void CertData::Clear() {
   _impl_.country_.ClearToEmpty();
   _impl_.locality_.ClearToEmpty();
   _impl_.commonname_.ClearToEmpty();
+  _impl_.serialnumber_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
@@ -1373,38 +1389,46 @@ PROTOBUF_NOINLINE void CertData::Clear() {
     target = stream->WriteStringMaybeAliased(7, _s, target);
   }
 
+  // string serialNumber = 8;
+  if (!this->_internal_serialnumber().empty()) {
+    const std::string& _s = this->_internal_serialnumber();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "license.CertData.serialNumber");
+    target = stream->WriteStringMaybeAliased(8, _s, target);
+  }
+
   cached_has_bits = _impl_._has_bits_[0];
-  // .google.protobuf.Timestamp validFrom = 8;
+  // .google.protobuf.Timestamp validFrom = 9;
   if (cached_has_bits & 0x00000001u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        8, *_impl_.validfrom_, _impl_.validfrom_->GetCachedSize(), target, stream);
+        9, *_impl_.validfrom_, _impl_.validfrom_->GetCachedSize(), target, stream);
   }
 
-  // .google.protobuf.Timestamp validUntil = 9;
+  // .google.protobuf.Timestamp validUntil = 10;
   if (cached_has_bits & 0x00000002u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        9, *_impl_.validuntil_, _impl_.validuntil_->GetCachedSize(), target, stream);
+        10, *_impl_.validuntil_, _impl_.validuntil_->GetCachedSize(), target, stream);
   }
 
-  // repeated string dns_names = 10 [json_name = "DNSNames"];
+  // repeated string dns_names = 11 [json_name = "DNSNames"];
   for (int i = 0, n = this->_internal_dns_names_size(); i < n; ++i) {
     const auto& s = this->_internal_dns_names().Get(i);
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "license.CertData.dns_names");
-    target = stream->WriteString(10, s, target);
+    target = stream->WriteString(11, s, target);
   }
 
-  // bool is_ca = 11;
+  // bool is_ca = 12;
   if (this->_internal_is_ca() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(
-        11, this->_internal_is_ca(), target);
+        12, this->_internal_is_ca(), target);
   }
 
-  // optional .license.CertData parent_data = 12;
+  // optional .license.CertData parent_data = 13;
   if (cached_has_bits & 0x00000004u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        12, *_impl_.parent_data_, _impl_.parent_data_->GetCachedSize(), target, stream);
+        13, *_impl_.parent_data_, _impl_.parent_data_->GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1425,7 +1449,7 @@ PROTOBUF_NOINLINE void CertData::Clear() {
   (void) cached_has_bits;
 
   ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // repeated string dns_names = 10 [json_name = "DNSNames"];
+  // repeated string dns_names = 11 [json_name = "DNSNames"];
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_dns_names().size());
   for (int i = 0, n = _internal_dns_names().size(); i < n; ++i) {
     total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1461,21 +1485,27 @@ PROTOBUF_NOINLINE void CertData::Clear() {
                                     this->_internal_commonname());
   }
 
+  // string serialNumber = 8;
+  if (!this->_internal_serialnumber().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_serialnumber());
+  }
+
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
-    // .google.protobuf.Timestamp validFrom = 8;
+    // .google.protobuf.Timestamp validFrom = 9;
     if (cached_has_bits & 0x00000001u) {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.validfrom_);
     }
 
-    // .google.protobuf.Timestamp validUntil = 9;
+    // .google.protobuf.Timestamp validUntil = 10;
     if (cached_has_bits & 0x00000002u) {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.validuntil_);
     }
 
-    // optional .license.CertData parent_data = 12;
+    // optional .license.CertData parent_data = 13;
     if (cached_has_bits & 0x00000004u) {
       total_size +=
           1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.parent_data_);
@@ -1494,7 +1524,7 @@ PROTOBUF_NOINLINE void CertData::Clear() {
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
-  // bool is_ca = 11;
+  // bool is_ca = 12;
   if (this->_internal_is_ca() != 0) {
     total_size += 2;
   }
@@ -1527,6 +1557,9 @@ void CertData::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
   }
   if (!from._internal_commonname().empty()) {
     _this->_internal_set_commonname(from._internal_commonname());
+  }
+  if (!from._internal_serialnumber().empty()) {
+    _this->_internal_set_serialnumber(from._internal_serialnumber());
   }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
@@ -1591,6 +1624,7 @@ void CertData::InternalSwap(CertData* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.country_, &other->_impl_.country_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.locality_, &other->_impl_.locality_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.commonname_, &other->_impl_.commonname_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.serialnumber_, &other->_impl_.serialnumber_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(CertData, _impl_.is_ca_)
       + sizeof(CertData::_impl_.is_ca_)
