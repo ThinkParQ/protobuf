@@ -68,18 +68,18 @@ message CertData {
   int64 serial = 2;
   // Fields 3-8 contain an x509 certificate subject's attributes
   string organization = 3;
-  string organizationalUnit = 4;
+  string organizational_unit = 4;
   string country = 5;
   string locality = 6;
-  // commonName is the string serial number that contains the type (P-, SP-, ...) and the partner
-  // account ID or support contract ID
-  string commonName = 7;
-  // subjectSerial can contain a different string serial number (for example a customer ID). It
-  // doesn't carry any semantic meaning for now.
-  string subjectSerial = 8;
+  // String serial number that contains the type (P-, SP-, ...) and the partner account ID or
+  // support contract ID
+  string common_name = 7;
+  // Can contain a different string serial number (for example a customer ID). It doesn't carry any
+  // semantic meaning for now.
+  string subject_serial = 8;
   // Fields 8 and 9 encode the certificate's validity period
-  google.protobuf.Timestamp validFrom = 9;
-  google.protobuf.Timestamp validUntil = 10;
+  google.protobuf.Timestamp valid_from = 9;
+  google.protobuf.Timestamp valid_until = 10;
   // The DNS names the certificate is valid for. BeeGFS license certificates encode licensed
   // features as DNS names, e.g. "io.beegfs.mirroring" or "io.beegfs.numservers.4"
   repeated string dns_names = 11 [json_name = "DNSNames"];

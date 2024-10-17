@@ -61,12 +61,12 @@ pub struct CertData {
     pub country: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
     pub locality: ::prost::alloc::string::String,
-    /// commonName is the string serial number that contains the type (P-, SP-, ...) and the partner
-    /// account ID or support contract ID
+    /// String serial number that contains the type (P-, SP-, ...) and the partner account ID or
+    /// support contract ID
     #[prost(string, tag = "7")]
     pub common_name: ::prost::alloc::string::String,
-    /// subjectSerial can contain a different string serial number (for example a customer ID). It
-    /// doesn't carry any semantic meaning for now.
+    /// Can contain a different string serial number (for example a customer ID). It doesn't carry any
+    /// semantic meaning for now.
     #[prost(string, tag = "8")]
     pub subject_serial: ::prost::alloc::string::String,
     /// Fields 8 and 9 encode the certificate's validity period
