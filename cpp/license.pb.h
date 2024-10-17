@@ -669,20 +669,21 @@ class CertData final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kDnsNamesFieldNumber = 10,
+    kDnsNamesFieldNumber = 11,
     kOrganizationFieldNumber = 3,
     kOrganizationalUnitFieldNumber = 4,
     kCountryFieldNumber = 5,
     kLocalityFieldNumber = 6,
     kCommonNameFieldNumber = 7,
-    kValidFromFieldNumber = 8,
-    kValidUntilFieldNumber = 9,
-    kParentDataFieldNumber = 12,
+    kSubjectSerialFieldNumber = 8,
+    kValidFromFieldNumber = 9,
+    kValidUntilFieldNumber = 10,
+    kParentDataFieldNumber = 13,
     kSerialFieldNumber = 2,
     kTypeFieldNumber = 1,
-    kIsCaFieldNumber = 11,
+    kIsCaFieldNumber = 12,
   };
-  // repeated string dns_names = 10 [json_name = "DNSNames"];
+  // repeated string dns_names = 11 [json_name = "DNSNames"];
   int dns_names_size() const;
   private:
   int _internal_dns_names_size() const;
@@ -726,20 +727,20 @@ class CertData final : public ::google::protobuf::Message
   std::string* _internal_mutable_organization();
 
   public:
-  // string organizationalUnit = 4;
-  void clear_organizationalunit() ;
-  const std::string& organizationalunit() const;
+  // string organizational_unit = 4;
+  void clear_organizational_unit() ;
+  const std::string& organizational_unit() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_organizationalunit(Arg_&& arg, Args_... args);
-  std::string* mutable_organizationalunit();
-  PROTOBUF_NODISCARD std::string* release_organizationalunit();
-  void set_allocated_organizationalunit(std::string* value);
+  void set_organizational_unit(Arg_&& arg, Args_... args);
+  std::string* mutable_organizational_unit();
+  PROTOBUF_NODISCARD std::string* release_organizational_unit();
+  void set_allocated_organizational_unit(std::string* value);
 
   private:
-  const std::string& _internal_organizationalunit() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organizationalunit(
+  const std::string& _internal_organizational_unit() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_organizational_unit(
       const std::string& value);
-  std::string* _internal_mutable_organizationalunit();
+  std::string* _internal_mutable_organizational_unit();
 
   public:
   // string country = 5;
@@ -774,53 +775,69 @@ class CertData final : public ::google::protobuf::Message
   std::string* _internal_mutable_locality();
 
   public:
-  // string commonName = 7;
-  void clear_commonname() ;
-  const std::string& commonname() const;
+  // string common_name = 7;
+  void clear_common_name() ;
+  const std::string& common_name() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_commonname(Arg_&& arg, Args_... args);
-  std::string* mutable_commonname();
-  PROTOBUF_NODISCARD std::string* release_commonname();
-  void set_allocated_commonname(std::string* value);
+  void set_common_name(Arg_&& arg, Args_... args);
+  std::string* mutable_common_name();
+  PROTOBUF_NODISCARD std::string* release_common_name();
+  void set_allocated_common_name(std::string* value);
 
   private:
-  const std::string& _internal_commonname() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_commonname(
+  const std::string& _internal_common_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_common_name(
       const std::string& value);
-  std::string* _internal_mutable_commonname();
+  std::string* _internal_mutable_common_name();
 
   public:
-  // .google.protobuf.Timestamp validFrom = 8;
-  bool has_validfrom() const;
-  void clear_validfrom() ;
-  const ::google::protobuf::Timestamp& validfrom() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_validfrom();
-  ::google::protobuf::Timestamp* mutable_validfrom();
-  void set_allocated_validfrom(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_validfrom(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_validfrom();
+  // string subject_serial = 8;
+  void clear_subject_serial() ;
+  const std::string& subject_serial() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_subject_serial(Arg_&& arg, Args_... args);
+  std::string* mutable_subject_serial();
+  PROTOBUF_NODISCARD std::string* release_subject_serial();
+  void set_allocated_subject_serial(std::string* value);
 
   private:
-  const ::google::protobuf::Timestamp& _internal_validfrom() const;
-  ::google::protobuf::Timestamp* _internal_mutable_validfrom();
+  const std::string& _internal_subject_serial() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_subject_serial(
+      const std::string& value);
+  std::string* _internal_mutable_subject_serial();
 
   public:
-  // .google.protobuf.Timestamp validUntil = 9;
-  bool has_validuntil() const;
-  void clear_validuntil() ;
-  const ::google::protobuf::Timestamp& validuntil() const;
-  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_validuntil();
-  ::google::protobuf::Timestamp* mutable_validuntil();
-  void set_allocated_validuntil(::google::protobuf::Timestamp* value);
-  void unsafe_arena_set_allocated_validuntil(::google::protobuf::Timestamp* value);
-  ::google::protobuf::Timestamp* unsafe_arena_release_validuntil();
+  // .google.protobuf.Timestamp valid_from = 9;
+  bool has_valid_from() const;
+  void clear_valid_from() ;
+  const ::google::protobuf::Timestamp& valid_from() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_valid_from();
+  ::google::protobuf::Timestamp* mutable_valid_from();
+  void set_allocated_valid_from(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_valid_from(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_valid_from();
 
   private:
-  const ::google::protobuf::Timestamp& _internal_validuntil() const;
-  ::google::protobuf::Timestamp* _internal_mutable_validuntil();
+  const ::google::protobuf::Timestamp& _internal_valid_from() const;
+  ::google::protobuf::Timestamp* _internal_mutable_valid_from();
 
   public:
-  // optional .license.CertData parent_data = 12;
+  // .google.protobuf.Timestamp valid_until = 10;
+  bool has_valid_until() const;
+  void clear_valid_until() ;
+  const ::google::protobuf::Timestamp& valid_until() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_valid_until();
+  ::google::protobuf::Timestamp* mutable_valid_until();
+  void set_allocated_valid_until(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_valid_until(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_valid_until();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_valid_until() const;
+  ::google::protobuf::Timestamp* _internal_mutable_valid_until();
+
+  public:
+  // optional .license.CertData parent_data = 13;
   bool has_parent_data() const;
   void clear_parent_data() ;
   const ::license::CertData& parent_data() const;
@@ -855,7 +872,7 @@ class CertData final : public ::google::protobuf::Message
   void _internal_set_type(::license::CertType value);
 
   public:
-  // bool is_ca = 11;
+  // bool is_ca = 12;
   void clear_is_ca() ;
   bool is_ca() const;
   void set_is_ca(bool value);
@@ -870,8 +887,8 @@ class CertData final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 12, 3,
-      97, 2>
+      4, 13, 3,
+      113, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -895,12 +912,13 @@ class CertData final : public ::google::protobuf::Message
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<std::string> dns_names_;
     ::google::protobuf::internal::ArenaStringPtr organization_;
-    ::google::protobuf::internal::ArenaStringPtr organizationalunit_;
+    ::google::protobuf::internal::ArenaStringPtr organizational_unit_;
     ::google::protobuf::internal::ArenaStringPtr country_;
     ::google::protobuf::internal::ArenaStringPtr locality_;
-    ::google::protobuf::internal::ArenaStringPtr commonname_;
-    ::google::protobuf::Timestamp* validfrom_;
-    ::google::protobuf::Timestamp* validuntil_;
+    ::google::protobuf::internal::ArenaStringPtr common_name_;
+    ::google::protobuf::internal::ArenaStringPtr subject_serial_;
+    ::google::protobuf::Timestamp* valid_from_;
+    ::google::protobuf::Timestamp* valid_until_;
     ::license::CertData* parent_data_;
     ::int64_t serial_;
     int type_;
@@ -1602,54 +1620,54 @@ inline void CertData::set_allocated_organization(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:license.CertData.organization)
 }
 
-// string organizationalUnit = 4;
-inline void CertData::clear_organizationalunit() {
+// string organizational_unit = 4;
+inline void CertData::clear_organizational_unit() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.organizationalunit_.ClearToEmpty();
+  _impl_.organizational_unit_.ClearToEmpty();
 }
-inline const std::string& CertData::organizationalunit() const
+inline const std::string& CertData::organizational_unit() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:license.CertData.organizationalUnit)
-  return _internal_organizationalunit();
+  // @@protoc_insertion_point(field_get:license.CertData.organizational_unit)
+  return _internal_organizational_unit();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void CertData::set_organizationalunit(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CertData::set_organizational_unit(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.organizationalunit_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:license.CertData.organizationalUnit)
+  _impl_.organizational_unit_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:license.CertData.organizational_unit)
 }
-inline std::string* CertData::mutable_organizationalunit() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_organizationalunit();
-  // @@protoc_insertion_point(field_mutable:license.CertData.organizationalUnit)
+inline std::string* CertData::mutable_organizational_unit() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_organizational_unit();
+  // @@protoc_insertion_point(field_mutable:license.CertData.organizational_unit)
   return _s;
 }
-inline const std::string& CertData::_internal_organizationalunit() const {
+inline const std::string& CertData::_internal_organizational_unit() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.organizationalunit_.Get();
+  return _impl_.organizational_unit_.Get();
 }
-inline void CertData::_internal_set_organizationalunit(const std::string& value) {
+inline void CertData::_internal_set_organizational_unit(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.organizationalunit_.Set(value, GetArena());
+  _impl_.organizational_unit_.Set(value, GetArena());
 }
-inline std::string* CertData::_internal_mutable_organizationalunit() {
+inline std::string* CertData::_internal_mutable_organizational_unit() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.organizationalunit_.Mutable( GetArena());
+  return _impl_.organizational_unit_.Mutable( GetArena());
 }
-inline std::string* CertData::release_organizationalunit() {
+inline std::string* CertData::release_organizational_unit() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:license.CertData.organizationalUnit)
-  return _impl_.organizationalunit_.Release();
+  // @@protoc_insertion_point(field_release:license.CertData.organizational_unit)
+  return _impl_.organizational_unit_.Release();
 }
-inline void CertData::set_allocated_organizationalunit(std::string* value) {
+inline void CertData::set_allocated_organizational_unit(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.organizationalunit_.SetAllocated(value, GetArena());
+  _impl_.organizational_unit_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.organizationalunit_.IsDefault()) {
-          _impl_.organizationalunit_.Set("", GetArena());
+        if (_impl_.organizational_unit_.IsDefault()) {
+          _impl_.organizational_unit_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:license.CertData.organizationalUnit)
+  // @@protoc_insertion_point(field_set_allocated:license.CertData.organizational_unit)
 }
 
 // string country = 5;
@@ -1752,90 +1770,140 @@ inline void CertData::set_allocated_locality(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:license.CertData.locality)
 }
 
-// string commonName = 7;
-inline void CertData::clear_commonname() {
+// string common_name = 7;
+inline void CertData::clear_common_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.commonname_.ClearToEmpty();
+  _impl_.common_name_.ClearToEmpty();
 }
-inline const std::string& CertData::commonname() const
+inline const std::string& CertData::common_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:license.CertData.commonName)
-  return _internal_commonname();
+  // @@protoc_insertion_point(field_get:license.CertData.common_name)
+  return _internal_common_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void CertData::set_commonname(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CertData::set_common_name(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.commonname_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:license.CertData.commonName)
+  _impl_.common_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:license.CertData.common_name)
 }
-inline std::string* CertData::mutable_commonname() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_commonname();
-  // @@protoc_insertion_point(field_mutable:license.CertData.commonName)
+inline std::string* CertData::mutable_common_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_common_name();
+  // @@protoc_insertion_point(field_mutable:license.CertData.common_name)
   return _s;
 }
-inline const std::string& CertData::_internal_commonname() const {
+inline const std::string& CertData::_internal_common_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.commonname_.Get();
+  return _impl_.common_name_.Get();
 }
-inline void CertData::_internal_set_commonname(const std::string& value) {
+inline void CertData::_internal_set_common_name(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.commonname_.Set(value, GetArena());
+  _impl_.common_name_.Set(value, GetArena());
 }
-inline std::string* CertData::_internal_mutable_commonname() {
+inline std::string* CertData::_internal_mutable_common_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.commonname_.Mutable( GetArena());
+  return _impl_.common_name_.Mutable( GetArena());
 }
-inline std::string* CertData::release_commonname() {
+inline std::string* CertData::release_common_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:license.CertData.commonName)
-  return _impl_.commonname_.Release();
+  // @@protoc_insertion_point(field_release:license.CertData.common_name)
+  return _impl_.common_name_.Release();
 }
-inline void CertData::set_allocated_commonname(std::string* value) {
+inline void CertData::set_allocated_common_name(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.commonname_.SetAllocated(value, GetArena());
+  _impl_.common_name_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.commonname_.IsDefault()) {
-          _impl_.commonname_.Set("", GetArena());
+        if (_impl_.common_name_.IsDefault()) {
+          _impl_.common_name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:license.CertData.commonName)
+  // @@protoc_insertion_point(field_set_allocated:license.CertData.common_name)
 }
 
-// .google.protobuf.Timestamp validFrom = 8;
-inline bool CertData::has_validfrom() const {
+// string subject_serial = 8;
+inline void CertData::clear_subject_serial() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.subject_serial_.ClearToEmpty();
+}
+inline const std::string& CertData::subject_serial() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:license.CertData.subject_serial)
+  return _internal_subject_serial();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CertData::set_subject_serial(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.subject_serial_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:license.CertData.subject_serial)
+}
+inline std::string* CertData::mutable_subject_serial() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_subject_serial();
+  // @@protoc_insertion_point(field_mutable:license.CertData.subject_serial)
+  return _s;
+}
+inline const std::string& CertData::_internal_subject_serial() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.subject_serial_.Get();
+}
+inline void CertData::_internal_set_subject_serial(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.subject_serial_.Set(value, GetArena());
+}
+inline std::string* CertData::_internal_mutable_subject_serial() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.subject_serial_.Mutable( GetArena());
+}
+inline std::string* CertData::release_subject_serial() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:license.CertData.subject_serial)
+  return _impl_.subject_serial_.Release();
+}
+inline void CertData::set_allocated_subject_serial(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.subject_serial_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.subject_serial_.IsDefault()) {
+          _impl_.subject_serial_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:license.CertData.subject_serial)
+}
+
+// .google.protobuf.Timestamp valid_from = 9;
+inline bool CertData::has_valid_from() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.validfrom_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.valid_from_ != nullptr);
   return value;
 }
-inline const ::google::protobuf::Timestamp& CertData::_internal_validfrom() const {
+inline const ::google::protobuf::Timestamp& CertData::_internal_valid_from() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::google::protobuf::Timestamp* p = _impl_.validfrom_;
+  const ::google::protobuf::Timestamp* p = _impl_.valid_from_;
   return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
 }
-inline const ::google::protobuf::Timestamp& CertData::validfrom() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:license.CertData.validFrom)
-  return _internal_validfrom();
+inline const ::google::protobuf::Timestamp& CertData::valid_from() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:license.CertData.valid_from)
+  return _internal_valid_from();
 }
-inline void CertData::unsafe_arena_set_allocated_validfrom(::google::protobuf::Timestamp* value) {
+inline void CertData::unsafe_arena_set_allocated_valid_from(::google::protobuf::Timestamp* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.validfrom_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.valid_from_);
   }
-  _impl_.validfrom_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  _impl_.valid_from_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:license.CertData.validFrom)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:license.CertData.valid_from)
 }
-inline ::google::protobuf::Timestamp* CertData::release_validfrom() {
+inline ::google::protobuf::Timestamp* CertData::release_valid_from() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* released = _impl_.validfrom_;
-  _impl_.validfrom_ = nullptr;
+  ::google::protobuf::Timestamp* released = _impl_.valid_from_;
+  _impl_.valid_from_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
   released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -1849,34 +1917,34 @@ inline ::google::protobuf::Timestamp* CertData::release_validfrom() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::google::protobuf::Timestamp* CertData::unsafe_arena_release_validfrom() {
+inline ::google::protobuf::Timestamp* CertData::unsafe_arena_release_valid_from() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:license.CertData.validFrom)
+  // @@protoc_insertion_point(field_release:license.CertData.valid_from)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::google::protobuf::Timestamp* temp = _impl_.validfrom_;
-  _impl_.validfrom_ = nullptr;
+  ::google::protobuf::Timestamp* temp = _impl_.valid_from_;
+  _impl_.valid_from_ = nullptr;
   return temp;
 }
-inline ::google::protobuf::Timestamp* CertData::_internal_mutable_validfrom() {
+inline ::google::protobuf::Timestamp* CertData::_internal_mutable_valid_from() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.validfrom_ == nullptr) {
+  if (_impl_.valid_from_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
-    _impl_.validfrom_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+    _impl_.valid_from_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
   }
-  return _impl_.validfrom_;
+  return _impl_.valid_from_;
 }
-inline ::google::protobuf::Timestamp* CertData::mutable_validfrom() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::google::protobuf::Timestamp* CertData::mutable_valid_from() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::google::protobuf::Timestamp* _msg = _internal_mutable_validfrom();
-  // @@protoc_insertion_point(field_mutable:license.CertData.validFrom)
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_valid_from();
+  // @@protoc_insertion_point(field_mutable:license.CertData.valid_from)
   return _msg;
 }
-inline void CertData::set_allocated_validfrom(::google::protobuf::Timestamp* value) {
+inline void CertData::set_allocated_valid_from(::google::protobuf::Timestamp* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.validfrom_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.valid_from_);
   }
 
   if (value != nullptr) {
@@ -1889,44 +1957,44 @@ inline void CertData::set_allocated_validfrom(::google::protobuf::Timestamp* val
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.validfrom_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:license.CertData.validFrom)
+  _impl_.valid_from_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:license.CertData.valid_from)
 }
 
-// .google.protobuf.Timestamp validUntil = 9;
-inline bool CertData::has_validuntil() const {
+// .google.protobuf.Timestamp valid_until = 10;
+inline bool CertData::has_valid_until() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.validuntil_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.valid_until_ != nullptr);
   return value;
 }
-inline const ::google::protobuf::Timestamp& CertData::_internal_validuntil() const {
+inline const ::google::protobuf::Timestamp& CertData::_internal_valid_until() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::google::protobuf::Timestamp* p = _impl_.validuntil_;
+  const ::google::protobuf::Timestamp* p = _impl_.valid_until_;
   return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
 }
-inline const ::google::protobuf::Timestamp& CertData::validuntil() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:license.CertData.validUntil)
-  return _internal_validuntil();
+inline const ::google::protobuf::Timestamp& CertData::valid_until() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:license.CertData.valid_until)
+  return _internal_valid_until();
 }
-inline void CertData::unsafe_arena_set_allocated_validuntil(::google::protobuf::Timestamp* value) {
+inline void CertData::unsafe_arena_set_allocated_valid_until(::google::protobuf::Timestamp* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.validuntil_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.valid_until_);
   }
-  _impl_.validuntil_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  _impl_.valid_until_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:license.CertData.validUntil)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:license.CertData.valid_until)
 }
-inline ::google::protobuf::Timestamp* CertData::release_validuntil() {
+inline ::google::protobuf::Timestamp* CertData::release_valid_until() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::google::protobuf::Timestamp* released = _impl_.validuntil_;
-  _impl_.validuntil_ = nullptr;
+  ::google::protobuf::Timestamp* released = _impl_.valid_until_;
+  _impl_.valid_until_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
   released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -1940,34 +2008,34 @@ inline ::google::protobuf::Timestamp* CertData::release_validuntil() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::google::protobuf::Timestamp* CertData::unsafe_arena_release_validuntil() {
+inline ::google::protobuf::Timestamp* CertData::unsafe_arena_release_valid_until() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:license.CertData.validUntil)
+  // @@protoc_insertion_point(field_release:license.CertData.valid_until)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::google::protobuf::Timestamp* temp = _impl_.validuntil_;
-  _impl_.validuntil_ = nullptr;
+  ::google::protobuf::Timestamp* temp = _impl_.valid_until_;
+  _impl_.valid_until_ = nullptr;
   return temp;
 }
-inline ::google::protobuf::Timestamp* CertData::_internal_mutable_validuntil() {
+inline ::google::protobuf::Timestamp* CertData::_internal_mutable_valid_until() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.validuntil_ == nullptr) {
+  if (_impl_.valid_until_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
-    _impl_.validuntil_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+    _impl_.valid_until_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
   }
-  return _impl_.validuntil_;
+  return _impl_.valid_until_;
 }
-inline ::google::protobuf::Timestamp* CertData::mutable_validuntil() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::google::protobuf::Timestamp* CertData::mutable_valid_until() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
-  ::google::protobuf::Timestamp* _msg = _internal_mutable_validuntil();
-  // @@protoc_insertion_point(field_mutable:license.CertData.validUntil)
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_valid_until();
+  // @@protoc_insertion_point(field_mutable:license.CertData.valid_until)
   return _msg;
 }
-inline void CertData::set_allocated_validuntil(::google::protobuf::Timestamp* value) {
+inline void CertData::set_allocated_valid_until(::google::protobuf::Timestamp* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.validuntil_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.valid_until_);
   }
 
   if (value != nullptr) {
@@ -1980,11 +2048,11 @@ inline void CertData::set_allocated_validuntil(::google::protobuf::Timestamp* va
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.validuntil_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:license.CertData.validUntil)
+  _impl_.valid_until_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:license.CertData.valid_until)
 }
 
-// repeated string dns_names = 10 [json_name = "DNSNames"];
+// repeated string dns_names = 11 [json_name = "DNSNames"];
 inline int CertData::_internal_dns_names_size() const {
   return _internal_dns_names().size();
 }
@@ -2086,7 +2154,7 @@ CertData::_internal_mutable_dns_names() {
   return &_impl_.dns_names_;
 }
 
-// bool is_ca = 11;
+// bool is_ca = 12;
 inline void CertData::clear_is_ca() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.is_ca_ = false;
@@ -2108,7 +2176,7 @@ inline void CertData::_internal_set_is_ca(bool value) {
   _impl_.is_ca_ = value;
 }
 
-// optional .license.CertData parent_data = 12;
+// optional .license.CertData parent_data = 13;
 inline bool CertData::has_parent_data() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.parent_data_ != nullptr);

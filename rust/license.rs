@@ -45,14 +45,14 @@ pub struct GetCertDataResult {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CertData {
-    /// Certificate type. Encoded in the commonName of the x509 certificate together with the serial.
+    /// Certificate type. Encoded in the subject SerialNumber and CommonName of the x509 certificate
+    /// together with the account ID.
     #[prost(enumeration = "CertType", tag = "1")]
     pub r#type: i32,
-    /// Int64 x509 serial number which translates into a Partner (P-????) or Support contract (SP-????)
-    /// string serial. Integer here, because the Go x509.Certificate uses an int64.
+    /// Random int64 x509 serial number that uniquely identifies the certificate
     #[prost(int64, tag = "2")]
     pub serial: i64,
-    /// Fields 3-7 contain an x509 certificate subject's attributes
+    /// Fields 3-8 contain an x509 certificate subject's attributes
     #[prost(string, tag = "3")]
     pub organization: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
@@ -61,24 +61,29 @@ pub struct CertData {
     pub country: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
     pub locality: ::prost::alloc::string::String,
-    /// commonName contains the string serial number
+    /// String serial number that contains the type (P-, SP-, ...) and the partner account ID or
+    /// support contract ID
     #[prost(string, tag = "7")]
     pub common_name: ::prost::alloc::string::String,
+    /// Can contain a different string serial number (for example a customer ID). It doesn't carry any
+    /// semantic meaning for now.
+    #[prost(string, tag = "8")]
+    pub subject_serial: ::prost::alloc::string::String,
     /// Fields 8 and 9 encode the certificate's validity period
-    #[prost(message, optional, tag = "8")]
-    pub valid_from: ::core::option::Option<::prost_types::Timestamp>,
     #[prost(message, optional, tag = "9")]
+    pub valid_from: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "10")]
     pub valid_until: ::core::option::Option<::prost_types::Timestamp>,
     /// The DNS names the certificate is valid for. BeeGFS license certificates encode licensed
     /// features as DNS names, e.g. "io.beegfs.mirroring" or "io.beegfs.numservers.4"
-    #[prost(string, repeated, tag = "10")]
+    #[prost(string, repeated, tag = "11")]
     pub dns_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// Indicates whether the certificate is part of a CA. Always false for customer and partner
     /// certificates.
-    #[prost(bool, tag = "11")]
+    #[prost(bool, tag = "12")]
     pub is_ca: bool,
     /// The certificate's parent or "Issuer" certificate
-    #[prost(message, optional, boxed, tag = "12")]
+    #[prost(message, optional, boxed, tag = "13")]
     pub parent_data: ::core::option::Option<::prost::alloc::boxed::Box<CertData>>,
 }
 /// The three types of result a certificate verification can produce.
