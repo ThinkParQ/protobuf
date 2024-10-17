@@ -675,7 +675,7 @@ class CertData final : public ::google::protobuf::Message
     kCountryFieldNumber = 5,
     kLocalityFieldNumber = 6,
     kCommonNameFieldNumber = 7,
-    kSerialNumberFieldNumber = 8,
+    kSubjectSerialFieldNumber = 8,
     kValidFromFieldNumber = 9,
     kValidUntilFieldNumber = 10,
     kParentDataFieldNumber = 13,
@@ -791,20 +791,20 @@ class CertData final : public ::google::protobuf::Message
   std::string* _internal_mutable_commonname();
 
   public:
-  // string serialNumber = 8;
-  void clear_serialnumber() ;
-  const std::string& serialnumber() const;
+  // string subjectSerial = 8;
+  void clear_subjectserial() ;
+  const std::string& subjectserial() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_serialnumber(Arg_&& arg, Args_... args);
-  std::string* mutable_serialnumber();
-  PROTOBUF_NODISCARD std::string* release_serialnumber();
-  void set_allocated_serialnumber(std::string* value);
+  void set_subjectserial(Arg_&& arg, Args_... args);
+  std::string* mutable_subjectserial();
+  PROTOBUF_NODISCARD std::string* release_subjectserial();
+  void set_allocated_subjectserial(std::string* value);
 
   private:
-  const std::string& _internal_serialnumber() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_serialnumber(
+  const std::string& _internal_subjectserial() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_subjectserial(
       const std::string& value);
-  std::string* _internal_mutable_serialnumber();
+  std::string* _internal_mutable_subjectserial();
 
   public:
   // .google.protobuf.Timestamp validFrom = 9;
@@ -888,7 +888,7 @@ class CertData final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       4, 13, 3,
-      109, 2>
+      110, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -916,7 +916,7 @@ class CertData final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr country_;
     ::google::protobuf::internal::ArenaStringPtr locality_;
     ::google::protobuf::internal::ArenaStringPtr commonname_;
-    ::google::protobuf::internal::ArenaStringPtr serialnumber_;
+    ::google::protobuf::internal::ArenaStringPtr subjectserial_;
     ::google::protobuf::Timestamp* validfrom_;
     ::google::protobuf::Timestamp* validuntil_;
     ::license::CertData* parent_data_;
@@ -1820,54 +1820,54 @@ inline void CertData::set_allocated_commonname(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:license.CertData.commonName)
 }
 
-// string serialNumber = 8;
-inline void CertData::clear_serialnumber() {
+// string subjectSerial = 8;
+inline void CertData::clear_subjectserial() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.serialnumber_.ClearToEmpty();
+  _impl_.subjectserial_.ClearToEmpty();
 }
-inline const std::string& CertData::serialnumber() const
+inline const std::string& CertData::subjectserial() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:license.CertData.serialNumber)
-  return _internal_serialnumber();
+  // @@protoc_insertion_point(field_get:license.CertData.subjectSerial)
+  return _internal_subjectserial();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void CertData::set_serialnumber(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CertData::set_subjectserial(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.serialnumber_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:license.CertData.serialNumber)
+  _impl_.subjectserial_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:license.CertData.subjectSerial)
 }
-inline std::string* CertData::mutable_serialnumber() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_serialnumber();
-  // @@protoc_insertion_point(field_mutable:license.CertData.serialNumber)
+inline std::string* CertData::mutable_subjectserial() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_subjectserial();
+  // @@protoc_insertion_point(field_mutable:license.CertData.subjectSerial)
   return _s;
 }
-inline const std::string& CertData::_internal_serialnumber() const {
+inline const std::string& CertData::_internal_subjectserial() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.serialnumber_.Get();
+  return _impl_.subjectserial_.Get();
 }
-inline void CertData::_internal_set_serialnumber(const std::string& value) {
+inline void CertData::_internal_set_subjectserial(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.serialnumber_.Set(value, GetArena());
+  _impl_.subjectserial_.Set(value, GetArena());
 }
-inline std::string* CertData::_internal_mutable_serialnumber() {
+inline std::string* CertData::_internal_mutable_subjectserial() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.serialnumber_.Mutable( GetArena());
+  return _impl_.subjectserial_.Mutable( GetArena());
 }
-inline std::string* CertData::release_serialnumber() {
+inline std::string* CertData::release_subjectserial() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:license.CertData.serialNumber)
-  return _impl_.serialnumber_.Release();
+  // @@protoc_insertion_point(field_release:license.CertData.subjectSerial)
+  return _impl_.subjectserial_.Release();
 }
-inline void CertData::set_allocated_serialnumber(std::string* value) {
+inline void CertData::set_allocated_subjectserial(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.serialnumber_.SetAllocated(value, GetArena());
+  _impl_.subjectserial_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.serialnumber_.IsDefault()) {
-          _impl_.serialnumber_.Set("", GetArena());
+        if (_impl_.subjectserial_.IsDefault()) {
+          _impl_.subjectserial_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:license.CertData.serialNumber)
+  // @@protoc_insertion_point(field_set_allocated:license.CertData.subjectSerial)
 }
 
 // .google.protobuf.Timestamp validFrom = 9;

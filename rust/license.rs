@@ -65,10 +65,10 @@ pub struct CertData {
     /// account ID or support contract ID
     #[prost(string, tag = "7")]
     pub common_name: ::prost::alloc::string::String,
-    /// serialNumber can contain a different string serial number (for example a customer ID). It
+    /// subjectSerial can contain a different string serial number (for example a customer ID). It
     /// doesn't carry any semantic meaning for now.
     #[prost(string, tag = "8")]
-    pub serial_number: ::prost::alloc::string::String,
+    pub subject_serial: ::prost::alloc::string::String,
     /// Fields 8 and 9 encode the certificate's validity period
     #[prost(message, optional, tag = "9")]
     pub valid_from: ::core::option::Option<::prost_types::Timestamp>,

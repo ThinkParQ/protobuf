@@ -91,7 +91,7 @@ inline constexpr CertData::Impl_::Impl_(
         commonname_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        serialnumber_(
+        subjectserial_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         validfrom_{nullptr},
@@ -194,7 +194,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.country_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.locality_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.commonname_),
-        PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.serialnumber_),
+        PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.subjectserial_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.validfrom_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.validuntil_),
         PROTOBUF_FIELD_OFFSET(::license::CertData, _impl_.dns_names_),
@@ -238,25 +238,25 @@ const char descriptor_table_protodef_license_2eproto[] ABSL_ATTRIBUTE_SECTION_VA
     "erifyResult\022\017\n\007message\030\002 \001(\t\"l\n\021GetCertD"
     "ataResult\022%\n\006result\030\001 \001(\0162\025.license.Veri"
     "fyResult\022\037\n\004data\030\002 \001(\0132\021.license.CertDat"
-    "a\022\017\n\007message\030\003 \001(\t\"\202\003\n\010CertData\022\037\n\004type\030"
+    "a\022\017\n\007message\030\003 \001(\t\"\203\003\n\010CertData\022\037\n\004type\030"
     "\001 \001(\0162\021.license.CertType\022\016\n\006serial\030\002 \001(\003"
     "\022\024\n\014organization\030\003 \001(\t\022\032\n\022organizational"
     "Unit\030\004 \001(\t\022\017\n\007country\030\005 \001(\t\022\020\n\010locality\030"
-    "\006 \001(\t\022\022\n\ncommonName\030\007 \001(\t\022\024\n\014serialNumbe"
-    "r\030\010 \001(\t\022-\n\tvalidFrom\030\t \001(\0132\032.google.prot"
-    "obuf.Timestamp\022.\n\nvalidUntil\030\n \001(\0132\032.goo"
-    "gle.protobuf.Timestamp\022\033\n\tdns_names\030\013 \003("
-    "\tR\010DNSNames\022\r\n\005is_ca\030\014 \001(\010\022+\n\013parent_dat"
-    "a\030\r \001(\0132\021.license.CertDataH\000\210\001\001B\016\n\014_pare"
-    "nt_data*^\n\014VerifyResult\022\026\n\022VERIFY_UNSPEC"
-    "IFIED\020\000\022\020\n\014VERIFY_ERROR\020\001\022\020\n\014VERIFY_VALI"
-    "D\020\002\022\022\n\016VERIFY_INVALID\020\003*\243\001\n\010CertType\022\031\n\025"
-    "CERT_TYPE_UNSPECIFIED\020\000\022\025\n\021CERT_TYPE_CA_"
-    "ROOT\020\001\022\035\n\031CERT_TYPE_CA_INTERMEDIATE\020\002\022\025\n"
-    "\021CERT_TYPE_PARTNER\020\003\022\026\n\022CERT_TYPE_CUSTOM"
-    "ER\020\004\022\027\n\023CERT_TYPE_TEMPORARY\020\005B*Z(github."
-    "com/thinkparq/protobuf/go/licenseb\006proto"
-    "3"
+    "\006 \001(\t\022\022\n\ncommonName\030\007 \001(\t\022\025\n\rsubjectSeri"
+    "al\030\010 \001(\t\022-\n\tvalidFrom\030\t \001(\0132\032.google.pro"
+    "tobuf.Timestamp\022.\n\nvalidUntil\030\n \001(\0132\032.go"
+    "ogle.protobuf.Timestamp\022\033\n\tdns_names\030\013 \003"
+    "(\tR\010DNSNames\022\r\n\005is_ca\030\014 \001(\010\022+\n\013parent_da"
+    "ta\030\r \001(\0132\021.license.CertDataH\000\210\001\001B\016\n\014_par"
+    "ent_data*^\n\014VerifyResult\022\026\n\022VERIFY_UNSPE"
+    "CIFIED\020\000\022\020\n\014VERIFY_ERROR\020\001\022\020\n\014VERIFY_VAL"
+    "ID\020\002\022\022\n\016VERIFY_INVALID\020\003*\243\001\n\010CertType\022\031\n"
+    "\025CERT_TYPE_UNSPECIFIED\020\000\022\025\n\021CERT_TYPE_CA"
+    "_ROOT\020\001\022\035\n\031CERT_TYPE_CA_INTERMEDIATE\020\002\022\025"
+    "\n\021CERT_TYPE_PARTNER\020\003\022\026\n\022CERT_TYPE_CUSTO"
+    "MER\020\004\022\027\n\023CERT_TYPE_TEMPORARY\020\005B*Z(github"
+    ".com/thinkparq/protobuf/go/licenseb\006prot"
+    "o3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_license_2eproto_deps[1] =
     {
@@ -266,7 +266,7 @@ static ::absl::once_flag descriptor_table_license_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_license_2eproto = {
     false,
     false,
-    1041,
+    1042,
     descriptor_table_protodef_license_2eproto,
     "license.proto",
     &descriptor_table_license_2eproto_once,
@@ -1081,7 +1081,7 @@ inline PROTOBUF_NDEBUG_INLINE CertData::Impl_::Impl_(
         country_(arena, from.country_),
         locality_(arena, from.locality_),
         commonname_(arena, from.commonname_),
-        serialnumber_(arena, from.serialnumber_) {}
+        subjectserial_(arena, from.subjectserial_) {}
 
 CertData::CertData(
     ::google::protobuf::Arena* arena,
@@ -1122,7 +1122,7 @@ inline PROTOBUF_NDEBUG_INLINE CertData::Impl_::Impl_(
         country_(arena),
         locality_(arena),
         commonname_(arena),
-        serialnumber_(arena) {}
+        subjectserial_(arena) {}
 
 inline void CertData::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -1145,7 +1145,7 @@ inline void CertData::SharedDtor() {
   _impl_.country_.Destroy();
   _impl_.locality_.Destroy();
   _impl_.commonname_.Destroy();
-  _impl_.serialnumber_.Destroy();
+  _impl_.subjectserial_.Destroy();
   delete _impl_.validfrom_;
   delete _impl_.validuntil_;
   delete _impl_.parent_data_;
@@ -1173,7 +1173,7 @@ CertData::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 13, 3, 109, 2> CertData::_table_ = {
+const ::_pbi::TcParseTable<4, 13, 3, 110, 2> CertData::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(CertData, _impl_._has_bits_),
     0, // no _extensions_
@@ -1213,9 +1213,9 @@ const ::_pbi::TcParseTable<4, 13, 3, 109, 2> CertData::_table_ = {
     // string commonName = 7;
     {::_pbi::TcParser::FastUS1,
      {58, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.commonname_)}},
-    // string serialNumber = 8;
+    // string subjectSerial = 8;
     {::_pbi::TcParser::FastUS1,
-     {66, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.serialnumber_)}},
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.subjectserial_)}},
     // .google.protobuf.Timestamp validFrom = 9;
     {::_pbi::TcParser::FastMtS1,
      {74, 0, 0, PROTOBUF_FIELD_OFFSET(CertData, _impl_.validfrom_)}},
@@ -1257,8 +1257,8 @@ const ::_pbi::TcParseTable<4, 13, 3, 109, 2> CertData::_table_ = {
     // string commonName = 7;
     {PROTOBUF_FIELD_OFFSET(CertData, _impl_.commonname_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string serialNumber = 8;
-    {PROTOBUF_FIELD_OFFSET(CertData, _impl_.serialnumber_), -1, 0,
+    // string subjectSerial = 8;
+    {PROTOBUF_FIELD_OFFSET(CertData, _impl_.subjectserial_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .google.protobuf.Timestamp validFrom = 9;
     {PROTOBUF_FIELD_OFFSET(CertData, _impl_.validfrom_), _Internal::kHasBitsOffset + 0, 0,
@@ -1280,14 +1280,14 @@ const ::_pbi::TcParseTable<4, 13, 3, 109, 2> CertData::_table_ = {
     {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
     {::_pbi::TcParser::GetTable<::license::CertData>()},
   }}, {{
-    "\20\0\0\14\22\7\10\12\14\0\0\11\0\0\0\0"
+    "\20\0\0\14\22\7\10\12\15\0\0\11\0\0\0\0"
     "license.CertData"
     "organization"
     "organizationalUnit"
     "country"
     "locality"
     "commonName"
-    "serialNumber"
+    "subjectSerial"
     "dns_names"
   }},
 };
@@ -1305,7 +1305,7 @@ PROTOBUF_NOINLINE void CertData::Clear() {
   _impl_.country_.ClearToEmpty();
   _impl_.locality_.ClearToEmpty();
   _impl_.commonname_.ClearToEmpty();
-  _impl_.serialnumber_.ClearToEmpty();
+  _impl_.subjectserial_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
@@ -1389,11 +1389,11 @@ PROTOBUF_NOINLINE void CertData::Clear() {
     target = stream->WriteStringMaybeAliased(7, _s, target);
   }
 
-  // string serialNumber = 8;
-  if (!this->_internal_serialnumber().empty()) {
-    const std::string& _s = this->_internal_serialnumber();
+  // string subjectSerial = 8;
+  if (!this->_internal_subjectserial().empty()) {
+    const std::string& _s = this->_internal_subjectserial();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "license.CertData.serialNumber");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "license.CertData.subjectSerial");
     target = stream->WriteStringMaybeAliased(8, _s, target);
   }
 
@@ -1485,10 +1485,10 @@ PROTOBUF_NOINLINE void CertData::Clear() {
                                     this->_internal_commonname());
   }
 
-  // string serialNumber = 8;
-  if (!this->_internal_serialnumber().empty()) {
+  // string subjectSerial = 8;
+  if (!this->_internal_subjectserial().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_serialnumber());
+                                    this->_internal_subjectserial());
   }
 
   cached_has_bits = _impl_._has_bits_[0];
@@ -1558,8 +1558,8 @@ void CertData::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
   if (!from._internal_commonname().empty()) {
     _this->_internal_set_commonname(from._internal_commonname());
   }
-  if (!from._internal_serialnumber().empty()) {
-    _this->_internal_set_serialnumber(from._internal_serialnumber());
+  if (!from._internal_subjectserial().empty()) {
+    _this->_internal_set_subjectserial(from._internal_subjectserial());
   }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
@@ -1624,7 +1624,7 @@ void CertData::InternalSwap(CertData* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.country_, &other->_impl_.country_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.locality_, &other->_impl_.locality_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.commonname_, &other->_impl_.commonname_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.serialnumber_, &other->_impl_.serialnumber_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.subjectserial_, &other->_impl_.subjectserial_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(CertData, _impl_.is_ca_)
       + sizeof(CertData::_impl_.is_ca_)
