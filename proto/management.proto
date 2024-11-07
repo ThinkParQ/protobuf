@@ -29,6 +29,7 @@ service Management {
   rpc CreateBuddyGroup(CreateBuddyGroupRequest) returns (CreateBuddyGroupResponse);
   rpc DeleteBuddyGroup(DeleteBuddyGroupRequest) returns (DeleteBuddyGroupResponse);
   rpc MirrorRootInode(MirrorRootInodeRequest) returns (MirrorRootInodeResponse);
+  rpc StartResync(StartResyncRequest) returns (StartResyncResponse);
 
   // Quota
   rpc SetDefaultQuotaLimits(SetDefaultQuotaLimitsRequest) returns (SetDefaultQuotaLimitsResponse);
@@ -291,6 +292,20 @@ message DeleteBuddyGroupResponse {
 // Enable metadata mirroring for the root directory
 message MirrorRootInodeRequest{}
 message MirrorRootInodeResponse{}
+
+// Manually start a resync by setting the secondary target's consistency state to needs_resync
+message StartResyncRequest {
+  // The buddy group whose secondary target will be resynced from its primary target
+  optional beegfs.EntityIdSet buddy_group = 1;
+  // For storage targets: resyncs all data after the given epoch timestamp. 
+  // If set to -1, performs a complete resync. 
+  // For meta targets, this must be -1 as they can only perform complete resyncs.
+  optional int64 timestamp = 2;
+  // For storage targets only: if true, aborts an ongoing resync and restarts. 
+  // Not applicable to meta targets as meta resync cannot be aborted.
+  optional bool restart = 3;
+}
+message StartResyncResponse{}
 
 // Quota
 

@@ -378,6 +378,26 @@ pub struct MirrorRootInodeRequest {}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MirrorRootInodeResponse {}
+/// Manually start a resync by setting the secondary target's consistency state to needs_resync
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StartResyncRequest {
+    /// The buddy group whose secondary target will be resynced from its primary target
+    #[prost(message, optional, tag = "1")]
+    pub buddy_group: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// For storage targets: resyncs all data after the given epoch timestamp.
+    /// If set to -1, performs a complete resync.
+    /// For meta targets, this must be -1 as they can only perform complete resyncs.
+    #[prost(int64, optional, tag = "2")]
+    pub timestamp: ::core::option::Option<i64>,
+    /// For storage targets only: if true, aborts an ongoing resync and restarts.
+    /// Not applicable to meta targets as meta resync cannot be aborted.
+    #[prost(bool, optional, tag = "3")]
+    pub restart: ::core::option::Option<bool>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StartResyncResponse {}
 /// Contains info belonging to a quota_id + id_type + pool entry (e.g. user 1000 on storage pool 1).
 /// Depending on the message, some fields are unused.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -951,6 +971,31 @@ pub mod management_client {
                 .insert(GrpcMethod::new("management.Management", "MirrorRootInode"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn start_resync(
+            &mut self,
+            request: impl tonic::IntoRequest<super::StartResyncRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::StartResyncResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/StartResync",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "StartResync"));
+            self.inner.unary(req, path, codec).await
+        }
         /// Quota
         pub async fn set_default_quota_limits(
             &mut self,
@@ -1190,6 +1235,13 @@ pub mod management_server {
             request: tonic::Request<super::MirrorRootInodeRequest>,
         ) -> std::result::Result<
             tonic::Response<super::MirrorRootInodeResponse>,
+            tonic::Status,
+        >;
+        async fn start_resync(
+            &self,
+            request: tonic::Request<super::StartResyncRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::StartResyncResponse>,
             tonic::Status,
         >;
         /// Quota
@@ -1950,6 +2002,52 @@ pub mod management_server {
                     let fut = async move {
                         let inner = inner.0;
                         let method = MirrorRootInodeSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/StartResync" => {
+                    #[allow(non_camel_case_types)]
+                    struct StartResyncSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::StartResyncRequest>
+                    for StartResyncSvc<T> {
+                        type Response = super::StartResyncResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::StartResyncRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::start_resync(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = StartResyncSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
