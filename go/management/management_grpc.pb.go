@@ -33,6 +33,7 @@ const (
 	Management_CreateBuddyGroup_FullMethodName      = "/management.Management/CreateBuddyGroup"
 	Management_DeleteBuddyGroup_FullMethodName      = "/management.Management/DeleteBuddyGroup"
 	Management_MirrorRootInode_FullMethodName       = "/management.Management/MirrorRootInode"
+	Management_StartResync_FullMethodName           = "/management.Management/StartResync"
 	Management_SetDefaultQuotaLimits_FullMethodName = "/management.Management/SetDefaultQuotaLimits"
 	Management_SetQuotaLimits_FullMethodName        = "/management.Management/SetQuotaLimits"
 	Management_GetQuotaLimits_FullMethodName        = "/management.Management/GetQuotaLimits"
@@ -63,6 +64,7 @@ type ManagementClient interface {
 	CreateBuddyGroup(ctx context.Context, in *CreateBuddyGroupRequest, opts ...grpc.CallOption) (*CreateBuddyGroupResponse, error)
 	DeleteBuddyGroup(ctx context.Context, in *DeleteBuddyGroupRequest, opts ...grpc.CallOption) (*DeleteBuddyGroupResponse, error)
 	MirrorRootInode(ctx context.Context, in *MirrorRootInodeRequest, opts ...grpc.CallOption) (*MirrorRootInodeResponse, error)
+	StartResync(ctx context.Context, in *StartResyncRequest, opts ...grpc.CallOption) (*StartResyncResponse, error)
 	// Quota
 	SetDefaultQuotaLimits(ctx context.Context, in *SetDefaultQuotaLimitsRequest, opts ...grpc.CallOption) (*SetDefaultQuotaLimitsResponse, error)
 	SetQuotaLimits(ctx context.Context, in *SetQuotaLimitsRequest, opts ...grpc.CallOption) (*SetQuotaLimitsResponse, error)
@@ -220,6 +222,16 @@ func (c *managementClient) MirrorRootInode(ctx context.Context, in *MirrorRootIn
 	return out, nil
 }
 
+func (c *managementClient) StartResync(ctx context.Context, in *StartResyncRequest, opts ...grpc.CallOption) (*StartResyncResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StartResyncResponse)
+	err := c.cc.Invoke(ctx, Management_StartResync_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *managementClient) SetDefaultQuotaLimits(ctx context.Context, in *SetDefaultQuotaLimitsRequest, opts ...grpc.CallOption) (*SetDefaultQuotaLimitsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SetDefaultQuotaLimitsResponse)
@@ -339,6 +351,7 @@ type ManagementServer interface {
 	CreateBuddyGroup(context.Context, *CreateBuddyGroupRequest) (*CreateBuddyGroupResponse, error)
 	DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error)
 	MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error)
+	StartResync(context.Context, *StartResyncRequest) (*StartResyncResponse, error)
 	// Quota
 	SetDefaultQuotaLimits(context.Context, *SetDefaultQuotaLimitsRequest) (*SetDefaultQuotaLimitsResponse, error)
 	SetQuotaLimits(context.Context, *SetQuotaLimitsRequest) (*SetQuotaLimitsResponse, error)
@@ -394,6 +407,9 @@ func (UnimplementedManagementServer) DeleteBuddyGroup(context.Context, *DeleteBu
 }
 func (UnimplementedManagementServer) MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MirrorRootInode not implemented")
+}
+func (UnimplementedManagementServer) StartResync(context.Context, *StartResyncRequest) (*StartResyncResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartResync not implemented")
 }
 func (UnimplementedManagementServer) SetDefaultQuotaLimits(context.Context, *SetDefaultQuotaLimitsRequest) (*SetDefaultQuotaLimitsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetDefaultQuotaLimits not implemented")
@@ -675,6 +691,24 @@ func _Management_MirrorRootInode_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Management_StartResync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartResyncRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).StartResync(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_StartResync_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).StartResync(ctx, req.(*StartResyncRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Management_SetDefaultQuotaLimits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetDefaultQuotaLimitsRequest)
 	if err := dec(in); err != nil {
@@ -833,6 +867,10 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MirrorRootInode",
 			Handler:    _Management_MirrorRootInode_Handler,
+		},
+		{
+			MethodName: "StartResync",
+			Handler:    _Management_StartResync_Handler,
 		},
 		{
 			MethodName: "SetDefaultQuotaLimits",

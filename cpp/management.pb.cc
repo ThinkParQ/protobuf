@@ -25,6 +25,18 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace management {
       template <typename>
+PROTOBUF_CONSTEXPR StartResyncResponse::StartResyncResponse(::_pbi::ConstantInitialized) {}
+struct StartResyncResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR StartResyncResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~StartResyncResponseDefaultTypeInternal() {}
+  union {
+    StartResyncResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StartResyncResponseDefaultTypeInternal _StartResyncResponse_default_instance_;
+      template <typename>
 PROTOBUF_CONSTEXPR SetTargetStateResponse::SetTargetStateResponse(::_pbi::ConstantInitialized) {}
 struct SetTargetStateResponseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SetTargetStateResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
@@ -202,6 +214,27 @@ struct GetBuddyGroupsRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetBuddyGroupsRequestDefaultTypeInternal _GetBuddyGroupsRequest_default_instance_;
+
+inline constexpr StartResyncRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        buddy_group_{nullptr},
+        timestamp_{::int64_t{0}},
+        restart_{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR StartResyncRequest::StartResyncRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct StartResyncRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR StartResyncRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~StartResyncRequestDefaultTypeInternal() {}
+  union {
+    StartResyncRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StartResyncRequestDefaultTypeInternal _StartResyncRequest_default_instance_;
 
 inline constexpr SetTargetStateRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -1288,6 +1321,28 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::StartResyncRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::management::StartResyncRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::management::StartResyncRequest, _impl_.buddy_group_),
+        PROTOBUF_FIELD_OFFSET(::management::StartResyncRequest, _impl_.timestamp_),
+        PROTOBUF_FIELD_OFFSET(::management::StartResyncRequest, _impl_.restart_),
+        0,
+        1,
+        2,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::management::StartResyncResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::QuotaInfo, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1466,17 +1521,19 @@ static const ::_pbi::MigrationSchema
         {376, 385, -1, sizeof(::management::DeleteBuddyGroupResponse)},
         {386, -1, -1, sizeof(::management::MirrorRootInodeRequest)},
         {394, -1, -1, sizeof(::management::MirrorRootInodeResponse)},
-        {402, 417, -1, sizeof(::management::QuotaInfo)},
-        {424, 437, -1, sizeof(::management::SetDefaultQuotaLimitsRequest)},
-        {442, -1, -1, sizeof(::management::SetDefaultQuotaLimitsResponse)},
-        {450, -1, -1, sizeof(::management::SetQuotaLimitsRequest)},
-        {459, -1, -1, sizeof(::management::SetQuotaLimitsResponse)},
-        {467, 479, -1, sizeof(::management::GetQuotaLimitsRequest)},
-        {483, 492, -1, sizeof(::management::GetQuotaLimitsResponse)},
-        {493, 506, -1, sizeof(::management::GetQuotaUsageRequest)},
-        {511, 521, -1, sizeof(::management::GetQuotaUsageResponse)},
-        {523, 532, -1, sizeof(::management::GetLicenseRequest)},
-        {533, 542, -1, sizeof(::management::GetLicenseResponse)},
+        {402, 413, -1, sizeof(::management::StartResyncRequest)},
+        {416, -1, -1, sizeof(::management::StartResyncResponse)},
+        {424, 439, -1, sizeof(::management::QuotaInfo)},
+        {446, 459, -1, sizeof(::management::SetDefaultQuotaLimitsRequest)},
+        {464, -1, -1, sizeof(::management::SetDefaultQuotaLimitsResponse)},
+        {472, -1, -1, sizeof(::management::SetQuotaLimitsRequest)},
+        {481, -1, -1, sizeof(::management::SetQuotaLimitsResponse)},
+        {489, 501, -1, sizeof(::management::GetQuotaLimitsRequest)},
+        {505, 514, -1, sizeof(::management::GetQuotaLimitsResponse)},
+        {515, 528, -1, sizeof(::management::GetQuotaUsageRequest)},
+        {533, 543, -1, sizeof(::management::GetQuotaUsageResponse)},
+        {545, 554, -1, sizeof(::management::GetLicenseRequest)},
+        {555, 564, -1, sizeof(::management::GetLicenseResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::management::_SetAliasRequest_default_instance_._instance,
@@ -1512,6 +1569,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::management::_DeleteBuddyGroupResponse_default_instance_._instance,
     &::management::_MirrorRootInodeRequest_default_instance_._instance,
     &::management::_MirrorRootInodeResponse_default_instance_._instance,
+    &::management::_StartResyncRequest_default_instance_._instance,
+    &::management::_StartResyncResponse_default_instance_._instance,
     &::management::_QuotaInfo_default_instance_._instance,
     &::management::_SetDefaultQuotaLimitsRequest_default_instance_._instance,
     &::management::_SetDefaultQuotaLimitsResponse_default_instance_._instance,
@@ -1627,86 +1686,93 @@ const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION
     "pB\n\n\010_execute\"M\n\030DeleteBuddyGroupRespons"
     "e\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210"
     "\001\001B\010\n\006_group\"\030\n\026MirrorRootInodeRequest\"\031"
-    "\n\027MirrorRootInodeResponse\"\252\002\n\tQuotaInfo\022"
-    "\025\n\010quota_id\030\001 \001(\rH\000\210\001\001\022$\n\007id_type\030\002 \001(\0162"
-    "\023.beegfs.QuotaIdType\022&\n\004pool\030\003 \001(\0132\023.bee"
-    "gfs.EntityIdSetH\001\210\001\001\022\030\n\013space_limit\030\004 \001("
-    "\003H\002\210\001\001\022\030\n\013inode_limit\030\005 \001(\003H\003\210\001\001\022\027\n\nspac"
-    "e_used\030\006 \001(\003H\004\210\001\001\022\027\n\ninode_used\030\007 \001(\003H\005\210"
-    "\001\001B\013\n\t_quota_idB\007\n\005_poolB\016\n\014_space_limit"
-    "B\016\n\014_inode_limitB\r\n\013_space_usedB\r\n\013_inod"
-    "e_used\"\243\002\n\034SetDefaultQuotaLimitsRequest\022"
-    "&\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001\022"
-    "\035\n\020user_space_limit\030\002 \001(\003H\001\210\001\001\022\035\n\020user_i"
-    "node_limit\030\003 \001(\003H\002\210\001\001\022\036\n\021group_space_lim"
-    "it\030\004 \001(\003H\003\210\001\001\022\036\n\021group_inode_limit\030\005 \001(\003"
-    "H\004\210\001\001B\007\n\005_poolB\023\n\021_user_space_limitB\023\n\021_"
-    "user_inode_limitB\024\n\022_group_space_limitB\024"
-    "\n\022_group_inode_limit\"\037\n\035SetDefaultQuotaL"
-    "imitsResponse\">\n\025SetQuotaLimitsRequest\022%"
-    "\n\006limits\030\001 \003(\0132\025.management.QuotaInfo\"\030\n"
-    "\026SetQuotaLimitsResponse\"\306\001\n\025GetQuotaLimi"
-    "tsRequest\022\031\n\014quota_id_min\030\001 \001(\rH\000\210\001\001\022\031\n\014"
-    "quota_id_max\030\002 \001(\rH\001\210\001\001\022$\n\007id_type\030\003 \001(\016"
-    "2\023.beegfs.QuotaIdType\022&\n\004pool\030\004 \001(\0132\023.be"
-    "egfs.EntityIdSetH\002\210\001\001B\017\n\r_quota_id_minB\017"
-    "\n\r_quota_id_maxB\007\n\005_pool\"O\n\026GetQuotaLimi"
-    "tsResponse\022*\n\006limits\030\001 \001(\0132\025.management."
-    "QuotaInfoH\000\210\001\001B\t\n\007_limits\"\351\001\n\024GetQuotaUs"
-    "ageRequest\022\031\n\014quota_id_min\030\001 \001(\rH\000\210\001\001\022\031\n"
-    "\014quota_id_max\030\002 \001(\rH\001\210\001\001\022$\n\007id_type\030\003 \001("
-    "\0162\023.beegfs.QuotaIdType\022&\n\004pool\030\004 \001(\0132\023.b"
-    "eegfs.EntityIdSetH\002\210\001\001\022\025\n\010exceeded\030\005 \001(\010"
-    "H\003\210\001\001B\017\n\r_quota_id_minB\017\n\r_quota_id_maxB"
-    "\007\n\005_poolB\013\n\t_exceeded\"\200\001\n\025GetQuotaUsageR"
-    "esponse\022)\n\005entry\030\001 \001(\0132\025.management.Quot"
-    "aInfoH\000\210\001\001\022\035\n\020refresh_period_s\030\002 \001(\004H\001\210\001"
-    "\001B\010\n\006_entryB\023\n\021_refresh_period_s\"3\n\021GetL"
-    "icenseRequest\022\023\n\006reload\030\001 \001(\010H\000\210\001\001B\t\n\007_r"
-    "eload\"V\n\022GetLicenseResponse\0222\n\tcert_data"
-    "\030\001 \001(\0132\032.license.GetCertDataResultH\000\210\001\001B"
-    "\014\n\n_cert_data2\310\014\n\nManagement\022E\n\010SetAlias"
-    "\022\033.management.SetAliasRequest\032\034.manageme"
-    "nt.SetAliasResponse\022E\n\010GetNodes\022\033.manage"
-    "ment.GetNodesRequest\032\034.management.GetNod"
-    "esResponse\022K\n\nDeleteNode\022\035.management.De"
-    "leteNodeRequest\032\036.management.DeleteNodeR"
-    "esponse\022K\n\nGetTargets\022\035.management.GetTa"
-    "rgetsRequest\032\036.management.GetTargetsResp"
-    "onse\022Q\n\014DeleteTarget\022\037.management.Delete"
-    "TargetRequest\032 .management.DeleteTargetR"
-    "esponse\022W\n\016SetTargetState\022!.management.S"
-    "etTargetStateRequest\032\".management.SetTar"
-    "getStateResponse\022E\n\010GetPools\022\033.managemen"
-    "t.GetPoolsRequest\032\034.management.GetPoolsR"
-    "esponse\022K\n\nCreatePool\022\035.management.Creat"
-    "ePoolRequest\032\036.management.CreatePoolResp"
-    "onse\022K\n\nAssignPool\022\035.management.AssignPo"
-    "olRequest\032\036.management.AssignPoolRespons"
-    "e\022K\n\nDeletePool\022\035.management.DeletePoolR"
-    "equest\032\036.management.DeletePoolResponse\022W"
-    "\n\016GetBuddyGroups\022!.management.GetBuddyGr"
-    "oupsRequest\032\".management.GetBuddyGroupsR"
-    "esponse\022]\n\020CreateBuddyGroup\022#.management"
-    ".CreateBuddyGroupRequest\032$.management.Cr"
-    "eateBuddyGroupResponse\022]\n\020DeleteBuddyGro"
-    "up\022#.management.DeleteBuddyGroupRequest\032"
-    "$.management.DeleteBuddyGroupResponse\022Z\n"
-    "\017MirrorRootInode\022\".management.MirrorRoot"
-    "InodeRequest\032#.management.MirrorRootInod"
-    "eResponse\022l\n\025SetDefaultQuotaLimits\022(.man"
-    "agement.SetDefaultQuotaLimitsRequest\032).m"
-    "anagement.SetDefaultQuotaLimitsResponse\022"
-    "W\n\016SetQuotaLimits\022!.management.SetQuotaL"
-    "imitsRequest\032\".management.SetQuotaLimits"
-    "Response\022Y\n\016GetQuotaLimits\022!.management."
-    "GetQuotaLimitsRequest\032\".management.GetQu"
-    "otaLimitsResponse0\001\022V\n\rGetQuotaUsage\022 .m"
-    "anagement.GetQuotaUsageRequest\032!.managem"
-    "ent.GetQuotaUsageResponse0\001\022K\n\nGetLicens"
-    "e\022\035.management.GetLicenseRequest\032\036.manag"
-    "ement.GetLicenseResponseB-Z+github.com/t"
-    "hinkparq/protobuf/go/managementb\006proto3"
+    "\n\027MirrorRootInodeResponse\"\233\001\n\022StartResyn"
+    "cRequest\022-\n\013buddy_group\030\001 \001(\0132\023.beegfs.E"
+    "ntityIdSetH\000\210\001\001\022\026\n\ttimestamp\030\002 \001(\003H\001\210\001\001\022"
+    "\024\n\007restart\030\003 \001(\010H\002\210\001\001B\016\n\014_buddy_groupB\014\n"
+    "\n_timestampB\n\n\010_restart\"\025\n\023StartResyncRe"
+    "sponse\"\252\002\n\tQuotaInfo\022\025\n\010quota_id\030\001 \001(\rH\000"
+    "\210\001\001\022$\n\007id_type\030\002 \001(\0162\023.beegfs.QuotaIdTyp"
+    "e\022&\n\004pool\030\003 \001(\0132\023.beegfs.EntityIdSetH\001\210\001"
+    "\001\022\030\n\013space_limit\030\004 \001(\003H\002\210\001\001\022\030\n\013inode_lim"
+    "it\030\005 \001(\003H\003\210\001\001\022\027\n\nspace_used\030\006 \001(\003H\004\210\001\001\022\027"
+    "\n\ninode_used\030\007 \001(\003H\005\210\001\001B\013\n\t_quota_idB\007\n\005"
+    "_poolB\016\n\014_space_limitB\016\n\014_inode_limitB\r\n"
+    "\013_space_usedB\r\n\013_inode_used\"\243\002\n\034SetDefau"
+    "ltQuotaLimitsRequest\022&\n\004pool\030\001 \001(\0132\023.bee"
+    "gfs.EntityIdSetH\000\210\001\001\022\035\n\020user_space_limit"
+    "\030\002 \001(\003H\001\210\001\001\022\035\n\020user_inode_limit\030\003 \001(\003H\002\210"
+    "\001\001\022\036\n\021group_space_limit\030\004 \001(\003H\003\210\001\001\022\036\n\021gr"
+    "oup_inode_limit\030\005 \001(\003H\004\210\001\001B\007\n\005_poolB\023\n\021_"
+    "user_space_limitB\023\n\021_user_inode_limitB\024\n"
+    "\022_group_space_limitB\024\n\022_group_inode_limi"
+    "t\"\037\n\035SetDefaultQuotaLimitsResponse\">\n\025Se"
+    "tQuotaLimitsRequest\022%\n\006limits\030\001 \003(\0132\025.ma"
+    "nagement.QuotaInfo\"\030\n\026SetQuotaLimitsResp"
+    "onse\"\306\001\n\025GetQuotaLimitsRequest\022\031\n\014quota_"
+    "id_min\030\001 \001(\rH\000\210\001\001\022\031\n\014quota_id_max\030\002 \001(\rH"
+    "\001\210\001\001\022$\n\007id_type\030\003 \001(\0162\023.beegfs.QuotaIdTy"
+    "pe\022&\n\004pool\030\004 \001(\0132\023.beegfs.EntityIdSetH\002\210"
+    "\001\001B\017\n\r_quota_id_minB\017\n\r_quota_id_maxB\007\n\005"
+    "_pool\"O\n\026GetQuotaLimitsResponse\022*\n\006limit"
+    "s\030\001 \001(\0132\025.management.QuotaInfoH\000\210\001\001B\t\n\007_"
+    "limits\"\351\001\n\024GetQuotaUsageRequest\022\031\n\014quota"
+    "_id_min\030\001 \001(\rH\000\210\001\001\022\031\n\014quota_id_max\030\002 \001(\r"
+    "H\001\210\001\001\022$\n\007id_type\030\003 \001(\0162\023.beegfs.QuotaIdT"
+    "ype\022&\n\004pool\030\004 \001(\0132\023.beegfs.EntityIdSetH\002"
+    "\210\001\001\022\025\n\010exceeded\030\005 \001(\010H\003\210\001\001B\017\n\r_quota_id_"
+    "minB\017\n\r_quota_id_maxB\007\n\005_poolB\013\n\t_exceed"
+    "ed\"\200\001\n\025GetQuotaUsageResponse\022)\n\005entry\030\001 "
+    "\001(\0132\025.management.QuotaInfoH\000\210\001\001\022\035\n\020refre"
+    "sh_period_s\030\002 \001(\004H\001\210\001\001B\010\n\006_entryB\023\n\021_ref"
+    "resh_period_s\"3\n\021GetLicenseRequest\022\023\n\006re"
+    "load\030\001 \001(\010H\000\210\001\001B\t\n\007_reload\"V\n\022GetLicense"
+    "Response\0222\n\tcert_data\030\001 \001(\0132\032.license.Ge"
+    "tCertDataResultH\000\210\001\001B\014\n\n_cert_data2\230\r\n\nM"
+    "anagement\022E\n\010SetAlias\022\033.management.SetAl"
+    "iasRequest\032\034.management.SetAliasResponse"
+    "\022E\n\010GetNodes\022\033.management.GetNodesReques"
+    "t\032\034.management.GetNodesResponse\022K\n\nDelet"
+    "eNode\022\035.management.DeleteNodeRequest\032\036.m"
+    "anagement.DeleteNodeResponse\022K\n\nGetTarge"
+    "ts\022\035.management.GetTargetsRequest\032\036.mana"
+    "gement.GetTargetsResponse\022Q\n\014DeleteTarge"
+    "t\022\037.management.DeleteTargetRequest\032 .man"
+    "agement.DeleteTargetResponse\022W\n\016SetTarge"
+    "tState\022!.management.SetTargetStateReques"
+    "t\032\".management.SetTargetStateResponse\022E\n"
+    "\010GetPools\022\033.management.GetPoolsRequest\032\034"
+    ".management.GetPoolsResponse\022K\n\nCreatePo"
+    "ol\022\035.management.CreatePoolRequest\032\036.mana"
+    "gement.CreatePoolResponse\022K\n\nAssignPool\022"
+    "\035.management.AssignPoolRequest\032\036.managem"
+    "ent.AssignPoolResponse\022K\n\nDeletePool\022\035.m"
+    "anagement.DeletePoolRequest\032\036.management"
+    ".DeletePoolResponse\022W\n\016GetBuddyGroups\022!."
+    "management.GetBuddyGroupsRequest\032\".manag"
+    "ement.GetBuddyGroupsResponse\022]\n\020CreateBu"
+    "ddyGroup\022#.management.CreateBuddyGroupRe"
+    "quest\032$.management.CreateBuddyGroupRespo"
+    "nse\022]\n\020DeleteBuddyGroup\022#.management.Del"
+    "eteBuddyGroupRequest\032$.management.Delete"
+    "BuddyGroupResponse\022Z\n\017MirrorRootInode\022\"."
+    "management.MirrorRootInodeRequest\032#.mana"
+    "gement.MirrorRootInodeResponse\022N\n\013StartR"
+    "esync\022\036.management.StartResyncRequest\032\037."
+    "management.StartResyncResponse\022l\n\025SetDef"
+    "aultQuotaLimits\022(.management.SetDefaultQ"
+    "uotaLimitsRequest\032).management.SetDefaul"
+    "tQuotaLimitsResponse\022W\n\016SetQuotaLimits\022!"
+    ".management.SetQuotaLimitsRequest\032\".mana"
+    "gement.SetQuotaLimitsResponse\022Y\n\016GetQuot"
+    "aLimits\022!.management.GetQuotaLimitsReque"
+    "st\032\".management.GetQuotaLimitsResponse0\001"
+    "\022V\n\rGetQuotaUsage\022 .management.GetQuotaU"
+    "sageRequest\032!.management.GetQuotaUsageRe"
+    "sponse0\001\022K\n\nGetLicense\022\035.management.GetL"
+    "icenseRequest\032\036.management.GetLicenseRes"
+    "ponseB-Z+github.com/thinkparq/protobuf/g"
+    "o/managementb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_management_2eproto_deps[2] =
     {
@@ -1717,13 +1783,13 @@ static ::absl::once_flag descriptor_table_management_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_management_2eproto = {
     false,
     false,
-    7239,
+    7500,
     descriptor_table_protodef_management_2eproto,
     "management.proto",
     &descriptor_table_management_2eproto_once,
     descriptor_table_management_2eproto_deps,
     2,
-    44,
+    46,
     schemas,
     file_default_instances,
     TableStruct_management_2eproto::offsets,
@@ -9352,6 +9418,373 @@ const ::_pbi::TcParseTable<0, 0, 0, 0, 2> MirrorRootInodeResponse::_table_ = {
 
 
 ::google::protobuf::Metadata MirrorRootInodeResponse::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class StartResyncRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<StartResyncRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_._has_bits_);
+};
+
+void StartResyncRequest::clear_buddy_group() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.buddy_group_ != nullptr) _impl_.buddy_group_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+StartResyncRequest::StartResyncRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:management.StartResyncRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE StartResyncRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::management::StartResyncRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+StartResyncRequest::StartResyncRequest(
+    ::google::protobuf::Arena* arena,
+    const StartResyncRequest& from)
+    : ::google::protobuf::Message(arena) {
+  StartResyncRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.buddy_group_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
+                              arena, *from._impl_.buddy_group_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, timestamp_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, timestamp_),
+           offsetof(Impl_, restart_) -
+               offsetof(Impl_, timestamp_) +
+               sizeof(Impl_::restart_));
+
+  // @@protoc_insertion_point(copy_constructor:management.StartResyncRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE StartResyncRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void StartResyncRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, buddy_group_),
+           0,
+           offsetof(Impl_, restart_) -
+               offsetof(Impl_, buddy_group_) +
+               sizeof(Impl_::restart_));
+}
+StartResyncRequest::~StartResyncRequest() {
+  // @@protoc_insertion_point(destructor:management.StartResyncRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void StartResyncRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.buddy_group_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+StartResyncRequest::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_._cached_size_),
+              false,
+          },
+          &StartResyncRequest::MergeImpl,
+          &StartResyncRequest::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> StartResyncRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_StartResyncRequest_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::StartResyncRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // optional .beegfs.EntityIdSet buddy_group = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_.buddy_group_)}},
+    // optional int64 timestamp = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(StartResyncRequest, _impl_.timestamp_), 1>(),
+     {16, 1, 0, PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_.timestamp_)}},
+    // optional bool restart = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(StartResyncRequest, _impl_.restart_), 2>(),
+     {24, 2, 0, PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_.restart_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // optional .beegfs.EntityIdSet buddy_group = 1;
+    {PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_.buddy_group_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional int64 timestamp = 2;
+    {PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_.timestamp_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    // optional bool restart = 3;
+    {PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_.restart_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void StartResyncRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:management.StartResyncRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.buddy_group_ != nullptr);
+    _impl_.buddy_group_->Clear();
+  }
+  if (cached_has_bits & 0x00000006u) {
+    ::memset(&_impl_.timestamp_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.restart_) -
+        reinterpret_cast<char*>(&_impl_.timestamp_)) + sizeof(_impl_.restart_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* StartResyncRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:management.StartResyncRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // optional .beegfs.EntityIdSet buddy_group = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *_impl_.buddy_group_, _impl_.buddy_group_->GetCachedSize(), target, stream);
+  }
+
+  // optional int64 timestamp = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<2>(
+            stream, this->_internal_timestamp(), target);
+  }
+
+  // optional bool restart = 3;
+  if (cached_has_bits & 0x00000004u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        3, this->_internal_restart(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:management.StartResyncRequest)
+  return target;
+}
+
+::size_t StartResyncRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:management.StartResyncRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    // optional .beegfs.EntityIdSet buddy_group = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.buddy_group_);
+    }
+
+    // optional int64 timestamp = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+          this->_internal_timestamp());
+    }
+
+    // optional bool restart = 3;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 2;
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void StartResyncRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<StartResyncRequest*>(&to_msg);
+  auto& from = static_cast<const StartResyncRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:management.StartResyncRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.buddy_group_ != nullptr);
+      if (_this->_impl_.buddy_group_ == nullptr) {
+        _this->_impl_.buddy_group_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.buddy_group_);
+      } else {
+        _this->_impl_.buddy_group_->MergeFrom(*from._impl_.buddy_group_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.timestamp_ = from._impl_.timestamp_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.restart_ = from._impl_.restart_;
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void StartResyncRequest::CopyFrom(const StartResyncRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:management.StartResyncRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void StartResyncRequest::InternalSwap(StartResyncRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_.restart_)
+      + sizeof(StartResyncRequest::_impl_.restart_)
+      - PROTOBUF_FIELD_OFFSET(StartResyncRequest, _impl_.buddy_group_)>(
+          reinterpret_cast<char*>(&_impl_.buddy_group_),
+          reinterpret_cast<char*>(&other->_impl_.buddy_group_));
+}
+
+::google::protobuf::Metadata StartResyncRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class StartResyncResponse::_Internal {
+ public:
+};
+
+StartResyncResponse::StartResyncResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:management.StartResyncResponse)
+}
+StartResyncResponse::StartResyncResponse(
+    ::google::protobuf::Arena* arena,
+    const StartResyncResponse& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  StartResyncResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:management.StartResyncResponse)
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+StartResyncResponse::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(StartResyncResponse, _impl_._cached_size_),
+              false,
+          },
+          &StartResyncResponse::MergeImpl,
+          &StartResyncResponse::kDescriptorMethods,
+          &descriptor_table_management_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> StartResyncResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_StartResyncResponse_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::management::StartResyncResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata StartResyncResponse::GetMetadata() const {
   return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

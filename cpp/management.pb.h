@@ -185,6 +185,12 @@ extern SetTargetStateRequestDefaultTypeInternal _SetTargetStateRequest_default_i
 class SetTargetStateResponse;
 struct SetTargetStateResponseDefaultTypeInternal;
 extern SetTargetStateResponseDefaultTypeInternal _SetTargetStateResponse_default_instance_;
+class StartResyncRequest;
+struct StartResyncRequestDefaultTypeInternal;
+extern StartResyncRequestDefaultTypeInternal _StartResyncRequest_default_instance_;
+class StartResyncResponse;
+struct StartResyncResponseDefaultTypeInternal;
+extern StartResyncResponseDefaultTypeInternal _StartResyncResponse_default_instance_;
 }  // namespace management
 namespace google {
 namespace protobuf {
@@ -196,6 +202,148 @@ namespace management {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class StartResyncResponse final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:management.StartResyncResponse) */ {
+ public:
+  inline StartResyncResponse() : StartResyncResponse(nullptr) {}
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR StartResyncResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline StartResyncResponse(const StartResyncResponse& from) : StartResyncResponse(nullptr, from) {}
+  inline StartResyncResponse(StartResyncResponse&& from) noexcept
+      : StartResyncResponse(nullptr, std::move(from)) {}
+  inline StartResyncResponse& operator=(const StartResyncResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StartResyncResponse& operator=(StartResyncResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StartResyncResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StartResyncResponse* internal_default_instance() {
+    return reinterpret_cast<const StartResyncResponse*>(
+        &_StartResyncResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 34;
+  friend void swap(StartResyncResponse& a, StartResyncResponse& b) { a.Swap(&b); }
+  inline void Swap(StartResyncResponse* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StartResyncResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StartResyncResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<StartResyncResponse>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const StartResyncResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const StartResyncResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.StartResyncResponse"; }
+
+ protected:
+  explicit StartResyncResponse(::google::protobuf::Arena* arena);
+  StartResyncResponse(::google::protobuf::Arena* arena, const StartResyncResponse& from);
+  StartResyncResponse(::google::protobuf::Arena* arena, StartResyncResponse&& from) noexcept
+      : StartResyncResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ZeroFieldsBase::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:management.StartResyncResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_StartResyncResponse_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const StartResyncResponse& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_management_2eproto;
+};
 // -------------------------------------------------------------------
 
 class SetTargetStateResponse final : public ::google::protobuf::internal::ZeroFieldsBase
@@ -394,7 +542,7 @@ class SetQuotaLimitsResponse final : public ::google::protobuf::internal::ZeroFi
     return reinterpret_cast<const SetQuotaLimitsResponse*>(
         &_SetQuotaLimitsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 37;
+  static constexpr int kIndexInFileMessages = 39;
   friend void swap(SetQuotaLimitsResponse& a, SetQuotaLimitsResponse& b) { a.Swap(&b); }
   inline void Swap(SetQuotaLimitsResponse* other) {
     if (other == this) return;
@@ -536,7 +684,7 @@ class SetDefaultQuotaLimitsResponse final : public ::google::protobuf::internal:
     return reinterpret_cast<const SetDefaultQuotaLimitsResponse*>(
         &_SetDefaultQuotaLimitsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 35;
+  static constexpr int kIndexInFileMessages = 37;
   friend void swap(SetDefaultQuotaLimitsResponse& a, SetDefaultQuotaLimitsResponse& b) { a.Swap(&b); }
   inline void Swap(SetDefaultQuotaLimitsResponse* other) {
     if (other == this) return;
@@ -1796,7 +1944,7 @@ class GetLicenseRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetLicenseRequest*>(
         &_GetLicenseRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 42;
+  static constexpr int kIndexInFileMessages = 44;
   friend void swap(GetLicenseRequest& a, GetLicenseRequest& b) { a.Swap(&b); }
   inline void Swap(GetLicenseRequest* other) {
     if (other == this) return;
@@ -2056,6 +2204,209 @@ class GetBuddyGroupsRequest final : public ::google::protobuf::internal::ZeroFie
 };
 // -------------------------------------------------------------------
 
+class StartResyncRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:management.StartResyncRequest) */ {
+ public:
+  inline StartResyncRequest() : StartResyncRequest(nullptr) {}
+  ~StartResyncRequest() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR StartResyncRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline StartResyncRequest(const StartResyncRequest& from) : StartResyncRequest(nullptr, from) {}
+  inline StartResyncRequest(StartResyncRequest&& from) noexcept
+      : StartResyncRequest(nullptr, std::move(from)) {}
+  inline StartResyncRequest& operator=(const StartResyncRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StartResyncRequest& operator=(StartResyncRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StartResyncRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StartResyncRequest* internal_default_instance() {
+    return reinterpret_cast<const StartResyncRequest*>(
+        &_StartResyncRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 33;
+  friend void swap(StartResyncRequest& a, StartResyncRequest& b) { a.Swap(&b); }
+  inline void Swap(StartResyncRequest* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StartResyncRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StartResyncRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<StartResyncRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const StartResyncRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const StartResyncRequest& from) { StartResyncRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(StartResyncRequest* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "management.StartResyncRequest"; }
+
+ protected:
+  explicit StartResyncRequest(::google::protobuf::Arena* arena);
+  StartResyncRequest(::google::protobuf::Arena* arena, const StartResyncRequest& from);
+  StartResyncRequest(::google::protobuf::Arena* arena, StartResyncRequest&& from) noexcept
+      : StartResyncRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBuddyGroupFieldNumber = 1,
+    kTimestampFieldNumber = 2,
+    kRestartFieldNumber = 3,
+  };
+  // optional .beegfs.EntityIdSet buddy_group = 1;
+  bool has_buddy_group() const;
+  void clear_buddy_group() ;
+  const ::beegfs::EntityIdSet& buddy_group() const;
+  PROTOBUF_NODISCARD ::beegfs::EntityIdSet* release_buddy_group();
+  ::beegfs::EntityIdSet* mutable_buddy_group();
+  void set_allocated_buddy_group(::beegfs::EntityIdSet* value);
+  void unsafe_arena_set_allocated_buddy_group(::beegfs::EntityIdSet* value);
+  ::beegfs::EntityIdSet* unsafe_arena_release_buddy_group();
+
+  private:
+  const ::beegfs::EntityIdSet& _internal_buddy_group() const;
+  ::beegfs::EntityIdSet* _internal_mutable_buddy_group();
+
+  public:
+  // optional int64 timestamp = 2;
+  bool has_timestamp() const;
+  void clear_timestamp() ;
+  ::int64_t timestamp() const;
+  void set_timestamp(::int64_t value);
+
+  private:
+  ::int64_t _internal_timestamp() const;
+  void _internal_set_timestamp(::int64_t value);
+
+  public:
+  // optional bool restart = 3;
+  bool has_restart() const;
+  void clear_restart() ;
+  bool restart() const;
+  void set_restart(bool value);
+
+  private:
+  bool _internal_restart() const;
+  void _internal_set_restart(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:management.StartResyncRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_StartResyncRequest_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const StartResyncRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::beegfs::EntityIdSet* buddy_group_;
+    ::int64_t timestamp_;
+    bool restart_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_management_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SetTargetStateRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:management.SetTargetStateRequest) */ {
  public:
@@ -2301,7 +2652,7 @@ class SetDefaultQuotaLimitsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const SetDefaultQuotaLimitsRequest*>(
         &_SetDefaultQuotaLimitsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 34;
+  static constexpr int kIndexInFileMessages = 36;
   friend void swap(SetDefaultQuotaLimitsRequest& a, SetDefaultQuotaLimitsRequest& b) { a.Swap(&b); }
   inline void Swap(SetDefaultQuotaLimitsRequest* other) {
     if (other == this) return;
@@ -2737,7 +3088,7 @@ class QuotaInfo final : public ::google::protobuf::Message
     return reinterpret_cast<const QuotaInfo*>(
         &_QuotaInfo_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 33;
+  static constexpr int kIndexInFileMessages = 35;
   friend void swap(QuotaInfo& a, QuotaInfo& b) { a.Swap(&b); }
   inline void Swap(QuotaInfo* other) {
     if (other == this) return;
@@ -3315,7 +3666,7 @@ class GetQuotaUsageRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetQuotaUsageRequest*>(
         &_GetQuotaUsageRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 40;
+  static constexpr int kIndexInFileMessages = 42;
   friend void swap(GetQuotaUsageRequest& a, GetQuotaUsageRequest& b) { a.Swap(&b); }
   inline void Swap(GetQuotaUsageRequest* other) {
     if (other == this) return;
@@ -3543,7 +3894,7 @@ class GetQuotaLimitsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetQuotaLimitsRequest*>(
         &_GetQuotaLimitsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 38;
+  static constexpr int kIndexInFileMessages = 40;
   friend void swap(GetQuotaLimitsRequest& a, GetQuotaLimitsRequest& b) { a.Swap(&b); }
   inline void Swap(GetQuotaLimitsRequest* other) {
     if (other == this) return;
@@ -7206,7 +7557,7 @@ class SetQuotaLimitsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const SetQuotaLimitsRequest*>(
         &_SetQuotaLimitsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 36;
+  static constexpr int kIndexInFileMessages = 38;
   friend void swap(SetQuotaLimitsRequest& a, SetQuotaLimitsRequest& b) { a.Swap(&b); }
   inline void Swap(SetQuotaLimitsRequest* other) {
     if (other == this) return;
@@ -7563,7 +7914,7 @@ class GetQuotaUsageResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetQuotaUsageResponse*>(
         &_GetQuotaUsageResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 41;
+  static constexpr int kIndexInFileMessages = 43;
   friend void swap(GetQuotaUsageResponse& a, GetQuotaUsageResponse& b) { a.Swap(&b); }
   inline void Swap(GetQuotaUsageResponse* other) {
     if (other == this) return;
@@ -7753,7 +8104,7 @@ class GetQuotaLimitsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetQuotaLimitsResponse*>(
         &_GetQuotaLimitsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 39;
+  static constexpr int kIndexInFileMessages = 41;
   friend void swap(GetQuotaLimitsResponse& a, GetQuotaLimitsResponse& b) { a.Swap(&b); }
   inline void Swap(GetQuotaLimitsResponse* other) {
     if (other == this) return;
@@ -8306,7 +8657,7 @@ class GetLicenseResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetLicenseResponse*>(
         &_GetLicenseResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 43;
+  static constexpr int kIndexInFileMessages = 45;
   friend void swap(GetLicenseResponse& a, GetLicenseResponse& b) { a.Swap(&b); }
   inline void Swap(GetLicenseResponse* other) {
     if (other == this) return;
@@ -12712,6 +13063,161 @@ inline void DeleteBuddyGroupResponse::set_allocated_group(::beegfs::EntityIdSet*
 // -------------------------------------------------------------------
 
 // MirrorRootInodeResponse
+
+// -------------------------------------------------------------------
+
+// StartResyncRequest
+
+// optional .beegfs.EntityIdSet buddy_group = 1;
+inline bool StartResyncRequest::has_buddy_group() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.buddy_group_ != nullptr);
+  return value;
+}
+inline const ::beegfs::EntityIdSet& StartResyncRequest::_internal_buddy_group() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::EntityIdSet* p = _impl_.buddy_group_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::EntityIdSet&>(::beegfs::_EntityIdSet_default_instance_);
+}
+inline const ::beegfs::EntityIdSet& StartResyncRequest::buddy_group() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.StartResyncRequest.buddy_group)
+  return _internal_buddy_group();
+}
+inline void StartResyncRequest::unsafe_arena_set_allocated_buddy_group(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.buddy_group_);
+  }
+  _impl_.buddy_group_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.StartResyncRequest.buddy_group)
+}
+inline ::beegfs::EntityIdSet* StartResyncRequest::release_buddy_group() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* released = _impl_.buddy_group_;
+  _impl_.buddy_group_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::beegfs::EntityIdSet* StartResyncRequest::unsafe_arena_release_buddy_group() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.StartResyncRequest.buddy_group)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::EntityIdSet* temp = _impl_.buddy_group_;
+  _impl_.buddy_group_ = nullptr;
+  return temp;
+}
+inline ::beegfs::EntityIdSet* StartResyncRequest::_internal_mutable_buddy_group() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.buddy_group_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::EntityIdSet>(GetArena());
+    _impl_.buddy_group_ = reinterpret_cast<::beegfs::EntityIdSet*>(p);
+  }
+  return _impl_.buddy_group_;
+}
+inline ::beegfs::EntityIdSet* StartResyncRequest::mutable_buddy_group() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::EntityIdSet* _msg = _internal_mutable_buddy_group();
+  // @@protoc_insertion_point(field_mutable:management.StartResyncRequest.buddy_group)
+  return _msg;
+}
+inline void StartResyncRequest::set_allocated_buddy_group(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.buddy_group_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.buddy_group_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.StartResyncRequest.buddy_group)
+}
+
+// optional int64 timestamp = 2;
+inline bool StartResyncRequest::has_timestamp() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void StartResyncRequest::clear_timestamp() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timestamp_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::int64_t StartResyncRequest::timestamp() const {
+  // @@protoc_insertion_point(field_get:management.StartResyncRequest.timestamp)
+  return _internal_timestamp();
+}
+inline void StartResyncRequest::set_timestamp(::int64_t value) {
+  _internal_set_timestamp(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:management.StartResyncRequest.timestamp)
+}
+inline ::int64_t StartResyncRequest::_internal_timestamp() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.timestamp_;
+}
+inline void StartResyncRequest::_internal_set_timestamp(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timestamp_ = value;
+}
+
+// optional bool restart = 3;
+inline bool StartResyncRequest::has_restart() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void StartResyncRequest::clear_restart() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.restart_ = false;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline bool StartResyncRequest::restart() const {
+  // @@protoc_insertion_point(field_get:management.StartResyncRequest.restart)
+  return _internal_restart();
+}
+inline void StartResyncRequest::set_restart(bool value) {
+  _internal_set_restart(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:management.StartResyncRequest.restart)
+}
+inline bool StartResyncRequest::_internal_restart() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.restart_;
+}
+inline void StartResyncRequest::_internal_set_restart(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.restart_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// StartResyncResponse
 
 // -------------------------------------------------------------------
 
