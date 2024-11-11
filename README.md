@@ -109,7 +109,7 @@ The reasons are:
     * For Rust: https://rustup.rs/
     * For Go: https://go.dev/doc/install
 * You need read access to the private [protoc-rs](https://github.com/thinkparq/protoc-rs) repository.
-* The simplest way to install all the tooling is to run `make install-tools` (requires `curl).
+* The simplest way to install all the tooling is to run `make install-tools` (requires `curl`).
   This will install all the necessary tools using the correct versions to your `$HOME/.local/bin`
   (the default folder for user programs). Note that if you already have them installed in different
   locations (e.g. the default `$GOBIN`), they might have higher priority depending on your `$PATH`
