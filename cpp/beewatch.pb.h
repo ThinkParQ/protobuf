@@ -653,15 +653,16 @@ class V1Event final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kPathFieldNumber = 3,
-    kEntryIdFieldNumber = 4,
-    kParentEntryIdFieldNumber = 5,
-    kTargetPathFieldNumber = 6,
-    kTargetParentIdFieldNumber = 7,
-    kMissedSeqFieldNumber = 2,
+    kPathFieldNumber = 4,
+    kEntryIdFieldNumber = 5,
+    kParentEntryIdFieldNumber = 6,
+    kTargetPathFieldNumber = 7,
+    kTargetParentIdFieldNumber = 8,
+    kDroppedSeqFieldNumber = 2,
+    kMissedSeqFieldNumber = 3,
     kTypeFieldNumber = 1,
   };
-  // string path = 3;
+  // string path = 4;
   void clear_path() ;
   const std::string& path() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -677,7 +678,7 @@ class V1Event final : public ::google::protobuf::Message
   std::string* _internal_mutable_path();
 
   public:
-  // string entry_id = 4;
+  // string entry_id = 5;
   void clear_entry_id() ;
   const std::string& entry_id() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -693,7 +694,7 @@ class V1Event final : public ::google::protobuf::Message
   std::string* _internal_mutable_entry_id();
 
   public:
-  // string parent_entry_id = 5;
+  // string parent_entry_id = 6;
   void clear_parent_entry_id() ;
   const std::string& parent_entry_id() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -709,7 +710,7 @@ class V1Event final : public ::google::protobuf::Message
   std::string* _internal_mutable_parent_entry_id();
 
   public:
-  // string target_path = 6;
+  // string target_path = 7;
   void clear_target_path() ;
   const std::string& target_path() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -725,7 +726,7 @@ class V1Event final : public ::google::protobuf::Message
   std::string* _internal_mutable_target_path();
 
   public:
-  // string target_parent_id = 7;
+  // string target_parent_id = 8;
   void clear_target_parent_id() ;
   const std::string& target_parent_id() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -741,7 +742,17 @@ class V1Event final : public ::google::protobuf::Message
   std::string* _internal_mutable_target_parent_id();
 
   public:
-  // uint64 missed_seq = 2;
+  // uint64 dropped_seq = 2;
+  void clear_dropped_seq() ;
+  ::uint64_t dropped_seq() const;
+  void set_dropped_seq(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_dropped_seq() const;
+  void _internal_set_dropped_seq(::uint64_t value);
+
+  public:
+  // uint64 missed_seq = 3;
   void clear_missed_seq() ;
   ::uint64_t missed_seq() const;
   void set_missed_seq(::uint64_t value);
@@ -766,8 +777,8 @@ class V1Event final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 0,
-      79, 2>
+      3, 8, 0,
+      87, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -792,6 +803,7 @@ class V1Event final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr parent_entry_id_;
     ::google::protobuf::internal::ArenaStringPtr target_path_;
     ::google::protobuf::internal::ArenaStringPtr target_parent_id_;
+    ::uint64_t dropped_seq_;
     ::uint64_t missed_seq_;
     int type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1115,7 +1127,7 @@ class Event final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kSeqIdFieldNumber = 1,
-    kDroppedSeqFieldNumber = 2,
+    kMetaIdFieldNumber = 2,
     kV1FieldNumber = 11,
     kV2FieldNumber = 12,
   };
@@ -1129,14 +1141,14 @@ class Event final : public ::google::protobuf::Message
   void _internal_set_seq_id(::uint64_t value);
 
   public:
-  // uint64 dropped_seq = 2;
-  void clear_dropped_seq() ;
-  ::uint64_t dropped_seq() const;
-  void set_dropped_seq(::uint64_t value);
+  // uint32 meta_id = 2;
+  void clear_meta_id() ;
+  ::uint32_t meta_id() const;
+  void set_meta_id(::uint32_t value);
 
   private:
-  ::uint64_t _internal_dropped_seq() const;
-  void _internal_set_dropped_seq(::uint64_t value);
+  ::uint32_t _internal_meta_id() const;
+  void _internal_set_meta_id(::uint32_t value);
 
   public:
   // .beewatch.V1Event v1 = 11;
@@ -1210,7 +1222,7 @@ class Event final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Event& from_msg);
     ::uint64_t seq_id_;
-    ::uint64_t dropped_seq_;
+    ::uint32_t meta_id_;
     union EventDataUnion {
       constexpr EventDataUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -1263,26 +1275,26 @@ inline void Event::_internal_set_seq_id(::uint64_t value) {
   _impl_.seq_id_ = value;
 }
 
-// uint64 dropped_seq = 2;
-inline void Event::clear_dropped_seq() {
+// uint32 meta_id = 2;
+inline void Event::clear_meta_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dropped_seq_ = ::uint64_t{0u};
+  _impl_.meta_id_ = 0u;
 }
-inline ::uint64_t Event::dropped_seq() const {
-  // @@protoc_insertion_point(field_get:beewatch.Event.dropped_seq)
-  return _internal_dropped_seq();
+inline ::uint32_t Event::meta_id() const {
+  // @@protoc_insertion_point(field_get:beewatch.Event.meta_id)
+  return _internal_meta_id();
 }
-inline void Event::set_dropped_seq(::uint64_t value) {
-  _internal_set_dropped_seq(value);
-  // @@protoc_insertion_point(field_set:beewatch.Event.dropped_seq)
+inline void Event::set_meta_id(::uint32_t value) {
+  _internal_set_meta_id(value);
+  // @@protoc_insertion_point(field_set:beewatch.Event.meta_id)
 }
-inline ::uint64_t Event::_internal_dropped_seq() const {
+inline ::uint32_t Event::_internal_meta_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.dropped_seq_;
+  return _impl_.meta_id_;
 }
-inline void Event::_internal_set_dropped_seq(::uint64_t value) {
+inline void Event::_internal_set_meta_id(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dropped_seq_ = value;
+  _impl_.meta_id_ = value;
 }
 
 // .beewatch.V1Event v1 = 11;
@@ -1478,7 +1490,29 @@ inline void V1Event::_internal_set_type(::beewatch::V1Event_Type value) {
   _impl_.type_ = value;
 }
 
-// uint64 missed_seq = 2;
+// uint64 dropped_seq = 2;
+inline void V1Event::clear_dropped_seq() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.dropped_seq_ = ::uint64_t{0u};
+}
+inline ::uint64_t V1Event::dropped_seq() const {
+  // @@protoc_insertion_point(field_get:beewatch.V1Event.dropped_seq)
+  return _internal_dropped_seq();
+}
+inline void V1Event::set_dropped_seq(::uint64_t value) {
+  _internal_set_dropped_seq(value);
+  // @@protoc_insertion_point(field_set:beewatch.V1Event.dropped_seq)
+}
+inline ::uint64_t V1Event::_internal_dropped_seq() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.dropped_seq_;
+}
+inline void V1Event::_internal_set_dropped_seq(::uint64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.dropped_seq_ = value;
+}
+
+// uint64 missed_seq = 3;
 inline void V1Event::clear_missed_seq() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.missed_seq_ = ::uint64_t{0u};
@@ -1500,7 +1534,7 @@ inline void V1Event::_internal_set_missed_seq(::uint64_t value) {
   _impl_.missed_seq_ = value;
 }
 
-// string path = 3;
+// string path = 4;
 inline void V1Event::clear_path() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.path_.ClearToEmpty();
@@ -1550,7 +1584,7 @@ inline void V1Event::set_allocated_path(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:beewatch.V1Event.path)
 }
 
-// string entry_id = 4;
+// string entry_id = 5;
 inline void V1Event::clear_entry_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.entry_id_.ClearToEmpty();
@@ -1600,7 +1634,7 @@ inline void V1Event::set_allocated_entry_id(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:beewatch.V1Event.entry_id)
 }
 
-// string parent_entry_id = 5;
+// string parent_entry_id = 6;
 inline void V1Event::clear_parent_entry_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.parent_entry_id_.ClearToEmpty();
@@ -1650,7 +1684,7 @@ inline void V1Event::set_allocated_parent_entry_id(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:beewatch.V1Event.parent_entry_id)
 }
 
-// string target_path = 6;
+// string target_path = 7;
 inline void V1Event::clear_target_path() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.target_path_.ClearToEmpty();
@@ -1700,7 +1734,7 @@ inline void V1Event::set_allocated_target_path(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:beewatch.V1Event.target_path)
 }
 
-// string target_parent_id = 7;
+// string target_parent_id = 8;
 inline void V1Event::clear_target_parent_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.target_parent_id_.ClearToEmpty();
