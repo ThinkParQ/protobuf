@@ -79,6 +79,7 @@ inline constexpr V1Event::Impl_::Impl_(
         target_parent_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        dropped_seq_{::uint64_t{0u}},
         missed_seq_{::uint64_t{0u}},
         type_{static_cast< ::beewatch::V1Event_Type >(0)},
         _cached_size_{0} {}
@@ -120,7 +121,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr Event::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : seq_id_{::uint64_t{0u}},
-        dropped_seq_{::uint64_t{0u}},
+        meta_id_{0u},
         event_data_{},
         _cached_size_{0},
         _oneof_case_{} {}
@@ -154,7 +155,7 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::beewatch::Event, _impl_.seq_id_),
-        PROTOBUF_FIELD_OFFSET(::beewatch::Event, _impl_.dropped_seq_),
+        PROTOBUF_FIELD_OFFSET(::beewatch::Event, _impl_.meta_id_),
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         PROTOBUF_FIELD_OFFSET(::beewatch::Event, _impl_.event_data_),
@@ -167,6 +168,7 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::beewatch::V1Event, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::beewatch::V1Event, _impl_.dropped_seq_),
         PROTOBUF_FIELD_OFFSET(::beewatch::V1Event, _impl_.missed_seq_),
         PROTOBUF_FIELD_OFFSET(::beewatch::V1Event, _impl_.path_),
         PROTOBUF_FIELD_OFFSET(::beewatch::V1Event, _impl_.entry_id_),
@@ -206,8 +208,8 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::beewatch::Event)},
         {13, -1, -1, sizeof(::beewatch::V1Event)},
-        {28, -1, -1, sizeof(::beewatch::V2Event)},
-        {45, -1, -1, sizeof(::beewatch::Response)},
+        {29, -1, -1, sizeof(::beewatch::V2Event)},
+        {46, -1, -1, sizeof(::beewatch::Response)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::beewatch::_Event_default_instance_._instance,
@@ -217,41 +219,41 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_beewatch_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\016beewatch.proto\022\010beewatch\"|\n\005Event\022\016\n\006s"
-    "eq_id\030\001 \001(\004\022\023\n\013dropped_seq\030\002 \001(\004\022\037\n\002v1\030\013"
-    " \001(\0132\021.beewatch.V1EventH\000\022\037\n\002v2\030\014 \001(\0132\021."
-    "beewatch.V2EventH\000B\014\n\nevent_data\"\325\002\n\007V1E"
-    "vent\022$\n\004type\030\001 \001(\0162\026.beewatch.V1Event.Ty"
-    "pe\022\022\n\nmissed_seq\030\002 \001(\004\022\014\n\004path\030\003 \001(\t\022\020\n\010"
+    "\n\016beewatch.proto\022\010beewatch\"x\n\005Event\022\016\n\006s"
+    "eq_id\030\001 \001(\004\022\017\n\007meta_id\030\002 \001(\r\022\037\n\002v1\030\013 \001(\013"
+    "2\021.beewatch.V1EventH\000\022\037\n\002v2\030\014 \001(\0132\021.beew"
+    "atch.V2EventH\000B\014\n\nevent_data\"\352\002\n\007V1Event"
+    "\022$\n\004type\030\001 \001(\0162\026.beewatch.V1Event.Type\022\023"
+    "\n\013dropped_seq\030\002 \001(\004\022\022\n\nmissed_seq\030\003 \001(\004\022"
+    "\014\n\004path\030\004 \001(\t\022\020\n\010entry_id\030\005 \001(\t\022\027\n\017paren"
+    "t_entry_id\030\006 \001(\t\022\023\n\013target_path\030\007 \001(\t\022\030\n"
+    "\020target_parent_id\030\010 \001(\t\"\247\001\n\004Type\022\t\n\005FLUS"
+    "H\020\000\022\014\n\010TRUNCATE\020\001\022\013\n\007SETATTR\020\002\022\017\n\013CLOSE_"
+    "WRITE\020\003\022\n\n\006CREATE\020\004\022\t\n\005MKDIR\020\005\022\t\n\005MKNOD\020"
+    "\006\022\013\n\007SYMLINK\020\007\022\t\n\005RMDIR\020\010\022\n\n\006UNLINK\020\t\022\014\n"
+    "\010HARDLINK\020\n\022\n\n\006RENAME\020\013\022\010\n\004READ\020\014\"\313\003\n\007V2"
+    "Event\022$\n\004type\030\001 \001(\0162\026.beewatch.V2Event.T"
+    "ype\022\021\n\tnum_links\030\002 \001(\004\022\014\n\004path\030\003 \001(\t\022\020\n\010"
     "entry_id\030\004 \001(\t\022\027\n\017parent_entry_id\030\005 \001(\t\022"
     "\023\n\013target_path\030\006 \001(\t\022\030\n\020target_parent_id"
-    "\030\007 \001(\t\"\247\001\n\004Type\022\t\n\005FLUSH\020\000\022\014\n\010TRUNCATE\020\001"
-    "\022\013\n\007SETATTR\020\002\022\017\n\013CLOSE_WRITE\020\003\022\n\n\006CREATE"
-    "\020\004\022\t\n\005MKDIR\020\005\022\t\n\005MKNOD\020\006\022\013\n\007SYMLINK\020\007\022\t\n"
-    "\005RMDIR\020\010\022\n\n\006UNLINK\020\t\022\014\n\010HARDLINK\020\n\022\n\n\006RE"
-    "NAME\020\013\022\010\n\004READ\020\014\"\313\003\n\007V2Event\022$\n\004type\030\001 \001"
-    "(\0162\026.beewatch.V2Event.Type\022\021\n\tnum_links\030"
-    "\002 \001(\004\022\014\n\004path\030\003 \001(\t\022\020\n\010entry_id\030\004 \001(\t\022\027\n"
-    "\017parent_entry_id\030\005 \001(\t\022\023\n\013target_path\030\006 "
-    "\001(\t\022\030\n\020target_parent_id\030\007 \001(\t\022\023\n\013msg_use"
-    "r_id\030\010 \001(\r\022\021\n\ttimestamp\030\t \001(\003\"\366\001\n\004Type\022\013"
-    "\n\007INVALID\020\000\022\t\n\005FLUSH\020\001\022\014\n\010TRUNCATE\020\002\022\013\n\007"
-    "SETATTR\020\003\022\017\n\013CLOSE_WRITE\020\004\022\n\n\006CREATE\020\005\022\t"
-    "\n\005MKDIR\020\006\022\t\n\005MKNOD\020\007\022\013\n\007SYMLINK\020\010\022\t\n\005RMD"
-    "IR\020\t\022\n\n\006UNLINK\020\n\022\014\n\010HARDLINK\020\013\022\n\n\006RENAME"
-    "\020\014\022\r\n\tOPEN_READ\020\r\022\016\n\nOPEN_WRITE\020\016\022\023\n\017OPE"
-    "N_READ_WRITE\020\017\022\026\n\022LAST_WRITER_CLOSED\020\020\"8"
-    "\n\010Response\022\025\n\rcompleted_seq\030\001 \001(\004\022\025\n\rshu"
-    "tting_down\030\002 \001(\0102F\n\nSubscriber\0228\n\rReceiv"
-    "eEvents\022\017.beewatch.Event\032\022.beewatch.Resp"
-    "onse(\0010\001B+Z)github.com/thinkparq/protobu"
-    "f/go/beewatchb\006proto3"
+    "\030\007 \001(\t\022\023\n\013msg_user_id\030\010 \001(\r\022\021\n\ttimestamp"
+    "\030\t \001(\003\"\366\001\n\004Type\022\013\n\007INVALID\020\000\022\t\n\005FLUSH\020\001\022"
+    "\014\n\010TRUNCATE\020\002\022\013\n\007SETATTR\020\003\022\017\n\013CLOSE_WRIT"
+    "E\020\004\022\n\n\006CREATE\020\005\022\t\n\005MKDIR\020\006\022\t\n\005MKNOD\020\007\022\013\n"
+    "\007SYMLINK\020\010\022\t\n\005RMDIR\020\t\022\n\n\006UNLINK\020\n\022\014\n\010HAR"
+    "DLINK\020\013\022\n\n\006RENAME\020\014\022\r\n\tOPEN_READ\020\r\022\016\n\nOP"
+    "EN_WRITE\020\016\022\023\n\017OPEN_READ_WRITE\020\017\022\026\n\022LAST_"
+    "WRITER_CLOSED\020\020\"8\n\010Response\022\025\n\rcompleted"
+    "_seq\030\001 \001(\004\022\025\n\rshutting_down\030\002 \001(\0102F\n\nSub"
+    "scriber\0228\n\rReceiveEvents\022\017.beewatch.Even"
+    "t\032\022.beewatch.Response(\0010\001B+Z)github.com/"
+    "thinkparq/protobuf/go/beewatchb\006proto3"
 };
 static ::absl::once_flag descriptor_table_beewatch_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beewatch_2eproto = {
     false,
     false,
-    1141,
+    1158,
     descriptor_table_protodef_beewatch_2eproto,
     "beewatch.proto",
     &descriptor_table_beewatch_2eproto_once,
@@ -390,9 +392,9 @@ Event::Event(
                offsetof(Impl_, seq_id_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, seq_id_),
-           offsetof(Impl_, dropped_seq_) -
+           offsetof(Impl_, meta_id_) -
                offsetof(Impl_, seq_id_) +
-               sizeof(Impl_::dropped_seq_));
+               sizeof(Impl_::meta_id_));
   switch (event_data_case()) {
     case EVENT_DATA_NOT_SET:
       break;
@@ -418,9 +420,9 @@ inline void Event::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, seq_id_),
            0,
-           offsetof(Impl_, dropped_seq_) -
+           offsetof(Impl_, meta_id_) -
                offsetof(Impl_, seq_id_) +
-               sizeof(Impl_::dropped_seq_));
+               sizeof(Impl_::meta_id_));
 }
 Event::~Event() {
   // @@protoc_insertion_point(destructor:beewatch.Event)
@@ -502,9 +504,9 @@ const ::_pbi::TcParseTable<1, 4, 2, 0, 2> Event::_table_ = {
     ::_pbi::TcParser::GetTable<::beewatch::Event>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // uint64 dropped_seq = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Event, _impl_.dropped_seq_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Event, _impl_.dropped_seq_)}},
+    // uint32 meta_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Event, _impl_.meta_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Event, _impl_.meta_id_)}},
     // uint64 seq_id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Event, _impl_.seq_id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(Event, _impl_.seq_id_)}},
@@ -514,9 +516,9 @@ const ::_pbi::TcParseTable<1, 4, 2, 0, 2> Event::_table_ = {
     // uint64 seq_id = 1;
     {PROTOBUF_FIELD_OFFSET(Event, _impl_.seq_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
-    // uint64 dropped_seq = 2;
-    {PROTOBUF_FIELD_OFFSET(Event, _impl_.dropped_seq_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+    // uint32 meta_id = 2;
+    {PROTOBUF_FIELD_OFFSET(Event, _impl_.meta_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // .beewatch.V1Event v1 = 11;
     {PROTOBUF_FIELD_OFFSET(Event, _impl_.event_data_.v1_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -538,8 +540,8 @@ PROTOBUF_NOINLINE void Event::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.seq_id_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.dropped_seq_) -
-      reinterpret_cast<char*>(&_impl_.seq_id_)) + sizeof(_impl_.dropped_seq_));
+      reinterpret_cast<char*>(&_impl_.meta_id_) -
+      reinterpret_cast<char*>(&_impl_.seq_id_)) + sizeof(_impl_.meta_id_));
   clear_event_data();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -558,11 +560,11 @@ PROTOBUF_NOINLINE void Event::Clear() {
         1, this->_internal_seq_id(), target);
   }
 
-  // uint64 dropped_seq = 2;
-  if (this->_internal_dropped_seq() != 0) {
+  // uint32 meta_id = 2;
+  if (this->_internal_meta_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-        2, this->_internal_dropped_seq(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_meta_id(), target);
   }
 
   switch (event_data_case()) {
@@ -603,10 +605,10 @@ PROTOBUF_NOINLINE void Event::Clear() {
         this->_internal_seq_id());
   }
 
-  // uint64 dropped_seq = 2;
-  if (this->_internal_dropped_seq() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
-        this->_internal_dropped_seq());
+  // uint32 meta_id = 2;
+  if (this->_internal_meta_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_meta_id());
   }
 
   switch (event_data_case()) {
@@ -642,8 +644,8 @@ void Event::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::p
   if (from._internal_seq_id() != 0) {
     _this->_impl_.seq_id_ = from._impl_.seq_id_;
   }
-  if (from._internal_dropped_seq() != 0) {
-    _this->_impl_.dropped_seq_ = from._impl_.dropped_seq_;
+  if (from._internal_meta_id() != 0) {
+    _this->_impl_.meta_id_ = from._impl_.meta_id_;
   }
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
     const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
@@ -693,8 +695,8 @@ void Event::InternalSwap(Event* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Event, _impl_.dropped_seq_)
-      + sizeof(Event::_impl_.dropped_seq_)
+      PROTOBUF_FIELD_OFFSET(Event, _impl_.meta_id_)
+      + sizeof(Event::_impl_.meta_id_)
       - PROTOBUF_FIELD_OFFSET(Event, _impl_.seq_id_)>(
           reinterpret_cast<char*>(&_impl_.seq_id_),
           reinterpret_cast<char*>(&other->_impl_.seq_id_));
@@ -736,11 +738,11 @@ V1Event::V1Event(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, missed_seq_),
+               offsetof(Impl_, dropped_seq_),
            reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, missed_seq_),
+               offsetof(Impl_, dropped_seq_),
            offsetof(Impl_, type_) -
-               offsetof(Impl_, missed_seq_) +
+               offsetof(Impl_, dropped_seq_) +
                sizeof(Impl_::type_));
 
   // @@protoc_insertion_point(copy_constructor:beewatch.V1Event)
@@ -758,10 +760,10 @@ inline PROTOBUF_NDEBUG_INLINE V1Event::Impl_::Impl_(
 inline void V1Event::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, missed_seq_),
+               offsetof(Impl_, dropped_seq_),
            0,
            offsetof(Impl_, type_) -
-               offsetof(Impl_, missed_seq_) +
+               offsetof(Impl_, dropped_seq_) +
                sizeof(Impl_::type_));
 }
 V1Event::~V1Event() {
@@ -800,15 +802,15 @@ V1Event::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 0, 79, 2> V1Event::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 0, 87, 2> V1Event::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    7, 56,  // max_field_number, fast_idx_mask
+    8, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967168,  // skipmap
+    4294967040,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    8,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_V1Event_default_instance_._instance,
@@ -818,56 +820,61 @@ const ::_pbi::TcParseTable<3, 7, 0, 79, 2> V1Event::_table_ = {
     ::_pbi::TcParser::GetTable<::beewatch::V1Event>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // string target_parent_id = 8;
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.target_parent_id_)}},
     // .beewatch.V1Event.Type type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(V1Event, _impl_.type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.type_)}},
-    // uint64 missed_seq = 2;
+    // uint64 dropped_seq = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(V1Event, _impl_.dropped_seq_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.dropped_seq_)}},
+    // uint64 missed_seq = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(V1Event, _impl_.missed_seq_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.missed_seq_)}},
-    // string path = 3;
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.missed_seq_)}},
+    // string path = 4;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.path_)}},
-    // string entry_id = 4;
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.path_)}},
+    // string entry_id = 5;
     {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.entry_id_)}},
-    // string parent_entry_id = 5;
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.entry_id_)}},
+    // string parent_entry_id = 6;
     {::_pbi::TcParser::FastUS1,
-     {42, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.parent_entry_id_)}},
-    // string target_path = 6;
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.parent_entry_id_)}},
+    // string target_path = 7;
     {::_pbi::TcParser::FastUS1,
-     {50, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.target_path_)}},
-    // string target_parent_id = 7;
-    {::_pbi::TcParser::FastUS1,
-     {58, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.target_parent_id_)}},
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(V1Event, _impl_.target_path_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .beewatch.V1Event.Type type = 1;
     {PROTOBUF_FIELD_OFFSET(V1Event, _impl_.type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // uint64 missed_seq = 2;
+    // uint64 dropped_seq = 2;
+    {PROTOBUF_FIELD_OFFSET(V1Event, _impl_.dropped_seq_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+    // uint64 missed_seq = 3;
     {PROTOBUF_FIELD_OFFSET(V1Event, _impl_.missed_seq_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
-    // string path = 3;
+    // string path = 4;
     {PROTOBUF_FIELD_OFFSET(V1Event, _impl_.path_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string entry_id = 4;
+    // string entry_id = 5;
     {PROTOBUF_FIELD_OFFSET(V1Event, _impl_.entry_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string parent_entry_id = 5;
+    // string parent_entry_id = 6;
     {PROTOBUF_FIELD_OFFSET(V1Event, _impl_.parent_entry_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string target_path = 6;
+    // string target_path = 7;
     {PROTOBUF_FIELD_OFFSET(V1Event, _impl_.target_path_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string target_parent_id = 7;
+    // string target_parent_id = 8;
     {PROTOBUF_FIELD_OFFSET(V1Event, _impl_.target_parent_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\20\0\0\4\10\17\13\20"
+    "\20\0\0\0\4\10\17\13\20\0\0\0\0\0\0\0"
     "beewatch.V1Event"
     "path"
     "entry_id"
@@ -889,9 +896,9 @@ PROTOBUF_NOINLINE void V1Event::Clear() {
   _impl_.parent_entry_id_.ClearToEmpty();
   _impl_.target_path_.ClearToEmpty();
   _impl_.target_parent_id_.ClearToEmpty();
-  ::memset(&_impl_.missed_seq_, 0, static_cast<::size_t>(
+  ::memset(&_impl_.dropped_seq_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
-      reinterpret_cast<char*>(&_impl_.missed_seq_)) + sizeof(_impl_.type_));
+      reinterpret_cast<char*>(&_impl_.dropped_seq_)) + sizeof(_impl_.type_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -909,51 +916,58 @@ PROTOBUF_NOINLINE void V1Event::Clear() {
         1, this->_internal_type(), target);
   }
 
-  // uint64 missed_seq = 2;
+  // uint64 dropped_seq = 2;
+  if (this->_internal_dropped_seq() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        2, this->_internal_dropped_seq(), target);
+  }
+
+  // uint64 missed_seq = 3;
   if (this->_internal_missed_seq() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-        2, this->_internal_missed_seq(), target);
+        3, this->_internal_missed_seq(), target);
   }
 
-  // string path = 3;
+  // string path = 4;
   if (!this->_internal_path().empty()) {
     const std::string& _s = this->_internal_path();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beewatch.V1Event.path");
-    target = stream->WriteStringMaybeAliased(3, _s, target);
+    target = stream->WriteStringMaybeAliased(4, _s, target);
   }
 
-  // string entry_id = 4;
+  // string entry_id = 5;
   if (!this->_internal_entry_id().empty()) {
     const std::string& _s = this->_internal_entry_id();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beewatch.V1Event.entry_id");
-    target = stream->WriteStringMaybeAliased(4, _s, target);
+    target = stream->WriteStringMaybeAliased(5, _s, target);
   }
 
-  // string parent_entry_id = 5;
+  // string parent_entry_id = 6;
   if (!this->_internal_parent_entry_id().empty()) {
     const std::string& _s = this->_internal_parent_entry_id();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beewatch.V1Event.parent_entry_id");
-    target = stream->WriteStringMaybeAliased(5, _s, target);
+    target = stream->WriteStringMaybeAliased(6, _s, target);
   }
 
-  // string target_path = 6;
+  // string target_path = 7;
   if (!this->_internal_target_path().empty()) {
     const std::string& _s = this->_internal_target_path();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beewatch.V1Event.target_path");
-    target = stream->WriteStringMaybeAliased(6, _s, target);
+    target = stream->WriteStringMaybeAliased(7, _s, target);
   }
 
-  // string target_parent_id = 7;
+  // string target_parent_id = 8;
   if (!this->_internal_target_parent_id().empty()) {
     const std::string& _s = this->_internal_target_parent_id();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beewatch.V1Event.target_parent_id");
-    target = stream->WriteStringMaybeAliased(7, _s, target);
+    target = stream->WriteStringMaybeAliased(8, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -974,37 +988,43 @@ PROTOBUF_NOINLINE void V1Event::Clear() {
   (void) cached_has_bits;
 
   ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // string path = 3;
+  // string path = 4;
   if (!this->_internal_path().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_path());
   }
 
-  // string entry_id = 4;
+  // string entry_id = 5;
   if (!this->_internal_entry_id().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_entry_id());
   }
 
-  // string parent_entry_id = 5;
+  // string parent_entry_id = 6;
   if (!this->_internal_parent_entry_id().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_parent_entry_id());
   }
 
-  // string target_path = 6;
+  // string target_path = 7;
   if (!this->_internal_target_path().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_target_path());
   }
 
-  // string target_parent_id = 7;
+  // string target_parent_id = 8;
   if (!this->_internal_target_parent_id().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_target_parent_id());
   }
 
-  // uint64 missed_seq = 2;
+  // uint64 dropped_seq = 2;
+  if (this->_internal_dropped_seq() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_dropped_seq());
+  }
+
+  // uint64 missed_seq = 3;
   if (this->_internal_missed_seq() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
         this->_internal_missed_seq());
@@ -1043,6 +1063,9 @@ void V1Event::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
   if (!from._internal_target_parent_id().empty()) {
     _this->_internal_set_target_parent_id(from._internal_target_parent_id());
   }
+  if (from._internal_dropped_seq() != 0) {
+    _this->_impl_.dropped_seq_ = from._impl_.dropped_seq_;
+  }
   if (from._internal_missed_seq() != 0) {
     _this->_impl_.missed_seq_ = from._impl_.missed_seq_;
   }
@@ -1073,9 +1096,9 @@ void V1Event::InternalSwap(V1Event* PROTOBUF_RESTRICT other) {
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(V1Event, _impl_.type_)
       + sizeof(V1Event::_impl_.type_)
-      - PROTOBUF_FIELD_OFFSET(V1Event, _impl_.missed_seq_)>(
-          reinterpret_cast<char*>(&_impl_.missed_seq_),
-          reinterpret_cast<char*>(&other->_impl_.missed_seq_));
+      - PROTOBUF_FIELD_OFFSET(V1Event, _impl_.dropped_seq_)>(
+          reinterpret_cast<char*>(&_impl_.dropped_seq_),
+          reinterpret_cast<char*>(&other->_impl_.dropped_seq_));
 }
 
 ::google::protobuf::Metadata V1Event::GetMetadata() const {

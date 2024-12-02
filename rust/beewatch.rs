@@ -9,8 +9,8 @@
 pub struct Event {
     #[prost(uint64, tag = "1")]
     pub seq_id: u64,
-    #[prost(uint64, tag = "2")]
-    pub dropped_seq: u64,
+    #[prost(uint32, tag = "2")]
+    pub meta_id: u32,
     #[prost(oneof = "event::EventData", tags = "11, 12")]
     pub event_data: ::core::option::Option<event::EventData>,
 }
@@ -32,16 +32,18 @@ pub struct V1Event {
     #[prost(enumeration = "v1_event::Type", tag = "1")]
     pub r#type: i32,
     #[prost(uint64, tag = "2")]
+    pub dropped_seq: u64,
+    #[prost(uint64, tag = "3")]
     pub missed_seq: u64,
-    #[prost(string, tag = "3")]
-    pub path: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
-    pub entry_id: ::prost::alloc::string::String,
+    pub path: ::prost::alloc::string::String,
     #[prost(string, tag = "5")]
-    pub parent_entry_id: ::prost::alloc::string::String,
+    pub entry_id: ::prost::alloc::string::String,
     #[prost(string, tag = "6")]
-    pub target_path: ::prost::alloc::string::String,
+    pub parent_entry_id: ::prost::alloc::string::String,
     #[prost(string, tag = "7")]
+    pub target_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "8")]
     pub target_parent_id: ::prost::alloc::string::String,
 }
 /// Nested message and enum types in `V1Event`.
