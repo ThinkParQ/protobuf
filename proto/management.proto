@@ -41,121 +41,156 @@ service Management {
   rpc GetLicense(GetLicenseRequest) returns (GetLicenseResponse);
 }
 
-// Sets an entity alias
+// Sets an entity alias.
 message SetAliasRequest {
-  // The identifier to set the alias for
+  // The entity to set the alias for.
+  // Required, one identifier is sufficient.
   beegfs.EntityIdSet entity_id = 1;
-  // The entity type to set the alias for
+  // The entity type to set the alias for.
+  // Required. Must match entity_id's entity type.
   beegfs.EntityType entity_type = 2;
-  // The new alias
+  // The new alias.
+  // Required.
   string new_alias = 3;
 }
 message SetAliasResponse {}
 
 // Nodes
 
-// Gets the full list of nodes
+// Gets the full list of nodes.
 message GetNodesRequest {
-  // Query the nic list for each node and include it in the response
+  // Should the nic list should be included for each node?
+  // Required.
   bool include_nics = 1;
 }
 message GetNodesResponse {
-  // BeeGFS node related data
+  // An entry in the node list.
   message Node {
-    // BeeGFS nic related data
+    // An entry in a nodes nic list.
     message Nic {
-      // The nics IPv4 address in the form aaa.bbb.ccc.ddd:port
+      // The nics IPv4 address in the form aaa.bbb.ccc.ddd:port.
+      // Required.
       string addr = 1;
-      // The nics name (note that this is NOT an alias as a Nic is not considered an entity)
+      // The nics name (note that this is NOT an alias as a Nic is not considered an entity).
+      // Required.
       string name = 2;
-      // The nics type
+      // The nics type.
+      // Required.
       beegfs.NicType nic_type = 3;
     }
-    // The node identifiers
+
+    // The nodes identifier set. Required, should be completely populated.
     beegfs.EntityIdSet id = 1;
-    // The node type
+    // The node type.
+    // Required.
     beegfs.NodeType node_type = 2;
     // The nodes TCP and UDP port.
+    // Required.
     uint32 port = 3;
-    // The nodes Nics
+    // The nodes list of nics.
+    // Should only be filled if include_nics was set to true.
     repeated Nic nics = 4;
   }
 
-  // The list of nodes
+  // The list of nodes.
   repeated Node nodes = 1;
-  // The node containing the root inode. Will be missing on a fresh system without any meta
-  // targets/nodes.
+  // The node containing the root inode.
+  // Optional, may be omitted if that information is not yet available (e.g. on a fresh system
+  // without any meta targets/nodes).
   optional beegfs.EntityIdSet meta_root_node = 2;
-  // The file system UUID for this BeeGFS
+  // The file system UUID for this BeeGFS.
+  // Required.
   optional string fs_uuid = 3;
 }
 
-// Deletes a node from the system
+// Deletes a node from the system.
 message DeleteNodeRequest {
-  // The node to delete
+  // The node to delete.
+  // Required, one identifier is sufficient.
   optional beegfs.EntityIdSet node = 1;
-  // If set to false, check if delete is possible but don't execute it
+  // Execute the deletion? If set to false, check if delete is possible but don't actually do it.
+  // Required.
   optional bool execute = 2;
 }
 message DeleteNodeResponse {
-  // The ids of the deleted node
+  // The identifier set of the deleted node.
+  // Required, should be completely populated.
   optional beegfs.EntityIdSet node = 1;
 }
 
 // Targets
 
-// Gets the full list of targets
+// Gets the full list of targets.
 message GetTargetsRequest {}
 message GetTargetsResponse {
-  // A BeeGFS target
+  // An entry in the target list.
   message Target {
-    // The targets identifiers
+    // The targets identifier set.
+    // Required, should be completely populated.
     beegfs.EntityIdSet id = 1;
-    // Node type the target is on
+    // Node type of the target.
+    // Required.
     beegfs.NodeType node_type = 2;
-    // The targets reachability state as reported by management
+    // The targets reachability state as reported by management.
+    // Required.
     beegfs.ReachabilityState reachability_state = 3;
-    // The targets reachability state as reported by management
+    // The targets reachability state as reported by management.
+    // Required.
     beegfs.ConsistencyState consistency_state = 4;
-    // Duration since last contact to the target. Currently slightly inaccurate as it updates
-    // not on each received message.
+    // Duration since last contact to the target in seconds.
+    // Optional, may be omitted if that information is not available.
     optional uint64 last_contact_s = 5;
-    // Total space on the target as reported by management
+    // Total space on the target as reported by management.
+    // Optional, may be omitted if that information is not available.
     optional uint64 total_space_bytes = 6;
-    // Free space on the target as reported by management
+    // Free space on the target as reported by management.
+    // Optional, may be omitted if that information is not available.
     optional uint64 free_space_bytes = 7;
-    // Total inodes on the target as reported by management
+    // Total inodes on the target as reported by management.
+    // Optional, may be omitted if that information is not available.
     optional uint64 total_inodes = 8;
-    // Free inodes on the target as reported by management
+    // Free inodes on the target as reported by management.
+    // Optional, may be omitted if that information is not available.
     optional uint64 free_inodes = 9;
-    // The targets capacity pool as reported by the management
+    // The targets capacity pool as reported by the management.
+    // Required.
     beegfs.CapacityPool cap_pool = 10;
-    // The targets owner node identifiers
+    // The targets owner node. Storage targets can be "unmapped".
+    // Optional if this target is a storage target (e.g. node_type is STORAGE), required otherwise.
+    // If set, should be completely populated.
     beegfs.EntityIdSet node = 11;
-    // The targets storage pool identifiers. Explicitly optional since meta targets don't have a storage pool.
+    // The targets storage pool.
+    // Required if this target is a storage target (e.g. node_type is STORAGE), unset otherwise. If
+    // set, should be completely populated.
     optional beegfs.EntityIdSet storage_pool = 12;
   }
 
-  // The list of targets
+  // The list of targets.
   repeated Target targets = 1;
 }
 
-// Deletes a target from the system
+// Deletes a target from the system.
 message DeleteTargetRequest {
-  // The target to delete
+  // The target to delete.
+  // Required, one identifier is sufficient.
   optional beegfs.EntityIdSet target = 1;
-  // If set to false, check if delete is possible but don't execute it
+  // Execute the deletion? If set to false, check if delete is possible but don't actually do it.
+  // Required.
   optional bool execute = 2;
 }
 message DeleteTargetResponse {
-  // The ids of the deleted target
+  // The identifier set of the deleted target.
+  // Required, should be completely populated.
   optional beegfs.EntityIdSet target = 1;
 }
 
+// Sets a targets consistency state.
 message SetTargetStateRequest{
-    // Identifier of the target whose state is to be changed
+    // The target to set the state for.
+    // Required, one identifier is sufficient.
     optional beegfs.EntityIdSet target = 1;
-    // Consistency state to set for the target
+    // Consistency state to set for the target.
+    // Required.
     optional beegfs.ConsistencyState consistency_state = 2;
 }
 message SetTargetStateResponse{}
@@ -163,148 +198,193 @@ message SetTargetStateResponse{}
 
 // (Storage) pools
 
-// Gets the full list of pools
+// Gets the full list of storage pools.
 message GetPoolsRequest {
-  // Include quota limits in the response
+  // Should the quota limits be included for each pool?
+  // Required.
   bool with_quota_limits = 1;
 }
 message GetPoolsResponse {
+  // An entry in the storage pool list.
   message StoragePool {
-    // The storage pools identifiers
+    // The pools identifier set.
+    // Required, should be completely populated.
     beegfs.EntityIdSet id = 1;
-    // The storage pools assigned targets identifiers
+    // The targets assigned to the storage pool.
+    // Each should be completely populated.
     repeated beegfs.EntityIdSet targets = 2;
-    // The storage pools assigned buddy groups identifiers
+    // The buddy groups assigned to the storage pool.
+    // Each should be completely populated.
     repeated beegfs.EntityIdSet buddy_groups = 3;
-    // -1 means unlimited. May be unset.
+    // The default user space quota limit for data in this pool. -1 means unlimited.
+    // Optional. Should be set if with_quota_limits was set to true and the corresponding data is
+    // available.
     optional int64 user_space_limit = 4;
-    // -1 means unlimited. May be unset.
+    // The default user inode quota limit for data in this pool. -1 means unlimited.
+    // Optional. Should be set if with_quota_limits was set to true and the corresponding data is
+    // available.
     optional int64 user_inode_limit = 5;
-    // -1 means unlimited. May be unset.
+    // The default group space quota limit for data in this pool. -1 means unlimited.
+    // Optional. Should be set if with_quota_limits was set to true and the corresponding data is
+    // available.
     optional int64 group_space_limit = 6;
-    // -1 means unlimited. May be unset.
+    // The default group inode quota limit for data in this pool. -1 means unlimited.
+    // Optional. Should be set if with_quota_limits was set to true and the corresponding data is
+    // available.
     optional int64 group_inode_limit = 7;
   }
 
-  // The list of storage pools
+  // The list of storage pools.
   repeated StoragePool pools = 1;
 }
 
-// Creates a new pool
+// Creates a new pool.
 message CreatePoolRequest {
-  // The node type of the new pool (currently, only storage is allowed)
+  // The node type of the new pool.
+  // Required, must be STORAGE.
   optional beegfs.NodeType node_type = 1;
-  // The numeric id of the new pool. Chosen automatically if omitted.
+  // The numeric id of the new pool.
+  // Optional. Must be chosen by the receiver if omitted.
   optional uint32 num_id = 2;
-  // The alias of the new pool
+  // The alias of the new pool.
+  // Required.
   optional string alias = 3;
-  // Targets assigned to the new pool
+  // The targets to assign to the new pool.
+  // One identifier is sufficient for each.
   repeated beegfs.EntityIdSet targets = 4;
-  // Buddy groups assigned to the new pool
+  // The buddy groups to assign to the new pool.
+  // One identifier is sufficient for each.
   repeated beegfs.EntityIdSet buddy_groups = 5;
 }
 message CreatePoolResponse {
-  // The ids of the new pool
+  // The identifier set of the new pool.
+  // Required, should be completely populated.
   optional beegfs.EntityIdSet pool = 1;
 }
 
-// Assigns targets and buddy groups to a pool
+// Assigns targets and buddy groups to a pool.
 message AssignPoolRequest {
-  // The pool to assign to
+  // The pool to assign to.
+  // Required, one identifier is sufficient.
   optional beegfs.EntityIdSet pool = 1;
-  // Targets to assign
+  // The targets to assign to the new pool.
+  // One identifier is sufficient for each.
   repeated beegfs.EntityIdSet targets = 2;
-  // Buddy groups to assign
+  // The buddy groups to assign to the new pool.
+  // One identifier is sufficient for each.
   repeated beegfs.EntityIdSet buddy_groups = 3;
 }
 message AssignPoolResponse {
-  // The ids of the pool assigned to
+  // The identifier set of the pool assigned to.
+  // Required, should be completely populated.
   optional beegfs.EntityIdSet pool = 1;
 }
 
-  // Deletes a pool from the system
+// Deletes a pool from the system.
 message DeletePoolRequest {
-  // The pool to delete
+  // The pool to delete.
+  // Required, one identifier is sufficient.
   optional beegfs.EntityIdSet pool = 1;
-  // If set to false, check if delete is possible but don't execute it
+  // Execute the deletion? If set to false, check if delete is possible but don't
+  // actually do it.
+  // Required.
   optional bool execute = 2;
 }
 message DeletePoolResponse {
-  // The ids of the deleted pool
+  // The identifier set of the deleted pool.
+  // Required, should be completely populated.
   optional beegfs.EntityIdSet pool = 1;
 }
 
 // Buddy groups
 
-// Gets the full list of buddy groups
+// Gets the list of buddy groups.
 message GetBuddyGroupsRequest {}
 message GetBuddyGroupsResponse {
+  // An entry in the buddy groups list.
   message BuddyGroup {
-    // The buddy groups identifiers
+    // The buddy groups identifier set.
+    // Required, should be completely populated.
     beegfs.EntityIdSet id = 1;
-    // Node type the buddy group belongs to
+    // Node type of the buddy group.
+    // Required.
     beegfs.NodeType node_type = 2;
-    // The buddy groups current primary target identifiers
+    // The buddy groups primary target.
+    // Required, should be completely populated.
     beegfs.EntityIdSet primary_target = 3;
-    // The buddy groups current secondary target identifiers
+    // The buddy groups secondary target.
+    // Required, should be completely populated.
     beegfs.EntityIdSet secondary_target = 4;
-    // The buddy groups primary target consistency state
+    // The buddy groups primary target consistency state.
+    // Required.
     beegfs.ConsistencyState primary_consistency_state = 5;
-    // The buddy groups secondary target consistency state
+    // The buddy groups secondary target consistency state.
+    // Required.
     beegfs.ConsistencyState secondary_consistency_state = 6;
-    // The buddy groups storage pool. Explicitly optional since meta pools dont' have a storage
-    // pool.
+    // The targets storage pool.
+    // Required if this target is a storage target (e.g. node_type is STORAGE), unset otherwise. If
+    // set, should be completely populated.
     optional beegfs.EntityIdSet storage_pool = 7;
   }
 
-  // The list of buddy groups
+  // The list of buddy groups.
   repeated BuddyGroup buddy_groups = 1;
 }
 
-// Creates a new buddy group
+// Creates a new buddy group.
 message CreateBuddyGroupRequest {
-  // The node type of the new buddy group
+  // The node type of the new buddy group.
+  // Required, must be META or STORAGE.
   optional beegfs.NodeType node_type = 1;
-  // The numeric id of the new buddy group. Chosen automatically if omitted.
+  // The numeric id of the new buddy group.
+  // Optional. Must be chosen by the receiver if omitted.
   optional uint32 num_id = 2;
-  // The alias of the new buddy group
+  // The alias of the new buddy group.
+  // Required.
   optional string alias = 3;
-  // The primary target of the new buddy group
+  // The new buddy groups primary target.
+  // Required. One identifier is sufficient.
   optional beegfs.EntityIdSet primary_target = 4;
-  // The secondary target of the new buddy group
+  // The new buddy groups secondary target.
+  // Required. One identifier is sufficient.
   optional beegfs.EntityIdSet secondary_target = 5;
 }
 message CreateBuddyGroupResponse {
-  // The ids of the new buddy group
+  // The identifier set of the new buddy group.
+  // Required, should be completely populated.
   optional beegfs.EntityIdSet group = 1;
 }
 
-// Deletes a buddy group from the system
+// Deletes a buddy group from the system.
 message DeleteBuddyGroupRequest {
-  // The buddy group to delete
+  // The buddy group to delete.
+  // Required, one identifier is sufficient.
   optional beegfs.EntityIdSet group = 1;
-  // If set to false, check if delete is possible but don't execute it
+  // Execute the deletion? If set to false, check if delete is possible but don't
+  // actually do it.
+  // Required.
   optional bool execute = 2;
 }
 message DeleteBuddyGroupResponse {
-  // The ids of the deleted buddy group
+  // The identifier set of the deleted buddy group.
+  // Required, should be completely populated.
   optional beegfs.EntityIdSet group = 1;
 }
 
-// Enable metadata mirroring for the root directory
+// Enable metadata mirroring for the root directory.
 message MirrorRootInodeRequest{}
 message MirrorRootInodeResponse{}
 
-// Manually start a resync by setting the secondary target's consistency state to needs_resync
+// Manually start a resync.
 message StartResyncRequest {
-  // The buddy group whose secondary target will be resynced from its primary target
+  // The buddy group whose secondary target will be resynced from its primary target.
+  // Required, one identifier is sufficient.
   optional beegfs.EntityIdSet buddy_group = 1;
-  // For storage targets: resyncs all data after the given epoch timestamp. 
-  // If set to -1, performs a complete resync. 
-  // For meta targets, this must be -1 as they can only perform complete resyncs.
+  // Resync only data after the given unix timestamp (in seconds). Set to -1 for a complete resync.
+  // Required. On meta buddy groups (e.g. buddy_group.legacy_id.node_type = META), must be -1.
   optional int64 timestamp = 2;
-  // For storage targets only: if true, aborts an ongoing resync and restarts. 
-  // Not applicable to meta targets as meta resync cannot be aborted.
+  // Abort an ongoing resync and restart?
+  // Required. Must be false for meta buddy groups.
   optional bool restart = 3;
 }
 message StartResyncResponse{}
@@ -314,96 +394,128 @@ message StartResyncResponse{}
 // Contains info belonging to a quota_id + id_type + pool entry (e.g. user 1000 on storage pool 1).
 // Depending on the message, some fields are unused.
 message QuotaInfo {
-  // The system user/group id the info belongs to
+  // The system user/group id the info belongs to.
+  // Required.
   optional uint32 quota_id = 1;
-  // The id type (user or group)
+  // The id type (user or group) of quota_id.
+  // Required.
   beegfs.QuotaIdType id_type = 2;
-  // The storage pool the info belongs to
+  // The storage pool the info belongs to.
+  // Required, should be completely populated.
   optional beegfs.EntityIdSet pool = 3;
-  // -1 means unlimited
+    // The space quota limit for this user/group. -1 means unlimited.
+    // When used for returning data: Should be set if the corresponding data is available.
+    // When used for setting limits: Optional.
   optional int64 space_limit = 4;
-  // -1 means unlimited
+    // The inode quota limit for this user/group. -1 means unlimited.
+    // When used for returning data: Should be set if the corresponding data is available.
+    // When used for setting limits: Optional.
   optional int64 inode_limit = 5;
-  // -1 means unlimited
+    // The space quota used for this user/group.
+    // When used for returning data: Should be set if the corresponding data is available.
+    // When used for setting limits: Ignore.
   optional int64 space_used = 6;
-  // -1 means unlimited
+    // The inode quota used for this user/group.
+    // When used for returning data: Should be set if the corresponding data is available.
+    // When used for setting limits: Ignore.
   optional int64 inode_used = 7;
 }
 
-// Sets the default quota limits for a pool. -1 means unlimited.
+// Sets the default quota limits for a pool.
 message SetDefaultQuotaLimitsRequest {
-  // The pool to set the limits for
+  // The storage pool to set the limits for.
+  // Required, one identifier is sufficient.
   optional beegfs.EntityIdSet pool = 1;
-  // -1 means unlimited
+  // The default user space quota limit. -1 means unlimited.
+  // Optional.
   optional int64 user_space_limit = 2;
-  // -1 means unlimited
+  // The default user inode quota limit. -1 means unlimited.
+  // Optional.
   optional int64 user_inode_limit = 3;
-  // -1 means unlimited
+  // The default group space quota limit. -1 means unlimited.
+  // Optional.
   optional int64 group_space_limit = 4;
-  // -1 means unlimited
+  // The default group inode quota limit. -1 means unlimited.
+  // Optional.
   optional int64 group_inode_limit = 5;
 }
 message SetDefaultQuotaLimitsResponse {}
 
-// Sets the individually set per-id-and-pool quota limits
+// Sets the individually set per-id-and-pool quota limits.
 message SetQuotaLimitsRequest {
-  // The explicit quota limit entries to set on the management. The _used fields are ignored.
+  // The explicit quota limit entries to set on the management. The _used fields should be unset.
   repeated QuotaInfo limits = 1;
 }
 message SetQuotaLimitsResponse {}
 
 // Gets the individually set per-id-and-pool quota limits. Retrieves all explicitly set entries.
 message GetQuotaLimitsRequest {
-  // The minimum id to return. Only applies when set.
+  // The minimum id to return.
+  // Optional. If set, quota_id_max must also be set.
   optional uint32 quota_id_min = 1;
-  // The maximum id to return. Only applies when set.
+  // The maximum id to return.
+  // Optional. If set, quota_id_min must also be set.
   optional uint32 quota_id_max = 2;
-  // The list of ids to return. Only applies when not empty.
+  // Return only the ids listed.
   repeated uint32 quota_id_list = 5;
-  // Return only user or group ids. Only applies when set.
+  // Return only user or group ids.
+  // Optional.
   beegfs.QuotaIdType id_type = 3;
-  // Return only a specific pool. Only applies when set.
+  // Return only a specific pool.
+  // Optional. One identifier is sufficient.
   optional beegfs.EntityIdSet pool = 4;
 }
+// One entry in the quota per-id-and-pool limits list. Meant to be streamed.
 message GetQuotaLimitsResponse {
-  // The explicit quota limit entries known by the management.
-  // The _used fields are unused in this response.
+  // One per-id-and-pool quota limit entry.
+  // This is a single (non-repeated) field because the response is meant to be streamed.
+  // Required. The _used fields are unused.
   optional QuotaInfo limits = 1;
 }
 
 // Gets the quota usage info for all the ids the management knows about. In addition, contains
 // the effective limits for each entry.
 message GetQuotaUsageRequest {
-  // The minimum id to return. Only applies when set.
+  // The minimum id to return.
+  // Optional. If set, quota_id_max must also be set.
   optional uint32 quota_id_min = 1;
-  // The maximum id to return. Only applies when set.
+  // The maximum id to return.
+  // Optional. If set, quota_id_min must also be set.
   optional uint32 quota_id_max = 2;
-  // The list of ids to return. Only applies when not empty.
+  // Return only the ids listed.
   repeated uint32 quota_id_list = 6;
-  // Return only user or group ids. Only applies when set.
+  // Return only user or group ids.
+  // Optional.
   beegfs.QuotaIdType id_type = 3;
-  // Return only a specific pool. Only applies when set.
+  // Return only a specific pool.
+  // Optional. One identifier is sufficient.
   optional beegfs.EntityIdSet pool = 4;
-  // Return only exceeded or not exceeded entries. Only applies when set.
+  // Return only exceeded or not exceeded entries?
+  // Optional.
   optional bool exceeded = 5;
 }
+// One entry in the quota per-id-and-pool limits list. Meant to be streamed.
 message GetQuotaUsageResponse {
-  // The quota usage entry
+  // One per-id-and-pool quota usage entry.
+  // This is a single (non-repeated) field because the response is meant to be streamed.
+  // Required.
   optional QuotaInfo entry = 1;
-  // The refresh period of the quota usage info in seconds. Since this is not related to a quota
-  // usage entry, it is supposed to be only set on the first message.
+  // The refresh period of the quota usage info in seconds.
+  // Optional. Should be set only on the first response in the stream.
   optional uint64 refresh_period_s = 2;
 }
 
 // Licensing
 
-// Gets license information
+// Gets license information.
 message GetLicenseRequest {
-  // Whether to reload and re-verify the license on the server
+  // Reload and re-verify the license before returning it?
+  // Required.
   optional bool reload = 1;
 }
 message GetLicenseResponse {
-  // A CertData structure as defined in beecert.proto
+  // A license.
+  // Optional, might be omitted if no license data is available.
   optional license.GetCertDataResult cert_data = 1;
 }
 
