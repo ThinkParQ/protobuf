@@ -858,6 +858,9 @@ inline constexpr GetNodesResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         nodes_{},
+        fs_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         meta_root_node_{nullptr} {}
 
 template <typename>
@@ -987,7 +990,9 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::management::GetNodesResponse, _impl_.nodes_),
         PROTOBUF_FIELD_OFFSET(::management::GetNodesResponse, _impl_.meta_root_node_),
+        PROTOBUF_FIELD_OFFSET(::management::GetNodesResponse, _impl_.fs_uuid_),
         ~0u,
+        1,
         0,
         PROTOBUF_FIELD_OFFSET(::management::DeleteNodeRequest, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::DeleteNodeRequest, _internal_metadata_),
@@ -1493,47 +1498,47 @@ static const ::_pbi::MigrationSchema
         {22, -1, -1, sizeof(::management::GetNodesRequest)},
         {31, -1, -1, sizeof(::management::GetNodesResponse_Node_Nic)},
         {42, 54, -1, sizeof(::management::GetNodesResponse_Node)},
-        {58, 68, -1, sizeof(::management::GetNodesResponse)},
-        {70, 80, -1, sizeof(::management::DeleteNodeRequest)},
-        {82, 91, -1, sizeof(::management::DeleteNodeResponse)},
-        {92, -1, -1, sizeof(::management::GetTargetsRequest)},
-        {100, 120, -1, sizeof(::management::GetTargetsResponse_Target)},
-        {132, -1, -1, sizeof(::management::GetTargetsResponse)},
-        {141, 151, -1, sizeof(::management::DeleteTargetRequest)},
-        {153, 162, -1, sizeof(::management::DeleteTargetResponse)},
-        {163, 173, -1, sizeof(::management::SetTargetStateRequest)},
-        {175, -1, -1, sizeof(::management::SetTargetStateResponse)},
-        {183, -1, -1, sizeof(::management::GetPoolsRequest)},
-        {192, 207, -1, sizeof(::management::GetPoolsResponse_StoragePool)},
-        {214, -1, -1, sizeof(::management::GetPoolsResponse)},
-        {223, 236, -1, sizeof(::management::CreatePoolRequest)},
-        {241, 250, -1, sizeof(::management::CreatePoolResponse)},
-        {251, 262, -1, sizeof(::management::AssignPoolRequest)},
-        {265, 274, -1, sizeof(::management::AssignPoolResponse)},
-        {275, 285, -1, sizeof(::management::DeletePoolRequest)},
-        {287, 296, -1, sizeof(::management::DeletePoolResponse)},
-        {297, -1, -1, sizeof(::management::GetBuddyGroupsRequest)},
-        {305, 320, -1, sizeof(::management::GetBuddyGroupsResponse_BuddyGroup)},
-        {327, -1, -1, sizeof(::management::GetBuddyGroupsResponse)},
-        {336, 349, -1, sizeof(::management::CreateBuddyGroupRequest)},
-        {354, 363, -1, sizeof(::management::CreateBuddyGroupResponse)},
-        {364, 374, -1, sizeof(::management::DeleteBuddyGroupRequest)},
-        {376, 385, -1, sizeof(::management::DeleteBuddyGroupResponse)},
-        {386, -1, -1, sizeof(::management::MirrorRootInodeRequest)},
-        {394, -1, -1, sizeof(::management::MirrorRootInodeResponse)},
-        {402, 413, -1, sizeof(::management::StartResyncRequest)},
-        {416, -1, -1, sizeof(::management::StartResyncResponse)},
-        {424, 439, -1, sizeof(::management::QuotaInfo)},
-        {446, 459, -1, sizeof(::management::SetDefaultQuotaLimitsRequest)},
-        {464, -1, -1, sizeof(::management::SetDefaultQuotaLimitsResponse)},
-        {472, -1, -1, sizeof(::management::SetQuotaLimitsRequest)},
-        {481, -1, -1, sizeof(::management::SetQuotaLimitsResponse)},
-        {489, 501, -1, sizeof(::management::GetQuotaLimitsRequest)},
-        {505, 514, -1, sizeof(::management::GetQuotaLimitsResponse)},
-        {515, 528, -1, sizeof(::management::GetQuotaUsageRequest)},
-        {533, 543, -1, sizeof(::management::GetQuotaUsageResponse)},
-        {545, 554, -1, sizeof(::management::GetLicenseRequest)},
-        {555, 564, -1, sizeof(::management::GetLicenseResponse)},
+        {58, 69, -1, sizeof(::management::GetNodesResponse)},
+        {72, 82, -1, sizeof(::management::DeleteNodeRequest)},
+        {84, 93, -1, sizeof(::management::DeleteNodeResponse)},
+        {94, -1, -1, sizeof(::management::GetTargetsRequest)},
+        {102, 122, -1, sizeof(::management::GetTargetsResponse_Target)},
+        {134, -1, -1, sizeof(::management::GetTargetsResponse)},
+        {143, 153, -1, sizeof(::management::DeleteTargetRequest)},
+        {155, 164, -1, sizeof(::management::DeleteTargetResponse)},
+        {165, 175, -1, sizeof(::management::SetTargetStateRequest)},
+        {177, -1, -1, sizeof(::management::SetTargetStateResponse)},
+        {185, -1, -1, sizeof(::management::GetPoolsRequest)},
+        {194, 209, -1, sizeof(::management::GetPoolsResponse_StoragePool)},
+        {216, -1, -1, sizeof(::management::GetPoolsResponse)},
+        {225, 238, -1, sizeof(::management::CreatePoolRequest)},
+        {243, 252, -1, sizeof(::management::CreatePoolResponse)},
+        {253, 264, -1, sizeof(::management::AssignPoolRequest)},
+        {267, 276, -1, sizeof(::management::AssignPoolResponse)},
+        {277, 287, -1, sizeof(::management::DeletePoolRequest)},
+        {289, 298, -1, sizeof(::management::DeletePoolResponse)},
+        {299, -1, -1, sizeof(::management::GetBuddyGroupsRequest)},
+        {307, 322, -1, sizeof(::management::GetBuddyGroupsResponse_BuddyGroup)},
+        {329, -1, -1, sizeof(::management::GetBuddyGroupsResponse)},
+        {338, 351, -1, sizeof(::management::CreateBuddyGroupRequest)},
+        {356, 365, -1, sizeof(::management::CreateBuddyGroupResponse)},
+        {366, 376, -1, sizeof(::management::DeleteBuddyGroupRequest)},
+        {378, 387, -1, sizeof(::management::DeleteBuddyGroupResponse)},
+        {388, -1, -1, sizeof(::management::MirrorRootInodeRequest)},
+        {396, -1, -1, sizeof(::management::MirrorRootInodeResponse)},
+        {404, 415, -1, sizeof(::management::StartResyncRequest)},
+        {418, -1, -1, sizeof(::management::StartResyncResponse)},
+        {426, 441, -1, sizeof(::management::QuotaInfo)},
+        {448, 461, -1, sizeof(::management::SetDefaultQuotaLimitsRequest)},
+        {466, -1, -1, sizeof(::management::SetDefaultQuotaLimitsResponse)},
+        {474, -1, -1, sizeof(::management::SetQuotaLimitsRequest)},
+        {483, -1, -1, sizeof(::management::SetQuotaLimitsResponse)},
+        {491, 503, -1, sizeof(::management::GetQuotaLimitsRequest)},
+        {507, 516, -1, sizeof(::management::GetQuotaLimitsResponse)},
+        {517, 530, -1, sizeof(::management::GetQuotaUsageRequest)},
+        {535, 545, -1, sizeof(::management::GetQuotaUsageResponse)},
+        {547, 556, -1, sizeof(::management::GetLicenseRequest)},
+        {557, 566, -1, sizeof(::management::GetLicenseResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::management::_SetAliasRequest_default_instance_._instance,
@@ -1591,188 +1596,189 @@ const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION
     "\n\013entity_type\030\002 \001(\0162\022.beegfs.EntityType\022"
     "\021\n\tnew_alias\030\003 \001(\t\"\022\n\020SetAliasResponse\"\'"
     "\n\017GetNodesRequest\022\024\n\014include_nics\030\001 \001(\010\""
-    "\341\002\n\020GetNodesResponse\0220\n\005nodes\030\001 \003(\0132!.ma"
+    "\203\003\n\020GetNodesResponse\0220\n\005nodes\030\001 \003(\0132!.ma"
     "nagement.GetNodesResponse.Node\0220\n\016meta_r"
     "oot_node\030\002 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001"
-    "\032\325\001\n\004Node\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdS"
-    "et\022#\n\tnode_type\030\002 \001(\0162\020.beegfs.NodeType\022"
-    "\014\n\004port\030\003 \001(\r\0223\n\004nics\030\004 \003(\0132%.management"
-    ".GetNodesResponse.Node.Nic\032D\n\003Nic\022\014\n\004add"
-    "r\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022!\n\010nic_type\030\003 \001(\0162"
-    "\017.beegfs.NicTypeB\021\n\017_meta_root_node\"f\n\021D"
-    "eleteNodeRequest\022&\n\004node\030\001 \001(\0132\023.beegfs."
-    "EntityIdSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007"
-    "\n\005_nodeB\n\n\010_execute\"E\n\022DeleteNodeRespons"
-    "e\022&\n\004node\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001"
-    "\001B\007\n\005_node\"\023\n\021GetTargetsRequest\"\205\005\n\022GetT"
-    "argetsResponse\0226\n\007targets\030\001 \003(\0132%.manage"
-    "ment.GetTargetsResponse.Target\032\266\004\n\006Targe"
-    "t\022\037\n\002id\030\001 \001(\0132\023.beegfs.EntityIdSet\022#\n\tno"
-    "de_type\030\002 \001(\0162\020.beegfs.NodeType\0225\n\022reach"
-    "ability_state\030\003 \001(\0162\031.beegfs.Reachabilit"
-    "yState\0223\n\021consistency_state\030\004 \001(\0162\030.beeg"
-    "fs.ConsistencyState\022\033\n\016last_contact_s\030\005 "
-    "\001(\004H\000\210\001\001\022\036\n\021total_space_bytes\030\006 \001(\004H\001\210\001\001"
-    "\022\035\n\020free_space_bytes\030\007 \001(\004H\002\210\001\001\022\031\n\014total"
-    "_inodes\030\010 \001(\004H\003\210\001\001\022\030\n\013free_inodes\030\t \001(\004H"
-    "\004\210\001\001\022&\n\010cap_pool\030\n \001(\0162\024.beegfs.Capacity"
-    "Pool\022!\n\004node\030\013 \001(\0132\023.beegfs.EntityIdSet\022"
-    ".\n\014storage_pool\030\014 \001(\0132\023.beegfs.EntityIdS"
-    "etH\005\210\001\001B\021\n\017_last_contact_sB\024\n\022_total_spa"
-    "ce_bytesB\023\n\021_free_space_bytesB\017\n\r_total_"
-    "inodesB\016\n\014_free_inodesB\017\n\r_storage_pool\""
-    "l\n\023DeleteTargetRequest\022(\n\006target\030\001 \001(\0132\023"
-    ".beegfs.EntityIdSetH\000\210\001\001\022\024\n\007execute\030\002 \001("
-    "\010H\001\210\001\001B\t\n\007_targetB\n\n\010_execute\"K\n\024DeleteT"
-    "argetResponse\022(\n\006target\030\001 \001(\0132\023.beegfs.E"
-    "ntityIdSetH\000\210\001\001B\t\n\007_target\"\234\001\n\025SetTarget"
-    "StateRequest\022(\n\006target\030\001 \001(\0132\023.beegfs.En"
-    "tityIdSetH\000\210\001\001\0228\n\021consistency_state\030\002 \001("
-    "\0162\030.beegfs.ConsistencyStateH\001\210\001\001B\t\n\007_tar"
-    "getB\024\n\022_consistency_state\"\030\n\026SetTargetSt"
-    "ateResponse\",\n\017GetPoolsRequest\022\031\n\021with_q"
-    "uota_limits\030\001 \001(\010\"\241\003\n\020GetPoolsResponse\0227"
-    "\n\005pools\030\001 \003(\0132(.management.GetPoolsRespo"
-    "nse.StoragePool\032\323\002\n\013StoragePool\022\037\n\002id\030\001 "
-    "\001(\0132\023.beegfs.EntityIdSet\022$\n\007targets\030\002 \003("
-    "\0132\023.beegfs.EntityIdSet\022)\n\014buddy_groups\030\003"
-    " \003(\0132\023.beegfs.EntityIdSet\022\035\n\020user_space_"
-    "limit\030\004 \001(\003H\000\210\001\001\022\035\n\020user_inode_limit\030\005 \001"
-    "(\003H\001\210\001\001\022\036\n\021group_space_limit\030\006 \001(\003H\002\210\001\001\022"
-    "\036\n\021group_inode_limit\030\007 \001(\003H\003\210\001\001B\023\n\021_user"
-    "_space_limitB\023\n\021_user_inode_limitB\024\n\022_gr"
-    "oup_space_limitB\024\n\022_group_inode_limit\"\332\001"
-    "\n\021CreatePoolRequest\022(\n\tnode_type\030\001 \001(\0162\020"
-    ".beegfs.NodeTypeH\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210"
-    "\001\001\022\022\n\005alias\030\003 \001(\tH\002\210\001\001\022$\n\007targets\030\004 \003(\0132"
-    "\023.beegfs.EntityIdSet\022)\n\014buddy_groups\030\005 \003"
-    "(\0132\023.beegfs.EntityIdSetB\014\n\n_node_typeB\t\n"
-    "\007_num_idB\010\n\006_alias\"E\n\022CreatePoolResponse"
-    "\022&\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001"
-    "B\007\n\005_pool\"\225\001\n\021AssignPoolRequest\022&\n\004pool\030"
-    "\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001\022$\n\007targe"
-    "ts\030\002 \003(\0132\023.beegfs.EntityIdSet\022)\n\014buddy_g"
-    "roups\030\003 \003(\0132\023.beegfs.EntityIdSetB\007\n\005_poo"
-    "l\"E\n\022AssignPoolResponse\022&\n\004pool\030\001 \001(\0132\023."
-    "beegfs.EntityIdSetH\000\210\001\001B\007\n\005_pool\"f\n\021Dele"
-    "tePoolRequest\022&\n\004pool\030\001 \001(\0132\023.beegfs.Ent"
-    "ityIdSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007\n\005_"
-    "poolB\n\n\010_execute\"E\n\022DeletePoolResponse\022&"
-    "\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\007"
-    "\n\005_pool\"\027\n\025GetBuddyGroupsRequest\"\313\003\n\026Get"
-    "BuddyGroupsResponse\022C\n\014buddy_groups\030\001 \003("
-    "\0132-.management.GetBuddyGroupsResponse.Bu"
-    "ddyGroup\032\353\002\n\nBuddyGroup\022\037\n\002id\030\001 \001(\0132\023.be"
-    "egfs.EntityIdSet\022#\n\tnode_type\030\002 \001(\0162\020.be"
-    "egfs.NodeType\022+\n\016primary_target\030\003 \001(\0132\023."
-    "beegfs.EntityIdSet\022-\n\020secondary_target\030\004"
-    " \001(\0132\023.beegfs.EntityIdSet\022;\n\031primary_con"
-    "sistency_state\030\005 \001(\0162\030.beegfs.Consistenc"
-    "yState\022=\n\033secondary_consistency_state\030\006 "
-    "\001(\0162\030.beegfs.ConsistencyState\022.\n\014storage"
-    "_pool\030\007 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\017\n"
-    "\r_storage_pool\"\235\002\n\027CreateBuddyGroupReque"
-    "st\022(\n\tnode_type\030\001 \001(\0162\020.beegfs.NodeTypeH"
-    "\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210\001\001\022\022\n\005alias\030\003 \001(\t"
-    "H\002\210\001\001\0220\n\016primary_target\030\004 \001(\0132\023.beegfs.E"
-    "ntityIdSetH\003\210\001\001\0222\n\020secondary_target\030\005 \001("
-    "\0132\023.beegfs.EntityIdSetH\004\210\001\001B\014\n\n_node_typ"
-    "eB\t\n\007_num_idB\010\n\006_aliasB\021\n\017_primary_targe"
-    "tB\023\n\021_secondary_target\"M\n\030CreateBuddyGro"
-    "upResponse\022\'\n\005group\030\001 \001(\0132\023.beegfs.Entit"
-    "yIdSetH\000\210\001\001B\010\n\006_group\"n\n\027DeleteBuddyGrou"
-    "pRequest\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityI"
-    "dSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\010\n\006_grou"
-    "pB\n\n\010_execute\"M\n\030DeleteBuddyGroupRespons"
-    "e\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210"
-    "\001\001B\010\n\006_group\"\030\n\026MirrorRootInodeRequest\"\031"
-    "\n\027MirrorRootInodeResponse\"\233\001\n\022StartResyn"
-    "cRequest\022-\n\013buddy_group\030\001 \001(\0132\023.beegfs.E"
-    "ntityIdSetH\000\210\001\001\022\026\n\ttimestamp\030\002 \001(\003H\001\210\001\001\022"
-    "\024\n\007restart\030\003 \001(\010H\002\210\001\001B\016\n\014_buddy_groupB\014\n"
-    "\n_timestampB\n\n\010_restart\"\025\n\023StartResyncRe"
-    "sponse\"\252\002\n\tQuotaInfo\022\025\n\010quota_id\030\001 \001(\rH\000"
-    "\210\001\001\022$\n\007id_type\030\002 \001(\0162\023.beegfs.QuotaIdTyp"
-    "e\022&\n\004pool\030\003 \001(\0132\023.beegfs.EntityIdSetH\001\210\001"
-    "\001\022\030\n\013space_limit\030\004 \001(\003H\002\210\001\001\022\030\n\013inode_lim"
-    "it\030\005 \001(\003H\003\210\001\001\022\027\n\nspace_used\030\006 \001(\003H\004\210\001\001\022\027"
-    "\n\ninode_used\030\007 \001(\003H\005\210\001\001B\013\n\t_quota_idB\007\n\005"
-    "_poolB\016\n\014_space_limitB\016\n\014_inode_limitB\r\n"
-    "\013_space_usedB\r\n\013_inode_used\"\243\002\n\034SetDefau"
-    "ltQuotaLimitsRequest\022&\n\004pool\030\001 \001(\0132\023.bee"
-    "gfs.EntityIdSetH\000\210\001\001\022\035\n\020user_space_limit"
-    "\030\002 \001(\003H\001\210\001\001\022\035\n\020user_inode_limit\030\003 \001(\003H\002\210"
-    "\001\001\022\036\n\021group_space_limit\030\004 \001(\003H\003\210\001\001\022\036\n\021gr"
-    "oup_inode_limit\030\005 \001(\003H\004\210\001\001B\007\n\005_poolB\023\n\021_"
-    "user_space_limitB\023\n\021_user_inode_limitB\024\n"
-    "\022_group_space_limitB\024\n\022_group_inode_limi"
-    "t\"\037\n\035SetDefaultQuotaLimitsResponse\">\n\025Se"
-    "tQuotaLimitsRequest\022%\n\006limits\030\001 \003(\0132\025.ma"
-    "nagement.QuotaInfo\"\030\n\026SetQuotaLimitsResp"
-    "onse\"\306\001\n\025GetQuotaLimitsRequest\022\031\n\014quota_"
-    "id_min\030\001 \001(\rH\000\210\001\001\022\031\n\014quota_id_max\030\002 \001(\rH"
-    "\001\210\001\001\022$\n\007id_type\030\003 \001(\0162\023.beegfs.QuotaIdTy"
-    "pe\022&\n\004pool\030\004 \001(\0132\023.beegfs.EntityIdSetH\002\210"
-    "\001\001B\017\n\r_quota_id_minB\017\n\r_quota_id_maxB\007\n\005"
-    "_pool\"O\n\026GetQuotaLimitsResponse\022*\n\006limit"
-    "s\030\001 \001(\0132\025.management.QuotaInfoH\000\210\001\001B\t\n\007_"
-    "limits\"\351\001\n\024GetQuotaUsageRequest\022\031\n\014quota"
-    "_id_min\030\001 \001(\rH\000\210\001\001\022\031\n\014quota_id_max\030\002 \001(\r"
-    "H\001\210\001\001\022$\n\007id_type\030\003 \001(\0162\023.beegfs.QuotaIdT"
-    "ype\022&\n\004pool\030\004 \001(\0132\023.beegfs.EntityIdSetH\002"
-    "\210\001\001\022\025\n\010exceeded\030\005 \001(\010H\003\210\001\001B\017\n\r_quota_id_"
-    "minB\017\n\r_quota_id_maxB\007\n\005_poolB\013\n\t_exceed"
-    "ed\"\200\001\n\025GetQuotaUsageResponse\022)\n\005entry\030\001 "
-    "\001(\0132\025.management.QuotaInfoH\000\210\001\001\022\035\n\020refre"
-    "sh_period_s\030\002 \001(\004H\001\210\001\001B\010\n\006_entryB\023\n\021_ref"
-    "resh_period_s\"3\n\021GetLicenseRequest\022\023\n\006re"
-    "load\030\001 \001(\010H\000\210\001\001B\t\n\007_reload\"V\n\022GetLicense"
-    "Response\0222\n\tcert_data\030\001 \001(\0132\032.license.Ge"
-    "tCertDataResultH\000\210\001\001B\014\n\n_cert_data2\230\r\n\nM"
-    "anagement\022E\n\010SetAlias\022\033.management.SetAl"
-    "iasRequest\032\034.management.SetAliasResponse"
-    "\022E\n\010GetNodes\022\033.management.GetNodesReques"
-    "t\032\034.management.GetNodesResponse\022K\n\nDelet"
-    "eNode\022\035.management.DeleteNodeRequest\032\036.m"
-    "anagement.DeleteNodeResponse\022K\n\nGetTarge"
-    "ts\022\035.management.GetTargetsRequest\032\036.mana"
-    "gement.GetTargetsResponse\022Q\n\014DeleteTarge"
-    "t\022\037.management.DeleteTargetRequest\032 .man"
-    "agement.DeleteTargetResponse\022W\n\016SetTarge"
-    "tState\022!.management.SetTargetStateReques"
-    "t\032\".management.SetTargetStateResponse\022E\n"
-    "\010GetPools\022\033.management.GetPoolsRequest\032\034"
-    ".management.GetPoolsResponse\022K\n\nCreatePo"
-    "ol\022\035.management.CreatePoolRequest\032\036.mana"
-    "gement.CreatePoolResponse\022K\n\nAssignPool\022"
-    "\035.management.AssignPoolRequest\032\036.managem"
-    "ent.AssignPoolResponse\022K\n\nDeletePool\022\035.m"
-    "anagement.DeletePoolRequest\032\036.management"
-    ".DeletePoolResponse\022W\n\016GetBuddyGroups\022!."
-    "management.GetBuddyGroupsRequest\032\".manag"
-    "ement.GetBuddyGroupsResponse\022]\n\020CreateBu"
-    "ddyGroup\022#.management.CreateBuddyGroupRe"
-    "quest\032$.management.CreateBuddyGroupRespo"
-    "nse\022]\n\020DeleteBuddyGroup\022#.management.Del"
-    "eteBuddyGroupRequest\032$.management.Delete"
-    "BuddyGroupResponse\022Z\n\017MirrorRootInode\022\"."
-    "management.MirrorRootInodeRequest\032#.mana"
-    "gement.MirrorRootInodeResponse\022N\n\013StartR"
-    "esync\022\036.management.StartResyncRequest\032\037."
-    "management.StartResyncResponse\022l\n\025SetDef"
-    "aultQuotaLimits\022(.management.SetDefaultQ"
-    "uotaLimitsRequest\032).management.SetDefaul"
-    "tQuotaLimitsResponse\022W\n\016SetQuotaLimits\022!"
-    ".management.SetQuotaLimitsRequest\032\".mana"
-    "gement.SetQuotaLimitsResponse\022Y\n\016GetQuot"
-    "aLimits\022!.management.GetQuotaLimitsReque"
-    "st\032\".management.GetQuotaLimitsResponse0\001"
-    "\022V\n\rGetQuotaUsage\022 .management.GetQuotaU"
-    "sageRequest\032!.management.GetQuotaUsageRe"
-    "sponse0\001\022K\n\nGetLicense\022\035.management.GetL"
-    "icenseRequest\032\036.management.GetLicenseRes"
-    "ponseB-Z+github.com/thinkparq/protobuf/g"
-    "o/managementb\006proto3"
+    "\022\024\n\007fs_uuid\030\003 \001(\tH\001\210\001\001\032\325\001\n\004Node\022\037\n\002id\030\001 "
+    "\001(\0132\023.beegfs.EntityIdSet\022#\n\tnode_type\030\002 "
+    "\001(\0162\020.beegfs.NodeType\022\014\n\004port\030\003 \001(\r\0223\n\004n"
+    "ics\030\004 \003(\0132%.management.GetNodesResponse."
+    "Node.Nic\032D\n\003Nic\022\014\n\004addr\030\001 \001(\t\022\014\n\004name\030\002 "
+    "\001(\t\022!\n\010nic_type\030\003 \001(\0162\017.beegfs.NicTypeB\021"
+    "\n\017_meta_root_nodeB\n\n\010_fs_uuid\"f\n\021DeleteN"
+    "odeRequest\022&\n\004node\030\001 \001(\0132\023.beegfs.Entity"
+    "IdSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007\n\005_nod"
+    "eB\n\n\010_execute\"E\n\022DeleteNodeResponse\022&\n\004n"
+    "ode\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_"
+    "node\"\023\n\021GetTargetsRequest\"\205\005\n\022GetTargets"
+    "Response\0226\n\007targets\030\001 \003(\0132%.management.G"
+    "etTargetsResponse.Target\032\266\004\n\006Target\022\037\n\002i"
+    "d\030\001 \001(\0132\023.beegfs.EntityIdSet\022#\n\tnode_typ"
+    "e\030\002 \001(\0162\020.beegfs.NodeType\0225\n\022reachabilit"
+    "y_state\030\003 \001(\0162\031.beegfs.ReachabilityState"
+    "\0223\n\021consistency_state\030\004 \001(\0162\030.beegfs.Con"
+    "sistencyState\022\033\n\016last_contact_s\030\005 \001(\004H\000\210"
+    "\001\001\022\036\n\021total_space_bytes\030\006 \001(\004H\001\210\001\001\022\035\n\020fr"
+    "ee_space_bytes\030\007 \001(\004H\002\210\001\001\022\031\n\014total_inode"
+    "s\030\010 \001(\004H\003\210\001\001\022\030\n\013free_inodes\030\t \001(\004H\004\210\001\001\022&"
+    "\n\010cap_pool\030\n \001(\0162\024.beegfs.CapacityPool\022!"
+    "\n\004node\030\013 \001(\0132\023.beegfs.EntityIdSet\022.\n\014sto"
+    "rage_pool\030\014 \001(\0132\023.beegfs.EntityIdSetH\005\210\001"
+    "\001B\021\n\017_last_contact_sB\024\n\022_total_space_byt"
+    "esB\023\n\021_free_space_bytesB\017\n\r_total_inodes"
+    "B\016\n\014_free_inodesB\017\n\r_storage_pool\"l\n\023Del"
+    "eteTargetRequest\022(\n\006target\030\001 \001(\0132\023.beegf"
+    "s.EntityIdSetH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001"
+    "B\t\n\007_targetB\n\n\010_execute\"K\n\024DeleteTargetR"
+    "esponse\022(\n\006target\030\001 \001(\0132\023.beegfs.EntityI"
+    "dSetH\000\210\001\001B\t\n\007_target\"\234\001\n\025SetTargetStateR"
+    "equest\022(\n\006target\030\001 \001(\0132\023.beegfs.EntityId"
+    "SetH\000\210\001\001\0228\n\021consistency_state\030\002 \001(\0162\030.be"
+    "egfs.ConsistencyStateH\001\210\001\001B\t\n\007_targetB\024\n"
+    "\022_consistency_state\"\030\n\026SetTargetStateRes"
+    "ponse\",\n\017GetPoolsRequest\022\031\n\021with_quota_l"
+    "imits\030\001 \001(\010\"\241\003\n\020GetPoolsResponse\0227\n\005pool"
+    "s\030\001 \003(\0132(.management.GetPoolsResponse.St"
+    "oragePool\032\323\002\n\013StoragePool\022\037\n\002id\030\001 \001(\0132\023."
+    "beegfs.EntityIdSet\022$\n\007targets\030\002 \003(\0132\023.be"
+    "egfs.EntityIdSet\022)\n\014buddy_groups\030\003 \003(\0132\023"
+    ".beegfs.EntityIdSet\022\035\n\020user_space_limit\030"
+    "\004 \001(\003H\000\210\001\001\022\035\n\020user_inode_limit\030\005 \001(\003H\001\210\001"
+    "\001\022\036\n\021group_space_limit\030\006 \001(\003H\002\210\001\001\022\036\n\021gro"
+    "up_inode_limit\030\007 \001(\003H\003\210\001\001B\023\n\021_user_space"
+    "_limitB\023\n\021_user_inode_limitB\024\n\022_group_sp"
+    "ace_limitB\024\n\022_group_inode_limit\"\332\001\n\021Crea"
+    "tePoolRequest\022(\n\tnode_type\030\001 \001(\0162\020.beegf"
+    "s.NodeTypeH\000\210\001\001\022\023\n\006num_id\030\002 \001(\rH\001\210\001\001\022\022\n\005"
+    "alias\030\003 \001(\tH\002\210\001\001\022$\n\007targets\030\004 \003(\0132\023.beeg"
+    "fs.EntityIdSet\022)\n\014buddy_groups\030\005 \003(\0132\023.b"
+    "eegfs.EntityIdSetB\014\n\n_node_typeB\t\n\007_num_"
+    "idB\010\n\006_alias\"E\n\022CreatePoolResponse\022&\n\004po"
+    "ol\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_p"
+    "ool\"\225\001\n\021AssignPoolRequest\022&\n\004pool\030\001 \001(\0132"
+    "\023.beegfs.EntityIdSetH\000\210\001\001\022$\n\007targets\030\002 \003"
+    "(\0132\023.beegfs.EntityIdSet\022)\n\014buddy_groups\030"
+    "\003 \003(\0132\023.beegfs.EntityIdSetB\007\n\005_pool\"E\n\022A"
+    "ssignPoolResponse\022&\n\004pool\030\001 \001(\0132\023.beegfs"
+    ".EntityIdSetH\000\210\001\001B\007\n\005_pool\"f\n\021DeletePool"
+    "Request\022&\n\004pool\030\001 \001(\0132\023.beegfs.EntityIdS"
+    "etH\000\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\007\n\005_poolB\n"
+    "\n\010_execute\"E\n\022DeletePoolResponse\022&\n\004pool"
+    "\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\007\n\005_poo"
+    "l\"\027\n\025GetBuddyGroupsRequest\"\313\003\n\026GetBuddyG"
+    "roupsResponse\022C\n\014buddy_groups\030\001 \003(\0132-.ma"
+    "nagement.GetBuddyGroupsResponse.BuddyGro"
+    "up\032\353\002\n\nBuddyGroup\022\037\n\002id\030\001 \001(\0132\023.beegfs.E"
+    "ntityIdSet\022#\n\tnode_type\030\002 \001(\0162\020.beegfs.N"
+    "odeType\022+\n\016primary_target\030\003 \001(\0132\023.beegfs"
+    ".EntityIdSet\022-\n\020secondary_target\030\004 \001(\0132\023"
+    ".beegfs.EntityIdSet\022;\n\031primary_consisten"
+    "cy_state\030\005 \001(\0162\030.beegfs.ConsistencyState"
+    "\022=\n\033secondary_consistency_state\030\006 \001(\0162\030."
+    "beegfs.ConsistencyState\022.\n\014storage_pool\030"
+    "\007 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\017\n\r_stor"
+    "age_pool\"\235\002\n\027CreateBuddyGroupRequest\022(\n\t"
+    "node_type\030\001 \001(\0162\020.beegfs.NodeTypeH\000\210\001\001\022\023"
+    "\n\006num_id\030\002 \001(\rH\001\210\001\001\022\022\n\005alias\030\003 \001(\tH\002\210\001\001\022"
+    "0\n\016primary_target\030\004 \001(\0132\023.beegfs.EntityI"
+    "dSetH\003\210\001\001\0222\n\020secondary_target\030\005 \001(\0132\023.be"
+    "egfs.EntityIdSetH\004\210\001\001B\014\n\n_node_typeB\t\n\007_"
+    "num_idB\010\n\006_aliasB\021\n\017_primary_targetB\023\n\021_"
+    "secondary_target\"M\n\030CreateBuddyGroupResp"
+    "onse\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityIdSet"
+    "H\000\210\001\001B\010\n\006_group\"n\n\027DeleteBuddyGroupReque"
+    "st\022\'\n\005group\030\001 \001(\0132\023.beegfs.EntityIdSetH\000"
+    "\210\001\001\022\024\n\007execute\030\002 \001(\010H\001\210\001\001B\010\n\006_groupB\n\n\010_"
+    "execute\"M\n\030DeleteBuddyGroupResponse\022\'\n\005g"
+    "roup\030\001 \001(\0132\023.beegfs.EntityIdSetH\000\210\001\001B\010\n\006"
+    "_group\"\030\n\026MirrorRootInodeRequest\"\031\n\027Mirr"
+    "orRootInodeResponse\"\233\001\n\022StartResyncReque"
+    "st\022-\n\013buddy_group\030\001 \001(\0132\023.beegfs.EntityI"
+    "dSetH\000\210\001\001\022\026\n\ttimestamp\030\002 \001(\003H\001\210\001\001\022\024\n\007res"
+    "tart\030\003 \001(\010H\002\210\001\001B\016\n\014_buddy_groupB\014\n\n_time"
+    "stampB\n\n\010_restart\"\025\n\023StartResyncResponse"
+    "\"\252\002\n\tQuotaInfo\022\025\n\010quota_id\030\001 \001(\rH\000\210\001\001\022$\n"
+    "\007id_type\030\002 \001(\0162\023.beegfs.QuotaIdType\022&\n\004p"
+    "ool\030\003 \001(\0132\023.beegfs.EntityIdSetH\001\210\001\001\022\030\n\013s"
+    "pace_limit\030\004 \001(\003H\002\210\001\001\022\030\n\013inode_limit\030\005 \001"
+    "(\003H\003\210\001\001\022\027\n\nspace_used\030\006 \001(\003H\004\210\001\001\022\027\n\ninod"
+    "e_used\030\007 \001(\003H\005\210\001\001B\013\n\t_quota_idB\007\n\005_poolB"
+    "\016\n\014_space_limitB\016\n\014_inode_limitB\r\n\013_spac"
+    "e_usedB\r\n\013_inode_used\"\243\002\n\034SetDefaultQuot"
+    "aLimitsRequest\022&\n\004pool\030\001 \001(\0132\023.beegfs.En"
+    "tityIdSetH\000\210\001\001\022\035\n\020user_space_limit\030\002 \001(\003"
+    "H\001\210\001\001\022\035\n\020user_inode_limit\030\003 \001(\003H\002\210\001\001\022\036\n\021"
+    "group_space_limit\030\004 \001(\003H\003\210\001\001\022\036\n\021group_in"
+    "ode_limit\030\005 \001(\003H\004\210\001\001B\007\n\005_poolB\023\n\021_user_s"
+    "pace_limitB\023\n\021_user_inode_limitB\024\n\022_grou"
+    "p_space_limitB\024\n\022_group_inode_limit\"\037\n\035S"
+    "etDefaultQuotaLimitsResponse\">\n\025SetQuota"
+    "LimitsRequest\022%\n\006limits\030\001 \003(\0132\025.manageme"
+    "nt.QuotaInfo\"\030\n\026SetQuotaLimitsResponse\"\306"
+    "\001\n\025GetQuotaLimitsRequest\022\031\n\014quota_id_min"
+    "\030\001 \001(\rH\000\210\001\001\022\031\n\014quota_id_max\030\002 \001(\rH\001\210\001\001\022$"
+    "\n\007id_type\030\003 \001(\0162\023.beegfs.QuotaIdType\022&\n\004"
+    "pool\030\004 \001(\0132\023.beegfs.EntityIdSetH\002\210\001\001B\017\n\r"
+    "_quota_id_minB\017\n\r_quota_id_maxB\007\n\005_pool\""
+    "O\n\026GetQuotaLimitsResponse\022*\n\006limits\030\001 \001("
+    "\0132\025.management.QuotaInfoH\000\210\001\001B\t\n\007_limits"
+    "\"\351\001\n\024GetQuotaUsageRequest\022\031\n\014quota_id_mi"
+    "n\030\001 \001(\rH\000\210\001\001\022\031\n\014quota_id_max\030\002 \001(\rH\001\210\001\001\022"
+    "$\n\007id_type\030\003 \001(\0162\023.beegfs.QuotaIdType\022&\n"
+    "\004pool\030\004 \001(\0132\023.beegfs.EntityIdSetH\002\210\001\001\022\025\n"
+    "\010exceeded\030\005 \001(\010H\003\210\001\001B\017\n\r_quota_id_minB\017\n"
+    "\r_quota_id_maxB\007\n\005_poolB\013\n\t_exceeded\"\200\001\n"
+    "\025GetQuotaUsageResponse\022)\n\005entry\030\001 \001(\0132\025."
+    "management.QuotaInfoH\000\210\001\001\022\035\n\020refresh_per"
+    "iod_s\030\002 \001(\004H\001\210\001\001B\010\n\006_entryB\023\n\021_refresh_p"
+    "eriod_s\"3\n\021GetLicenseRequest\022\023\n\006reload\030\001"
+    " \001(\010H\000\210\001\001B\t\n\007_reload\"V\n\022GetLicenseRespon"
+    "se\0222\n\tcert_data\030\001 \001(\0132\032.license.GetCertD"
+    "ataResultH\000\210\001\001B\014\n\n_cert_data2\230\r\n\nManagem"
+    "ent\022E\n\010SetAlias\022\033.management.SetAliasReq"
+    "uest\032\034.management.SetAliasResponse\022E\n\010Ge"
+    "tNodes\022\033.management.GetNodesRequest\032\034.ma"
+    "nagement.GetNodesResponse\022K\n\nDeleteNode\022"
+    "\035.management.DeleteNodeRequest\032\036.managem"
+    "ent.DeleteNodeResponse\022K\n\nGetTargets\022\035.m"
+    "anagement.GetTargetsRequest\032\036.management"
+    ".GetTargetsResponse\022Q\n\014DeleteTarget\022\037.ma"
+    "nagement.DeleteTargetRequest\032 .managemen"
+    "t.DeleteTargetResponse\022W\n\016SetTargetState"
+    "\022!.management.SetTargetStateRequest\032\".ma"
+    "nagement.SetTargetStateResponse\022E\n\010GetPo"
+    "ols\022\033.management.GetPoolsRequest\032\034.manag"
+    "ement.GetPoolsResponse\022K\n\nCreatePool\022\035.m"
+    "anagement.CreatePoolRequest\032\036.management"
+    ".CreatePoolResponse\022K\n\nAssignPool\022\035.mana"
+    "gement.AssignPoolRequest\032\036.management.As"
+    "signPoolResponse\022K\n\nDeletePool\022\035.managem"
+    "ent.DeletePoolRequest\032\036.management.Delet"
+    "ePoolResponse\022W\n\016GetBuddyGroups\022!.manage"
+    "ment.GetBuddyGroupsRequest\032\".management."
+    "GetBuddyGroupsResponse\022]\n\020CreateBuddyGro"
+    "up\022#.management.CreateBuddyGroupRequest\032"
+    "$.management.CreateBuddyGroupResponse\022]\n"
+    "\020DeleteBuddyGroup\022#.management.DeleteBud"
+    "dyGroupRequest\032$.management.DeleteBuddyG"
+    "roupResponse\022Z\n\017MirrorRootInode\022\".manage"
+    "ment.MirrorRootInodeRequest\032#.management"
+    ".MirrorRootInodeResponse\022N\n\013StartResync\022"
+    "\036.management.StartResyncRequest\032\037.manage"
+    "ment.StartResyncResponse\022l\n\025SetDefaultQu"
+    "otaLimits\022(.management.SetDefaultQuotaLi"
+    "mitsRequest\032).management.SetDefaultQuota"
+    "LimitsResponse\022W\n\016SetQuotaLimits\022!.manag"
+    "ement.SetQuotaLimitsRequest\032\".management"
+    ".SetQuotaLimitsResponse\022Y\n\016GetQuotaLimit"
+    "s\022!.management.GetQuotaLimitsRequest\032\".m"
+    "anagement.GetQuotaLimitsResponse0\001\022V\n\rGe"
+    "tQuotaUsage\022 .management.GetQuotaUsageRe"
+    "quest\032!.management.GetQuotaUsageResponse"
+    "0\001\022K\n\nGetLicense\022\035.management.GetLicense"
+    "Request\032\036.management.GetLicenseResponseB"
+    "-Z+github.com/thinkparq/protobuf/go/mana"
+    "gementb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_management_2eproto_deps[2] =
     {
@@ -1783,7 +1789,7 @@ static ::absl::once_flag descriptor_table_management_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_management_2eproto = {
     false,
     false,
-    7500,
+    7534,
     descriptor_table_protodef_management_2eproto,
     "management.proto",
     &descriptor_table_management_2eproto_once,
@@ -2904,7 +2910,7 @@ class GetNodesResponse::_Internal {
 void GetNodesResponse::clear_meta_root_node() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.meta_root_node_ != nullptr) _impl_.meta_root_node_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 GetNodesResponse::GetNodesResponse(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
@@ -2916,7 +2922,8 @@ inline PROTOBUF_NDEBUG_INLINE GetNodesResponse::Impl_::Impl_(
     const Impl_& from, const ::management::GetNodesResponse& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        nodes_{visibility, arena, from.nodes_} {}
+        nodes_{visibility, arena, from.nodes_},
+        fs_uuid_(arena, from.fs_uuid_) {}
 
 GetNodesResponse::GetNodesResponse(
     ::google::protobuf::Arena* arena,
@@ -2928,7 +2935,7 @@ GetNodesResponse::GetNodesResponse(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.meta_root_node_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
+  _impl_.meta_root_node_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(
                               arena, *from._impl_.meta_root_node_)
                         : nullptr;
 
@@ -2938,7 +2945,8 @@ inline PROTOBUF_NDEBUG_INLINE GetNodesResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        nodes_{visibility, arena} {}
+        nodes_{visibility, arena},
+        fs_uuid_(arena) {}
 
 inline void GetNodesResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -2951,6 +2959,7 @@ GetNodesResponse::~GetNodesResponse() {
 }
 inline void GetNodesResponse::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.fs_uuid_.Destroy();
   delete _impl_.meta_root_node_;
   _impl_.~Impl_();
 }
@@ -2976,15 +2985,15 @@ GetNodesResponse::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 2, 0, 2> GetNodesResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 2, 43, 2> GetNodesResponse::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_GetNodesResponse_default_instance_._instance,
@@ -2994,12 +3003,16 @@ const ::_pbi::TcParseTable<1, 2, 2, 0, 2> GetNodesResponse::_table_ = {
     ::_pbi::TcParser::GetTable<::management::GetNodesResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // optional .beegfs.EntityIdSet meta_root_node = 2;
-    {::_pbi::TcParser::FastMtS1,
-     {18, 0, 1, PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_.meta_root_node_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // repeated .management.GetNodesResponse.Node nodes = 1;
     {::_pbi::TcParser::FastMtR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_.nodes_)}},
+    // optional .beegfs.EntityIdSet meta_root_node = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_.meta_root_node_)}},
+    // optional string fs_uuid = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_.fs_uuid_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -3007,12 +3020,18 @@ const ::_pbi::TcParseTable<1, 2, 2, 0, 2> GetNodesResponse::_table_ = {
     {PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_.nodes_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // optional .beegfs.EntityIdSet meta_root_node = 2;
-    {PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_.meta_root_node_), _Internal::kHasBitsOffset + 0, 1,
+    {PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_.meta_root_node_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional string fs_uuid = 3;
+    {PROTOBUF_FIELD_OFFSET(GetNodesResponse, _impl_.fs_uuid_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::management::GetNodesResponse_Node>()},
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
   }}, {{
+    "\33\0\0\7\0\0\0\0"
+    "management.GetNodesResponse"
+    "fs_uuid"
   }},
 };
 
@@ -3025,9 +3044,14 @@ PROTOBUF_NOINLINE void GetNodesResponse::Clear() {
 
   _impl_.nodes_.Clear();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.meta_root_node_ != nullptr);
-    _impl_.meta_root_node_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.fs_uuid_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.meta_root_node_ != nullptr);
+      _impl_.meta_root_node_->Clear();
+    }
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -3053,9 +3077,17 @@ PROTOBUF_NOINLINE void GetNodesResponse::Clear() {
 
   cached_has_bits = _impl_._has_bits_[0];
   // optional .beegfs.EntityIdSet meta_root_node = 2;
-  if (cached_has_bits & 0x00000001u) {
+  if (cached_has_bits & 0x00000002u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         2, *_impl_.meta_root_node_, _impl_.meta_root_node_->GetCachedSize(), target, stream);
+  }
+
+  // optional string fs_uuid = 3;
+  if (cached_has_bits & 0x00000001u) {
+    const std::string& _s = this->_internal_fs_uuid();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "management.GetNodesResponse.fs_uuid");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3081,13 +3113,21 @@ PROTOBUF_NOINLINE void GetNodesResponse::Clear() {
   for (const auto& msg : this->_internal_nodes()) {
     total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-  // optional .beegfs.EntityIdSet meta_root_node = 2;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.meta_root_node_);
-  }
+  if (cached_has_bits & 0x00000003u) {
+    // optional string fs_uuid = 3;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this->_internal_fs_uuid());
+    }
 
+    // optional .beegfs.EntityIdSet meta_root_node = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.meta_root_node_);
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3104,13 +3144,18 @@ void GetNodesResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const 
   _this->_internal_mutable_nodes()->MergeFrom(
       from._internal_nodes());
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.meta_root_node_ != nullptr);
-    if (_this->_impl_.meta_root_node_ == nullptr) {
-      _this->_impl_.meta_root_node_ =
-          ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.meta_root_node_);
-    } else {
-      _this->_impl_.meta_root_node_->MergeFrom(*from._impl_.meta_root_node_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_fs_uuid(from._internal_fs_uuid());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.meta_root_node_ != nullptr);
+      if (_this->_impl_.meta_root_node_ == nullptr) {
+        _this->_impl_.meta_root_node_ =
+            ::google::protobuf::Message::CopyConstruct<::beegfs::EntityIdSet>(arena, *from._impl_.meta_root_node_);
+      } else {
+        _this->_impl_.meta_root_node_->MergeFrom(*from._impl_.meta_root_node_);
+      }
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -3127,9 +3172,12 @@ void GetNodesResponse::CopyFrom(const GetNodesResponse& from) {
 
 void GetNodesResponse::InternalSwap(GetNodesResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.nodes_.InternalSwap(&other->_impl_.nodes_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.fs_uuid_, &other->_impl_.fs_uuid_, arena);
   swap(_impl_.meta_root_node_, other->_impl_.meta_root_node_);
 }
 

@@ -8531,6 +8531,7 @@ class GetNodesResponse final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kNodesFieldNumber = 1,
+    kFsUuidFieldNumber = 3,
     kMetaRootNodeFieldNumber = 2,
   };
   // repeated .management.GetNodesResponse.Node nodes = 1;
@@ -8550,6 +8551,23 @@ class GetNodesResponse final : public ::google::protobuf::Message
   const ::management::GetNodesResponse_Node& nodes(int index) const;
   ::management::GetNodesResponse_Node* add_nodes();
   const ::google::protobuf::RepeatedPtrField<::management::GetNodesResponse_Node>& nodes() const;
+  // optional string fs_uuid = 3;
+  bool has_fs_uuid() const;
+  void clear_fs_uuid() ;
+  const std::string& fs_uuid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_fs_uuid(Arg_&& arg, Args_... args);
+  std::string* mutable_fs_uuid();
+  PROTOBUF_NODISCARD std::string* release_fs_uuid();
+  void set_allocated_fs_uuid(std::string* value);
+
+  private:
+  const std::string& _internal_fs_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fs_uuid(
+      const std::string& value);
+  std::string* _internal_mutable_fs_uuid();
+
+  public:
   // optional .beegfs.EntityIdSet meta_root_node = 2;
   bool has_meta_root_node() const;
   void clear_meta_root_node() ;
@@ -8570,8 +8588,8 @@ class GetNodesResponse final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 2,
-      0, 2>
+      2, 3, 2,
+      43, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -8594,6 +8612,7 @@ class GetNodesResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::management::GetNodesResponse_Node > nodes_;
+    ::google::protobuf::internal::ArenaStringPtr fs_uuid_;
     ::beegfs::EntityIdSet* meta_root_node_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -9535,7 +9554,7 @@ GetNodesResponse::_internal_mutable_nodes() {
 
 // optional .beegfs.EntityIdSet meta_root_node = 2;
 inline bool GetNodesResponse::has_meta_root_node() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.meta_root_node_ != nullptr);
   return value;
 }
@@ -9555,16 +9574,16 @@ inline void GetNodesResponse::unsafe_arena_set_allocated_meta_root_node(::beegfs
   }
   _impl_.meta_root_node_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.GetNodesResponse.meta_root_node)
 }
 inline ::beegfs::EntityIdSet* GetNodesResponse::release_meta_root_node() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::beegfs::EntityIdSet* released = _impl_.meta_root_node_;
   _impl_.meta_root_node_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9584,7 +9603,7 @@ inline ::beegfs::EntityIdSet* GetNodesResponse::unsafe_arena_release_meta_root_n
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:management.GetNodesResponse.meta_root_node)
 
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::beegfs::EntityIdSet* temp = _impl_.meta_root_node_;
   _impl_.meta_root_node_ = nullptr;
   return temp;
@@ -9598,7 +9617,7 @@ inline ::beegfs::EntityIdSet* GetNodesResponse::_internal_mutable_meta_root_node
   return _impl_.meta_root_node_;
 }
 inline ::beegfs::EntityIdSet* GetNodesResponse::mutable_meta_root_node() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   ::beegfs::EntityIdSet* _msg = _internal_mutable_meta_root_node();
   // @@protoc_insertion_point(field_mutable:management.GetNodesResponse.meta_root_node)
   return _msg;
@@ -9615,13 +9634,84 @@ inline void GetNodesResponse::set_allocated_meta_root_node(::beegfs::EntityIdSet
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.meta_root_node_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
   // @@protoc_insertion_point(field_set_allocated:management.GetNodesResponse.meta_root_node)
+}
+
+// optional string fs_uuid = 3;
+inline bool GetNodesResponse::has_fs_uuid() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void GetNodesResponse::clear_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& GetNodesResponse::fs_uuid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.GetNodesResponse.fs_uuid)
+  return _internal_fs_uuid();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void GetNodesResponse::set_fs_uuid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.fs_uuid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:management.GetNodesResponse.fs_uuid)
+}
+inline std::string* GetNodesResponse::mutable_fs_uuid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_fs_uuid();
+  // @@protoc_insertion_point(field_mutable:management.GetNodesResponse.fs_uuid)
+  return _s;
+}
+inline const std::string& GetNodesResponse::_internal_fs_uuid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.fs_uuid_.Get();
+}
+inline void GetNodesResponse::_internal_set_fs_uuid(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.fs_uuid_.Set(value, GetArena());
+}
+inline std::string* GetNodesResponse::_internal_mutable_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.fs_uuid_.Mutable( GetArena());
+}
+inline std::string* GetNodesResponse::release_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.GetNodesResponse.fs_uuid)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.fs_uuid_.Release();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.fs_uuid_.Set("", GetArena());
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return released;
+}
+inline void GetNodesResponse::set_allocated_fs_uuid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.fs_uuid_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.fs_uuid_.IsDefault()) {
+          _impl_.fs_uuid_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:management.GetNodesResponse.fs_uuid)
 }
 
 // -------------------------------------------------------------------
