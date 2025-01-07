@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
 - [Quick Start](#quick-start)
+  - [Versioning](#versioning)
   - [Go](#go)
 - [Advanced: Generate / Compile `.proto` Files](#advanced-generate--compile-proto-files)
   - [Important limitations when adding new .proto files](#important-limitations-when-adding-new-proto-files)
@@ -29,15 +30,34 @@ Languages with precompiled/generated code:
 
 | Language | Availability | Notes                                                                                      |
 | -------- | ------------ | ------------------------------------------------------------------------------------------ |
-| Go       | Yes          | N/A                                                                                        |
 | C++      | Yes          | A target has been added to the Makefile, but the resulting files have not been tested yet. |
-| Rust     | Yes          | A target has been added to the Makefile, but the resulting files have not been tested yet. |
+| Go       | Yes          | N/A                                                                                        |
+| Rust     | Yes          | N/A                                                                                        |
 
 # Quick Start
 
 Most users will not need to worry about generating code themselves, and can
 simply import this repository into their project using whatever method is
 appropriate for their language.
+
+## Versioning
+
+The major version of the protobuf library will remain at v0, indicating these APIs are not yet
+guaranteed to be stable. For each v8.x.y BeeGFS release, the protobuf API will be versioned as
+v0.x.y and it is preferable to import the library using a tagged version when possible.
+
+If you make changes to protobuf that need to be immediately imported elsewhere before a new
+"official" version is tagged, you should import your changes by their commit hash. Depending on the
+language this may either be referenced as a pseudo-version (i.e., for Go using `go get`) or by
+referencing the commit hash directly (i.e., for Rust using cargo). 
+
+See the dependency management documentation for
+[Go](https://github.com/ThinkParQ/developer-handbook/tree/main/getting_started/go#how-to-coordinate-changes-requiring-updates-in-multiple-repositories)
+and
+[Rust](https://github.com/ThinkParQ/developer-handbook/blob/main/getting_started/rust/README.md#working-with-internal-git-dependencies)
+for more details on how to manage internal dependencies. Note this versioning strategy is also used
+for other projects such as
+[beegfs-go](https://github.com/ThinkParQ/beegfs-go?tab=readme-ov-file#versioning). 
 
 ## Go
 
