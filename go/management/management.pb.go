@@ -22,17 +22,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Sets an entity alias
+// Sets an entity alias.
 type SetAliasRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The identifier to set the alias for
+	// The entity to set the alias for.
+	// Required, one identifier is sufficient.
 	EntityId *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=entity_id,json=entityId,proto3" json:"entity_id,omitempty"`
-	// The entity type to set the alias for
+	// The entity type to set the alias for.
+	// Required. Must match entity_id's entity type.
 	EntityType beegfs.EntityType `protobuf:"varint,2,opt,name=entity_type,json=entityType,proto3,enum=beegfs.EntityType" json:"entity_type,omitempty"`
-	// The new alias
+	// The new alias.
+	// Required.
 	NewAlias string `protobuf:"bytes,3,opt,name=new_alias,json=newAlias,proto3" json:"new_alias,omitempty"`
 }
 
@@ -127,13 +130,14 @@ func (*SetAliasResponse) Descriptor() ([]byte, []int) {
 	return file_management_proto_rawDescGZIP(), []int{1}
 }
 
-// Gets the full list of nodes
+// Gets the full list of nodes.
 type GetNodesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Query the nic list for each node and include it in the response
+	// Should the nic list should be included for each node?
+	// Required.
 	IncludeNics bool `protobuf:"varint,1,opt,name=include_nics,json=includeNics,proto3" json:"include_nics,omitempty"`
 }
 
@@ -181,12 +185,14 @@ type GetNodesResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of nodes
+	// The list of nodes.
 	Nodes []*GetNodesResponse_Node `protobuf:"bytes,1,rep,name=nodes,proto3" json:"nodes,omitempty"`
-	// The node containing the root inode. Will be missing on a fresh system without any meta
-	// targets/nodes.
+	// The node containing the root inode.
+	// Optional, may be omitted if that information is not yet available (e.g. on a fresh system
+	// without any meta targets/nodes).
 	MetaRootNode *beegfs.EntityIdSet `protobuf:"bytes,2,opt,name=meta_root_node,json=metaRootNode,proto3,oneof" json:"meta_root_node,omitempty"`
-	// The file system UUID for this BeeGFS
+	// The file system UUID for this BeeGFS.
+	// Required.
 	FsUuid *string `protobuf:"bytes,3,opt,name=fs_uuid,json=fsUuid,proto3,oneof" json:"fs_uuid,omitempty"`
 }
 
@@ -243,15 +249,17 @@ func (x *GetNodesResponse) GetFsUuid() string {
 	return ""
 }
 
-// Deletes a node from the system
+// Deletes a node from the system.
 type DeleteNodeRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The node to delete
+	// The node to delete.
+	// Required, one identifier is sufficient.
 	Node *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=node,proto3,oneof" json:"node,omitempty"`
-	// If set to false, check if delete is possible but don't execute it
+	// Execute the deletion? If set to false, check if delete is possible but don't actually do it.
+	// Required.
 	Execute *bool `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
 }
 
@@ -306,7 +314,8 @@ type DeleteNodeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ids of the deleted node
+	// The identifier set of the deleted node.
+	// Required, should be completely populated.
 	Node *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=node,proto3,oneof" json:"node,omitempty"`
 }
 
@@ -349,7 +358,7 @@ func (x *DeleteNodeResponse) GetNode() *beegfs.EntityIdSet {
 	return nil
 }
 
-// Gets the full list of targets
+// Gets the full list of targets.
 type GetTargetsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -393,7 +402,7 @@ type GetTargetsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of targets
+	// The list of targets.
 	Targets []*GetTargetsResponse_Target `protobuf:"bytes,1,rep,name=targets,proto3" json:"targets,omitempty"`
 }
 
@@ -436,15 +445,17 @@ func (x *GetTargetsResponse) GetTargets() []*GetTargetsResponse_Target {
 	return nil
 }
 
-// Deletes a target from the system
+// Deletes a target from the system.
 type DeleteTargetRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The target to delete
+	// The target to delete.
+	// Required, one identifier is sufficient.
 	Target *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
-	// If set to false, check if delete is possible but don't execute it
+	// Execute the deletion? If set to false, check if delete is possible but don't actually do it.
+	// Required.
 	Execute *bool `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
 }
 
@@ -499,7 +510,8 @@ type DeleteTargetResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ids of the deleted target
+	// The identifier set of the deleted target.
+	// Required, should be completely populated.
 	Target *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
 }
 
@@ -542,14 +554,17 @@ func (x *DeleteTargetResponse) GetTarget() *beegfs.EntityIdSet {
 	return nil
 }
 
+// Sets a targets consistency state.
 type SetTargetStateRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Identifier of the target whose state is to be changed
+	// The target to set the state for.
+	// Required, one identifier is sufficient.
 	Target *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
-	// Consistency state to set for the target
+	// Consistency state to set for the target.
+	// Required.
 	ConsistencyState *beegfs.ConsistencyState `protobuf:"varint,2,opt,name=consistency_state,json=consistencyState,proto3,enum=beegfs.ConsistencyState,oneof" json:"consistency_state,omitempty"`
 }
 
@@ -637,13 +652,14 @@ func (*SetTargetStateResponse) Descriptor() ([]byte, []int) {
 	return file_management_proto_rawDescGZIP(), []int{11}
 }
 
-// Gets the full list of pools
+// Gets the full list of storage pools.
 type GetPoolsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Include quota limits in the response
+	// Should the quota limits be included for each pool?
+	// Required.
 	WithQuotaLimits bool `protobuf:"varint,1,opt,name=with_quota_limits,json=withQuotaLimits,proto3" json:"with_quota_limits,omitempty"`
 }
 
@@ -691,7 +707,7 @@ type GetPoolsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of storage pools
+	// The list of storage pools.
 	Pools []*GetPoolsResponse_StoragePool `protobuf:"bytes,1,rep,name=pools,proto3" json:"pools,omitempty"`
 }
 
@@ -734,21 +750,26 @@ func (x *GetPoolsResponse) GetPools() []*GetPoolsResponse_StoragePool {
 	return nil
 }
 
-// Creates a new pool
+// Creates a new pool.
 type CreatePoolRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The node type of the new pool (currently, only storage is allowed)
+	// The node type of the new pool.
+	// Required, must be STORAGE.
 	NodeType *beegfs.NodeType `protobuf:"varint,1,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType,oneof" json:"node_type,omitempty"`
-	// The numeric id of the new pool. Chosen automatically if omitted.
+	// The numeric id of the new pool.
+	// Optional. Must be chosen by the receiver if omitted.
 	NumId *uint32 `protobuf:"varint,2,opt,name=num_id,json=numId,proto3,oneof" json:"num_id,omitempty"`
-	// The alias of the new pool
+	// The alias of the new pool.
+	// Required.
 	Alias *string `protobuf:"bytes,3,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
-	// Targets assigned to the new pool
+	// The targets to assign to the new pool.
+	// One identifier is sufficient for each.
 	Targets []*beegfs.EntityIdSet `protobuf:"bytes,4,rep,name=targets,proto3" json:"targets,omitempty"`
-	// Buddy groups assigned to the new pool
+	// The buddy groups to assign to the new pool.
+	// One identifier is sufficient for each.
 	BuddyGroups []*beegfs.EntityIdSet `protobuf:"bytes,5,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
 }
 
@@ -824,7 +845,8 @@ type CreatePoolResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ids of the new pool
+	// The identifier set of the new pool.
+	// Required, should be completely populated.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
 }
 
@@ -867,17 +889,20 @@ func (x *CreatePoolResponse) GetPool() *beegfs.EntityIdSet {
 	return nil
 }
 
-// Assigns targets and buddy groups to a pool
+// Assigns targets and buddy groups to a pool.
 type AssignPoolRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The pool to assign to
+	// The pool to assign to.
+	// Required, one identifier is sufficient.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// Targets to assign
+	// The targets to assign to the new pool.
+	// One identifier is sufficient for each.
 	Targets []*beegfs.EntityIdSet `protobuf:"bytes,2,rep,name=targets,proto3" json:"targets,omitempty"`
-	// Buddy groups to assign
+	// The buddy groups to assign to the new pool.
+	// One identifier is sufficient for each.
 	BuddyGroups []*beegfs.EntityIdSet `protobuf:"bytes,3,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
 }
 
@@ -939,7 +964,8 @@ type AssignPoolResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ids of the pool assigned to
+	// The identifier set of the pool assigned to.
+	// Required, should be completely populated.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
 }
 
@@ -982,15 +1008,18 @@ func (x *AssignPoolResponse) GetPool() *beegfs.EntityIdSet {
 	return nil
 }
 
-// Deletes a pool from the system
+// Deletes a pool from the system.
 type DeletePoolRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The pool to delete
+	// The pool to delete.
+	// Required, one identifier is sufficient.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// If set to false, check if delete is possible but don't execute it
+	// Execute the deletion? If set to false, check if delete is possible but don't
+	// actually do it.
+	// Required.
 	Execute *bool `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
 }
 
@@ -1045,7 +1074,8 @@ type DeletePoolResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ids of the deleted pool
+	// The identifier set of the deleted pool.
+	// Required, should be completely populated.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
 }
 
@@ -1088,7 +1118,7 @@ func (x *DeletePoolResponse) GetPool() *beegfs.EntityIdSet {
 	return nil
 }
 
-// Gets the full list of buddy groups
+// Gets the list of buddy groups.
 type GetBuddyGroupsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1132,7 +1162,7 @@ type GetBuddyGroupsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The list of buddy groups
+	// The list of buddy groups.
 	BuddyGroups []*GetBuddyGroupsResponse_BuddyGroup `protobuf:"bytes,1,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
 }
 
@@ -1175,21 +1205,26 @@ func (x *GetBuddyGroupsResponse) GetBuddyGroups() []*GetBuddyGroupsResponse_Budd
 	return nil
 }
 
-// Creates a new buddy group
+// Creates a new buddy group.
 type CreateBuddyGroupRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The node type of the new buddy group
+	// The node type of the new buddy group.
+	// Required, must be META or STORAGE.
 	NodeType *beegfs.NodeType `protobuf:"varint,1,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType,oneof" json:"node_type,omitempty"`
-	// The numeric id of the new buddy group. Chosen automatically if omitted.
+	// The numeric id of the new buddy group.
+	// Optional. Must be chosen by the receiver if omitted.
 	NumId *uint32 `protobuf:"varint,2,opt,name=num_id,json=numId,proto3,oneof" json:"num_id,omitempty"`
-	// The alias of the new buddy group
+	// The alias of the new buddy group.
+	// Required.
 	Alias *string `protobuf:"bytes,3,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
-	// The primary target of the new buddy group
+	// The new buddy groups primary target.
+	// Required. One identifier is sufficient.
 	PrimaryTarget *beegfs.EntityIdSet `protobuf:"bytes,4,opt,name=primary_target,json=primaryTarget,proto3,oneof" json:"primary_target,omitempty"`
-	// The secondary target of the new buddy group
+	// The new buddy groups secondary target.
+	// Required. One identifier is sufficient.
 	SecondaryTarget *beegfs.EntityIdSet `protobuf:"bytes,5,opt,name=secondary_target,json=secondaryTarget,proto3,oneof" json:"secondary_target,omitempty"`
 }
 
@@ -1265,7 +1300,8 @@ type CreateBuddyGroupResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ids of the new buddy group
+	// The identifier set of the new buddy group.
+	// Required, should be completely populated.
 	Group *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
 }
 
@@ -1308,15 +1344,18 @@ func (x *CreateBuddyGroupResponse) GetGroup() *beegfs.EntityIdSet {
 	return nil
 }
 
-// Deletes a buddy group from the system
+// Deletes a buddy group from the system.
 type DeleteBuddyGroupRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The buddy group to delete
+	// The buddy group to delete.
+	// Required, one identifier is sufficient.
 	Group *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
-	// If set to false, check if delete is possible but don't execute it
+	// Execute the deletion? If set to false, check if delete is possible but don't
+	// actually do it.
+	// Required.
 	Execute *bool `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
 }
 
@@ -1371,7 +1410,8 @@ type DeleteBuddyGroupResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ids of the deleted buddy group
+	// The identifier set of the deleted buddy group.
+	// Required, should be completely populated.
 	Group *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
 }
 
@@ -1414,7 +1454,7 @@ func (x *DeleteBuddyGroupResponse) GetGroup() *beegfs.EntityIdSet {
 	return nil
 }
 
-// Enable metadata mirroring for the root directory
+// Enable metadata mirroring for the root directory.
 type MirrorRootInodeRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1491,20 +1531,20 @@ func (*MirrorRootInodeResponse) Descriptor() ([]byte, []int) {
 	return file_management_proto_rawDescGZIP(), []int{27}
 }
 
-// Manually start a resync by setting the secondary target's consistency state to needs_resync
+// Manually start a resync.
 type StartResyncRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The buddy group whose secondary target will be resynced from its primary target
+	// The buddy group whose secondary target will be resynced from its primary target.
+	// Required, one identifier is sufficient.
 	BuddyGroup *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=buddy_group,json=buddyGroup,proto3,oneof" json:"buddy_group,omitempty"`
-	// For storage targets: resyncs all data after the given epoch timestamp.
-	// If set to -1, performs a complete resync.
-	// For meta targets, this must be -1 as they can only perform complete resyncs.
+	// Resync only data after the given unix timestamp (in seconds). Set to -1 for a complete resync.
+	// Required. On meta buddy groups (e.g. buddy_group.legacy_id.node_type = META), must be -1.
 	Timestamp *int64 `protobuf:"varint,2,opt,name=timestamp,proto3,oneof" json:"timestamp,omitempty"`
-	// For storage targets only: if true, aborts an ongoing resync and restarts.
-	// Not applicable to meta targets as meta resync cannot be aborted.
+	// Abort an ongoing resync and restart?
+	// Required. Must be false for meta buddy groups.
 	Restart *bool `protobuf:"varint,3,opt,name=restart,proto3,oneof" json:"restart,omitempty"`
 }
 
@@ -1606,19 +1646,30 @@ type QuotaInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The system user/group id the info belongs to
+	// The system user/group id the info belongs to.
+	// Required.
 	QuotaId *uint32 `protobuf:"varint,1,opt,name=quota_id,json=quotaId,proto3,oneof" json:"quota_id,omitempty"`
-	// The id type (user or group)
+	// The id type (user or group) of quota_id.
+	// Required.
 	IdType beegfs.QuotaIdType `protobuf:"varint,2,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
-	// The storage pool the info belongs to
+	// The storage pool the info belongs to.
+	// Required, should be completely populated.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,3,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// -1 means unlimited
+	// The space quota limit for this user/group. -1 means unlimited.
+	// When used for returning data: Should be set if the corresponding data is available.
+	// When used for setting limits: Optional.
 	SpaceLimit *int64 `protobuf:"varint,4,opt,name=space_limit,json=spaceLimit,proto3,oneof" json:"space_limit,omitempty"`
-	// -1 means unlimited
+	// The inode quota limit for this user/group. -1 means unlimited.
+	// When used for returning data: Should be set if the corresponding data is available.
+	// When used for setting limits: Optional.
 	InodeLimit *int64 `protobuf:"varint,5,opt,name=inode_limit,json=inodeLimit,proto3,oneof" json:"inode_limit,omitempty"`
-	// -1 means unlimited
+	// The space quota used for this user/group.
+	// When used for returning data: Should be set if the corresponding data is available.
+	// When used for setting limits: Ignore.
 	SpaceUsed *int64 `protobuf:"varint,6,opt,name=space_used,json=spaceUsed,proto3,oneof" json:"space_used,omitempty"`
-	// -1 means unlimited
+	// The inode quota used for this user/group.
+	// When used for returning data: Should be set if the corresponding data is available.
+	// When used for setting limits: Ignore.
 	InodeUsed *int64 `protobuf:"varint,7,opt,name=inode_used,json=inodeUsed,proto3,oneof" json:"inode_used,omitempty"`
 }
 
@@ -1703,21 +1754,26 @@ func (x *QuotaInfo) GetInodeUsed() int64 {
 	return 0
 }
 
-// Sets the default quota limits for a pool. -1 means unlimited.
+// Sets the default quota limits for a pool.
 type SetDefaultQuotaLimitsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The pool to set the limits for
+	// The storage pool to set the limits for.
+	// Required, one identifier is sufficient.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// -1 means unlimited
+	// The default user space quota limit. -1 means unlimited.
+	// Optional.
 	UserSpaceLimit *int64 `protobuf:"varint,2,opt,name=user_space_limit,json=userSpaceLimit,proto3,oneof" json:"user_space_limit,omitempty"`
-	// -1 means unlimited
+	// The default user inode quota limit. -1 means unlimited.
+	// Optional.
 	UserInodeLimit *int64 `protobuf:"varint,3,opt,name=user_inode_limit,json=userInodeLimit,proto3,oneof" json:"user_inode_limit,omitempty"`
-	// -1 means unlimited
+	// The default group space quota limit. -1 means unlimited.
+	// Optional.
 	GroupSpaceLimit *int64 `protobuf:"varint,4,opt,name=group_space_limit,json=groupSpaceLimit,proto3,oneof" json:"group_space_limit,omitempty"`
-	// -1 means unlimited
+	// The default group inode quota limit. -1 means unlimited.
+	// Optional.
 	GroupInodeLimit *int64 `protobuf:"varint,5,opt,name=group_inode_limit,json=groupInodeLimit,proto3,oneof" json:"group_inode_limit,omitempty"`
 }
 
@@ -1826,13 +1882,13 @@ func (*SetDefaultQuotaLimitsResponse) Descriptor() ([]byte, []int) {
 	return file_management_proto_rawDescGZIP(), []int{32}
 }
 
-// Sets the individually set per-id-and-pool quota limits
+// Sets the individually set per-id-and-pool quota limits.
 type SetQuotaLimitsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The explicit quota limit entries to set on the management. The _used fields are ignored.
+	// The explicit quota limit entries to set on the management. The _used fields should be unset.
 	Limits []*QuotaInfo `protobuf:"bytes,1,rep,name=limits,proto3" json:"limits,omitempty"`
 }
 
@@ -1919,15 +1975,19 @@ type GetQuotaLimitsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The minimum id to return. Only applies when set.
+	// The minimum id to return.
+	// Optional. If set, quota_id_max must also be set.
 	QuotaIdMin *uint32 `protobuf:"varint,1,opt,name=quota_id_min,json=quotaIdMin,proto3,oneof" json:"quota_id_min,omitempty"`
-	// The maximum id to return. Only applies when set.
+	// The maximum id to return.
+	// Optional. If set, quota_id_min must also be set.
 	QuotaIdMax *uint32 `protobuf:"varint,2,opt,name=quota_id_max,json=quotaIdMax,proto3,oneof" json:"quota_id_max,omitempty"`
-	// The list of ids to return. Only applies when not empty.
+	// Return only the ids listed.
 	QuotaIdList []uint32 `protobuf:"varint,5,rep,packed,name=quota_id_list,json=quotaIdList,proto3" json:"quota_id_list,omitempty"`
-	// Return only user or group ids. Only applies when set.
+	// Return only user or group ids.
+	// Optional.
 	IdType beegfs.QuotaIdType `protobuf:"varint,3,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
-	// Return only a specific pool. Only applies when set.
+	// Return only a specific pool.
+	// Optional. One identifier is sufficient.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,4,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
 }
 
@@ -1998,13 +2058,15 @@ func (x *GetQuotaLimitsRequest) GetPool() *beegfs.EntityIdSet {
 	return nil
 }
 
+// One entry in the quota per-id-and-pool limits list. Meant to be streamed.
 type GetQuotaLimitsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The explicit quota limit entries known by the management.
-	// The _used fields are unused in this response.
+	// One per-id-and-pool quota limit entry.
+	// This is a single (non-repeated) field because the response is meant to be streamed.
+	// Required. The _used fields are unused.
 	Limits *QuotaInfo `protobuf:"bytes,1,opt,name=limits,proto3,oneof" json:"limits,omitempty"`
 }
 
@@ -2054,17 +2116,22 @@ type GetQuotaUsageRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The minimum id to return. Only applies when set.
+	// The minimum id to return.
+	// Optional. If set, quota_id_max must also be set.
 	QuotaIdMin *uint32 `protobuf:"varint,1,opt,name=quota_id_min,json=quotaIdMin,proto3,oneof" json:"quota_id_min,omitempty"`
-	// The maximum id to return. Only applies when set.
+	// The maximum id to return.
+	// Optional. If set, quota_id_min must also be set.
 	QuotaIdMax *uint32 `protobuf:"varint,2,opt,name=quota_id_max,json=quotaIdMax,proto3,oneof" json:"quota_id_max,omitempty"`
-	// The list of ids to return. Only applies when not empty.
+	// Return only the ids listed.
 	QuotaIdList []uint32 `protobuf:"varint,6,rep,packed,name=quota_id_list,json=quotaIdList,proto3" json:"quota_id_list,omitempty"`
-	// Return only user or group ids. Only applies when set.
+	// Return only user or group ids.
+	// Optional.
 	IdType beegfs.QuotaIdType `protobuf:"varint,3,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
-	// Return only a specific pool. Only applies when set.
+	// Return only a specific pool.
+	// Optional. One identifier is sufficient.
 	Pool *beegfs.EntityIdSet `protobuf:"bytes,4,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// Return only exceeded or not exceeded entries. Only applies when set.
+	// Return only exceeded or not exceeded entries?
+	// Optional.
 	Exceeded *bool `protobuf:"varint,5,opt,name=exceeded,proto3,oneof" json:"exceeded,omitempty"`
 }
 
@@ -2142,15 +2209,18 @@ func (x *GetQuotaUsageRequest) GetExceeded() bool {
 	return false
 }
 
+// One entry in the quota per-id-and-pool limits list. Meant to be streamed.
 type GetQuotaUsageResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The quota usage entry
+	// One per-id-and-pool quota usage entry.
+	// This is a single (non-repeated) field because the response is meant to be streamed.
+	// Required.
 	Entry *QuotaInfo `protobuf:"bytes,1,opt,name=entry,proto3,oneof" json:"entry,omitempty"`
-	// The refresh period of the quota usage info in seconds. Since this is not related to a quota
-	// usage entry, it is supposed to be only set on the first message.
+	// The refresh period of the quota usage info in seconds.
+	// Optional. Should be set only on the first response in the stream.
 	RefreshPeriodS *uint64 `protobuf:"varint,2,opt,name=refresh_period_s,json=refreshPeriodS,proto3,oneof" json:"refresh_period_s,omitempty"`
 }
 
@@ -2200,13 +2270,14 @@ func (x *GetQuotaUsageResponse) GetRefreshPeriodS() uint64 {
 	return 0
 }
 
-// Gets license information
+// Gets license information.
 type GetLicenseRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Whether to reload and re-verify the license on the server
+	// Reload and re-verify the license before returning it?
+	// Required.
 	Reload *bool `protobuf:"varint,1,opt,name=reload,proto3,oneof" json:"reload,omitempty"`
 }
 
@@ -2254,7 +2325,8 @@ type GetLicenseResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// A CertData structure as defined in beecert.proto
+	// A license.
+	// Optional, might be omitted if no license data is available.
 	CertData *license.GetCertDataResult `protobuf:"bytes,1,opt,name=cert_data,json=certData,proto3,oneof" json:"cert_data,omitempty"`
 }
 
@@ -2297,19 +2369,22 @@ func (x *GetLicenseResponse) GetCertData() *license.GetCertDataResult {
 	return nil
 }
 
-// BeeGFS node related data
+// An entry in the node list.
 type GetNodesResponse_Node struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The node identifiers
+	// The nodes identifier set. Required, should be completely populated.
 	Id *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The node type
+	// The node type.
+	// Required.
 	NodeType beegfs.NodeType `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
 	// The nodes TCP and UDP port.
+	// Required.
 	Port uint32 `protobuf:"varint,3,opt,name=port,proto3" json:"port,omitempty"`
-	// The nodes Nics
+	// The nodes list of nics.
+	// Should only be filled if include_nics was set to true.
 	Nics []*GetNodesResponse_Node_Nic `protobuf:"bytes,4,rep,name=nics,proto3" json:"nics,omitempty"`
 }
 
@@ -2373,17 +2448,20 @@ func (x *GetNodesResponse_Node) GetNics() []*GetNodesResponse_Node_Nic {
 	return nil
 }
 
-// BeeGFS nic related data
+// An entry in a nodes nic list.
 type GetNodesResponse_Node_Nic struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The nics IPv4 address in the form aaa.bbb.ccc.ddd:port
+	// The nics IPv4 address in the form aaa.bbb.ccc.ddd:port.
+	// Required.
 	Addr string `protobuf:"bytes,1,opt,name=addr,proto3" json:"addr,omitempty"`
-	// The nics name (note that this is NOT an alias as a Nic is not considered an entity)
+	// The nics name (note that this is NOT an alias as a Nic is not considered an entity).
+	// Required.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The nics type
+	// The nics type.
+	// Required.
 	NicType beegfs.NicType `protobuf:"varint,3,opt,name=nic_type,json=nicType,proto3,enum=beegfs.NicType" json:"nic_type,omitempty"`
 }
 
@@ -2440,36 +2518,49 @@ func (x *GetNodesResponse_Node_Nic) GetNicType() beegfs.NicType {
 	return beegfs.NicType(0)
 }
 
-// A BeeGFS target
+// An entry in the target list.
 type GetTargetsResponse_Target struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The targets identifiers
+	// The targets identifier set.
+	// Required, should be completely populated.
 	Id *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Node type the target is on
+	// Node type of the target.
+	// Required.
 	NodeType beegfs.NodeType `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
-	// The targets reachability state as reported by management
+	// The targets reachability state as reported by management.
+	// Required.
 	ReachabilityState beegfs.ReachabilityState `protobuf:"varint,3,opt,name=reachability_state,json=reachabilityState,proto3,enum=beegfs.ReachabilityState" json:"reachability_state,omitempty"`
-	// The targets reachability state as reported by management
+	// The targets reachability state as reported by management.
+	// Required.
 	ConsistencyState beegfs.ConsistencyState `protobuf:"varint,4,opt,name=consistency_state,json=consistencyState,proto3,enum=beegfs.ConsistencyState" json:"consistency_state,omitempty"`
-	// Duration since last contact to the target. Currently slightly inaccurate as it updates
-	// not on each received message.
+	// Duration since last contact to the target in seconds.
+	// Optional, may be omitted if that information is not available.
 	LastContactS *uint64 `protobuf:"varint,5,opt,name=last_contact_s,json=lastContactS,proto3,oneof" json:"last_contact_s,omitempty"`
-	// Total space on the target as reported by management
+	// Total space on the target as reported by management.
+	// Optional, may be omitted if that information is not available.
 	TotalSpaceBytes *uint64 `protobuf:"varint,6,opt,name=total_space_bytes,json=totalSpaceBytes,proto3,oneof" json:"total_space_bytes,omitempty"`
-	// Free space on the target as reported by management
+	// Free space on the target as reported by management.
+	// Optional, may be omitted if that information is not available.
 	FreeSpaceBytes *uint64 `protobuf:"varint,7,opt,name=free_space_bytes,json=freeSpaceBytes,proto3,oneof" json:"free_space_bytes,omitempty"`
-	// Total inodes on the target as reported by management
+	// Total inodes on the target as reported by management.
+	// Optional, may be omitted if that information is not available.
 	TotalInodes *uint64 `protobuf:"varint,8,opt,name=total_inodes,json=totalInodes,proto3,oneof" json:"total_inodes,omitempty"`
-	// Free inodes on the target as reported by management
+	// Free inodes on the target as reported by management.
+	// Optional, may be omitted if that information is not available.
 	FreeInodes *uint64 `protobuf:"varint,9,opt,name=free_inodes,json=freeInodes,proto3,oneof" json:"free_inodes,omitempty"`
-	// The targets capacity pool as reported by the management
+	// The targets capacity pool as reported by the management.
+	// Required.
 	CapPool beegfs.CapacityPool `protobuf:"varint,10,opt,name=cap_pool,json=capPool,proto3,enum=beegfs.CapacityPool" json:"cap_pool,omitempty"`
-	// The targets owner node identifiers
+	// The targets owner node. Storage targets can be "unmapped".
+	// Optional if this target is a storage target (e.g. node_type is STORAGE), required otherwise.
+	// If set, should be completely populated.
 	Node *beegfs.EntityIdSet `protobuf:"bytes,11,opt,name=node,proto3" json:"node,omitempty"`
-	// The targets storage pool identifiers. Explicitly optional since meta targets don't have a storage pool.
+	// The targets storage pool.
+	// Required if this target is a storage target (e.g. node_type is STORAGE), unset otherwise. If
+	// set, should be completely populated.
 	StoragePool *beegfs.EntityIdSet `protobuf:"bytes,12,opt,name=storage_pool,json=storagePool,proto3,oneof" json:"storage_pool,omitempty"`
 }
 
@@ -2589,24 +2680,36 @@ func (x *GetTargetsResponse_Target) GetStoragePool() *beegfs.EntityIdSet {
 	return nil
 }
 
+// An entry in the storage pool list.
 type GetPoolsResponse_StoragePool struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The storage pools identifiers
+	// The pools identifier set.
+	// Required, should be completely populated.
 	Id *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The storage pools assigned targets identifiers
+	// The targets assigned to the storage pool.
+	// Each should be completely populated.
 	Targets []*beegfs.EntityIdSet `protobuf:"bytes,2,rep,name=targets,proto3" json:"targets,omitempty"`
-	// The storage pools assigned buddy groups identifiers
+	// The buddy groups assigned to the storage pool.
+	// Each should be completely populated.
 	BuddyGroups []*beegfs.EntityIdSet `protobuf:"bytes,3,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
-	// -1 means unlimited. May be unset.
+	// The default user space quota limit for data in this pool. -1 means unlimited.
+	// Optional. Should be set if with_quota_limits was set to true and the corresponding data is
+	// available.
 	UserSpaceLimit *int64 `protobuf:"varint,4,opt,name=user_space_limit,json=userSpaceLimit,proto3,oneof" json:"user_space_limit,omitempty"`
-	// -1 means unlimited. May be unset.
+	// The default user inode quota limit for data in this pool. -1 means unlimited.
+	// Optional. Should be set if with_quota_limits was set to true and the corresponding data is
+	// available.
 	UserInodeLimit *int64 `protobuf:"varint,5,opt,name=user_inode_limit,json=userInodeLimit,proto3,oneof" json:"user_inode_limit,omitempty"`
-	// -1 means unlimited. May be unset.
+	// The default group space quota limit for data in this pool. -1 means unlimited.
+	// Optional. Should be set if with_quota_limits was set to true and the corresponding data is
+	// available.
 	GroupSpaceLimit *int64 `protobuf:"varint,6,opt,name=group_space_limit,json=groupSpaceLimit,proto3,oneof" json:"group_space_limit,omitempty"`
-	// -1 means unlimited. May be unset.
+	// The default group inode quota limit for data in this pool. -1 means unlimited.
+	// Optional. Should be set if with_quota_limits was set to true and the corresponding data is
+	// available.
 	GroupInodeLimit *int64 `protobuf:"varint,7,opt,name=group_inode_limit,json=groupInodeLimit,proto3,oneof" json:"group_inode_limit,omitempty"`
 }
 
@@ -2691,25 +2794,33 @@ func (x *GetPoolsResponse_StoragePool) GetGroupInodeLimit() int64 {
 	return 0
 }
 
+// An entry in the buddy groups list.
 type GetBuddyGroupsResponse_BuddyGroup struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The buddy groups identifiers
+	// The buddy groups identifier set.
+	// Required, should be completely populated.
 	Id *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Node type the buddy group belongs to
+	// Node type of the buddy group.
+	// Required.
 	NodeType beegfs.NodeType `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
-	// The buddy groups current primary target identifiers
+	// The buddy groups primary target.
+	// Required, should be completely populated.
 	PrimaryTarget *beegfs.EntityIdSet `protobuf:"bytes,3,opt,name=primary_target,json=primaryTarget,proto3" json:"primary_target,omitempty"`
-	// The buddy groups current secondary target identifiers
+	// The buddy groups secondary target.
+	// Required, should be completely populated.
 	SecondaryTarget *beegfs.EntityIdSet `protobuf:"bytes,4,opt,name=secondary_target,json=secondaryTarget,proto3" json:"secondary_target,omitempty"`
-	// The buddy groups primary target consistency state
+	// The buddy groups primary target consistency state.
+	// Required.
 	PrimaryConsistencyState beegfs.ConsistencyState `protobuf:"varint,5,opt,name=primary_consistency_state,json=primaryConsistencyState,proto3,enum=beegfs.ConsistencyState" json:"primary_consistency_state,omitempty"`
-	// The buddy groups secondary target consistency state
+	// The buddy groups secondary target consistency state.
+	// Required.
 	SecondaryConsistencyState beegfs.ConsistencyState `protobuf:"varint,6,opt,name=secondary_consistency_state,json=secondaryConsistencyState,proto3,enum=beegfs.ConsistencyState" json:"secondary_consistency_state,omitempty"`
-	// The buddy groups storage pool. Explicitly optional since meta pools dont' have a storage
-	// pool.
+	// The targets storage pool.
+	// Required if this target is a storage target (e.g. node_type is STORAGE), unset otherwise. If
+	// set, should be completely populated.
 	StoragePool *beegfs.EntityIdSet `protobuf:"bytes,7,opt,name=storage_pool,json=storagePool,proto3,oneof" json:"storage_pool,omitempty"`
 }
 

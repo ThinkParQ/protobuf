@@ -286,7 +286,6 @@ func (CapacityPool) EnumDescriptor() ([]byte, []int) {
 	return file_beegfs_proto_rawDescGZIP(), []int{4}
 }
 
-// A Nics NicType
 type NicType int32
 
 const (
@@ -434,18 +433,20 @@ func (QuotaType) EnumDescriptor() ([]byte, []int) {
 	return file_beegfs_proto_rawDescGZIP(), []int{7}
 }
 
-// The "old" BeeGFS numeric Id-NodeType combination that can be used to identify entities like nodes,
-// targets, ... .  Because each entity type has its own Id space (meaning a combination is NOT
-// globally unique), this also requires the entities type it is related to.
+// The "legacy" BeeGFS numeric Id-NodeType combination that can be used to identify an entity like
+// a node or target. Because each entity type has its own id space (meaning a combination is not
+// globally unique), the entity type must be known in addition to uniquely identify an entity.
 type LegacyId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Old style BeeGFS numeric Id
+	// BeeGFS numeric id.
+	// Required, 0 is invalid.
 	NumId uint32 `protobuf:"varint,1,opt,name=num_id,json=numId,proto3" json:"num_id,omitempty"`
-	// BeeGFS node type. Despite the name, also applies to other entity types (which currently can
-	// only be on a node of their own type, so it's still correct).
+	// BeeGFS node type.
+	// Required. Despite the name, also applies to other entity types (which can only be on a node of
+	// their own type, so it's still correct).
 	NodeType NodeType `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
 }
 
@@ -495,26 +496,31 @@ func (x *LegacyId) GetNodeType() NodeType {
 	return NodeType_NODE_TYPE_UNSPECIFIED
 }
 
-// Contains all existing identifiers used to uniquely identify an entity like a specific node,
-// target, ... . This is what should usually be returned by a server when referring to an entity,
-// for example when requesting a list of nodes. The requestor/client can then decide which
-// identifier to use depending on the use case.
-// Note that all fields are explicitly optional. The server should try to fill all of them, but sometimes
-// (e.g. for performance reasons), only some of them might be set. It's the requesters job to check
-// that.
+// Contains all identifiers used to uniquely identify an entity like a node or a target. Mainly
+// meant for communication with management as management has access to all the information. This
+// message should be used in two ways:
+// 1) In a request message (to the management),  only _one_ of the fields needs to be set (each is
+// enough to identify an entity (legacy_id with extra knowledge).
+// 2) In a response message (from the management), _all_ fields should be set. The request processor
+// should have all info about an entity available. If that isn't the case, leaving fields empty is
+// allowed.
 type EntityIdSet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The new style globally unique identifier. Globally unique - identifies an entity from all types
-	// without any additional context.
+	// The global, unique entity id. Identifies an entity from all types without any additional
+	// context.
+	// Optional or Required, depending on the use case. 0 is invalid.
 	Uid *int64 `protobuf:"varint,1,opt,name=uid,proto3,oneof" json:"uid,omitempty"`
-	// The user definable alias of an entity. Globally unique - identifies an entity from all types
+	// The user definable globally unique alias of an entity. Identifies an entity from all types
 	// without any additional context.
+	// Optional or Required, depending on the use case. Aliases must start with letter and contain
+	// only [a-zA-Z0-9_-.].
 	Alias *string `protobuf:"bytes,2,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
-	// The old style numeric Id-NodeType combination. NOT globally unique - entity type depends on
-	// the context.
+	// The "legacy" style numeric Id-NodeType combination. The entity type must be known in addition
+	// to uniquely identify an entity with this field.
+	// Optional or Required, depending on the use case.
 	LegacyId *LegacyId `protobuf:"bytes,3,opt,name=legacy_id,json=legacyId,proto3,oneof" json:"legacy_id,omitempty"`
 }
 
