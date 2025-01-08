@@ -86,6 +86,8 @@ message GetNodesResponse {
   // The node containing the root inode. Will be missing on a fresh system without any meta
   // targets/nodes.
   optional beegfs.EntityIdSet meta_root_node = 2;
+  // The file system UUID for this BeeGFS
+  optional string fs_uuid = 3;
 }
 
 // Deletes a node from the system
