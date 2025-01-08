@@ -34,6 +34,9 @@ pub struct GetNodesResponse {
     /// targets/nodes.
     #[prost(message, optional, tag = "2")]
     pub meta_root_node: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// The file system UUID for this BeeGFS
+    #[prost(string, optional, tag = "3")]
+    pub fs_uuid: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `GetNodesResponse`.
 pub mod get_nodes_response {
