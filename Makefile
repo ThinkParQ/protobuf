@@ -17,6 +17,7 @@ protos: check-tools
 	mkdir -p $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)
 	protoc -I $(SRC_DIR) \
 		--go_opt=module="github.com/thinkparq/protobuf/go" \
+		--go_opt=default_api_level=API_HYBRID \
 		--go_out=$(GO_OUT_DIR) \
 		--go-grpc_opt=module="github.com/thinkparq/protobuf/go" \
 		--go-grpc_out=$(GO_OUT_DIR) \

@@ -4,7 +4,7 @@
 // 	protoc        v5.29.2
 // source: beewatch.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package beewatch
 
@@ -187,16 +187,12 @@ func (x V2Event_Type) Number() protoreflect.EnumNumber {
 // should adhere to standard protocol buffer best practices. Notably minor updates should be
 // additive and not remove or change the meaning of existing fields.
 type Event struct {
-	state  protoimpl.MessageState `protogen:"hybrid.v1"`
-	SeqId  uint64                 `protobuf:"varint,1,opt,name=seq_id,json=seqId,proto3" json:"seq_id,omitempty"`
-	MetaId uint32                 `protobuf:"varint,2,opt,name=meta_id,json=metaId,proto3" json:"meta_id,omitempty"`
-	// Types that are valid to be assigned to EventData:
-	//
-	//	*Event_V1
-	//	*Event_V2
-	EventData     isEvent_EventData `protobuf_oneof:"event_data"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_SeqId     uint64                 `protobuf:"varint,1,opt,name=seq_id,json=seqId,proto3" json:"seq_id,omitempty"`
+	xxx_hidden_MetaId    uint32                 `protobuf:"varint,2,opt,name=meta_id,json=metaId,proto3" json:"meta_id,omitempty"`
+	xxx_hidden_EventData isEvent_EventData      `protobuf_oneof:"event_data"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *Event) Reset() {
@@ -226,28 +222,21 @@ func (x *Event) ProtoReflect() protoreflect.Message {
 
 func (x *Event) GetSeqId() uint64 {
 	if x != nil {
-		return x.SeqId
+		return x.xxx_hidden_SeqId
 	}
 	return 0
 }
 
 func (x *Event) GetMetaId() uint32 {
 	if x != nil {
-		return x.MetaId
+		return x.xxx_hidden_MetaId
 	}
 	return 0
 }
 
-func (x *Event) GetEventData() isEvent_EventData {
-	if x != nil {
-		return x.EventData
-	}
-	return nil
-}
-
 func (x *Event) GetV1() *V1Event {
 	if x != nil {
-		if x, ok := x.EventData.(*Event_V1); ok {
+		if x, ok := x.xxx_hidden_EventData.(*event_V1); ok {
 			return x.V1
 		}
 	}
@@ -256,7 +245,7 @@ func (x *Event) GetV1() *V1Event {
 
 func (x *Event) GetV2() *V2Event {
 	if x != nil {
-		if x, ok := x.EventData.(*Event_V2); ok {
+		if x, ok := x.xxx_hidden_EventData.(*event_V2); ok {
 			return x.V2
 		}
 	}
@@ -264,41 +253,41 @@ func (x *Event) GetV2() *V2Event {
 }
 
 func (x *Event) SetSeqId(v uint64) {
-	x.SeqId = v
+	x.xxx_hidden_SeqId = v
 }
 
 func (x *Event) SetMetaId(v uint32) {
-	x.MetaId = v
+	x.xxx_hidden_MetaId = v
 }
 
 func (x *Event) SetV1(v *V1Event) {
 	if v == nil {
-		x.EventData = nil
+		x.xxx_hidden_EventData = nil
 		return
 	}
-	x.EventData = &Event_V1{v}
+	x.xxx_hidden_EventData = &event_V1{v}
 }
 
 func (x *Event) SetV2(v *V2Event) {
 	if v == nil {
-		x.EventData = nil
+		x.xxx_hidden_EventData = nil
 		return
 	}
-	x.EventData = &Event_V2{v}
+	x.xxx_hidden_EventData = &event_V2{v}
 }
 
 func (x *Event) HasEventData() bool {
 	if x == nil {
 		return false
 	}
-	return x.EventData != nil
+	return x.xxx_hidden_EventData != nil
 }
 
 func (x *Event) HasV1() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.EventData.(*Event_V1)
+	_, ok := x.xxx_hidden_EventData.(*event_V1)
 	return ok
 }
 
@@ -306,23 +295,23 @@ func (x *Event) HasV2() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.EventData.(*Event_V2)
+	_, ok := x.xxx_hidden_EventData.(*event_V2)
 	return ok
 }
 
 func (x *Event) ClearEventData() {
-	x.EventData = nil
+	x.xxx_hidden_EventData = nil
 }
 
 func (x *Event) ClearV1() {
-	if _, ok := x.EventData.(*Event_V1); ok {
-		x.EventData = nil
+	if _, ok := x.xxx_hidden_EventData.(*event_V1); ok {
+		x.xxx_hidden_EventData = nil
 	}
 }
 
 func (x *Event) ClearV2() {
-	if _, ok := x.EventData.(*Event_V2); ok {
-		x.EventData = nil
+	if _, ok := x.xxx_hidden_EventData.(*event_V2); ok {
+		x.xxx_hidden_EventData = nil
 	}
 }
 
@@ -334,10 +323,10 @@ func (x *Event) WhichEventData() case_Event_EventData {
 	if x == nil {
 		return Event_EventData_not_set_case
 	}
-	switch x.EventData.(type) {
-	case *Event_V1:
+	switch x.xxx_hidden_EventData.(type) {
+	case *event_V1:
 		return Event_V1_case
-	case *Event_V2:
+	case *event_V2:
 		return Event_V2_case
 	default:
 		return Event_EventData_not_set_case
@@ -349,23 +338,23 @@ type Event_builder struct {
 
 	SeqId  uint64
 	MetaId uint32
-	// Fields of oneof EventData:
+	// Fields of oneof xxx_hidden_EventData:
 	V1 *V1Event
 	V2 *V2Event
-	// -- end of EventData
+	// -- end of xxx_hidden_EventData
 }
 
 func (b0 Event_builder) Build() *Event {
 	m0 := &Event{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.SeqId = b.SeqId
-	x.MetaId = b.MetaId
+	x.xxx_hidden_SeqId = b.SeqId
+	x.xxx_hidden_MetaId = b.MetaId
 	if b.V1 != nil {
-		x.EventData = &Event_V1{b.V1}
+		x.xxx_hidden_EventData = &event_V1{b.V1}
 	}
 	if b.V2 != nil {
-		x.EventData = &Event_V2{b.V2}
+		x.xxx_hidden_EventData = &event_V2{b.V2}
 	}
 	return m0
 }
@@ -384,31 +373,31 @@ type isEvent_EventData interface {
 	isEvent_EventData()
 }
 
-type Event_V1 struct {
+type event_V1 struct {
 	V1 *V1Event `protobuf:"bytes,11,opt,name=v1,proto3,oneof"`
 }
 
-type Event_V2 struct {
+type event_V2 struct {
 	V2 *V2Event `protobuf:"bytes,12,opt,name=v2,proto3,oneof"`
 }
 
-func (*Event_V1) isEvent_EventData() {}
+func (*event_V1) isEvent_EventData() {}
 
-func (*Event_V2) isEvent_EventData() {}
+func (*event_V2) isEvent_EventData() {}
 
 // The v1 event format is the legacy format from BeeGFS v7.
 type V1Event struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	Type           V1Event_Type           `protobuf:"varint,1,opt,name=type,proto3,enum=beewatch.V1Event_Type" json:"type,omitempty"`
-	DroppedSeq     uint64                 `protobuf:"varint,2,opt,name=dropped_seq,json=droppedSeq,proto3" json:"dropped_seq,omitempty"`
-	MissedSeq      uint64                 `protobuf:"varint,3,opt,name=missed_seq,json=missedSeq,proto3" json:"missed_seq,omitempty"`
-	Path           string                 `protobuf:"bytes,4,opt,name=path,proto3" json:"path,omitempty"`
-	EntryId        string                 `protobuf:"bytes,5,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
-	ParentEntryId  string                 `protobuf:"bytes,6,opt,name=parent_entry_id,json=parentEntryId,proto3" json:"parent_entry_id,omitempty"`
-	TargetPath     string                 `protobuf:"bytes,7,opt,name=target_path,json=targetPath,proto3" json:"target_path,omitempty"`
-	TargetParentId string                 `protobuf:"bytes,8,opt,name=target_parent_id,json=targetParentId,proto3" json:"target_parent_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Type           V1Event_Type           `protobuf:"varint,1,opt,name=type,proto3,enum=beewatch.V1Event_Type" json:"type,omitempty"`
+	xxx_hidden_DroppedSeq     uint64                 `protobuf:"varint,2,opt,name=dropped_seq,json=droppedSeq,proto3" json:"dropped_seq,omitempty"`
+	xxx_hidden_MissedSeq      uint64                 `protobuf:"varint,3,opt,name=missed_seq,json=missedSeq,proto3" json:"missed_seq,omitempty"`
+	xxx_hidden_Path           string                 `protobuf:"bytes,4,opt,name=path,proto3" json:"path,omitempty"`
+	xxx_hidden_EntryId        string                 `protobuf:"bytes,5,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
+	xxx_hidden_ParentEntryId  string                 `protobuf:"bytes,6,opt,name=parent_entry_id,json=parentEntryId,proto3" json:"parent_entry_id,omitempty"`
+	xxx_hidden_TargetPath     string                 `protobuf:"bytes,7,opt,name=target_path,json=targetPath,proto3" json:"target_path,omitempty"`
+	xxx_hidden_TargetParentId string                 `protobuf:"bytes,8,opt,name=target_parent_id,json=targetParentId,proto3" json:"target_parent_id,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *V1Event) Reset() {
@@ -438,90 +427,90 @@ func (x *V1Event) ProtoReflect() protoreflect.Message {
 
 func (x *V1Event) GetType() V1Event_Type {
 	if x != nil {
-		return x.Type
+		return x.xxx_hidden_Type
 	}
 	return V1Event_FLUSH
 }
 
 func (x *V1Event) GetDroppedSeq() uint64 {
 	if x != nil {
-		return x.DroppedSeq
+		return x.xxx_hidden_DroppedSeq
 	}
 	return 0
 }
 
 func (x *V1Event) GetMissedSeq() uint64 {
 	if x != nil {
-		return x.MissedSeq
+		return x.xxx_hidden_MissedSeq
 	}
 	return 0
 }
 
 func (x *V1Event) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *V1Event) GetEntryId() string {
 	if x != nil {
-		return x.EntryId
+		return x.xxx_hidden_EntryId
 	}
 	return ""
 }
 
 func (x *V1Event) GetParentEntryId() string {
 	if x != nil {
-		return x.ParentEntryId
+		return x.xxx_hidden_ParentEntryId
 	}
 	return ""
 }
 
 func (x *V1Event) GetTargetPath() string {
 	if x != nil {
-		return x.TargetPath
+		return x.xxx_hidden_TargetPath
 	}
 	return ""
 }
 
 func (x *V1Event) GetTargetParentId() string {
 	if x != nil {
-		return x.TargetParentId
+		return x.xxx_hidden_TargetParentId
 	}
 	return ""
 }
 
 func (x *V1Event) SetType(v V1Event_Type) {
-	x.Type = v
+	x.xxx_hidden_Type = v
 }
 
 func (x *V1Event) SetDroppedSeq(v uint64) {
-	x.DroppedSeq = v
+	x.xxx_hidden_DroppedSeq = v
 }
 
 func (x *V1Event) SetMissedSeq(v uint64) {
-	x.MissedSeq = v
+	x.xxx_hidden_MissedSeq = v
 }
 
 func (x *V1Event) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 func (x *V1Event) SetEntryId(v string) {
-	x.EntryId = v
+	x.xxx_hidden_EntryId = v
 }
 
 func (x *V1Event) SetParentEntryId(v string) {
-	x.ParentEntryId = v
+	x.xxx_hidden_ParentEntryId = v
 }
 
 func (x *V1Event) SetTargetPath(v string) {
-	x.TargetPath = v
+	x.xxx_hidden_TargetPath = v
 }
 
 func (x *V1Event) SetTargetParentId(v string) {
-	x.TargetParentId = v
+	x.xxx_hidden_TargetParentId = v
 }
 
 type V1Event_builder struct {
@@ -541,31 +530,31 @@ func (b0 V1Event_builder) Build() *V1Event {
 	m0 := &V1Event{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Type = b.Type
-	x.DroppedSeq = b.DroppedSeq
-	x.MissedSeq = b.MissedSeq
-	x.Path = b.Path
-	x.EntryId = b.EntryId
-	x.ParentEntryId = b.ParentEntryId
-	x.TargetPath = b.TargetPath
-	x.TargetParentId = b.TargetParentId
+	x.xxx_hidden_Type = b.Type
+	x.xxx_hidden_DroppedSeq = b.DroppedSeq
+	x.xxx_hidden_MissedSeq = b.MissedSeq
+	x.xxx_hidden_Path = b.Path
+	x.xxx_hidden_EntryId = b.EntryId
+	x.xxx_hidden_ParentEntryId = b.ParentEntryId
+	x.xxx_hidden_TargetPath = b.TargetPath
+	x.xxx_hidden_TargetParentId = b.TargetParentId
 	return m0
 }
 
 // The v2 event format was introduced in BeeGFS v8.
 type V2Event struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	Type           V2Event_Type           `protobuf:"varint,1,opt,name=type,proto3,enum=beewatch.V2Event_Type" json:"type,omitempty"`
-	NumLinks       uint64                 `protobuf:"varint,2,opt,name=num_links,json=numLinks,proto3" json:"num_links,omitempty"`
-	Path           string                 `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
-	EntryId        string                 `protobuf:"bytes,4,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
-	ParentEntryId  string                 `protobuf:"bytes,5,opt,name=parent_entry_id,json=parentEntryId,proto3" json:"parent_entry_id,omitempty"`
-	TargetPath     string                 `protobuf:"bytes,6,opt,name=target_path,json=targetPath,proto3" json:"target_path,omitempty"`
-	TargetParentId string                 `protobuf:"bytes,7,opt,name=target_parent_id,json=targetParentId,proto3" json:"target_parent_id,omitempty"`
-	MsgUserId      uint32                 `protobuf:"varint,8,opt,name=msg_user_id,json=msgUserId,proto3" json:"msg_user_id,omitempty"`
-	Timestamp      int64                  `protobuf:"varint,9,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Type           V2Event_Type           `protobuf:"varint,1,opt,name=type,proto3,enum=beewatch.V2Event_Type" json:"type,omitempty"`
+	xxx_hidden_NumLinks       uint64                 `protobuf:"varint,2,opt,name=num_links,json=numLinks,proto3" json:"num_links,omitempty"`
+	xxx_hidden_Path           string                 `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
+	xxx_hidden_EntryId        string                 `protobuf:"bytes,4,opt,name=entry_id,json=entryId,proto3" json:"entry_id,omitempty"`
+	xxx_hidden_ParentEntryId  string                 `protobuf:"bytes,5,opt,name=parent_entry_id,json=parentEntryId,proto3" json:"parent_entry_id,omitempty"`
+	xxx_hidden_TargetPath     string                 `protobuf:"bytes,6,opt,name=target_path,json=targetPath,proto3" json:"target_path,omitempty"`
+	xxx_hidden_TargetParentId string                 `protobuf:"bytes,7,opt,name=target_parent_id,json=targetParentId,proto3" json:"target_parent_id,omitempty"`
+	xxx_hidden_MsgUserId      uint32                 `protobuf:"varint,8,opt,name=msg_user_id,json=msgUserId,proto3" json:"msg_user_id,omitempty"`
+	xxx_hidden_Timestamp      int64                  `protobuf:"varint,9,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *V2Event) Reset() {
@@ -595,101 +584,101 @@ func (x *V2Event) ProtoReflect() protoreflect.Message {
 
 func (x *V2Event) GetType() V2Event_Type {
 	if x != nil {
-		return x.Type
+		return x.xxx_hidden_Type
 	}
 	return V2Event_INVALID
 }
 
 func (x *V2Event) GetNumLinks() uint64 {
 	if x != nil {
-		return x.NumLinks
+		return x.xxx_hidden_NumLinks
 	}
 	return 0
 }
 
 func (x *V2Event) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *V2Event) GetEntryId() string {
 	if x != nil {
-		return x.EntryId
+		return x.xxx_hidden_EntryId
 	}
 	return ""
 }
 
 func (x *V2Event) GetParentEntryId() string {
 	if x != nil {
-		return x.ParentEntryId
+		return x.xxx_hidden_ParentEntryId
 	}
 	return ""
 }
 
 func (x *V2Event) GetTargetPath() string {
 	if x != nil {
-		return x.TargetPath
+		return x.xxx_hidden_TargetPath
 	}
 	return ""
 }
 
 func (x *V2Event) GetTargetParentId() string {
 	if x != nil {
-		return x.TargetParentId
+		return x.xxx_hidden_TargetParentId
 	}
 	return ""
 }
 
 func (x *V2Event) GetMsgUserId() uint32 {
 	if x != nil {
-		return x.MsgUserId
+		return x.xxx_hidden_MsgUserId
 	}
 	return 0
 }
 
 func (x *V2Event) GetTimestamp() int64 {
 	if x != nil {
-		return x.Timestamp
+		return x.xxx_hidden_Timestamp
 	}
 	return 0
 }
 
 func (x *V2Event) SetType(v V2Event_Type) {
-	x.Type = v
+	x.xxx_hidden_Type = v
 }
 
 func (x *V2Event) SetNumLinks(v uint64) {
-	x.NumLinks = v
+	x.xxx_hidden_NumLinks = v
 }
 
 func (x *V2Event) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 func (x *V2Event) SetEntryId(v string) {
-	x.EntryId = v
+	x.xxx_hidden_EntryId = v
 }
 
 func (x *V2Event) SetParentEntryId(v string) {
-	x.ParentEntryId = v
+	x.xxx_hidden_ParentEntryId = v
 }
 
 func (x *V2Event) SetTargetPath(v string) {
-	x.TargetPath = v
+	x.xxx_hidden_TargetPath = v
 }
 
 func (x *V2Event) SetTargetParentId(v string) {
-	x.TargetParentId = v
+	x.xxx_hidden_TargetParentId = v
 }
 
 func (x *V2Event) SetMsgUserId(v uint32) {
-	x.MsgUserId = v
+	x.xxx_hidden_MsgUserId = v
 }
 
 func (x *V2Event) SetTimestamp(v int64) {
-	x.Timestamp = v
+	x.xxx_hidden_Timestamp = v
 }
 
 type V2Event_builder struct {
@@ -710,25 +699,25 @@ func (b0 V2Event_builder) Build() *V2Event {
 	m0 := &V2Event{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Type = b.Type
-	x.NumLinks = b.NumLinks
-	x.Path = b.Path
-	x.EntryId = b.EntryId
-	x.ParentEntryId = b.ParentEntryId
-	x.TargetPath = b.TargetPath
-	x.TargetParentId = b.TargetParentId
-	x.MsgUserId = b.MsgUserId
-	x.Timestamp = b.Timestamp
+	x.xxx_hidden_Type = b.Type
+	x.xxx_hidden_NumLinks = b.NumLinks
+	x.xxx_hidden_Path = b.Path
+	x.xxx_hidden_EntryId = b.EntryId
+	x.xxx_hidden_ParentEntryId = b.ParentEntryId
+	x.xxx_hidden_TargetPath = b.TargetPath
+	x.xxx_hidden_TargetParentId = b.TargetParentId
+	x.xxx_hidden_MsgUserId = b.MsgUserId
+	x.xxx_hidden_Timestamp = b.Timestamp
 	return m0
 }
 
 // Response messages allow the subscribers to acknowledge events they have processed and request a graceful shutdown.
 type Response struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	CompletedSeq  uint64                 `protobuf:"varint,1,opt,name=completed_seq,json=completedSeq,proto3" json:"completed_seq,omitempty"`
-	ShuttingDown  bool                   `protobuf:"varint,2,opt,name=shutting_down,json=shuttingDown,proto3" json:"shutting_down,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_CompletedSeq uint64                 `protobuf:"varint,1,opt,name=completed_seq,json=completedSeq,proto3" json:"completed_seq,omitempty"`
+	xxx_hidden_ShuttingDown bool                   `protobuf:"varint,2,opt,name=shutting_down,json=shuttingDown,proto3" json:"shutting_down,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *Response) Reset() {
@@ -758,24 +747,24 @@ func (x *Response) ProtoReflect() protoreflect.Message {
 
 func (x *Response) GetCompletedSeq() uint64 {
 	if x != nil {
-		return x.CompletedSeq
+		return x.xxx_hidden_CompletedSeq
 	}
 	return 0
 }
 
 func (x *Response) GetShuttingDown() bool {
 	if x != nil {
-		return x.ShuttingDown
+		return x.xxx_hidden_ShuttingDown
 	}
 	return false
 }
 
 func (x *Response) SetCompletedSeq(v uint64) {
-	x.CompletedSeq = v
+	x.xxx_hidden_CompletedSeq = v
 }
 
 func (x *Response) SetShuttingDown(v bool) {
-	x.ShuttingDown = v
+	x.xxx_hidden_ShuttingDown = v
 }
 
 type Response_builder struct {
@@ -789,8 +778,8 @@ func (b0 Response_builder) Build() *Response {
 	m0 := &Response{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.CompletedSeq = b.CompletedSeq
-	x.ShuttingDown = b.ShuttingDown
+	x.xxx_hidden_CompletedSeq = b.CompletedSeq
+	x.xxx_hidden_ShuttingDown = b.ShuttingDown
 	return m0
 }
 
@@ -917,8 +906,8 @@ func file_beewatch_proto_init() {
 		return
 	}
 	file_beewatch_proto_msgTypes[0].OneofWrappers = []any{
-		(*Event_V1)(nil),
-		(*Event_V2)(nil),
+		(*event_V1)(nil),
+		(*event_V2)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
