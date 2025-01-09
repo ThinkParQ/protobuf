@@ -4,7 +4,7 @@
 // 	protoc        v5.29.2
 // source: license.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package license
 
@@ -127,15 +127,12 @@ func (x CertType) Number() protoreflect.EnumNumber {
 
 // The result of a certificate verfication operation.
 type VerifyCertResult struct {
-	state  protoimpl.MessageState `protogen:"hybrid.v1"`
-	Result VerifyResult           `protobuf:"varint,1,opt,name=result,proto3,enum=license.VerifyResult" json:"result,omitempty"`
-	// The certificates string serial. Empty if verification failed.
-	Serial string `protobuf:"bytes,2,opt,name=serial,proto3" json:"serial,omitempty"`
-	// Error or status message. Empty if verification succeeded. Contains the error message if
-	// result == VERIFY_ERROR and the reason for verification failure if result == VERIFY_INVALID.
-	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Result  VerifyResult           `protobuf:"varint,1,opt,name=result,proto3,enum=license.VerifyResult" json:"result,omitempty"`
+	xxx_hidden_Serial  string                 `protobuf:"bytes,2,opt,name=serial,proto3" json:"serial,omitempty"`
+	xxx_hidden_Message string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *VerifyCertResult) Reset() {
@@ -165,35 +162,35 @@ func (x *VerifyCertResult) ProtoReflect() protoreflect.Message {
 
 func (x *VerifyCertResult) GetResult() VerifyResult {
 	if x != nil {
-		return x.Result
+		return x.xxx_hidden_Result
 	}
 	return VerifyResult_VERIFY_UNSPECIFIED
 }
 
 func (x *VerifyCertResult) GetSerial() string {
 	if x != nil {
-		return x.Serial
+		return x.xxx_hidden_Serial
 	}
 	return ""
 }
 
 func (x *VerifyCertResult) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *VerifyCertResult) SetResult(v VerifyResult) {
-	x.Result = v
+	x.xxx_hidden_Result = v
 }
 
 func (x *VerifyCertResult) SetSerial(v string) {
-	x.Serial = v
+	x.xxx_hidden_Serial = v
 }
 
 func (x *VerifyCertResult) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 type VerifyCertResult_builder struct {
@@ -211,21 +208,19 @@ func (b0 VerifyCertResult_builder) Build() *VerifyCertResult {
 	m0 := &VerifyCertResult{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Result = b.Result
-	x.Serial = b.Serial
-	x.Message = b.Message
+	x.xxx_hidden_Result = b.Result
+	x.xxx_hidden_Serial = b.Serial
+	x.xxx_hidden_Message = b.Message
 	return m0
 }
 
 // The result of a feature verification operation.
 type VerifyFeatureResult struct {
-	state  protoimpl.MessageState `protogen:"hybrid.v1"`
-	Result VerifyResult           `protobuf:"varint,1,opt,name=result,proto3,enum=license.VerifyResult" json:"result,omitempty"`
-	// Error or status message. Empty if verification succeeded. Contains the error message if
-	// result == VERIFY_ERROR and the reason for verification failure if result == VERIFY_INVALID.
-	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Result  VerifyResult           `protobuf:"varint,1,opt,name=result,proto3,enum=license.VerifyResult" json:"result,omitempty"`
+	xxx_hidden_Message string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *VerifyFeatureResult) Reset() {
@@ -255,24 +250,24 @@ func (x *VerifyFeatureResult) ProtoReflect() protoreflect.Message {
 
 func (x *VerifyFeatureResult) GetResult() VerifyResult {
 	if x != nil {
-		return x.Result
+		return x.xxx_hidden_Result
 	}
 	return VerifyResult_VERIFY_UNSPECIFIED
 }
 
 func (x *VerifyFeatureResult) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *VerifyFeatureResult) SetResult(v VerifyResult) {
-	x.Result = v
+	x.xxx_hidden_Result = v
 }
 
 func (x *VerifyFeatureResult) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 type VerifyFeatureResult_builder struct {
@@ -288,23 +283,19 @@ func (b0 VerifyFeatureResult_builder) Build() *VerifyFeatureResult {
 	m0 := &VerifyFeatureResult{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Result = b.Result
-	x.Message = b.Message
+	x.xxx_hidden_Result = b.Result
+	x.xxx_hidden_Message = b.Message
 	return m0
 }
 
 // The result of an operation that fetches the data of the currently loaded certificate.
 type GetCertDataResult struct {
-	state  protoimpl.MessageState `protogen:"hybrid.v1"`
-	Result VerifyResult           `protobuf:"varint,1,opt,name=result,proto3,enum=license.VerifyResult" json:"result,omitempty"`
-	// The data of the certificate currently loaded in the library. Data is present even if
-	// verification failed.
-	Data *CertData `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	// Error or status message. Empty if verification succeeded. Contains the error message if
-	// result == VERIFY_ERROR and the reason for verification failure if result == VERIFY_INVALID.
-	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Result  VerifyResult           `protobuf:"varint,1,opt,name=result,proto3,enum=license.VerifyResult" json:"result,omitempty"`
+	xxx_hidden_Data    *CertData              `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	xxx_hidden_Message string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetCertDataResult) Reset() {
@@ -334,46 +325,46 @@ func (x *GetCertDataResult) ProtoReflect() protoreflect.Message {
 
 func (x *GetCertDataResult) GetResult() VerifyResult {
 	if x != nil {
-		return x.Result
+		return x.xxx_hidden_Result
 	}
 	return VerifyResult_VERIFY_UNSPECIFIED
 }
 
 func (x *GetCertDataResult) GetData() *CertData {
 	if x != nil {
-		return x.Data
+		return x.xxx_hidden_Data
 	}
 	return nil
 }
 
 func (x *GetCertDataResult) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *GetCertDataResult) SetResult(v VerifyResult) {
-	x.Result = v
+	x.xxx_hidden_Result = v
 }
 
 func (x *GetCertDataResult) SetData(v *CertData) {
-	x.Data = v
+	x.xxx_hidden_Data = v
 }
 
 func (x *GetCertDataResult) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 func (x *GetCertDataResult) HasData() bool {
 	if x == nil {
 		return false
 	}
-	return x.Data != nil
+	return x.xxx_hidden_Data != nil
 }
 
 func (x *GetCertDataResult) ClearData() {
-	x.Data = nil
+	x.xxx_hidden_Data = nil
 }
 
 type GetCertDataResult_builder struct {
@@ -392,9 +383,9 @@ func (b0 GetCertDataResult_builder) Build() *GetCertDataResult {
 	m0 := &GetCertDataResult{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Result = b.Result
-	x.Data = b.Data
-	x.Message = b.Message
+	x.xxx_hidden_Result = b.Result
+	x.xxx_hidden_Data = b.Data
+	x.xxx_hidden_Message = b.Message
 	return m0
 }
 
@@ -402,36 +393,22 @@ func (b0 GetCertDataResult_builder) Build() *GetCertDataResult {
 // information and some additional information relevant to BeeGFS licenses like the certificate
 // type.
 type CertData struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// Certificate type. Encoded in the subject SerialNumber and CommonName of the x509 certificate
-	// together with the account ID.
-	Type CertType `protobuf:"varint,1,opt,name=type,proto3,enum=license.CertType" json:"type,omitempty"`
-	// Random int64 x509 serial number that uniquely identifies the certificate
-	Serial int64 `protobuf:"varint,2,opt,name=serial,proto3" json:"serial,omitempty"`
-	// Fields 3-8 contain an x509 certificate subject's attributes
-	Organization       string `protobuf:"bytes,3,opt,name=organization,proto3" json:"organization,omitempty"`
-	OrganizationalUnit string `protobuf:"bytes,4,opt,name=organizational_unit,json=organizationalUnit,proto3" json:"organizational_unit,omitempty"`
-	Country            string `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
-	Locality           string `protobuf:"bytes,6,opt,name=locality,proto3" json:"locality,omitempty"`
-	// String serial number that contains the type (P-, SP-, ...) and the partner account ID or
-	// support contract ID
-	CommonName string `protobuf:"bytes,7,opt,name=common_name,json=commonName,proto3" json:"common_name,omitempty"`
-	// Can contain a different string serial number (for example a customer ID). It doesn't carry any
-	// semantic meaning for now.
-	SubjectSerial string `protobuf:"bytes,8,opt,name=subject_serial,json=subjectSerial,proto3" json:"subject_serial,omitempty"`
-	// Fields 8 and 9 encode the certificate's validity period
-	ValidFrom  *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=valid_from,json=validFrom,proto3" json:"valid_from,omitempty"`
-	ValidUntil *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=valid_until,json=validUntil,proto3" json:"valid_until,omitempty"`
-	// The DNS names the certificate is valid for. BeeGFS license certificates encode licensed
-	// features as DNS names, e.g. "io.beegfs.mirroring" or "io.beegfs.numservers.4"
-	DnsNames []string `protobuf:"bytes,11,rep,name=dns_names,json=DNSNames,proto3" json:"dns_names,omitempty"`
-	// Indicates whether the certificate is part of a CA. Always false for customer and partner
-	// certificates.
-	IsCa bool `protobuf:"varint,12,opt,name=is_ca,json=isCa,proto3" json:"is_ca,omitempty"`
-	// The certificate's parent or "Issuer" certificate
-	ParentData    *CertData `protobuf:"bytes,13,opt,name=parent_data,json=parentData,proto3,oneof" json:"parent_data,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Type               CertType               `protobuf:"varint,1,opt,name=type,proto3,enum=license.CertType" json:"type,omitempty"`
+	xxx_hidden_Serial             int64                  `protobuf:"varint,2,opt,name=serial,proto3" json:"serial,omitempty"`
+	xxx_hidden_Organization       string                 `protobuf:"bytes,3,opt,name=organization,proto3" json:"organization,omitempty"`
+	xxx_hidden_OrganizationalUnit string                 `protobuf:"bytes,4,opt,name=organizational_unit,json=organizationalUnit,proto3" json:"organizational_unit,omitempty"`
+	xxx_hidden_Country            string                 `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
+	xxx_hidden_Locality           string                 `protobuf:"bytes,6,opt,name=locality,proto3" json:"locality,omitempty"`
+	xxx_hidden_CommonName         string                 `protobuf:"bytes,7,opt,name=common_name,json=commonName,proto3" json:"common_name,omitempty"`
+	xxx_hidden_SubjectSerial      string                 `protobuf:"bytes,8,opt,name=subject_serial,json=subjectSerial,proto3" json:"subject_serial,omitempty"`
+	xxx_hidden_ValidFrom          *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=valid_from,json=validFrom,proto3" json:"valid_from,omitempty"`
+	xxx_hidden_ValidUntil         *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=valid_until,json=validUntil,proto3" json:"valid_until,omitempty"`
+	xxx_hidden_DnsNames           []string               `protobuf:"bytes,11,rep,name=dns_names,json=DNSNames,proto3" json:"dns_names,omitempty"`
+	xxx_hidden_IsCa               bool                   `protobuf:"varint,12,opt,name=is_ca,json=isCa,proto3" json:"is_ca,omitempty"`
+	xxx_hidden_ParentData         *CertData              `protobuf:"bytes,13,opt,name=parent_data,json=parentData,proto3,oneof" json:"parent_data,omitempty"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *CertData) Reset() {
@@ -461,178 +438,178 @@ func (x *CertData) ProtoReflect() protoreflect.Message {
 
 func (x *CertData) GetType() CertType {
 	if x != nil {
-		return x.Type
+		return x.xxx_hidden_Type
 	}
 	return CertType_CERT_TYPE_UNSPECIFIED
 }
 
 func (x *CertData) GetSerial() int64 {
 	if x != nil {
-		return x.Serial
+		return x.xxx_hidden_Serial
 	}
 	return 0
 }
 
 func (x *CertData) GetOrganization() string {
 	if x != nil {
-		return x.Organization
+		return x.xxx_hidden_Organization
 	}
 	return ""
 }
 
 func (x *CertData) GetOrganizationalUnit() string {
 	if x != nil {
-		return x.OrganizationalUnit
+		return x.xxx_hidden_OrganizationalUnit
 	}
 	return ""
 }
 
 func (x *CertData) GetCountry() string {
 	if x != nil {
-		return x.Country
+		return x.xxx_hidden_Country
 	}
 	return ""
 }
 
 func (x *CertData) GetLocality() string {
 	if x != nil {
-		return x.Locality
+		return x.xxx_hidden_Locality
 	}
 	return ""
 }
 
 func (x *CertData) GetCommonName() string {
 	if x != nil {
-		return x.CommonName
+		return x.xxx_hidden_CommonName
 	}
 	return ""
 }
 
 func (x *CertData) GetSubjectSerial() string {
 	if x != nil {
-		return x.SubjectSerial
+		return x.xxx_hidden_SubjectSerial
 	}
 	return ""
 }
 
 func (x *CertData) GetValidFrom() *timestamppb.Timestamp {
 	if x != nil {
-		return x.ValidFrom
+		return x.xxx_hidden_ValidFrom
 	}
 	return nil
 }
 
 func (x *CertData) GetValidUntil() *timestamppb.Timestamp {
 	if x != nil {
-		return x.ValidUntil
+		return x.xxx_hidden_ValidUntil
 	}
 	return nil
 }
 
 func (x *CertData) GetDnsNames() []string {
 	if x != nil {
-		return x.DnsNames
+		return x.xxx_hidden_DnsNames
 	}
 	return nil
 }
 
 func (x *CertData) GetIsCa() bool {
 	if x != nil {
-		return x.IsCa
+		return x.xxx_hidden_IsCa
 	}
 	return false
 }
 
 func (x *CertData) GetParentData() *CertData {
 	if x != nil {
-		return x.ParentData
+		return x.xxx_hidden_ParentData
 	}
 	return nil
 }
 
 func (x *CertData) SetType(v CertType) {
-	x.Type = v
+	x.xxx_hidden_Type = v
 }
 
 func (x *CertData) SetSerial(v int64) {
-	x.Serial = v
+	x.xxx_hidden_Serial = v
 }
 
 func (x *CertData) SetOrganization(v string) {
-	x.Organization = v
+	x.xxx_hidden_Organization = v
 }
 
 func (x *CertData) SetOrganizationalUnit(v string) {
-	x.OrganizationalUnit = v
+	x.xxx_hidden_OrganizationalUnit = v
 }
 
 func (x *CertData) SetCountry(v string) {
-	x.Country = v
+	x.xxx_hidden_Country = v
 }
 
 func (x *CertData) SetLocality(v string) {
-	x.Locality = v
+	x.xxx_hidden_Locality = v
 }
 
 func (x *CertData) SetCommonName(v string) {
-	x.CommonName = v
+	x.xxx_hidden_CommonName = v
 }
 
 func (x *CertData) SetSubjectSerial(v string) {
-	x.SubjectSerial = v
+	x.xxx_hidden_SubjectSerial = v
 }
 
 func (x *CertData) SetValidFrom(v *timestamppb.Timestamp) {
-	x.ValidFrom = v
+	x.xxx_hidden_ValidFrom = v
 }
 
 func (x *CertData) SetValidUntil(v *timestamppb.Timestamp) {
-	x.ValidUntil = v
+	x.xxx_hidden_ValidUntil = v
 }
 
 func (x *CertData) SetDnsNames(v []string) {
-	x.DnsNames = v
+	x.xxx_hidden_DnsNames = v
 }
 
 func (x *CertData) SetIsCa(v bool) {
-	x.IsCa = v
+	x.xxx_hidden_IsCa = v
 }
 
 func (x *CertData) SetParentData(v *CertData) {
-	x.ParentData = v
+	x.xxx_hidden_ParentData = v
 }
 
 func (x *CertData) HasValidFrom() bool {
 	if x == nil {
 		return false
 	}
-	return x.ValidFrom != nil
+	return x.xxx_hidden_ValidFrom != nil
 }
 
 func (x *CertData) HasValidUntil() bool {
 	if x == nil {
 		return false
 	}
-	return x.ValidUntil != nil
+	return x.xxx_hidden_ValidUntil != nil
 }
 
 func (x *CertData) HasParentData() bool {
 	if x == nil {
 		return false
 	}
-	return x.ParentData != nil
+	return x.xxx_hidden_ParentData != nil
 }
 
 func (x *CertData) ClearValidFrom() {
-	x.ValidFrom = nil
+	x.xxx_hidden_ValidFrom = nil
 }
 
 func (x *CertData) ClearValidUntil() {
-	x.ValidUntil = nil
+	x.xxx_hidden_ValidUntil = nil
 }
 
 func (x *CertData) ClearParentData() {
-	x.ParentData = nil
+	x.xxx_hidden_ParentData = nil
 }
 
 type CertData_builder struct {
@@ -671,19 +648,19 @@ func (b0 CertData_builder) Build() *CertData {
 	m0 := &CertData{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Type = b.Type
-	x.Serial = b.Serial
-	x.Organization = b.Organization
-	x.OrganizationalUnit = b.OrganizationalUnit
-	x.Country = b.Country
-	x.Locality = b.Locality
-	x.CommonName = b.CommonName
-	x.SubjectSerial = b.SubjectSerial
-	x.ValidFrom = b.ValidFrom
-	x.ValidUntil = b.ValidUntil
-	x.DnsNames = b.DnsNames
-	x.IsCa = b.IsCa
-	x.ParentData = b.ParentData
+	x.xxx_hidden_Type = b.Type
+	x.xxx_hidden_Serial = b.Serial
+	x.xxx_hidden_Organization = b.Organization
+	x.xxx_hidden_OrganizationalUnit = b.OrganizationalUnit
+	x.xxx_hidden_Country = b.Country
+	x.xxx_hidden_Locality = b.Locality
+	x.xxx_hidden_CommonName = b.CommonName
+	x.xxx_hidden_SubjectSerial = b.SubjectSerial
+	x.xxx_hidden_ValidFrom = b.ValidFrom
+	x.xxx_hidden_ValidUntil = b.ValidUntil
+	x.xxx_hidden_DnsNames = b.DnsNames
+	x.xxx_hidden_IsCa = b.IsCa
+	x.xxx_hidden_ParentData = b.ParentData
 	return m0
 }
 

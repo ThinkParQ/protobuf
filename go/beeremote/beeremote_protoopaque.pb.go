@@ -4,7 +4,7 @@
 // 	protoc        v5.29.2
 // source: beeremote.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package beeremote
 
@@ -168,10 +168,10 @@ func (x UpdateJobRequest_NewState) Number() protoreflect.EnumNumber {
 }
 
 type SubmitJobRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Request       *JobRequest            `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Request *JobRequest            `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *SubmitJobRequest) Reset() {
@@ -201,24 +201,24 @@ func (x *SubmitJobRequest) ProtoReflect() protoreflect.Message {
 
 func (x *SubmitJobRequest) GetRequest() *JobRequest {
 	if x != nil {
-		return x.Request
+		return x.xxx_hidden_Request
 	}
 	return nil
 }
 
 func (x *SubmitJobRequest) SetRequest(v *JobRequest) {
-	x.Request = v
+	x.xxx_hidden_Request = v
 }
 
 func (x *SubmitJobRequest) HasRequest() bool {
 	if x == nil {
 		return false
 	}
-	return x.Request != nil
+	return x.xxx_hidden_Request != nil
 }
 
 func (x *SubmitJobRequest) ClearRequest() {
-	x.Request = nil
+	x.xxx_hidden_Request = nil
 }
 
 type SubmitJobRequest_builder struct {
@@ -231,15 +231,15 @@ func (b0 SubmitJobRequest_builder) Build() *SubmitJobRequest {
 	m0 := &SubmitJobRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Request = b.Request
+	x.xxx_hidden_Request = b.Request
 	return m0
 }
 
 type SubmitJobResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Result        *JobResult             `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Result *JobResult             `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *SubmitJobResponse) Reset() {
@@ -269,24 +269,24 @@ func (x *SubmitJobResponse) ProtoReflect() protoreflect.Message {
 
 func (x *SubmitJobResponse) GetResult() *JobResult {
 	if x != nil {
-		return x.Result
+		return x.xxx_hidden_Result
 	}
 	return nil
 }
 
 func (x *SubmitJobResponse) SetResult(v *JobResult) {
-	x.Result = v
+	x.xxx_hidden_Result = v
 }
 
 func (x *SubmitJobResponse) HasResult() bool {
 	if x == nil {
 		return false
 	}
-	return x.Result != nil
+	return x.xxx_hidden_Result != nil
 }
 
 func (x *SubmitJobResponse) ClearResult() {
-	x.Result = nil
+	x.xxx_hidden_Result = nil
 }
 
 type SubmitJobResponse_builder struct {
@@ -299,7 +299,7 @@ func (b0 SubmitJobResponse_builder) Build() *SubmitJobResponse {
 	m0 := &SubmitJobResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Result = b.Result
+	x.xxx_hidden_Result = b.Result
 	return m0
 }
 
@@ -309,23 +309,14 @@ func (b0 SubmitJobResponse_builder) Build() *SubmitJobResponse {
 // so it does not include automatically generated fields like the job ID or
 // anything about the work request(s) used to execute the job.
 type JobRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	Path  string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
-	// An arbitrary name for a job can be specified.
-	// Job names are optional and not need to be unique.
-	Name     string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Priority int32  `protobuf:"varint,3,opt,name=priority,proto3" json:"priority,omitempty"`
-	// This is the uint32 ID, NOT an actual reference to an RST.
-	// This ensures we don't have to include the full RST configuration,
-	// every time we send a Entry (commonly as part of a Job).
-	RemoteStorageTarget uint32 `protobuf:"varint,4,opt,name=remote_storage_target,json=remoteStorageTarget,proto3" json:"remote_storage_target,omitempty"`
-	// Types that are valid to be assigned to Type:
-	//
-	//	*JobRequest_Sync
-	//	*JobRequest_Mock
-	Type          isJobRequest_Type `protobuf_oneof:"type"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Path                string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	xxx_hidden_Name                string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	xxx_hidden_Priority            int32                  `protobuf:"varint,3,opt,name=priority,proto3" json:"priority,omitempty"`
+	xxx_hidden_RemoteStorageTarget uint32                 `protobuf:"varint,4,opt,name=remote_storage_target,json=remoteStorageTarget,proto3" json:"remote_storage_target,omitempty"`
+	xxx_hidden_Type                isJobRequest_Type      `protobuf_oneof:"type"`
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *JobRequest) Reset() {
@@ -355,42 +346,35 @@ func (x *JobRequest) ProtoReflect() protoreflect.Message {
 
 func (x *JobRequest) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *JobRequest) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *JobRequest) GetPriority() int32 {
 	if x != nil {
-		return x.Priority
+		return x.xxx_hidden_Priority
 	}
 	return 0
 }
 
 func (x *JobRequest) GetRemoteStorageTarget() uint32 {
 	if x != nil {
-		return x.RemoteStorageTarget
+		return x.xxx_hidden_RemoteStorageTarget
 	}
 	return 0
 }
 
-func (x *JobRequest) GetType() isJobRequest_Type {
-	if x != nil {
-		return x.Type
-	}
-	return nil
-}
-
 func (x *JobRequest) GetSync() *flex.SyncJob {
 	if x != nil {
-		if x, ok := x.Type.(*JobRequest_Sync); ok {
+		if x, ok := x.xxx_hidden_Type.(*jobRequest_Sync); ok {
 			return x.Sync
 		}
 	}
@@ -399,7 +383,7 @@ func (x *JobRequest) GetSync() *flex.SyncJob {
 
 func (x *JobRequest) GetMock() *flex.MockJob {
 	if x != nil {
-		if x, ok := x.Type.(*JobRequest_Mock); ok {
+		if x, ok := x.xxx_hidden_Type.(*jobRequest_Mock); ok {
 			return x.Mock
 		}
 	}
@@ -407,49 +391,49 @@ func (x *JobRequest) GetMock() *flex.MockJob {
 }
 
 func (x *JobRequest) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 func (x *JobRequest) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *JobRequest) SetPriority(v int32) {
-	x.Priority = v
+	x.xxx_hidden_Priority = v
 }
 
 func (x *JobRequest) SetRemoteStorageTarget(v uint32) {
-	x.RemoteStorageTarget = v
+	x.xxx_hidden_RemoteStorageTarget = v
 }
 
 func (x *JobRequest) SetSync(v *flex.SyncJob) {
 	if v == nil {
-		x.Type = nil
+		x.xxx_hidden_Type = nil
 		return
 	}
-	x.Type = &JobRequest_Sync{v}
+	x.xxx_hidden_Type = &jobRequest_Sync{v}
 }
 
 func (x *JobRequest) SetMock(v *flex.MockJob) {
 	if v == nil {
-		x.Type = nil
+		x.xxx_hidden_Type = nil
 		return
 	}
-	x.Type = &JobRequest_Mock{v}
+	x.xxx_hidden_Type = &jobRequest_Mock{v}
 }
 
 func (x *JobRequest) HasType() bool {
 	if x == nil {
 		return false
 	}
-	return x.Type != nil
+	return x.xxx_hidden_Type != nil
 }
 
 func (x *JobRequest) HasSync() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Type.(*JobRequest_Sync)
+	_, ok := x.xxx_hidden_Type.(*jobRequest_Sync)
 	return ok
 }
 
@@ -457,23 +441,23 @@ func (x *JobRequest) HasMock() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Type.(*JobRequest_Mock)
+	_, ok := x.xxx_hidden_Type.(*jobRequest_Mock)
 	return ok
 }
 
 func (x *JobRequest) ClearType() {
-	x.Type = nil
+	x.xxx_hidden_Type = nil
 }
 
 func (x *JobRequest) ClearSync() {
-	if _, ok := x.Type.(*JobRequest_Sync); ok {
-		x.Type = nil
+	if _, ok := x.xxx_hidden_Type.(*jobRequest_Sync); ok {
+		x.xxx_hidden_Type = nil
 	}
 }
 
 func (x *JobRequest) ClearMock() {
-	if _, ok := x.Type.(*JobRequest_Mock); ok {
-		x.Type = nil
+	if _, ok := x.xxx_hidden_Type.(*jobRequest_Mock); ok {
+		x.xxx_hidden_Type = nil
 	}
 }
 
@@ -485,10 +469,10 @@ func (x *JobRequest) WhichType() case_JobRequest_Type {
 	if x == nil {
 		return JobRequest_Type_not_set_case
 	}
-	switch x.Type.(type) {
-	case *JobRequest_Sync:
+	switch x.xxx_hidden_Type.(type) {
+	case *jobRequest_Sync:
 		return JobRequest_Sync_case
-	case *JobRequest_Mock:
+	case *jobRequest_Mock:
 		return JobRequest_Mock_case
 	default:
 		return JobRequest_Type_not_set_case
@@ -507,25 +491,25 @@ type JobRequest_builder struct {
 	// This ensures we don't have to include the full RST configuration,
 	// every time we send a Entry (commonly as part of a Job).
 	RemoteStorageTarget uint32
-	// Fields of oneof Type:
+	// Fields of oneof xxx_hidden_Type:
 	Sync *flex.SyncJob
 	Mock *flex.MockJob
-	// -- end of Type
+	// -- end of xxx_hidden_Type
 }
 
 func (b0 JobRequest_builder) Build() *JobRequest {
 	m0 := &JobRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Path = b.Path
-	x.Name = b.Name
-	x.Priority = b.Priority
-	x.RemoteStorageTarget = b.RemoteStorageTarget
+	x.xxx_hidden_Path = b.Path
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Priority = b.Priority
+	x.xxx_hidden_RemoteStorageTarget = b.RemoteStorageTarget
 	if b.Sync != nil {
-		x.Type = &JobRequest_Sync{b.Sync}
+		x.xxx_hidden_Type = &jobRequest_Sync{b.Sync}
 	}
 	if b.Mock != nil {
-		x.Type = &JobRequest_Mock{b.Mock}
+		x.xxx_hidden_Type = &jobRequest_Mock{b.Mock}
 	}
 	return m0
 }
@@ -544,17 +528,17 @@ type isJobRequest_Type interface {
 	isJobRequest_Type()
 }
 
-type JobRequest_Sync struct {
+type jobRequest_Sync struct {
 	Sync *flex.SyncJob `protobuf:"bytes,10,opt,name=sync,proto3,oneof"`
 }
 
-type JobRequest_Mock struct {
+type jobRequest_Mock struct {
 	Mock *flex.MockJob `protobuf:"bytes,11,opt,name=mock,proto3,oneof"`
 }
 
-func (*JobRequest_Sync) isJobRequest_Type() {}
+func (*jobRequest_Sync) isJobRequest_Type() {}
 
-func (*JobRequest_Mock) isJobRequest_Type() {}
+func (*jobRequest_Mock) isJobRequest_Type() {}
 
 // Job contains all the data from the original request plus the job ID and
 // current status. This is what is stored in the database for each path. We
@@ -563,21 +547,14 @@ func (*JobRequest_Mock) isJobRequest_Type() {}
 // key/value stores. This approach simplifies encoding and decoding these
 // messages and allows us to quickly look up jobs by path or ID.
 type Job struct {
-	state   protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id      string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Request *JobRequest            `protobuf:"bytes,2,opt,name=request,proto3" json:"request,omitempty"`
-	Created *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created,proto3" json:"created,omitempty"`
-	// Status is usually updated using `GetStatus()` which returns a status a pointer to the status
-	// of the overall job. Because it returns a pointer the status and/or message can be updated
-	// directly. This allows you to modify one but not the other field (commonly message can change
-	// but status should not). The state should encompass the results for individual work requests.
-	// For example if some WRs are finished and others are still running the state would be RUNNING.
-	Status *Job_Status `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
-	// Used as the upload ID for multipart uploads, or any other time
-	// an external identifer is needed to coordinate a distributed transfer.
-	ExternalId    string `protobuf:"bytes,5,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id         string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	xxx_hidden_Request    *JobRequest            `protobuf:"bytes,2,opt,name=request,proto3" json:"request,omitempty"`
+	xxx_hidden_Created    *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created,proto3" json:"created,omitempty"`
+	xxx_hidden_Status     *Job_Status            `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	xxx_hidden_ExternalId string                 `protobuf:"bytes,5,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *Job) Reset() {
@@ -607,90 +584,90 @@ func (x *Job) ProtoReflect() protoreflect.Message {
 
 func (x *Job) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Job) GetRequest() *JobRequest {
 	if x != nil {
-		return x.Request
+		return x.xxx_hidden_Request
 	}
 	return nil
 }
 
 func (x *Job) GetCreated() *timestamppb.Timestamp {
 	if x != nil {
-		return x.Created
+		return x.xxx_hidden_Created
 	}
 	return nil
 }
 
 func (x *Job) GetStatus() *Job_Status {
 	if x != nil {
-		return x.Status
+		return x.xxx_hidden_Status
 	}
 	return nil
 }
 
 func (x *Job) GetExternalId() string {
 	if x != nil {
-		return x.ExternalId
+		return x.xxx_hidden_ExternalId
 	}
 	return ""
 }
 
 func (x *Job) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Job) SetRequest(v *JobRequest) {
-	x.Request = v
+	x.xxx_hidden_Request = v
 }
 
 func (x *Job) SetCreated(v *timestamppb.Timestamp) {
-	x.Created = v
+	x.xxx_hidden_Created = v
 }
 
 func (x *Job) SetStatus(v *Job_Status) {
-	x.Status = v
+	x.xxx_hidden_Status = v
 }
 
 func (x *Job) SetExternalId(v string) {
-	x.ExternalId = v
+	x.xxx_hidden_ExternalId = v
 }
 
 func (x *Job) HasRequest() bool {
 	if x == nil {
 		return false
 	}
-	return x.Request != nil
+	return x.xxx_hidden_Request != nil
 }
 
 func (x *Job) HasCreated() bool {
 	if x == nil {
 		return false
 	}
-	return x.Created != nil
+	return x.xxx_hidden_Created != nil
 }
 
 func (x *Job) HasStatus() bool {
 	if x == nil {
 		return false
 	}
-	return x.Status != nil
+	return x.xxx_hidden_Status != nil
 }
 
 func (x *Job) ClearRequest() {
-	x.Request = nil
+	x.xxx_hidden_Request = nil
 }
 
 func (x *Job) ClearCreated() {
-	x.Created = nil
+	x.xxx_hidden_Created = nil
 }
 
 func (x *Job) ClearStatus() {
-	x.Status = nil
+	x.xxx_hidden_Status = nil
 }
 
 type Job_builder struct {
@@ -714,11 +691,11 @@ func (b0 Job_builder) Build() *Job {
 	m0 := &Job{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Request = b.Request
-	x.Created = b.Created
-	x.Status = b.Status
-	x.ExternalId = b.ExternalId
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Request = b.Request
+	x.xxx_hidden_Created = b.Created
+	x.xxx_hidden_Status = b.Status
+	x.xxx_hidden_ExternalId = b.ExternalId
 	return m0
 }
 
@@ -726,12 +703,12 @@ func (b0 Job_builder) Build() *Job {
 // results are not directly embedded in the Job message to reduce the amount of data that needs to
 // be stored on-disk (notably work requests are deterministically generated).
 type JobResult struct {
-	state         protoimpl.MessageState  `protogen:"hybrid.v1"`
-	Job           *Job                    `protobuf:"bytes,1,opt,name=job,proto3" json:"job,omitempty"`
-	WorkRequests  []*flex.WorkRequest     `protobuf:"bytes,2,rep,name=work_requests,json=workRequests,proto3" json:"work_requests,omitempty"`
-	WorkResults   []*JobResult_WorkResult `protobuf:"bytes,3,rep,name=work_results,json=workResults,proto3" json:"work_results,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                   protoimpl.MessageState   `protogen:"opaque.v1"`
+	xxx_hidden_Job          *Job                     `protobuf:"bytes,1,opt,name=job,proto3" json:"job,omitempty"`
+	xxx_hidden_WorkRequests *[]*flex.WorkRequest     `protobuf:"bytes,2,rep,name=work_requests,json=workRequests,proto3" json:"work_requests,omitempty"`
+	xxx_hidden_WorkResults  *[]*JobResult_WorkResult `protobuf:"bytes,3,rep,name=work_results,json=workResults,proto3" json:"work_results,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *JobResult) Reset() {
@@ -761,46 +738,50 @@ func (x *JobResult) ProtoReflect() protoreflect.Message {
 
 func (x *JobResult) GetJob() *Job {
 	if x != nil {
-		return x.Job
+		return x.xxx_hidden_Job
 	}
 	return nil
 }
 
 func (x *JobResult) GetWorkRequests() []*flex.WorkRequest {
 	if x != nil {
-		return x.WorkRequests
+		if x.xxx_hidden_WorkRequests != nil {
+			return *x.xxx_hidden_WorkRequests
+		}
 	}
 	return nil
 }
 
 func (x *JobResult) GetWorkResults() []*JobResult_WorkResult {
 	if x != nil {
-		return x.WorkResults
+		if x.xxx_hidden_WorkResults != nil {
+			return *x.xxx_hidden_WorkResults
+		}
 	}
 	return nil
 }
 
 func (x *JobResult) SetJob(v *Job) {
-	x.Job = v
+	x.xxx_hidden_Job = v
 }
 
 func (x *JobResult) SetWorkRequests(v []*flex.WorkRequest) {
-	x.WorkRequests = v
+	x.xxx_hidden_WorkRequests = &v
 }
 
 func (x *JobResult) SetWorkResults(v []*JobResult_WorkResult) {
-	x.WorkResults = v
+	x.xxx_hidden_WorkResults = &v
 }
 
 func (x *JobResult) HasJob() bool {
 	if x == nil {
 		return false
 	}
-	return x.Job != nil
+	return x.xxx_hidden_Job != nil
 }
 
 func (x *JobResult) ClearJob() {
-	x.Job = nil
+	x.xxx_hidden_Job = nil
 }
 
 type JobResult_builder struct {
@@ -815,28 +796,19 @@ func (b0 JobResult_builder) Build() *JobResult {
 	m0 := &JobResult{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Job = b.Job
-	x.WorkRequests = b.WorkRequests
-	x.WorkResults = b.WorkResults
+	x.xxx_hidden_Job = b.Job
+	x.xxx_hidden_WorkRequests = &b.WorkRequests
+	x.xxx_hidden_WorkResults = &b.WorkResults
 	return m0
 }
 
 type UpdateJobRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// Types that are valid to be assigned to Query:
-	//
-	//	*UpdateJobRequest_ByIdAndPath
-	//	*UpdateJobRequest_ByExactPath
-	Query    isUpdateJobRequest_Query  `protobuf_oneof:"query"`
-	NewState UpdateJobRequest_NewState `protobuf:"varint,3,opt,name=new_state,json=newState,proto3,enum=beeremote.UpdateJobRequest_NewState" json:"new_state,omitempty"`
-	// Normally completed jobs are ignored when making updates so some number of completed jobs can
-	// be automatically retained to determine when a path has been successfully synchronized with an
-	// RST. If a user wants to delete a completed job, or perhaps there was some bug and the user
-	// wants to go back through the steps to cancel a job to try and cleanup/recover, this can be
-	// done through a force update.
-	ForceUpdate   bool `protobuf:"varint,4,opt,name=force_update,json=forceUpdate,proto3" json:"force_update,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState    `protogen:"opaque.v1"`
+	xxx_hidden_Query       isUpdateJobRequest_Query  `protobuf_oneof:"query"`
+	xxx_hidden_NewState    UpdateJobRequest_NewState `protobuf:"varint,3,opt,name=new_state,json=newState,proto3,enum=beeremote.UpdateJobRequest_NewState" json:"new_state,omitempty"`
+	xxx_hidden_ForceUpdate bool                      `protobuf:"varint,4,opt,name=force_update,json=forceUpdate,proto3" json:"force_update,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *UpdateJobRequest) Reset() {
@@ -864,16 +836,9 @@ func (x *UpdateJobRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *UpdateJobRequest) GetQuery() isUpdateJobRequest_Query {
-	if x != nil {
-		return x.Query
-	}
-	return nil
-}
-
 func (x *UpdateJobRequest) GetByIdAndPath() *UpdateJobRequest_QueryIdAndPath {
 	if x != nil {
-		if x, ok := x.Query.(*UpdateJobRequest_ByIdAndPath); ok {
+		if x, ok := x.xxx_hidden_Query.(*updateJobRequest_ByIdAndPath); ok {
 			return x.ByIdAndPath
 		}
 	}
@@ -882,7 +847,7 @@ func (x *UpdateJobRequest) GetByIdAndPath() *UpdateJobRequest_QueryIdAndPath {
 
 func (x *UpdateJobRequest) GetByExactPath() string {
 	if x != nil {
-		if x, ok := x.Query.(*UpdateJobRequest_ByExactPath); ok {
+		if x, ok := x.xxx_hidden_Query.(*updateJobRequest_ByExactPath); ok {
 			return x.ByExactPath
 		}
 	}
@@ -891,50 +856,50 @@ func (x *UpdateJobRequest) GetByExactPath() string {
 
 func (x *UpdateJobRequest) GetNewState() UpdateJobRequest_NewState {
 	if x != nil {
-		return x.NewState
+		return x.xxx_hidden_NewState
 	}
 	return UpdateJobRequest_UNSPECIFIED
 }
 
 func (x *UpdateJobRequest) GetForceUpdate() bool {
 	if x != nil {
-		return x.ForceUpdate
+		return x.xxx_hidden_ForceUpdate
 	}
 	return false
 }
 
 func (x *UpdateJobRequest) SetByIdAndPath(v *UpdateJobRequest_QueryIdAndPath) {
 	if v == nil {
-		x.Query = nil
+		x.xxx_hidden_Query = nil
 		return
 	}
-	x.Query = &UpdateJobRequest_ByIdAndPath{v}
+	x.xxx_hidden_Query = &updateJobRequest_ByIdAndPath{v}
 }
 
 func (x *UpdateJobRequest) SetByExactPath(v string) {
-	x.Query = &UpdateJobRequest_ByExactPath{v}
+	x.xxx_hidden_Query = &updateJobRequest_ByExactPath{v}
 }
 
 func (x *UpdateJobRequest) SetNewState(v UpdateJobRequest_NewState) {
-	x.NewState = v
+	x.xxx_hidden_NewState = v
 }
 
 func (x *UpdateJobRequest) SetForceUpdate(v bool) {
-	x.ForceUpdate = v
+	x.xxx_hidden_ForceUpdate = v
 }
 
 func (x *UpdateJobRequest) HasQuery() bool {
 	if x == nil {
 		return false
 	}
-	return x.Query != nil
+	return x.xxx_hidden_Query != nil
 }
 
 func (x *UpdateJobRequest) HasByIdAndPath() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Query.(*UpdateJobRequest_ByIdAndPath)
+	_, ok := x.xxx_hidden_Query.(*updateJobRequest_ByIdAndPath)
 	return ok
 }
 
@@ -942,23 +907,23 @@ func (x *UpdateJobRequest) HasByExactPath() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Query.(*UpdateJobRequest_ByExactPath)
+	_, ok := x.xxx_hidden_Query.(*updateJobRequest_ByExactPath)
 	return ok
 }
 
 func (x *UpdateJobRequest) ClearQuery() {
-	x.Query = nil
+	x.xxx_hidden_Query = nil
 }
 
 func (x *UpdateJobRequest) ClearByIdAndPath() {
-	if _, ok := x.Query.(*UpdateJobRequest_ByIdAndPath); ok {
-		x.Query = nil
+	if _, ok := x.xxx_hidden_Query.(*updateJobRequest_ByIdAndPath); ok {
+		x.xxx_hidden_Query = nil
 	}
 }
 
 func (x *UpdateJobRequest) ClearByExactPath() {
-	if _, ok := x.Query.(*UpdateJobRequest_ByExactPath); ok {
-		x.Query = nil
+	if _, ok := x.xxx_hidden_Query.(*updateJobRequest_ByExactPath); ok {
+		x.xxx_hidden_Query = nil
 	}
 }
 
@@ -970,10 +935,10 @@ func (x *UpdateJobRequest) WhichQuery() case_UpdateJobRequest_Query {
 	if x == nil {
 		return UpdateJobRequest_Query_not_set_case
 	}
-	switch x.Query.(type) {
-	case *UpdateJobRequest_ByIdAndPath:
+	switch x.xxx_hidden_Query.(type) {
+	case *updateJobRequest_ByIdAndPath:
 		return UpdateJobRequest_ByIdAndPath_case
-	case *UpdateJobRequest_ByExactPath:
+	case *updateJobRequest_ByExactPath:
 		return UpdateJobRequest_ByExactPath_case
 	default:
 		return UpdateJobRequest_Query_not_set_case
@@ -983,12 +948,12 @@ func (x *UpdateJobRequest) WhichQuery() case_UpdateJobRequest_Query {
 type UpdateJobRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Fields of oneof Query:
+	// Fields of oneof xxx_hidden_Query:
 	// Updates at most one job.
 	ByIdAndPath *UpdateJobRequest_QueryIdAndPath
 	// Updates all jobs with this path.
 	ByExactPath *string
-	// -- end of Query
+	// -- end of xxx_hidden_Query
 	NewState UpdateJobRequest_NewState
 	// Normally completed jobs are ignored when making updates so some number of completed jobs can
 	// be automatically retained to determine when a path has been successfully synchronized with an
@@ -1003,13 +968,13 @@ func (b0 UpdateJobRequest_builder) Build() *UpdateJobRequest {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.ByIdAndPath != nil {
-		x.Query = &UpdateJobRequest_ByIdAndPath{b.ByIdAndPath}
+		x.xxx_hidden_Query = &updateJobRequest_ByIdAndPath{b.ByIdAndPath}
 	}
 	if b.ByExactPath != nil {
-		x.Query = &UpdateJobRequest_ByExactPath{*b.ByExactPath}
+		x.xxx_hidden_Query = &updateJobRequest_ByExactPath{*b.ByExactPath}
 	}
-	x.NewState = b.NewState
-	x.ForceUpdate = b.ForceUpdate
+	x.xxx_hidden_NewState = b.NewState
+	x.xxx_hidden_ForceUpdate = b.ForceUpdate
 	return m0
 }
 
@@ -1027,36 +992,31 @@ type isUpdateJobRequest_Query interface {
 	isUpdateJobRequest_Query()
 }
 
-type UpdateJobRequest_ByIdAndPath struct {
+type updateJobRequest_ByIdAndPath struct {
 	// Updates at most one job.
 	ByIdAndPath *UpdateJobRequest_QueryIdAndPath `protobuf:"bytes,1,opt,name=by_id_and_path,json=byIdAndPath,proto3,oneof"`
 }
 
-type UpdateJobRequest_ByExactPath struct {
+type updateJobRequest_ByExactPath struct {
 	// Updates all jobs with this path.
 	ByExactPath string `protobuf:"bytes,2,opt,name=by_exact_path,json=byExactPath,proto3,oneof"`
 }
 
-func (*UpdateJobRequest_ByIdAndPath) isUpdateJobRequest_Query() {}
+func (*updateJobRequest_ByIdAndPath) isUpdateJobRequest_Query() {}
 
-func (*UpdateJobRequest_ByExactPath) isUpdateJobRequest_Query() {}
+func (*updateJobRequest_ByExactPath) isUpdateJobRequest_Query() {}
 
 // Updating jobs can happen asynchronously or synchronously depending if wait is
 // set in the UpdateJobRequest.If wait == true then JobResponses will contain
 // one or morwe job responses with the updated status of the job(s). Otherwise
 // it will be empty.
 type UpdateJobResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// If the newState could not be applied to any of the jobs then ok will be
-	// false. Inspect the message and individual job responses to troubleshoot
-	// further. Generally the message will indicate any internal errors whereas
-	// the status of individual jobs will indicate problems applying the new
-	// state to that particular job.
-	Ok            bool         `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	Message       string       `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Results       []*JobResult `protobuf:"bytes,3,rep,name=results,proto3" json:"results,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Ok      bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	xxx_hidden_Message string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	xxx_hidden_Results *[]*JobResult          `protobuf:"bytes,3,rep,name=results,proto3" json:"results,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *UpdateJobResponse) Reset() {
@@ -1086,35 +1046,37 @@ func (x *UpdateJobResponse) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateJobResponse) GetOk() bool {
 	if x != nil {
-		return x.Ok
+		return x.xxx_hidden_Ok
 	}
 	return false
 }
 
 func (x *UpdateJobResponse) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *UpdateJobResponse) GetResults() []*JobResult {
 	if x != nil {
-		return x.Results
+		if x.xxx_hidden_Results != nil {
+			return *x.xxx_hidden_Results
+		}
 	}
 	return nil
 }
 
 func (x *UpdateJobResponse) SetOk(v bool) {
-	x.Ok = v
+	x.xxx_hidden_Ok = v
 }
 
 func (x *UpdateJobResponse) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 func (x *UpdateJobResponse) SetResults(v []*JobResult) {
-	x.Results = v
+	x.xxx_hidden_Results = &v
 }
 
 type UpdateJobResponse_builder struct {
@@ -1134,9 +1096,9 @@ func (b0 UpdateJobResponse_builder) Build() *UpdateJobResponse {
 	m0 := &UpdateJobResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Ok = b.Ok
-	x.Message = b.Message
-	x.Results = b.Results
+	x.xxx_hidden_Ok = b.Ok
+	x.xxx_hidden_Message = b.Message
+	x.xxx_hidden_Results = &b.Results
 	return m0
 }
 
@@ -1148,26 +1110,13 @@ func (b0 UpdateJobResponse_builder) Build() *UpdateJobResponse {
 // have to duplicate all information and can use the Metadata field of the
 // MapStore to create references to data stored in other MapStores.
 type GetJobsRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// Types that are valid to be assigned to Query:
-	//
-	//	*GetJobsRequest_ByJobIdAndPath
-	//	*GetJobsRequest_ByExactPath
-	//	*GetJobsRequest_ByPathPrefix
-	Query               isGetJobsRequest_Query `protobuf_oneof:"query"`
-	IncludeWorkRequests bool                   `protobuf:"varint,4,opt,name=include_work_requests,json=includeWorkRequests,proto3" json:"include_work_requests,omitempty"`
-	// Set to true to also return work results details.
-	IncludeWorkResults bool `protobuf:"varint,5,opt,name=include_work_results,json=includeWorkResults,proto3" json:"include_work_results,omitempty"`
-	// By default we just return the latest results known to BeeRemote and don't
-	// pull the latest work results from worker nodes and update the job status.
-	// We can optionally request an update from all worker nodes for each job
-	// and also update the job status, however this inccurs extra overhead as we'll
-	// have to lock the entries and send extra messages to get the latest status.
-	// Generally this should only be used to get the latest updates from a single
-	// job or all jobs for a particular path.
-	UpdateWorkResults bool `protobuf:"varint,6,opt,name=update_work_results,json=updateWorkResults,proto3" json:"update_work_results,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Query               isGetJobsRequest_Query `protobuf_oneof:"query"`
+	xxx_hidden_IncludeWorkRequests bool                   `protobuf:"varint,4,opt,name=include_work_requests,json=includeWorkRequests,proto3" json:"include_work_requests,omitempty"`
+	xxx_hidden_IncludeWorkResults  bool                   `protobuf:"varint,5,opt,name=include_work_results,json=includeWorkResults,proto3" json:"include_work_results,omitempty"`
+	xxx_hidden_UpdateWorkResults   bool                   `protobuf:"varint,6,opt,name=update_work_results,json=updateWorkResults,proto3" json:"update_work_results,omitempty"`
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *GetJobsRequest) Reset() {
@@ -1195,16 +1144,9 @@ func (x *GetJobsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *GetJobsRequest) GetQuery() isGetJobsRequest_Query {
-	if x != nil {
-		return x.Query
-	}
-	return nil
-}
-
 func (x *GetJobsRequest) GetByJobIdAndPath() *GetJobsRequest_QueryIdAndPath {
 	if x != nil {
-		if x, ok := x.Query.(*GetJobsRequest_ByJobIdAndPath); ok {
+		if x, ok := x.xxx_hidden_Query.(*getJobsRequest_ByJobIdAndPath); ok {
 			return x.ByJobIdAndPath
 		}
 	}
@@ -1213,7 +1155,7 @@ func (x *GetJobsRequest) GetByJobIdAndPath() *GetJobsRequest_QueryIdAndPath {
 
 func (x *GetJobsRequest) GetByExactPath() string {
 	if x != nil {
-		if x, ok := x.Query.(*GetJobsRequest_ByExactPath); ok {
+		if x, ok := x.xxx_hidden_Query.(*getJobsRequest_ByExactPath); ok {
 			return x.ByExactPath
 		}
 	}
@@ -1222,7 +1164,7 @@ func (x *GetJobsRequest) GetByExactPath() string {
 
 func (x *GetJobsRequest) GetByPathPrefix() string {
 	if x != nil {
-		if x, ok := x.Query.(*GetJobsRequest_ByPathPrefix); ok {
+		if x, ok := x.xxx_hidden_Query.(*getJobsRequest_ByPathPrefix); ok {
 			return x.ByPathPrefix
 		}
 	}
@@ -1231,65 +1173,65 @@ func (x *GetJobsRequest) GetByPathPrefix() string {
 
 func (x *GetJobsRequest) GetIncludeWorkRequests() bool {
 	if x != nil {
-		return x.IncludeWorkRequests
+		return x.xxx_hidden_IncludeWorkRequests
 	}
 	return false
 }
 
 func (x *GetJobsRequest) GetIncludeWorkResults() bool {
 	if x != nil {
-		return x.IncludeWorkResults
+		return x.xxx_hidden_IncludeWorkResults
 	}
 	return false
 }
 
 func (x *GetJobsRequest) GetUpdateWorkResults() bool {
 	if x != nil {
-		return x.UpdateWorkResults
+		return x.xxx_hidden_UpdateWorkResults
 	}
 	return false
 }
 
 func (x *GetJobsRequest) SetByJobIdAndPath(v *GetJobsRequest_QueryIdAndPath) {
 	if v == nil {
-		x.Query = nil
+		x.xxx_hidden_Query = nil
 		return
 	}
-	x.Query = &GetJobsRequest_ByJobIdAndPath{v}
+	x.xxx_hidden_Query = &getJobsRequest_ByJobIdAndPath{v}
 }
 
 func (x *GetJobsRequest) SetByExactPath(v string) {
-	x.Query = &GetJobsRequest_ByExactPath{v}
+	x.xxx_hidden_Query = &getJobsRequest_ByExactPath{v}
 }
 
 func (x *GetJobsRequest) SetByPathPrefix(v string) {
-	x.Query = &GetJobsRequest_ByPathPrefix{v}
+	x.xxx_hidden_Query = &getJobsRequest_ByPathPrefix{v}
 }
 
 func (x *GetJobsRequest) SetIncludeWorkRequests(v bool) {
-	x.IncludeWorkRequests = v
+	x.xxx_hidden_IncludeWorkRequests = v
 }
 
 func (x *GetJobsRequest) SetIncludeWorkResults(v bool) {
-	x.IncludeWorkResults = v
+	x.xxx_hidden_IncludeWorkResults = v
 }
 
 func (x *GetJobsRequest) SetUpdateWorkResults(v bool) {
-	x.UpdateWorkResults = v
+	x.xxx_hidden_UpdateWorkResults = v
 }
 
 func (x *GetJobsRequest) HasQuery() bool {
 	if x == nil {
 		return false
 	}
-	return x.Query != nil
+	return x.xxx_hidden_Query != nil
 }
 
 func (x *GetJobsRequest) HasByJobIdAndPath() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Query.(*GetJobsRequest_ByJobIdAndPath)
+	_, ok := x.xxx_hidden_Query.(*getJobsRequest_ByJobIdAndPath)
 	return ok
 }
 
@@ -1297,7 +1239,7 @@ func (x *GetJobsRequest) HasByExactPath() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Query.(*GetJobsRequest_ByExactPath)
+	_, ok := x.xxx_hidden_Query.(*getJobsRequest_ByExactPath)
 	return ok
 }
 
@@ -1305,29 +1247,29 @@ func (x *GetJobsRequest) HasByPathPrefix() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Query.(*GetJobsRequest_ByPathPrefix)
+	_, ok := x.xxx_hidden_Query.(*getJobsRequest_ByPathPrefix)
 	return ok
 }
 
 func (x *GetJobsRequest) ClearQuery() {
-	x.Query = nil
+	x.xxx_hidden_Query = nil
 }
 
 func (x *GetJobsRequest) ClearByJobIdAndPath() {
-	if _, ok := x.Query.(*GetJobsRequest_ByJobIdAndPath); ok {
-		x.Query = nil
+	if _, ok := x.xxx_hidden_Query.(*getJobsRequest_ByJobIdAndPath); ok {
+		x.xxx_hidden_Query = nil
 	}
 }
 
 func (x *GetJobsRequest) ClearByExactPath() {
-	if _, ok := x.Query.(*GetJobsRequest_ByExactPath); ok {
-		x.Query = nil
+	if _, ok := x.xxx_hidden_Query.(*getJobsRequest_ByExactPath); ok {
+		x.xxx_hidden_Query = nil
 	}
 }
 
 func (x *GetJobsRequest) ClearByPathPrefix() {
-	if _, ok := x.Query.(*GetJobsRequest_ByPathPrefix); ok {
-		x.Query = nil
+	if _, ok := x.xxx_hidden_Query.(*getJobsRequest_ByPathPrefix); ok {
+		x.xxx_hidden_Query = nil
 	}
 }
 
@@ -1340,12 +1282,12 @@ func (x *GetJobsRequest) WhichQuery() case_GetJobsRequest_Query {
 	if x == nil {
 		return GetJobsRequest_Query_not_set_case
 	}
-	switch x.Query.(type) {
-	case *GetJobsRequest_ByJobIdAndPath:
+	switch x.xxx_hidden_Query.(type) {
+	case *getJobsRequest_ByJobIdAndPath:
 		return GetJobsRequest_ByJobIdAndPath_case
-	case *GetJobsRequest_ByExactPath:
+	case *getJobsRequest_ByExactPath:
 		return GetJobsRequest_ByExactPath_case
-	case *GetJobsRequest_ByPathPrefix:
+	case *getJobsRequest_ByPathPrefix:
 		return GetJobsRequest_ByPathPrefix_case
 	default:
 		return GetJobsRequest_Query_not_set_case
@@ -1355,7 +1297,7 @@ func (x *GetJobsRequest) WhichQuery() case_GetJobsRequest_Query {
 type GetJobsRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// Fields of oneof Query:
+	// Fields of oneof xxx_hidden_Query:
 	// Returns at most one Job.
 	ByJobIdAndPath *GetJobsRequest_QueryIdAndPath
 	// Returns all Jobs for the specified path.
@@ -1363,7 +1305,7 @@ type GetJobsRequest_builder struct {
 	// Returns all Jobs for the specified paths.
 	// All jobs can be returned by specifying "/".
 	ByPathPrefix *string
-	// -- end of Query
+	// -- end of xxx_hidden_Query
 	IncludeWorkRequests bool
 	// Set to true to also return work results details.
 	IncludeWorkResults bool
@@ -1382,17 +1324,17 @@ func (b0 GetJobsRequest_builder) Build() *GetJobsRequest {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.ByJobIdAndPath != nil {
-		x.Query = &GetJobsRequest_ByJobIdAndPath{b.ByJobIdAndPath}
+		x.xxx_hidden_Query = &getJobsRequest_ByJobIdAndPath{b.ByJobIdAndPath}
 	}
 	if b.ByExactPath != nil {
-		x.Query = &GetJobsRequest_ByExactPath{*b.ByExactPath}
+		x.xxx_hidden_Query = &getJobsRequest_ByExactPath{*b.ByExactPath}
 	}
 	if b.ByPathPrefix != nil {
-		x.Query = &GetJobsRequest_ByPathPrefix{*b.ByPathPrefix}
+		x.xxx_hidden_Query = &getJobsRequest_ByPathPrefix{*b.ByPathPrefix}
 	}
-	x.IncludeWorkRequests = b.IncludeWorkRequests
-	x.IncludeWorkResults = b.IncludeWorkResults
-	x.UpdateWorkResults = b.UpdateWorkResults
+	x.xxx_hidden_IncludeWorkRequests = b.IncludeWorkRequests
+	x.xxx_hidden_IncludeWorkResults = b.IncludeWorkResults
+	x.xxx_hidden_UpdateWorkResults = b.UpdateWorkResults
 	return m0
 }
 
@@ -1410,34 +1352,34 @@ type isGetJobsRequest_Query interface {
 	isGetJobsRequest_Query()
 }
 
-type GetJobsRequest_ByJobIdAndPath struct {
+type getJobsRequest_ByJobIdAndPath struct {
 	// Returns at most one Job.
 	ByJobIdAndPath *GetJobsRequest_QueryIdAndPath `protobuf:"bytes,1,opt,name=by_job_id_and_path,json=byJobIdAndPath,proto3,oneof"`
 }
 
-type GetJobsRequest_ByExactPath struct {
+type getJobsRequest_ByExactPath struct {
 	// Returns all Jobs for the specified path.
 	ByExactPath string `protobuf:"bytes,2,opt,name=by_exact_path,json=byExactPath,proto3,oneof"`
 }
 
-type GetJobsRequest_ByPathPrefix struct {
+type getJobsRequest_ByPathPrefix struct {
 	// Returns all Jobs for the specified paths.
 	// All jobs can be returned by specifying "/".
 	ByPathPrefix string `protobuf:"bytes,3,opt,name=by_path_prefix,json=byPathPrefix,proto3,oneof"`
 }
 
-func (*GetJobsRequest_ByJobIdAndPath) isGetJobsRequest_Query() {}
+func (*getJobsRequest_ByJobIdAndPath) isGetJobsRequest_Query() {}
 
-func (*GetJobsRequest_ByExactPath) isGetJobsRequest_Query() {}
+func (*getJobsRequest_ByExactPath) isGetJobsRequest_Query() {}
 
-func (*GetJobsRequest_ByPathPrefix) isGetJobsRequest_Query() {}
+func (*getJobsRequest_ByPathPrefix) isGetJobsRequest_Query() {}
 
 type GetJobsResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
-	Results       []*JobResult           `protobuf:"bytes,2,rep,name=results,proto3" json:"results,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Path    string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	xxx_hidden_Results *[]*JobResult          `protobuf:"bytes,2,rep,name=results,proto3" json:"results,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetJobsResponse) Reset() {
@@ -1467,24 +1409,26 @@ func (x *GetJobsResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetJobsResponse) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *GetJobsResponse) GetResults() []*JobResult {
 	if x != nil {
-		return x.Results
+		if x.xxx_hidden_Results != nil {
+			return *x.xxx_hidden_Results
+		}
 	}
 	return nil
 }
 
 func (x *GetJobsResponse) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 func (x *GetJobsResponse) SetResults(v []*JobResult) {
-	x.Results = v
+	x.xxx_hidden_Results = &v
 }
 
 type GetJobsResponse_builder struct {
@@ -1498,16 +1442,16 @@ func (b0 GetJobsResponse_builder) Build() *GetJobsResponse {
 	m0 := &GetJobsResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Path = b.Path
-	x.Results = b.Results
+	x.xxx_hidden_Path = b.Path
+	x.xxx_hidden_Results = &b.Results
 	return m0
 }
 
 type UpdateWorkRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Work          *flex.Work             `protobuf:"bytes,1,opt,name=work,proto3" json:"work,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Work *flex.Work             `protobuf:"bytes,1,opt,name=work,proto3" json:"work,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *UpdateWorkRequest) Reset() {
@@ -1537,24 +1481,24 @@ func (x *UpdateWorkRequest) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateWorkRequest) GetWork() *flex.Work {
 	if x != nil {
-		return x.Work
+		return x.xxx_hidden_Work
 	}
 	return nil
 }
 
 func (x *UpdateWorkRequest) SetWork(v *flex.Work) {
-	x.Work = v
+	x.xxx_hidden_Work = v
 }
 
 func (x *UpdateWorkRequest) HasWork() bool {
 	if x == nil {
 		return false
 	}
-	return x.Work != nil
+	return x.xxx_hidden_Work != nil
 }
 
 func (x *UpdateWorkRequest) ClearWork() {
-	x.Work = nil
+	x.xxx_hidden_Work = nil
 }
 
 type UpdateWorkRequest_builder struct {
@@ -1567,12 +1511,12 @@ func (b0 UpdateWorkRequest_builder) Build() *UpdateWorkRequest {
 	m0 := &UpdateWorkRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Work = b.Work
+	x.xxx_hidden_Work = b.Work
 	return m0
 }
 
 type UpdateWorkResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1615,7 +1559,7 @@ func (b0 UpdateWorkResponse_builder) Build() *UpdateWorkResponse {
 }
 
 type GetRSTConfigRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1658,10 +1602,10 @@ func (b0 GetRSTConfigRequest_builder) Build() *GetRSTConfigRequest {
 }
 
 type GetRSTConfigResponse struct {
-	state         protoimpl.MessageState      `protogen:"hybrid.v1"`
-	Rsts          []*flex.RemoteStorageTarget `protobuf:"bytes,1,rep,name=rsts,proto3" json:"rsts,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState       `protogen:"opaque.v1"`
+	xxx_hidden_Rsts *[]*flex.RemoteStorageTarget `protobuf:"bytes,1,rep,name=rsts,proto3" json:"rsts,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *GetRSTConfigResponse) Reset() {
@@ -1691,13 +1635,15 @@ func (x *GetRSTConfigResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetRSTConfigResponse) GetRsts() []*flex.RemoteStorageTarget {
 	if x != nil {
-		return x.Rsts
+		if x.xxx_hidden_Rsts != nil {
+			return *x.xxx_hidden_Rsts
+		}
 	}
 	return nil
 }
 
 func (x *GetRSTConfigResponse) SetRsts(v []*flex.RemoteStorageTarget) {
-	x.Rsts = v
+	x.xxx_hidden_Rsts = &v
 }
 
 type GetRSTConfigResponse_builder struct {
@@ -1710,28 +1656,17 @@ func (b0 GetRSTConfigResponse_builder) Build() *GetRSTConfigResponse {
 	m0 := &GetRSTConfigResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Rsts = b.Rsts
+	x.xxx_hidden_Rsts = &b.Rsts
 	return m0
 }
 
 type Job_Status struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	State Job_State              `protobuf:"varint,1,opt,name=state,proto3,enum=beeremote.Job_State" json:"state,omitempty"`
-	// Message should be used to return any additional details, particularly to aid in
-	// troubleshooting. When useful for troubleshooting, multiple historical messages may be
-	// concatenated together in the format: "oldest message; newer message; newest message".
-	// Especially if the request goes through multiple state transitions (for example error to
-	// failed) this can be helpful to troubleshoot the chain of events that lead to a failure.
-	// Note messages should not be concatenated for the entire life of a request, and should
-	// generally be reset when either the state transitions from an expected to another expected
-	// state (i.e., UNASSIGNED->SCHEDULED), or when a request experienced an error or failure and
-	// was automatically or manually retried. Don't keep the message intact across multiple failed
-	// retries as this (a) makes troubleshooting each failure difficult and (b) means the message
-	// size can eventually grow beyond a reasonable limit and cause other issues.
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated,proto3" json:"updated,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_State   Job_State              `protobuf:"varint,1,opt,name=state,proto3,enum=beeremote.Job_State" json:"state,omitempty"`
+	xxx_hidden_Message string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	xxx_hidden_Updated *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated,proto3" json:"updated,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *Job_Status) Reset() {
@@ -1761,46 +1696,46 @@ func (x *Job_Status) ProtoReflect() protoreflect.Message {
 
 func (x *Job_Status) GetState() Job_State {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return Job_UNSPECIFIED
 }
 
 func (x *Job_Status) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *Job_Status) GetUpdated() *timestamppb.Timestamp {
 	if x != nil {
-		return x.Updated
+		return x.xxx_hidden_Updated
 	}
 	return nil
 }
 
 func (x *Job_Status) SetState(v Job_State) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 func (x *Job_Status) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 func (x *Job_Status) SetUpdated(v *timestamppb.Timestamp) {
-	x.Updated = v
+	x.xxx_hidden_Updated = v
 }
 
 func (x *Job_Status) HasUpdated() bool {
 	if x == nil {
 		return false
 	}
-	return x.Updated != nil
+	return x.xxx_hidden_Updated != nil
 }
 
 func (x *Job_Status) ClearUpdated() {
-	x.Updated = nil
+	x.xxx_hidden_Updated = nil
 }
 
 type Job_Status_builder struct {
@@ -1826,19 +1761,19 @@ func (b0 Job_Status_builder) Build() *Job_Status {
 	m0 := &Job_Status{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.State = b.State
-	x.Message = b.Message
-	x.Updated = b.Updated
+	x.xxx_hidden_State = b.State
+	x.xxx_hidden_Message = b.Message
+	x.xxx_hidden_Updated = b.Updated
 	return m0
 }
 
 type JobResult_WorkResult struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Work          *flex.Work             `protobuf:"bytes,1,opt,name=work,proto3" json:"work,omitempty"`
-	AssignedNode  string                 `protobuf:"bytes,2,opt,name=assigned_node,json=assignedNode,proto3" json:"assigned_node,omitempty"`
-	AssignedPool  string                 `protobuf:"bytes,3,opt,name=assigned_pool,json=assignedPool,proto3" json:"assigned_pool,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Work         *flex.Work             `protobuf:"bytes,1,opt,name=work,proto3" json:"work,omitempty"`
+	xxx_hidden_AssignedNode string                 `protobuf:"bytes,2,opt,name=assigned_node,json=assignedNode,proto3" json:"assigned_node,omitempty"`
+	xxx_hidden_AssignedPool string                 `protobuf:"bytes,3,opt,name=assigned_pool,json=assignedPool,proto3" json:"assigned_pool,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *JobResult_WorkResult) Reset() {
@@ -1868,46 +1803,46 @@ func (x *JobResult_WorkResult) ProtoReflect() protoreflect.Message {
 
 func (x *JobResult_WorkResult) GetWork() *flex.Work {
 	if x != nil {
-		return x.Work
+		return x.xxx_hidden_Work
 	}
 	return nil
 }
 
 func (x *JobResult_WorkResult) GetAssignedNode() string {
 	if x != nil {
-		return x.AssignedNode
+		return x.xxx_hidden_AssignedNode
 	}
 	return ""
 }
 
 func (x *JobResult_WorkResult) GetAssignedPool() string {
 	if x != nil {
-		return x.AssignedPool
+		return x.xxx_hidden_AssignedPool
 	}
 	return ""
 }
 
 func (x *JobResult_WorkResult) SetWork(v *flex.Work) {
-	x.Work = v
+	x.xxx_hidden_Work = v
 }
 
 func (x *JobResult_WorkResult) SetAssignedNode(v string) {
-	x.AssignedNode = v
+	x.xxx_hidden_AssignedNode = v
 }
 
 func (x *JobResult_WorkResult) SetAssignedPool(v string) {
-	x.AssignedPool = v
+	x.xxx_hidden_AssignedPool = v
 }
 
 func (x *JobResult_WorkResult) HasWork() bool {
 	if x == nil {
 		return false
 	}
-	return x.Work != nil
+	return x.xxx_hidden_Work != nil
 }
 
 func (x *JobResult_WorkResult) ClearWork() {
-	x.Work = nil
+	x.xxx_hidden_Work = nil
 }
 
 type JobResult_WorkResult_builder struct {
@@ -1922,18 +1857,18 @@ func (b0 JobResult_WorkResult_builder) Build() *JobResult_WorkResult {
 	m0 := &JobResult_WorkResult{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Work = b.Work
-	x.AssignedNode = b.AssignedNode
-	x.AssignedPool = b.AssignedPool
+	x.xxx_hidden_Work = b.Work
+	x.xxx_hidden_AssignedNode = b.AssignedNode
+	x.xxx_hidden_AssignedPool = b.AssignedPool
 	return m0
 }
 
 type UpdateJobRequest_QueryIdAndPath struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	Path          string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_JobId string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	xxx_hidden_Path  string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *UpdateJobRequest_QueryIdAndPath) Reset() {
@@ -1963,24 +1898,24 @@ func (x *UpdateJobRequest_QueryIdAndPath) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateJobRequest_QueryIdAndPath) GetJobId() string {
 	if x != nil {
-		return x.JobId
+		return x.xxx_hidden_JobId
 	}
 	return ""
 }
 
 func (x *UpdateJobRequest_QueryIdAndPath) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *UpdateJobRequest_QueryIdAndPath) SetJobId(v string) {
-	x.JobId = v
+	x.xxx_hidden_JobId = v
 }
 
 func (x *UpdateJobRequest_QueryIdAndPath) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 type UpdateJobRequest_QueryIdAndPath_builder struct {
@@ -1994,17 +1929,17 @@ func (b0 UpdateJobRequest_QueryIdAndPath_builder) Build() *UpdateJobRequest_Quer
 	m0 := &UpdateJobRequest_QueryIdAndPath{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.JobId = b.JobId
-	x.Path = b.Path
+	x.xxx_hidden_JobId = b.JobId
+	x.xxx_hidden_Path = b.Path
 	return m0
 }
 
 type GetJobsRequest_QueryIdAndPath struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	Path          string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_JobId string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	xxx_hidden_Path  string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *GetJobsRequest_QueryIdAndPath) Reset() {
@@ -2034,24 +1969,24 @@ func (x *GetJobsRequest_QueryIdAndPath) ProtoReflect() protoreflect.Message {
 
 func (x *GetJobsRequest_QueryIdAndPath) GetJobId() string {
 	if x != nil {
-		return x.JobId
+		return x.xxx_hidden_JobId
 	}
 	return ""
 }
 
 func (x *GetJobsRequest_QueryIdAndPath) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *GetJobsRequest_QueryIdAndPath) SetJobId(v string) {
-	x.JobId = v
+	x.xxx_hidden_JobId = v
 }
 
 func (x *GetJobsRequest_QueryIdAndPath) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 type GetJobsRequest_QueryIdAndPath_builder struct {
@@ -2065,8 +2000,8 @@ func (b0 GetJobsRequest_QueryIdAndPath_builder) Build() *GetJobsRequest_QueryIdA
 	m0 := &GetJobsRequest_QueryIdAndPath{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.JobId = b.JobId
-	x.Path = b.Path
+	x.xxx_hidden_JobId = b.JobId
+	x.xxx_hidden_Path = b.Path
 	return m0
 }
 
@@ -2322,17 +2257,17 @@ func file_beeremote_proto_init() {
 		return
 	}
 	file_beeremote_proto_msgTypes[2].OneofWrappers = []any{
-		(*JobRequest_Sync)(nil),
-		(*JobRequest_Mock)(nil),
+		(*jobRequest_Sync)(nil),
+		(*jobRequest_Mock)(nil),
 	}
 	file_beeremote_proto_msgTypes[5].OneofWrappers = []any{
-		(*UpdateJobRequest_ByIdAndPath)(nil),
-		(*UpdateJobRequest_ByExactPath)(nil),
+		(*updateJobRequest_ByIdAndPath)(nil),
+		(*updateJobRequest_ByExactPath)(nil),
 	}
 	file_beeremote_proto_msgTypes[7].OneofWrappers = []any{
-		(*GetJobsRequest_ByJobIdAndPath)(nil),
-		(*GetJobsRequest_ByExactPath)(nil),
-		(*GetJobsRequest_ByPathPrefix)(nil),
+		(*getJobsRequest_ByJobIdAndPath)(nil),
+		(*getJobsRequest_ByExactPath)(nil),
+		(*getJobsRequest_ByPathPrefix)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
