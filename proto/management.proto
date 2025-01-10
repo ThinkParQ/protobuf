@@ -358,6 +358,8 @@ message GetQuotaLimitsRequest {
   optional uint32 quota_id_min = 1;
   // The maximum id to return. Only applies when set.
   optional uint32 quota_id_max = 2;
+  // The list of ids to return. Only applies when not empty.
+  repeated uint32 quota_id_list = 5;
   // Return only user or group ids. Only applies when set.
   beegfs.QuotaIdType id_type = 3;
   // Return only a specific pool. Only applies when set.
@@ -376,6 +378,8 @@ message GetQuotaUsageRequest {
   optional uint32 quota_id_min = 1;
   // The maximum id to return. Only applies when set.
   optional uint32 quota_id_max = 2;
+  // The list of ids to return. Only applies when not empty.
+  repeated uint32 quota_id_list = 6;
   // Return only user or group ids. Only applies when set.
   beegfs.QuotaIdType id_type = 3;
   // Return only a specific pool. Only applies when set.
