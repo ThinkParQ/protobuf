@@ -3735,12 +3735,31 @@ class GetQuotaUsageRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kQuotaIdListFieldNumber = 6,
     kPoolFieldNumber = 4,
     kQuotaIdMinFieldNumber = 1,
     kQuotaIdMaxFieldNumber = 2,
     kIdTypeFieldNumber = 3,
     kExceededFieldNumber = 5,
   };
+  // repeated uint32 quota_id_list = 6;
+  int quota_id_list_size() const;
+  private:
+  int _internal_quota_id_list_size() const;
+
+  public:
+  void clear_quota_id_list() ;
+  ::uint32_t quota_id_list(int index) const;
+  void set_quota_id_list(int index, ::uint32_t value);
+  void add_quota_id_list(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& quota_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_quota_id_list();
+
+  private:
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_quota_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_quota_id_list();
+
+  public:
   // optional .beegfs.EntityIdSet pool = 4;
   bool has_pool() const;
   void clear_pool() ;
@@ -3804,7 +3823,7 @@ class GetQuotaUsageRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 1,
+      3, 6, 1,
       0, 2>
       _table_;
 
@@ -3827,6 +3846,8 @@ class GetQuotaUsageRequest final : public ::google::protobuf::Message
                           const GetQuotaUsageRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> quota_id_list_;
+    mutable ::google::protobuf::internal::CachedSize _quota_id_list_cached_byte_size_;
     ::beegfs::EntityIdSet* pool_;
     ::uint32_t quota_id_min_;
     ::uint32_t quota_id_max_;
@@ -3963,11 +3984,30 @@ class GetQuotaLimitsRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kQuotaIdListFieldNumber = 5,
     kPoolFieldNumber = 4,
     kQuotaIdMinFieldNumber = 1,
     kQuotaIdMaxFieldNumber = 2,
     kIdTypeFieldNumber = 3,
   };
+  // repeated uint32 quota_id_list = 5;
+  int quota_id_list_size() const;
+  private:
+  int _internal_quota_id_list_size() const;
+
+  public:
+  void clear_quota_id_list() ;
+  ::uint32_t quota_id_list(int index) const;
+  void set_quota_id_list(int index, ::uint32_t value);
+  void add_quota_id_list(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& quota_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_quota_id_list();
+
+  private:
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_quota_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_quota_id_list();
+
+  public:
   // optional .beegfs.EntityIdSet pool = 4;
   bool has_pool() const;
   void clear_pool() ;
@@ -4020,7 +4060,7 @@ class GetQuotaLimitsRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 1,
+      3, 5, 1,
       0, 2>
       _table_;
 
@@ -4043,6 +4083,8 @@ class GetQuotaLimitsRequest final : public ::google::protobuf::Message
                           const GetQuotaLimitsRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> quota_id_list_;
+    mutable ::google::protobuf::internal::CachedSize _quota_id_list_cached_byte_size_;
     ::beegfs::EntityIdSet* pool_;
     ::uint32_t quota_id_min_;
     ::uint32_t quota_id_max_;
@@ -13894,6 +13936,51 @@ inline void GetQuotaLimitsRequest::_internal_set_quota_id_max(::uint32_t value) 
   _impl_.quota_id_max_ = value;
 }
 
+// repeated uint32 quota_id_list = 5;
+inline int GetQuotaLimitsRequest::_internal_quota_id_list_size() const {
+  return _internal_quota_id_list().size();
+}
+inline int GetQuotaLimitsRequest::quota_id_list_size() const {
+  return _internal_quota_id_list_size();
+}
+inline void GetQuotaLimitsRequest::clear_quota_id_list() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_list_.Clear();
+}
+inline ::uint32_t GetQuotaLimitsRequest::quota_id_list(int index) const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.quota_id_list)
+  return _internal_quota_id_list().Get(index);
+}
+inline void GetQuotaLimitsRequest::set_quota_id_list(int index, ::uint32_t value) {
+  _internal_mutable_quota_id_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.quota_id_list)
+}
+inline void GetQuotaLimitsRequest::add_quota_id_list(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_quota_id_list()->Add(value);
+  // @@protoc_insertion_point(field_add:management.GetQuotaLimitsRequest.quota_id_list)
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>& GetQuotaLimitsRequest::quota_id_list() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:management.GetQuotaLimitsRequest.quota_id_list)
+  return _internal_quota_id_list();
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaLimitsRequest::mutable_quota_id_list()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:management.GetQuotaLimitsRequest.quota_id_list)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_quota_id_list();
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>&
+GetQuotaLimitsRequest::_internal_quota_id_list() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.quota_id_list_;
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaLimitsRequest::_internal_mutable_quota_id_list() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.quota_id_list_;
+}
+
 // .beegfs.QuotaIdType id_type = 3;
 inline void GetQuotaLimitsRequest::clear_id_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
@@ -14165,6 +14252,51 @@ inline ::uint32_t GetQuotaUsageRequest::_internal_quota_id_max() const {
 inline void GetQuotaUsageRequest::_internal_set_quota_id_max(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.quota_id_max_ = value;
+}
+
+// repeated uint32 quota_id_list = 6;
+inline int GetQuotaUsageRequest::_internal_quota_id_list_size() const {
+  return _internal_quota_id_list().size();
+}
+inline int GetQuotaUsageRequest::quota_id_list_size() const {
+  return _internal_quota_id_list_size();
+}
+inline void GetQuotaUsageRequest::clear_quota_id_list() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quota_id_list_.Clear();
+}
+inline ::uint32_t GetQuotaUsageRequest::quota_id_list(int index) const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.quota_id_list)
+  return _internal_quota_id_list().Get(index);
+}
+inline void GetQuotaUsageRequest::set_quota_id_list(int index, ::uint32_t value) {
+  _internal_mutable_quota_id_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.quota_id_list)
+}
+inline void GetQuotaUsageRequest::add_quota_id_list(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_quota_id_list()->Add(value);
+  // @@protoc_insertion_point(field_add:management.GetQuotaUsageRequest.quota_id_list)
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>& GetQuotaUsageRequest::quota_id_list() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:management.GetQuotaUsageRequest.quota_id_list)
+  return _internal_quota_id_list();
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaUsageRequest::mutable_quota_id_list()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:management.GetQuotaUsageRequest.quota_id_list)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_quota_id_list();
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>&
+GetQuotaUsageRequest::_internal_quota_id_list() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.quota_id_list_;
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaUsageRequest::_internal_mutable_quota_id_list() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.quota_id_list_;
 }
 
 // .beegfs.QuotaIdType id_type = 3;
