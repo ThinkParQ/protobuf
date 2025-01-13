@@ -472,6 +472,9 @@ pub struct GetQuotaLimitsRequest {
     /// The maximum id to return. Only applies when set.
     #[prost(uint32, optional, tag = "2")]
     pub quota_id_max: ::core::option::Option<u32>,
+    /// The list of ids to return. Only applies when not empty.
+    #[prost(uint32, repeated, tag = "5")]
+    pub quota_id_list: ::prost::alloc::vec::Vec<u32>,
     /// Return only user or group ids. Only applies when set.
     #[prost(enumeration = "super::beegfs::QuotaIdType", tag = "3")]
     pub id_type: i32,
@@ -498,6 +501,9 @@ pub struct GetQuotaUsageRequest {
     /// The maximum id to return. Only applies when set.
     #[prost(uint32, optional, tag = "2")]
     pub quota_id_max: ::core::option::Option<u32>,
+    /// The list of ids to return. Only applies when not empty.
+    #[prost(uint32, repeated, tag = "6")]
+    pub quota_id_list: ::prost::alloc::vec::Vec<u32>,
     /// Return only user or group ids. Only applies when set.
     #[prost(enumeration = "super::beegfs::QuotaIdType", tag = "3")]
     pub id_type: i32,
