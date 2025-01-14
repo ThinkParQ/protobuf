@@ -29,6 +29,9 @@
 #include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/map.h"  // IWYU pragma: export
+#include "google/protobuf/map_entry.h"
+#include "google/protobuf/map_field_inl.h"
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "flex.pb.h"
@@ -92,15 +95,15 @@ extern SubmitJobRequestDefaultTypeInternal _SubmitJobRequest_default_instance_;
 class SubmitJobResponse;
 struct SubmitJobResponseDefaultTypeInternal;
 extern SubmitJobResponseDefaultTypeInternal _SubmitJobResponse_default_instance_;
-class UpdateJobRequest;
-struct UpdateJobRequestDefaultTypeInternal;
-extern UpdateJobRequestDefaultTypeInternal _UpdateJobRequest_default_instance_;
-class UpdateJobRequest_QueryIdAndPath;
-struct UpdateJobRequest_QueryIdAndPathDefaultTypeInternal;
-extern UpdateJobRequest_QueryIdAndPathDefaultTypeInternal _UpdateJobRequest_QueryIdAndPath_default_instance_;
-class UpdateJobResponse;
-struct UpdateJobResponseDefaultTypeInternal;
-extern UpdateJobResponseDefaultTypeInternal _UpdateJobResponse_default_instance_;
+class UpdateJobsRequest;
+struct UpdateJobsRequestDefaultTypeInternal;
+extern UpdateJobsRequestDefaultTypeInternal _UpdateJobsRequest_default_instance_;
+class UpdateJobsRequest_RemoteTargetsEntry_DoNotUse;
+struct UpdateJobsRequest_RemoteTargetsEntry_DoNotUseDefaultTypeInternal;
+extern UpdateJobsRequest_RemoteTargetsEntry_DoNotUseDefaultTypeInternal _UpdateJobsRequest_RemoteTargetsEntry_DoNotUse_default_instance_;
+class UpdateJobsResponse;
+struct UpdateJobsResponseDefaultTypeInternal;
+extern UpdateJobsResponseDefaultTypeInternal _UpdateJobsResponse_default_instance_;
 class UpdateWorkRequest;
 struct UpdateWorkRequestDefaultTypeInternal;
 extern UpdateWorkRequestDefaultTypeInternal _UpdateWorkRequest_default_instance_;
@@ -154,39 +157,39 @@ inline bool Job_State_Parse(absl::string_view name, Job_State* value) {
   return ::google::protobuf::internal::ParseNamedEnum<Job_State>(
       Job_State_descriptor(), name, value);
 }
-enum UpdateJobRequest_NewState : int {
-  UpdateJobRequest_NewState_UNSPECIFIED = 0,
-  UpdateJobRequest_NewState_CANCELLED = 1,
-  UpdateJobRequest_NewState_DELETED = 2,
-  UpdateJobRequest_NewState_UpdateJobRequest_NewState_INT_MIN_SENTINEL_DO_NOT_USE_ =
+enum UpdateJobsRequest_NewState : int {
+  UpdateJobsRequest_NewState_UNSPECIFIED = 0,
+  UpdateJobsRequest_NewState_CANCELLED = 1,
+  UpdateJobsRequest_NewState_DELETED = 2,
+  UpdateJobsRequest_NewState_UpdateJobsRequest_NewState_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
-  UpdateJobRequest_NewState_UpdateJobRequest_NewState_INT_MAX_SENTINEL_DO_NOT_USE_ =
+  UpdateJobsRequest_NewState_UpdateJobsRequest_NewState_INT_MAX_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::max(),
 };
 
-bool UpdateJobRequest_NewState_IsValid(int value);
-extern const uint32_t UpdateJobRequest_NewState_internal_data_[];
-constexpr UpdateJobRequest_NewState UpdateJobRequest_NewState_NewState_MIN = static_cast<UpdateJobRequest_NewState>(0);
-constexpr UpdateJobRequest_NewState UpdateJobRequest_NewState_NewState_MAX = static_cast<UpdateJobRequest_NewState>(2);
-constexpr int UpdateJobRequest_NewState_NewState_ARRAYSIZE = 2 + 1;
+bool UpdateJobsRequest_NewState_IsValid(int value);
+extern const uint32_t UpdateJobsRequest_NewState_internal_data_[];
+constexpr UpdateJobsRequest_NewState UpdateJobsRequest_NewState_NewState_MIN = static_cast<UpdateJobsRequest_NewState>(0);
+constexpr UpdateJobsRequest_NewState UpdateJobsRequest_NewState_NewState_MAX = static_cast<UpdateJobsRequest_NewState>(2);
+constexpr int UpdateJobsRequest_NewState_NewState_ARRAYSIZE = 2 + 1;
 const ::google::protobuf::EnumDescriptor*
-UpdateJobRequest_NewState_descriptor();
+UpdateJobsRequest_NewState_descriptor();
 template <typename T>
-const std::string& UpdateJobRequest_NewState_Name(T value) {
-  static_assert(std::is_same<T, UpdateJobRequest_NewState>::value ||
+const std::string& UpdateJobsRequest_NewState_Name(T value) {
+  static_assert(std::is_same<T, UpdateJobsRequest_NewState>::value ||
                     std::is_integral<T>::value,
                 "Incorrect type passed to NewState_Name().");
-  return UpdateJobRequest_NewState_Name(static_cast<UpdateJobRequest_NewState>(value));
+  return UpdateJobsRequest_NewState_Name(static_cast<UpdateJobsRequest_NewState>(value));
 }
 template <>
-inline const std::string& UpdateJobRequest_NewState_Name(UpdateJobRequest_NewState value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<UpdateJobRequest_NewState_descriptor,
+inline const std::string& UpdateJobsRequest_NewState_Name(UpdateJobsRequest_NewState value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<UpdateJobsRequest_NewState_descriptor,
                                                  0, 2>(
       static_cast<int>(value));
 }
-inline bool UpdateJobRequest_NewState_Parse(absl::string_view name, UpdateJobRequest_NewState* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<UpdateJobRequest_NewState>(
-      UpdateJobRequest_NewState_descriptor(), name, value);
+inline bool UpdateJobsRequest_NewState_Parse(absl::string_view name, UpdateJobsRequest_NewState* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<UpdateJobsRequest_NewState>(
+      UpdateJobsRequest_NewState_descriptor(), name, value);
 }
 
 // ===================================================================
@@ -339,217 +342,42 @@ class UpdateWorkResponse final : public ::google::protobuf::internal::ZeroFields
 };
 // -------------------------------------------------------------------
 
-class UpdateJobRequest_QueryIdAndPath final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:beeremote.UpdateJobRequest.QueryIdAndPath) */ {
+class UpdateJobsRequest_RemoteTargetsEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          ::uint32_t, bool,
+          ::google::protobuf::internal::WireFormatLite::TYPE_UINT32,
+          ::google::protobuf::internal::WireFormatLite::TYPE_BOOL> {
  public:
-  inline UpdateJobRequest_QueryIdAndPath() : UpdateJobRequest_QueryIdAndPath(nullptr) {}
-  ~UpdateJobRequest_QueryIdAndPath() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(UpdateJobRequest_QueryIdAndPath* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdateJobRequest_QueryIdAndPath));
-  }
-#endif
-
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      ::uint32_t, bool,
+      ::google::protobuf::internal::WireFormatLite::TYPE_UINT32,
+      ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>;
+  UpdateJobsRequest_RemoteTargetsEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR UpdateJobRequest_QueryIdAndPath(
+  explicit PROTOBUF_CONSTEXPR UpdateJobsRequest_RemoteTargetsEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-
-  inline UpdateJobRequest_QueryIdAndPath(const UpdateJobRequest_QueryIdAndPath& from) : UpdateJobRequest_QueryIdAndPath(nullptr, from) {}
-  inline UpdateJobRequest_QueryIdAndPath(UpdateJobRequest_QueryIdAndPath&& from) noexcept
-      : UpdateJobRequest_QueryIdAndPath(nullptr, std::move(from)) {}
-  inline UpdateJobRequest_QueryIdAndPath& operator=(const UpdateJobRequest_QueryIdAndPath& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline UpdateJobRequest_QueryIdAndPath& operator=(UpdateJobRequest_QueryIdAndPath&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
+  explicit UpdateJobsRequest_RemoteTargetsEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const UpdateJobsRequest_RemoteTargetsEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const UpdateJobsRequest_RemoteTargetsEntry_DoNotUse*>(
+        &_UpdateJobsRequest_RemoteTargetsEntry_DoNotUse_default_instance_);
   }
 
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
 
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const UpdateJobRequest_QueryIdAndPath& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const UpdateJobRequest_QueryIdAndPath* internal_default_instance() {
-    return reinterpret_cast<const UpdateJobRequest_QueryIdAndPath*>(
-        &_UpdateJobRequest_QueryIdAndPath_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 7;
-  friend void swap(UpdateJobRequest_QueryIdAndPath& a, UpdateJobRequest_QueryIdAndPath& b) { a.Swap(&b); }
-  inline void Swap(UpdateJobRequest_QueryIdAndPath* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(UpdateJobRequest_QueryIdAndPath* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  UpdateJobRequest_QueryIdAndPath* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<UpdateJobRequest_QueryIdAndPath>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UpdateJobRequest_QueryIdAndPath& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const UpdateJobRequest_QueryIdAndPath& from) { UpdateJobRequest_QueryIdAndPath::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(UpdateJobRequest_QueryIdAndPath* other);
  private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "beeremote.UpdateJobRequest.QueryIdAndPath"; }
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_beeremote_2eproto;
 
- protected:
-  explicit UpdateJobRequest_QueryIdAndPath(::google::protobuf::Arena* arena);
-  UpdateJobRequest_QueryIdAndPath(::google::protobuf::Arena* arena, const UpdateJobRequest_QueryIdAndPath& from);
-  UpdateJobRequest_QueryIdAndPath(::google::protobuf::Arena* arena, UpdateJobRequest_QueryIdAndPath&& from) noexcept
-      : UpdateJobRequest_QueryIdAndPath(arena) {
-    *this = ::std::move(from);
-  }
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
   static void* PlacementNew_(const void*, void* mem,
                              ::google::protobuf::Arena* arena);
   static constexpr auto InternalNewImpl_();
   static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kJobIdFieldNumber = 1,
-    kPathFieldNumber = 2,
-  };
-  // string job_id = 1;
-  void clear_job_id() ;
-  const std::string& job_id() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_job_id(Arg_&& arg, Args_... args);
-  std::string* mutable_job_id();
-  PROTOBUF_NODISCARD std::string* release_job_id();
-  void set_allocated_job_id(std::string* value);
-
-  private:
-  const std::string& _internal_job_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_job_id(
-      const std::string& value);
-  std::string* _internal_mutable_job_id();
-
-  public:
-  // string path = 2;
-  void clear_path() ;
-  const std::string& path() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_path(Arg_&& arg, Args_... args);
-  std::string* mutable_path();
-  PROTOBUF_NODISCARD std::string* release_path();
-  void set_allocated_path(std::string* value);
-
-  private:
-  const std::string& _internal_path() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_path(
-      const std::string& value);
-  std::string* _internal_mutable_path();
-
-  public:
-  // @@protoc_insertion_point(class_scope:beeremote.UpdateJobRequest.QueryIdAndPath)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      60, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const UpdateJobRequest_QueryIdAndPath& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr job_id_;
-    ::google::protobuf::internal::ArenaStringPtr path_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_beeremote_2eproto;
 };
 // -------------------------------------------------------------------
 
@@ -912,31 +740,31 @@ class GetJobsRequest_QueryIdAndPath final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class UpdateJobRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:beeremote.UpdateJobRequest) */ {
+class UpdateJobsRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beeremote.UpdateJobsRequest) */ {
  public:
-  inline UpdateJobRequest() : UpdateJobRequest(nullptr) {}
-  ~UpdateJobRequest() PROTOBUF_FINAL;
+  inline UpdateJobsRequest() : UpdateJobsRequest(nullptr) {}
+  ~UpdateJobsRequest() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(UpdateJobRequest* msg, std::destroying_delete_t) {
+  void operator delete(UpdateJobsRequest* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdateJobRequest));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdateJobsRequest));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR UpdateJobRequest(
+  explicit PROTOBUF_CONSTEXPR UpdateJobsRequest(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline UpdateJobRequest(const UpdateJobRequest& from) : UpdateJobRequest(nullptr, from) {}
-  inline UpdateJobRequest(UpdateJobRequest&& from) noexcept
-      : UpdateJobRequest(nullptr, std::move(from)) {}
-  inline UpdateJobRequest& operator=(const UpdateJobRequest& from) {
+  inline UpdateJobsRequest(const UpdateJobsRequest& from) : UpdateJobsRequest(nullptr, from) {}
+  inline UpdateJobsRequest(UpdateJobsRequest&& from) noexcept
+      : UpdateJobsRequest(nullptr, std::move(from)) {}
+  inline UpdateJobsRequest& operator=(const UpdateJobsRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline UpdateJobRequest& operator=(UpdateJobRequest&& from) noexcept {
+  inline UpdateJobsRequest& operator=(UpdateJobsRequest&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -964,21 +792,16 @@ class UpdateJobRequest final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const UpdateJobRequest& default_instance() {
+  static const UpdateJobsRequest& default_instance() {
     return *internal_default_instance();
   }
-  enum QueryCase {
-    kByIdAndPath = 1,
-    kByExactPath = 2,
-    QUERY_NOT_SET = 0,
-  };
-  static inline const UpdateJobRequest* internal_default_instance() {
-    return reinterpret_cast<const UpdateJobRequest*>(
-        &_UpdateJobRequest_default_instance_);
+  static inline const UpdateJobsRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateJobsRequest*>(
+        &_UpdateJobsRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 8;
-  friend void swap(UpdateJobRequest& a, UpdateJobRequest& b) { a.Swap(&b); }
-  inline void Swap(UpdateJobRequest* other) {
+  friend void swap(UpdateJobsRequest& a, UpdateJobsRequest& b) { a.Swap(&b); }
+  inline void Swap(UpdateJobsRequest* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -986,7 +809,7 @@ class UpdateJobRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(UpdateJobRequest* other) {
+  void UnsafeArenaSwap(UpdateJobsRequest* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -994,13 +817,13 @@ class UpdateJobRequest final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  UpdateJobRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<UpdateJobRequest>(arena);
+  UpdateJobsRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UpdateJobsRequest>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UpdateJobRequest& from);
+  void CopyFrom(const UpdateJobsRequest& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const UpdateJobRequest& from) { UpdateJobRequest::MergeImpl(*this, from); }
+  void MergeFrom(const UpdateJobsRequest& from) { UpdateJobsRequest::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -1037,18 +860,18 @@ class UpdateJobRequest final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(UpdateJobRequest* other);
+  void InternalSwap(UpdateJobsRequest* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "beeremote.UpdateJobRequest"; }
+  static ::absl::string_view FullMessageName() { return "beeremote.UpdateJobsRequest"; }
 
  protected:
-  explicit UpdateJobRequest(::google::protobuf::Arena* arena);
-  UpdateJobRequest(::google::protobuf::Arena* arena, const UpdateJobRequest& from);
-  UpdateJobRequest(::google::protobuf::Arena* arena, UpdateJobRequest&& from) noexcept
-      : UpdateJobRequest(arena) {
+  explicit UpdateJobsRequest(::google::protobuf::Arena* arena);
+  UpdateJobsRequest(::google::protobuf::Arena* arena, const UpdateJobsRequest& from);
+  UpdateJobsRequest(::google::protobuf::Arena* arena, UpdateJobsRequest&& from) noexcept
+      : UpdateJobsRequest(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -1060,43 +883,81 @@ class UpdateJobRequest final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
-  using QueryIdAndPath = UpdateJobRequest_QueryIdAndPath;
-  using NewState = UpdateJobRequest_NewState;
-  static constexpr NewState UNSPECIFIED = UpdateJobRequest_NewState_UNSPECIFIED;
-  static constexpr NewState CANCELLED = UpdateJobRequest_NewState_CANCELLED;
-  static constexpr NewState DELETED = UpdateJobRequest_NewState_DELETED;
+  using NewState = UpdateJobsRequest_NewState;
+  static constexpr NewState UNSPECIFIED = UpdateJobsRequest_NewState_UNSPECIFIED;
+  static constexpr NewState CANCELLED = UpdateJobsRequest_NewState_CANCELLED;
+  static constexpr NewState DELETED = UpdateJobsRequest_NewState_DELETED;
   static inline bool NewState_IsValid(int value) {
-    return UpdateJobRequest_NewState_IsValid(value);
+    return UpdateJobsRequest_NewState_IsValid(value);
   }
-  static constexpr NewState NewState_MIN = UpdateJobRequest_NewState_NewState_MIN;
-  static constexpr NewState NewState_MAX = UpdateJobRequest_NewState_NewState_MAX;
-  static constexpr int NewState_ARRAYSIZE = UpdateJobRequest_NewState_NewState_ARRAYSIZE;
+  static constexpr NewState NewState_MIN = UpdateJobsRequest_NewState_NewState_MIN;
+  static constexpr NewState NewState_MAX = UpdateJobsRequest_NewState_NewState_MAX;
+  static constexpr int NewState_ARRAYSIZE = UpdateJobsRequest_NewState_NewState_ARRAYSIZE;
   static inline const ::google::protobuf::EnumDescriptor* NewState_descriptor() {
-    return UpdateJobRequest_NewState_descriptor();
+    return UpdateJobsRequest_NewState_descriptor();
   }
   template <typename T>
   static inline const std::string& NewState_Name(T value) {
-    return UpdateJobRequest_NewState_Name(value);
+    return UpdateJobsRequest_NewState_Name(value);
   }
   static inline bool NewState_Parse(absl::string_view name, NewState* value) {
-    return UpdateJobRequest_NewState_Parse(name, value);
+    return UpdateJobsRequest_NewState_Parse(name, value);
   }
 
   // accessors -------------------------------------------------------
   enum : int {
-    kNewStateFieldNumber = 3,
+    kRemoteTargetsFieldNumber = 3,
+    kPathFieldNumber = 1,
+    kJobIdFieldNumber = 2,
     kForceUpdateFieldNumber = 4,
-    kByIdAndPathFieldNumber = 1,
-    kByExactPathFieldNumber = 2,
+    kNewStateFieldNumber = 10,
   };
-  // .beeremote.UpdateJobRequest.NewState new_state = 3;
-  void clear_new_state() ;
-  ::beeremote::UpdateJobRequest_NewState new_state() const;
-  void set_new_state(::beeremote::UpdateJobRequest_NewState value);
+  // map<uint32, bool> remote_targets = 3;
+  int remote_targets_size() const;
+  private:
+  int _internal_remote_targets_size() const;
+
+  public:
+  void clear_remote_targets() ;
+  const ::google::protobuf::Map<::uint32_t, bool>& remote_targets() const;
+  ::google::protobuf::Map<::uint32_t, bool>* mutable_remote_targets();
 
   private:
-  ::beeremote::UpdateJobRequest_NewState _internal_new_state() const;
-  void _internal_set_new_state(::beeremote::UpdateJobRequest_NewState value);
+  const ::google::protobuf::Map<::uint32_t, bool>& _internal_remote_targets() const;
+  ::google::protobuf::Map<::uint32_t, bool>* _internal_mutable_remote_targets();
+
+  public:
+  // string path = 1;
+  void clear_path() ;
+  const std::string& path() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_path(Arg_&& arg, Args_... args);
+  std::string* mutable_path();
+  PROTOBUF_NODISCARD std::string* release_path();
+  void set_allocated_path(std::string* value);
+
+  private:
+  const std::string& _internal_path() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_path(
+      const std::string& value);
+  std::string* _internal_mutable_path();
+
+  public:
+  // optional string job_id = 2;
+  bool has_job_id() const;
+  void clear_job_id() ;
+  const std::string& job_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_job_id(Arg_&& arg, Args_... args);
+  std::string* mutable_job_id();
+  PROTOBUF_NODISCARD std::string* release_job_id();
+  void set_allocated_job_id(std::string* value);
+
+  private:
+  const std::string& _internal_job_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_job_id(
+      const std::string& value);
+  std::string* _internal_mutable_job_id();
 
   public:
   // bool force_update = 4;
@@ -1109,55 +970,23 @@ class UpdateJobRequest final : public ::google::protobuf::Message
   void _internal_set_force_update(bool value);
 
   public:
-  // .beeremote.UpdateJobRequest.QueryIdAndPath by_id_and_path = 1;
-  bool has_by_id_and_path() const;
-  private:
-  bool _internal_has_by_id_and_path() const;
-
-  public:
-  void clear_by_id_and_path() ;
-  const ::beeremote::UpdateJobRequest_QueryIdAndPath& by_id_and_path() const;
-  PROTOBUF_NODISCARD ::beeremote::UpdateJobRequest_QueryIdAndPath* release_by_id_and_path();
-  ::beeremote::UpdateJobRequest_QueryIdAndPath* mutable_by_id_and_path();
-  void set_allocated_by_id_and_path(::beeremote::UpdateJobRequest_QueryIdAndPath* value);
-  void unsafe_arena_set_allocated_by_id_and_path(::beeremote::UpdateJobRequest_QueryIdAndPath* value);
-  ::beeremote::UpdateJobRequest_QueryIdAndPath* unsafe_arena_release_by_id_and_path();
+  // .beeremote.UpdateJobsRequest.NewState new_state = 10;
+  void clear_new_state() ;
+  ::beeremote::UpdateJobsRequest_NewState new_state() const;
+  void set_new_state(::beeremote::UpdateJobsRequest_NewState value);
 
   private:
-  const ::beeremote::UpdateJobRequest_QueryIdAndPath& _internal_by_id_and_path() const;
-  ::beeremote::UpdateJobRequest_QueryIdAndPath* _internal_mutable_by_id_and_path();
+  ::beeremote::UpdateJobsRequest_NewState _internal_new_state() const;
+  void _internal_set_new_state(::beeremote::UpdateJobsRequest_NewState value);
 
   public:
-  // string by_exact_path = 2;
-  bool has_by_exact_path() const;
-  void clear_by_exact_path() ;
-  const std::string& by_exact_path() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_by_exact_path(Arg_&& arg, Args_... args);
-  std::string* mutable_by_exact_path();
-  PROTOBUF_NODISCARD std::string* release_by_exact_path();
-  void set_allocated_by_exact_path(std::string* value);
-
-  private:
-  const std::string& _internal_by_exact_path() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_by_exact_path(
-      const std::string& value);
-  std::string* _internal_mutable_by_exact_path();
-
-  public:
-  void clear_query();
-  QueryCase query_case() const;
-  // @@protoc_insertion_point(class_scope:beeremote.UpdateJobRequest)
+  // @@protoc_insertion_point(class_scope:beeremote.UpdateJobsRequest)
  private:
   class _Internal;
-  void set_has_by_id_and_path();
-  void set_has_by_exact_path();
-  inline bool has_query() const;
-  inline void clear_has_query();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 4, 1,
-      48, 2>
+      2, 5, 1,
+      46, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1173,17 +1002,17 @@ class UpdateJobRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const UpdateJobRequest& from_msg);
-    int new_state_;
-    bool force_update_;
-    union QueryUnion {
-      constexpr QueryUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::beeremote::UpdateJobRequest_QueryIdAndPath* by_id_and_path_;
-      ::google::protobuf::internal::ArenaStringPtr by_exact_path_;
-    } query_;
+                          const UpdateJobsRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint32_t _oneof_case_[1];
+    ::google::protobuf::internal::MapField<UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, ::uint32_t, bool,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_UINT32,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>
+        remote_targets_;
+    ::google::protobuf::internal::ArenaStringPtr path_;
+    ::google::protobuf::internal::ArenaStringPtr job_id_;
+    bool force_update_;
+    int new_state_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3354,31 +3183,31 @@ class GetRSTConfigResponse final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class UpdateJobResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:beeremote.UpdateJobResponse) */ {
+class UpdateJobsResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beeremote.UpdateJobsResponse) */ {
  public:
-  inline UpdateJobResponse() : UpdateJobResponse(nullptr) {}
-  ~UpdateJobResponse() PROTOBUF_FINAL;
+  inline UpdateJobsResponse() : UpdateJobsResponse(nullptr) {}
+  ~UpdateJobsResponse() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(UpdateJobResponse* msg, std::destroying_delete_t) {
+  void operator delete(UpdateJobsResponse* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdateJobResponse));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdateJobsResponse));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR UpdateJobResponse(
+  explicit PROTOBUF_CONSTEXPR UpdateJobsResponse(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline UpdateJobResponse(const UpdateJobResponse& from) : UpdateJobResponse(nullptr, from) {}
-  inline UpdateJobResponse(UpdateJobResponse&& from) noexcept
-      : UpdateJobResponse(nullptr, std::move(from)) {}
-  inline UpdateJobResponse& operator=(const UpdateJobResponse& from) {
+  inline UpdateJobsResponse(const UpdateJobsResponse& from) : UpdateJobsResponse(nullptr, from) {}
+  inline UpdateJobsResponse(UpdateJobsResponse&& from) noexcept
+      : UpdateJobsResponse(nullptr, std::move(from)) {}
+  inline UpdateJobsResponse& operator=(const UpdateJobsResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline UpdateJobResponse& operator=(UpdateJobResponse&& from) noexcept {
+  inline UpdateJobsResponse& operator=(UpdateJobsResponse&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -3406,16 +3235,16 @@ class UpdateJobResponse final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const UpdateJobResponse& default_instance() {
+  static const UpdateJobsResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const UpdateJobResponse* internal_default_instance() {
-    return reinterpret_cast<const UpdateJobResponse*>(
-        &_UpdateJobResponse_default_instance_);
+  static inline const UpdateJobsResponse* internal_default_instance() {
+    return reinterpret_cast<const UpdateJobsResponse*>(
+        &_UpdateJobsResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 9;
-  friend void swap(UpdateJobResponse& a, UpdateJobResponse& b) { a.Swap(&b); }
-  inline void Swap(UpdateJobResponse* other) {
+  friend void swap(UpdateJobsResponse& a, UpdateJobsResponse& b) { a.Swap(&b); }
+  inline void Swap(UpdateJobsResponse* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -3423,7 +3252,7 @@ class UpdateJobResponse final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(UpdateJobResponse* other) {
+  void UnsafeArenaSwap(UpdateJobsResponse* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -3431,13 +3260,13 @@ class UpdateJobResponse final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  UpdateJobResponse* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<UpdateJobResponse>(arena);
+  UpdateJobsResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UpdateJobsResponse>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UpdateJobResponse& from);
+  void CopyFrom(const UpdateJobsResponse& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const UpdateJobResponse& from) { UpdateJobResponse::MergeImpl(*this, from); }
+  void MergeFrom(const UpdateJobsResponse& from) { UpdateJobsResponse::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -3474,18 +3303,18 @@ class UpdateJobResponse final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(UpdateJobResponse* other);
+  void InternalSwap(UpdateJobsResponse* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "beeremote.UpdateJobResponse"; }
+  static ::absl::string_view FullMessageName() { return "beeremote.UpdateJobsResponse"; }
 
  protected:
-  explicit UpdateJobResponse(::google::protobuf::Arena* arena);
-  UpdateJobResponse(::google::protobuf::Arena* arena, const UpdateJobResponse& from);
-  UpdateJobResponse(::google::protobuf::Arena* arena, UpdateJobResponse&& from) noexcept
-      : UpdateJobResponse(arena) {
+  explicit UpdateJobsResponse(::google::protobuf::Arena* arena);
+  UpdateJobsResponse(::google::protobuf::Arena* arena, const UpdateJobsResponse& from);
+  UpdateJobsResponse(::google::protobuf::Arena* arena, UpdateJobsResponse&& from) noexcept
+      : UpdateJobsResponse(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -3547,13 +3376,13 @@ class UpdateJobResponse final : public ::google::protobuf::Message
   void _internal_set_ok(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:beeremote.UpdateJobResponse)
+  // @@protoc_insertion_point(class_scope:beeremote.UpdateJobsResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 1,
-      43, 2>
+      44, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3569,7 +3398,7 @@ class UpdateJobResponse final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const UpdateJobResponse& from_msg);
+                          const UpdateJobsResponse& from_msg);
     ::google::protobuf::RepeatedPtrField< ::beeremote::JobResult > results_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     bool ok_;
@@ -5427,444 +5256,318 @@ JobResult::_internal_mutable_work_results() {
 
 // -------------------------------------------------------------------
 
-// UpdateJobRequest_QueryIdAndPath
+// -------------------------------------------------------------------
 
-// string job_id = 1;
-inline void UpdateJobRequest_QueryIdAndPath::clear_job_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.job_id_.ClearToEmpty();
-}
-inline const std::string& UpdateJobRequest_QueryIdAndPath::job_id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobRequest.QueryIdAndPath.job_id)
-  return _internal_job_id();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateJobRequest_QueryIdAndPath::set_job_id(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.job_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:beeremote.UpdateJobRequest.QueryIdAndPath.job_id)
-}
-inline std::string* UpdateJobRequest_QueryIdAndPath::mutable_job_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_job_id();
-  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobRequest.QueryIdAndPath.job_id)
-  return _s;
-}
-inline const std::string& UpdateJobRequest_QueryIdAndPath::_internal_job_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.job_id_.Get();
-}
-inline void UpdateJobRequest_QueryIdAndPath::_internal_set_job_id(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.job_id_.Set(value, GetArena());
-}
-inline std::string* UpdateJobRequest_QueryIdAndPath::_internal_mutable_job_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.job_id_.Mutable( GetArena());
-}
-inline std::string* UpdateJobRequest_QueryIdAndPath::release_job_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:beeremote.UpdateJobRequest.QueryIdAndPath.job_id)
-  return _impl_.job_id_.Release();
-}
-inline void UpdateJobRequest_QueryIdAndPath::set_allocated_job_id(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.job_id_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.job_id_.IsDefault()) {
-    _impl_.job_id_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdateJobRequest.QueryIdAndPath.job_id)
-}
+// UpdateJobsRequest
 
-// string path = 2;
-inline void UpdateJobRequest_QueryIdAndPath::clear_path() {
+// string path = 1;
+inline void UpdateJobsRequest::clear_path() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.path_.ClearToEmpty();
 }
-inline const std::string& UpdateJobRequest_QueryIdAndPath::path() const
+inline const std::string& UpdateJobsRequest::path() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobRequest.QueryIdAndPath.path)
+  // @@protoc_insertion_point(field_get:beeremote.UpdateJobsRequest.path)
   return _internal_path();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateJobRequest_QueryIdAndPath::set_path(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UpdateJobsRequest::set_path(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.path_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:beeremote.UpdateJobRequest.QueryIdAndPath.path)
+  // @@protoc_insertion_point(field_set:beeremote.UpdateJobsRequest.path)
 }
-inline std::string* UpdateJobRequest_QueryIdAndPath::mutable_path() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* UpdateJobsRequest::mutable_path() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_path();
-  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobRequest.QueryIdAndPath.path)
+  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobsRequest.path)
   return _s;
 }
-inline const std::string& UpdateJobRequest_QueryIdAndPath::_internal_path() const {
+inline const std::string& UpdateJobsRequest::_internal_path() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.path_.Get();
 }
-inline void UpdateJobRequest_QueryIdAndPath::_internal_set_path(const std::string& value) {
+inline void UpdateJobsRequest::_internal_set_path(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.path_.Set(value, GetArena());
 }
-inline std::string* UpdateJobRequest_QueryIdAndPath::_internal_mutable_path() {
+inline std::string* UpdateJobsRequest::_internal_mutable_path() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.path_.Mutable( GetArena());
 }
-inline std::string* UpdateJobRequest_QueryIdAndPath::release_path() {
+inline std::string* UpdateJobsRequest::release_path() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:beeremote.UpdateJobRequest.QueryIdAndPath.path)
+  // @@protoc_insertion_point(field_release:beeremote.UpdateJobsRequest.path)
   return _impl_.path_.Release();
 }
-inline void UpdateJobRequest_QueryIdAndPath::set_allocated_path(std::string* value) {
+inline void UpdateJobsRequest::set_allocated_path(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.path_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.path_.IsDefault()) {
     _impl_.path_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdateJobRequest.QueryIdAndPath.path)
+  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdateJobsRequest.path)
 }
 
-// -------------------------------------------------------------------
-
-// UpdateJobRequest
-
-// .beeremote.UpdateJobRequest.QueryIdAndPath by_id_and_path = 1;
-inline bool UpdateJobRequest::has_by_id_and_path() const {
-  return query_case() == kByIdAndPath;
+// optional string job_id = 2;
+inline bool UpdateJobsRequest::has_job_id() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
 }
-inline bool UpdateJobRequest::_internal_has_by_id_and_path() const {
-  return query_case() == kByIdAndPath;
-}
-inline void UpdateJobRequest::set_has_by_id_and_path() {
-  _impl_._oneof_case_[0] = kByIdAndPath;
-}
-inline void UpdateJobRequest::clear_by_id_and_path() {
+inline void UpdateJobsRequest::clear_job_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (query_case() == kByIdAndPath) {
-    if (GetArena() == nullptr) {
-      delete _impl_.query_.by_id_and_path_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.query_.by_id_and_path_);
-    }
-    clear_has_query();
-  }
+  _impl_.job_id_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline ::beeremote::UpdateJobRequest_QueryIdAndPath* UpdateJobRequest::release_by_id_and_path() {
-  // @@protoc_insertion_point(field_release:beeremote.UpdateJobRequest.by_id_and_path)
-  if (query_case() == kByIdAndPath) {
-    clear_has_query();
-    auto* temp = _impl_.query_.by_id_and_path_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.query_.by_id_and_path_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::beeremote::UpdateJobRequest_QueryIdAndPath& UpdateJobRequest::_internal_by_id_and_path() const {
-  return query_case() == kByIdAndPath ? *_impl_.query_.by_id_and_path_ : reinterpret_cast<::beeremote::UpdateJobRequest_QueryIdAndPath&>(::beeremote::_UpdateJobRequest_QueryIdAndPath_default_instance_);
-}
-inline const ::beeremote::UpdateJobRequest_QueryIdAndPath& UpdateJobRequest::by_id_and_path() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobRequest.by_id_and_path)
-  return _internal_by_id_and_path();
-}
-inline ::beeremote::UpdateJobRequest_QueryIdAndPath* UpdateJobRequest::unsafe_arena_release_by_id_and_path() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:beeremote.UpdateJobRequest.by_id_and_path)
-  if (query_case() == kByIdAndPath) {
-    clear_has_query();
-    auto* temp = _impl_.query_.by_id_and_path_;
-    _impl_.query_.by_id_and_path_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void UpdateJobRequest::unsafe_arena_set_allocated_by_id_and_path(::beeremote::UpdateJobRequest_QueryIdAndPath* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_query();
-  if (value) {
-    set_has_by_id_and_path();
-    _impl_.query_.by_id_and_path_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.UpdateJobRequest.by_id_and_path)
-}
-inline ::beeremote::UpdateJobRequest_QueryIdAndPath* UpdateJobRequest::_internal_mutable_by_id_and_path() {
-  if (query_case() != kByIdAndPath) {
-    clear_query();
-    set_has_by_id_and_path();
-    _impl_.query_.by_id_and_path_ =
-        ::google::protobuf::Message::DefaultConstruct<::beeremote::UpdateJobRequest_QueryIdAndPath>(GetArena());
-  }
-  return _impl_.query_.by_id_and_path_;
-}
-inline ::beeremote::UpdateJobRequest_QueryIdAndPath* UpdateJobRequest::mutable_by_id_and_path() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::beeremote::UpdateJobRequest_QueryIdAndPath* _msg = _internal_mutable_by_id_and_path();
-  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobRequest.by_id_and_path)
-  return _msg;
-}
-
-// string by_exact_path = 2;
-inline bool UpdateJobRequest::has_by_exact_path() const {
-  return query_case() == kByExactPath;
-}
-inline void UpdateJobRequest::set_has_by_exact_path() {
-  _impl_._oneof_case_[0] = kByExactPath;
-}
-inline void UpdateJobRequest::clear_by_exact_path() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (query_case() == kByExactPath) {
-    _impl_.query_.by_exact_path_.Destroy();
-    clear_has_query();
-  }
-}
-inline const std::string& UpdateJobRequest::by_exact_path() const
+inline const std::string& UpdateJobsRequest::job_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobRequest.by_exact_path)
-  return _internal_by_exact_path();
+  // @@protoc_insertion_point(field_get:beeremote.UpdateJobsRequest.job_id)
+  return _internal_job_id();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateJobRequest::set_by_exact_path(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UpdateJobsRequest::set_job_id(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (query_case() != kByExactPath) {
-    clear_query();
-
-    set_has_by_exact_path();
-    _impl_.query_.by_exact_path_.InitDefault();
-  }
-  _impl_.query_.by_exact_path_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:beeremote.UpdateJobRequest.by_exact_path)
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.job_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beeremote.UpdateJobsRequest.job_id)
 }
-inline std::string* UpdateJobRequest::mutable_by_exact_path() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_by_exact_path();
-  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobRequest.by_exact_path)
+inline std::string* UpdateJobsRequest::mutable_job_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_job_id();
+  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobsRequest.job_id)
   return _s;
 }
-inline const std::string& UpdateJobRequest::_internal_by_exact_path() const {
+inline const std::string& UpdateJobsRequest::_internal_job_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  if (query_case() != kByExactPath) {
-    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
-  }
-  return _impl_.query_.by_exact_path_.Get();
+  return _impl_.job_id_.Get();
 }
-inline void UpdateJobRequest::_internal_set_by_exact_path(const std::string& value) {
+inline void UpdateJobsRequest::_internal_set_job_id(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (query_case() != kByExactPath) {
-    clear_query();
-
-    set_has_by_exact_path();
-    _impl_.query_.by_exact_path_.InitDefault();
-  }
-  _impl_.query_.by_exact_path_.Set(value, GetArena());
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.job_id_.Set(value, GetArena());
 }
-inline std::string* UpdateJobRequest::_internal_mutable_by_exact_path() {
+inline std::string* UpdateJobsRequest::_internal_mutable_job_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (query_case() != kByExactPath) {
-    clear_query();
-
-    set_has_by_exact_path();
-    _impl_.query_.by_exact_path_.InitDefault();
-  }
-  return _impl_.query_.by_exact_path_.Mutable( GetArena());
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.job_id_.Mutable( GetArena());
 }
-inline std::string* UpdateJobRequest::release_by_exact_path() {
+inline std::string* UpdateJobsRequest::release_job_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:beeremote.UpdateJobRequest.by_exact_path)
-  if (query_case() != kByExactPath) {
+  // @@protoc_insertion_point(field_release:beeremote.UpdateJobsRequest.job_id)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
-  clear_has_query();
-  return _impl_.query_.by_exact_path_.Release();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.job_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.job_id_.Set("", GetArena());
+  }
+  return released;
 }
-inline void UpdateJobRequest::set_allocated_by_exact_path(std::string* value) {
+inline void UpdateJobsRequest::set_allocated_job_id(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (has_query()) {
-    clear_query();
-  }
   if (value != nullptr) {
-    set_has_by_exact_path();
-    _impl_.query_.by_exact_path_.InitAllocated(value, GetArena());
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdateJobRequest.by_exact_path)
+  _impl_.job_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.job_id_.IsDefault()) {
+    _impl_.job_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdateJobsRequest.job_id)
 }
 
-// .beeremote.UpdateJobRequest.NewState new_state = 3;
-inline void UpdateJobRequest::clear_new_state() {
+// map<uint32, bool> remote_targets = 3;
+inline int UpdateJobsRequest::_internal_remote_targets_size() const {
+  return _internal_remote_targets().size();
+}
+inline int UpdateJobsRequest::remote_targets_size() const {
+  return _internal_remote_targets_size();
+}
+inline void UpdateJobsRequest::clear_remote_targets() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_targets_.Clear();
+}
+inline const ::google::protobuf::Map<::uint32_t, bool>& UpdateJobsRequest::_internal_remote_targets() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.remote_targets_.GetMap();
+}
+inline const ::google::protobuf::Map<::uint32_t, bool>& UpdateJobsRequest::remote_targets() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:beeremote.UpdateJobsRequest.remote_targets)
+  return _internal_remote_targets();
+}
+inline ::google::protobuf::Map<::uint32_t, bool>* UpdateJobsRequest::_internal_mutable_remote_targets() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.remote_targets_.MutableMap();
+}
+inline ::google::protobuf::Map<::uint32_t, bool>* UpdateJobsRequest::mutable_remote_targets() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:beeremote.UpdateJobsRequest.remote_targets)
+  return _internal_mutable_remote_targets();
+}
+
+// .beeremote.UpdateJobsRequest.NewState new_state = 10;
+inline void UpdateJobsRequest::clear_new_state() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.new_state_ = 0;
 }
-inline ::beeremote::UpdateJobRequest_NewState UpdateJobRequest::new_state() const {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobRequest.new_state)
+inline ::beeremote::UpdateJobsRequest_NewState UpdateJobsRequest::new_state() const {
+  // @@protoc_insertion_point(field_get:beeremote.UpdateJobsRequest.new_state)
   return _internal_new_state();
 }
-inline void UpdateJobRequest::set_new_state(::beeremote::UpdateJobRequest_NewState value) {
+inline void UpdateJobsRequest::set_new_state(::beeremote::UpdateJobsRequest_NewState value) {
   _internal_set_new_state(value);
-  // @@protoc_insertion_point(field_set:beeremote.UpdateJobRequest.new_state)
+  // @@protoc_insertion_point(field_set:beeremote.UpdateJobsRequest.new_state)
 }
-inline ::beeremote::UpdateJobRequest_NewState UpdateJobRequest::_internal_new_state() const {
+inline ::beeremote::UpdateJobsRequest_NewState UpdateJobsRequest::_internal_new_state() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::beeremote::UpdateJobRequest_NewState>(_impl_.new_state_);
+  return static_cast<::beeremote::UpdateJobsRequest_NewState>(_impl_.new_state_);
 }
-inline void UpdateJobRequest::_internal_set_new_state(::beeremote::UpdateJobRequest_NewState value) {
+inline void UpdateJobsRequest::_internal_set_new_state(::beeremote::UpdateJobsRequest_NewState value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.new_state_ = value;
 }
 
 // bool force_update = 4;
-inline void UpdateJobRequest::clear_force_update() {
+inline void UpdateJobsRequest::clear_force_update() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.force_update_ = false;
 }
-inline bool UpdateJobRequest::force_update() const {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobRequest.force_update)
+inline bool UpdateJobsRequest::force_update() const {
+  // @@protoc_insertion_point(field_get:beeremote.UpdateJobsRequest.force_update)
   return _internal_force_update();
 }
-inline void UpdateJobRequest::set_force_update(bool value) {
+inline void UpdateJobsRequest::set_force_update(bool value) {
   _internal_set_force_update(value);
-  // @@protoc_insertion_point(field_set:beeremote.UpdateJobRequest.force_update)
+  // @@protoc_insertion_point(field_set:beeremote.UpdateJobsRequest.force_update)
 }
-inline bool UpdateJobRequest::_internal_force_update() const {
+inline bool UpdateJobsRequest::_internal_force_update() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.force_update_;
 }
-inline void UpdateJobRequest::_internal_set_force_update(bool value) {
+inline void UpdateJobsRequest::_internal_set_force_update(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.force_update_ = value;
 }
 
-inline bool UpdateJobRequest::has_query() const {
-  return query_case() != QUERY_NOT_SET;
-}
-inline void UpdateJobRequest::clear_has_query() {
-  _impl_._oneof_case_[0] = QUERY_NOT_SET;
-}
-inline UpdateJobRequest::QueryCase UpdateJobRequest::query_case() const {
-  return UpdateJobRequest::QueryCase(_impl_._oneof_case_[0]);
-}
 // -------------------------------------------------------------------
 
-// UpdateJobResponse
+// UpdateJobsResponse
 
 // bool ok = 1;
-inline void UpdateJobResponse::clear_ok() {
+inline void UpdateJobsResponse::clear_ok() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.ok_ = false;
 }
-inline bool UpdateJobResponse::ok() const {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobResponse.ok)
+inline bool UpdateJobsResponse::ok() const {
+  // @@protoc_insertion_point(field_get:beeremote.UpdateJobsResponse.ok)
   return _internal_ok();
 }
-inline void UpdateJobResponse::set_ok(bool value) {
+inline void UpdateJobsResponse::set_ok(bool value) {
   _internal_set_ok(value);
-  // @@protoc_insertion_point(field_set:beeremote.UpdateJobResponse.ok)
+  // @@protoc_insertion_point(field_set:beeremote.UpdateJobsResponse.ok)
 }
-inline bool UpdateJobResponse::_internal_ok() const {
+inline bool UpdateJobsResponse::_internal_ok() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.ok_;
 }
-inline void UpdateJobResponse::_internal_set_ok(bool value) {
+inline void UpdateJobsResponse::_internal_set_ok(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.ok_ = value;
 }
 
 // string message = 2;
-inline void UpdateJobResponse::clear_message() {
+inline void UpdateJobsResponse::clear_message() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& UpdateJobResponse::message() const
+inline const std::string& UpdateJobsResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobResponse.message)
+  // @@protoc_insertion_point(field_get:beeremote.UpdateJobsResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateJobResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UpdateJobsResponse::set_message(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:beeremote.UpdateJobResponse.message)
+  // @@protoc_insertion_point(field_set:beeremote.UpdateJobsResponse.message)
 }
-inline std::string* UpdateJobResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* UpdateJobsResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobResponse.message)
+  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobsResponse.message)
   return _s;
 }
-inline const std::string& UpdateJobResponse::_internal_message() const {
+inline const std::string& UpdateJobsResponse::_internal_message() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.message_.Get();
 }
-inline void UpdateJobResponse::_internal_set_message(const std::string& value) {
+inline void UpdateJobsResponse::_internal_set_message(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* UpdateJobResponse::_internal_mutable_message() {
+inline std::string* UpdateJobsResponse::_internal_mutable_message() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* UpdateJobResponse::release_message() {
+inline std::string* UpdateJobsResponse::release_message() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:beeremote.UpdateJobResponse.message)
+  // @@protoc_insertion_point(field_release:beeremote.UpdateJobsResponse.message)
   return _impl_.message_.Release();
 }
-inline void UpdateJobResponse::set_allocated_message(std::string* value) {
+inline void UpdateJobsResponse::set_allocated_message(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.message_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.message_.IsDefault()) {
     _impl_.message_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdateJobResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdateJobsResponse.message)
 }
 
 // repeated .beeremote.JobResult results = 3;
-inline int UpdateJobResponse::_internal_results_size() const {
+inline int UpdateJobsResponse::_internal_results_size() const {
   return _internal_results().size();
 }
-inline int UpdateJobResponse::results_size() const {
+inline int UpdateJobsResponse::results_size() const {
   return _internal_results_size();
 }
-inline void UpdateJobResponse::clear_results() {
+inline void UpdateJobsResponse::clear_results() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.results_.Clear();
 }
-inline ::beeremote::JobResult* UpdateJobResponse::mutable_results(int index)
+inline ::beeremote::JobResult* UpdateJobsResponse::mutable_results(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobResponse.results)
+  // @@protoc_insertion_point(field_mutable:beeremote.UpdateJobsResponse.results)
   return _internal_mutable_results()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::beeremote::JobResult>* UpdateJobResponse::mutable_results()
+inline ::google::protobuf::RepeatedPtrField<::beeremote::JobResult>* UpdateJobsResponse::mutable_results()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:beeremote.UpdateJobResponse.results)
+  // @@protoc_insertion_point(field_mutable_list:beeremote.UpdateJobsResponse.results)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_results();
 }
-inline const ::beeremote::JobResult& UpdateJobResponse::results(int index) const
+inline const ::beeremote::JobResult& UpdateJobsResponse::results(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:beeremote.UpdateJobResponse.results)
+  // @@protoc_insertion_point(field_get:beeremote.UpdateJobsResponse.results)
   return _internal_results().Get(index);
 }
-inline ::beeremote::JobResult* UpdateJobResponse::add_results() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::beeremote::JobResult* UpdateJobsResponse::add_results() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::beeremote::JobResult* _add = _internal_mutable_results()->Add();
-  // @@protoc_insertion_point(field_add:beeremote.UpdateJobResponse.results)
+  // @@protoc_insertion_point(field_add:beeremote.UpdateJobsResponse.results)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::beeremote::JobResult>& UpdateJobResponse::results() const
+inline const ::google::protobuf::RepeatedPtrField<::beeremote::JobResult>& UpdateJobsResponse::results() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:beeremote.UpdateJobResponse.results)
+  // @@protoc_insertion_point(field_list:beeremote.UpdateJobsResponse.results)
   return _internal_results();
 }
 inline const ::google::protobuf::RepeatedPtrField<::beeremote::JobResult>&
-UpdateJobResponse::_internal_results() const {
+UpdateJobsResponse::_internal_results() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.results_;
 }
 inline ::google::protobuf::RepeatedPtrField<::beeremote::JobResult>*
-UpdateJobResponse::_internal_mutable_results() {
+UpdateJobsResponse::_internal_mutable_results() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.results_;
 }
@@ -6568,10 +6271,10 @@ inline const EnumDescriptor* GetEnumDescriptor<::beeremote::Job_State>() {
   return ::beeremote::Job_State_descriptor();
 }
 template <>
-struct is_proto_enum<::beeremote::UpdateJobRequest_NewState> : std::true_type {};
+struct is_proto_enum<::beeremote::UpdateJobsRequest_NewState> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::beeremote::UpdateJobRequest_NewState>() {
-  return ::beeremote::UpdateJobRequest_NewState_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::beeremote::UpdateJobsRequest_NewState>() {
+  return ::beeremote::UpdateJobsRequest_NewState_descriptor();
 }
 
 }  // namespace protobuf
