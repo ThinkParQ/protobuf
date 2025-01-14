@@ -17,6 +17,7 @@ protos: check-tools
 	mkdir -p $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)
 	protoc -I $(SRC_DIR) \
 		--go_opt=module="github.com/thinkparq/protobuf/go" \
+		--go_opt=default_api_level=API_HYBRID \
 		--go_out=$(GO_OUT_DIR) \
 		--go-grpc_opt=module="github.com/thinkparq/protobuf/go" \
 		--go-grpc_out=$(GO_OUT_DIR) \
@@ -53,9 +54,9 @@ clean:
 
 
 # The tools versions we want to use
-PROTOC_VERSION := 27.2
-PROTOC_GEN_GO_VERSION := 1.34.2
-PROTOC_GEN_GO_GRPC_VERSION := 1.4.0
+PROTOC_VERSION := 29.2
+PROTOC_GEN_GO_VERSION := 1.36.2
+PROTOC_GEN_GO_GRPC_VERSION := 1.5.1
 PROTOC_RS_VERSION := 0.3.0
 
 # Checks the versions of the installed tools, making sure they are what we expect

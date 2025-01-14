@@ -206,6 +206,17 @@ and use the code as a dependency in Rust projects.
   field numbers will no longer be compatible. This will also cause issues unmarshalling protobuf
   messages stored on-disk that are not immediately obvious because the message will likely
   unmarshall, but the fields may be populated partially or incorrectly depending on the changes.
+* [Extensively document fields](https://protobuf.dev/best-practices/api/#precisely-concisely) - what
+  they do, how to use them under which circumstances and their limitations. Are they required or
+  optional, does this depend on other fields? What is their purpose, what application data do they
+  contain? Document potential values with special meanings (e.g. "-1 means unlimited") and the valid
+  range of values (unless a field can be considered opaque from the message consumers view, e.g.
+  pagination handles). Documenting messages like this defines a contract that API users have to
+  follow when using the message. This ensures that all implementations use the message the right way
+  and are compatible to each other. For example, if a field is meant to be "required", it means that
+  1. the provider of that message must provide this field and
+  2. the the consumer can rely on this
+  field being present, no matter what.
 
 ## Best Practices
 
