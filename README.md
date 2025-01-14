@@ -13,6 +13,9 @@
   - [Generating Code for Golang](#generating-code-for-golang)
   - [Generating Code for Rust](#generating-code-for-rust)
 - [Updating Existing Protocol Buffers](#updating-existing-protocol-buffers)
+  - [Gotchas](#gotchas)
+  - [Best Practices](#best-practices)
+    - [Field Presence](#field-presence)
 - [References](#references)
 
 # Overview 
@@ -196,15 +199,43 @@ and use the code as a dependency in Rust projects.
 
 # Updating Existing Protocol Buffers
 
+## Gotchas
+
 * Generally [field numbers](https://protobuf.dev/programming-guides/proto3/#assigning) should never
   be changed after they are merged to main. If these are changed clients and servers with different
   field numbers will no longer be compatible. This will also cause issues unmarshalling protobuf
   messages stored on-disk that are not immediately obvious because the message will likely
   unmarshall, but the fields may be populated partially or incorrectly depending on the changes.
 
+## Best Practices
+
+### [Field Presence](https://protobuf.dev/programming-guides/field_presence/)
+
+Unless there is a good reason not to, generally use the `optional` keyword to force fields to have
+explicit presence. On a case-by-case basis developers can choose to omit the `optional` keyword if
+one of the following is true:
+
+1. The default value for a given type matches the default behavior they want when not explicitly
+configured, i.e., `var execute bool` to trigger a dry run that does not make changes by default.
+2. If the default value is the "invalid" variant, i.e., `var name string` could simply check name is
+not an empty string. 
+
+Generally this should be done sparingly as it is always safer to use explicit presence and is now
+[officially recommended](https://protobuf.dev/programming-guides/field_presence/) as it provides a
+smoother path to transition to protobuf editions.
+
+Exceptions are if you really need the slight performance improvement of not serializing extra bits
+that mark field presence and for languages like Go where you wish to avoid extra conditionals to
+check for field presence (because Go uses pointers for fields with explicit presence).
+
+Because of how Go handles field presence you may notices messages primarily consumed by Go code tend
+to lean away from using `optional`. While this is fine if you are confident one or both of the above
+rules hold true, for messages that may be used by multiple languages using explicit field presence
+can help ensure consistency. Take special care to document any special behaviors or assumptions made
+in non-optional fields, for example if "0" has a specific meaning (such as invalid) to the receiver.
+
 # References
 
 * [Style Guide](https://protobuf.dev/programming-guides/style/)
-* [Field Presence](https://protobuf.dev/programming-guides/field_presence/)
   * TL;DR - Generally expect fields to default to the language specific default values for each type for any fields that were not set by the server.
 * [Go Generated Code Guide](https://protobuf.dev/reference/go/go-generated/)
