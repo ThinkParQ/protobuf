@@ -216,8 +216,8 @@ explicit presence. On a case-by-case basis developers can choose to omit the `op
 one of the following is true:
 
 1. The default value for a given type matches the default behavior they want when not explicitly
-configured, i.e., `var unsorted bool` if something should be sorted by default. 
-1. If the default value is the "invalid" variant, i.e., `var name string` could simply check name is
+configured, i.e., `var execute bool` to trigger a dry run that does not make changes by default.
+2. If the default value is the "invalid" variant, i.e., `var name string` could simply check name is
 not an empty string. 
 
 Generally this should be done sparingly as it is always safer to use explicit presence and is now
@@ -232,7 +232,7 @@ Because of how Go handles field presence you may notices messages primarily cons
 to lean away from using `optional`. While this is fine if you are confident one or both of the above
 rules hold true, for messages that may be used by multiple languages using explicit field presence
 can help ensure consistency. Take special care to document any special behaviors or assumptions made
-in non-optional fields, for example if "0" has a specific meaning (such as invalid) to the server.
+in non-optional fields, for example if "0" has a specific meaning (such as invalid) to the receiver.
 
 # References
 
