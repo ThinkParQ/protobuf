@@ -4,7 +4,7 @@
 // 	protoc        v5.29.2
 // source: beegfs.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package beegfs
 
@@ -398,16 +398,11 @@ func (x QuotaType) Number() protoreflect.EnumNumber {
 // a node or target. Because each entity type has its own id space (meaning a combination is not
 // globally unique), the entity type must be known in addition to uniquely identify an entity.
 type LegacyId struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// BeeGFS numeric id.
-	// Required, 0 is invalid.
-	NumId uint32 `protobuf:"varint,1,opt,name=num_id,json=numId,proto3" json:"num_id,omitempty"`
-	// BeeGFS node type.
-	// Required. Despite the name, also applies to other entity types (which can only be on a node of
-	// their own type, so it's still correct).
-	NodeType      NodeType `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_NumId    uint32                 `protobuf:"varint,1,opt,name=num_id,json=numId,proto3" json:"num_id,omitempty"`
+	xxx_hidden_NodeType NodeType               `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *LegacyId) Reset() {
@@ -437,24 +432,24 @@ func (x *LegacyId) ProtoReflect() protoreflect.Message {
 
 func (x *LegacyId) GetNumId() uint32 {
 	if x != nil {
-		return x.NumId
+		return x.xxx_hidden_NumId
 	}
 	return 0
 }
 
 func (x *LegacyId) GetNodeType() NodeType {
 	if x != nil {
-		return x.NodeType
+		return x.xxx_hidden_NodeType
 	}
 	return NodeType_NODE_TYPE_UNSPECIFIED
 }
 
 func (x *LegacyId) SetNumId(v uint32) {
-	x.NumId = v
+	x.xxx_hidden_NumId = v
 }
 
 func (x *LegacyId) SetNodeType(v NodeType) {
-	x.NodeType = v
+	x.xxx_hidden_NodeType = v
 }
 
 type LegacyId_builder struct {
@@ -473,8 +468,8 @@ func (b0 LegacyId_builder) Build() *LegacyId {
 	m0 := &LegacyId{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.NumId = b.NumId
-	x.NodeType = b.NodeType
+	x.xxx_hidden_NumId = b.NumId
+	x.xxx_hidden_NodeType = b.NodeType
 	return m0
 }
 
@@ -487,22 +482,14 @@ func (b0 LegacyId_builder) Build() *LegacyId {
 // should have all info about an entity available. If that isn't the case, leaving fields empty is
 // allowed.
 type EntityIdSet struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The global, unique entity id. Identifies an entity from all types without any additional
-	// context.
-	// Optional or Required, depending on the use case. 0 is invalid.
-	Uid *int64 `protobuf:"varint,1,opt,name=uid,proto3,oneof" json:"uid,omitempty"`
-	// The user definable globally unique alias of an entity. Identifies an entity from all types
-	// without any additional context.
-	// Optional or Required, depending on the use case. Aliases must start with letter and contain
-	// only [a-zA-Z0-9_-.].
-	Alias *string `protobuf:"bytes,2,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
-	// The "legacy" style numeric Id-NodeType combination. The entity type must be known in addition
-	// to uniquely identify an entity with this field.
-	// Optional or Required, depending on the use case.
-	LegacyId      *LegacyId `protobuf:"bytes,3,opt,name=legacy_id,json=legacyId,proto3,oneof" json:"legacy_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Uid         int64                  `protobuf:"varint,1,opt,name=uid,proto3,oneof" json:"uid,omitempty"`
+	xxx_hidden_Alias       *string                `protobuf:"bytes,2,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
+	xxx_hidden_LegacyId    *LegacyId              `protobuf:"bytes,3,opt,name=legacy_id,json=legacyId,proto3,oneof" json:"legacy_id,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *EntityIdSet) Reset() {
@@ -531,69 +518,76 @@ func (x *EntityIdSet) ProtoReflect() protoreflect.Message {
 }
 
 func (x *EntityIdSet) GetUid() int64 {
-	if x != nil && x.Uid != nil {
-		return *x.Uid
+	if x != nil {
+		return x.xxx_hidden_Uid
 	}
 	return 0
 }
 
 func (x *EntityIdSet) GetAlias() string {
-	if x != nil && x.Alias != nil {
-		return *x.Alias
+	if x != nil {
+		if x.xxx_hidden_Alias != nil {
+			return *x.xxx_hidden_Alias
+		}
+		return ""
 	}
 	return ""
 }
 
 func (x *EntityIdSet) GetLegacyId() *LegacyId {
 	if x != nil {
-		return x.LegacyId
+		return x.xxx_hidden_LegacyId
 	}
 	return nil
 }
 
 func (x *EntityIdSet) SetUid(v int64) {
-	x.Uid = &v
+	x.xxx_hidden_Uid = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 3)
 }
 
 func (x *EntityIdSet) SetAlias(v string) {
-	x.Alias = &v
+	x.xxx_hidden_Alias = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *EntityIdSet) SetLegacyId(v *LegacyId) {
-	x.LegacyId = v
+	x.xxx_hidden_LegacyId = v
 }
 
 func (x *EntityIdSet) HasUid() bool {
 	if x == nil {
 		return false
 	}
-	return x.Uid != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *EntityIdSet) HasAlias() bool {
 	if x == nil {
 		return false
 	}
-	return x.Alias != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *EntityIdSet) HasLegacyId() bool {
 	if x == nil {
 		return false
 	}
-	return x.LegacyId != nil
+	return x.xxx_hidden_LegacyId != nil
 }
 
 func (x *EntityIdSet) ClearUid() {
-	x.Uid = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Uid = 0
 }
 
 func (x *EntityIdSet) ClearAlias() {
-	x.Alias = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Alias = nil
 }
 
 func (x *EntityIdSet) ClearLegacyId() {
-	x.LegacyId = nil
+	x.xxx_hidden_LegacyId = nil
 }
 
 type EntityIdSet_builder struct {
@@ -618,9 +612,15 @@ func (b0 EntityIdSet_builder) Build() *EntityIdSet {
 	m0 := &EntityIdSet{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Uid = b.Uid
-	x.Alias = b.Alias
-	x.LegacyId = b.LegacyId
+	if b.Uid != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 3)
+		x.xxx_hidden_Uid = *b.Uid
+	}
+	if b.Alias != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_Alias = b.Alias
+	}
+	x.xxx_hidden_LegacyId = b.LegacyId
 	return m0
 }
 

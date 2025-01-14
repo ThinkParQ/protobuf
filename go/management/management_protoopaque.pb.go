@@ -4,7 +4,7 @@
 // 	protoc        v5.29.2
 // source: management.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package management
 
@@ -25,18 +25,12 @@ const (
 
 // Sets an entity alias.
 type SetAliasRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The entity to set the alias for.
-	// Required, one identifier is sufficient.
-	EntityId *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=entity_id,json=entityId,proto3" json:"entity_id,omitempty"`
-	// The entity type to set the alias for.
-	// Required. Must match entity_id's entity type.
-	EntityType beegfs.EntityType `protobuf:"varint,2,opt,name=entity_type,json=entityType,proto3,enum=beegfs.EntityType" json:"entity_type,omitempty"`
-	// The new alias.
-	// Required.
-	NewAlias      string `protobuf:"bytes,3,opt,name=new_alias,json=newAlias,proto3" json:"new_alias,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_EntityId   *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=entity_id,json=entityId,proto3" json:"entity_id,omitempty"`
+	xxx_hidden_EntityType beegfs.EntityType      `protobuf:"varint,2,opt,name=entity_type,json=entityType,proto3,enum=beegfs.EntityType" json:"entity_type,omitempty"`
+	xxx_hidden_NewAlias   string                 `protobuf:"bytes,3,opt,name=new_alias,json=newAlias,proto3" json:"new_alias,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *SetAliasRequest) Reset() {
@@ -66,46 +60,46 @@ func (x *SetAliasRequest) ProtoReflect() protoreflect.Message {
 
 func (x *SetAliasRequest) GetEntityId() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.EntityId
+		return x.xxx_hidden_EntityId
 	}
 	return nil
 }
 
 func (x *SetAliasRequest) GetEntityType() beegfs.EntityType {
 	if x != nil {
-		return x.EntityType
+		return x.xxx_hidden_EntityType
 	}
 	return beegfs.EntityType(0)
 }
 
 func (x *SetAliasRequest) GetNewAlias() string {
 	if x != nil {
-		return x.NewAlias
+		return x.xxx_hidden_NewAlias
 	}
 	return ""
 }
 
 func (x *SetAliasRequest) SetEntityId(v *beegfs.EntityIdSet) {
-	x.EntityId = v
+	x.xxx_hidden_EntityId = v
 }
 
 func (x *SetAliasRequest) SetEntityType(v beegfs.EntityType) {
-	x.EntityType = v
+	x.xxx_hidden_EntityType = v
 }
 
 func (x *SetAliasRequest) SetNewAlias(v string) {
-	x.NewAlias = v
+	x.xxx_hidden_NewAlias = v
 }
 
 func (x *SetAliasRequest) HasEntityId() bool {
 	if x == nil {
 		return false
 	}
-	return x.EntityId != nil
+	return x.xxx_hidden_EntityId != nil
 }
 
 func (x *SetAliasRequest) ClearEntityId() {
-	x.EntityId = nil
+	x.xxx_hidden_EntityId = nil
 }
 
 type SetAliasRequest_builder struct {
@@ -126,14 +120,14 @@ func (b0 SetAliasRequest_builder) Build() *SetAliasRequest {
 	m0 := &SetAliasRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.EntityId = b.EntityId
-	x.EntityType = b.EntityType
-	x.NewAlias = b.NewAlias
+	x.xxx_hidden_EntityId = b.EntityId
+	x.xxx_hidden_EntityType = b.EntityType
+	x.xxx_hidden_NewAlias = b.NewAlias
 	return m0
 }
 
 type SetAliasResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -177,12 +171,10 @@ func (b0 SetAliasResponse_builder) Build() *SetAliasResponse {
 
 // Gets the full list of nodes.
 type GetNodesRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// Should the nic list should be included for each node?
-	// Required.
-	IncludeNics   bool `protobuf:"varint,1,opt,name=include_nics,json=includeNics,proto3" json:"include_nics,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_IncludeNics bool                   `protobuf:"varint,1,opt,name=include_nics,json=includeNics,proto3" json:"include_nics,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *GetNodesRequest) Reset() {
@@ -212,13 +204,13 @@ func (x *GetNodesRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetNodesRequest) GetIncludeNics() bool {
 	if x != nil {
-		return x.IncludeNics
+		return x.xxx_hidden_IncludeNics
 	}
 	return false
 }
 
 func (x *GetNodesRequest) SetIncludeNics(v bool) {
-	x.IncludeNics = v
+	x.xxx_hidden_IncludeNics = v
 }
 
 type GetNodesRequest_builder struct {
@@ -233,23 +225,19 @@ func (b0 GetNodesRequest_builder) Build() *GetNodesRequest {
 	m0 := &GetNodesRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.IncludeNics = b.IncludeNics
+	x.xxx_hidden_IncludeNics = b.IncludeNics
 	return m0
 }
 
 type GetNodesResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The list of nodes.
-	Nodes []*GetNodesResponse_Node `protobuf:"bytes,1,rep,name=nodes,proto3" json:"nodes,omitempty"`
-	// The node containing the root inode.
-	// Optional, may be omitted if that information is not yet available (e.g. on a fresh system
-	// without any meta targets/nodes).
-	MetaRootNode *beegfs.EntityIdSet `protobuf:"bytes,2,opt,name=meta_root_node,json=metaRootNode,proto3,oneof" json:"meta_root_node,omitempty"`
-	// The file system UUID for this BeeGFS.
-	// Required.
-	FsUuid        *string `protobuf:"bytes,3,opt,name=fs_uuid,json=fsUuid,proto3,oneof" json:"fs_uuid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                   protoimpl.MessageState    `protogen:"opaque.v1"`
+	xxx_hidden_Nodes        *[]*GetNodesResponse_Node `protobuf:"bytes,1,rep,name=nodes,proto3" json:"nodes,omitempty"`
+	xxx_hidden_MetaRootNode *beegfs.EntityIdSet       `protobuf:"bytes,2,opt,name=meta_root_node,json=metaRootNode,proto3,oneof" json:"meta_root_node,omitempty"`
+	xxx_hidden_FsUuid       *string                   `protobuf:"bytes,3,opt,name=fs_uuid,json=fsUuid,proto3,oneof" json:"fs_uuid,omitempty"`
+	XXX_raceDetectHookData  protoimpl.RaceDetectHookData
+	XXX_presence            [1]uint32
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *GetNodesResponse) Reset() {
@@ -279,57 +267,64 @@ func (x *GetNodesResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetNodesResponse) GetNodes() []*GetNodesResponse_Node {
 	if x != nil {
-		return x.Nodes
+		if x.xxx_hidden_Nodes != nil {
+			return *x.xxx_hidden_Nodes
+		}
 	}
 	return nil
 }
 
 func (x *GetNodesResponse) GetMetaRootNode() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.MetaRootNode
+		return x.xxx_hidden_MetaRootNode
 	}
 	return nil
 }
 
 func (x *GetNodesResponse) GetFsUuid() string {
-	if x != nil && x.FsUuid != nil {
-		return *x.FsUuid
+	if x != nil {
+		if x.xxx_hidden_FsUuid != nil {
+			return *x.xxx_hidden_FsUuid
+		}
+		return ""
 	}
 	return ""
 }
 
 func (x *GetNodesResponse) SetNodes(v []*GetNodesResponse_Node) {
-	x.Nodes = v
+	x.xxx_hidden_Nodes = &v
 }
 
 func (x *GetNodesResponse) SetMetaRootNode(v *beegfs.EntityIdSet) {
-	x.MetaRootNode = v
+	x.xxx_hidden_MetaRootNode = v
 }
 
 func (x *GetNodesResponse) SetFsUuid(v string) {
-	x.FsUuid = &v
+	x.xxx_hidden_FsUuid = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
 func (x *GetNodesResponse) HasMetaRootNode() bool {
 	if x == nil {
 		return false
 	}
-	return x.MetaRootNode != nil
+	return x.xxx_hidden_MetaRootNode != nil
 }
 
 func (x *GetNodesResponse) HasFsUuid() bool {
 	if x == nil {
 		return false
 	}
-	return x.FsUuid != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
 func (x *GetNodesResponse) ClearMetaRootNode() {
-	x.MetaRootNode = nil
+	x.xxx_hidden_MetaRootNode = nil
 }
 
 func (x *GetNodesResponse) ClearFsUuid() {
-	x.FsUuid = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_FsUuid = nil
 }
 
 type GetNodesResponse_builder struct {
@@ -350,23 +345,24 @@ func (b0 GetNodesResponse_builder) Build() *GetNodesResponse {
 	m0 := &GetNodesResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Nodes = b.Nodes
-	x.MetaRootNode = b.MetaRootNode
-	x.FsUuid = b.FsUuid
+	x.xxx_hidden_Nodes = &b.Nodes
+	x.xxx_hidden_MetaRootNode = b.MetaRootNode
+	if b.FsUuid != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_FsUuid = b.FsUuid
+	}
 	return m0
 }
 
 // Deletes a node from the system.
 type DeleteNodeRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The node to delete.
-	// Required, one identifier is sufficient.
-	Node *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=node,proto3,oneof" json:"node,omitempty"`
-	// Execute the deletion? If set to false, check if delete is possible but don't actually do it.
-	// Required.
-	Execute       *bool `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Node        *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=node,proto3,oneof" json:"node,omitempty"`
+	xxx_hidden_Execute     bool                   `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *DeleteNodeRequest) Reset() {
@@ -396,46 +392,48 @@ func (x *DeleteNodeRequest) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteNodeRequest) GetNode() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Node
+		return x.xxx_hidden_Node
 	}
 	return nil
 }
 
 func (x *DeleteNodeRequest) GetExecute() bool {
-	if x != nil && x.Execute != nil {
-		return *x.Execute
+	if x != nil {
+		return x.xxx_hidden_Execute
 	}
 	return false
 }
 
 func (x *DeleteNodeRequest) SetNode(v *beegfs.EntityIdSet) {
-	x.Node = v
+	x.xxx_hidden_Node = v
 }
 
 func (x *DeleteNodeRequest) SetExecute(v bool) {
-	x.Execute = &v
+	x.xxx_hidden_Execute = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *DeleteNodeRequest) HasNode() bool {
 	if x == nil {
 		return false
 	}
-	return x.Node != nil
+	return x.xxx_hidden_Node != nil
 }
 
 func (x *DeleteNodeRequest) HasExecute() bool {
 	if x == nil {
 		return false
 	}
-	return x.Execute != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *DeleteNodeRequest) ClearNode() {
-	x.Node = nil
+	x.xxx_hidden_Node = nil
 }
 
 func (x *DeleteNodeRequest) ClearExecute() {
-	x.Execute = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Execute = false
 }
 
 type DeleteNodeRequest_builder struct {
@@ -453,18 +451,19 @@ func (b0 DeleteNodeRequest_builder) Build() *DeleteNodeRequest {
 	m0 := &DeleteNodeRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Node = b.Node
-	x.Execute = b.Execute
+	x.xxx_hidden_Node = b.Node
+	if b.Execute != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Execute = *b.Execute
+	}
 	return m0
 }
 
 type DeleteNodeResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The identifier set of the deleted node.
-	// Required, should be completely populated.
-	Node          *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=node,proto3,oneof" json:"node,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Node *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=node,proto3,oneof" json:"node,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *DeleteNodeResponse) Reset() {
@@ -494,24 +493,24 @@ func (x *DeleteNodeResponse) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteNodeResponse) GetNode() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Node
+		return x.xxx_hidden_Node
 	}
 	return nil
 }
 
 func (x *DeleteNodeResponse) SetNode(v *beegfs.EntityIdSet) {
-	x.Node = v
+	x.xxx_hidden_Node = v
 }
 
 func (x *DeleteNodeResponse) HasNode() bool {
 	if x == nil {
 		return false
 	}
-	return x.Node != nil
+	return x.xxx_hidden_Node != nil
 }
 
 func (x *DeleteNodeResponse) ClearNode() {
-	x.Node = nil
+	x.xxx_hidden_Node = nil
 }
 
 type DeleteNodeResponse_builder struct {
@@ -526,13 +525,13 @@ func (b0 DeleteNodeResponse_builder) Build() *DeleteNodeResponse {
 	m0 := &DeleteNodeResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Node = b.Node
+	x.xxx_hidden_Node = b.Node
 	return m0
 }
 
 // Gets the full list of targets.
 type GetTargetsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -575,11 +574,10 @@ func (b0 GetTargetsRequest_builder) Build() *GetTargetsRequest {
 }
 
 type GetTargetsResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The list of targets.
-	Targets       []*GetTargetsResponse_Target `protobuf:"bytes,1,rep,name=targets,proto3" json:"targets,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState        `protogen:"opaque.v1"`
+	xxx_hidden_Targets *[]*GetTargetsResponse_Target `protobuf:"bytes,1,rep,name=targets,proto3" json:"targets,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetTargetsResponse) Reset() {
@@ -609,13 +607,15 @@ func (x *GetTargetsResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetTargetsResponse) GetTargets() []*GetTargetsResponse_Target {
 	if x != nil {
-		return x.Targets
+		if x.xxx_hidden_Targets != nil {
+			return *x.xxx_hidden_Targets
+		}
 	}
 	return nil
 }
 
 func (x *GetTargetsResponse) SetTargets(v []*GetTargetsResponse_Target) {
-	x.Targets = v
+	x.xxx_hidden_Targets = &v
 }
 
 type GetTargetsResponse_builder struct {
@@ -629,21 +629,19 @@ func (b0 GetTargetsResponse_builder) Build() *GetTargetsResponse {
 	m0 := &GetTargetsResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Targets = b.Targets
+	x.xxx_hidden_Targets = &b.Targets
 	return m0
 }
 
 // Deletes a target from the system.
 type DeleteTargetRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The target to delete.
-	// Required, one identifier is sufficient.
-	Target *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
-	// Execute the deletion? If set to false, check if delete is possible but don't actually do it.
-	// Required.
-	Execute       *bool `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Target      *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
+	xxx_hidden_Execute     bool                   `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *DeleteTargetRequest) Reset() {
@@ -673,46 +671,48 @@ func (x *DeleteTargetRequest) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteTargetRequest) GetTarget() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Target
+		return x.xxx_hidden_Target
 	}
 	return nil
 }
 
 func (x *DeleteTargetRequest) GetExecute() bool {
-	if x != nil && x.Execute != nil {
-		return *x.Execute
+	if x != nil {
+		return x.xxx_hidden_Execute
 	}
 	return false
 }
 
 func (x *DeleteTargetRequest) SetTarget(v *beegfs.EntityIdSet) {
-	x.Target = v
+	x.xxx_hidden_Target = v
 }
 
 func (x *DeleteTargetRequest) SetExecute(v bool) {
-	x.Execute = &v
+	x.xxx_hidden_Execute = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *DeleteTargetRequest) HasTarget() bool {
 	if x == nil {
 		return false
 	}
-	return x.Target != nil
+	return x.xxx_hidden_Target != nil
 }
 
 func (x *DeleteTargetRequest) HasExecute() bool {
 	if x == nil {
 		return false
 	}
-	return x.Execute != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *DeleteTargetRequest) ClearTarget() {
-	x.Target = nil
+	x.xxx_hidden_Target = nil
 }
 
 func (x *DeleteTargetRequest) ClearExecute() {
-	x.Execute = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Execute = false
 }
 
 type DeleteTargetRequest_builder struct {
@@ -730,18 +730,19 @@ func (b0 DeleteTargetRequest_builder) Build() *DeleteTargetRequest {
 	m0 := &DeleteTargetRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Target = b.Target
-	x.Execute = b.Execute
+	x.xxx_hidden_Target = b.Target
+	if b.Execute != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Execute = *b.Execute
+	}
 	return m0
 }
 
 type DeleteTargetResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The identifier set of the deleted target.
-	// Required, should be completely populated.
-	Target        *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Target *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *DeleteTargetResponse) Reset() {
@@ -771,24 +772,24 @@ func (x *DeleteTargetResponse) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteTargetResponse) GetTarget() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Target
+		return x.xxx_hidden_Target
 	}
 	return nil
 }
 
 func (x *DeleteTargetResponse) SetTarget(v *beegfs.EntityIdSet) {
-	x.Target = v
+	x.xxx_hidden_Target = v
 }
 
 func (x *DeleteTargetResponse) HasTarget() bool {
 	if x == nil {
 		return false
 	}
-	return x.Target != nil
+	return x.xxx_hidden_Target != nil
 }
 
 func (x *DeleteTargetResponse) ClearTarget() {
-	x.Target = nil
+	x.xxx_hidden_Target = nil
 }
 
 type DeleteTargetResponse_builder struct {
@@ -803,21 +804,19 @@ func (b0 DeleteTargetResponse_builder) Build() *DeleteTargetResponse {
 	m0 := &DeleteTargetResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Target = b.Target
+	x.xxx_hidden_Target = b.Target
 	return m0
 }
 
 // Sets a targets consistency state.
 type SetTargetStateRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The target to set the state for.
-	// Required, one identifier is sufficient.
-	Target *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
-	// Consistency state to set for the target.
-	// Required.
-	ConsistencyState *beegfs.ConsistencyState `protobuf:"varint,2,opt,name=consistency_state,json=consistencyState,proto3,enum=beegfs.ConsistencyState,oneof" json:"consistency_state,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state                       protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_Target           *beegfs.EntityIdSet     `protobuf:"bytes,1,opt,name=target,proto3,oneof" json:"target,omitempty"`
+	xxx_hidden_ConsistencyState beegfs.ConsistencyState `protobuf:"varint,2,opt,name=consistency_state,json=consistencyState,proto3,enum=beegfs.ConsistencyState,oneof" json:"consistency_state,omitempty"`
+	XXX_raceDetectHookData      protoimpl.RaceDetectHookData
+	XXX_presence                [1]uint32
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *SetTargetStateRequest) Reset() {
@@ -847,46 +846,50 @@ func (x *SetTargetStateRequest) ProtoReflect() protoreflect.Message {
 
 func (x *SetTargetStateRequest) GetTarget() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Target
+		return x.xxx_hidden_Target
 	}
 	return nil
 }
 
 func (x *SetTargetStateRequest) GetConsistencyState() beegfs.ConsistencyState {
-	if x != nil && x.ConsistencyState != nil {
-		return *x.ConsistencyState
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
+			return x.xxx_hidden_ConsistencyState
+		}
 	}
 	return beegfs.ConsistencyState(0)
 }
 
 func (x *SetTargetStateRequest) SetTarget(v *beegfs.EntityIdSet) {
-	x.Target = v
+	x.xxx_hidden_Target = v
 }
 
 func (x *SetTargetStateRequest) SetConsistencyState(v beegfs.ConsistencyState) {
-	x.ConsistencyState = &v
+	x.xxx_hidden_ConsistencyState = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *SetTargetStateRequest) HasTarget() bool {
 	if x == nil {
 		return false
 	}
-	return x.Target != nil
+	return x.xxx_hidden_Target != nil
 }
 
 func (x *SetTargetStateRequest) HasConsistencyState() bool {
 	if x == nil {
 		return false
 	}
-	return x.ConsistencyState != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *SetTargetStateRequest) ClearTarget() {
-	x.Target = nil
+	x.xxx_hidden_Target = nil
 }
 
 func (x *SetTargetStateRequest) ClearConsistencyState() {
-	x.ConsistencyState = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_ConsistencyState = beegfs.ConsistencyState_CONSISTENCY_STATE_UNSPECIFIED
 }
 
 type SetTargetStateRequest_builder struct {
@@ -904,13 +907,16 @@ func (b0 SetTargetStateRequest_builder) Build() *SetTargetStateRequest {
 	m0 := &SetTargetStateRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Target = b.Target
-	x.ConsistencyState = b.ConsistencyState
+	x.xxx_hidden_Target = b.Target
+	if b.ConsistencyState != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_ConsistencyState = *b.ConsistencyState
+	}
 	return m0
 }
 
 type SetTargetStateResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -954,12 +960,10 @@ func (b0 SetTargetStateResponse_builder) Build() *SetTargetStateResponse {
 
 // Gets the full list of storage pools.
 type GetPoolsRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// Should the quota limits be included for each pool?
-	// Required.
-	WithQuotaLimits bool `protobuf:"varint,1,opt,name=with_quota_limits,json=withQuotaLimits,proto3" json:"with_quota_limits,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_WithQuotaLimits bool                   `protobuf:"varint,1,opt,name=with_quota_limits,json=withQuotaLimits,proto3" json:"with_quota_limits,omitempty"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *GetPoolsRequest) Reset() {
@@ -989,13 +993,13 @@ func (x *GetPoolsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetPoolsRequest) GetWithQuotaLimits() bool {
 	if x != nil {
-		return x.WithQuotaLimits
+		return x.xxx_hidden_WithQuotaLimits
 	}
 	return false
 }
 
 func (x *GetPoolsRequest) SetWithQuotaLimits(v bool) {
-	x.WithQuotaLimits = v
+	x.xxx_hidden_WithQuotaLimits = v
 }
 
 type GetPoolsRequest_builder struct {
@@ -1010,16 +1014,15 @@ func (b0 GetPoolsRequest_builder) Build() *GetPoolsRequest {
 	m0 := &GetPoolsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.WithQuotaLimits = b.WithQuotaLimits
+	x.xxx_hidden_WithQuotaLimits = b.WithQuotaLimits
 	return m0
 }
 
 type GetPoolsResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The list of storage pools.
-	Pools         []*GetPoolsResponse_StoragePool `protobuf:"bytes,1,rep,name=pools,proto3" json:"pools,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState           `protogen:"opaque.v1"`
+	xxx_hidden_Pools *[]*GetPoolsResponse_StoragePool `protobuf:"bytes,1,rep,name=pools,proto3" json:"pools,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *GetPoolsResponse) Reset() {
@@ -1049,13 +1052,15 @@ func (x *GetPoolsResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetPoolsResponse) GetPools() []*GetPoolsResponse_StoragePool {
 	if x != nil {
-		return x.Pools
+		if x.xxx_hidden_Pools != nil {
+			return *x.xxx_hidden_Pools
+		}
 	}
 	return nil
 }
 
 func (x *GetPoolsResponse) SetPools(v []*GetPoolsResponse_StoragePool) {
-	x.Pools = v
+	x.xxx_hidden_Pools = &v
 }
 
 type GetPoolsResponse_builder struct {
@@ -1069,30 +1074,22 @@ func (b0 GetPoolsResponse_builder) Build() *GetPoolsResponse {
 	m0 := &GetPoolsResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Pools = b.Pools
+	x.xxx_hidden_Pools = &b.Pools
 	return m0
 }
 
 // Creates a new pool.
 type CreatePoolRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The node type of the new pool.
-	// Required, must be STORAGE.
-	NodeType *beegfs.NodeType `protobuf:"varint,1,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType,oneof" json:"node_type,omitempty"`
-	// The numeric id of the new pool.
-	// Optional. Must be chosen by the receiver if omitted.
-	NumId *uint32 `protobuf:"varint,2,opt,name=num_id,json=numId,proto3,oneof" json:"num_id,omitempty"`
-	// The alias of the new pool.
-	// Required.
-	Alias *string `protobuf:"bytes,3,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
-	// The targets to assign to the new pool.
-	// One identifier is sufficient for each.
-	Targets []*beegfs.EntityIdSet `protobuf:"bytes,4,rep,name=targets,proto3" json:"targets,omitempty"`
-	// The buddy groups to assign to the new pool.
-	// One identifier is sufficient for each.
-	BuddyGroups   []*beegfs.EntityIdSet `protobuf:"bytes,5,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_NodeType    beegfs.NodeType        `protobuf:"varint,1,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType,oneof" json:"node_type,omitempty"`
+	xxx_hidden_NumId       uint32                 `protobuf:"varint,2,opt,name=num_id,json=numId,proto3,oneof" json:"num_id,omitempty"`
+	xxx_hidden_Alias       *string                `protobuf:"bytes,3,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
+	xxx_hidden_Targets     *[]*beegfs.EntityIdSet `protobuf:"bytes,4,rep,name=targets,proto3" json:"targets,omitempty"`
+	xxx_hidden_BuddyGroups *[]*beegfs.EntityIdSet `protobuf:"bytes,5,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *CreatePoolRequest) Reset() {
@@ -1121,91 +1118,106 @@ func (x *CreatePoolRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *CreatePoolRequest) GetNodeType() beegfs.NodeType {
-	if x != nil && x.NodeType != nil {
-		return *x.NodeType
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_NodeType
+		}
 	}
 	return beegfs.NodeType(0)
 }
 
 func (x *CreatePoolRequest) GetNumId() uint32 {
-	if x != nil && x.NumId != nil {
-		return *x.NumId
+	if x != nil {
+		return x.xxx_hidden_NumId
 	}
 	return 0
 }
 
 func (x *CreatePoolRequest) GetAlias() string {
-	if x != nil && x.Alias != nil {
-		return *x.Alias
+	if x != nil {
+		if x.xxx_hidden_Alias != nil {
+			return *x.xxx_hidden_Alias
+		}
+		return ""
 	}
 	return ""
 }
 
 func (x *CreatePoolRequest) GetTargets() []*beegfs.EntityIdSet {
 	if x != nil {
-		return x.Targets
+		if x.xxx_hidden_Targets != nil {
+			return *x.xxx_hidden_Targets
+		}
 	}
 	return nil
 }
 
 func (x *CreatePoolRequest) GetBuddyGroups() []*beegfs.EntityIdSet {
 	if x != nil {
-		return x.BuddyGroups
+		if x.xxx_hidden_BuddyGroups != nil {
+			return *x.xxx_hidden_BuddyGroups
+		}
 	}
 	return nil
 }
 
 func (x *CreatePoolRequest) SetNodeType(v beegfs.NodeType) {
-	x.NodeType = &v
+	x.xxx_hidden_NodeType = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
 }
 
 func (x *CreatePoolRequest) SetNumId(v uint32) {
-	x.NumId = &v
+	x.xxx_hidden_NumId = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *CreatePoolRequest) SetAlias(v string) {
-	x.Alias = &v
+	x.xxx_hidden_Alias = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
 }
 
 func (x *CreatePoolRequest) SetTargets(v []*beegfs.EntityIdSet) {
-	x.Targets = v
+	x.xxx_hidden_Targets = &v
 }
 
 func (x *CreatePoolRequest) SetBuddyGroups(v []*beegfs.EntityIdSet) {
-	x.BuddyGroups = v
+	x.xxx_hidden_BuddyGroups = &v
 }
 
 func (x *CreatePoolRequest) HasNodeType() bool {
 	if x == nil {
 		return false
 	}
-	return x.NodeType != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *CreatePoolRequest) HasNumId() bool {
 	if x == nil {
 		return false
 	}
-	return x.NumId != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *CreatePoolRequest) HasAlias() bool {
 	if x == nil {
 		return false
 	}
-	return x.Alias != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
 func (x *CreatePoolRequest) ClearNodeType() {
-	x.NodeType = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_NodeType = beegfs.NodeType_NODE_TYPE_UNSPECIFIED
 }
 
 func (x *CreatePoolRequest) ClearNumId() {
-	x.NumId = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_NumId = 0
 }
 
 func (x *CreatePoolRequest) ClearAlias() {
-	x.Alias = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Alias = nil
 }
 
 type CreatePoolRequest_builder struct {
@@ -1232,21 +1244,28 @@ func (b0 CreatePoolRequest_builder) Build() *CreatePoolRequest {
 	m0 := &CreatePoolRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.NodeType = b.NodeType
-	x.NumId = b.NumId
-	x.Alias = b.Alias
-	x.Targets = b.Targets
-	x.BuddyGroups = b.BuddyGroups
+	if b.NodeType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_NodeType = *b.NodeType
+	}
+	if b.NumId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_NumId = *b.NumId
+	}
+	if b.Alias != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_Alias = b.Alias
+	}
+	x.xxx_hidden_Targets = &b.Targets
+	x.xxx_hidden_BuddyGroups = &b.BuddyGroups
 	return m0
 }
 
 type CreatePoolResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The identifier set of the new pool.
-	// Required, should be completely populated.
-	Pool          *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Pool *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *CreatePoolResponse) Reset() {
@@ -1276,24 +1295,24 @@ func (x *CreatePoolResponse) ProtoReflect() protoreflect.Message {
 
 func (x *CreatePoolResponse) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *CreatePoolResponse) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *CreatePoolResponse) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *CreatePoolResponse) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 type CreatePoolResponse_builder struct {
@@ -1308,24 +1327,18 @@ func (b0 CreatePoolResponse_builder) Build() *CreatePoolResponse {
 	m0 := &CreatePoolResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Pool = b.Pool
+	x.xxx_hidden_Pool = b.Pool
 	return m0
 }
 
 // Assigns targets and buddy groups to a pool.
 type AssignPoolRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The pool to assign to.
-	// Required, one identifier is sufficient.
-	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// The targets to assign to the new pool.
-	// One identifier is sufficient for each.
-	Targets []*beegfs.EntityIdSet `protobuf:"bytes,2,rep,name=targets,proto3" json:"targets,omitempty"`
-	// The buddy groups to assign to the new pool.
-	// One identifier is sufficient for each.
-	BuddyGroups   []*beegfs.EntityIdSet `protobuf:"bytes,3,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Pool        *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	xxx_hidden_Targets     *[]*beegfs.EntityIdSet `protobuf:"bytes,2,rep,name=targets,proto3" json:"targets,omitempty"`
+	xxx_hidden_BuddyGroups *[]*beegfs.EntityIdSet `protobuf:"bytes,3,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *AssignPoolRequest) Reset() {
@@ -1355,46 +1368,50 @@ func (x *AssignPoolRequest) ProtoReflect() protoreflect.Message {
 
 func (x *AssignPoolRequest) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *AssignPoolRequest) GetTargets() []*beegfs.EntityIdSet {
 	if x != nil {
-		return x.Targets
+		if x.xxx_hidden_Targets != nil {
+			return *x.xxx_hidden_Targets
+		}
 	}
 	return nil
 }
 
 func (x *AssignPoolRequest) GetBuddyGroups() []*beegfs.EntityIdSet {
 	if x != nil {
-		return x.BuddyGroups
+		if x.xxx_hidden_BuddyGroups != nil {
+			return *x.xxx_hidden_BuddyGroups
+		}
 	}
 	return nil
 }
 
 func (x *AssignPoolRequest) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *AssignPoolRequest) SetTargets(v []*beegfs.EntityIdSet) {
-	x.Targets = v
+	x.xxx_hidden_Targets = &v
 }
 
 func (x *AssignPoolRequest) SetBuddyGroups(v []*beegfs.EntityIdSet) {
-	x.BuddyGroups = v
+	x.xxx_hidden_BuddyGroups = &v
 }
 
 func (x *AssignPoolRequest) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *AssignPoolRequest) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 type AssignPoolRequest_builder struct {
@@ -1415,19 +1432,17 @@ func (b0 AssignPoolRequest_builder) Build() *AssignPoolRequest {
 	m0 := &AssignPoolRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Pool = b.Pool
-	x.Targets = b.Targets
-	x.BuddyGroups = b.BuddyGroups
+	x.xxx_hidden_Pool = b.Pool
+	x.xxx_hidden_Targets = &b.Targets
+	x.xxx_hidden_BuddyGroups = &b.BuddyGroups
 	return m0
 }
 
 type AssignPoolResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The identifier set of the pool assigned to.
-	// Required, should be completely populated.
-	Pool          *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Pool *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *AssignPoolResponse) Reset() {
@@ -1457,24 +1472,24 @@ func (x *AssignPoolResponse) ProtoReflect() protoreflect.Message {
 
 func (x *AssignPoolResponse) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *AssignPoolResponse) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *AssignPoolResponse) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *AssignPoolResponse) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 type AssignPoolResponse_builder struct {
@@ -1489,22 +1504,19 @@ func (b0 AssignPoolResponse_builder) Build() *AssignPoolResponse {
 	m0 := &AssignPoolResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Pool = b.Pool
+	x.xxx_hidden_Pool = b.Pool
 	return m0
 }
 
 // Deletes a pool from the system.
 type DeletePoolRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The pool to delete.
-	// Required, one identifier is sufficient.
-	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// Execute the deletion? If set to false, check if delete is possible but don't
-	// actually do it.
-	// Required.
-	Execute       *bool `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Pool        *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	xxx_hidden_Execute     bool                   `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *DeletePoolRequest) Reset() {
@@ -1534,46 +1546,48 @@ func (x *DeletePoolRequest) ProtoReflect() protoreflect.Message {
 
 func (x *DeletePoolRequest) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *DeletePoolRequest) GetExecute() bool {
-	if x != nil && x.Execute != nil {
-		return *x.Execute
+	if x != nil {
+		return x.xxx_hidden_Execute
 	}
 	return false
 }
 
 func (x *DeletePoolRequest) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *DeletePoolRequest) SetExecute(v bool) {
-	x.Execute = &v
+	x.xxx_hidden_Execute = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *DeletePoolRequest) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *DeletePoolRequest) HasExecute() bool {
 	if x == nil {
 		return false
 	}
-	return x.Execute != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *DeletePoolRequest) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 func (x *DeletePoolRequest) ClearExecute() {
-	x.Execute = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Execute = false
 }
 
 type DeletePoolRequest_builder struct {
@@ -1592,18 +1606,19 @@ func (b0 DeletePoolRequest_builder) Build() *DeletePoolRequest {
 	m0 := &DeletePoolRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Pool = b.Pool
-	x.Execute = b.Execute
+	x.xxx_hidden_Pool = b.Pool
+	if b.Execute != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Execute = *b.Execute
+	}
 	return m0
 }
 
 type DeletePoolResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The identifier set of the deleted pool.
-	// Required, should be completely populated.
-	Pool          *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Pool *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *DeletePoolResponse) Reset() {
@@ -1633,24 +1648,24 @@ func (x *DeletePoolResponse) ProtoReflect() protoreflect.Message {
 
 func (x *DeletePoolResponse) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *DeletePoolResponse) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *DeletePoolResponse) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *DeletePoolResponse) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 type DeletePoolResponse_builder struct {
@@ -1665,13 +1680,13 @@ func (b0 DeletePoolResponse_builder) Build() *DeletePoolResponse {
 	m0 := &DeletePoolResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Pool = b.Pool
+	x.xxx_hidden_Pool = b.Pool
 	return m0
 }
 
 // Gets the list of buddy groups.
 type GetBuddyGroupsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1714,11 +1729,10 @@ func (b0 GetBuddyGroupsRequest_builder) Build() *GetBuddyGroupsRequest {
 }
 
 type GetBuddyGroupsResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The list of buddy groups.
-	BuddyGroups   []*GetBuddyGroupsResponse_BuddyGroup `protobuf:"bytes,1,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState                `protogen:"opaque.v1"`
+	xxx_hidden_BuddyGroups *[]*GetBuddyGroupsResponse_BuddyGroup `protobuf:"bytes,1,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *GetBuddyGroupsResponse) Reset() {
@@ -1748,13 +1762,15 @@ func (x *GetBuddyGroupsResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetBuddyGroupsResponse) GetBuddyGroups() []*GetBuddyGroupsResponse_BuddyGroup {
 	if x != nil {
-		return x.BuddyGroups
+		if x.xxx_hidden_BuddyGroups != nil {
+			return *x.xxx_hidden_BuddyGroups
+		}
 	}
 	return nil
 }
 
 func (x *GetBuddyGroupsResponse) SetBuddyGroups(v []*GetBuddyGroupsResponse_BuddyGroup) {
-	x.BuddyGroups = v
+	x.xxx_hidden_BuddyGroups = &v
 }
 
 type GetBuddyGroupsResponse_builder struct {
@@ -1768,30 +1784,22 @@ func (b0 GetBuddyGroupsResponse_builder) Build() *GetBuddyGroupsResponse {
 	m0 := &GetBuddyGroupsResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.BuddyGroups = b.BuddyGroups
+	x.xxx_hidden_BuddyGroups = &b.BuddyGroups
 	return m0
 }
 
 // Creates a new buddy group.
 type CreateBuddyGroupRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The node type of the new buddy group.
-	// Required, must be META or STORAGE.
-	NodeType *beegfs.NodeType `protobuf:"varint,1,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType,oneof" json:"node_type,omitempty"`
-	// The numeric id of the new buddy group.
-	// Optional. Must be chosen by the receiver if omitted.
-	NumId *uint32 `protobuf:"varint,2,opt,name=num_id,json=numId,proto3,oneof" json:"num_id,omitempty"`
-	// The alias of the new buddy group.
-	// Required.
-	Alias *string `protobuf:"bytes,3,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
-	// The new buddy groups primary target.
-	// Required. One identifier is sufficient.
-	PrimaryTarget *beegfs.EntityIdSet `protobuf:"bytes,4,opt,name=primary_target,json=primaryTarget,proto3,oneof" json:"primary_target,omitempty"`
-	// The new buddy groups secondary target.
-	// Required. One identifier is sufficient.
-	SecondaryTarget *beegfs.EntityIdSet `protobuf:"bytes,5,opt,name=secondary_target,json=secondaryTarget,proto3,oneof" json:"secondary_target,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_NodeType        beegfs.NodeType        `protobuf:"varint,1,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType,oneof" json:"node_type,omitempty"`
+	xxx_hidden_NumId           uint32                 `protobuf:"varint,2,opt,name=num_id,json=numId,proto3,oneof" json:"num_id,omitempty"`
+	xxx_hidden_Alias           *string                `protobuf:"bytes,3,opt,name=alias,proto3,oneof" json:"alias,omitempty"`
+	xxx_hidden_PrimaryTarget   *beegfs.EntityIdSet    `protobuf:"bytes,4,opt,name=primary_target,json=primaryTarget,proto3,oneof" json:"primary_target,omitempty"`
+	xxx_hidden_SecondaryTarget *beegfs.EntityIdSet    `protobuf:"bytes,5,opt,name=secondary_target,json=secondaryTarget,proto3,oneof" json:"secondary_target,omitempty"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *CreateBuddyGroupRequest) Reset() {
@@ -1820,113 +1828,124 @@ func (x *CreateBuddyGroupRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *CreateBuddyGroupRequest) GetNodeType() beegfs.NodeType {
-	if x != nil && x.NodeType != nil {
-		return *x.NodeType
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 0) {
+			return x.xxx_hidden_NodeType
+		}
 	}
 	return beegfs.NodeType(0)
 }
 
 func (x *CreateBuddyGroupRequest) GetNumId() uint32 {
-	if x != nil && x.NumId != nil {
-		return *x.NumId
+	if x != nil {
+		return x.xxx_hidden_NumId
 	}
 	return 0
 }
 
 func (x *CreateBuddyGroupRequest) GetAlias() string {
-	if x != nil && x.Alias != nil {
-		return *x.Alias
+	if x != nil {
+		if x.xxx_hidden_Alias != nil {
+			return *x.xxx_hidden_Alias
+		}
+		return ""
 	}
 	return ""
 }
 
 func (x *CreateBuddyGroupRequest) GetPrimaryTarget() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.PrimaryTarget
+		return x.xxx_hidden_PrimaryTarget
 	}
 	return nil
 }
 
 func (x *CreateBuddyGroupRequest) GetSecondaryTarget() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.SecondaryTarget
+		return x.xxx_hidden_SecondaryTarget
 	}
 	return nil
 }
 
 func (x *CreateBuddyGroupRequest) SetNodeType(v beegfs.NodeType) {
-	x.NodeType = &v
+	x.xxx_hidden_NodeType = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
 }
 
 func (x *CreateBuddyGroupRequest) SetNumId(v uint32) {
-	x.NumId = &v
+	x.xxx_hidden_NumId = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *CreateBuddyGroupRequest) SetAlias(v string) {
-	x.Alias = &v
+	x.xxx_hidden_Alias = &v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
 }
 
 func (x *CreateBuddyGroupRequest) SetPrimaryTarget(v *beegfs.EntityIdSet) {
-	x.PrimaryTarget = v
+	x.xxx_hidden_PrimaryTarget = v
 }
 
 func (x *CreateBuddyGroupRequest) SetSecondaryTarget(v *beegfs.EntityIdSet) {
-	x.SecondaryTarget = v
+	x.xxx_hidden_SecondaryTarget = v
 }
 
 func (x *CreateBuddyGroupRequest) HasNodeType() bool {
 	if x == nil {
 		return false
 	}
-	return x.NodeType != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *CreateBuddyGroupRequest) HasNumId() bool {
 	if x == nil {
 		return false
 	}
-	return x.NumId != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *CreateBuddyGroupRequest) HasAlias() bool {
 	if x == nil {
 		return false
 	}
-	return x.Alias != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
 func (x *CreateBuddyGroupRequest) HasPrimaryTarget() bool {
 	if x == nil {
 		return false
 	}
-	return x.PrimaryTarget != nil
+	return x.xxx_hidden_PrimaryTarget != nil
 }
 
 func (x *CreateBuddyGroupRequest) HasSecondaryTarget() bool {
 	if x == nil {
 		return false
 	}
-	return x.SecondaryTarget != nil
+	return x.xxx_hidden_SecondaryTarget != nil
 }
 
 func (x *CreateBuddyGroupRequest) ClearNodeType() {
-	x.NodeType = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_NodeType = beegfs.NodeType_NODE_TYPE_UNSPECIFIED
 }
 
 func (x *CreateBuddyGroupRequest) ClearNumId() {
-	x.NumId = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_NumId = 0
 }
 
 func (x *CreateBuddyGroupRequest) ClearAlias() {
-	x.Alias = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Alias = nil
 }
 
 func (x *CreateBuddyGroupRequest) ClearPrimaryTarget() {
-	x.PrimaryTarget = nil
+	x.xxx_hidden_PrimaryTarget = nil
 }
 
 func (x *CreateBuddyGroupRequest) ClearSecondaryTarget() {
-	x.SecondaryTarget = nil
+	x.xxx_hidden_SecondaryTarget = nil
 }
 
 type CreateBuddyGroupRequest_builder struct {
@@ -1953,21 +1972,28 @@ func (b0 CreateBuddyGroupRequest_builder) Build() *CreateBuddyGroupRequest {
 	m0 := &CreateBuddyGroupRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.NodeType = b.NodeType
-	x.NumId = b.NumId
-	x.Alias = b.Alias
-	x.PrimaryTarget = b.PrimaryTarget
-	x.SecondaryTarget = b.SecondaryTarget
+	if b.NodeType != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_NodeType = *b.NodeType
+	}
+	if b.NumId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_NumId = *b.NumId
+	}
+	if b.Alias != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_Alias = b.Alias
+	}
+	x.xxx_hidden_PrimaryTarget = b.PrimaryTarget
+	x.xxx_hidden_SecondaryTarget = b.SecondaryTarget
 	return m0
 }
 
 type CreateBuddyGroupResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The identifier set of the new buddy group.
-	// Required, should be completely populated.
-	Group         *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Group *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *CreateBuddyGroupResponse) Reset() {
@@ -1997,24 +2023,24 @@ func (x *CreateBuddyGroupResponse) ProtoReflect() protoreflect.Message {
 
 func (x *CreateBuddyGroupResponse) GetGroup() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Group
+		return x.xxx_hidden_Group
 	}
 	return nil
 }
 
 func (x *CreateBuddyGroupResponse) SetGroup(v *beegfs.EntityIdSet) {
-	x.Group = v
+	x.xxx_hidden_Group = v
 }
 
 func (x *CreateBuddyGroupResponse) HasGroup() bool {
 	if x == nil {
 		return false
 	}
-	return x.Group != nil
+	return x.xxx_hidden_Group != nil
 }
 
 func (x *CreateBuddyGroupResponse) ClearGroup() {
-	x.Group = nil
+	x.xxx_hidden_Group = nil
 }
 
 type CreateBuddyGroupResponse_builder struct {
@@ -2029,22 +2055,19 @@ func (b0 CreateBuddyGroupResponse_builder) Build() *CreateBuddyGroupResponse {
 	m0 := &CreateBuddyGroupResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Group = b.Group
+	x.xxx_hidden_Group = b.Group
 	return m0
 }
 
 // Deletes a buddy group from the system.
 type DeleteBuddyGroupRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The buddy group to delete.
-	// Required, one identifier is sufficient.
-	Group *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
-	// Execute the deletion? If set to false, check if delete is possible but don't
-	// actually do it.
-	// Required.
-	Execute       *bool `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Group       *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
+	xxx_hidden_Execute     bool                   `protobuf:"varint,2,opt,name=execute,proto3,oneof" json:"execute,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *DeleteBuddyGroupRequest) Reset() {
@@ -2074,46 +2097,48 @@ func (x *DeleteBuddyGroupRequest) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteBuddyGroupRequest) GetGroup() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Group
+		return x.xxx_hidden_Group
 	}
 	return nil
 }
 
 func (x *DeleteBuddyGroupRequest) GetExecute() bool {
-	if x != nil && x.Execute != nil {
-		return *x.Execute
+	if x != nil {
+		return x.xxx_hidden_Execute
 	}
 	return false
 }
 
 func (x *DeleteBuddyGroupRequest) SetGroup(v *beegfs.EntityIdSet) {
-	x.Group = v
+	x.xxx_hidden_Group = v
 }
 
 func (x *DeleteBuddyGroupRequest) SetExecute(v bool) {
-	x.Execute = &v
+	x.xxx_hidden_Execute = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *DeleteBuddyGroupRequest) HasGroup() bool {
 	if x == nil {
 		return false
 	}
-	return x.Group != nil
+	return x.xxx_hidden_Group != nil
 }
 
 func (x *DeleteBuddyGroupRequest) HasExecute() bool {
 	if x == nil {
 		return false
 	}
-	return x.Execute != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *DeleteBuddyGroupRequest) ClearGroup() {
-	x.Group = nil
+	x.xxx_hidden_Group = nil
 }
 
 func (x *DeleteBuddyGroupRequest) ClearExecute() {
-	x.Execute = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Execute = false
 }
 
 type DeleteBuddyGroupRequest_builder struct {
@@ -2132,18 +2157,19 @@ func (b0 DeleteBuddyGroupRequest_builder) Build() *DeleteBuddyGroupRequest {
 	m0 := &DeleteBuddyGroupRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Group = b.Group
-	x.Execute = b.Execute
+	x.xxx_hidden_Group = b.Group
+	if b.Execute != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_Execute = *b.Execute
+	}
 	return m0
 }
 
 type DeleteBuddyGroupResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The identifier set of the deleted buddy group.
-	// Required, should be completely populated.
-	Group         *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Group *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=group,proto3,oneof" json:"group,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *DeleteBuddyGroupResponse) Reset() {
@@ -2173,24 +2199,24 @@ func (x *DeleteBuddyGroupResponse) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteBuddyGroupResponse) GetGroup() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Group
+		return x.xxx_hidden_Group
 	}
 	return nil
 }
 
 func (x *DeleteBuddyGroupResponse) SetGroup(v *beegfs.EntityIdSet) {
-	x.Group = v
+	x.xxx_hidden_Group = v
 }
 
 func (x *DeleteBuddyGroupResponse) HasGroup() bool {
 	if x == nil {
 		return false
 	}
-	return x.Group != nil
+	return x.xxx_hidden_Group != nil
 }
 
 func (x *DeleteBuddyGroupResponse) ClearGroup() {
-	x.Group = nil
+	x.xxx_hidden_Group = nil
 }
 
 type DeleteBuddyGroupResponse_builder struct {
@@ -2205,13 +2231,13 @@ func (b0 DeleteBuddyGroupResponse_builder) Build() *DeleteBuddyGroupResponse {
 	m0 := &DeleteBuddyGroupResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Group = b.Group
+	x.xxx_hidden_Group = b.Group
 	return m0
 }
 
 // Enable metadata mirroring for the root directory.
 type MirrorRootInodeRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2254,7 +2280,7 @@ func (b0 MirrorRootInodeRequest_builder) Build() *MirrorRootInodeRequest {
 }
 
 type MirrorRootInodeResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2298,18 +2324,14 @@ func (b0 MirrorRootInodeResponse_builder) Build() *MirrorRootInodeResponse {
 
 // Manually start a resync.
 type StartResyncRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The buddy group whose secondary target will be resynced from its primary target.
-	// Required, one identifier is sufficient.
-	BuddyGroup *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=buddy_group,json=buddyGroup,proto3,oneof" json:"buddy_group,omitempty"`
-	// Resync only data after the given unix timestamp (in seconds). Set to -1 for a complete resync.
-	// Required. On meta buddy groups (e.g. buddy_group.legacy_id.node_type = META), must be -1.
-	Timestamp *int64 `protobuf:"varint,2,opt,name=timestamp,proto3,oneof" json:"timestamp,omitempty"`
-	// Abort an ongoing resync and restart?
-	// Required. Must be false for meta buddy groups.
-	Restart       *bool `protobuf:"varint,3,opt,name=restart,proto3,oneof" json:"restart,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_BuddyGroup  *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=buddy_group,json=buddyGroup,proto3,oneof" json:"buddy_group,omitempty"`
+	xxx_hidden_Timestamp   int64                  `protobuf:"varint,2,opt,name=timestamp,proto3,oneof" json:"timestamp,omitempty"`
+	xxx_hidden_Restart     bool                   `protobuf:"varint,3,opt,name=restart,proto3,oneof" json:"restart,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *StartResyncRequest) Reset() {
@@ -2339,68 +2361,72 @@ func (x *StartResyncRequest) ProtoReflect() protoreflect.Message {
 
 func (x *StartResyncRequest) GetBuddyGroup() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.BuddyGroup
+		return x.xxx_hidden_BuddyGroup
 	}
 	return nil
 }
 
 func (x *StartResyncRequest) GetTimestamp() int64 {
-	if x != nil && x.Timestamp != nil {
-		return *x.Timestamp
+	if x != nil {
+		return x.xxx_hidden_Timestamp
 	}
 	return 0
 }
 
 func (x *StartResyncRequest) GetRestart() bool {
-	if x != nil && x.Restart != nil {
-		return *x.Restart
+	if x != nil {
+		return x.xxx_hidden_Restart
 	}
 	return false
 }
 
 func (x *StartResyncRequest) SetBuddyGroup(v *beegfs.EntityIdSet) {
-	x.BuddyGroup = v
+	x.xxx_hidden_BuddyGroup = v
 }
 
 func (x *StartResyncRequest) SetTimestamp(v int64) {
-	x.Timestamp = &v
+	x.xxx_hidden_Timestamp = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 3)
 }
 
 func (x *StartResyncRequest) SetRestart(v bool) {
-	x.Restart = &v
+	x.xxx_hidden_Restart = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 3)
 }
 
 func (x *StartResyncRequest) HasBuddyGroup() bool {
 	if x == nil {
 		return false
 	}
-	return x.BuddyGroup != nil
+	return x.xxx_hidden_BuddyGroup != nil
 }
 
 func (x *StartResyncRequest) HasTimestamp() bool {
 	if x == nil {
 		return false
 	}
-	return x.Timestamp != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *StartResyncRequest) HasRestart() bool {
 	if x == nil {
 		return false
 	}
-	return x.Restart != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
 func (x *StartResyncRequest) ClearBuddyGroup() {
-	x.BuddyGroup = nil
+	x.xxx_hidden_BuddyGroup = nil
 }
 
 func (x *StartResyncRequest) ClearTimestamp() {
-	x.Timestamp = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_Timestamp = 0
 }
 
 func (x *StartResyncRequest) ClearRestart() {
-	x.Restart = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_Restart = false
 }
 
 type StartResyncRequest_builder struct {
@@ -2421,14 +2447,20 @@ func (b0 StartResyncRequest_builder) Build() *StartResyncRequest {
 	m0 := &StartResyncRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.BuddyGroup = b.BuddyGroup
-	x.Timestamp = b.Timestamp
-	x.Restart = b.Restart
+	x.xxx_hidden_BuddyGroup = b.BuddyGroup
+	if b.Timestamp != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 3)
+		x.xxx_hidden_Timestamp = *b.Timestamp
+	}
+	if b.Restart != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 3)
+		x.xxx_hidden_Restart = *b.Restart
+	}
 	return m0
 }
 
 type StartResyncResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2473,34 +2505,18 @@ func (b0 StartResyncResponse_builder) Build() *StartResyncResponse {
 // Contains info belonging to a quota_id + id_type + pool entry (e.g. user 1000 on storage pool 1).
 // Depending on the message, some fields are unused.
 type QuotaInfo struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The system user/group id the info belongs to.
-	// Required.
-	QuotaId *uint32 `protobuf:"varint,1,opt,name=quota_id,json=quotaId,proto3,oneof" json:"quota_id,omitempty"`
-	// The id type (user or group) of quota_id.
-	// Required.
-	IdType beegfs.QuotaIdType `protobuf:"varint,2,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
-	// The storage pool the info belongs to.
-	// Required, should be completely populated.
-	Pool *beegfs.EntityIdSet `protobuf:"bytes,3,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// The space quota limit for this user/group. -1 means unlimited.
-	// When used for returning data: Should be set if the corresponding data is available.
-	// When used for setting limits: Optional.
-	SpaceLimit *int64 `protobuf:"varint,4,opt,name=space_limit,json=spaceLimit,proto3,oneof" json:"space_limit,omitempty"`
-	// The inode quota limit for this user/group. -1 means unlimited.
-	// When used for returning data: Should be set if the corresponding data is available.
-	// When used for setting limits: Optional.
-	InodeLimit *int64 `protobuf:"varint,5,opt,name=inode_limit,json=inodeLimit,proto3,oneof" json:"inode_limit,omitempty"`
-	// The space quota used for this user/group.
-	// When used for returning data: Should be set if the corresponding data is available.
-	// When used for setting limits: Ignore.
-	SpaceUsed *int64 `protobuf:"varint,6,opt,name=space_used,json=spaceUsed,proto3,oneof" json:"space_used,omitempty"`
-	// The inode quota used for this user/group.
-	// When used for returning data: Should be set if the corresponding data is available.
-	// When used for setting limits: Ignore.
-	InodeUsed     *int64 `protobuf:"varint,7,opt,name=inode_used,json=inodeUsed,proto3,oneof" json:"inode_used,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_QuotaId     uint32                 `protobuf:"varint,1,opt,name=quota_id,json=quotaId,proto3,oneof" json:"quota_id,omitempty"`
+	xxx_hidden_IdType      beegfs.QuotaIdType     `protobuf:"varint,2,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
+	xxx_hidden_Pool        *beegfs.EntityIdSet    `protobuf:"bytes,3,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	xxx_hidden_SpaceLimit  int64                  `protobuf:"varint,4,opt,name=space_limit,json=spaceLimit,proto3,oneof" json:"space_limit,omitempty"`
+	xxx_hidden_InodeLimit  int64                  `protobuf:"varint,5,opt,name=inode_limit,json=inodeLimit,proto3,oneof" json:"inode_limit,omitempty"`
+	xxx_hidden_SpaceUsed   int64                  `protobuf:"varint,6,opt,name=space_used,json=spaceUsed,proto3,oneof" json:"space_used,omitempty"`
+	xxx_hidden_InodeUsed   int64                  `protobuf:"varint,7,opt,name=inode_used,json=inodeUsed,proto3,oneof" json:"inode_used,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *QuotaInfo) Reset() {
@@ -2529,146 +2545,156 @@ func (x *QuotaInfo) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QuotaInfo) GetQuotaId() uint32 {
-	if x != nil && x.QuotaId != nil {
-		return *x.QuotaId
+	if x != nil {
+		return x.xxx_hidden_QuotaId
 	}
 	return 0
 }
 
 func (x *QuotaInfo) GetIdType() beegfs.QuotaIdType {
 	if x != nil {
-		return x.IdType
+		return x.xxx_hidden_IdType
 	}
 	return beegfs.QuotaIdType(0)
 }
 
 func (x *QuotaInfo) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *QuotaInfo) GetSpaceLimit() int64 {
-	if x != nil && x.SpaceLimit != nil {
-		return *x.SpaceLimit
+	if x != nil {
+		return x.xxx_hidden_SpaceLimit
 	}
 	return 0
 }
 
 func (x *QuotaInfo) GetInodeLimit() int64 {
-	if x != nil && x.InodeLimit != nil {
-		return *x.InodeLimit
+	if x != nil {
+		return x.xxx_hidden_InodeLimit
 	}
 	return 0
 }
 
 func (x *QuotaInfo) GetSpaceUsed() int64 {
-	if x != nil && x.SpaceUsed != nil {
-		return *x.SpaceUsed
+	if x != nil {
+		return x.xxx_hidden_SpaceUsed
 	}
 	return 0
 }
 
 func (x *QuotaInfo) GetInodeUsed() int64 {
-	if x != nil && x.InodeUsed != nil {
-		return *x.InodeUsed
+	if x != nil {
+		return x.xxx_hidden_InodeUsed
 	}
 	return 0
 }
 
 func (x *QuotaInfo) SetQuotaId(v uint32) {
-	x.QuotaId = &v
+	x.xxx_hidden_QuotaId = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 7)
 }
 
 func (x *QuotaInfo) SetIdType(v beegfs.QuotaIdType) {
-	x.IdType = v
+	x.xxx_hidden_IdType = v
 }
 
 func (x *QuotaInfo) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *QuotaInfo) SetSpaceLimit(v int64) {
-	x.SpaceLimit = &v
+	x.xxx_hidden_SpaceLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 7)
 }
 
 func (x *QuotaInfo) SetInodeLimit(v int64) {
-	x.InodeLimit = &v
+	x.xxx_hidden_InodeLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 7)
 }
 
 func (x *QuotaInfo) SetSpaceUsed(v int64) {
-	x.SpaceUsed = &v
+	x.xxx_hidden_SpaceUsed = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 7)
 }
 
 func (x *QuotaInfo) SetInodeUsed(v int64) {
-	x.InodeUsed = &v
+	x.xxx_hidden_InodeUsed = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 7)
 }
 
 func (x *QuotaInfo) HasQuotaId() bool {
 	if x == nil {
 		return false
 	}
-	return x.QuotaId != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *QuotaInfo) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *QuotaInfo) HasSpaceLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.SpaceLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
 func (x *QuotaInfo) HasInodeLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.InodeLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
 func (x *QuotaInfo) HasSpaceUsed() bool {
 	if x == nil {
 		return false
 	}
-	return x.SpaceUsed != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
 func (x *QuotaInfo) HasInodeUsed() bool {
 	if x == nil {
 		return false
 	}
-	return x.InodeUsed != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
 func (x *QuotaInfo) ClearQuotaId() {
-	x.QuotaId = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_QuotaId = 0
 }
 
 func (x *QuotaInfo) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 func (x *QuotaInfo) ClearSpaceLimit() {
-	x.SpaceLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_SpaceLimit = 0
 }
 
 func (x *QuotaInfo) ClearInodeLimit() {
-	x.InodeLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	x.xxx_hidden_InodeLimit = 0
 }
 
 func (x *QuotaInfo) ClearSpaceUsed() {
-	x.SpaceUsed = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_SpaceUsed = 0
 }
 
 func (x *QuotaInfo) ClearInodeUsed() {
-	x.InodeUsed = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	x.xxx_hidden_InodeUsed = 0
 }
 
 type QuotaInfo_builder struct {
@@ -2705,36 +2731,43 @@ func (b0 QuotaInfo_builder) Build() *QuotaInfo {
 	m0 := &QuotaInfo{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.QuotaId = b.QuotaId
-	x.IdType = b.IdType
-	x.Pool = b.Pool
-	x.SpaceLimit = b.SpaceLimit
-	x.InodeLimit = b.InodeLimit
-	x.SpaceUsed = b.SpaceUsed
-	x.InodeUsed = b.InodeUsed
+	if b.QuotaId != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 7)
+		x.xxx_hidden_QuotaId = *b.QuotaId
+	}
+	x.xxx_hidden_IdType = b.IdType
+	x.xxx_hidden_Pool = b.Pool
+	if b.SpaceLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 7)
+		x.xxx_hidden_SpaceLimit = *b.SpaceLimit
+	}
+	if b.InodeLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 7)
+		x.xxx_hidden_InodeLimit = *b.InodeLimit
+	}
+	if b.SpaceUsed != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 7)
+		x.xxx_hidden_SpaceUsed = *b.SpaceUsed
+	}
+	if b.InodeUsed != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 7)
+		x.xxx_hidden_InodeUsed = *b.InodeUsed
+	}
 	return m0
 }
 
 // Sets the default quota limits for a pool.
 type SetDefaultQuotaLimitsRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The storage pool to set the limits for.
-	// Required, one identifier is sufficient.
-	Pool *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// The default user space quota limit. -1 means unlimited.
-	// Optional.
-	UserSpaceLimit *int64 `protobuf:"varint,2,opt,name=user_space_limit,json=userSpaceLimit,proto3,oneof" json:"user_space_limit,omitempty"`
-	// The default user inode quota limit. -1 means unlimited.
-	// Optional.
-	UserInodeLimit *int64 `protobuf:"varint,3,opt,name=user_inode_limit,json=userInodeLimit,proto3,oneof" json:"user_inode_limit,omitempty"`
-	// The default group space quota limit. -1 means unlimited.
-	// Optional.
-	GroupSpaceLimit *int64 `protobuf:"varint,4,opt,name=group_space_limit,json=groupSpaceLimit,proto3,oneof" json:"group_space_limit,omitempty"`
-	// The default group inode quota limit. -1 means unlimited.
-	// Optional.
-	GroupInodeLimit *int64 `protobuf:"varint,5,opt,name=group_inode_limit,json=groupInodeLimit,proto3,oneof" json:"group_inode_limit,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Pool            *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	xxx_hidden_UserSpaceLimit  int64                  `protobuf:"varint,2,opt,name=user_space_limit,json=userSpaceLimit,proto3,oneof" json:"user_space_limit,omitempty"`
+	xxx_hidden_UserInodeLimit  int64                  `protobuf:"varint,3,opt,name=user_inode_limit,json=userInodeLimit,proto3,oneof" json:"user_inode_limit,omitempty"`
+	xxx_hidden_GroupSpaceLimit int64                  `protobuf:"varint,4,opt,name=group_space_limit,json=groupSpaceLimit,proto3,oneof" json:"group_space_limit,omitempty"`
+	xxx_hidden_GroupInodeLimit int64                  `protobuf:"varint,5,opt,name=group_inode_limit,json=groupInodeLimit,proto3,oneof" json:"group_inode_limit,omitempty"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *SetDefaultQuotaLimitsRequest) Reset() {
@@ -2764,112 +2797,120 @@ func (x *SetDefaultQuotaLimitsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *SetDefaultQuotaLimitsRequest) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *SetDefaultQuotaLimitsRequest) GetUserSpaceLimit() int64 {
-	if x != nil && x.UserSpaceLimit != nil {
-		return *x.UserSpaceLimit
+	if x != nil {
+		return x.xxx_hidden_UserSpaceLimit
 	}
 	return 0
 }
 
 func (x *SetDefaultQuotaLimitsRequest) GetUserInodeLimit() int64 {
-	if x != nil && x.UserInodeLimit != nil {
-		return *x.UserInodeLimit
+	if x != nil {
+		return x.xxx_hidden_UserInodeLimit
 	}
 	return 0
 }
 
 func (x *SetDefaultQuotaLimitsRequest) GetGroupSpaceLimit() int64 {
-	if x != nil && x.GroupSpaceLimit != nil {
-		return *x.GroupSpaceLimit
+	if x != nil {
+		return x.xxx_hidden_GroupSpaceLimit
 	}
 	return 0
 }
 
 func (x *SetDefaultQuotaLimitsRequest) GetGroupInodeLimit() int64 {
-	if x != nil && x.GroupInodeLimit != nil {
-		return *x.GroupInodeLimit
+	if x != nil {
+		return x.xxx_hidden_GroupInodeLimit
 	}
 	return 0
 }
 
 func (x *SetDefaultQuotaLimitsRequest) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *SetDefaultQuotaLimitsRequest) SetUserSpaceLimit(v int64) {
-	x.UserSpaceLimit = &v
+	x.xxx_hidden_UserSpaceLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *SetDefaultQuotaLimitsRequest) SetUserInodeLimit(v int64) {
-	x.UserInodeLimit = &v
+	x.xxx_hidden_UserInodeLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
 }
 
 func (x *SetDefaultQuotaLimitsRequest) SetGroupSpaceLimit(v int64) {
-	x.GroupSpaceLimit = &v
+	x.xxx_hidden_GroupSpaceLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 5)
 }
 
 func (x *SetDefaultQuotaLimitsRequest) SetGroupInodeLimit(v int64) {
-	x.GroupInodeLimit = &v
+	x.xxx_hidden_GroupInodeLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 5)
 }
 
 func (x *SetDefaultQuotaLimitsRequest) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *SetDefaultQuotaLimitsRequest) HasUserSpaceLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.UserSpaceLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *SetDefaultQuotaLimitsRequest) HasUserInodeLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.UserInodeLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
 func (x *SetDefaultQuotaLimitsRequest) HasGroupSpaceLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.GroupSpaceLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
 func (x *SetDefaultQuotaLimitsRequest) HasGroupInodeLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.GroupInodeLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
 func (x *SetDefaultQuotaLimitsRequest) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 func (x *SetDefaultQuotaLimitsRequest) ClearUserSpaceLimit() {
-	x.UserSpaceLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_UserSpaceLimit = 0
 }
 
 func (x *SetDefaultQuotaLimitsRequest) ClearUserInodeLimit() {
-	x.UserInodeLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_UserInodeLimit = 0
 }
 
 func (x *SetDefaultQuotaLimitsRequest) ClearGroupSpaceLimit() {
-	x.GroupSpaceLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_GroupSpaceLimit = 0
 }
 
 func (x *SetDefaultQuotaLimitsRequest) ClearGroupInodeLimit() {
-	x.GroupInodeLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	x.xxx_hidden_GroupInodeLimit = 0
 }
 
 type SetDefaultQuotaLimitsRequest_builder struct {
@@ -2896,16 +2937,28 @@ func (b0 SetDefaultQuotaLimitsRequest_builder) Build() *SetDefaultQuotaLimitsReq
 	m0 := &SetDefaultQuotaLimitsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Pool = b.Pool
-	x.UserSpaceLimit = b.UserSpaceLimit
-	x.UserInodeLimit = b.UserInodeLimit
-	x.GroupSpaceLimit = b.GroupSpaceLimit
-	x.GroupInodeLimit = b.GroupInodeLimit
+	x.xxx_hidden_Pool = b.Pool
+	if b.UserSpaceLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_UserSpaceLimit = *b.UserSpaceLimit
+	}
+	if b.UserInodeLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
+		x.xxx_hidden_UserInodeLimit = *b.UserInodeLimit
+	}
+	if b.GroupSpaceLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 5)
+		x.xxx_hidden_GroupSpaceLimit = *b.GroupSpaceLimit
+	}
+	if b.GroupInodeLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 5)
+		x.xxx_hidden_GroupInodeLimit = *b.GroupInodeLimit
+	}
 	return m0
 }
 
 type SetDefaultQuotaLimitsResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2949,11 +3002,10 @@ func (b0 SetDefaultQuotaLimitsResponse_builder) Build() *SetDefaultQuotaLimitsRe
 
 // Sets the individually set per-id-and-pool quota limits.
 type SetQuotaLimitsRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The explicit quota limit entries to set on the management. The _used fields should be unset.
-	Limits        []*QuotaInfo `protobuf:"bytes,1,rep,name=limits,proto3" json:"limits,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Limits *[]*QuotaInfo          `protobuf:"bytes,1,rep,name=limits,proto3" json:"limits,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *SetQuotaLimitsRequest) Reset() {
@@ -2983,13 +3035,15 @@ func (x *SetQuotaLimitsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *SetQuotaLimitsRequest) GetLimits() []*QuotaInfo {
 	if x != nil {
-		return x.Limits
+		if x.xxx_hidden_Limits != nil {
+			return *x.xxx_hidden_Limits
+		}
 	}
 	return nil
 }
 
 func (x *SetQuotaLimitsRequest) SetLimits(v []*QuotaInfo) {
-	x.Limits = v
+	x.xxx_hidden_Limits = &v
 }
 
 type SetQuotaLimitsRequest_builder struct {
@@ -3003,12 +3057,12 @@ func (b0 SetQuotaLimitsRequest_builder) Build() *SetQuotaLimitsRequest {
 	m0 := &SetQuotaLimitsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Limits = b.Limits
+	x.xxx_hidden_Limits = &b.Limits
 	return m0
 }
 
 type SetQuotaLimitsResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3052,23 +3106,16 @@ func (b0 SetQuotaLimitsResponse_builder) Build() *SetQuotaLimitsResponse {
 
 // Gets the individually set per-id-and-pool quota limits. Retrieves all explicitly set entries.
 type GetQuotaLimitsRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The minimum id to return.
-	// Optional. If set, quota_id_max must also be set.
-	QuotaIdMin *uint32 `protobuf:"varint,1,opt,name=quota_id_min,json=quotaIdMin,proto3,oneof" json:"quota_id_min,omitempty"`
-	// The maximum id to return.
-	// Optional. If set, quota_id_min must also be set.
-	QuotaIdMax *uint32 `protobuf:"varint,2,opt,name=quota_id_max,json=quotaIdMax,proto3,oneof" json:"quota_id_max,omitempty"`
-	// Return only the ids listed.
-	QuotaIdList []uint32 `protobuf:"varint,5,rep,packed,name=quota_id_list,json=quotaIdList,proto3" json:"quota_id_list,omitempty"`
-	// Return only user or group ids.
-	// Optional.
-	IdType beegfs.QuotaIdType `protobuf:"varint,3,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
-	// Return only a specific pool.
-	// Optional. One identifier is sufficient.
-	Pool          *beegfs.EntityIdSet `protobuf:"bytes,4,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_QuotaIdMin  uint32                 `protobuf:"varint,1,opt,name=quota_id_min,json=quotaIdMin,proto3,oneof" json:"quota_id_min,omitempty"`
+	xxx_hidden_QuotaIdMax  uint32                 `protobuf:"varint,2,opt,name=quota_id_max,json=quotaIdMax,proto3,oneof" json:"quota_id_max,omitempty"`
+	xxx_hidden_QuotaIdList []uint32               `protobuf:"varint,5,rep,packed,name=quota_id_list,json=quotaIdList,proto3" json:"quota_id_list,omitempty"`
+	xxx_hidden_IdType      beegfs.QuotaIdType     `protobuf:"varint,3,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
+	xxx_hidden_Pool        *beegfs.EntityIdSet    `protobuf:"bytes,4,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *GetQuotaLimitsRequest) Reset() {
@@ -3097,91 +3144,95 @@ func (x *GetQuotaLimitsRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *GetQuotaLimitsRequest) GetQuotaIdMin() uint32 {
-	if x != nil && x.QuotaIdMin != nil {
-		return *x.QuotaIdMin
+	if x != nil {
+		return x.xxx_hidden_QuotaIdMin
 	}
 	return 0
 }
 
 func (x *GetQuotaLimitsRequest) GetQuotaIdMax() uint32 {
-	if x != nil && x.QuotaIdMax != nil {
-		return *x.QuotaIdMax
+	if x != nil {
+		return x.xxx_hidden_QuotaIdMax
 	}
 	return 0
 }
 
 func (x *GetQuotaLimitsRequest) GetQuotaIdList() []uint32 {
 	if x != nil {
-		return x.QuotaIdList
+		return x.xxx_hidden_QuotaIdList
 	}
 	return nil
 }
 
 func (x *GetQuotaLimitsRequest) GetIdType() beegfs.QuotaIdType {
 	if x != nil {
-		return x.IdType
+		return x.xxx_hidden_IdType
 	}
 	return beegfs.QuotaIdType(0)
 }
 
 func (x *GetQuotaLimitsRequest) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *GetQuotaLimitsRequest) SetQuotaIdMin(v uint32) {
-	x.QuotaIdMin = &v
+	x.xxx_hidden_QuotaIdMin = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
 }
 
 func (x *GetQuotaLimitsRequest) SetQuotaIdMax(v uint32) {
-	x.QuotaIdMax = &v
+	x.xxx_hidden_QuotaIdMax = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *GetQuotaLimitsRequest) SetQuotaIdList(v []uint32) {
-	x.QuotaIdList = v
+	x.xxx_hidden_QuotaIdList = v
 }
 
 func (x *GetQuotaLimitsRequest) SetIdType(v beegfs.QuotaIdType) {
-	x.IdType = v
+	x.xxx_hidden_IdType = v
 }
 
 func (x *GetQuotaLimitsRequest) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *GetQuotaLimitsRequest) HasQuotaIdMin() bool {
 	if x == nil {
 		return false
 	}
-	return x.QuotaIdMin != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *GetQuotaLimitsRequest) HasQuotaIdMax() bool {
 	if x == nil {
 		return false
 	}
-	return x.QuotaIdMax != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *GetQuotaLimitsRequest) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *GetQuotaLimitsRequest) ClearQuotaIdMin() {
-	x.QuotaIdMin = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_QuotaIdMin = 0
 }
 
 func (x *GetQuotaLimitsRequest) ClearQuotaIdMax() {
-	x.QuotaIdMax = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_QuotaIdMax = 0
 }
 
 func (x *GetQuotaLimitsRequest) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 type GetQuotaLimitsRequest_builder struct {
@@ -3207,23 +3258,26 @@ func (b0 GetQuotaLimitsRequest_builder) Build() *GetQuotaLimitsRequest {
 	m0 := &GetQuotaLimitsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.QuotaIdMin = b.QuotaIdMin
-	x.QuotaIdMax = b.QuotaIdMax
-	x.QuotaIdList = b.QuotaIdList
-	x.IdType = b.IdType
-	x.Pool = b.Pool
+	if b.QuotaIdMin != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
+		x.xxx_hidden_QuotaIdMin = *b.QuotaIdMin
+	}
+	if b.QuotaIdMax != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
+		x.xxx_hidden_QuotaIdMax = *b.QuotaIdMax
+	}
+	x.xxx_hidden_QuotaIdList = b.QuotaIdList
+	x.xxx_hidden_IdType = b.IdType
+	x.xxx_hidden_Pool = b.Pool
 	return m0
 }
 
 // One entry in the quota per-id-and-pool limits list. Meant to be streamed.
 type GetQuotaLimitsResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// One per-id-and-pool quota limit entry.
-	// This is a single (non-repeated) field because the response is meant to be streamed.
-	// Required. The _used fields are unused.
-	Limits        *QuotaInfo `protobuf:"bytes,1,opt,name=limits,proto3,oneof" json:"limits,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Limits *QuotaInfo             `protobuf:"bytes,1,opt,name=limits,proto3,oneof" json:"limits,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *GetQuotaLimitsResponse) Reset() {
@@ -3253,24 +3307,24 @@ func (x *GetQuotaLimitsResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetQuotaLimitsResponse) GetLimits() *QuotaInfo {
 	if x != nil {
-		return x.Limits
+		return x.xxx_hidden_Limits
 	}
 	return nil
 }
 
 func (x *GetQuotaLimitsResponse) SetLimits(v *QuotaInfo) {
-	x.Limits = v
+	x.xxx_hidden_Limits = v
 }
 
 func (x *GetQuotaLimitsResponse) HasLimits() bool {
 	if x == nil {
 		return false
 	}
-	return x.Limits != nil
+	return x.xxx_hidden_Limits != nil
 }
 
 func (x *GetQuotaLimitsResponse) ClearLimits() {
-	x.Limits = nil
+	x.xxx_hidden_Limits = nil
 }
 
 type GetQuotaLimitsResponse_builder struct {
@@ -3286,33 +3340,24 @@ func (b0 GetQuotaLimitsResponse_builder) Build() *GetQuotaLimitsResponse {
 	m0 := &GetQuotaLimitsResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Limits = b.Limits
+	x.xxx_hidden_Limits = b.Limits
 	return m0
 }
 
 // Gets the quota usage info for all the ids the management knows about. In addition, contains
 // the effective limits for each entry.
 type GetQuotaUsageRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The minimum id to return.
-	// Optional. If set, quota_id_max must also be set.
-	QuotaIdMin *uint32 `protobuf:"varint,1,opt,name=quota_id_min,json=quotaIdMin,proto3,oneof" json:"quota_id_min,omitempty"`
-	// The maximum id to return.
-	// Optional. If set, quota_id_min must also be set.
-	QuotaIdMax *uint32 `protobuf:"varint,2,opt,name=quota_id_max,json=quotaIdMax,proto3,oneof" json:"quota_id_max,omitempty"`
-	// Return only the ids listed.
-	QuotaIdList []uint32 `protobuf:"varint,6,rep,packed,name=quota_id_list,json=quotaIdList,proto3" json:"quota_id_list,omitempty"`
-	// Return only user or group ids.
-	// Optional.
-	IdType beegfs.QuotaIdType `protobuf:"varint,3,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
-	// Return only a specific pool.
-	// Optional. One identifier is sufficient.
-	Pool *beegfs.EntityIdSet `protobuf:"bytes,4,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
-	// Return only exceeded or not exceeded entries?
-	// Optional.
-	Exceeded      *bool `protobuf:"varint,5,opt,name=exceeded,proto3,oneof" json:"exceeded,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_QuotaIdMin  uint32                 `protobuf:"varint,1,opt,name=quota_id_min,json=quotaIdMin,proto3,oneof" json:"quota_id_min,omitempty"`
+	xxx_hidden_QuotaIdMax  uint32                 `protobuf:"varint,2,opt,name=quota_id_max,json=quotaIdMax,proto3,oneof" json:"quota_id_max,omitempty"`
+	xxx_hidden_QuotaIdList []uint32               `protobuf:"varint,6,rep,packed,name=quota_id_list,json=quotaIdList,proto3" json:"quota_id_list,omitempty"`
+	xxx_hidden_IdType      beegfs.QuotaIdType     `protobuf:"varint,3,opt,name=id_type,json=idType,proto3,enum=beegfs.QuotaIdType" json:"id_type,omitempty"`
+	xxx_hidden_Pool        *beegfs.EntityIdSet    `protobuf:"bytes,4,opt,name=pool,proto3,oneof" json:"pool,omitempty"`
+	xxx_hidden_Exceeded    bool                   `protobuf:"varint,5,opt,name=exceeded,proto3,oneof" json:"exceeded,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *GetQuotaUsageRequest) Reset() {
@@ -3341,113 +3386,119 @@ func (x *GetQuotaUsageRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *GetQuotaUsageRequest) GetQuotaIdMin() uint32 {
-	if x != nil && x.QuotaIdMin != nil {
-		return *x.QuotaIdMin
+	if x != nil {
+		return x.xxx_hidden_QuotaIdMin
 	}
 	return 0
 }
 
 func (x *GetQuotaUsageRequest) GetQuotaIdMax() uint32 {
-	if x != nil && x.QuotaIdMax != nil {
-		return *x.QuotaIdMax
+	if x != nil {
+		return x.xxx_hidden_QuotaIdMax
 	}
 	return 0
 }
 
 func (x *GetQuotaUsageRequest) GetQuotaIdList() []uint32 {
 	if x != nil {
-		return x.QuotaIdList
+		return x.xxx_hidden_QuotaIdList
 	}
 	return nil
 }
 
 func (x *GetQuotaUsageRequest) GetIdType() beegfs.QuotaIdType {
 	if x != nil {
-		return x.IdType
+		return x.xxx_hidden_IdType
 	}
 	return beegfs.QuotaIdType(0)
 }
 
 func (x *GetQuotaUsageRequest) GetPool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Pool
+		return x.xxx_hidden_Pool
 	}
 	return nil
 }
 
 func (x *GetQuotaUsageRequest) GetExceeded() bool {
-	if x != nil && x.Exceeded != nil {
-		return *x.Exceeded
+	if x != nil {
+		return x.xxx_hidden_Exceeded
 	}
 	return false
 }
 
 func (x *GetQuotaUsageRequest) SetQuotaIdMin(v uint32) {
-	x.QuotaIdMin = &v
+	x.xxx_hidden_QuotaIdMin = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 6)
 }
 
 func (x *GetQuotaUsageRequest) SetQuotaIdMax(v uint32) {
-	x.QuotaIdMax = &v
+	x.xxx_hidden_QuotaIdMax = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 6)
 }
 
 func (x *GetQuotaUsageRequest) SetQuotaIdList(v []uint32) {
-	x.QuotaIdList = v
+	x.xxx_hidden_QuotaIdList = v
 }
 
 func (x *GetQuotaUsageRequest) SetIdType(v beegfs.QuotaIdType) {
-	x.IdType = v
+	x.xxx_hidden_IdType = v
 }
 
 func (x *GetQuotaUsageRequest) SetPool(v *beegfs.EntityIdSet) {
-	x.Pool = v
+	x.xxx_hidden_Pool = v
 }
 
 func (x *GetQuotaUsageRequest) SetExceeded(v bool) {
-	x.Exceeded = &v
+	x.xxx_hidden_Exceeded = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
 }
 
 func (x *GetQuotaUsageRequest) HasQuotaIdMin() bool {
 	if x == nil {
 		return false
 	}
-	return x.QuotaIdMin != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *GetQuotaUsageRequest) HasQuotaIdMax() bool {
 	if x == nil {
 		return false
 	}
-	return x.QuotaIdMax != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *GetQuotaUsageRequest) HasPool() bool {
 	if x == nil {
 		return false
 	}
-	return x.Pool != nil
+	return x.xxx_hidden_Pool != nil
 }
 
 func (x *GetQuotaUsageRequest) HasExceeded() bool {
 	if x == nil {
 		return false
 	}
-	return x.Exceeded != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
 func (x *GetQuotaUsageRequest) ClearQuotaIdMin() {
-	x.QuotaIdMin = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_QuotaIdMin = 0
 }
 
 func (x *GetQuotaUsageRequest) ClearQuotaIdMax() {
-	x.QuotaIdMax = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_QuotaIdMax = 0
 }
 
 func (x *GetQuotaUsageRequest) ClearPool() {
-	x.Pool = nil
+	x.xxx_hidden_Pool = nil
 }
 
 func (x *GetQuotaUsageRequest) ClearExceeded() {
-	x.Exceeded = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_Exceeded = false
 }
 
 type GetQuotaUsageRequest_builder struct {
@@ -3476,27 +3527,33 @@ func (b0 GetQuotaUsageRequest_builder) Build() *GetQuotaUsageRequest {
 	m0 := &GetQuotaUsageRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.QuotaIdMin = b.QuotaIdMin
-	x.QuotaIdMax = b.QuotaIdMax
-	x.QuotaIdList = b.QuotaIdList
-	x.IdType = b.IdType
-	x.Pool = b.Pool
-	x.Exceeded = b.Exceeded
+	if b.QuotaIdMin != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 6)
+		x.xxx_hidden_QuotaIdMin = *b.QuotaIdMin
+	}
+	if b.QuotaIdMax != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 6)
+		x.xxx_hidden_QuotaIdMax = *b.QuotaIdMax
+	}
+	x.xxx_hidden_QuotaIdList = b.QuotaIdList
+	x.xxx_hidden_IdType = b.IdType
+	x.xxx_hidden_Pool = b.Pool
+	if b.Exceeded != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
+		x.xxx_hidden_Exceeded = *b.Exceeded
+	}
 	return m0
 }
 
 // One entry in the quota per-id-and-pool limits list. Meant to be streamed.
 type GetQuotaUsageResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// One per-id-and-pool quota usage entry.
-	// This is a single (non-repeated) field because the response is meant to be streamed.
-	// Required.
-	Entry *QuotaInfo `protobuf:"bytes,1,opt,name=entry,proto3,oneof" json:"entry,omitempty"`
-	// The refresh period of the quota usage info in seconds.
-	// Optional. Should be set only on the first response in the stream.
-	RefreshPeriodS *uint64 `protobuf:"varint,2,opt,name=refresh_period_s,json=refreshPeriodS,proto3,oneof" json:"refresh_period_s,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Entry          *QuotaInfo             `protobuf:"bytes,1,opt,name=entry,proto3,oneof" json:"entry,omitempty"`
+	xxx_hidden_RefreshPeriodS uint64                 `protobuf:"varint,2,opt,name=refresh_period_s,json=refreshPeriodS,proto3,oneof" json:"refresh_period_s,omitempty"`
+	XXX_raceDetectHookData    protoimpl.RaceDetectHookData
+	XXX_presence              [1]uint32
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *GetQuotaUsageResponse) Reset() {
@@ -3526,46 +3583,48 @@ func (x *GetQuotaUsageResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetQuotaUsageResponse) GetEntry() *QuotaInfo {
 	if x != nil {
-		return x.Entry
+		return x.xxx_hidden_Entry
 	}
 	return nil
 }
 
 func (x *GetQuotaUsageResponse) GetRefreshPeriodS() uint64 {
-	if x != nil && x.RefreshPeriodS != nil {
-		return *x.RefreshPeriodS
+	if x != nil {
+		return x.xxx_hidden_RefreshPeriodS
 	}
 	return 0
 }
 
 func (x *GetQuotaUsageResponse) SetEntry(v *QuotaInfo) {
-	x.Entry = v
+	x.xxx_hidden_Entry = v
 }
 
 func (x *GetQuotaUsageResponse) SetRefreshPeriodS(v uint64) {
-	x.RefreshPeriodS = &v
+	x.xxx_hidden_RefreshPeriodS = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
 func (x *GetQuotaUsageResponse) HasEntry() bool {
 	if x == nil {
 		return false
 	}
-	return x.Entry != nil
+	return x.xxx_hidden_Entry != nil
 }
 
 func (x *GetQuotaUsageResponse) HasRefreshPeriodS() bool {
 	if x == nil {
 		return false
 	}
-	return x.RefreshPeriodS != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
 func (x *GetQuotaUsageResponse) ClearEntry() {
-	x.Entry = nil
+	x.xxx_hidden_Entry = nil
 }
 
 func (x *GetQuotaUsageResponse) ClearRefreshPeriodS() {
-	x.RefreshPeriodS = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	x.xxx_hidden_RefreshPeriodS = 0
 }
 
 type GetQuotaUsageResponse_builder struct {
@@ -3584,19 +3643,22 @@ func (b0 GetQuotaUsageResponse_builder) Build() *GetQuotaUsageResponse {
 	m0 := &GetQuotaUsageResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Entry = b.Entry
-	x.RefreshPeriodS = b.RefreshPeriodS
+	x.xxx_hidden_Entry = b.Entry
+	if b.RefreshPeriodS != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
+		x.xxx_hidden_RefreshPeriodS = *b.RefreshPeriodS
+	}
 	return m0
 }
 
 // Gets license information.
 type GetLicenseRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// Reload and re-verify the license before returning it?
-	// Required.
-	Reload        *bool `protobuf:"varint,1,opt,name=reload,proto3,oneof" json:"reload,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Reload      bool                   `protobuf:"varint,1,opt,name=reload,proto3,oneof" json:"reload,omitempty"`
+	XXX_raceDetectHookData protoimpl.RaceDetectHookData
+	XXX_presence           [1]uint32
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *GetLicenseRequest) Reset() {
@@ -3625,25 +3687,27 @@ func (x *GetLicenseRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *GetLicenseRequest) GetReload() bool {
-	if x != nil && x.Reload != nil {
-		return *x.Reload
+	if x != nil {
+		return x.xxx_hidden_Reload
 	}
 	return false
 }
 
 func (x *GetLicenseRequest) SetReload(v bool) {
-	x.Reload = &v
+	x.xxx_hidden_Reload = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
 }
 
 func (x *GetLicenseRequest) HasReload() bool {
 	if x == nil {
 		return false
 	}
-	return x.Reload != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
 func (x *GetLicenseRequest) ClearReload() {
-	x.Reload = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
+	x.xxx_hidden_Reload = false
 }
 
 type GetLicenseRequest_builder struct {
@@ -3658,17 +3722,18 @@ func (b0 GetLicenseRequest_builder) Build() *GetLicenseRequest {
 	m0 := &GetLicenseRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Reload = b.Reload
+	if b.Reload != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
+		x.xxx_hidden_Reload = *b.Reload
+	}
 	return m0
 }
 
 type GetLicenseResponse struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// A license.
-	// Optional, might be omitted if no license data is available.
-	CertData      *license.GetCertDataResult `protobuf:"bytes,1,opt,name=cert_data,json=certData,proto3,oneof" json:"cert_data,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState     `protogen:"opaque.v1"`
+	xxx_hidden_CertData *license.GetCertDataResult `protobuf:"bytes,1,opt,name=cert_data,json=certData,proto3,oneof" json:"cert_data,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetLicenseResponse) Reset() {
@@ -3698,24 +3763,24 @@ func (x *GetLicenseResponse) ProtoReflect() protoreflect.Message {
 
 func (x *GetLicenseResponse) GetCertData() *license.GetCertDataResult {
 	if x != nil {
-		return x.CertData
+		return x.xxx_hidden_CertData
 	}
 	return nil
 }
 
 func (x *GetLicenseResponse) SetCertData(v *license.GetCertDataResult) {
-	x.CertData = v
+	x.xxx_hidden_CertData = v
 }
 
 func (x *GetLicenseResponse) HasCertData() bool {
 	if x == nil {
 		return false
 	}
-	return x.CertData != nil
+	return x.xxx_hidden_CertData != nil
 }
 
 func (x *GetLicenseResponse) ClearCertData() {
-	x.CertData = nil
+	x.xxx_hidden_CertData = nil
 }
 
 type GetLicenseResponse_builder struct {
@@ -3730,26 +3795,19 @@ func (b0 GetLicenseResponse_builder) Build() *GetLicenseResponse {
 	m0 := &GetLicenseResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.CertData = b.CertData
+	x.xxx_hidden_CertData = b.CertData
 	return m0
 }
 
 // An entry in the node list.
 type GetNodesResponse_Node struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The nodes identifier set. Required, should be completely populated.
-	Id *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The node type.
-	// Required.
-	NodeType beegfs.NodeType `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
-	// The nodes TCP and UDP port.
-	// Required.
-	Port uint32 `protobuf:"varint,3,opt,name=port,proto3" json:"port,omitempty"`
-	// The nodes list of nics.
-	// Should only be filled if include_nics was set to true.
-	Nics          []*GetNodesResponse_Node_Nic `protobuf:"bytes,4,rep,name=nics,proto3" json:"nics,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState        `protogen:"opaque.v1"`
+	xxx_hidden_Id       *beegfs.EntityIdSet           `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	xxx_hidden_NodeType beegfs.NodeType               `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
+	xxx_hidden_Port     uint32                        `protobuf:"varint,3,opt,name=port,proto3" json:"port,omitempty"`
+	xxx_hidden_Nics     *[]*GetNodesResponse_Node_Nic `protobuf:"bytes,4,rep,name=nics,proto3" json:"nics,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetNodesResponse_Node) Reset() {
@@ -3779,57 +3837,59 @@ func (x *GetNodesResponse_Node) ProtoReflect() protoreflect.Message {
 
 func (x *GetNodesResponse_Node) GetId() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return nil
 }
 
 func (x *GetNodesResponse_Node) GetNodeType() beegfs.NodeType {
 	if x != nil {
-		return x.NodeType
+		return x.xxx_hidden_NodeType
 	}
 	return beegfs.NodeType(0)
 }
 
 func (x *GetNodesResponse_Node) GetPort() uint32 {
 	if x != nil {
-		return x.Port
+		return x.xxx_hidden_Port
 	}
 	return 0
 }
 
 func (x *GetNodesResponse_Node) GetNics() []*GetNodesResponse_Node_Nic {
 	if x != nil {
-		return x.Nics
+		if x.xxx_hidden_Nics != nil {
+			return *x.xxx_hidden_Nics
+		}
 	}
 	return nil
 }
 
 func (x *GetNodesResponse_Node) SetId(v *beegfs.EntityIdSet) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *GetNodesResponse_Node) SetNodeType(v beegfs.NodeType) {
-	x.NodeType = v
+	x.xxx_hidden_NodeType = v
 }
 
 func (x *GetNodesResponse_Node) SetPort(v uint32) {
-	x.Port = v
+	x.xxx_hidden_Port = v
 }
 
 func (x *GetNodesResponse_Node) SetNics(v []*GetNodesResponse_Node_Nic) {
-	x.Nics = v
+	x.xxx_hidden_Nics = &v
 }
 
 func (x *GetNodesResponse_Node) HasId() bool {
 	if x == nil {
 		return false
 	}
-	return x.Id != nil
+	return x.xxx_hidden_Id != nil
 }
 
 func (x *GetNodesResponse_Node) ClearId() {
-	x.Id = nil
+	x.xxx_hidden_Id = nil
 }
 
 type GetNodesResponse_Node_builder struct {
@@ -3852,27 +3912,21 @@ func (b0 GetNodesResponse_Node_builder) Build() *GetNodesResponse_Node {
 	m0 := &GetNodesResponse_Node{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.NodeType = b.NodeType
-	x.Port = b.Port
-	x.Nics = b.Nics
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_NodeType = b.NodeType
+	x.xxx_hidden_Port = b.Port
+	x.xxx_hidden_Nics = &b.Nics
 	return m0
 }
 
 // An entry in a nodes nic list.
 type GetNodesResponse_Node_Nic struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The nics IPv4 address in the form aaa.bbb.ccc.ddd:port.
-	// Required.
-	Addr string `protobuf:"bytes,1,opt,name=addr,proto3" json:"addr,omitempty"`
-	// The nics name (note that this is NOT an alias as a Nic is not considered an entity).
-	// Required.
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The nics type.
-	// Required.
-	NicType       beegfs.NicType `protobuf:"varint,3,opt,name=nic_type,json=nicType,proto3,enum=beegfs.NicType" json:"nic_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Addr    string                 `protobuf:"bytes,1,opt,name=addr,proto3" json:"addr,omitempty"`
+	xxx_hidden_Name    string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	xxx_hidden_NicType beegfs.NicType         `protobuf:"varint,3,opt,name=nic_type,json=nicType,proto3,enum=beegfs.NicType" json:"nic_type,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetNodesResponse_Node_Nic) Reset() {
@@ -3902,35 +3956,35 @@ func (x *GetNodesResponse_Node_Nic) ProtoReflect() protoreflect.Message {
 
 func (x *GetNodesResponse_Node_Nic) GetAddr() string {
 	if x != nil {
-		return x.Addr
+		return x.xxx_hidden_Addr
 	}
 	return ""
 }
 
 func (x *GetNodesResponse_Node_Nic) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *GetNodesResponse_Node_Nic) GetNicType() beegfs.NicType {
 	if x != nil {
-		return x.NicType
+		return x.xxx_hidden_NicType
 	}
 	return beegfs.NicType(0)
 }
 
 func (x *GetNodesResponse_Node_Nic) SetAddr(v string) {
-	x.Addr = v
+	x.xxx_hidden_Addr = v
 }
 
 func (x *GetNodesResponse_Node_Nic) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *GetNodesResponse_Node_Nic) SetNicType(v beegfs.NicType) {
-	x.NicType = v
+	x.xxx_hidden_NicType = v
 }
 
 type GetNodesResponse_Node_Nic_builder struct {
@@ -3951,55 +4005,31 @@ func (b0 GetNodesResponse_Node_Nic_builder) Build() *GetNodesResponse_Node_Nic {
 	m0 := &GetNodesResponse_Node_Nic{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Addr = b.Addr
-	x.Name = b.Name
-	x.NicType = b.NicType
+	x.xxx_hidden_Addr = b.Addr
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_NicType = b.NicType
 	return m0
 }
 
 // An entry in the target list.
 type GetTargetsResponse_Target struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The targets identifier set.
-	// Required, should be completely populated.
-	Id *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Node type of the target.
-	// Required.
-	NodeType beegfs.NodeType `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
-	// The targets reachability state as reported by management.
-	// Required.
-	ReachabilityState beegfs.ReachabilityState `protobuf:"varint,3,opt,name=reachability_state,json=reachabilityState,proto3,enum=beegfs.ReachabilityState" json:"reachability_state,omitempty"`
-	// The targets reachability state as reported by management.
-	// Required.
-	ConsistencyState beegfs.ConsistencyState `protobuf:"varint,4,opt,name=consistency_state,json=consistencyState,proto3,enum=beegfs.ConsistencyState" json:"consistency_state,omitempty"`
-	// Duration since last contact to the target in seconds.
-	// Optional, may be omitted if that information is not available.
-	LastContactS *uint64 `protobuf:"varint,5,opt,name=last_contact_s,json=lastContactS,proto3,oneof" json:"last_contact_s,omitempty"`
-	// Total space on the target as reported by management.
-	// Optional, may be omitted if that information is not available.
-	TotalSpaceBytes *uint64 `protobuf:"varint,6,opt,name=total_space_bytes,json=totalSpaceBytes,proto3,oneof" json:"total_space_bytes,omitempty"`
-	// Free space on the target as reported by management.
-	// Optional, may be omitted if that information is not available.
-	FreeSpaceBytes *uint64 `protobuf:"varint,7,opt,name=free_space_bytes,json=freeSpaceBytes,proto3,oneof" json:"free_space_bytes,omitempty"`
-	// Total inodes on the target as reported by management.
-	// Optional, may be omitted if that information is not available.
-	TotalInodes *uint64 `protobuf:"varint,8,opt,name=total_inodes,json=totalInodes,proto3,oneof" json:"total_inodes,omitempty"`
-	// Free inodes on the target as reported by management.
-	// Optional, may be omitted if that information is not available.
-	FreeInodes *uint64 `protobuf:"varint,9,opt,name=free_inodes,json=freeInodes,proto3,oneof" json:"free_inodes,omitempty"`
-	// The targets capacity pool as reported by the management.
-	// Required.
-	CapPool beegfs.CapacityPool `protobuf:"varint,10,opt,name=cap_pool,json=capPool,proto3,enum=beegfs.CapacityPool" json:"cap_pool,omitempty"`
-	// The targets owner node. Storage targets can be "unmapped".
-	// Optional if this target is a storage target (e.g. node_type is STORAGE), required otherwise.
-	// If set, should be completely populated.
-	Node *beegfs.EntityIdSet `protobuf:"bytes,11,opt,name=node,proto3" json:"node,omitempty"`
-	// The targets storage pool.
-	// Required if this target is a storage target (e.g. node_type is STORAGE), unset otherwise. If
-	// set, should be completely populated.
-	StoragePool   *beegfs.EntityIdSet `protobuf:"bytes,12,opt,name=storage_pool,json=storagePool,proto3,oneof" json:"storage_pool,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                        protoimpl.MessageState   `protogen:"opaque.v1"`
+	xxx_hidden_Id                *beegfs.EntityIdSet      `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	xxx_hidden_NodeType          beegfs.NodeType          `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
+	xxx_hidden_ReachabilityState beegfs.ReachabilityState `protobuf:"varint,3,opt,name=reachability_state,json=reachabilityState,proto3,enum=beegfs.ReachabilityState" json:"reachability_state,omitempty"`
+	xxx_hidden_ConsistencyState  beegfs.ConsistencyState  `protobuf:"varint,4,opt,name=consistency_state,json=consistencyState,proto3,enum=beegfs.ConsistencyState" json:"consistency_state,omitempty"`
+	xxx_hidden_LastContactS      uint64                   `protobuf:"varint,5,opt,name=last_contact_s,json=lastContactS,proto3,oneof" json:"last_contact_s,omitempty"`
+	xxx_hidden_TotalSpaceBytes   uint64                   `protobuf:"varint,6,opt,name=total_space_bytes,json=totalSpaceBytes,proto3,oneof" json:"total_space_bytes,omitempty"`
+	xxx_hidden_FreeSpaceBytes    uint64                   `protobuf:"varint,7,opt,name=free_space_bytes,json=freeSpaceBytes,proto3,oneof" json:"free_space_bytes,omitempty"`
+	xxx_hidden_TotalInodes       uint64                   `protobuf:"varint,8,opt,name=total_inodes,json=totalInodes,proto3,oneof" json:"total_inodes,omitempty"`
+	xxx_hidden_FreeInodes        uint64                   `protobuf:"varint,9,opt,name=free_inodes,json=freeInodes,proto3,oneof" json:"free_inodes,omitempty"`
+	xxx_hidden_CapPool           beegfs.CapacityPool      `protobuf:"varint,10,opt,name=cap_pool,json=capPool,proto3,enum=beegfs.CapacityPool" json:"cap_pool,omitempty"`
+	xxx_hidden_Node              *beegfs.EntityIdSet      `protobuf:"bytes,11,opt,name=node,proto3" json:"node,omitempty"`
+	xxx_hidden_StoragePool       *beegfs.EntityIdSet      `protobuf:"bytes,12,opt,name=storage_pool,json=storagePool,proto3,oneof" json:"storage_pool,omitempty"`
+	XXX_raceDetectHookData       protoimpl.RaceDetectHookData
+	XXX_presence                 [1]uint32
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *GetTargetsResponse_Target) Reset() {
@@ -4029,222 +4059,232 @@ func (x *GetTargetsResponse_Target) ProtoReflect() protoreflect.Message {
 
 func (x *GetTargetsResponse_Target) GetId() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return nil
 }
 
 func (x *GetTargetsResponse_Target) GetNodeType() beegfs.NodeType {
 	if x != nil {
-		return x.NodeType
+		return x.xxx_hidden_NodeType
 	}
 	return beegfs.NodeType(0)
 }
 
 func (x *GetTargetsResponse_Target) GetReachabilityState() beegfs.ReachabilityState {
 	if x != nil {
-		return x.ReachabilityState
+		return x.xxx_hidden_ReachabilityState
 	}
 	return beegfs.ReachabilityState(0)
 }
 
 func (x *GetTargetsResponse_Target) GetConsistencyState() beegfs.ConsistencyState {
 	if x != nil {
-		return x.ConsistencyState
+		return x.xxx_hidden_ConsistencyState
 	}
 	return beegfs.ConsistencyState(0)
 }
 
 func (x *GetTargetsResponse_Target) GetLastContactS() uint64 {
-	if x != nil && x.LastContactS != nil {
-		return *x.LastContactS
+	if x != nil {
+		return x.xxx_hidden_LastContactS
 	}
 	return 0
 }
 
 func (x *GetTargetsResponse_Target) GetTotalSpaceBytes() uint64 {
-	if x != nil && x.TotalSpaceBytes != nil {
-		return *x.TotalSpaceBytes
+	if x != nil {
+		return x.xxx_hidden_TotalSpaceBytes
 	}
 	return 0
 }
 
 func (x *GetTargetsResponse_Target) GetFreeSpaceBytes() uint64 {
-	if x != nil && x.FreeSpaceBytes != nil {
-		return *x.FreeSpaceBytes
+	if x != nil {
+		return x.xxx_hidden_FreeSpaceBytes
 	}
 	return 0
 }
 
 func (x *GetTargetsResponse_Target) GetTotalInodes() uint64 {
-	if x != nil && x.TotalInodes != nil {
-		return *x.TotalInodes
+	if x != nil {
+		return x.xxx_hidden_TotalInodes
 	}
 	return 0
 }
 
 func (x *GetTargetsResponse_Target) GetFreeInodes() uint64 {
-	if x != nil && x.FreeInodes != nil {
-		return *x.FreeInodes
+	if x != nil {
+		return x.xxx_hidden_FreeInodes
 	}
 	return 0
 }
 
 func (x *GetTargetsResponse_Target) GetCapPool() beegfs.CapacityPool {
 	if x != nil {
-		return x.CapPool
+		return x.xxx_hidden_CapPool
 	}
 	return beegfs.CapacityPool(0)
 }
 
 func (x *GetTargetsResponse_Target) GetNode() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Node
+		return x.xxx_hidden_Node
 	}
 	return nil
 }
 
 func (x *GetTargetsResponse_Target) GetStoragePool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.StoragePool
+		return x.xxx_hidden_StoragePool
 	}
 	return nil
 }
 
 func (x *GetTargetsResponse_Target) SetId(v *beegfs.EntityIdSet) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *GetTargetsResponse_Target) SetNodeType(v beegfs.NodeType) {
-	x.NodeType = v
+	x.xxx_hidden_NodeType = v
 }
 
 func (x *GetTargetsResponse_Target) SetReachabilityState(v beegfs.ReachabilityState) {
-	x.ReachabilityState = v
+	x.xxx_hidden_ReachabilityState = v
 }
 
 func (x *GetTargetsResponse_Target) SetConsistencyState(v beegfs.ConsistencyState) {
-	x.ConsistencyState = v
+	x.xxx_hidden_ConsistencyState = v
 }
 
 func (x *GetTargetsResponse_Target) SetLastContactS(v uint64) {
-	x.LastContactS = &v
+	x.xxx_hidden_LastContactS = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 12)
 }
 
 func (x *GetTargetsResponse_Target) SetTotalSpaceBytes(v uint64) {
-	x.TotalSpaceBytes = &v
+	x.xxx_hidden_TotalSpaceBytes = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 12)
 }
 
 func (x *GetTargetsResponse_Target) SetFreeSpaceBytes(v uint64) {
-	x.FreeSpaceBytes = &v
+	x.xxx_hidden_FreeSpaceBytes = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 12)
 }
 
 func (x *GetTargetsResponse_Target) SetTotalInodes(v uint64) {
-	x.TotalInodes = &v
+	x.xxx_hidden_TotalInodes = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 12)
 }
 
 func (x *GetTargetsResponse_Target) SetFreeInodes(v uint64) {
-	x.FreeInodes = &v
+	x.xxx_hidden_FreeInodes = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 12)
 }
 
 func (x *GetTargetsResponse_Target) SetCapPool(v beegfs.CapacityPool) {
-	x.CapPool = v
+	x.xxx_hidden_CapPool = v
 }
 
 func (x *GetTargetsResponse_Target) SetNode(v *beegfs.EntityIdSet) {
-	x.Node = v
+	x.xxx_hidden_Node = v
 }
 
 func (x *GetTargetsResponse_Target) SetStoragePool(v *beegfs.EntityIdSet) {
-	x.StoragePool = v
+	x.xxx_hidden_StoragePool = v
 }
 
 func (x *GetTargetsResponse_Target) HasId() bool {
 	if x == nil {
 		return false
 	}
-	return x.Id != nil
+	return x.xxx_hidden_Id != nil
 }
 
 func (x *GetTargetsResponse_Target) HasLastContactS() bool {
 	if x == nil {
 		return false
 	}
-	return x.LastContactS != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
 func (x *GetTargetsResponse_Target) HasTotalSpaceBytes() bool {
 	if x == nil {
 		return false
 	}
-	return x.TotalSpaceBytes != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
 func (x *GetTargetsResponse_Target) HasFreeSpaceBytes() bool {
 	if x == nil {
 		return false
 	}
-	return x.FreeSpaceBytes != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
 func (x *GetTargetsResponse_Target) HasTotalInodes() bool {
 	if x == nil {
 		return false
 	}
-	return x.TotalInodes != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
 }
 
 func (x *GetTargetsResponse_Target) HasFreeInodes() bool {
 	if x == nil {
 		return false
 	}
-	return x.FreeInodes != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 8)
 }
 
 func (x *GetTargetsResponse_Target) HasNode() bool {
 	if x == nil {
 		return false
 	}
-	return x.Node != nil
+	return x.xxx_hidden_Node != nil
 }
 
 func (x *GetTargetsResponse_Target) HasStoragePool() bool {
 	if x == nil {
 		return false
 	}
-	return x.StoragePool != nil
+	return x.xxx_hidden_StoragePool != nil
 }
 
 func (x *GetTargetsResponse_Target) ClearId() {
-	x.Id = nil
+	x.xxx_hidden_Id = nil
 }
 
 func (x *GetTargetsResponse_Target) ClearLastContactS() {
-	x.LastContactS = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	x.xxx_hidden_LastContactS = 0
 }
 
 func (x *GetTargetsResponse_Target) ClearTotalSpaceBytes() {
-	x.TotalSpaceBytes = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_TotalSpaceBytes = 0
 }
 
 func (x *GetTargetsResponse_Target) ClearFreeSpaceBytes() {
-	x.FreeSpaceBytes = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	x.xxx_hidden_FreeSpaceBytes = 0
 }
 
 func (x *GetTargetsResponse_Target) ClearTotalInodes() {
-	x.TotalInodes = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
+	x.xxx_hidden_TotalInodes = 0
 }
 
 func (x *GetTargetsResponse_Target) ClearFreeInodes() {
-	x.FreeInodes = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
+	x.xxx_hidden_FreeInodes = 0
 }
 
 func (x *GetTargetsResponse_Target) ClearNode() {
-	x.Node = nil
+	x.xxx_hidden_Node = nil
 }
 
 func (x *GetTargetsResponse_Target) ClearStoragePool() {
-	x.StoragePool = nil
+	x.xxx_hidden_StoragePool = nil
 }
 
 type GetTargetsResponse_Target_builder struct {
@@ -4294,51 +4334,50 @@ func (b0 GetTargetsResponse_Target_builder) Build() *GetTargetsResponse_Target {
 	m0 := &GetTargetsResponse_Target{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.NodeType = b.NodeType
-	x.ReachabilityState = b.ReachabilityState
-	x.ConsistencyState = b.ConsistencyState
-	x.LastContactS = b.LastContactS
-	x.TotalSpaceBytes = b.TotalSpaceBytes
-	x.FreeSpaceBytes = b.FreeSpaceBytes
-	x.TotalInodes = b.TotalInodes
-	x.FreeInodes = b.FreeInodes
-	x.CapPool = b.CapPool
-	x.Node = b.Node
-	x.StoragePool = b.StoragePool
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_NodeType = b.NodeType
+	x.xxx_hidden_ReachabilityState = b.ReachabilityState
+	x.xxx_hidden_ConsistencyState = b.ConsistencyState
+	if b.LastContactS != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 12)
+		x.xxx_hidden_LastContactS = *b.LastContactS
+	}
+	if b.TotalSpaceBytes != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 12)
+		x.xxx_hidden_TotalSpaceBytes = *b.TotalSpaceBytes
+	}
+	if b.FreeSpaceBytes != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 12)
+		x.xxx_hidden_FreeSpaceBytes = *b.FreeSpaceBytes
+	}
+	if b.TotalInodes != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 12)
+		x.xxx_hidden_TotalInodes = *b.TotalInodes
+	}
+	if b.FreeInodes != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 12)
+		x.xxx_hidden_FreeInodes = *b.FreeInodes
+	}
+	x.xxx_hidden_CapPool = b.CapPool
+	x.xxx_hidden_Node = b.Node
+	x.xxx_hidden_StoragePool = b.StoragePool
 	return m0
 }
 
 // An entry in the storage pool list.
 type GetPoolsResponse_StoragePool struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The pools identifier set.
-	// Required, should be completely populated.
-	Id *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The targets assigned to the storage pool.
-	// Each should be completely populated.
-	Targets []*beegfs.EntityIdSet `protobuf:"bytes,2,rep,name=targets,proto3" json:"targets,omitempty"`
-	// The buddy groups assigned to the storage pool.
-	// Each should be completely populated.
-	BuddyGroups []*beegfs.EntityIdSet `protobuf:"bytes,3,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
-	// The default user space quota limit for data in this pool. -1 means unlimited.
-	// Optional. Should be set if with_quota_limits was set to true and the corresponding data is
-	// available.
-	UserSpaceLimit *int64 `protobuf:"varint,4,opt,name=user_space_limit,json=userSpaceLimit,proto3,oneof" json:"user_space_limit,omitempty"`
-	// The default user inode quota limit for data in this pool. -1 means unlimited.
-	// Optional. Should be set if with_quota_limits was set to true and the corresponding data is
-	// available.
-	UserInodeLimit *int64 `protobuf:"varint,5,opt,name=user_inode_limit,json=userInodeLimit,proto3,oneof" json:"user_inode_limit,omitempty"`
-	// The default group space quota limit for data in this pool. -1 means unlimited.
-	// Optional. Should be set if with_quota_limits was set to true and the corresponding data is
-	// available.
-	GroupSpaceLimit *int64 `protobuf:"varint,6,opt,name=group_space_limit,json=groupSpaceLimit,proto3,oneof" json:"group_space_limit,omitempty"`
-	// The default group inode quota limit for data in this pool. -1 means unlimited.
-	// Optional. Should be set if with_quota_limits was set to true and the corresponding data is
-	// available.
-	GroupInodeLimit *int64 `protobuf:"varint,7,opt,name=group_inode_limit,json=groupInodeLimit,proto3,oneof" json:"group_inode_limit,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id              *beegfs.EntityIdSet    `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	xxx_hidden_Targets         *[]*beegfs.EntityIdSet `protobuf:"bytes,2,rep,name=targets,proto3" json:"targets,omitempty"`
+	xxx_hidden_BuddyGroups     *[]*beegfs.EntityIdSet `protobuf:"bytes,3,rep,name=buddy_groups,json=buddyGroups,proto3" json:"buddy_groups,omitempty"`
+	xxx_hidden_UserSpaceLimit  int64                  `protobuf:"varint,4,opt,name=user_space_limit,json=userSpaceLimit,proto3,oneof" json:"user_space_limit,omitempty"`
+	xxx_hidden_UserInodeLimit  int64                  `protobuf:"varint,5,opt,name=user_inode_limit,json=userInodeLimit,proto3,oneof" json:"user_inode_limit,omitempty"`
+	xxx_hidden_GroupSpaceLimit int64                  `protobuf:"varint,6,opt,name=group_space_limit,json=groupSpaceLimit,proto3,oneof" json:"group_space_limit,omitempty"`
+	xxx_hidden_GroupInodeLimit int64                  `protobuf:"varint,7,opt,name=group_inode_limit,json=groupInodeLimit,proto3,oneof" json:"group_inode_limit,omitempty"`
+	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
+	XXX_presence               [1]uint32
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *GetPoolsResponse_StoragePool) Reset() {
@@ -4368,134 +4407,146 @@ func (x *GetPoolsResponse_StoragePool) ProtoReflect() protoreflect.Message {
 
 func (x *GetPoolsResponse_StoragePool) GetId() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return nil
 }
 
 func (x *GetPoolsResponse_StoragePool) GetTargets() []*beegfs.EntityIdSet {
 	if x != nil {
-		return x.Targets
+		if x.xxx_hidden_Targets != nil {
+			return *x.xxx_hidden_Targets
+		}
 	}
 	return nil
 }
 
 func (x *GetPoolsResponse_StoragePool) GetBuddyGroups() []*beegfs.EntityIdSet {
 	if x != nil {
-		return x.BuddyGroups
+		if x.xxx_hidden_BuddyGroups != nil {
+			return *x.xxx_hidden_BuddyGroups
+		}
 	}
 	return nil
 }
 
 func (x *GetPoolsResponse_StoragePool) GetUserSpaceLimit() int64 {
-	if x != nil && x.UserSpaceLimit != nil {
-		return *x.UserSpaceLimit
+	if x != nil {
+		return x.xxx_hidden_UserSpaceLimit
 	}
 	return 0
 }
 
 func (x *GetPoolsResponse_StoragePool) GetUserInodeLimit() int64 {
-	if x != nil && x.UserInodeLimit != nil {
-		return *x.UserInodeLimit
+	if x != nil {
+		return x.xxx_hidden_UserInodeLimit
 	}
 	return 0
 }
 
 func (x *GetPoolsResponse_StoragePool) GetGroupSpaceLimit() int64 {
-	if x != nil && x.GroupSpaceLimit != nil {
-		return *x.GroupSpaceLimit
+	if x != nil {
+		return x.xxx_hidden_GroupSpaceLimit
 	}
 	return 0
 }
 
 func (x *GetPoolsResponse_StoragePool) GetGroupInodeLimit() int64 {
-	if x != nil && x.GroupInodeLimit != nil {
-		return *x.GroupInodeLimit
+	if x != nil {
+		return x.xxx_hidden_GroupInodeLimit
 	}
 	return 0
 }
 
 func (x *GetPoolsResponse_StoragePool) SetId(v *beegfs.EntityIdSet) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *GetPoolsResponse_StoragePool) SetTargets(v []*beegfs.EntityIdSet) {
-	x.Targets = v
+	x.xxx_hidden_Targets = &v
 }
 
 func (x *GetPoolsResponse_StoragePool) SetBuddyGroups(v []*beegfs.EntityIdSet) {
-	x.BuddyGroups = v
+	x.xxx_hidden_BuddyGroups = &v
 }
 
 func (x *GetPoolsResponse_StoragePool) SetUserSpaceLimit(v int64) {
-	x.UserSpaceLimit = &v
+	x.xxx_hidden_UserSpaceLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 7)
 }
 
 func (x *GetPoolsResponse_StoragePool) SetUserInodeLimit(v int64) {
-	x.UserInodeLimit = &v
+	x.xxx_hidden_UserInodeLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 7)
 }
 
 func (x *GetPoolsResponse_StoragePool) SetGroupSpaceLimit(v int64) {
-	x.GroupSpaceLimit = &v
+	x.xxx_hidden_GroupSpaceLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 7)
 }
 
 func (x *GetPoolsResponse_StoragePool) SetGroupInodeLimit(v int64) {
-	x.GroupInodeLimit = &v
+	x.xxx_hidden_GroupInodeLimit = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 7)
 }
 
 func (x *GetPoolsResponse_StoragePool) HasId() bool {
 	if x == nil {
 		return false
 	}
-	return x.Id != nil
+	return x.xxx_hidden_Id != nil
 }
 
 func (x *GetPoolsResponse_StoragePool) HasUserSpaceLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.UserSpaceLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
 func (x *GetPoolsResponse_StoragePool) HasUserInodeLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.UserInodeLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
 func (x *GetPoolsResponse_StoragePool) HasGroupSpaceLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.GroupSpaceLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
 func (x *GetPoolsResponse_StoragePool) HasGroupInodeLimit() bool {
 	if x == nil {
 		return false
 	}
-	return x.GroupInodeLimit != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
 func (x *GetPoolsResponse_StoragePool) ClearId() {
-	x.Id = nil
+	x.xxx_hidden_Id = nil
 }
 
 func (x *GetPoolsResponse_StoragePool) ClearUserSpaceLimit() {
-	x.UserSpaceLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
+	x.xxx_hidden_UserSpaceLimit = 0
 }
 
 func (x *GetPoolsResponse_StoragePool) ClearUserInodeLimit() {
-	x.UserInodeLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	x.xxx_hidden_UserInodeLimit = 0
 }
 
 func (x *GetPoolsResponse_StoragePool) ClearGroupSpaceLimit() {
-	x.GroupSpaceLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_GroupSpaceLimit = 0
 }
 
 func (x *GetPoolsResponse_StoragePool) ClearGroupInodeLimit() {
-	x.GroupInodeLimit = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
+	x.xxx_hidden_GroupInodeLimit = 0
 }
 
 type GetPoolsResponse_StoragePool_builder struct {
@@ -4532,43 +4583,40 @@ func (b0 GetPoolsResponse_StoragePool_builder) Build() *GetPoolsResponse_Storage
 	m0 := &GetPoolsResponse_StoragePool{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Targets = b.Targets
-	x.BuddyGroups = b.BuddyGroups
-	x.UserSpaceLimit = b.UserSpaceLimit
-	x.UserInodeLimit = b.UserInodeLimit
-	x.GroupSpaceLimit = b.GroupSpaceLimit
-	x.GroupInodeLimit = b.GroupInodeLimit
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Targets = &b.Targets
+	x.xxx_hidden_BuddyGroups = &b.BuddyGroups
+	if b.UserSpaceLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 7)
+		x.xxx_hidden_UserSpaceLimit = *b.UserSpaceLimit
+	}
+	if b.UserInodeLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 7)
+		x.xxx_hidden_UserInodeLimit = *b.UserInodeLimit
+	}
+	if b.GroupSpaceLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 7)
+		x.xxx_hidden_GroupSpaceLimit = *b.GroupSpaceLimit
+	}
+	if b.GroupInodeLimit != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 7)
+		x.xxx_hidden_GroupInodeLimit = *b.GroupInodeLimit
+	}
 	return m0
 }
 
 // An entry in the buddy groups list.
 type GetBuddyGroupsResponse_BuddyGroup struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// The buddy groups identifier set.
-	// Required, should be completely populated.
-	Id *beegfs.EntityIdSet `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Node type of the buddy group.
-	// Required.
-	NodeType beegfs.NodeType `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
-	// The buddy groups primary target.
-	// Required, should be completely populated.
-	PrimaryTarget *beegfs.EntityIdSet `protobuf:"bytes,3,opt,name=primary_target,json=primaryTarget,proto3" json:"primary_target,omitempty"`
-	// The buddy groups secondary target.
-	// Required, should be completely populated.
-	SecondaryTarget *beegfs.EntityIdSet `protobuf:"bytes,4,opt,name=secondary_target,json=secondaryTarget,proto3" json:"secondary_target,omitempty"`
-	// The buddy groups primary target consistency state.
-	// Required.
-	PrimaryConsistencyState beegfs.ConsistencyState `protobuf:"varint,5,opt,name=primary_consistency_state,json=primaryConsistencyState,proto3,enum=beegfs.ConsistencyState" json:"primary_consistency_state,omitempty"`
-	// The buddy groups secondary target consistency state.
-	// Required.
-	SecondaryConsistencyState beegfs.ConsistencyState `protobuf:"varint,6,opt,name=secondary_consistency_state,json=secondaryConsistencyState,proto3,enum=beegfs.ConsistencyState" json:"secondary_consistency_state,omitempty"`
-	// The targets storage pool.
-	// Required if this target is a storage target (e.g. node_type is STORAGE), unset otherwise. If
-	// set, should be completely populated.
-	StoragePool   *beegfs.EntityIdSet `protobuf:"bytes,7,opt,name=storage_pool,json=storagePool,proto3,oneof" json:"storage_pool,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                                protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_Id                        *beegfs.EntityIdSet     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	xxx_hidden_NodeType                  beegfs.NodeType         `protobuf:"varint,2,opt,name=node_type,json=nodeType,proto3,enum=beegfs.NodeType" json:"node_type,omitempty"`
+	xxx_hidden_PrimaryTarget             *beegfs.EntityIdSet     `protobuf:"bytes,3,opt,name=primary_target,json=primaryTarget,proto3" json:"primary_target,omitempty"`
+	xxx_hidden_SecondaryTarget           *beegfs.EntityIdSet     `protobuf:"bytes,4,opt,name=secondary_target,json=secondaryTarget,proto3" json:"secondary_target,omitempty"`
+	xxx_hidden_PrimaryConsistencyState   beegfs.ConsistencyState `protobuf:"varint,5,opt,name=primary_consistency_state,json=primaryConsistencyState,proto3,enum=beegfs.ConsistencyState" json:"primary_consistency_state,omitempty"`
+	xxx_hidden_SecondaryConsistencyState beegfs.ConsistencyState `protobuf:"varint,6,opt,name=secondary_consistency_state,json=secondaryConsistencyState,proto3,enum=beegfs.ConsistencyState" json:"secondary_consistency_state,omitempty"`
+	xxx_hidden_StoragePool               *beegfs.EntityIdSet     `protobuf:"bytes,7,opt,name=storage_pool,json=storagePool,proto3,oneof" json:"storage_pool,omitempty"`
+	unknownFields                        protoimpl.UnknownFields
+	sizeCache                            protoimpl.SizeCache
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) Reset() {
@@ -4598,123 +4646,123 @@ func (x *GetBuddyGroupsResponse_BuddyGroup) ProtoReflect() protoreflect.Message 
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) GetId() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) GetNodeType() beegfs.NodeType {
 	if x != nil {
-		return x.NodeType
+		return x.xxx_hidden_NodeType
 	}
 	return beegfs.NodeType(0)
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) GetPrimaryTarget() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.PrimaryTarget
+		return x.xxx_hidden_PrimaryTarget
 	}
 	return nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) GetSecondaryTarget() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.SecondaryTarget
+		return x.xxx_hidden_SecondaryTarget
 	}
 	return nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) GetPrimaryConsistencyState() beegfs.ConsistencyState {
 	if x != nil {
-		return x.PrimaryConsistencyState
+		return x.xxx_hidden_PrimaryConsistencyState
 	}
 	return beegfs.ConsistencyState(0)
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) GetSecondaryConsistencyState() beegfs.ConsistencyState {
 	if x != nil {
-		return x.SecondaryConsistencyState
+		return x.xxx_hidden_SecondaryConsistencyState
 	}
 	return beegfs.ConsistencyState(0)
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) GetStoragePool() *beegfs.EntityIdSet {
 	if x != nil {
-		return x.StoragePool
+		return x.xxx_hidden_StoragePool
 	}
 	return nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) SetId(v *beegfs.EntityIdSet) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) SetNodeType(v beegfs.NodeType) {
-	x.NodeType = v
+	x.xxx_hidden_NodeType = v
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) SetPrimaryTarget(v *beegfs.EntityIdSet) {
-	x.PrimaryTarget = v
+	x.xxx_hidden_PrimaryTarget = v
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) SetSecondaryTarget(v *beegfs.EntityIdSet) {
-	x.SecondaryTarget = v
+	x.xxx_hidden_SecondaryTarget = v
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) SetPrimaryConsistencyState(v beegfs.ConsistencyState) {
-	x.PrimaryConsistencyState = v
+	x.xxx_hidden_PrimaryConsistencyState = v
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) SetSecondaryConsistencyState(v beegfs.ConsistencyState) {
-	x.SecondaryConsistencyState = v
+	x.xxx_hidden_SecondaryConsistencyState = v
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) SetStoragePool(v *beegfs.EntityIdSet) {
-	x.StoragePool = v
+	x.xxx_hidden_StoragePool = v
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) HasId() bool {
 	if x == nil {
 		return false
 	}
-	return x.Id != nil
+	return x.xxx_hidden_Id != nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) HasPrimaryTarget() bool {
 	if x == nil {
 		return false
 	}
-	return x.PrimaryTarget != nil
+	return x.xxx_hidden_PrimaryTarget != nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) HasSecondaryTarget() bool {
 	if x == nil {
 		return false
 	}
-	return x.SecondaryTarget != nil
+	return x.xxx_hidden_SecondaryTarget != nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) HasStoragePool() bool {
 	if x == nil {
 		return false
 	}
-	return x.StoragePool != nil
+	return x.xxx_hidden_StoragePool != nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) ClearId() {
-	x.Id = nil
+	x.xxx_hidden_Id = nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) ClearPrimaryTarget() {
-	x.PrimaryTarget = nil
+	x.xxx_hidden_PrimaryTarget = nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) ClearSecondaryTarget() {
-	x.SecondaryTarget = nil
+	x.xxx_hidden_SecondaryTarget = nil
 }
 
 func (x *GetBuddyGroupsResponse_BuddyGroup) ClearStoragePool() {
-	x.StoragePool = nil
+	x.xxx_hidden_StoragePool = nil
 }
 
 type GetBuddyGroupsResponse_BuddyGroup_builder struct {
@@ -4748,13 +4796,13 @@ func (b0 GetBuddyGroupsResponse_BuddyGroup_builder) Build() *GetBuddyGroupsRespo
 	m0 := &GetBuddyGroupsResponse_BuddyGroup{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.NodeType = b.NodeType
-	x.PrimaryTarget = b.PrimaryTarget
-	x.SecondaryTarget = b.SecondaryTarget
-	x.PrimaryConsistencyState = b.PrimaryConsistencyState
-	x.SecondaryConsistencyState = b.SecondaryConsistencyState
-	x.StoragePool = b.StoragePool
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_NodeType = b.NodeType
+	x.xxx_hidden_PrimaryTarget = b.PrimaryTarget
+	x.xxx_hidden_SecondaryTarget = b.SecondaryTarget
+	x.xxx_hidden_PrimaryConsistencyState = b.PrimaryConsistencyState
+	x.xxx_hidden_SecondaryConsistencyState = b.SecondaryConsistencyState
+	x.xxx_hidden_StoragePool = b.StoragePool
 	return m0
 }
 

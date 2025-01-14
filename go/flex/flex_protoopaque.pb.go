@@ -6,7 +6,7 @@
 // 	protoc        v5.29.2
 // source: flex.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package flex
 
@@ -294,10 +294,10 @@ func (x UpdateConfigResponse_Result) Number() protoreflect.EnumNumber {
 }
 
 type HeartbeatRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	IncludeStats  bool                   `protobuf:"varint,1,opt,name=include_stats,json=includeStats,proto3" json:"include_stats,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_IncludeStats bool                   `protobuf:"varint,1,opt,name=include_stats,json=includeStats,proto3" json:"include_stats,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *HeartbeatRequest) Reset() {
@@ -327,13 +327,13 @@ func (x *HeartbeatRequest) ProtoReflect() protoreflect.Message {
 
 func (x *HeartbeatRequest) GetIncludeStats() bool {
 	if x != nil {
-		return x.IncludeStats
+		return x.xxx_hidden_IncludeStats
 	}
 	return false
 }
 
 func (x *HeartbeatRequest) SetIncludeStats(v bool) {
-	x.IncludeStats = v
+	x.xxx_hidden_IncludeStats = v
 }
 
 type HeartbeatRequest_builder struct {
@@ -346,16 +346,16 @@ func (b0 HeartbeatRequest_builder) Build() *HeartbeatRequest {
 	m0 := &HeartbeatRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.IncludeStats = b.IncludeStats
+	x.xxx_hidden_IncludeStats = b.IncludeStats
 	return m0
 }
 
 type HeartbeatResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	IsReady       bool                   `protobuf:"varint,1,opt,name=is_ready,json=isReady,proto3" json:"is_ready,omitempty"`
-	NodeStats     *NodeStats             `protobuf:"bytes,2,opt,name=node_stats,json=nodeStats,proto3" json:"node_stats,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_IsReady   bool                   `protobuf:"varint,1,opt,name=is_ready,json=isReady,proto3" json:"is_ready,omitempty"`
+	xxx_hidden_NodeStats *NodeStats             `protobuf:"bytes,2,opt,name=node_stats,json=nodeStats,proto3" json:"node_stats,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *HeartbeatResponse) Reset() {
@@ -385,35 +385,35 @@ func (x *HeartbeatResponse) ProtoReflect() protoreflect.Message {
 
 func (x *HeartbeatResponse) GetIsReady() bool {
 	if x != nil {
-		return x.IsReady
+		return x.xxx_hidden_IsReady
 	}
 	return false
 }
 
 func (x *HeartbeatResponse) GetNodeStats() *NodeStats {
 	if x != nil {
-		return x.NodeStats
+		return x.xxx_hidden_NodeStats
 	}
 	return nil
 }
 
 func (x *HeartbeatResponse) SetIsReady(v bool) {
-	x.IsReady = v
+	x.xxx_hidden_IsReady = v
 }
 
 func (x *HeartbeatResponse) SetNodeStats(v *NodeStats) {
-	x.NodeStats = v
+	x.xxx_hidden_NodeStats = v
 }
 
 func (x *HeartbeatResponse) HasNodeStats() bool {
 	if x == nil {
 		return false
 	}
-	return x.NodeStats != nil
+	return x.xxx_hidden_NodeStats != nil
 }
 
 func (x *HeartbeatResponse) ClearNodeStats() {
-	x.NodeStats = nil
+	x.xxx_hidden_NodeStats = nil
 }
 
 type HeartbeatResponse_builder struct {
@@ -427,17 +427,17 @@ func (b0 HeartbeatResponse_builder) Build() *HeartbeatResponse {
 	m0 := &HeartbeatResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.IsReady = b.IsReady
-	x.NodeStats = b.NodeStats
+	x.xxx_hidden_IsReady = b.IsReady
+	x.xxx_hidden_NodeStats = b.NodeStats
 	return m0
 }
 
 type NodeStats struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	Timestamp      *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	ActiveRequests int64                  `protobuf:"varint,2,opt,name=active_requests,json=activeRequests,proto3" json:"active_requests,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Timestamp      *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	xxx_hidden_ActiveRequests int64                  `protobuf:"varint,2,opt,name=active_requests,json=activeRequests,proto3" json:"active_requests,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *NodeStats) Reset() {
@@ -467,35 +467,35 @@ func (x *NodeStats) ProtoReflect() protoreflect.Message {
 
 func (x *NodeStats) GetTimestamp() *timestamppb.Timestamp {
 	if x != nil {
-		return x.Timestamp
+		return x.xxx_hidden_Timestamp
 	}
 	return nil
 }
 
 func (x *NodeStats) GetActiveRequests() int64 {
 	if x != nil {
-		return x.ActiveRequests
+		return x.xxx_hidden_ActiveRequests
 	}
 	return 0
 }
 
 func (x *NodeStats) SetTimestamp(v *timestamppb.Timestamp) {
-	x.Timestamp = v
+	x.xxx_hidden_Timestamp = v
 }
 
 func (x *NodeStats) SetActiveRequests(v int64) {
-	x.ActiveRequests = v
+	x.xxx_hidden_ActiveRequests = v
 }
 
 func (x *NodeStats) HasTimestamp() bool {
 	if x == nil {
 		return false
 	}
-	return x.Timestamp != nil
+	return x.xxx_hidden_Timestamp != nil
 }
 
 func (x *NodeStats) ClearTimestamp() {
-	x.Timestamp = nil
+	x.xxx_hidden_Timestamp = nil
 }
 
 type NodeStats_builder struct {
@@ -509,16 +509,16 @@ func (b0 NodeStats_builder) Build() *NodeStats {
 	m0 := &NodeStats{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Timestamp = b.Timestamp
-	x.ActiveRequests = b.ActiveRequests
+	x.xxx_hidden_Timestamp = b.Timestamp
+	x.xxx_hidden_ActiveRequests = b.ActiveRequests
 	return m0
 }
 
 type SubmitWorkRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Request       *WorkRequest           `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Request *WorkRequest           `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *SubmitWorkRequest) Reset() {
@@ -548,24 +548,24 @@ func (x *SubmitWorkRequest) ProtoReflect() protoreflect.Message {
 
 func (x *SubmitWorkRequest) GetRequest() *WorkRequest {
 	if x != nil {
-		return x.Request
+		return x.xxx_hidden_Request
 	}
 	return nil
 }
 
 func (x *SubmitWorkRequest) SetRequest(v *WorkRequest) {
-	x.Request = v
+	x.xxx_hidden_Request = v
 }
 
 func (x *SubmitWorkRequest) HasRequest() bool {
 	if x == nil {
 		return false
 	}
-	return x.Request != nil
+	return x.xxx_hidden_Request != nil
 }
 
 func (x *SubmitWorkRequest) ClearRequest() {
-	x.Request = nil
+	x.xxx_hidden_Request = nil
 }
 
 type SubmitWorkRequest_builder struct {
@@ -578,15 +578,15 @@ func (b0 SubmitWorkRequest_builder) Build() *SubmitWorkRequest {
 	m0 := &SubmitWorkRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Request = b.Request
+	x.xxx_hidden_Request = b.Request
 	return m0
 }
 
 type SubmitWorkResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Work          *Work                  `protobuf:"bytes,1,opt,name=work,proto3" json:"work,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Work *Work                  `protobuf:"bytes,1,opt,name=work,proto3" json:"work,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *SubmitWorkResponse) Reset() {
@@ -616,24 +616,24 @@ func (x *SubmitWorkResponse) ProtoReflect() protoreflect.Message {
 
 func (x *SubmitWorkResponse) GetWork() *Work {
 	if x != nil {
-		return x.Work
+		return x.xxx_hidden_Work
 	}
 	return nil
 }
 
 func (x *SubmitWorkResponse) SetWork(v *Work) {
-	x.Work = v
+	x.xxx_hidden_Work = v
 }
 
 func (x *SubmitWorkResponse) HasWork() bool {
 	if x == nil {
 		return false
 	}
-	return x.Work != nil
+	return x.xxx_hidden_Work != nil
 }
 
 func (x *SubmitWorkResponse) ClearWork() {
-	x.Work = nil
+	x.xxx_hidden_Work = nil
 }
 
 type SubmitWorkResponse_builder struct {
@@ -646,19 +646,19 @@ func (b0 SubmitWorkResponse_builder) Build() *SubmitWorkResponse {
 	m0 := &SubmitWorkResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Work = b.Work
+	x.xxx_hidden_Work = b.Work
 	return m0
 }
 
 // Used to change the state of a single work request.
 // The server will respond with a RequestStatus.
 type UpdateWorkRequest struct {
-	state         protoimpl.MessageState     `protogen:"hybrid.v1"`
-	JobId         string                     `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	RequestId     string                     `protobuf:"bytes,2,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
-	NewState      UpdateWorkRequest_NewState `protobuf:"varint,3,opt,name=new_state,json=newState,proto3,enum=flex.UpdateWorkRequest_NewState" json:"new_state,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState     `protogen:"opaque.v1"`
+	xxx_hidden_JobId     string                     `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	xxx_hidden_RequestId string                     `protobuf:"bytes,2,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	xxx_hidden_NewState  UpdateWorkRequest_NewState `protobuf:"varint,3,opt,name=new_state,json=newState,proto3,enum=flex.UpdateWorkRequest_NewState" json:"new_state,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *UpdateWorkRequest) Reset() {
@@ -688,35 +688,35 @@ func (x *UpdateWorkRequest) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateWorkRequest) GetJobId() string {
 	if x != nil {
-		return x.JobId
+		return x.xxx_hidden_JobId
 	}
 	return ""
 }
 
 func (x *UpdateWorkRequest) GetRequestId() string {
 	if x != nil {
-		return x.RequestId
+		return x.xxx_hidden_RequestId
 	}
 	return ""
 }
 
 func (x *UpdateWorkRequest) GetNewState() UpdateWorkRequest_NewState {
 	if x != nil {
-		return x.NewState
+		return x.xxx_hidden_NewState
 	}
 	return UpdateWorkRequest_UNSPECIFIED
 }
 
 func (x *UpdateWorkRequest) SetJobId(v string) {
-	x.JobId = v
+	x.xxx_hidden_JobId = v
 }
 
 func (x *UpdateWorkRequest) SetRequestId(v string) {
-	x.RequestId = v
+	x.xxx_hidden_RequestId = v
 }
 
 func (x *UpdateWorkRequest) SetNewState(v UpdateWorkRequest_NewState) {
-	x.NewState = v
+	x.xxx_hidden_NewState = v
 }
 
 type UpdateWorkRequest_builder struct {
@@ -731,17 +731,17 @@ func (b0 UpdateWorkRequest_builder) Build() *UpdateWorkRequest {
 	m0 := &UpdateWorkRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.JobId = b.JobId
-	x.RequestId = b.RequestId
-	x.NewState = b.NewState
+	x.xxx_hidden_JobId = b.JobId
+	x.xxx_hidden_RequestId = b.RequestId
+	x.xxx_hidden_NewState = b.NewState
 	return m0
 }
 
 type UpdateWorkResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Work          *Work                  `protobuf:"bytes,1,opt,name=work,proto3" json:"work,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Work *Work                  `protobuf:"bytes,1,opt,name=work,proto3" json:"work,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *UpdateWorkResponse) Reset() {
@@ -771,24 +771,24 @@ func (x *UpdateWorkResponse) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateWorkResponse) GetWork() *Work {
 	if x != nil {
-		return x.Work
+		return x.xxx_hidden_Work
 	}
 	return nil
 }
 
 func (x *UpdateWorkResponse) SetWork(v *Work) {
-	x.Work = v
+	x.xxx_hidden_Work = v
 }
 
 func (x *UpdateWorkResponse) HasWork() bool {
 	if x == nil {
 		return false
 	}
-	return x.Work != nil
+	return x.xxx_hidden_Work != nil
 }
 
 func (x *UpdateWorkResponse) ClearWork() {
-	x.Work = nil
+	x.xxx_hidden_Work = nil
 }
 
 type UpdateWorkResponse_builder struct {
@@ -801,7 +801,7 @@ func (b0 UpdateWorkResponse_builder) Build() *UpdateWorkResponse {
 	m0 := &UpdateWorkResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Work = b.Work
+	x.xxx_hidden_Work = b.Work
 	return m0
 }
 
@@ -809,10 +809,10 @@ func (b0 UpdateWorkResponse_builder) Build() *UpdateWorkResponse {
 // when initially connecting to a node, or if we want to drain the work assigned to a node if it is
 // being removed.
 type BulkUpdateWorkRequest struct {
-	state         protoimpl.MessageState         `protogen:"hybrid.v1"`
-	NewState      BulkUpdateWorkRequest_NewState `protobuf:"varint,1,opt,name=new_state,json=newState,proto3,enum=flex.BulkUpdateWorkRequest_NewState" json:"new_state,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState         `protogen:"opaque.v1"`
+	xxx_hidden_NewState BulkUpdateWorkRequest_NewState `protobuf:"varint,1,opt,name=new_state,json=newState,proto3,enum=flex.BulkUpdateWorkRequest_NewState" json:"new_state,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *BulkUpdateWorkRequest) Reset() {
@@ -842,13 +842,13 @@ func (x *BulkUpdateWorkRequest) ProtoReflect() protoreflect.Message {
 
 func (x *BulkUpdateWorkRequest) GetNewState() BulkUpdateWorkRequest_NewState {
 	if x != nil {
-		return x.NewState
+		return x.xxx_hidden_NewState
 	}
 	return BulkUpdateWorkRequest_UNSPECIFIED
 }
 
 func (x *BulkUpdateWorkRequest) SetNewState(v BulkUpdateWorkRequest_NewState) {
-	x.NewState = v
+	x.xxx_hidden_NewState = v
 }
 
 type BulkUpdateWorkRequest_builder struct {
@@ -861,18 +861,18 @@ func (b0 BulkUpdateWorkRequest_builder) Build() *BulkUpdateWorkRequest {
 	m0 := &BulkUpdateWorkRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.NewState = b.NewState
+	x.xxx_hidden_NewState = b.NewState
 	return m0
 }
 
 // This is a bulk operation details about individual work entries is not returned. Instead the
 // response reflects if all outstanding work was successfully moved to the new state.
 type BulkUpdateWorkResponse struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Success bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	xxx_hidden_Message string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *BulkUpdateWorkResponse) Reset() {
@@ -902,24 +902,24 @@ func (x *BulkUpdateWorkResponse) ProtoReflect() protoreflect.Message {
 
 func (x *BulkUpdateWorkResponse) GetSuccess() bool {
 	if x != nil {
-		return x.Success
+		return x.xxx_hidden_Success
 	}
 	return false
 }
 
 func (x *BulkUpdateWorkResponse) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *BulkUpdateWorkResponse) SetSuccess(v bool) {
-	x.Success = v
+	x.xxx_hidden_Success = v
 }
 
 func (x *BulkUpdateWorkResponse) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 type BulkUpdateWorkResponse_builder struct {
@@ -933,29 +933,23 @@ func (b0 BulkUpdateWorkResponse_builder) Build() *BulkUpdateWorkResponse {
 	m0 := &BulkUpdateWorkResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Success = b.Success
-	x.Message = b.Message
+	x.xxx_hidden_Success = b.Success
+	x.xxx_hidden_Message = b.Message
 	return m0
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.
 type WorkRequest struct {
-	state     protoimpl.MessageState `protogen:"hybrid.v1"`
-	JobId     string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	RequestId string                 `protobuf:"bytes,2,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
-	// Used as the upload ID for multipart uploads, or any other time
-	// an external identifer is needed to coordinate a distributed transfer.
-	ExternalId          string               `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
-	Path                string               `protobuf:"bytes,4,opt,name=path,proto3" json:"path,omitempty"`
-	Segment             *WorkRequest_Segment `protobuf:"bytes,5,opt,name=segment,proto3" json:"segment,omitempty"`
-	RemoteStorageTarget uint32               `protobuf:"varint,6,opt,name=remote_storage_target,json=remoteStorageTarget,proto3" json:"remote_storage_target,omitempty"`
-	// Types that are valid to be assigned to Type:
-	//
-	//	*WorkRequest_Mock
-	//	*WorkRequest_Sync
-	Type          isWorkRequest_Type `protobuf_oneof:"Type"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_JobId               string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	xxx_hidden_RequestId           string                 `protobuf:"bytes,2,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	xxx_hidden_ExternalId          string                 `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
+	xxx_hidden_Path                string                 `protobuf:"bytes,4,opt,name=path,proto3" json:"path,omitempty"`
+	xxx_hidden_Segment             *WorkRequest_Segment   `protobuf:"bytes,5,opt,name=segment,proto3" json:"segment,omitempty"`
+	xxx_hidden_RemoteStorageTarget uint32                 `protobuf:"varint,6,opt,name=remote_storage_target,json=remoteStorageTarget,proto3" json:"remote_storage_target,omitempty"`
+	xxx_hidden_Type                isWorkRequest_Type     `protobuf_oneof:"Type"`
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *WorkRequest) Reset() {
@@ -985,56 +979,49 @@ func (x *WorkRequest) ProtoReflect() protoreflect.Message {
 
 func (x *WorkRequest) GetJobId() string {
 	if x != nil {
-		return x.JobId
+		return x.xxx_hidden_JobId
 	}
 	return ""
 }
 
 func (x *WorkRequest) GetRequestId() string {
 	if x != nil {
-		return x.RequestId
+		return x.xxx_hidden_RequestId
 	}
 	return ""
 }
 
 func (x *WorkRequest) GetExternalId() string {
 	if x != nil {
-		return x.ExternalId
+		return x.xxx_hidden_ExternalId
 	}
 	return ""
 }
 
 func (x *WorkRequest) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *WorkRequest) GetSegment() *WorkRequest_Segment {
 	if x != nil {
-		return x.Segment
+		return x.xxx_hidden_Segment
 	}
 	return nil
 }
 
 func (x *WorkRequest) GetRemoteStorageTarget() uint32 {
 	if x != nil {
-		return x.RemoteStorageTarget
+		return x.xxx_hidden_RemoteStorageTarget
 	}
 	return 0
 }
 
-func (x *WorkRequest) GetType() isWorkRequest_Type {
-	if x != nil {
-		return x.Type
-	}
-	return nil
-}
-
 func (x *WorkRequest) GetMock() *MockJob {
 	if x != nil {
-		if x, ok := x.Type.(*WorkRequest_Mock); ok {
+		if x, ok := x.xxx_hidden_Type.(*workRequest_Mock); ok {
 			return x.Mock
 		}
 	}
@@ -1043,7 +1030,7 @@ func (x *WorkRequest) GetMock() *MockJob {
 
 func (x *WorkRequest) GetSync() *SyncJob {
 	if x != nil {
-		if x, ok := x.Type.(*WorkRequest_Sync); ok {
+		if x, ok := x.xxx_hidden_Type.(*workRequest_Sync); ok {
 			return x.Sync
 		}
 	}
@@ -1051,64 +1038,64 @@ func (x *WorkRequest) GetSync() *SyncJob {
 }
 
 func (x *WorkRequest) SetJobId(v string) {
-	x.JobId = v
+	x.xxx_hidden_JobId = v
 }
 
 func (x *WorkRequest) SetRequestId(v string) {
-	x.RequestId = v
+	x.xxx_hidden_RequestId = v
 }
 
 func (x *WorkRequest) SetExternalId(v string) {
-	x.ExternalId = v
+	x.xxx_hidden_ExternalId = v
 }
 
 func (x *WorkRequest) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 func (x *WorkRequest) SetSegment(v *WorkRequest_Segment) {
-	x.Segment = v
+	x.xxx_hidden_Segment = v
 }
 
 func (x *WorkRequest) SetRemoteStorageTarget(v uint32) {
-	x.RemoteStorageTarget = v
+	x.xxx_hidden_RemoteStorageTarget = v
 }
 
 func (x *WorkRequest) SetMock(v *MockJob) {
 	if v == nil {
-		x.Type = nil
+		x.xxx_hidden_Type = nil
 		return
 	}
-	x.Type = &WorkRequest_Mock{v}
+	x.xxx_hidden_Type = &workRequest_Mock{v}
 }
 
 func (x *WorkRequest) SetSync(v *SyncJob) {
 	if v == nil {
-		x.Type = nil
+		x.xxx_hidden_Type = nil
 		return
 	}
-	x.Type = &WorkRequest_Sync{v}
+	x.xxx_hidden_Type = &workRequest_Sync{v}
 }
 
 func (x *WorkRequest) HasSegment() bool {
 	if x == nil {
 		return false
 	}
-	return x.Segment != nil
+	return x.xxx_hidden_Segment != nil
 }
 
 func (x *WorkRequest) HasType() bool {
 	if x == nil {
 		return false
 	}
-	return x.Type != nil
+	return x.xxx_hidden_Type != nil
 }
 
 func (x *WorkRequest) HasMock() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Type.(*WorkRequest_Mock)
+	_, ok := x.xxx_hidden_Type.(*workRequest_Mock)
 	return ok
 }
 
@@ -1116,27 +1103,27 @@ func (x *WorkRequest) HasSync() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Type.(*WorkRequest_Sync)
+	_, ok := x.xxx_hidden_Type.(*workRequest_Sync)
 	return ok
 }
 
 func (x *WorkRequest) ClearSegment() {
-	x.Segment = nil
+	x.xxx_hidden_Segment = nil
 }
 
 func (x *WorkRequest) ClearType() {
-	x.Type = nil
+	x.xxx_hidden_Type = nil
 }
 
 func (x *WorkRequest) ClearMock() {
-	if _, ok := x.Type.(*WorkRequest_Mock); ok {
-		x.Type = nil
+	if _, ok := x.xxx_hidden_Type.(*workRequest_Mock); ok {
+		x.xxx_hidden_Type = nil
 	}
 }
 
 func (x *WorkRequest) ClearSync() {
-	if _, ok := x.Type.(*WorkRequest_Sync); ok {
-		x.Type = nil
+	if _, ok := x.xxx_hidden_Type.(*workRequest_Sync); ok {
+		x.xxx_hidden_Type = nil
 	}
 }
 
@@ -1148,10 +1135,10 @@ func (x *WorkRequest) WhichType() case_WorkRequest_Type {
 	if x == nil {
 		return WorkRequest_Type_not_set_case
 	}
-	switch x.Type.(type) {
-	case *WorkRequest_Mock:
+	switch x.xxx_hidden_Type.(type) {
+	case *workRequest_Mock:
 		return WorkRequest_Mock_case
-	case *WorkRequest_Sync:
+	case *workRequest_Sync:
 		return WorkRequest_Sync_case
 	default:
 		return WorkRequest_Type_not_set_case
@@ -1169,27 +1156,27 @@ type WorkRequest_builder struct {
 	Path                string
 	Segment             *WorkRequest_Segment
 	RemoteStorageTarget uint32
-	// Fields of oneof Type:
+	// Fields of oneof xxx_hidden_Type:
 	Mock *MockJob
 	Sync *SyncJob
-	// -- end of Type
+	// -- end of xxx_hidden_Type
 }
 
 func (b0 WorkRequest_builder) Build() *WorkRequest {
 	m0 := &WorkRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.JobId = b.JobId
-	x.RequestId = b.RequestId
-	x.ExternalId = b.ExternalId
-	x.Path = b.Path
-	x.Segment = b.Segment
-	x.RemoteStorageTarget = b.RemoteStorageTarget
+	x.xxx_hidden_JobId = b.JobId
+	x.xxx_hidden_RequestId = b.RequestId
+	x.xxx_hidden_ExternalId = b.ExternalId
+	x.xxx_hidden_Path = b.Path
+	x.xxx_hidden_Segment = b.Segment
+	x.xxx_hidden_RemoteStorageTarget = b.RemoteStorageTarget
 	if b.Mock != nil {
-		x.Type = &WorkRequest_Mock{b.Mock}
+		x.xxx_hidden_Type = &workRequest_Mock{b.Mock}
 	}
 	if b.Sync != nil {
-		x.Type = &WorkRequest_Sync{b.Sync}
+		x.xxx_hidden_Type = &workRequest_Sync{b.Sync}
 	}
 	return m0
 }
@@ -1208,27 +1195,27 @@ type isWorkRequest_Type interface {
 	isWorkRequest_Type()
 }
 
-type WorkRequest_Mock struct {
+type workRequest_Mock struct {
 	Mock *MockJob `protobuf:"bytes,10,opt,name=mock,proto3,oneof"`
 }
 
-type WorkRequest_Sync struct {
+type workRequest_Sync struct {
 	Sync *SyncJob `protobuf:"bytes,11,opt,name=sync,proto3,oneof"`
 }
 
-func (*WorkRequest_Mock) isWorkRequest_Type() {}
+func (*workRequest_Mock) isWorkRequest_Type() {}
 
-func (*WorkRequest_Sync) isWorkRequest_Type() {}
+func (*workRequest_Sync) isWorkRequest_Type() {}
 
 type MockJob struct {
-	state           protoimpl.MessageState `protogen:"hybrid.v1"`
-	NumTestSegments int32                  `protobuf:"varint,1,opt,name=num_test_segments,json=numTestSegments,proto3" json:"num_test_segments,omitempty"`
-	FileSize        int64                  `protobuf:"varint,2,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
-	ExternalId      string                 `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
-	ShouldFail      bool                   `protobuf:"varint,4,opt,name=should_fail,json=shouldFail,proto3" json:"should_fail,omitempty"`
-	CanRetry        bool                   `protobuf:"varint,5,opt,name=can_retry,json=canRetry,proto3" json:"can_retry,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_NumTestSegments int32                  `protobuf:"varint,1,opt,name=num_test_segments,json=numTestSegments,proto3" json:"num_test_segments,omitempty"`
+	xxx_hidden_FileSize        int64                  `protobuf:"varint,2,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`
+	xxx_hidden_ExternalId      string                 `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
+	xxx_hidden_ShouldFail      bool                   `protobuf:"varint,4,opt,name=should_fail,json=shouldFail,proto3" json:"should_fail,omitempty"`
+	xxx_hidden_CanRetry        bool                   `protobuf:"varint,5,opt,name=can_retry,json=canRetry,proto3" json:"can_retry,omitempty"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *MockJob) Reset() {
@@ -1258,57 +1245,57 @@ func (x *MockJob) ProtoReflect() protoreflect.Message {
 
 func (x *MockJob) GetNumTestSegments() int32 {
 	if x != nil {
-		return x.NumTestSegments
+		return x.xxx_hidden_NumTestSegments
 	}
 	return 0
 }
 
 func (x *MockJob) GetFileSize() int64 {
 	if x != nil {
-		return x.FileSize
+		return x.xxx_hidden_FileSize
 	}
 	return 0
 }
 
 func (x *MockJob) GetExternalId() string {
 	if x != nil {
-		return x.ExternalId
+		return x.xxx_hidden_ExternalId
 	}
 	return ""
 }
 
 func (x *MockJob) GetShouldFail() bool {
 	if x != nil {
-		return x.ShouldFail
+		return x.xxx_hidden_ShouldFail
 	}
 	return false
 }
 
 func (x *MockJob) GetCanRetry() bool {
 	if x != nil {
-		return x.CanRetry
+		return x.xxx_hidden_CanRetry
 	}
 	return false
 }
 
 func (x *MockJob) SetNumTestSegments(v int32) {
-	x.NumTestSegments = v
+	x.xxx_hidden_NumTestSegments = v
 }
 
 func (x *MockJob) SetFileSize(v int64) {
-	x.FileSize = v
+	x.xxx_hidden_FileSize = v
 }
 
 func (x *MockJob) SetExternalId(v string) {
-	x.ExternalId = v
+	x.xxx_hidden_ExternalId = v
 }
 
 func (x *MockJob) SetShouldFail(v bool) {
-	x.ShouldFail = v
+	x.xxx_hidden_ShouldFail = v
 }
 
 func (x *MockJob) SetCanRetry(v bool) {
-	x.CanRetry = v
+	x.xxx_hidden_CanRetry = v
 }
 
 type MockJob_builder struct {
@@ -1325,11 +1312,11 @@ func (b0 MockJob_builder) Build() *MockJob {
 	m0 := &MockJob{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.NumTestSegments = b.NumTestSegments
-	x.FileSize = b.FileSize
-	x.ExternalId = b.ExternalId
-	x.ShouldFail = b.ShouldFail
-	x.CanRetry = b.CanRetry
+	x.xxx_hidden_NumTestSegments = b.NumTestSegments
+	x.xxx_hidden_FileSize = b.FileSize
+	x.xxx_hidden_ExternalId = b.ExternalId
+	x.xxx_hidden_ShouldFail = b.ShouldFail
+	x.xxx_hidden_CanRetry = b.CanRetry
 	return m0
 }
 
@@ -1338,19 +1325,12 @@ func (b0 MockJob_builder) Build() *MockJob {
 // to be done. It does not carry any details about HOW the request will be
 // fufilled (that is part of the generated SyncRequest).
 type SyncJob struct {
-	state     protoimpl.MessageState `protogen:"hybrid.v1"`
-	Operation SyncJob_Operation      `protobuf:"varint,1,opt,name=operation,proto3,enum=flex.SyncJob_Operation" json:"operation,omitempty"`
-	// When an object already exists in BeeGFS (for downloads) an error is returned by default, or
-	// it can be optionally overwritten. This currently does nothing for uploads, the object is
-	// always uploaded and overwritten unless the S3 bucket has object versioning enabled.
-	Overwrite bool `protobuf:"varint,2,opt,name=overwrite,proto3" json:"overwrite,omitempty"`
-	// By default the RemotePath (object ID/file path) in the RST is the same as the local path in
-	// BeeGFS. However for downloads, if the names/paths differ, the remote path can be specified,
-	// for example to restore a file in an RST to a different location in BeeGFS. This currently is
-	// ignored for uploads.
-	RemotePath    string `protobuf:"bytes,3,opt,name=remote_path,json=remotePath,proto3" json:"remote_path,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Operation  SyncJob_Operation      `protobuf:"varint,1,opt,name=operation,proto3,enum=flex.SyncJob_Operation" json:"operation,omitempty"`
+	xxx_hidden_Overwrite  bool                   `protobuf:"varint,2,opt,name=overwrite,proto3" json:"overwrite,omitempty"`
+	xxx_hidden_RemotePath string                 `protobuf:"bytes,3,opt,name=remote_path,json=remotePath,proto3" json:"remote_path,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *SyncJob) Reset() {
@@ -1380,35 +1360,35 @@ func (x *SyncJob) ProtoReflect() protoreflect.Message {
 
 func (x *SyncJob) GetOperation() SyncJob_Operation {
 	if x != nil {
-		return x.Operation
+		return x.xxx_hidden_Operation
 	}
 	return SyncJob_UNSPECIFIED
 }
 
 func (x *SyncJob) GetOverwrite() bool {
 	if x != nil {
-		return x.Overwrite
+		return x.xxx_hidden_Overwrite
 	}
 	return false
 }
 
 func (x *SyncJob) GetRemotePath() string {
 	if x != nil {
-		return x.RemotePath
+		return x.xxx_hidden_RemotePath
 	}
 	return ""
 }
 
 func (x *SyncJob) SetOperation(v SyncJob_Operation) {
-	x.Operation = v
+	x.xxx_hidden_Operation = v
 }
 
 func (x *SyncJob) SetOverwrite(v bool) {
-	x.Overwrite = v
+	x.xxx_hidden_Overwrite = v
 }
 
 func (x *SyncJob) SetRemotePath(v string) {
-	x.RemotePath = v
+	x.xxx_hidden_RemotePath = v
 }
 
 type SyncJob_builder struct {
@@ -1430,9 +1410,9 @@ func (b0 SyncJob_builder) Build() *SyncJob {
 	m0 := &SyncJob{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Operation = b.Operation
-	x.Overwrite = b.Overwrite
-	x.RemotePath = b.RemotePath
+	x.xxx_hidden_Operation = b.Operation
+	x.xxx_hidden_Overwrite = b.Overwrite
+	x.xxx_hidden_RemotePath = b.RemotePath
 	return m0
 }
 
@@ -1442,24 +1422,14 @@ func (b0 SyncJob_builder) Build() *SyncJob {
 // establish a long-lived streaming RPC with each worker node to return work
 // results of a specific type.
 type Work struct {
-	state     protoimpl.MessageState `protogen:"hybrid.v1"`
-	Path      string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
-	JobId     string                 `protobuf:"bytes,2,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	RequestId string                 `protobuf:"bytes,3,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
-	// The work status is only ever updated by BeeSync with two exceptions: (1) if a request
-	// was never scheduled, the work state should be CREATED with the message indicating the
-	// last RPC error returned trying to assign the WR to a BeeSync node. (2) If a request was
-	// assigned to a BeeSync node but BeeRemote cannot retrieve the status, the work state
-	// should be set to "Unknown" with a message indicating the last RPC error that was returned
-	// trying to retrieve the results from the BeeSync node. When the state/message are set by
-	// BeeRemote the message should always clearly indicate "error communicating to node" to clearly
-	// distinguish when the state was set locally by BeeRemote or by the remote BeeSync node.
-	Status *Work_Status `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
-	// Each work request is split into one or more parts so data can be
-	// transferred in parallel on each assigned node.
-	Parts         []*Work_Part `protobuf:"bytes,5,rep,name=parts,proto3" json:"parts,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Path      string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	xxx_hidden_JobId     string                 `protobuf:"bytes,2,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	xxx_hidden_RequestId string                 `protobuf:"bytes,3,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	xxx_hidden_Status    *Work_Status           `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	xxx_hidden_Parts     *[]*Work_Part          `protobuf:"bytes,5,rep,name=parts,proto3" json:"parts,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *Work) Reset() {
@@ -1489,68 +1459,70 @@ func (x *Work) ProtoReflect() protoreflect.Message {
 
 func (x *Work) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *Work) GetJobId() string {
 	if x != nil {
-		return x.JobId
+		return x.xxx_hidden_JobId
 	}
 	return ""
 }
 
 func (x *Work) GetRequestId() string {
 	if x != nil {
-		return x.RequestId
+		return x.xxx_hidden_RequestId
 	}
 	return ""
 }
 
 func (x *Work) GetStatus() *Work_Status {
 	if x != nil {
-		return x.Status
+		return x.xxx_hidden_Status
 	}
 	return nil
 }
 
 func (x *Work) GetParts() []*Work_Part {
 	if x != nil {
-		return x.Parts
+		if x.xxx_hidden_Parts != nil {
+			return *x.xxx_hidden_Parts
+		}
 	}
 	return nil
 }
 
 func (x *Work) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 func (x *Work) SetJobId(v string) {
-	x.JobId = v
+	x.xxx_hidden_JobId = v
 }
 
 func (x *Work) SetRequestId(v string) {
-	x.RequestId = v
+	x.xxx_hidden_RequestId = v
 }
 
 func (x *Work) SetStatus(v *Work_Status) {
-	x.Status = v
+	x.xxx_hidden_Status = v
 }
 
 func (x *Work) SetParts(v []*Work_Part) {
-	x.Parts = v
+	x.xxx_hidden_Parts = &v
 }
 
 func (x *Work) HasStatus() bool {
 	if x == nil {
 		return false
 	}
-	return x.Status != nil
+	return x.xxx_hidden_Status != nil
 }
 
 func (x *Work) ClearStatus() {
-	x.Status = nil
+	x.xxx_hidden_Status = nil
 }
 
 type Work_builder struct {
@@ -1577,27 +1549,22 @@ func (b0 Work_builder) Build() *Work {
 	m0 := &Work{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Path = b.Path
-	x.JobId = b.JobId
-	x.RequestId = b.RequestId
-	x.Status = b.Status
-	x.Parts = b.Parts
+	x.xxx_hidden_Path = b.Path
+	x.xxx_hidden_JobId = b.JobId
+	x.xxx_hidden_RequestId = b.RequestId
+	x.xxx_hidden_Status = b.Status
+	x.xxx_hidden_Parts = &b.Parts
 	return m0
 }
 
 // We use a common configuration update request/response types for all worker
 // node types.
 type UpdateConfigRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// While worker nodes could infer BeeRemote network details, it is better we
-	// explicitly tell them where to send work results. Especially if we want to
-	// send and receive work requests on different interfaces or ports.
-	BeeRemote *BeeRemoteNode `protobuf:"bytes,1,opt,name=bee_remote,json=beeRemote,proto3" json:"bee_remote,omitempty"`
-	// All RemoteStorageTarget(s) that should be configured need to be included in
-	// each message. Any that are not included will be deleted.
-	Rsts          []*RemoteStorageTarget `protobuf:"bytes,2,rep,name=rsts,proto3" json:"rsts,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_BeeRemote *BeeRemoteNode          `protobuf:"bytes,1,opt,name=bee_remote,json=beeRemote,proto3" json:"bee_remote,omitempty"`
+	xxx_hidden_Rsts      *[]*RemoteStorageTarget `protobuf:"bytes,2,rep,name=rsts,proto3" json:"rsts,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *UpdateConfigRequest) Reset() {
@@ -1627,35 +1594,37 @@ func (x *UpdateConfigRequest) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateConfigRequest) GetBeeRemote() *BeeRemoteNode {
 	if x != nil {
-		return x.BeeRemote
+		return x.xxx_hidden_BeeRemote
 	}
 	return nil
 }
 
 func (x *UpdateConfigRequest) GetRsts() []*RemoteStorageTarget {
 	if x != nil {
-		return x.Rsts
+		if x.xxx_hidden_Rsts != nil {
+			return *x.xxx_hidden_Rsts
+		}
 	}
 	return nil
 }
 
 func (x *UpdateConfigRequest) SetBeeRemote(v *BeeRemoteNode) {
-	x.BeeRemote = v
+	x.xxx_hidden_BeeRemote = v
 }
 
 func (x *UpdateConfigRequest) SetRsts(v []*RemoteStorageTarget) {
-	x.Rsts = v
+	x.xxx_hidden_Rsts = &v
 }
 
 func (x *UpdateConfigRequest) HasBeeRemote() bool {
 	if x == nil {
 		return false
 	}
-	return x.BeeRemote != nil
+	return x.xxx_hidden_BeeRemote != nil
 }
 
 func (x *UpdateConfigRequest) ClearBeeRemote() {
-	x.BeeRemote = nil
+	x.xxx_hidden_BeeRemote = nil
 }
 
 type UpdateConfigRequest_builder struct {
@@ -1674,18 +1643,17 @@ func (b0 UpdateConfigRequest_builder) Build() *UpdateConfigRequest {
 	m0 := &UpdateConfigRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.BeeRemote = b.BeeRemote
-	x.Rsts = b.Rsts
+	x.xxx_hidden_BeeRemote = b.BeeRemote
+	x.xxx_hidden_Rsts = &b.Rsts
 	return m0
 }
 
 type UpdateConfigResponse struct {
-	state  protoimpl.MessageState      `protogen:"hybrid.v1"`
-	Result UpdateConfigResponse_Result `protobuf:"varint,1,opt,name=result,proto3,enum=flex.UpdateConfigResponse_Result" json:"result,omitempty"`
-	// Message should be used to return any additional details, particularly to aid in troubleshooting.
-	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState      `protogen:"opaque.v1"`
+	xxx_hidden_Result  UpdateConfigResponse_Result `protobuf:"varint,1,opt,name=result,proto3,enum=flex.UpdateConfigResponse_Result" json:"result,omitempty"`
+	xxx_hidden_Message string                      `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *UpdateConfigResponse) Reset() {
@@ -1715,24 +1683,24 @@ func (x *UpdateConfigResponse) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateConfigResponse) GetResult() UpdateConfigResponse_Result {
 	if x != nil {
-		return x.Result
+		return x.xxx_hidden_Result
 	}
 	return UpdateConfigResponse_UNSPECIFIED
 }
 
 func (x *UpdateConfigResponse) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *UpdateConfigResponse) SetResult(v UpdateConfigResponse_Result) {
-	x.Result = v
+	x.xxx_hidden_Result = v
 }
 
 func (x *UpdateConfigResponse) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 type UpdateConfigResponse_builder struct {
@@ -1747,17 +1715,17 @@ func (b0 UpdateConfigResponse_builder) Build() *UpdateConfigResponse {
 	m0 := &UpdateConfigResponse{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Result = b.Result
-	x.Message = b.Message
+	x.xxx_hidden_Result = b.Result
+	x.xxx_hidden_Message = b.Message
 	return m0
 }
 
 type BeeRemoteNode struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Address       string                 `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id      string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	xxx_hidden_Address string                 `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *BeeRemoteNode) Reset() {
@@ -1787,24 +1755,24 @@ func (x *BeeRemoteNode) ProtoReflect() protoreflect.Message {
 
 func (x *BeeRemoteNode) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *BeeRemoteNode) GetAddress() string {
 	if x != nil {
-		return x.Address
+		return x.xxx_hidden_Address
 	}
 	return ""
 }
 
 func (x *BeeRemoteNode) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *BeeRemoteNode) SetAddress(v string) {
-	x.Address = v
+	x.xxx_hidden_Address = v
 }
 
 type BeeRemoteNode_builder struct {
@@ -1818,8 +1786,8 @@ func (b0 BeeRemoteNode_builder) Build() *BeeRemoteNode {
 	m0 := &BeeRemoteNode{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Address = b.Address
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Address = b.Address
 	return m0
 }
 
@@ -1836,26 +1804,13 @@ func (b0 BeeRemoteNode_builder) Build() *BeeRemoteNode {
 // allows us to define all possible fields that may need to be sent to BeeSync
 // to configure different target types, without extra overhead.
 type RemoteStorageTarget struct {
-	state    protoimpl.MessageState        `protogen:"hybrid.v1"`
-	Id       uint32                        `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name     string                        `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Policies *RemoteStorageTarget_Policies `protobuf:"bytes,3,opt,name=policies,proto3" json:"policies,omitempty"`
-	// Type defines fields required to figure out "where" to transfer content.
-	// IMPORTANT: When adding a new RST type before it can be configured by
-	// BeeRemote/other it must also be added to the rst.SupportedRSTTypes map in
-	// so it can be used with config.SetRSTTypeHook() to allow its configuration
-	// to be unmarshalled into the Go structs generated by protoc. See the notes
-	// in the rst package for additional details.
-	//
-	// Types that are valid to be assigned to Type:
-	//
-	//	*RemoteStorageTarget_S3_
-	//	*RemoteStorageTarget_Posix
-	//	*RemoteStorageTarget_Azure_
-	//	*RemoteStorageTarget_Mock
-	Type          isRemoteStorageTarget_Type `protobuf_oneof:"type"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState        `protogen:"opaque.v1"`
+	xxx_hidden_Id       uint32                        `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	xxx_hidden_Name     string                        `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	xxx_hidden_Policies *RemoteStorageTarget_Policies `protobuf:"bytes,3,opt,name=policies,proto3" json:"policies,omitempty"`
+	xxx_hidden_Type     isRemoteStorageTarget_Type    `protobuf_oneof:"type"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *RemoteStorageTarget) Reset() {
@@ -1885,35 +1840,28 @@ func (x *RemoteStorageTarget) ProtoReflect() protoreflect.Message {
 
 func (x *RemoteStorageTarget) GetId() uint32 {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return 0
 }
 
 func (x *RemoteStorageTarget) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget) GetPolicies() *RemoteStorageTarget_Policies {
 	if x != nil {
-		return x.Policies
-	}
-	return nil
-}
-
-func (x *RemoteStorageTarget) GetType() isRemoteStorageTarget_Type {
-	if x != nil {
-		return x.Type
+		return x.xxx_hidden_Policies
 	}
 	return nil
 }
 
 func (x *RemoteStorageTarget) GetS3() *RemoteStorageTarget_S3 {
 	if x != nil {
-		if x, ok := x.Type.(*RemoteStorageTarget_S3_); ok {
+		if x, ok := x.xxx_hidden_Type.(*remoteStorageTarget_S3_); ok {
 			return x.S3
 		}
 	}
@@ -1922,7 +1870,7 @@ func (x *RemoteStorageTarget) GetS3() *RemoteStorageTarget_S3 {
 
 func (x *RemoteStorageTarget) GetPosix() *RemoteStorageTarget_POSIX {
 	if x != nil {
-		if x, ok := x.Type.(*RemoteStorageTarget_Posix); ok {
+		if x, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Posix); ok {
 			return x.Posix
 		}
 	}
@@ -1931,7 +1879,7 @@ func (x *RemoteStorageTarget) GetPosix() *RemoteStorageTarget_POSIX {
 
 func (x *RemoteStorageTarget) GetAzure() *RemoteStorageTarget_Azure {
 	if x != nil {
-		if x, ok := x.Type.(*RemoteStorageTarget_Azure_); ok {
+		if x, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Azure_); ok {
 			return x.Azure
 		}
 	}
@@ -1940,7 +1888,7 @@ func (x *RemoteStorageTarget) GetAzure() *RemoteStorageTarget_Azure {
 
 func (x *RemoteStorageTarget) GetMock() string {
 	if x != nil {
-		if x, ok := x.Type.(*RemoteStorageTarget_Mock); ok {
+		if x, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Mock); ok {
 			return x.Mock
 		}
 	}
@@ -1948,64 +1896,64 @@ func (x *RemoteStorageTarget) GetMock() string {
 }
 
 func (x *RemoteStorageTarget) SetId(v uint32) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *RemoteStorageTarget) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *RemoteStorageTarget) SetPolicies(v *RemoteStorageTarget_Policies) {
-	x.Policies = v
+	x.xxx_hidden_Policies = v
 }
 
 func (x *RemoteStorageTarget) SetS3(v *RemoteStorageTarget_S3) {
 	if v == nil {
-		x.Type = nil
+		x.xxx_hidden_Type = nil
 		return
 	}
-	x.Type = &RemoteStorageTarget_S3_{v}
+	x.xxx_hidden_Type = &remoteStorageTarget_S3_{v}
 }
 
 func (x *RemoteStorageTarget) SetPosix(v *RemoteStorageTarget_POSIX) {
 	if v == nil {
-		x.Type = nil
+		x.xxx_hidden_Type = nil
 		return
 	}
-	x.Type = &RemoteStorageTarget_Posix{v}
+	x.xxx_hidden_Type = &remoteStorageTarget_Posix{v}
 }
 
 func (x *RemoteStorageTarget) SetAzure(v *RemoteStorageTarget_Azure) {
 	if v == nil {
-		x.Type = nil
+		x.xxx_hidden_Type = nil
 		return
 	}
-	x.Type = &RemoteStorageTarget_Azure_{v}
+	x.xxx_hidden_Type = &remoteStorageTarget_Azure_{v}
 }
 
 func (x *RemoteStorageTarget) SetMock(v string) {
-	x.Type = &RemoteStorageTarget_Mock{v}
+	x.xxx_hidden_Type = &remoteStorageTarget_Mock{v}
 }
 
 func (x *RemoteStorageTarget) HasPolicies() bool {
 	if x == nil {
 		return false
 	}
-	return x.Policies != nil
+	return x.xxx_hidden_Policies != nil
 }
 
 func (x *RemoteStorageTarget) HasType() bool {
 	if x == nil {
 		return false
 	}
-	return x.Type != nil
+	return x.xxx_hidden_Type != nil
 }
 
 func (x *RemoteStorageTarget) HasS3() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Type.(*RemoteStorageTarget_S3_)
+	_, ok := x.xxx_hidden_Type.(*remoteStorageTarget_S3_)
 	return ok
 }
 
@@ -2013,7 +1961,7 @@ func (x *RemoteStorageTarget) HasPosix() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Type.(*RemoteStorageTarget_Posix)
+	_, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Posix)
 	return ok
 }
 
@@ -2021,7 +1969,7 @@ func (x *RemoteStorageTarget) HasAzure() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Type.(*RemoteStorageTarget_Azure_)
+	_, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Azure_)
 	return ok
 }
 
@@ -2029,39 +1977,39 @@ func (x *RemoteStorageTarget) HasMock() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Type.(*RemoteStorageTarget_Mock)
+	_, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Mock)
 	return ok
 }
 
 func (x *RemoteStorageTarget) ClearPolicies() {
-	x.Policies = nil
+	x.xxx_hidden_Policies = nil
 }
 
 func (x *RemoteStorageTarget) ClearType() {
-	x.Type = nil
+	x.xxx_hidden_Type = nil
 }
 
 func (x *RemoteStorageTarget) ClearS3() {
-	if _, ok := x.Type.(*RemoteStorageTarget_S3_); ok {
-		x.Type = nil
+	if _, ok := x.xxx_hidden_Type.(*remoteStorageTarget_S3_); ok {
+		x.xxx_hidden_Type = nil
 	}
 }
 
 func (x *RemoteStorageTarget) ClearPosix() {
-	if _, ok := x.Type.(*RemoteStorageTarget_Posix); ok {
-		x.Type = nil
+	if _, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Posix); ok {
+		x.xxx_hidden_Type = nil
 	}
 }
 
 func (x *RemoteStorageTarget) ClearAzure() {
-	if _, ok := x.Type.(*RemoteStorageTarget_Azure_); ok {
-		x.Type = nil
+	if _, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Azure_); ok {
+		x.xxx_hidden_Type = nil
 	}
 }
 
 func (x *RemoteStorageTarget) ClearMock() {
-	if _, ok := x.Type.(*RemoteStorageTarget_Mock); ok {
-		x.Type = nil
+	if _, ok := x.xxx_hidden_Type.(*remoteStorageTarget_Mock); ok {
+		x.xxx_hidden_Type = nil
 	}
 }
 
@@ -2075,14 +2023,14 @@ func (x *RemoteStorageTarget) WhichType() case_RemoteStorageTarget_Type {
 	if x == nil {
 		return RemoteStorageTarget_Type_not_set_case
 	}
-	switch x.Type.(type) {
-	case *RemoteStorageTarget_S3_:
+	switch x.xxx_hidden_Type.(type) {
+	case *remoteStorageTarget_S3_:
 		return RemoteStorageTarget_S3_case
-	case *RemoteStorageTarget_Posix:
+	case *remoteStorageTarget_Posix:
 		return RemoteStorageTarget_Posix_case
-	case *RemoteStorageTarget_Azure_:
+	case *remoteStorageTarget_Azure_:
 		return RemoteStorageTarget_Azure_case
-	case *RemoteStorageTarget_Mock:
+	case *remoteStorageTarget_Mock:
 		return RemoteStorageTarget_Mock_case
 	default:
 		return RemoteStorageTarget_Type_not_set_case
@@ -2102,32 +2050,32 @@ type RemoteStorageTarget_builder struct {
 	// to be unmarshalled into the Go structs generated by protoc. See the notes
 	// in the rst package for additional details.
 
-	// Fields of oneof Type:
+	// Fields of oneof xxx_hidden_Type:
 	S3    *RemoteStorageTarget_S3
 	Posix *RemoteStorageTarget_POSIX
 	Azure *RemoteStorageTarget_Azure
 	Mock  *string
-	// -- end of Type
+	// -- end of xxx_hidden_Type
 }
 
 func (b0 RemoteStorageTarget_builder) Build() *RemoteStorageTarget {
 	m0 := &RemoteStorageTarget{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Name = b.Name
-	x.Policies = b.Policies
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Policies = b.Policies
 	if b.S3 != nil {
-		x.Type = &RemoteStorageTarget_S3_{b.S3}
+		x.xxx_hidden_Type = &remoteStorageTarget_S3_{b.S3}
 	}
 	if b.Posix != nil {
-		x.Type = &RemoteStorageTarget_Posix{b.Posix}
+		x.xxx_hidden_Type = &remoteStorageTarget_Posix{b.Posix}
 	}
 	if b.Azure != nil {
-		x.Type = &RemoteStorageTarget_Azure_{b.Azure}
+		x.xxx_hidden_Type = &remoteStorageTarget_Azure_{b.Azure}
 	}
 	if b.Mock != nil {
-		x.Type = &RemoteStorageTarget_Mock{*b.Mock}
+		x.xxx_hidden_Type = &remoteStorageTarget_Mock{*b.Mock}
 	}
 	return m0
 }
@@ -2146,44 +2094,41 @@ type isRemoteStorageTarget_Type interface {
 	isRemoteStorageTarget_Type()
 }
 
-type RemoteStorageTarget_S3_ struct {
+type remoteStorageTarget_S3_ struct {
 	S3 *RemoteStorageTarget_S3 `protobuf:"bytes,4,opt,name=s3,proto3,oneof"`
 }
 
-type RemoteStorageTarget_Posix struct {
+type remoteStorageTarget_Posix struct {
 	Posix *RemoteStorageTarget_POSIX `protobuf:"bytes,5,opt,name=posix,proto3,oneof"`
 }
 
-type RemoteStorageTarget_Azure_ struct {
+type remoteStorageTarget_Azure_ struct {
 	Azure *RemoteStorageTarget_Azure `protobuf:"bytes,6,opt,name=azure,proto3,oneof"`
 }
 
-type RemoteStorageTarget_Mock struct {
+type remoteStorageTarget_Mock struct {
 	Mock string `protobuf:"bytes,7,opt,name=mock,proto3,oneof"`
 }
 
-func (*RemoteStorageTarget_S3_) isRemoteStorageTarget_Type() {}
+func (*remoteStorageTarget_S3_) isRemoteStorageTarget_Type() {}
 
-func (*RemoteStorageTarget_Posix) isRemoteStorageTarget_Type() {}
+func (*remoteStorageTarget_Posix) isRemoteStorageTarget_Type() {}
 
-func (*RemoteStorageTarget_Azure_) isRemoteStorageTarget_Type() {}
+func (*remoteStorageTarget_Azure_) isRemoteStorageTarget_Type() {}
 
-func (*RemoteStorageTarget_Mock) isRemoteStorageTarget_Type() {}
+func (*remoteStorageTarget_Mock) isRemoteStorageTarget_Type() {}
 
 // A segment indicates what portion of the file a particular worker node should
 // work on. Segments can be divided into one or more parts, which can be used to
 // execute the requested operation in parallel if supported by the RST type.
 type WorkRequest_Segment struct {
-	state       protoimpl.MessageState `protogen:"hybrid.v1"`
-	OffsetStart int64                  `protobuf:"varint,1,opt,name=offset_start,json=offsetStart,proto3" json:"offset_start,omitempty"`
-	// Inclusive of the last offset.
-	OffsetStop int64 `protobuf:"varint,2,opt,name=offset_stop,json=offsetStop,proto3" json:"offset_stop,omitempty"`
-	// The amount of data in each part is calculated based on the offset start/stop.
-	PartsStart int32 `protobuf:"varint,3,opt,name=parts_start,json=partsStart,proto3" json:"parts_start,omitempty"`
-	// Inclusive of the last part.
-	PartsStop     int32 `protobuf:"varint,4,opt,name=parts_stop,json=partsStop,proto3" json:"parts_stop,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_OffsetStart int64                  `protobuf:"varint,1,opt,name=offset_start,json=offsetStart,proto3" json:"offset_start,omitempty"`
+	xxx_hidden_OffsetStop  int64                  `protobuf:"varint,2,opt,name=offset_stop,json=offsetStop,proto3" json:"offset_stop,omitempty"`
+	xxx_hidden_PartsStart  int32                  `protobuf:"varint,3,opt,name=parts_start,json=partsStart,proto3" json:"parts_start,omitempty"`
+	xxx_hidden_PartsStop   int32                  `protobuf:"varint,4,opt,name=parts_stop,json=partsStop,proto3" json:"parts_stop,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *WorkRequest_Segment) Reset() {
@@ -2213,46 +2158,46 @@ func (x *WorkRequest_Segment) ProtoReflect() protoreflect.Message {
 
 func (x *WorkRequest_Segment) GetOffsetStart() int64 {
 	if x != nil {
-		return x.OffsetStart
+		return x.xxx_hidden_OffsetStart
 	}
 	return 0
 }
 
 func (x *WorkRequest_Segment) GetOffsetStop() int64 {
 	if x != nil {
-		return x.OffsetStop
+		return x.xxx_hidden_OffsetStop
 	}
 	return 0
 }
 
 func (x *WorkRequest_Segment) GetPartsStart() int32 {
 	if x != nil {
-		return x.PartsStart
+		return x.xxx_hidden_PartsStart
 	}
 	return 0
 }
 
 func (x *WorkRequest_Segment) GetPartsStop() int32 {
 	if x != nil {
-		return x.PartsStop
+		return x.xxx_hidden_PartsStop
 	}
 	return 0
 }
 
 func (x *WorkRequest_Segment) SetOffsetStart(v int64) {
-	x.OffsetStart = v
+	x.xxx_hidden_OffsetStart = v
 }
 
 func (x *WorkRequest_Segment) SetOffsetStop(v int64) {
-	x.OffsetStop = v
+	x.xxx_hidden_OffsetStop = v
 }
 
 func (x *WorkRequest_Segment) SetPartsStart(v int32) {
-	x.PartsStart = v
+	x.xxx_hidden_PartsStart = v
 }
 
 func (x *WorkRequest_Segment) SetPartsStop(v int32) {
-	x.PartsStop = v
+	x.xxx_hidden_PartsStop = v
 }
 
 type WorkRequest_Segment_builder struct {
@@ -2271,20 +2216,19 @@ func (b0 WorkRequest_Segment_builder) Build() *WorkRequest_Segment {
 	m0 := &WorkRequest_Segment{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.OffsetStart = b.OffsetStart
-	x.OffsetStop = b.OffsetStop
-	x.PartsStart = b.PartsStart
-	x.PartsStop = b.PartsStop
+	x.xxx_hidden_OffsetStart = b.OffsetStart
+	x.xxx_hidden_OffsetStop = b.OffsetStop
+	x.xxx_hidden_PartsStart = b.PartsStart
+	x.xxx_hidden_PartsStop = b.PartsStop
 	return m0
 }
 
 type Work_Status struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	State Work_State             `protobuf:"varint,1,opt,name=state,proto3,enum=flex.Work_State" json:"state,omitempty"`
-	// See the guidelines for handling messages on Job.Status.Message.
-	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_State   Work_State             `protobuf:"varint,1,opt,name=state,proto3,enum=flex.Work_State" json:"state,omitempty"`
+	xxx_hidden_Message string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *Work_Status) Reset() {
@@ -2314,24 +2258,24 @@ func (x *Work_Status) ProtoReflect() protoreflect.Message {
 
 func (x *Work_Status) GetState() Work_State {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return Work_UNSPECIFIED
 }
 
 func (x *Work_Status) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *Work_Status) SetState(v Work_State) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 func (x *Work_Status) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 type Work_Status_builder struct {
@@ -2346,8 +2290,8 @@ func (b0 Work_Status_builder) Build() *Work_Status {
 	m0 := &Work_Status{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.State = b.State
-	x.Message = b.Message
+	x.xxx_hidden_State = b.State
+	x.xxx_hidden_Message = b.Message
 	return m0
 }
 
@@ -2357,20 +2301,15 @@ func (b0 Work_Status_builder) Build() *Work_Status {
 // parallel on a worker node. We use a standard part definition for all RST
 // types. The use of the fields in Part will vary depending on the type.
 type Work_Part struct {
-	state       protoimpl.MessageState `protogen:"hybrid.v1"`
-	PartNumber  int32                  `protobuf:"varint,1,opt,name=part_number,json=partNumber,proto3" json:"part_number,omitempty"`
-	OffsetStart int64                  `protobuf:"varint,2,opt,name=offset_start,json=offsetStart,proto3" json:"offset_start,omitempty"`
-	OffsetStop  int64                  `protobuf:"varint,3,opt,name=offset_stop,json=offsetStop,proto3" json:"offset_stop,omitempty"`
-	// ETags primarily verify the completeness and sequence of the upload. They do indirectly
-	// verify parts were received correctly since ETags are generated based on the received
-	// parts data.
-	EntityTag string `protobuf:"bytes,4,opt,name=entity_tag,json=entityTag,proto3" json:"entity_tag,omitempty"`
-	// The SHA-256 checksum of the data contained in this part. Note the checksum differs from
-	// the ETag in that it is an application layer integrity check of the part's content.
-	ChecksumSha256 string `protobuf:"bytes,5,opt,name=checksum_sha256,json=checksumSha256,proto3" json:"checksum_sha256,omitempty"`
-	Completed      bool   `protobuf:"varint,6,opt,name=completed,proto3" json:"completed,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_PartNumber     int32                  `protobuf:"varint,1,opt,name=part_number,json=partNumber,proto3" json:"part_number,omitempty"`
+	xxx_hidden_OffsetStart    int64                  `protobuf:"varint,2,opt,name=offset_start,json=offsetStart,proto3" json:"offset_start,omitempty"`
+	xxx_hidden_OffsetStop     int64                  `protobuf:"varint,3,opt,name=offset_stop,json=offsetStop,proto3" json:"offset_stop,omitempty"`
+	xxx_hidden_EntityTag      string                 `protobuf:"bytes,4,opt,name=entity_tag,json=entityTag,proto3" json:"entity_tag,omitempty"`
+	xxx_hidden_ChecksumSha256 string                 `protobuf:"bytes,5,opt,name=checksum_sha256,json=checksumSha256,proto3" json:"checksum_sha256,omitempty"`
+	xxx_hidden_Completed      bool                   `protobuf:"varint,6,opt,name=completed,proto3" json:"completed,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *Work_Part) Reset() {
@@ -2400,68 +2339,68 @@ func (x *Work_Part) ProtoReflect() protoreflect.Message {
 
 func (x *Work_Part) GetPartNumber() int32 {
 	if x != nil {
-		return x.PartNumber
+		return x.xxx_hidden_PartNumber
 	}
 	return 0
 }
 
 func (x *Work_Part) GetOffsetStart() int64 {
 	if x != nil {
-		return x.OffsetStart
+		return x.xxx_hidden_OffsetStart
 	}
 	return 0
 }
 
 func (x *Work_Part) GetOffsetStop() int64 {
 	if x != nil {
-		return x.OffsetStop
+		return x.xxx_hidden_OffsetStop
 	}
 	return 0
 }
 
 func (x *Work_Part) GetEntityTag() string {
 	if x != nil {
-		return x.EntityTag
+		return x.xxx_hidden_EntityTag
 	}
 	return ""
 }
 
 func (x *Work_Part) GetChecksumSha256() string {
 	if x != nil {
-		return x.ChecksumSha256
+		return x.xxx_hidden_ChecksumSha256
 	}
 	return ""
 }
 
 func (x *Work_Part) GetCompleted() bool {
 	if x != nil {
-		return x.Completed
+		return x.xxx_hidden_Completed
 	}
 	return false
 }
 
 func (x *Work_Part) SetPartNumber(v int32) {
-	x.PartNumber = v
+	x.xxx_hidden_PartNumber = v
 }
 
 func (x *Work_Part) SetOffsetStart(v int64) {
-	x.OffsetStart = v
+	x.xxx_hidden_OffsetStart = v
 }
 
 func (x *Work_Part) SetOffsetStop(v int64) {
-	x.OffsetStop = v
+	x.xxx_hidden_OffsetStop = v
 }
 
 func (x *Work_Part) SetEntityTag(v string) {
-	x.EntityTag = v
+	x.xxx_hidden_EntityTag = v
 }
 
 func (x *Work_Part) SetChecksumSha256(v string) {
-	x.ChecksumSha256 = v
+	x.xxx_hidden_ChecksumSha256 = v
 }
 
 func (x *Work_Part) SetCompleted(v bool) {
-	x.Completed = v
+	x.xxx_hidden_Completed = v
 }
 
 type Work_Part_builder struct {
@@ -2484,24 +2423,20 @@ func (b0 Work_Part_builder) Build() *Work_Part {
 	m0 := &Work_Part{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.PartNumber = b.PartNumber
-	x.OffsetStart = b.OffsetStart
-	x.OffsetStop = b.OffsetStop
-	x.EntityTag = b.EntityTag
-	x.ChecksumSha256 = b.ChecksumSha256
-	x.Completed = b.Completed
+	x.xxx_hidden_PartNumber = b.PartNumber
+	x.xxx_hidden_OffsetStart = b.OffsetStart
+	x.xxx_hidden_OffsetStop = b.OffsetStop
+	x.xxx_hidden_EntityTag = b.EntityTag
+	x.xxx_hidden_ChecksumSha256 = b.ChecksumSha256
+	x.xxx_hidden_Completed = b.Completed
 	return m0
 }
 
 type RemoteStorageTarget_Policies struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// If the file size is larger than this, BeeRemote handles creating/finishing the multipart
-	// upload (if applicable) and will assign the job to multiple worker nodes. If the file size
-	// is smaller than this, BeeRemote immediately assigns the job to a single worker node that
-	// handles creating/finishing the multipart upload (if needed).
-	FastStartMaxSize int64 `protobuf:"varint,1,opt,name=fast_start_max_size,json=fastStartMaxSize,proto3" json:"fast_start_max_size,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state                       protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FastStartMaxSize int64                  `protobuf:"varint,1,opt,name=fast_start_max_size,json=fastStartMaxSize,proto3" json:"fast_start_max_size,omitempty"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *RemoteStorageTarget_Policies) Reset() {
@@ -2531,13 +2466,13 @@ func (x *RemoteStorageTarget_Policies) ProtoReflect() protoreflect.Message {
 
 func (x *RemoteStorageTarget_Policies) GetFastStartMaxSize() int64 {
 	if x != nil {
-		return x.FastStartMaxSize
+		return x.xxx_hidden_FastStartMaxSize
 	}
 	return 0
 }
 
 func (x *RemoteStorageTarget_Policies) SetFastStartMaxSize(v int64) {
-	x.FastStartMaxSize = v
+	x.xxx_hidden_FastStartMaxSize = v
 }
 
 type RemoteStorageTarget_Policies_builder struct {
@@ -2554,7 +2489,7 @@ func (b0 RemoteStorageTarget_Policies_builder) Build() *RemoteStorageTarget_Poli
 	m0 := &RemoteStorageTarget_Policies{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.FastStartMaxSize = b.FastStartMaxSize
+	x.xxx_hidden_FastStartMaxSize = b.FastStartMaxSize
 	return m0
 }
 
@@ -2565,24 +2500,15 @@ func (b0 RemoteStorageTarget_Policies_builder) Build() *RemoteStorageTarget_Poli
 // local S3 services like MinIO and theoretically other cloud providers like
 // Azure or GCP.
 type RemoteStorageTarget_S3 struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	// Endpoints should be formatted like: https://<ip-or-hostname>:<port>.
-	// Ex: https://localhost:9000.
-	// Because we are overriding the default AWS S3 SDK behavior an endpoint
-	// must always be specified, even when using AWS.
-	EndpointUrl string `protobuf:"bytes,1,opt,name=endpoint_url,json=endpointUrl,proto3" json:"endpoint_url,omitempty"`
-	// AWS infrastructure is divided into partitions, with each partition
-	// as a grouping of regions. Partition ID may not make sense for all
-	// S3 services, and can sometimes be omitted (for example with MinIO).
-	// https://docs.aws.amazon.com/sdk-for-go/api/aws/endpoints/#pkg-constants
-	PartitionId string `protobuf:"bytes,2,opt,name=partition_id,json=partitionId,proto3" json:"partition_id,omitempty"`
-	// Region can sometimes be omitted (for example with MinIO).
-	Region        string `protobuf:"bytes,3,opt,name=region,proto3" json:"region,omitempty"`
-	Bucket        string `protobuf:"bytes,4,opt,name=bucket,proto3" json:"bucket,omitempty"`
-	AccessKey     string `protobuf:"bytes,5,opt,name=access_key,json=accessKey,proto3" json:"access_key,omitempty"`
-	SecretKey     string `protobuf:"bytes,6,opt,name=secret_key,json=secretKey,proto3" json:"secret_key,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_EndpointUrl string                 `protobuf:"bytes,1,opt,name=endpoint_url,json=endpointUrl,proto3" json:"endpoint_url,omitempty"`
+	xxx_hidden_PartitionId string                 `protobuf:"bytes,2,opt,name=partition_id,json=partitionId,proto3" json:"partition_id,omitempty"`
+	xxx_hidden_Region      string                 `protobuf:"bytes,3,opt,name=region,proto3" json:"region,omitempty"`
+	xxx_hidden_Bucket      string                 `protobuf:"bytes,4,opt,name=bucket,proto3" json:"bucket,omitempty"`
+	xxx_hidden_AccessKey   string                 `protobuf:"bytes,5,opt,name=access_key,json=accessKey,proto3" json:"access_key,omitempty"`
+	xxx_hidden_SecretKey   string                 `protobuf:"bytes,6,opt,name=secret_key,json=secretKey,proto3" json:"secret_key,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *RemoteStorageTarget_S3) Reset() {
@@ -2612,68 +2538,68 @@ func (x *RemoteStorageTarget_S3) ProtoReflect() protoreflect.Message {
 
 func (x *RemoteStorageTarget_S3) GetEndpointUrl() string {
 	if x != nil {
-		return x.EndpointUrl
+		return x.xxx_hidden_EndpointUrl
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget_S3) GetPartitionId() string {
 	if x != nil {
-		return x.PartitionId
+		return x.xxx_hidden_PartitionId
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget_S3) GetRegion() string {
 	if x != nil {
-		return x.Region
+		return x.xxx_hidden_Region
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget_S3) GetBucket() string {
 	if x != nil {
-		return x.Bucket
+		return x.xxx_hidden_Bucket
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget_S3) GetAccessKey() string {
 	if x != nil {
-		return x.AccessKey
+		return x.xxx_hidden_AccessKey
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget_S3) GetSecretKey() string {
 	if x != nil {
-		return x.SecretKey
+		return x.xxx_hidden_SecretKey
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget_S3) SetEndpointUrl(v string) {
-	x.EndpointUrl = v
+	x.xxx_hidden_EndpointUrl = v
 }
 
 func (x *RemoteStorageTarget_S3) SetPartitionId(v string) {
-	x.PartitionId = v
+	x.xxx_hidden_PartitionId = v
 }
 
 func (x *RemoteStorageTarget_S3) SetRegion(v string) {
-	x.Region = v
+	x.xxx_hidden_Region = v
 }
 
 func (x *RemoteStorageTarget_S3) SetBucket(v string) {
-	x.Bucket = v
+	x.xxx_hidden_Bucket = v
 }
 
 func (x *RemoteStorageTarget_S3) SetAccessKey(v string) {
-	x.AccessKey = v
+	x.xxx_hidden_AccessKey = v
 }
 
 func (x *RemoteStorageTarget_S3) SetSecretKey(v string) {
-	x.SecretKey = v
+	x.xxx_hidden_SecretKey = v
 }
 
 type RemoteStorageTarget_S3_builder struct {
@@ -2700,21 +2626,21 @@ func (b0 RemoteStorageTarget_S3_builder) Build() *RemoteStorageTarget_S3 {
 	m0 := &RemoteStorageTarget_S3{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.EndpointUrl = b.EndpointUrl
-	x.PartitionId = b.PartitionId
-	x.Region = b.Region
-	x.Bucket = b.Bucket
-	x.AccessKey = b.AccessKey
-	x.SecretKey = b.SecretKey
+	x.xxx_hidden_EndpointUrl = b.EndpointUrl
+	x.xxx_hidden_PartitionId = b.PartitionId
+	x.xxx_hidden_Region = b.Region
+	x.xxx_hidden_Bucket = b.Bucket
+	x.xxx_hidden_AccessKey = b.AccessKey
+	x.xxx_hidden_SecretKey = b.SecretKey
 	return m0
 }
 
 type RemoteStorageTarget_Azure struct {
-	state         protoimpl.MessageState  `protogen:"hybrid.v1"`
-	S3            *RemoteStorageTarget_S3 `protobuf:"bytes,1,opt,name=s3,proto3" json:"s3,omitempty"`
-	Account       string                  `protobuf:"bytes,2,opt,name=account,proto3" json:"account,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_S3      *RemoteStorageTarget_S3 `protobuf:"bytes,1,opt,name=s3,proto3" json:"s3,omitempty"`
+	xxx_hidden_Account string                  `protobuf:"bytes,2,opt,name=account,proto3" json:"account,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *RemoteStorageTarget_Azure) Reset() {
@@ -2744,35 +2670,35 @@ func (x *RemoteStorageTarget_Azure) ProtoReflect() protoreflect.Message {
 
 func (x *RemoteStorageTarget_Azure) GetS3() *RemoteStorageTarget_S3 {
 	if x != nil {
-		return x.S3
+		return x.xxx_hidden_S3
 	}
 	return nil
 }
 
 func (x *RemoteStorageTarget_Azure) GetAccount() string {
 	if x != nil {
-		return x.Account
+		return x.xxx_hidden_Account
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget_Azure) SetS3(v *RemoteStorageTarget_S3) {
-	x.S3 = v
+	x.xxx_hidden_S3 = v
 }
 
 func (x *RemoteStorageTarget_Azure) SetAccount(v string) {
-	x.Account = v
+	x.xxx_hidden_Account = v
 }
 
 func (x *RemoteStorageTarget_Azure) HasS3() bool {
 	if x == nil {
 		return false
 	}
-	return x.S3 != nil
+	return x.xxx_hidden_S3 != nil
 }
 
 func (x *RemoteStorageTarget_Azure) ClearS3() {
-	x.S3 = nil
+	x.xxx_hidden_S3 = nil
 }
 
 type RemoteStorageTarget_Azure_builder struct {
@@ -2786,16 +2712,16 @@ func (b0 RemoteStorageTarget_Azure_builder) Build() *RemoteStorageTarget_Azure {
 	m0 := &RemoteStorageTarget_Azure{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.S3 = b.S3
-	x.Account = b.Account
+	x.xxx_hidden_S3 = b.S3
+	x.xxx_hidden_Account = b.Account
 	return m0
 }
 
 type RemoteStorageTarget_POSIX struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Path string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *RemoteStorageTarget_POSIX) Reset() {
@@ -2825,13 +2751,13 @@ func (x *RemoteStorageTarget_POSIX) ProtoReflect() protoreflect.Message {
 
 func (x *RemoteStorageTarget_POSIX) GetPath() string {
 	if x != nil {
-		return x.Path
+		return x.xxx_hidden_Path
 	}
 	return ""
 }
 
 func (x *RemoteStorageTarget_POSIX) SetPath(v string) {
-	x.Path = v
+	x.xxx_hidden_Path = v
 }
 
 type RemoteStorageTarget_POSIX_builder struct {
@@ -2844,7 +2770,7 @@ func (b0 RemoteStorageTarget_POSIX_builder) Build() *RemoteStorageTarget_POSIX {
 	m0 := &RemoteStorageTarget_POSIX{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Path = b.Path
+	x.xxx_hidden_Path = b.Path
 	return m0
 }
 
@@ -3166,14 +3092,14 @@ func file_flex_proto_init() {
 		return
 	}
 	file_flex_proto_msgTypes[9].OneofWrappers = []any{
-		(*WorkRequest_Mock)(nil),
-		(*WorkRequest_Sync)(nil),
+		(*workRequest_Mock)(nil),
+		(*workRequest_Sync)(nil),
 	}
 	file_flex_proto_msgTypes[16].OneofWrappers = []any{
-		(*RemoteStorageTarget_S3_)(nil),
-		(*RemoteStorageTarget_Posix)(nil),
-		(*RemoteStorageTarget_Azure_)(nil),
-		(*RemoteStorageTarget_Mock)(nil),
+		(*remoteStorageTarget_S3_)(nil),
+		(*remoteStorageTarget_Posix)(nil),
+		(*remoteStorageTarget_Azure_)(nil),
+		(*remoteStorageTarget_Mock)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
