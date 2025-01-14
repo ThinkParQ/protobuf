@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	BeeRemote_SubmitJob_FullMethodName    = "/beeremote.BeeRemote/SubmitJob"
-	BeeRemote_UpdateJob_FullMethodName    = "/beeremote.BeeRemote/UpdateJob"
+	BeeRemote_UpdateJobs_FullMethodName   = "/beeremote.BeeRemote/UpdateJobs"
 	BeeRemote_GetJobs_FullMethodName      = "/beeremote.BeeRemote/GetJobs"
 	BeeRemote_UpdateWork_FullMethodName   = "/beeremote.BeeRemote/UpdateWork"
 	BeeRemote_GetRSTConfig_FullMethodName = "/beeremote.BeeRemote/GetRSTConfig"
@@ -34,7 +34,7 @@ const (
 // with BeeRemote.
 type BeeRemoteClient interface {
 	SubmitJob(ctx context.Context, in *SubmitJobRequest, opts ...grpc.CallOption) (*SubmitJobResponse, error)
-	UpdateJob(ctx context.Context, in *UpdateJobRequest, opts ...grpc.CallOption) (*UpdateJobResponse, error)
+	UpdateJobs(ctx context.Context, in *UpdateJobsRequest, opts ...grpc.CallOption) (*UpdateJobsResponse, error)
 	GetJobs(ctx context.Context, in *GetJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetJobsResponse], error)
 	// Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
 	// results, we have BeeRemote expose a unary RPC that is used to send results back as they are
@@ -67,10 +67,10 @@ func (c *beeRemoteClient) SubmitJob(ctx context.Context, in *SubmitJobRequest, o
 	return out, nil
 }
 
-func (c *beeRemoteClient) UpdateJob(ctx context.Context, in *UpdateJobRequest, opts ...grpc.CallOption) (*UpdateJobResponse, error) {
+func (c *beeRemoteClient) UpdateJobs(ctx context.Context, in *UpdateJobsRequest, opts ...grpc.CallOption) (*UpdateJobsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateJobResponse)
-	err := c.cc.Invoke(ctx, BeeRemote_UpdateJob_FullMethodName, in, out, cOpts...)
+	out := new(UpdateJobsResponse)
+	err := c.cc.Invoke(ctx, BeeRemote_UpdateJobs_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -124,7 +124,7 @@ func (c *beeRemoteClient) GetRSTConfig(ctx context.Context, in *GetRSTConfigRequ
 // with BeeRemote.
 type BeeRemoteServer interface {
 	SubmitJob(context.Context, *SubmitJobRequest) (*SubmitJobResponse, error)
-	UpdateJob(context.Context, *UpdateJobRequest) (*UpdateJobResponse, error)
+	UpdateJobs(context.Context, *UpdateJobsRequest) (*UpdateJobsResponse, error)
 	GetJobs(*GetJobsRequest, grpc.ServerStreamingServer[GetJobsResponse]) error
 	// Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
 	// results, we have BeeRemote expose a unary RPC that is used to send results back as they are
@@ -150,8 +150,8 @@ type UnimplementedBeeRemoteServer struct{}
 func (UnimplementedBeeRemoteServer) SubmitJob(context.Context, *SubmitJobRequest) (*SubmitJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitJob not implemented")
 }
-func (UnimplementedBeeRemoteServer) UpdateJob(context.Context, *UpdateJobRequest) (*UpdateJobResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateJob not implemented")
+func (UnimplementedBeeRemoteServer) UpdateJobs(context.Context, *UpdateJobsRequest) (*UpdateJobsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateJobs not implemented")
 }
 func (UnimplementedBeeRemoteServer) GetJobs(*GetJobsRequest, grpc.ServerStreamingServer[GetJobsResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method GetJobs not implemented")
@@ -201,20 +201,20 @@ func _BeeRemote_SubmitJob_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BeeRemote_UpdateJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateJobRequest)
+func _BeeRemote_UpdateJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateJobsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BeeRemoteServer).UpdateJob(ctx, in)
+		return srv.(BeeRemoteServer).UpdateJobs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BeeRemote_UpdateJob_FullMethodName,
+		FullMethod: BeeRemote_UpdateJobs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BeeRemoteServer).UpdateJob(ctx, req.(*UpdateJobRequest))
+		return srv.(BeeRemoteServer).UpdateJobs(ctx, req.(*UpdateJobsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -278,8 +278,8 @@ var BeeRemote_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BeeRemote_SubmitJob_Handler,
 		},
 		{
-			MethodName: "UpdateJob",
-			Handler:    _BeeRemote_UpdateJob_Handler,
+			MethodName: "UpdateJobs",
+			Handler:    _BeeRemote_UpdateJobs_Handler,
 		},
 		{
 			MethodName: "UpdateWork",

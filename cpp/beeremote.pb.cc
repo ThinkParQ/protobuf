@@ -43,36 +43,24 @@ struct UpdateWorkResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateWorkResponseDefaultTypeInternal _UpdateWorkResponse_default_instance_;
-
-inline constexpr UpdateJobRequest_QueryIdAndPath::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : job_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        path_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR UpdateJobRequest_QueryIdAndPath::UpdateJobRequest_QueryIdAndPath(::_pbi::ConstantInitialized)
+              template <typename>
+PROTOBUF_CONSTEXPR UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
+    : UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::MapEntry(_class_data_.base()){}
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
+    : UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::MapEntry() {
 }
-struct UpdateJobRequest_QueryIdAndPathDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UpdateJobRequest_QueryIdAndPathDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UpdateJobRequest_QueryIdAndPathDefaultTypeInternal() {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct UpdateJobsRequest_RemoteTargetsEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateJobsRequest_RemoteTargetsEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateJobsRequest_RemoteTargetsEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    UpdateJobRequest_QueryIdAndPath _instance;
+    UpdateJobsRequest_RemoteTargetsEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateJobRequest_QueryIdAndPathDefaultTypeInternal _UpdateJobRequest_QueryIdAndPath_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateJobsRequest_RemoteTargetsEntry_DoNotUseDefaultTypeInternal _UpdateJobsRequest_RemoteTargetsEntry_DoNotUse_default_instance_;
               template <typename>
 PROTOBUF_CONSTEXPR GetRSTConfigRequest::GetRSTConfigRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -122,16 +110,21 @@ struct GetJobsRequest_QueryIdAndPathDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetJobsRequest_QueryIdAndPathDefaultTypeInternal _GetJobsRequest_QueryIdAndPath_default_instance_;
 
-inline constexpr UpdateJobRequest::Impl_::Impl_(
+inline constexpr UpdateJobsRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : new_state_{static_cast< ::beeremote::UpdateJobRequest_NewState >(0)},
+      : _cached_size_{0},
+        remote_targets_{},
+        path_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        job_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         force_update_{false},
-        query_{},
-        _cached_size_{0},
-        _oneof_case_{} {}
+        new_state_{static_cast< ::beeremote::UpdateJobsRequest_NewState >(0)} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR UpdateJobRequest::UpdateJobRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UpdateJobsRequest::UpdateJobsRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -139,16 +132,16 @@ PROTOBUF_CONSTEXPR UpdateJobRequest::UpdateJobRequest(::_pbi::ConstantInitialize
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct UpdateJobRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UpdateJobRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UpdateJobRequestDefaultTypeInternal() {}
+struct UpdateJobsRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateJobsRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateJobsRequestDefaultTypeInternal() {}
   union {
-    UpdateJobRequest _instance;
+    UpdateJobsRequest _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateJobRequestDefaultTypeInternal _UpdateJobRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateJobsRequestDefaultTypeInternal _UpdateJobsRequest_default_instance_;
 
 inline constexpr JobRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -408,7 +401,7 @@ struct GetRSTConfigResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetRSTConfigResponseDefaultTypeInternal _GetRSTConfigResponse_default_instance_;
 
-inline constexpr UpdateJobResponse::Impl_::Impl_(
+inline constexpr UpdateJobsResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : results_{},
         message_(
@@ -418,7 +411,7 @@ inline constexpr UpdateJobResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR UpdateJobResponse::UpdateJobResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UpdateJobsResponse::UpdateJobsResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -426,16 +419,16 @@ PROTOBUF_CONSTEXPR UpdateJobResponse::UpdateJobResponse(::_pbi::ConstantInitiali
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct UpdateJobResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UpdateJobResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UpdateJobResponseDefaultTypeInternal() {}
+struct UpdateJobsResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateJobsResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateJobsResponseDefaultTypeInternal() {}
   union {
-    UpdateJobResponse _instance;
+    UpdateJobsResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateJobResponseDefaultTypeInternal _UpdateJobResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateJobsResponseDefaultTypeInternal _UpdateJobsResponse_default_instance_;
 
 inline constexpr SubmitJobResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -591,40 +584,47 @@ const ::uint32_t
         0,
         ~0u,
         ~0u,
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest_QueryIdAndPath, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest_QueryIdAndPath, _impl_.job_id_),
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest_QueryIdAndPath, _impl_.path_),
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _internal_metadata_),
-        ~0u,  // no _extensions_
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _impl_._oneof_case_[0]),
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        ::_pbi::kInvalidFieldOffsetTag,
-        ::_pbi::kInvalidFieldOffsetTag,
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _impl_.new_state_),
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _impl_.force_update_),
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _impl_.query_),
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobResponse, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_.value_),
+        0,
+        1,
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobResponse, _impl_.ok_),
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobResponse, _impl_.message_),
-        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobResponse, _impl_.results_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest, _impl_.path_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest, _impl_.job_id_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest, _impl_.remote_targets_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest, _impl_.new_state_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsRequest, _impl_.force_update_),
+        ~0u,
+        0,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsResponse, _impl_.ok_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsResponse, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobsResponse, _impl_.results_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::beeremote::GetJobsRequest_QueryIdAndPath, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -706,16 +706,16 @@ static const ::_pbi::MigrationSchema
         {49, 62, -1, sizeof(::beeremote::Job)},
         {67, 78, -1, sizeof(::beeremote::JobResult_WorkResult)},
         {81, 92, -1, sizeof(::beeremote::JobResult)},
-        {95, -1, -1, sizeof(::beeremote::UpdateJobRequest_QueryIdAndPath)},
-        {105, -1, -1, sizeof(::beeremote::UpdateJobRequest)},
-        {118, -1, -1, sizeof(::beeremote::UpdateJobResponse)},
-        {129, -1, -1, sizeof(::beeremote::GetJobsRequest_QueryIdAndPath)},
-        {139, -1, -1, sizeof(::beeremote::GetJobsRequest)},
-        {154, -1, -1, sizeof(::beeremote::GetJobsResponse)},
-        {164, 173, -1, sizeof(::beeremote::UpdateWorkRequest)},
-        {174, -1, -1, sizeof(::beeremote::UpdateWorkResponse)},
-        {182, -1, -1, sizeof(::beeremote::GetRSTConfigRequest)},
-        {190, -1, -1, sizeof(::beeremote::GetRSTConfigResponse)},
+        {95, 105, -1, sizeof(::beeremote::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse)},
+        {107, 120, -1, sizeof(::beeremote::UpdateJobsRequest)},
+        {125, -1, -1, sizeof(::beeremote::UpdateJobsResponse)},
+        {136, -1, -1, sizeof(::beeremote::GetJobsRequest_QueryIdAndPath)},
+        {146, -1, -1, sizeof(::beeremote::GetJobsRequest)},
+        {161, -1, -1, sizeof(::beeremote::GetJobsResponse)},
+        {171, 180, -1, sizeof(::beeremote::UpdateWorkRequest)},
+        {181, -1, -1, sizeof(::beeremote::UpdateWorkResponse)},
+        {189, -1, -1, sizeof(::beeremote::GetRSTConfigRequest)},
+        {197, -1, -1, sizeof(::beeremote::GetRSTConfigResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::beeremote::_SubmitJobRequest_default_instance_._instance,
@@ -725,9 +725,9 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::beeremote::_Job_default_instance_._instance,
     &::beeremote::_JobResult_WorkResult_default_instance_._instance,
     &::beeremote::_JobResult_default_instance_._instance,
-    &::beeremote::_UpdateJobRequest_QueryIdAndPath_default_instance_._instance,
-    &::beeremote::_UpdateJobRequest_default_instance_._instance,
-    &::beeremote::_UpdateJobResponse_default_instance_._instance,
+    &::beeremote::_UpdateJobsRequest_RemoteTargetsEntry_DoNotUse_default_instance_._instance,
+    &::beeremote::_UpdateJobsRequest_default_instance_._instance,
+    &::beeremote::_UpdateJobsResponse_default_instance_._instance,
     &::beeremote::_GetJobsRequest_QueryIdAndPath_default_instance_._instance,
     &::beeremote::_GetJobsRequest_default_instance_._instance,
     &::beeremote::_GetJobsResponse_default_instance_._instance,
@@ -762,41 +762,42 @@ const char descriptor_table_protodef_beeremote_2eproto[] ABSL_ATTRIBUTE_SECTION_
     "orkRequest\0225\n\014work_results\030\003 \003(\0132\037.beere"
     "mote.JobResult.WorkResult\032T\n\nWorkResult\022"
     "\030\n\004work\030\001 \001(\0132\n.flex.Work\022\025\n\rassigned_no"
-    "de\030\002 \001(\t\022\025\n\rassigned_pool\030\003 \001(\t\"\262\002\n\020Upda"
-    "teJobRequest\022D\n\016by_id_and_path\030\001 \001(\0132*.b"
-    "eeremote.UpdateJobRequest.QueryIdAndPath"
-    "H\000\022\027\n\rby_exact_path\030\002 \001(\tH\000\0227\n\tnew_state"
-    "\030\003 \001(\0162$.beeremote.UpdateJobRequest.NewS"
-    "tate\022\024\n\014force_update\030\004 \001(\010\032.\n\016QueryIdAnd"
-    "Path\022\016\n\006job_id\030\001 \001(\t\022\014\n\004path\030\002 \001(\t\"7\n\010Ne"
-    "wState\022\017\n\013UNSPECIFIED\020\000\022\r\n\tCANCELLED\020\001\022\013"
-    "\n\007DELETED\020\002B\007\n\005query\"W\n\021UpdateJobRespons"
-    "e\022\n\n\002ok\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022%\n\007result"
-    "s\030\003 \003(\0132\024.beeremote.JobResult\"\236\002\n\016GetJob"
-    "sRequest\022F\n\022by_job_id_and_path\030\001 \001(\0132(.b"
-    "eeremote.GetJobsRequest.QueryIdAndPathH\000"
-    "\022\027\n\rby_exact_path\030\002 \001(\tH\000\022\030\n\016by_path_pre"
-    "fix\030\003 \001(\tH\000\022\035\n\025include_work_requests\030\004 \001"
-    "(\010\022\034\n\024include_work_results\030\005 \001(\010\022\033\n\023upda"
-    "te_work_results\030\006 \001(\010\032.\n\016QueryIdAndPath\022"
-    "\016\n\006job_id\030\001 \001(\t\022\014\n\004path\030\002 \001(\tB\007\n\005query\"F"
-    "\n\017GetJobsResponse\022\014\n\004path\030\001 \001(\t\022%\n\007resul"
-    "ts\030\002 \003(\0132\024.beeremote.JobResult\"-\n\021Update"
-    "WorkRequest\022\030\n\004work\030\001 \001(\0132\n.flex.Work\"\024\n"
-    "\022UpdateWorkResponse\"\025\n\023GetRSTConfigReque"
-    "st\"\?\n\024GetRSTConfigResponse\022\'\n\004rsts\030\001 \003(\013"
-    "2\031.flex.RemoteStorageTarget2\373\002\n\tBeeRemot"
-    "e\022F\n\tSubmitJob\022\033.beeremote.SubmitJobRequ"
-    "est\032\034.beeremote.SubmitJobResponse\022F\n\tUpd"
-    "ateJob\022\033.beeremote.UpdateJobRequest\032\034.be"
-    "eremote.UpdateJobResponse\022B\n\007GetJobs\022\031.b"
-    "eeremote.GetJobsRequest\032\032.beeremote.GetJ"
-    "obsResponse0\001\022I\n\nUpdateWork\022\034.beeremote."
-    "UpdateWorkRequest\032\035.beeremote.UpdateWork"
-    "Response\022O\n\014GetRSTConfig\022\036.beeremote.Get"
-    "RSTConfigRequest\032\037.beeremote.GetRSTConfi"
-    "gResponseB,Z*github.com/thinkparq/protob"
-    "uf/go/beeremoteb\006proto3"
+    "de\030\002 \001(\t\022\025\n\rassigned_pool\030\003 \001(\t\"\311\002\n\021Upda"
+    "teJobsRequest\022\014\n\004path\030\001 \001(\t\022\023\n\006job_id\030\002 "
+    "\001(\tH\000\210\001\001\022G\n\016remote_targets\030\003 \003(\0132/.beere"
+    "mote.UpdateJobsRequest.RemoteTargetsEntr"
+    "y\0228\n\tnew_state\030\n \001(\0162%.beeremote.UpdateJ"
+    "obsRequest.NewState\022\024\n\014force_update\030\004 \001("
+    "\010\0324\n\022RemoteTargetsEntry\022\013\n\003key\030\001 \001(\r\022\r\n\005"
+    "value\030\002 \001(\010:\0028\001\"7\n\010NewState\022\017\n\013UNSPECIFI"
+    "ED\020\000\022\r\n\tCANCELLED\020\001\022\013\n\007DELETED\020\002B\t\n\007_job"
+    "_id\"X\n\022UpdateJobsResponse\022\n\n\002ok\030\001 \001(\010\022\017\n"
+    "\007message\030\002 \001(\t\022%\n\007results\030\003 \003(\0132\024.beerem"
+    "ote.JobResult\"\236\002\n\016GetJobsRequest\022F\n\022by_j"
+    "ob_id_and_path\030\001 \001(\0132(.beeremote.GetJobs"
+    "Request.QueryIdAndPathH\000\022\027\n\rby_exact_pat"
+    "h\030\002 \001(\tH\000\022\030\n\016by_path_prefix\030\003 \001(\tH\000\022\035\n\025i"
+    "nclude_work_requests\030\004 \001(\010\022\034\n\024include_wo"
+    "rk_results\030\005 \001(\010\022\033\n\023update_work_results\030"
+    "\006 \001(\010\032.\n\016QueryIdAndPath\022\016\n\006job_id\030\001 \001(\t\022"
+    "\014\n\004path\030\002 \001(\tB\007\n\005query\"F\n\017GetJobsRespons"
+    "e\022\014\n\004path\030\001 \001(\t\022%\n\007results\030\002 \003(\0132\024.beere"
+    "mote.JobResult\"-\n\021UpdateWorkRequest\022\030\n\004w"
+    "ork\030\001 \001(\0132\n.flex.Work\"\024\n\022UpdateWorkRespo"
+    "nse\"\025\n\023GetRSTConfigRequest\"\?\n\024GetRSTConf"
+    "igResponse\022\'\n\004rsts\030\001 \003(\0132\031.flex.RemoteSt"
+    "orageTarget2\376\002\n\tBeeRemote\022F\n\tSubmitJob\022\033"
+    ".beeremote.SubmitJobRequest\032\034.beeremote."
+    "SubmitJobResponse\022I\n\nUpdateJobs\022\034.beerem"
+    "ote.UpdateJobsRequest\032\035.beeremote.Update"
+    "JobsResponse\022B\n\007GetJobs\022\031.beeremote.GetJ"
+    "obsRequest\032\032.beeremote.GetJobsResponse0\001"
+    "\022I\n\nUpdateWork\022\034.beeremote.UpdateWorkReq"
+    "uest\032\035.beeremote.UpdateWorkResponse\022O\n\014G"
+    "etRSTConfig\022\036.beeremote.GetRSTConfigRequ"
+    "est\032\037.beeremote.GetRSTConfigResponseB,Z*"
+    "github.com/thinkparq/protobuf/go/beeremo"
+    "teb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_beeremote_2eproto_deps[2] =
     {
@@ -807,7 +808,7 @@ static ::absl::once_flag descriptor_table_beeremote_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beeremote_2eproto = {
     false,
     false,
-    2343,
+    2370,
     descriptor_table_protodef_beeremote_2eproto,
     "beeremote.proto",
     &descriptor_table_beeremote_2eproto_once,
@@ -848,24 +849,24 @@ constexpr int Job::State_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* UpdateJobRequest_NewState_descriptor() {
+const ::google::protobuf::EnumDescriptor* UpdateJobsRequest_NewState_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beeremote_2eproto);
   return file_level_enum_descriptors_beeremote_2eproto[1];
 }
-PROTOBUF_CONSTINIT const uint32_t UpdateJobRequest_NewState_internal_data_[] = {
+PROTOBUF_CONSTINIT const uint32_t UpdateJobsRequest_NewState_internal_data_[] = {
     196608u, 0u, };
-bool UpdateJobRequest_NewState_IsValid(int value) {
+bool UpdateJobsRequest_NewState_IsValid(int value) {
   return 0 <= value && value <= 2;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
-constexpr UpdateJobRequest_NewState UpdateJobRequest::UNSPECIFIED;
-constexpr UpdateJobRequest_NewState UpdateJobRequest::CANCELLED;
-constexpr UpdateJobRequest_NewState UpdateJobRequest::DELETED;
-constexpr UpdateJobRequest_NewState UpdateJobRequest::NewState_MIN;
-constexpr UpdateJobRequest_NewState UpdateJobRequest::NewState_MAX;
-constexpr int UpdateJobRequest::NewState_ARRAYSIZE;
+constexpr UpdateJobsRequest_NewState UpdateJobsRequest::UNSPECIFIED;
+constexpr UpdateJobsRequest_NewState UpdateJobsRequest::CANCELLED;
+constexpr UpdateJobsRequest_NewState UpdateJobsRequest::DELETED;
+constexpr UpdateJobsRequest_NewState UpdateJobsRequest::NewState_MIN;
+constexpr UpdateJobsRequest_NewState UpdateJobsRequest::NewState_MAX;
+constexpr int UpdateJobsRequest::NewState_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
@@ -3255,104 +3256,55 @@ void JobResult::InternalSwap(JobResult* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class UpdateJobRequest_QueryIdAndPath::_Internal {
- public:
-};
-
-UpdateJobRequest_QueryIdAndPath::UpdateJobRequest_QueryIdAndPath(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
+              UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
+              UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse() : SuperType() {}
+              UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beeremote.UpdateJobRequest.QueryIdAndPath)
-}
-inline PROTOBUF_NDEBUG_INLINE UpdateJobRequest_QueryIdAndPath::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::beeremote::UpdateJobRequest_QueryIdAndPath& from_msg)
-      : job_id_(arena, from.job_id_),
-        path_(arena, from.path_),
-        _cached_size_{0} {}
-
-UpdateJobRequest_QueryIdAndPath::UpdateJobRequest_QueryIdAndPath(
-    ::google::protobuf::Arena* arena,
-    const UpdateJobRequest_QueryIdAndPath& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  UpdateJobRequest_QueryIdAndPath* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-
-  // @@protoc_insertion_point(copy_constructor:beeremote.UpdateJobRequest.QueryIdAndPath)
-}
-inline PROTOBUF_NDEBUG_INLINE UpdateJobRequest_QueryIdAndPath::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : job_id_(arena),
-        path_(arena),
-        _cached_size_{0} {}
-
-inline void UpdateJobRequest_QueryIdAndPath::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-}
-UpdateJobRequest_QueryIdAndPath::~UpdateJobRequest_QueryIdAndPath() {
-  // @@protoc_insertion_point(destructor:beeremote.UpdateJobRequest.QueryIdAndPath)
-  SharedDtor(*this);
-}
-inline void UpdateJobRequest_QueryIdAndPath::SharedDtor(MessageLite& self) {
-  UpdateJobRequest_QueryIdAndPath& this_ = static_cast<UpdateJobRequest_QueryIdAndPath&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.job_id_.Destroy();
-  this_._impl_.path_.Destroy();
-  this_._impl_.~Impl_();
-}
-
-inline void* UpdateJobRequest_QueryIdAndPath::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) UpdateJobRequest_QueryIdAndPath(arena);
-}
-constexpr auto UpdateJobRequest_QueryIdAndPath::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(UpdateJobRequest_QueryIdAndPath),
-                                            alignof(UpdateJobRequest_QueryIdAndPath));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull UpdateJobRequest_QueryIdAndPath::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_UpdateJobRequest_QueryIdAndPath_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &UpdateJobRequest_QueryIdAndPath::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<UpdateJobRequest_QueryIdAndPath>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &UpdateJobRequest_QueryIdAndPath::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<UpdateJobRequest_QueryIdAndPath>(), &UpdateJobRequest_QueryIdAndPath::ByteSizeLong,
-            &UpdateJobRequest_QueryIdAndPath::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(UpdateJobRequest_QueryIdAndPath, _impl_._cached_size_),
-        false,
-    },
-    &UpdateJobRequest_QueryIdAndPath::kDescriptorMethods,
-    &descriptor_table_beeremote_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* UpdateJobRequest_QueryIdAndPath::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
+              inline void* UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) UpdateJobsRequest_RemoteTargetsEntry_DoNotUse(arena);
+              }
+              constexpr auto UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse),
+                                                          alignof(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_UpdateJobsRequest_RemoteTargetsEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<UpdateJobsRequest_RemoteTargetsEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_beeremote_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 60, 2> UpdateJobRequest_QueryIdAndPath::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateJobsRequest_RemoteTargetsEntry_DoNotUse::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_._has_bits_),
     0, // no _extensions_
     2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -3363,415 +3315,295 @@ const ::_pbi::TcParseTable<1, 2, 0, 60, 2> UpdateJobRequest_QueryIdAndPath::_tab
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::beeremote::UpdateJobRequest_QueryIdAndPath>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::beeremote::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string path = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobRequest_QueryIdAndPath, _impl_.path_)}},
-    // string job_id = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobRequest_QueryIdAndPath, _impl_.job_id_)}},
+    // bool value = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_.value_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_.value_)}},
+    // uint32 key = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_.key_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_.key_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string job_id = 1;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest_QueryIdAndPath, _impl_.job_id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string path = 2;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest_QueryIdAndPath, _impl_.path_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint32 key = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // bool value = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsRequest_RemoteTargetsEntry_DoNotUse, _impl_.value_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
   // no aux_entries
   {{
-    "\51\6\4\0\0\0\0\0"
-    "beeremote.UpdateJobRequest.QueryIdAndPath"
-    "job_id"
-    "path"
   }},
 };
 
-PROTOBUF_NOINLINE void UpdateJobRequest_QueryIdAndPath::Clear() {
-// @@protoc_insertion_point(message_clear_start:beeremote.UpdateJobRequest.QueryIdAndPath)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.job_id_.ClearToEmpty();
-  _impl_.path_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* UpdateJobRequest_QueryIdAndPath::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const UpdateJobRequest_QueryIdAndPath& this_ = static_cast<const UpdateJobRequest_QueryIdAndPath&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* UpdateJobRequest_QueryIdAndPath::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const UpdateJobRequest_QueryIdAndPath& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:beeremote.UpdateJobRequest.QueryIdAndPath)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          // string job_id = 1;
-          if (!this_._internal_job_id().empty()) {
-            const std::string& _s = this_._internal_job_id();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobRequest.QueryIdAndPath.job_id");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
-          }
-
-          // string path = 2;
-          if (!this_._internal_path().empty()) {
-            const std::string& _s = this_._internal_path();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobRequest.QueryIdAndPath.path");
-            target = stream->WriteStringMaybeAliased(2, _s, target);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:beeremote.UpdateJobRequest.QueryIdAndPath)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t UpdateJobRequest_QueryIdAndPath::ByteSizeLong(const MessageLite& base) {
-          const UpdateJobRequest_QueryIdAndPath& this_ = static_cast<const UpdateJobRequest_QueryIdAndPath&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t UpdateJobRequest_QueryIdAndPath::ByteSizeLong() const {
-          const UpdateJobRequest_QueryIdAndPath& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:beeremote.UpdateJobRequest.QueryIdAndPath)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-           {
-            // string job_id = 1;
-            if (!this_._internal_job_id().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_job_id());
-            }
-            // string path = 2;
-            if (!this_._internal_path().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_path());
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void UpdateJobRequest_QueryIdAndPath::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<UpdateJobRequest_QueryIdAndPath*>(&to_msg);
-  auto& from = static_cast<const UpdateJobRequest_QueryIdAndPath&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.UpdateJobRequest.QueryIdAndPath)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_job_id().empty()) {
-    _this->_internal_set_job_id(from._internal_job_id());
-  }
-  if (!from._internal_path().empty()) {
-    _this->_internal_set_path(from._internal_path());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void UpdateJobRequest_QueryIdAndPath::CopyFrom(const UpdateJobRequest_QueryIdAndPath& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.UpdateJobRequest.QueryIdAndPath)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void UpdateJobRequest_QueryIdAndPath::InternalSwap(UpdateJobRequest_QueryIdAndPath* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.job_id_, &other->_impl_.job_id_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, &other->_impl_.path_, arena);
-}
-
-::google::protobuf::Metadata UpdateJobRequest_QueryIdAndPath::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
 // ===================================================================
 
-class UpdateJobRequest::_Internal {
+class UpdateJobsRequest::_Internal {
  public:
-  static constexpr ::int32_t kOneofCaseOffset =
-      PROTOBUF_FIELD_OFFSET(::beeremote::UpdateJobRequest, _impl_._oneof_case_);
+  using HasBits =
+      decltype(std::declval<UpdateJobsRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_._has_bits_);
 };
 
-void UpdateJobRequest::set_allocated_by_id_and_path(::beeremote::UpdateJobRequest_QueryIdAndPath* by_id_and_path) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_query();
-  if (by_id_and_path) {
-    ::google::protobuf::Arena* submessage_arena = by_id_and_path->GetArena();
-    if (message_arena != submessage_arena) {
-      by_id_and_path = ::google::protobuf::internal::GetOwnedMessage(message_arena, by_id_and_path, submessage_arena);
-    }
-    set_has_by_id_and_path();
-    _impl_.query_.by_id_and_path_ = by_id_and_path;
-  }
-  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdateJobRequest.by_id_and_path)
-}
-UpdateJobRequest::UpdateJobRequest(::google::protobuf::Arena* arena)
+UpdateJobsRequest::UpdateJobsRequest(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beeremote.UpdateJobRequest)
+  // @@protoc_insertion_point(arena_constructor:beeremote.UpdateJobsRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE UpdateJobRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UpdateJobsRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::beeremote::UpdateJobRequest& from_msg)
-      : query_{},
+    const Impl_& from, const ::beeremote::UpdateJobsRequest& from_msg)
+      : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        _oneof_case_{from._oneof_case_[0]} {}
+        remote_targets_{visibility, arena, from.remote_targets_},
+        path_(arena, from.path_),
+        job_id_(arena, from.job_id_) {}
 
-UpdateJobRequest::UpdateJobRequest(
+UpdateJobsRequest::UpdateJobsRequest(
     ::google::protobuf::Arena* arena,
-    const UpdateJobRequest& from)
+    const UpdateJobsRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  UpdateJobRequest* const _this = this;
+  UpdateJobsRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, new_state_),
+               offsetof(Impl_, force_update_),
            reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, new_state_),
-           offsetof(Impl_, force_update_) -
-               offsetof(Impl_, new_state_) +
-               sizeof(Impl_::force_update_));
-  switch (query_case()) {
-    case QUERY_NOT_SET:
-      break;
-      case kByIdAndPath:
-        _impl_.query_.by_id_and_path_ = ::google::protobuf::Message::CopyConstruct<::beeremote::UpdateJobRequest_QueryIdAndPath>(arena, *from._impl_.query_.by_id_and_path_);
-        break;
-      case kByExactPath:
-        new (&_impl_.query_.by_exact_path_) decltype(_impl_.query_.by_exact_path_){arena, from._impl_.query_.by_exact_path_};
-        break;
-  }
+               offsetof(Impl_, force_update_),
+           offsetof(Impl_, new_state_) -
+               offsetof(Impl_, force_update_) +
+               sizeof(Impl_::new_state_));
 
-  // @@protoc_insertion_point(copy_constructor:beeremote.UpdateJobRequest)
+  // @@protoc_insertion_point(copy_constructor:beeremote.UpdateJobsRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE UpdateJobRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UpdateJobsRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : query_{},
-        _cached_size_{0},
-        _oneof_case_{} {}
+      : _cached_size_{0},
+        remote_targets_{visibility, arena},
+        path_(arena),
+        job_id_(arena) {}
 
-inline void UpdateJobRequest::SharedCtor(::_pb::Arena* arena) {
+inline void UpdateJobsRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, new_state_),
+               offsetof(Impl_, force_update_),
            0,
-           offsetof(Impl_, force_update_) -
-               offsetof(Impl_, new_state_) +
-               sizeof(Impl_::force_update_));
+           offsetof(Impl_, new_state_) -
+               offsetof(Impl_, force_update_) +
+               sizeof(Impl_::new_state_));
 }
-UpdateJobRequest::~UpdateJobRequest() {
-  // @@protoc_insertion_point(destructor:beeremote.UpdateJobRequest)
+UpdateJobsRequest::~UpdateJobsRequest() {
+  // @@protoc_insertion_point(destructor:beeremote.UpdateJobsRequest)
   SharedDtor(*this);
 }
-inline void UpdateJobRequest::SharedDtor(MessageLite& self) {
-  UpdateJobRequest& this_ = static_cast<UpdateJobRequest&>(self);
+inline void UpdateJobsRequest::SharedDtor(MessageLite& self) {
+  UpdateJobsRequest& this_ = static_cast<UpdateJobsRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  if (this_.has_query()) {
-    this_.clear_query();
-  }
+  this_._impl_.path_.Destroy();
+  this_._impl_.job_id_.Destroy();
   this_._impl_.~Impl_();
 }
 
-void UpdateJobRequest::clear_query() {
-// @@protoc_insertion_point(one_of_clear_start:beeremote.UpdateJobRequest)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  switch (query_case()) {
-    case kByIdAndPath: {
-      if (GetArena() == nullptr) {
-        delete _impl_.query_.by_id_and_path_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.query_.by_id_and_path_);
-      }
-      break;
-    }
-    case kByExactPath: {
-      _impl_.query_.by_exact_path_.Destroy();
-      break;
-    }
-    case QUERY_NOT_SET: {
-      break;
-    }
-  }
-  _impl_._oneof_case_[0] = QUERY_NOT_SET;
-}
-
-
-inline void* UpdateJobRequest::PlacementNew_(const void*, void* mem,
+inline void* UpdateJobsRequest::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) UpdateJobRequest(arena);
+  return ::new (mem) UpdateJobsRequest(arena);
 }
-constexpr auto UpdateJobRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(UpdateJobRequest),
-                                            alignof(UpdateJobRequest));
+constexpr auto UpdateJobsRequest::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.remote_targets_) +
+          decltype(UpdateJobsRequest::_impl_.remote_targets_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.remote_targets_) +
+          decltype(UpdateJobsRequest::_impl_.remote_targets_)::
+              InternalGetArenaOffsetAlt(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(UpdateJobsRequest), alignof(UpdateJobsRequest), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&UpdateJobsRequest::PlacementNew_,
+                                 sizeof(UpdateJobsRequest),
+                                 alignof(UpdateJobsRequest));
+  }
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull UpdateJobRequest::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull UpdateJobsRequest::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_UpdateJobRequest_default_instance_._instance,
+        &_UpdateJobsRequest_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &UpdateJobRequest::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<UpdateJobRequest>(),
+        &UpdateJobsRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<UpdateJobsRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &UpdateJobRequest::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<UpdateJobRequest>(), &UpdateJobRequest::ByteSizeLong,
-            &UpdateJobRequest::_InternalSerialize,
+        &UpdateJobsRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<UpdateJobsRequest>(), &UpdateJobsRequest::ByteSizeLong,
+            &UpdateJobsRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_._cached_size_),
         false,
     },
-    &UpdateJobRequest::kDescriptorMethods,
+    &UpdateJobsRequest::kDescriptorMethods,
     &descriptor_table_beeremote_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* UpdateJobRequest::GetClassData() const {
+const ::google::protobuf::internal::ClassData* UpdateJobsRequest::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 4, 1, 48, 2> UpdateJobRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 5, 1, 46, 2> UpdateJobsRequest::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_._has_bits_),
     0, // no _extensions_
-    4, 8,  // max_field_number, fast_idx_mask
+    10, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294966768,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::beeremote::UpdateJobRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::beeremote::UpdateJobsRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // bool force_update = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateJobRequest, _impl_.force_update_), 63>(),
-     {32, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.force_update_)}},
-    // .beeremote.UpdateJobRequest.NewState new_state = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UpdateJobRequest, _impl_.new_state_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.new_state_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateJobsRequest, _impl_.force_update_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.force_update_)}},
+    // string path = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.path_)}},
+    // optional string job_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.job_id_)}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // .beeremote.UpdateJobRequest.QueryIdAndPath by_id_and_path = 1;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.query_.by_id_and_path_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string by_exact_path = 2;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.query_.by_exact_path_), _Internal::kOneofCaseOffset + 0, 0,
-    (0 | ::_fl::kFcOneof | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .beeremote.UpdateJobRequest.NewState new_state = 3;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.new_state_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string path = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.path_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string job_id = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.job_id_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // map<uint32, bool> remote_targets = 3;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.remote_targets_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
     // bool force_update = 4;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.force_update_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.force_update_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // .beeremote.UpdateJobsRequest.NewState new_state = 10;
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.new_state_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::beeremote::UpdateJobRequest_QueryIdAndPath>()},
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(UpdateJobsRequest()._impl_.remote_targets_)>(
+        0, 0, 0, 13,
+        8)},
   }}, {{
-    "\32\0\15\0\0\0\0\0"
-    "beeremote.UpdateJobRequest"
-    "by_exact_path"
+    "\33\4\6\0\0\0\0\0"
+    "beeremote.UpdateJobsRequest"
+    "path"
+    "job_id"
   }},
 };
 
-PROTOBUF_NOINLINE void UpdateJobRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:beeremote.UpdateJobRequest)
+PROTOBUF_NOINLINE void UpdateJobsRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:beeremote.UpdateJobsRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.new_state_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.force_update_) -
-      reinterpret_cast<char*>(&_impl_.new_state_)) + sizeof(_impl_.force_update_));
-  clear_query();
+  _impl_.remote_targets_.Clear();
+  _impl_.path_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.job_id_.ClearNonDefaultToEmpty();
+  }
+  ::memset(&_impl_.force_update_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.new_state_) -
+      reinterpret_cast<char*>(&_impl_.force_update_)) + sizeof(_impl_.new_state_));
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* UpdateJobRequest::_InternalSerialize(
+        ::uint8_t* UpdateJobsRequest::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const UpdateJobRequest& this_ = static_cast<const UpdateJobRequest&>(base);
+          const UpdateJobsRequest& this_ = static_cast<const UpdateJobsRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* UpdateJobRequest::_InternalSerialize(
+        ::uint8_t* UpdateJobsRequest::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const UpdateJobRequest& this_ = *this;
+          const UpdateJobsRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:beeremote.UpdateJobRequest)
+          // @@protoc_insertion_point(serialize_to_array_start:beeremote.UpdateJobsRequest)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          switch (this_.query_case()) {
-            case kByIdAndPath: {
-              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  1, *this_._impl_.query_.by_id_and_path_, this_._impl_.query_.by_id_and_path_->GetCachedSize(), target,
-                  stream);
-              break;
-            }
-            case kByExactPath: {
-              const std::string& _s = this_._internal_by_exact_path();
-              ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                  _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobRequest.by_exact_path");
-              target = stream->WriteStringMaybeAliased(2, _s, target);
-              break;
-            }
-            default:
-              break;
+          // string path = 1;
+          if (!this_._internal_path().empty()) {
+            const std::string& _s = this_._internal_path();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobsRequest.path");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
           }
-          // .beeremote.UpdateJobRequest.NewState new_state = 3;
-          if (this_._internal_new_state() != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                3, this_._internal_new_state(), target);
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // optional string job_id = 2;
+          if (cached_has_bits & 0x00000001u) {
+            const std::string& _s = this_._internal_job_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobsRequest.job_id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // map<uint32, bool> remote_targets = 3;
+          if (!this_._internal_remote_targets().empty()) {
+            using MapType = ::google::protobuf::Map<::uint32_t, bool>;
+            using WireHelper = _pbi::MapEntryFuncs<::uint32_t, bool,
+                                           _pbi::WireFormatLite::TYPE_UINT32,
+                                           _pbi::WireFormatLite::TYPE_BOOL>;
+            const auto& field = this_._internal_remote_targets();
+
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterFlat<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    3, entry.first, entry.second, target, stream);
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    3, entry.first, entry.second, target, stream);
+              }
+            }
           }
 
           // bool force_update = 4;
@@ -3781,23 +3613,30 @@ PROTOBUF_NOINLINE void UpdateJobRequest::Clear() {
                 4, this_._internal_force_update(), target);
           }
 
+          // .beeremote.UpdateJobsRequest.NewState new_state = 10;
+          if (this_._internal_new_state() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                10, this_._internal_new_state(), target);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:beeremote.UpdateJobRequest)
+          // @@protoc_insertion_point(serialize_to_array_end:beeremote.UpdateJobsRequest)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t UpdateJobRequest::ByteSizeLong(const MessageLite& base) {
-          const UpdateJobRequest& this_ = static_cast<const UpdateJobRequest&>(base);
+        ::size_t UpdateJobsRequest::ByteSizeLong(const MessageLite& base) {
+          const UpdateJobsRequest& this_ = static_cast<const UpdateJobsRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t UpdateJobRequest::ByteSizeLong() const {
-          const UpdateJobRequest& this_ = *this;
+        ::size_t UpdateJobsRequest::ByteSizeLong() const {
+          const UpdateJobsRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:beeremote.UpdateJobRequest)
+          // @@protoc_insertion_point(message_byte_size_start:beeremote.UpdateJobsRequest)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -3806,221 +3645,212 @@ PROTOBUF_NOINLINE void UpdateJobRequest::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // .beeremote.UpdateJobRequest.NewState new_state = 3;
-            if (this_._internal_new_state() != 0) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_new_state());
+            // map<uint32, bool> remote_targets = 3;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_remote_targets_size());
+              for (const auto& entry : this_._internal_remote_targets()) {
+                total_size += _pbi::MapEntryFuncs<::uint32_t, bool,
+                                               _pbi::WireFormatLite::TYPE_UINT32,
+                                               _pbi::WireFormatLite::TYPE_BOOL>::ByteSizeLong(entry.first, entry.second);
+              }
             }
+          }
+           {
+            // string path = 1;
+            if (!this_._internal_path().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_path());
+            }
+          }
+           {
+            // optional string job_id = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_job_id());
+            }
+          }
+           {
             // bool force_update = 4;
             if (this_._internal_force_update() != 0) {
               total_size += 2;
             }
-          }
-          switch (this_.query_case()) {
-            // .beeremote.UpdateJobRequest.QueryIdAndPath by_id_and_path = 1;
-            case kByIdAndPath: {
+            // .beeremote.UpdateJobsRequest.NewState new_state = 10;
+            if (this_._internal_new_state() != 0) {
               total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.query_.by_id_and_path_);
-              break;
-            }
-            // string by_exact_path = 2;
-            case kByExactPath: {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_by_exact_path());
-              break;
-            }
-            case QUERY_NOT_SET: {
-              break;
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_new_state());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
 
-void UpdateJobRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<UpdateJobRequest*>(&to_msg);
-  auto& from = static_cast<const UpdateJobRequest&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.UpdateJobRequest)
+void UpdateJobsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UpdateJobsRequest*>(&to_msg);
+  auto& from = static_cast<const UpdateJobsRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.UpdateJobsRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_new_state() != 0) {
-    _this->_impl_.new_state_ = from._impl_.new_state_;
+  _this->_impl_.remote_targets_.MergeFrom(from._impl_.remote_targets_);
+  if (!from._internal_path().empty()) {
+    _this->_internal_set_path(from._internal_path());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _this->_internal_set_job_id(from._internal_job_id());
   }
   if (from._internal_force_update() != 0) {
     _this->_impl_.force_update_ = from._impl_.force_update_;
   }
-  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
-    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
-    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
-    if (oneof_needs_init) {
-      if (oneof_to_case != 0) {
-        _this->clear_query();
-      }
-      _this->_impl_._oneof_case_[0] = oneof_from_case;
-    }
-
-    switch (oneof_from_case) {
-      case kByIdAndPath: {
-        if (oneof_needs_init) {
-          _this->_impl_.query_.by_id_and_path_ =
-              ::google::protobuf::Message::CopyConstruct<::beeremote::UpdateJobRequest_QueryIdAndPath>(arena, *from._impl_.query_.by_id_and_path_);
-        } else {
-          _this->_impl_.query_.by_id_and_path_->MergeFrom(from._internal_by_id_and_path());
-        }
-        break;
-      }
-      case kByExactPath: {
-        if (oneof_needs_init) {
-          _this->_impl_.query_.by_exact_path_.InitDefault();
-        }
-        _this->_impl_.query_.by_exact_path_.Set(from._internal_by_exact_path(), arena);
-        break;
-      }
-      case QUERY_NOT_SET:
-        break;
-    }
+  if (from._internal_new_state() != 0) {
+    _this->_impl_.new_state_ = from._impl_.new_state_;
   }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UpdateJobRequest::CopyFrom(const UpdateJobRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.UpdateJobRequest)
+void UpdateJobsRequest::CopyFrom(const UpdateJobsRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.UpdateJobsRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void UpdateJobRequest::InternalSwap(UpdateJobRequest* PROTOBUF_RESTRICT other) {
+void UpdateJobsRequest::InternalSwap(UpdateJobsRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.remote_targets_.InternalSwap(&other->_impl_.remote_targets_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, &other->_impl_.path_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.job_id_, &other->_impl_.job_id_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.force_update_)
-      + sizeof(UpdateJobRequest::_impl_.force_update_)
-      - PROTOBUF_FIELD_OFFSET(UpdateJobRequest, _impl_.new_state_)>(
-          reinterpret_cast<char*>(&_impl_.new_state_),
-          reinterpret_cast<char*>(&other->_impl_.new_state_));
-  swap(_impl_.query_, other->_impl_.query_);
-  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+      PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.new_state_)
+      + sizeof(UpdateJobsRequest::_impl_.new_state_)
+      - PROTOBUF_FIELD_OFFSET(UpdateJobsRequest, _impl_.force_update_)>(
+          reinterpret_cast<char*>(&_impl_.force_update_),
+          reinterpret_cast<char*>(&other->_impl_.force_update_));
 }
 
-::google::protobuf::Metadata UpdateJobRequest::GetMetadata() const {
+::google::protobuf::Metadata UpdateJobsRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class UpdateJobResponse::_Internal {
+class UpdateJobsResponse::_Internal {
  public:
 };
 
-UpdateJobResponse::UpdateJobResponse(::google::protobuf::Arena* arena)
+UpdateJobsResponse::UpdateJobsResponse(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:beeremote.UpdateJobResponse)
+  // @@protoc_insertion_point(arena_constructor:beeremote.UpdateJobsResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE UpdateJobResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UpdateJobsResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::beeremote::UpdateJobResponse& from_msg)
+    const Impl_& from, const ::beeremote::UpdateJobsResponse& from_msg)
       : results_{visibility, arena, from.results_},
         message_(arena, from.message_),
         _cached_size_{0} {}
 
-UpdateJobResponse::UpdateJobResponse(
+UpdateJobsResponse::UpdateJobsResponse(
     ::google::protobuf::Arena* arena,
-    const UpdateJobResponse& from)
+    const UpdateJobsResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  UpdateJobResponse* const _this = this;
+  UpdateJobsResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   _impl_.ok_ = from._impl_.ok_;
 
-  // @@protoc_insertion_point(copy_constructor:beeremote.UpdateJobResponse)
+  // @@protoc_insertion_point(copy_constructor:beeremote.UpdateJobsResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE UpdateJobResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UpdateJobsResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : results_{visibility, arena},
         message_(arena),
         _cached_size_{0} {}
 
-inline void UpdateJobResponse::SharedCtor(::_pb::Arena* arena) {
+inline void UpdateJobsResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.ok_ = {};
 }
-UpdateJobResponse::~UpdateJobResponse() {
-  // @@protoc_insertion_point(destructor:beeremote.UpdateJobResponse)
+UpdateJobsResponse::~UpdateJobsResponse() {
+  // @@protoc_insertion_point(destructor:beeremote.UpdateJobsResponse)
   SharedDtor(*this);
 }
-inline void UpdateJobResponse::SharedDtor(MessageLite& self) {
-  UpdateJobResponse& this_ = static_cast<UpdateJobResponse&>(self);
+inline void UpdateJobsResponse::SharedDtor(MessageLite& self) {
+  UpdateJobsResponse& this_ = static_cast<UpdateJobsResponse&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.message_.Destroy();
   this_._impl_.~Impl_();
 }
 
-inline void* UpdateJobResponse::PlacementNew_(const void*, void* mem,
+inline void* UpdateJobsResponse::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) UpdateJobResponse(arena);
+  return ::new (mem) UpdateJobsResponse(arena);
 }
-constexpr auto UpdateJobResponse::InternalNewImpl_() {
+constexpr auto UpdateJobsResponse::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.results_) +
-          decltype(UpdateJobResponse::_impl_.results_)::
+      PROTOBUF_FIELD_OFFSET(UpdateJobsResponse, _impl_.results_) +
+          decltype(UpdateJobsResponse::_impl_.results_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
   if (arena_bits.has_value()) {
     return ::google::protobuf::internal::MessageCreator::CopyInit(
-        sizeof(UpdateJobResponse), alignof(UpdateJobResponse), *arena_bits);
+        sizeof(UpdateJobsResponse), alignof(UpdateJobsResponse), *arena_bits);
   } else {
-    return ::google::protobuf::internal::MessageCreator(&UpdateJobResponse::PlacementNew_,
-                                 sizeof(UpdateJobResponse),
-                                 alignof(UpdateJobResponse));
+    return ::google::protobuf::internal::MessageCreator(&UpdateJobsResponse::PlacementNew_,
+                                 sizeof(UpdateJobsResponse),
+                                 alignof(UpdateJobsResponse));
   }
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull UpdateJobResponse::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull UpdateJobsResponse::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_UpdateJobResponse_default_instance_._instance,
+        &_UpdateJobsResponse_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &UpdateJobResponse::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<UpdateJobResponse>(),
+        &UpdateJobsResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<UpdateJobsResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &UpdateJobResponse::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<UpdateJobResponse>(), &UpdateJobResponse::ByteSizeLong,
-            &UpdateJobResponse::_InternalSerialize,
+        &UpdateJobsResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<UpdateJobsResponse>(), &UpdateJobsResponse::ByteSizeLong,
+            &UpdateJobsResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(UpdateJobsResponse, _impl_._cached_size_),
         false,
     },
-    &UpdateJobResponse::kDescriptorMethods,
+    &UpdateJobsResponse::kDescriptorMethods,
     &descriptor_table_beeremote_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* UpdateJobResponse::GetClassData() const {
+const ::google::protobuf::internal::ClassData* UpdateJobsResponse::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 43, 2> UpdateJobResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 44, 2> UpdateJobsResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -4035,42 +3865,42 @@ const ::_pbi::TcParseTable<2, 3, 1, 43, 2> UpdateJobResponse::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::beeremote::UpdateJobResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::beeremote::UpdateJobsResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // bool ok = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateJobResponse, _impl_.ok_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.ok_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateJobsResponse, _impl_.ok_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobsResponse, _impl_.ok_)}},
     // string message = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobsResponse, _impl_.message_)}},
     // repeated .beeremote.JobResult results = 3;
     {::_pbi::TcParser::FastMtR1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.results_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateJobsResponse, _impl_.results_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool ok = 1;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.ok_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsResponse, _impl_.ok_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // string message = 2;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsResponse, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated .beeremote.JobResult results = 3;
-    {PROTOBUF_FIELD_OFFSET(UpdateJobResponse, _impl_.results_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateJobsResponse, _impl_.results_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beeremote::JobResult>()},
   }}, {{
-    "\33\0\7\0\0\0\0\0"
-    "beeremote.UpdateJobResponse"
+    "\34\0\7\0\0\0\0\0"
+    "beeremote.UpdateJobsResponse"
     "message"
   }},
 };
 
-PROTOBUF_NOINLINE void UpdateJobResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:beeremote.UpdateJobResponse)
+PROTOBUF_NOINLINE void UpdateJobsResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:beeremote.UpdateJobsResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -4083,17 +3913,17 @@ PROTOBUF_NOINLINE void UpdateJobResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* UpdateJobResponse::_InternalSerialize(
+        ::uint8_t* UpdateJobsResponse::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const UpdateJobResponse& this_ = static_cast<const UpdateJobResponse&>(base);
+          const UpdateJobsResponse& this_ = static_cast<const UpdateJobsResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* UpdateJobResponse::_InternalSerialize(
+        ::uint8_t* UpdateJobsResponse::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const UpdateJobResponse& this_ = *this;
+          const UpdateJobsResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:beeremote.UpdateJobResponse)
+          // @@protoc_insertion_point(serialize_to_array_start:beeremote.UpdateJobsResponse)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
@@ -4108,7 +3938,7 @@ PROTOBUF_NOINLINE void UpdateJobResponse::Clear() {
           if (!this_._internal_message().empty()) {
             const std::string& _s = this_._internal_message();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobResponse.message");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beeremote.UpdateJobsResponse.message");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -4128,18 +3958,18 @@ PROTOBUF_NOINLINE void UpdateJobResponse::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:beeremote.UpdateJobResponse)
+          // @@protoc_insertion_point(serialize_to_array_end:beeremote.UpdateJobsResponse)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t UpdateJobResponse::ByteSizeLong(const MessageLite& base) {
-          const UpdateJobResponse& this_ = static_cast<const UpdateJobResponse&>(base);
+        ::size_t UpdateJobsResponse::ByteSizeLong(const MessageLite& base) {
+          const UpdateJobsResponse& this_ = static_cast<const UpdateJobsResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t UpdateJobResponse::ByteSizeLong() const {
-          const UpdateJobResponse& this_ = *this;
+        ::size_t UpdateJobsResponse::ByteSizeLong() const {
+          const UpdateJobsResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:beeremote.UpdateJobResponse)
+          // @@protoc_insertion_point(message_byte_size_start:beeremote.UpdateJobsResponse)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -4171,10 +4001,10 @@ PROTOBUF_NOINLINE void UpdateJobResponse::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void UpdateJobResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<UpdateJobResponse*>(&to_msg);
-  auto& from = static_cast<const UpdateJobResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.UpdateJobResponse)
+void UpdateJobsResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<UpdateJobsResponse*>(&to_msg);
+  auto& from = static_cast<const UpdateJobsResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beeremote.UpdateJobsResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -4190,15 +4020,15 @@ void UpdateJobResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UpdateJobResponse::CopyFrom(const UpdateJobResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.UpdateJobResponse)
+void UpdateJobsResponse::CopyFrom(const UpdateJobsResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beeremote.UpdateJobsResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void UpdateJobResponse::InternalSwap(UpdateJobResponse* PROTOBUF_RESTRICT other) {
+void UpdateJobsResponse::InternalSwap(UpdateJobsResponse* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -4208,7 +4038,7 @@ void UpdateJobResponse::InternalSwap(UpdateJobResponse* PROTOBUF_RESTRICT other)
         swap(_impl_.ok_, other->_impl_.ok_);
 }
 
-::google::protobuf::Metadata UpdateJobResponse::GetMetadata() const {
+::google::protobuf::Metadata UpdateJobsResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
