@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 // with BeeRemote.
 service BeeRemote {
     rpc SubmitJob(SubmitJobRequest) returns (SubmitJobResponse);
+    rpc UpdatePaths(UpdatePathsRequest) returns (stream UpdatePathsResponse);
     rpc UpdateJobs(UpdateJobsRequest) returns(UpdateJobsResponse);
     rpc GetJobs(GetJobsRequest) returns (stream GetJobsResponse);
     // Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
@@ -154,8 +155,20 @@ message JobResult {
     }
 }
 
+message UpdatePathsRequest {
+    string path_prefix = 1;
+    UpdateJobsRequest requested_update = 2;
+}
+
+message UpdatePathsResponse {
+    string path = 1;
+    UpdateJobsResponse update_result = 2;
+}
+
+// UpdateJobsRequest is used to update one or more jobs for a particular path.
 message UpdateJobsRequest { 
-    // Required: The path with the job(s) to update.
+    // The path with the job(s) to update. Ignored when updating multiple paths via
+    // UpdatePathsRequest.
     string path = 1;
     // Optional: Only update a single job for the specified path. If this job ID is not found for
     // the specified path, the response will be !ok.
@@ -179,15 +192,13 @@ message UpdateJobsRequest {
     bool force_update = 4;
 }
 
-// Updating jobs can happen asynchronously or synchronously depending if wait is set in the
-// UpdateJobRequest.If wait == true then JobResponses will contain one or more job responses with
-// the updated status of the job(s). Otherwise it will be empty.
+// UpdateJobsResponse returns the result of updating one or more job(s) for a particular path.
 message UpdateJobsResponse {
-    // If the newState could not be applied to any of the jobs then ok will be false. Inspect the
-    // message and individual job responses to troubleshoot further. Generally the message will
-    // indicate any internal errors whereas the status of individual jobs will indicate problems
-    // applying the new state to that particular job.
+    // Required: If the newState could not be applied to any of the jobs then ok will be false.
+    // Inspect the message and individual job responses to troubleshoot further. 
     bool ok = 1;
+    // Required: Generally the message will indicate any overall errors applying the update whereas
+    // the status of individual jobs will indicate problems applying updates to a particular job.
     string message = 2;
     repeated JobResult results = 3;
 }

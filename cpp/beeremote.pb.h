@@ -104,6 +104,12 @@ extern UpdateJobsRequest_RemoteTargetsEntry_DoNotUseDefaultTypeInternal _UpdateJ
 class UpdateJobsResponse;
 struct UpdateJobsResponseDefaultTypeInternal;
 extern UpdateJobsResponseDefaultTypeInternal _UpdateJobsResponse_default_instance_;
+class UpdatePathsRequest;
+struct UpdatePathsRequestDefaultTypeInternal;
+extern UpdatePathsRequestDefaultTypeInternal _UpdatePathsRequest_default_instance_;
+class UpdatePathsResponse;
+struct UpdatePathsResponseDefaultTypeInternal;
+extern UpdatePathsResponseDefaultTypeInternal _UpdatePathsResponse_default_instance_;
 class UpdateWorkRequest;
 struct UpdateWorkRequestDefaultTypeInternal;
 extern UpdateWorkRequestDefaultTypeInternal _UpdateWorkRequest_default_instance_;
@@ -255,7 +261,7 @@ class UpdateWorkResponse final : public ::google::protobuf::internal::ZeroFields
     return reinterpret_cast<const UpdateWorkResponse*>(
         &_UpdateWorkResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(UpdateWorkResponse& a, UpdateWorkResponse& b) { a.Swap(&b); }
   inline void Swap(UpdateWorkResponse* other) {
     if (other == this) return;
@@ -439,7 +445,7 @@ class GetRSTConfigRequest final : public ::google::protobuf::internal::ZeroField
     return reinterpret_cast<const GetRSTConfigRequest*>(
         &_GetRSTConfigRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(GetRSTConfigRequest& a, GetRSTConfigRequest& b) { a.Swap(&b); }
   inline void Swap(GetRSTConfigRequest* other) {
     if (other == this) return;
@@ -585,7 +591,7 @@ class GetJobsRequest_QueryIdAndPath final : public ::google::protobuf::Message
     return reinterpret_cast<const GetJobsRequest_QueryIdAndPath*>(
         &_GetJobsRequest_QueryIdAndPath_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(GetJobsRequest_QueryIdAndPath& a, GetJobsRequest_QueryIdAndPath& b) { a.Swap(&b); }
   inline void Swap(GetJobsRequest_QueryIdAndPath* other) {
     if (other == this) return;
@@ -799,7 +805,7 @@ class UpdateJobsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateJobsRequest*>(
         &_UpdateJobsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(UpdateJobsRequest& a, UpdateJobsRequest& b) { a.Swap(&b); }
   inline void Swap(UpdateJobsRequest* other) {
     if (other == this) return;
@@ -1607,7 +1613,7 @@ class GetJobsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetJobsRequest*>(
         &_GetJobsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(GetJobsRequest& a, GetJobsRequest& b) { a.Swap(&b); }
   inline void Swap(GetJobsRequest* other) {
     if (other == this) return;
@@ -1893,7 +1899,7 @@ class UpdateWorkRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateWorkRequest*>(
         &_UpdateWorkRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(UpdateWorkRequest& a, UpdateWorkRequest& b) { a.Swap(&b); }
   inline void Swap(UpdateWorkRequest* other) {
     if (other == this) return;
@@ -2023,6 +2029,220 @@ class UpdateWorkRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::flex::Work* work_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beeremote_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdatePathsRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beeremote.UpdatePathsRequest) */ {
+ public:
+  inline UpdatePathsRequest() : UpdatePathsRequest(nullptr) {}
+  ~UpdatePathsRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UpdatePathsRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdatePathsRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UpdatePathsRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UpdatePathsRequest(const UpdatePathsRequest& from) : UpdatePathsRequest(nullptr, from) {}
+  inline UpdatePathsRequest(UpdatePathsRequest&& from) noexcept
+      : UpdatePathsRequest(nullptr, std::move(from)) {}
+  inline UpdatePathsRequest& operator=(const UpdatePathsRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdatePathsRequest& operator=(UpdatePathsRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdatePathsRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdatePathsRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdatePathsRequest*>(
+        &_UpdatePathsRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(UpdatePathsRequest& a, UpdatePathsRequest& b) { a.Swap(&b); }
+  inline void Swap(UpdatePathsRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdatePathsRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdatePathsRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UpdatePathsRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UpdatePathsRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UpdatePathsRequest& from) { UpdatePathsRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UpdatePathsRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beeremote.UpdatePathsRequest"; }
+
+ protected:
+  explicit UpdatePathsRequest(::google::protobuf::Arena* arena);
+  UpdatePathsRequest(::google::protobuf::Arena* arena, const UpdatePathsRequest& from);
+  UpdatePathsRequest(::google::protobuf::Arena* arena, UpdatePathsRequest&& from) noexcept
+      : UpdatePathsRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPathPrefixFieldNumber = 1,
+    kRequestedUpdateFieldNumber = 2,
+  };
+  // string path_prefix = 1;
+  void clear_path_prefix() ;
+  const std::string& path_prefix() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_path_prefix(Arg_&& arg, Args_... args);
+  std::string* mutable_path_prefix();
+  PROTOBUF_NODISCARD std::string* release_path_prefix();
+  void set_allocated_path_prefix(std::string* value);
+
+  private:
+  const std::string& _internal_path_prefix() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_path_prefix(
+      const std::string& value);
+  std::string* _internal_mutable_path_prefix();
+
+  public:
+  // .beeremote.UpdateJobsRequest requested_update = 2;
+  bool has_requested_update() const;
+  void clear_requested_update() ;
+  const ::beeremote::UpdateJobsRequest& requested_update() const;
+  PROTOBUF_NODISCARD ::beeremote::UpdateJobsRequest* release_requested_update();
+  ::beeremote::UpdateJobsRequest* mutable_requested_update();
+  void set_allocated_requested_update(::beeremote::UpdateJobsRequest* value);
+  void unsafe_arena_set_allocated_requested_update(::beeremote::UpdateJobsRequest* value);
+  ::beeremote::UpdateJobsRequest* unsafe_arena_release_requested_update();
+
+  private:
+  const ::beeremote::UpdateJobsRequest& _internal_requested_update() const;
+  ::beeremote::UpdateJobsRequest* _internal_mutable_requested_update();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beeremote.UpdatePathsRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      48, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UpdatePathsRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr path_prefix_;
+    ::beeremote::UpdateJobsRequest* requested_update_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3045,7 +3265,7 @@ class GetRSTConfigResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetRSTConfigResponse*>(
         &_GetRSTConfigResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(GetRSTConfigResponse& a, GetRSTConfigResponse& b) { a.Swap(&b); }
   inline void Swap(GetRSTConfigResponse* other) {
     if (other == this) return;
@@ -3242,7 +3462,7 @@ class UpdateJobsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateJobsResponse*>(
         &_UpdateJobsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(UpdateJobsResponse& a, UpdateJobsResponse& b) { a.Swap(&b); }
   inline void Swap(UpdateJobsResponse* other) {
     if (other == this) return;
@@ -3665,7 +3885,7 @@ class GetJobsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetJobsResponse*>(
         &_GetJobsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(GetJobsResponse& a, GetJobsResponse& b) { a.Swap(&b); }
   inline void Swap(GetJobsResponse* other) {
     if (other == this) return;
@@ -3814,6 +4034,220 @@ class GetJobsResponse final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedPtrField< ::beeremote::JobResult > results_;
     ::google::protobuf::internal::ArenaStringPtr path_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beeremote_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UpdatePathsResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beeremote.UpdatePathsResponse) */ {
+ public:
+  inline UpdatePathsResponse() : UpdatePathsResponse(nullptr) {}
+  ~UpdatePathsResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UpdatePathsResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdatePathsResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UpdatePathsResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UpdatePathsResponse(const UpdatePathsResponse& from) : UpdatePathsResponse(nullptr, from) {}
+  inline UpdatePathsResponse(UpdatePathsResponse&& from) noexcept
+      : UpdatePathsResponse(nullptr, std::move(from)) {}
+  inline UpdatePathsResponse& operator=(const UpdatePathsResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdatePathsResponse& operator=(UpdatePathsResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdatePathsResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdatePathsResponse* internal_default_instance() {
+    return reinterpret_cast<const UpdatePathsResponse*>(
+        &_UpdatePathsResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(UpdatePathsResponse& a, UpdatePathsResponse& b) { a.Swap(&b); }
+  inline void Swap(UpdatePathsResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdatePathsResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdatePathsResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UpdatePathsResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UpdatePathsResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UpdatePathsResponse& from) { UpdatePathsResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UpdatePathsResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beeremote.UpdatePathsResponse"; }
+
+ protected:
+  explicit UpdatePathsResponse(::google::protobuf::Arena* arena);
+  UpdatePathsResponse(::google::protobuf::Arena* arena, const UpdatePathsResponse& from);
+  UpdatePathsResponse(::google::protobuf::Arena* arena, UpdatePathsResponse&& from) noexcept
+      : UpdatePathsResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPathFieldNumber = 1,
+    kUpdateResultFieldNumber = 2,
+  };
+  // string path = 1;
+  void clear_path() ;
+  const std::string& path() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_path(Arg_&& arg, Args_... args);
+  std::string* mutable_path();
+  PROTOBUF_NODISCARD std::string* release_path();
+  void set_allocated_path(std::string* value);
+
+  private:
+  const std::string& _internal_path() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_path(
+      const std::string& value);
+  std::string* _internal_mutable_path();
+
+  public:
+  // .beeremote.UpdateJobsResponse update_result = 2;
+  bool has_update_result() const;
+  void clear_update_result() ;
+  const ::beeremote::UpdateJobsResponse& update_result() const;
+  PROTOBUF_NODISCARD ::beeremote::UpdateJobsResponse* release_update_result();
+  ::beeremote::UpdateJobsResponse* mutable_update_result();
+  void set_allocated_update_result(::beeremote::UpdateJobsResponse* value);
+  void unsafe_arena_set_allocated_update_result(::beeremote::UpdateJobsResponse* value);
+  ::beeremote::UpdateJobsResponse* unsafe_arena_release_update_result();
+
+  private:
+  const ::beeremote::UpdateJobsResponse& _internal_update_result() const;
+  ::beeremote::UpdateJobsResponse* _internal_mutable_update_result();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beeremote.UpdatePathsResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      42, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UpdatePathsResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr path_;
+    ::beeremote::UpdateJobsResponse* update_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5252,6 +5686,302 @@ inline ::google::protobuf::RepeatedPtrField<::beeremote::JobResult_WorkResult>*
 JobResult::_internal_mutable_work_results() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.work_results_;
+}
+
+// -------------------------------------------------------------------
+
+// UpdatePathsRequest
+
+// string path_prefix = 1;
+inline void UpdatePathsRequest::clear_path_prefix() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.path_prefix_.ClearToEmpty();
+}
+inline const std::string& UpdatePathsRequest::path_prefix() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.UpdatePathsRequest.path_prefix)
+  return _internal_path_prefix();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UpdatePathsRequest::set_path_prefix(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.path_prefix_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beeremote.UpdatePathsRequest.path_prefix)
+}
+inline std::string* UpdatePathsRequest::mutable_path_prefix() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_path_prefix();
+  // @@protoc_insertion_point(field_mutable:beeremote.UpdatePathsRequest.path_prefix)
+  return _s;
+}
+inline const std::string& UpdatePathsRequest::_internal_path_prefix() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.path_prefix_.Get();
+}
+inline void UpdatePathsRequest::_internal_set_path_prefix(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.path_prefix_.Set(value, GetArena());
+}
+inline std::string* UpdatePathsRequest::_internal_mutable_path_prefix() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.path_prefix_.Mutable( GetArena());
+}
+inline std::string* UpdatePathsRequest::release_path_prefix() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.UpdatePathsRequest.path_prefix)
+  return _impl_.path_prefix_.Release();
+}
+inline void UpdatePathsRequest::set_allocated_path_prefix(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.path_prefix_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.path_prefix_.IsDefault()) {
+    _impl_.path_prefix_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdatePathsRequest.path_prefix)
+}
+
+// .beeremote.UpdateJobsRequest requested_update = 2;
+inline bool UpdatePathsRequest::has_requested_update() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.requested_update_ != nullptr);
+  return value;
+}
+inline void UpdatePathsRequest::clear_requested_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.requested_update_ != nullptr) _impl_.requested_update_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beeremote::UpdateJobsRequest& UpdatePathsRequest::_internal_requested_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beeremote::UpdateJobsRequest* p = _impl_.requested_update_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beeremote::UpdateJobsRequest&>(::beeremote::_UpdateJobsRequest_default_instance_);
+}
+inline const ::beeremote::UpdateJobsRequest& UpdatePathsRequest::requested_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.UpdatePathsRequest.requested_update)
+  return _internal_requested_update();
+}
+inline void UpdatePathsRequest::unsafe_arena_set_allocated_requested_update(::beeremote::UpdateJobsRequest* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.requested_update_);
+  }
+  _impl_.requested_update_ = reinterpret_cast<::beeremote::UpdateJobsRequest*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.UpdatePathsRequest.requested_update)
+}
+inline ::beeremote::UpdateJobsRequest* UpdatePathsRequest::release_requested_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beeremote::UpdateJobsRequest* released = _impl_.requested_update_;
+  _impl_.requested_update_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beeremote::UpdateJobsRequest* UpdatePathsRequest::unsafe_arena_release_requested_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.UpdatePathsRequest.requested_update)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beeremote::UpdateJobsRequest* temp = _impl_.requested_update_;
+  _impl_.requested_update_ = nullptr;
+  return temp;
+}
+inline ::beeremote::UpdateJobsRequest* UpdatePathsRequest::_internal_mutable_requested_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.requested_update_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beeremote::UpdateJobsRequest>(GetArena());
+    _impl_.requested_update_ = reinterpret_cast<::beeremote::UpdateJobsRequest*>(p);
+  }
+  return _impl_.requested_update_;
+}
+inline ::beeremote::UpdateJobsRequest* UpdatePathsRequest::mutable_requested_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beeremote::UpdateJobsRequest* _msg = _internal_mutable_requested_update();
+  // @@protoc_insertion_point(field_mutable:beeremote.UpdatePathsRequest.requested_update)
+  return _msg;
+}
+inline void UpdatePathsRequest::set_allocated_requested_update(::beeremote::UpdateJobsRequest* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.requested_update_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.requested_update_ = reinterpret_cast<::beeremote::UpdateJobsRequest*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdatePathsRequest.requested_update)
+}
+
+// -------------------------------------------------------------------
+
+// UpdatePathsResponse
+
+// string path = 1;
+inline void UpdatePathsResponse::clear_path() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.path_.ClearToEmpty();
+}
+inline const std::string& UpdatePathsResponse::path() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.UpdatePathsResponse.path)
+  return _internal_path();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UpdatePathsResponse::set_path(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.path_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beeremote.UpdatePathsResponse.path)
+}
+inline std::string* UpdatePathsResponse::mutable_path() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_path();
+  // @@protoc_insertion_point(field_mutable:beeremote.UpdatePathsResponse.path)
+  return _s;
+}
+inline const std::string& UpdatePathsResponse::_internal_path() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.path_.Get();
+}
+inline void UpdatePathsResponse::_internal_set_path(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.path_.Set(value, GetArena());
+}
+inline std::string* UpdatePathsResponse::_internal_mutable_path() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.path_.Mutable( GetArena());
+}
+inline std::string* UpdatePathsResponse::release_path() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.UpdatePathsResponse.path)
+  return _impl_.path_.Release();
+}
+inline void UpdatePathsResponse::set_allocated_path(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.path_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.path_.IsDefault()) {
+    _impl_.path_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdatePathsResponse.path)
+}
+
+// .beeremote.UpdateJobsResponse update_result = 2;
+inline bool UpdatePathsResponse::has_update_result() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.update_result_ != nullptr);
+  return value;
+}
+inline void UpdatePathsResponse::clear_update_result() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.update_result_ != nullptr) _impl_.update_result_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beeremote::UpdateJobsResponse& UpdatePathsResponse::_internal_update_result() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beeremote::UpdateJobsResponse* p = _impl_.update_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beeremote::UpdateJobsResponse&>(::beeremote::_UpdateJobsResponse_default_instance_);
+}
+inline const ::beeremote::UpdateJobsResponse& UpdatePathsResponse::update_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.UpdatePathsResponse.update_result)
+  return _internal_update_result();
+}
+inline void UpdatePathsResponse::unsafe_arena_set_allocated_update_result(::beeremote::UpdateJobsResponse* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.update_result_);
+  }
+  _impl_.update_result_ = reinterpret_cast<::beeremote::UpdateJobsResponse*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.UpdatePathsResponse.update_result)
+}
+inline ::beeremote::UpdateJobsResponse* UpdatePathsResponse::release_update_result() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beeremote::UpdateJobsResponse* released = _impl_.update_result_;
+  _impl_.update_result_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beeremote::UpdateJobsResponse* UpdatePathsResponse::unsafe_arena_release_update_result() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.UpdatePathsResponse.update_result)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beeremote::UpdateJobsResponse* temp = _impl_.update_result_;
+  _impl_.update_result_ = nullptr;
+  return temp;
+}
+inline ::beeremote::UpdateJobsResponse* UpdatePathsResponse::_internal_mutable_update_result() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.update_result_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beeremote::UpdateJobsResponse>(GetArena());
+    _impl_.update_result_ = reinterpret_cast<::beeremote::UpdateJobsResponse*>(p);
+  }
+  return _impl_.update_result_;
+}
+inline ::beeremote::UpdateJobsResponse* UpdatePathsResponse::mutable_update_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beeremote::UpdateJobsResponse* _msg = _internal_mutable_update_result();
+  // @@protoc_insertion_point(field_mutable:beeremote.UpdatePathsResponse.update_result)
+  return _msg;
+}
+inline void UpdatePathsResponse::set_allocated_update_result(::beeremote::UpdateJobsResponse* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.update_result_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.update_result_ = reinterpret_cast<::beeremote::UpdateJobsResponse*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beeremote.UpdatePathsResponse.update_result)
 }
 
 // -------------------------------------------------------------------

@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	BeeRemote_SubmitJob_FullMethodName    = "/beeremote.BeeRemote/SubmitJob"
+	BeeRemote_UpdatePaths_FullMethodName  = "/beeremote.BeeRemote/UpdatePaths"
 	BeeRemote_UpdateJobs_FullMethodName   = "/beeremote.BeeRemote/UpdateJobs"
 	BeeRemote_GetJobs_FullMethodName      = "/beeremote.BeeRemote/GetJobs"
 	BeeRemote_UpdateWork_FullMethodName   = "/beeremote.BeeRemote/UpdateWork"
@@ -34,6 +35,7 @@ const (
 // with BeeRemote.
 type BeeRemoteClient interface {
 	SubmitJob(ctx context.Context, in *SubmitJobRequest, opts ...grpc.CallOption) (*SubmitJobResponse, error)
+	UpdatePaths(ctx context.Context, in *UpdatePathsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[UpdatePathsResponse], error)
 	UpdateJobs(ctx context.Context, in *UpdateJobsRequest, opts ...grpc.CallOption) (*UpdateJobsResponse, error)
 	GetJobs(ctx context.Context, in *GetJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetJobsResponse], error)
 	// Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
@@ -67,6 +69,25 @@ func (c *beeRemoteClient) SubmitJob(ctx context.Context, in *SubmitJobRequest, o
 	return out, nil
 }
 
+func (c *beeRemoteClient) UpdatePaths(ctx context.Context, in *UpdatePathsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[UpdatePathsResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &BeeRemote_ServiceDesc.Streams[0], BeeRemote_UpdatePaths_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[UpdatePathsRequest, UpdatePathsResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type BeeRemote_UpdatePathsClient = grpc.ServerStreamingClient[UpdatePathsResponse]
+
 func (c *beeRemoteClient) UpdateJobs(ctx context.Context, in *UpdateJobsRequest, opts ...grpc.CallOption) (*UpdateJobsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateJobsResponse)
@@ -79,7 +100,7 @@ func (c *beeRemoteClient) UpdateJobs(ctx context.Context, in *UpdateJobsRequest,
 
 func (c *beeRemoteClient) GetJobs(ctx context.Context, in *GetJobsRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetJobsResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &BeeRemote_ServiceDesc.Streams[0], BeeRemote_GetJobs_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &BeeRemote_ServiceDesc.Streams[1], BeeRemote_GetJobs_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -124,6 +145,7 @@ func (c *beeRemoteClient) GetRSTConfig(ctx context.Context, in *GetRSTConfigRequ
 // with BeeRemote.
 type BeeRemoteServer interface {
 	SubmitJob(context.Context, *SubmitJobRequest) (*SubmitJobResponse, error)
+	UpdatePaths(*UpdatePathsRequest, grpc.ServerStreamingServer[UpdatePathsResponse]) error
 	UpdateJobs(context.Context, *UpdateJobsRequest) (*UpdateJobsResponse, error)
 	GetJobs(*GetJobsRequest, grpc.ServerStreamingServer[GetJobsResponse]) error
 	// Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
@@ -149,6 +171,9 @@ type UnimplementedBeeRemoteServer struct{}
 
 func (UnimplementedBeeRemoteServer) SubmitJob(context.Context, *SubmitJobRequest) (*SubmitJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitJob not implemented")
+}
+func (UnimplementedBeeRemoteServer) UpdatePaths(*UpdatePathsRequest, grpc.ServerStreamingServer[UpdatePathsResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method UpdatePaths not implemented")
 }
 func (UnimplementedBeeRemoteServer) UpdateJobs(context.Context, *UpdateJobsRequest) (*UpdateJobsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateJobs not implemented")
@@ -200,6 +225,17 @@ func _BeeRemote_SubmitJob_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	return interceptor(ctx, in, info, handler)
 }
+
+func _BeeRemote_UpdatePaths_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(UpdatePathsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(BeeRemoteServer).UpdatePaths(m, &grpc.GenericServerStream[UpdatePathsRequest, UpdatePathsResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type BeeRemote_UpdatePathsServer = grpc.ServerStreamingServer[UpdatePathsResponse]
 
 func _BeeRemote_UpdateJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateJobsRequest)
@@ -291,6 +327,11 @@ var BeeRemote_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "UpdatePaths",
+			Handler:       _BeeRemote_UpdatePaths_Handler,
+			ServerStreams: true,
+		},
 		{
 			StreamName:    "GetJobs",
 			Handler:       _BeeRemote_GetJobs_Handler,
