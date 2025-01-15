@@ -3976,32 +3976,52 @@ class GetQuotaUsageRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kQuotaIdListFieldNumber = 6,
-    kPoolFieldNumber = 4,
-    kQuotaIdMinFieldNumber = 1,
-    kQuotaIdMaxFieldNumber = 2,
-    kIdTypeFieldNumber = 3,
-    kExceededFieldNumber = 5,
+    kUserIdListFieldNumber = 3,
+    kGroupIdListFieldNumber = 6,
+    kPoolFieldNumber = 7,
+    kUserIdMinFieldNumber = 1,
+    kUserIdMaxFieldNumber = 2,
+    kGroupIdMinFieldNumber = 4,
+    kGroupIdMaxFieldNumber = 5,
+    kExceededFieldNumber = 8,
   };
-  // repeated uint32 quota_id_list = 6;
-  int quota_id_list_size() const;
+  // repeated uint32 user_id_list = 3;
+  int user_id_list_size() const;
   private:
-  int _internal_quota_id_list_size() const;
+  int _internal_user_id_list_size() const;
 
   public:
-  void clear_quota_id_list() ;
-  ::uint32_t quota_id_list(int index) const;
-  void set_quota_id_list(int index, ::uint32_t value);
-  void add_quota_id_list(::uint32_t value);
-  const ::google::protobuf::RepeatedField<::uint32_t>& quota_id_list() const;
-  ::google::protobuf::RepeatedField<::uint32_t>* mutable_quota_id_list();
+  void clear_user_id_list() ;
+  ::uint32_t user_id_list(int index) const;
+  void set_user_id_list(int index, ::uint32_t value);
+  void add_user_id_list(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& user_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_user_id_list();
 
   private:
-  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_quota_id_list() const;
-  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_quota_id_list();
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_user_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_user_id_list();
 
   public:
-  // optional .beegfs.EntityIdSet pool = 4;
+  // repeated uint32 group_id_list = 6;
+  int group_id_list_size() const;
+  private:
+  int _internal_group_id_list_size() const;
+
+  public:
+  void clear_group_id_list() ;
+  ::uint32_t group_id_list(int index) const;
+  void set_group_id_list(int index, ::uint32_t value);
+  void add_group_id_list(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& group_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_group_id_list();
+
+  private:
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_group_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_group_id_list();
+
+  public:
+  // optional .beegfs.EntityIdSet pool = 7;
   bool has_pool() const;
   void clear_pool() ;
   const ::beegfs::EntityIdSet& pool() const;
@@ -4016,39 +4036,51 @@ class GetQuotaUsageRequest final : public ::google::protobuf::Message
   ::beegfs::EntityIdSet* _internal_mutable_pool();
 
   public:
-  // optional uint32 quota_id_min = 1;
-  bool has_quota_id_min() const;
-  void clear_quota_id_min() ;
-  ::uint32_t quota_id_min() const;
-  void set_quota_id_min(::uint32_t value);
+  // optional uint32 user_id_min = 1;
+  bool has_user_id_min() const;
+  void clear_user_id_min() ;
+  ::uint32_t user_id_min() const;
+  void set_user_id_min(::uint32_t value);
 
   private:
-  ::uint32_t _internal_quota_id_min() const;
-  void _internal_set_quota_id_min(::uint32_t value);
+  ::uint32_t _internal_user_id_min() const;
+  void _internal_set_user_id_min(::uint32_t value);
 
   public:
-  // optional uint32 quota_id_max = 2;
-  bool has_quota_id_max() const;
-  void clear_quota_id_max() ;
-  ::uint32_t quota_id_max() const;
-  void set_quota_id_max(::uint32_t value);
+  // optional uint32 user_id_max = 2;
+  bool has_user_id_max() const;
+  void clear_user_id_max() ;
+  ::uint32_t user_id_max() const;
+  void set_user_id_max(::uint32_t value);
 
   private:
-  ::uint32_t _internal_quota_id_max() const;
-  void _internal_set_quota_id_max(::uint32_t value);
+  ::uint32_t _internal_user_id_max() const;
+  void _internal_set_user_id_max(::uint32_t value);
 
   public:
-  // .beegfs.QuotaIdType id_type = 3;
-  void clear_id_type() ;
-  ::beegfs::QuotaIdType id_type() const;
-  void set_id_type(::beegfs::QuotaIdType value);
+  // optional uint32 group_id_min = 4;
+  bool has_group_id_min() const;
+  void clear_group_id_min() ;
+  ::uint32_t group_id_min() const;
+  void set_group_id_min(::uint32_t value);
 
   private:
-  ::beegfs::QuotaIdType _internal_id_type() const;
-  void _internal_set_id_type(::beegfs::QuotaIdType value);
+  ::uint32_t _internal_group_id_min() const;
+  void _internal_set_group_id_min(::uint32_t value);
 
   public:
-  // optional bool exceeded = 5;
+  // optional uint32 group_id_max = 5;
+  bool has_group_id_max() const;
+  void clear_group_id_max() ;
+  ::uint32_t group_id_max() const;
+  void set_group_id_max(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_group_id_max() const;
+  void _internal_set_group_id_max(::uint32_t value);
+
+  public:
+  // optional bool exceeded = 8;
   bool has_exceeded() const;
   void clear_exceeded() ;
   bool exceeded() const;
@@ -4064,7 +4096,7 @@ class GetQuotaUsageRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 1,
+      3, 8, 1,
       0, 2>
       _table_;
 
@@ -4084,12 +4116,15 @@ class GetQuotaUsageRequest final : public ::google::protobuf::Message
                           const GetQuotaUsageRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedField<::uint32_t> quota_id_list_;
-    ::google::protobuf::internal::CachedSize _quota_id_list_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> user_id_list_;
+    ::google::protobuf::internal::CachedSize _user_id_list_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> group_id_list_;
+    ::google::protobuf::internal::CachedSize _group_id_list_cached_byte_size_;
     ::beegfs::EntityIdSet* pool_;
-    ::uint32_t quota_id_min_;
-    ::uint32_t quota_id_max_;
-    int id_type_;
+    ::uint32_t user_id_min_;
+    ::uint32_t user_id_max_;
+    ::uint32_t group_id_min_;
+    ::uint32_t group_id_max_;
     bool exceeded_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4244,31 +4279,51 @@ class GetQuotaLimitsRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kQuotaIdListFieldNumber = 5,
-    kPoolFieldNumber = 4,
-    kQuotaIdMinFieldNumber = 1,
-    kQuotaIdMaxFieldNumber = 2,
-    kIdTypeFieldNumber = 3,
+    kUserIdListFieldNumber = 3,
+    kGroupIdListFieldNumber = 6,
+    kPoolFieldNumber = 7,
+    kUserIdMinFieldNumber = 1,
+    kUserIdMaxFieldNumber = 2,
+    kGroupIdMinFieldNumber = 4,
+    kGroupIdMaxFieldNumber = 5,
   };
-  // repeated uint32 quota_id_list = 5;
-  int quota_id_list_size() const;
+  // repeated uint32 user_id_list = 3;
+  int user_id_list_size() const;
   private:
-  int _internal_quota_id_list_size() const;
+  int _internal_user_id_list_size() const;
 
   public:
-  void clear_quota_id_list() ;
-  ::uint32_t quota_id_list(int index) const;
-  void set_quota_id_list(int index, ::uint32_t value);
-  void add_quota_id_list(::uint32_t value);
-  const ::google::protobuf::RepeatedField<::uint32_t>& quota_id_list() const;
-  ::google::protobuf::RepeatedField<::uint32_t>* mutable_quota_id_list();
+  void clear_user_id_list() ;
+  ::uint32_t user_id_list(int index) const;
+  void set_user_id_list(int index, ::uint32_t value);
+  void add_user_id_list(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& user_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_user_id_list();
 
   private:
-  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_quota_id_list() const;
-  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_quota_id_list();
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_user_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_user_id_list();
 
   public:
-  // optional .beegfs.EntityIdSet pool = 4;
+  // repeated uint32 group_id_list = 6;
+  int group_id_list_size() const;
+  private:
+  int _internal_group_id_list_size() const;
+
+  public:
+  void clear_group_id_list() ;
+  ::uint32_t group_id_list(int index) const;
+  void set_group_id_list(int index, ::uint32_t value);
+  void add_group_id_list(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& group_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_group_id_list();
+
+  private:
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_group_id_list() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_group_id_list();
+
+  public:
+  // optional .beegfs.EntityIdSet pool = 7;
   bool has_pool() const;
   void clear_pool() ;
   const ::beegfs::EntityIdSet& pool() const;
@@ -4283,36 +4338,48 @@ class GetQuotaLimitsRequest final : public ::google::protobuf::Message
   ::beegfs::EntityIdSet* _internal_mutable_pool();
 
   public:
-  // optional uint32 quota_id_min = 1;
-  bool has_quota_id_min() const;
-  void clear_quota_id_min() ;
-  ::uint32_t quota_id_min() const;
-  void set_quota_id_min(::uint32_t value);
+  // optional uint32 user_id_min = 1;
+  bool has_user_id_min() const;
+  void clear_user_id_min() ;
+  ::uint32_t user_id_min() const;
+  void set_user_id_min(::uint32_t value);
 
   private:
-  ::uint32_t _internal_quota_id_min() const;
-  void _internal_set_quota_id_min(::uint32_t value);
+  ::uint32_t _internal_user_id_min() const;
+  void _internal_set_user_id_min(::uint32_t value);
 
   public:
-  // optional uint32 quota_id_max = 2;
-  bool has_quota_id_max() const;
-  void clear_quota_id_max() ;
-  ::uint32_t quota_id_max() const;
-  void set_quota_id_max(::uint32_t value);
+  // optional uint32 user_id_max = 2;
+  bool has_user_id_max() const;
+  void clear_user_id_max() ;
+  ::uint32_t user_id_max() const;
+  void set_user_id_max(::uint32_t value);
 
   private:
-  ::uint32_t _internal_quota_id_max() const;
-  void _internal_set_quota_id_max(::uint32_t value);
+  ::uint32_t _internal_user_id_max() const;
+  void _internal_set_user_id_max(::uint32_t value);
 
   public:
-  // .beegfs.QuotaIdType id_type = 3;
-  void clear_id_type() ;
-  ::beegfs::QuotaIdType id_type() const;
-  void set_id_type(::beegfs::QuotaIdType value);
+  // optional uint32 group_id_min = 4;
+  bool has_group_id_min() const;
+  void clear_group_id_min() ;
+  ::uint32_t group_id_min() const;
+  void set_group_id_min(::uint32_t value);
 
   private:
-  ::beegfs::QuotaIdType _internal_id_type() const;
-  void _internal_set_id_type(::beegfs::QuotaIdType value);
+  ::uint32_t _internal_group_id_min() const;
+  void _internal_set_group_id_min(::uint32_t value);
+
+  public:
+  // optional uint32 group_id_max = 5;
+  bool has_group_id_max() const;
+  void clear_group_id_max() ;
+  ::uint32_t group_id_max() const;
+  void set_group_id_max(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_group_id_max() const;
+  void _internal_set_group_id_max(::uint32_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:management.GetQuotaLimitsRequest)
@@ -4320,7 +4387,7 @@ class GetQuotaLimitsRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 1,
+      3, 7, 1,
       0, 2>
       _table_;
 
@@ -4340,12 +4407,15 @@ class GetQuotaLimitsRequest final : public ::google::protobuf::Message
                           const GetQuotaLimitsRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedField<::uint32_t> quota_id_list_;
-    ::google::protobuf::internal::CachedSize _quota_id_list_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> user_id_list_;
+    ::google::protobuf::internal::CachedSize _user_id_list_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> group_id_list_;
+    ::google::protobuf::internal::CachedSize _group_id_list_cached_byte_size_;
     ::beegfs::EntityIdSet* pool_;
-    ::uint32_t quota_id_min_;
-    ::uint32_t quota_id_max_;
-    int id_type_;
+    ::uint32_t user_id_min_;
+    ::uint32_t user_id_max_;
+    ::uint32_t group_id_min_;
+    ::uint32_t group_id_max_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -14600,130 +14670,209 @@ SetQuotaLimitsRequest::_internal_mutable_limits() {
 
 // GetQuotaLimitsRequest
 
-// optional uint32 quota_id_min = 1;
-inline bool GetQuotaLimitsRequest::has_quota_id_min() const {
+// optional uint32 user_id_min = 1;
+inline bool GetQuotaLimitsRequest::has_user_id_min() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void GetQuotaLimitsRequest::clear_quota_id_min() {
+inline void GetQuotaLimitsRequest::clear_user_id_min() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_min_ = 0u;
+  _impl_.user_id_min_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::uint32_t GetQuotaLimitsRequest::quota_id_min() const {
-  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.quota_id_min)
-  return _internal_quota_id_min();
+inline ::uint32_t GetQuotaLimitsRequest::user_id_min() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.user_id_min)
+  return _internal_user_id_min();
 }
-inline void GetQuotaLimitsRequest::set_quota_id_min(::uint32_t value) {
-  _internal_set_quota_id_min(value);
+inline void GetQuotaLimitsRequest::set_user_id_min(::uint32_t value) {
+  _internal_set_user_id_min(value);
   _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.quota_id_min)
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.user_id_min)
 }
-inline ::uint32_t GetQuotaLimitsRequest::_internal_quota_id_min() const {
+inline ::uint32_t GetQuotaLimitsRequest::_internal_user_id_min() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.quota_id_min_;
+  return _impl_.user_id_min_;
 }
-inline void GetQuotaLimitsRequest::_internal_set_quota_id_min(::uint32_t value) {
+inline void GetQuotaLimitsRequest::_internal_set_user_id_min(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_min_ = value;
+  _impl_.user_id_min_ = value;
 }
 
-// optional uint32 quota_id_max = 2;
-inline bool GetQuotaLimitsRequest::has_quota_id_max() const {
+// optional uint32 user_id_max = 2;
+inline bool GetQuotaLimitsRequest::has_user_id_max() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
-inline void GetQuotaLimitsRequest::clear_quota_id_max() {
+inline void GetQuotaLimitsRequest::clear_user_id_max() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_max_ = 0u;
+  _impl_.user_id_max_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline ::uint32_t GetQuotaLimitsRequest::quota_id_max() const {
-  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.quota_id_max)
-  return _internal_quota_id_max();
+inline ::uint32_t GetQuotaLimitsRequest::user_id_max() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.user_id_max)
+  return _internal_user_id_max();
 }
-inline void GetQuotaLimitsRequest::set_quota_id_max(::uint32_t value) {
-  _internal_set_quota_id_max(value);
+inline void GetQuotaLimitsRequest::set_user_id_max(::uint32_t value) {
+  _internal_set_user_id_max(value);
   _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.quota_id_max)
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.user_id_max)
 }
-inline ::uint32_t GetQuotaLimitsRequest::_internal_quota_id_max() const {
+inline ::uint32_t GetQuotaLimitsRequest::_internal_user_id_max() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.quota_id_max_;
+  return _impl_.user_id_max_;
 }
-inline void GetQuotaLimitsRequest::_internal_set_quota_id_max(::uint32_t value) {
+inline void GetQuotaLimitsRequest::_internal_set_user_id_max(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_max_ = value;
+  _impl_.user_id_max_ = value;
 }
 
-// repeated uint32 quota_id_list = 5;
-inline int GetQuotaLimitsRequest::_internal_quota_id_list_size() const {
-  return _internal_quota_id_list().size();
+// repeated uint32 user_id_list = 3;
+inline int GetQuotaLimitsRequest::_internal_user_id_list_size() const {
+  return _internal_user_id_list().size();
 }
-inline int GetQuotaLimitsRequest::quota_id_list_size() const {
-  return _internal_quota_id_list_size();
+inline int GetQuotaLimitsRequest::user_id_list_size() const {
+  return _internal_user_id_list_size();
 }
-inline void GetQuotaLimitsRequest::clear_quota_id_list() {
+inline void GetQuotaLimitsRequest::clear_user_id_list() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_list_.Clear();
+  _impl_.user_id_list_.Clear();
 }
-inline ::uint32_t GetQuotaLimitsRequest::quota_id_list(int index) const {
-  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.quota_id_list)
-  return _internal_quota_id_list().Get(index);
+inline ::uint32_t GetQuotaLimitsRequest::user_id_list(int index) const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.user_id_list)
+  return _internal_user_id_list().Get(index);
 }
-inline void GetQuotaLimitsRequest::set_quota_id_list(int index, ::uint32_t value) {
-  _internal_mutable_quota_id_list()->Set(index, value);
-  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.quota_id_list)
+inline void GetQuotaLimitsRequest::set_user_id_list(int index, ::uint32_t value) {
+  _internal_mutable_user_id_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.user_id_list)
 }
-inline void GetQuotaLimitsRequest::add_quota_id_list(::uint32_t value) {
+inline void GetQuotaLimitsRequest::add_user_id_list(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_quota_id_list()->Add(value);
-  // @@protoc_insertion_point(field_add:management.GetQuotaLimitsRequest.quota_id_list)
+  _internal_mutable_user_id_list()->Add(value);
+  // @@protoc_insertion_point(field_add:management.GetQuotaLimitsRequest.user_id_list)
 }
-inline const ::google::protobuf::RepeatedField<::uint32_t>& GetQuotaLimitsRequest::quota_id_list() const
+inline const ::google::protobuf::RepeatedField<::uint32_t>& GetQuotaLimitsRequest::user_id_list() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:management.GetQuotaLimitsRequest.quota_id_list)
-  return _internal_quota_id_list();
+  // @@protoc_insertion_point(field_list:management.GetQuotaLimitsRequest.user_id_list)
+  return _internal_user_id_list();
 }
-inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaLimitsRequest::mutable_quota_id_list()
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaLimitsRequest::mutable_user_id_list()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:management.GetQuotaLimitsRequest.quota_id_list)
+  // @@protoc_insertion_point(field_mutable_list:management.GetQuotaLimitsRequest.user_id_list)
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_quota_id_list();
+  return _internal_mutable_user_id_list();
 }
 inline const ::google::protobuf::RepeatedField<::uint32_t>&
-GetQuotaLimitsRequest::_internal_quota_id_list() const {
+GetQuotaLimitsRequest::_internal_user_id_list() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.quota_id_list_;
+  return _impl_.user_id_list_;
 }
-inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaLimitsRequest::_internal_mutable_quota_id_list() {
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaLimitsRequest::_internal_mutable_user_id_list() {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.quota_id_list_;
+  return &_impl_.user_id_list_;
 }
 
-// .beegfs.QuotaIdType id_type = 3;
-inline void GetQuotaLimitsRequest::clear_id_type() {
+// optional uint32 group_id_min = 4;
+inline bool GetQuotaLimitsRequest::has_group_id_min() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void GetQuotaLimitsRequest::clear_group_id_min() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_type_ = 0;
+  _impl_.group_id_min_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline ::beegfs::QuotaIdType GetQuotaLimitsRequest::id_type() const {
-  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.id_type)
-  return _internal_id_type();
+inline ::uint32_t GetQuotaLimitsRequest::group_id_min() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.group_id_min)
+  return _internal_group_id_min();
 }
-inline void GetQuotaLimitsRequest::set_id_type(::beegfs::QuotaIdType value) {
-  _internal_set_id_type(value);
-  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.id_type)
+inline void GetQuotaLimitsRequest::set_group_id_min(::uint32_t value) {
+  _internal_set_group_id_min(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.group_id_min)
 }
-inline ::beegfs::QuotaIdType GetQuotaLimitsRequest::_internal_id_type() const {
+inline ::uint32_t GetQuotaLimitsRequest::_internal_group_id_min() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::beegfs::QuotaIdType>(_impl_.id_type_);
+  return _impl_.group_id_min_;
 }
-inline void GetQuotaLimitsRequest::_internal_set_id_type(::beegfs::QuotaIdType value) {
+inline void GetQuotaLimitsRequest::_internal_set_group_id_min(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_type_ = value;
+  _impl_.group_id_min_ = value;
 }
 
-// optional .beegfs.EntityIdSet pool = 4;
+// optional uint32 group_id_max = 5;
+inline bool GetQuotaLimitsRequest::has_group_id_max() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline void GetQuotaLimitsRequest::clear_group_id_max() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_id_max_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::uint32_t GetQuotaLimitsRequest::group_id_max() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.group_id_max)
+  return _internal_group_id_max();
+}
+inline void GetQuotaLimitsRequest::set_group_id_max(::uint32_t value) {
+  _internal_set_group_id_max(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.group_id_max)
+}
+inline ::uint32_t GetQuotaLimitsRequest::_internal_group_id_max() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.group_id_max_;
+}
+inline void GetQuotaLimitsRequest::_internal_set_group_id_max(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_id_max_ = value;
+}
+
+// repeated uint32 group_id_list = 6;
+inline int GetQuotaLimitsRequest::_internal_group_id_list_size() const {
+  return _internal_group_id_list().size();
+}
+inline int GetQuotaLimitsRequest::group_id_list_size() const {
+  return _internal_group_id_list_size();
+}
+inline void GetQuotaLimitsRequest::clear_group_id_list() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_id_list_.Clear();
+}
+inline ::uint32_t GetQuotaLimitsRequest::group_id_list(int index) const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaLimitsRequest.group_id_list)
+  return _internal_group_id_list().Get(index);
+}
+inline void GetQuotaLimitsRequest::set_group_id_list(int index, ::uint32_t value) {
+  _internal_mutable_group_id_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:management.GetQuotaLimitsRequest.group_id_list)
+}
+inline void GetQuotaLimitsRequest::add_group_id_list(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_group_id_list()->Add(value);
+  // @@protoc_insertion_point(field_add:management.GetQuotaLimitsRequest.group_id_list)
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>& GetQuotaLimitsRequest::group_id_list() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:management.GetQuotaLimitsRequest.group_id_list)
+  return _internal_group_id_list();
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaLimitsRequest::mutable_group_id_list()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:management.GetQuotaLimitsRequest.group_id_list)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_group_id_list();
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>&
+GetQuotaLimitsRequest::_internal_group_id_list() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.group_id_list_;
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaLimitsRequest::_internal_mutable_group_id_list() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.group_id_list_;
+}
+
+// optional .beegfs.EntityIdSet pool = 7;
 inline bool GetQuotaLimitsRequest::has_pool() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.pool_ != nullptr);
@@ -14918,130 +15067,209 @@ inline void GetQuotaLimitsResponse::set_allocated_limits(::management::QuotaInfo
 
 // GetQuotaUsageRequest
 
-// optional uint32 quota_id_min = 1;
-inline bool GetQuotaUsageRequest::has_quota_id_min() const {
+// optional uint32 user_id_min = 1;
+inline bool GetQuotaUsageRequest::has_user_id_min() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void GetQuotaUsageRequest::clear_quota_id_min() {
+inline void GetQuotaUsageRequest::clear_user_id_min() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_min_ = 0u;
+  _impl_.user_id_min_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::uint32_t GetQuotaUsageRequest::quota_id_min() const {
-  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.quota_id_min)
-  return _internal_quota_id_min();
+inline ::uint32_t GetQuotaUsageRequest::user_id_min() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.user_id_min)
+  return _internal_user_id_min();
 }
-inline void GetQuotaUsageRequest::set_quota_id_min(::uint32_t value) {
-  _internal_set_quota_id_min(value);
+inline void GetQuotaUsageRequest::set_user_id_min(::uint32_t value) {
+  _internal_set_user_id_min(value);
   _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.quota_id_min)
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.user_id_min)
 }
-inline ::uint32_t GetQuotaUsageRequest::_internal_quota_id_min() const {
+inline ::uint32_t GetQuotaUsageRequest::_internal_user_id_min() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.quota_id_min_;
+  return _impl_.user_id_min_;
 }
-inline void GetQuotaUsageRequest::_internal_set_quota_id_min(::uint32_t value) {
+inline void GetQuotaUsageRequest::_internal_set_user_id_min(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_min_ = value;
+  _impl_.user_id_min_ = value;
 }
 
-// optional uint32 quota_id_max = 2;
-inline bool GetQuotaUsageRequest::has_quota_id_max() const {
+// optional uint32 user_id_max = 2;
+inline bool GetQuotaUsageRequest::has_user_id_max() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
-inline void GetQuotaUsageRequest::clear_quota_id_max() {
+inline void GetQuotaUsageRequest::clear_user_id_max() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_max_ = 0u;
+  _impl_.user_id_max_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline ::uint32_t GetQuotaUsageRequest::quota_id_max() const {
-  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.quota_id_max)
-  return _internal_quota_id_max();
+inline ::uint32_t GetQuotaUsageRequest::user_id_max() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.user_id_max)
+  return _internal_user_id_max();
 }
-inline void GetQuotaUsageRequest::set_quota_id_max(::uint32_t value) {
-  _internal_set_quota_id_max(value);
+inline void GetQuotaUsageRequest::set_user_id_max(::uint32_t value) {
+  _internal_set_user_id_max(value);
   _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.quota_id_max)
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.user_id_max)
 }
-inline ::uint32_t GetQuotaUsageRequest::_internal_quota_id_max() const {
+inline ::uint32_t GetQuotaUsageRequest::_internal_user_id_max() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.quota_id_max_;
+  return _impl_.user_id_max_;
 }
-inline void GetQuotaUsageRequest::_internal_set_quota_id_max(::uint32_t value) {
+inline void GetQuotaUsageRequest::_internal_set_user_id_max(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_max_ = value;
+  _impl_.user_id_max_ = value;
 }
 
-// repeated uint32 quota_id_list = 6;
-inline int GetQuotaUsageRequest::_internal_quota_id_list_size() const {
-  return _internal_quota_id_list().size();
+// repeated uint32 user_id_list = 3;
+inline int GetQuotaUsageRequest::_internal_user_id_list_size() const {
+  return _internal_user_id_list().size();
 }
-inline int GetQuotaUsageRequest::quota_id_list_size() const {
-  return _internal_quota_id_list_size();
+inline int GetQuotaUsageRequest::user_id_list_size() const {
+  return _internal_user_id_list_size();
 }
-inline void GetQuotaUsageRequest::clear_quota_id_list() {
+inline void GetQuotaUsageRequest::clear_user_id_list() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.quota_id_list_.Clear();
+  _impl_.user_id_list_.Clear();
 }
-inline ::uint32_t GetQuotaUsageRequest::quota_id_list(int index) const {
-  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.quota_id_list)
-  return _internal_quota_id_list().Get(index);
+inline ::uint32_t GetQuotaUsageRequest::user_id_list(int index) const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.user_id_list)
+  return _internal_user_id_list().Get(index);
 }
-inline void GetQuotaUsageRequest::set_quota_id_list(int index, ::uint32_t value) {
-  _internal_mutable_quota_id_list()->Set(index, value);
-  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.quota_id_list)
+inline void GetQuotaUsageRequest::set_user_id_list(int index, ::uint32_t value) {
+  _internal_mutable_user_id_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.user_id_list)
 }
-inline void GetQuotaUsageRequest::add_quota_id_list(::uint32_t value) {
+inline void GetQuotaUsageRequest::add_user_id_list(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_quota_id_list()->Add(value);
-  // @@protoc_insertion_point(field_add:management.GetQuotaUsageRequest.quota_id_list)
+  _internal_mutable_user_id_list()->Add(value);
+  // @@protoc_insertion_point(field_add:management.GetQuotaUsageRequest.user_id_list)
 }
-inline const ::google::protobuf::RepeatedField<::uint32_t>& GetQuotaUsageRequest::quota_id_list() const
+inline const ::google::protobuf::RepeatedField<::uint32_t>& GetQuotaUsageRequest::user_id_list() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:management.GetQuotaUsageRequest.quota_id_list)
-  return _internal_quota_id_list();
+  // @@protoc_insertion_point(field_list:management.GetQuotaUsageRequest.user_id_list)
+  return _internal_user_id_list();
 }
-inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaUsageRequest::mutable_quota_id_list()
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaUsageRequest::mutable_user_id_list()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:management.GetQuotaUsageRequest.quota_id_list)
+  // @@protoc_insertion_point(field_mutable_list:management.GetQuotaUsageRequest.user_id_list)
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_quota_id_list();
+  return _internal_mutable_user_id_list();
 }
 inline const ::google::protobuf::RepeatedField<::uint32_t>&
-GetQuotaUsageRequest::_internal_quota_id_list() const {
+GetQuotaUsageRequest::_internal_user_id_list() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.quota_id_list_;
+  return _impl_.user_id_list_;
 }
-inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaUsageRequest::_internal_mutable_quota_id_list() {
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaUsageRequest::_internal_mutable_user_id_list() {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.quota_id_list_;
+  return &_impl_.user_id_list_;
 }
 
-// .beegfs.QuotaIdType id_type = 3;
-inline void GetQuotaUsageRequest::clear_id_type() {
+// optional uint32 group_id_min = 4;
+inline bool GetQuotaUsageRequest::has_group_id_min() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void GetQuotaUsageRequest::clear_group_id_min() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_type_ = 0;
+  _impl_.group_id_min_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline ::beegfs::QuotaIdType GetQuotaUsageRequest::id_type() const {
-  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.id_type)
-  return _internal_id_type();
+inline ::uint32_t GetQuotaUsageRequest::group_id_min() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.group_id_min)
+  return _internal_group_id_min();
 }
-inline void GetQuotaUsageRequest::set_id_type(::beegfs::QuotaIdType value) {
-  _internal_set_id_type(value);
-  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.id_type)
+inline void GetQuotaUsageRequest::set_group_id_min(::uint32_t value) {
+  _internal_set_group_id_min(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.group_id_min)
 }
-inline ::beegfs::QuotaIdType GetQuotaUsageRequest::_internal_id_type() const {
+inline ::uint32_t GetQuotaUsageRequest::_internal_group_id_min() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::beegfs::QuotaIdType>(_impl_.id_type_);
+  return _impl_.group_id_min_;
 }
-inline void GetQuotaUsageRequest::_internal_set_id_type(::beegfs::QuotaIdType value) {
+inline void GetQuotaUsageRequest::_internal_set_group_id_min(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.id_type_ = value;
+  _impl_.group_id_min_ = value;
 }
 
-// optional .beegfs.EntityIdSet pool = 4;
+// optional uint32 group_id_max = 5;
+inline bool GetQuotaUsageRequest::has_group_id_max() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline void GetQuotaUsageRequest::clear_group_id_max() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_id_max_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::uint32_t GetQuotaUsageRequest::group_id_max() const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.group_id_max)
+  return _internal_group_id_max();
+}
+inline void GetQuotaUsageRequest::set_group_id_max(::uint32_t value) {
+  _internal_set_group_id_max(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.group_id_max)
+}
+inline ::uint32_t GetQuotaUsageRequest::_internal_group_id_max() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.group_id_max_;
+}
+inline void GetQuotaUsageRequest::_internal_set_group_id_max(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_id_max_ = value;
+}
+
+// repeated uint32 group_id_list = 6;
+inline int GetQuotaUsageRequest::_internal_group_id_list_size() const {
+  return _internal_group_id_list().size();
+}
+inline int GetQuotaUsageRequest::group_id_list_size() const {
+  return _internal_group_id_list_size();
+}
+inline void GetQuotaUsageRequest::clear_group_id_list() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.group_id_list_.Clear();
+}
+inline ::uint32_t GetQuotaUsageRequest::group_id_list(int index) const {
+  // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.group_id_list)
+  return _internal_group_id_list().Get(index);
+}
+inline void GetQuotaUsageRequest::set_group_id_list(int index, ::uint32_t value) {
+  _internal_mutable_group_id_list()->Set(index, value);
+  // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.group_id_list)
+}
+inline void GetQuotaUsageRequest::add_group_id_list(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_group_id_list()->Add(value);
+  // @@protoc_insertion_point(field_add:management.GetQuotaUsageRequest.group_id_list)
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>& GetQuotaUsageRequest::group_id_list() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:management.GetQuotaUsageRequest.group_id_list)
+  return _internal_group_id_list();
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaUsageRequest::mutable_group_id_list()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:management.GetQuotaUsageRequest.group_id_list)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_group_id_list();
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>&
+GetQuotaUsageRequest::_internal_group_id_list() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.group_id_list_;
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* GetQuotaUsageRequest::_internal_mutable_group_id_list() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.group_id_list_;
+}
+
+// optional .beegfs.EntityIdSet pool = 7;
 inline bool GetQuotaUsageRequest::has_pool() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.pool_ != nullptr);
@@ -15132,15 +15360,15 @@ inline void GetQuotaUsageRequest::set_allocated_pool(::beegfs::EntityIdSet* valu
   // @@protoc_insertion_point(field_set_allocated:management.GetQuotaUsageRequest.pool)
 }
 
-// optional bool exceeded = 5;
+// optional bool exceeded = 8;
 inline bool GetQuotaUsageRequest::has_exceeded() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
   return value;
 }
 inline void GetQuotaUsageRequest::clear_exceeded() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.exceeded_ = false;
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
 }
 inline bool GetQuotaUsageRequest::exceeded() const {
   // @@protoc_insertion_point(field_get:management.GetQuotaUsageRequest.exceeded)
@@ -15148,7 +15376,7 @@ inline bool GetQuotaUsageRequest::exceeded() const {
 }
 inline void GetQuotaUsageRequest::set_exceeded(bool value) {
   _internal_set_exceeded(value);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000020u;
   // @@protoc_insertion_point(field_set:management.GetQuotaUsageRequest.exceeded)
 }
 inline bool GetQuotaUsageRequest::_internal_exceeded() const {

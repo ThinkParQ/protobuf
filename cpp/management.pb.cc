@@ -475,12 +475,15 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr GetQuotaUsageRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        quota_id_list_{},
-        _quota_id_list_cached_byte_size_{0},
+        user_id_list_{},
+        _user_id_list_cached_byte_size_{0},
+        group_id_list_{},
+        _group_id_list_cached_byte_size_{0},
         pool_{nullptr},
-        quota_id_min_{0u},
-        quota_id_max_{0u},
-        id_type_{static_cast< ::beegfs::QuotaIdType >(0)},
+        user_id_min_{0u},
+        user_id_max_{0u},
+        group_id_min_{0u},
+        group_id_max_{0u},
         exceeded_{false} {}
 
 template <typename>
@@ -506,12 +509,15 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr GetQuotaLimitsRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        quota_id_list_{},
-        _quota_id_list_cached_byte_size_{0},
+        user_id_list_{},
+        _user_id_list_cached_byte_size_{0},
+        group_id_list_{},
+        _group_id_list_cached_byte_size_{0},
         pool_{nullptr},
-        quota_id_min_{0u},
-        quota_id_max_{0u},
-        id_type_{static_cast< ::beegfs::QuotaIdType >(0)} {}
+        user_id_min_{0u},
+        user_id_max_{0u},
+        group_id_min_{0u},
+        group_id_max_{0u} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR GetQuotaLimitsRequest::GetQuotaLimitsRequest(::_pbi::ConstantInitialized)
@@ -1702,14 +1708,18 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.quota_id_min_),
-        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.quota_id_max_),
-        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.quota_id_list_),
-        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.id_type_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.user_id_min_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.user_id_max_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.user_id_list_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.group_id_min_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.group_id_max_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.group_id_list_),
         PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsRequest, _impl_.pool_),
         1,
         2,
         ~0u,
+        3,
+        4,
         ~0u,
         0,
         PROTOBUF_FIELD_OFFSET(::management::GetQuotaLimitsResponse, _impl_._has_bits_),
@@ -1730,18 +1740,22 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.quota_id_min_),
-        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.quota_id_max_),
-        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.quota_id_list_),
-        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.id_type_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.user_id_min_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.user_id_max_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.user_id_list_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.group_id_min_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.group_id_max_),
+        PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.group_id_list_),
         PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.pool_),
         PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageRequest, _impl_.exceeded_),
         1,
         2,
         ~0u,
+        3,
+        4,
         ~0u,
         0,
-        3,
+        5,
         PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageResponse, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::management::GetQuotaUsageResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1818,12 +1832,12 @@ static const ::_pbi::MigrationSchema
         {466, -1, -1, sizeof(::management::SetDefaultQuotaLimitsResponse)},
         {474, -1, -1, sizeof(::management::SetQuotaLimitsRequest)},
         {483, -1, -1, sizeof(::management::SetQuotaLimitsResponse)},
-        {491, 504, -1, sizeof(::management::GetQuotaLimitsRequest)},
-        {509, 518, -1, sizeof(::management::GetQuotaLimitsResponse)},
-        {519, 533, -1, sizeof(::management::GetQuotaUsageRequest)},
-        {539, 549, -1, sizeof(::management::GetQuotaUsageResponse)},
-        {551, 560, -1, sizeof(::management::GetLicenseRequest)},
-        {561, 570, -1, sizeof(::management::GetLicenseResponse)},
+        {491, 506, -1, sizeof(::management::GetQuotaLimitsRequest)},
+        {513, 522, -1, sizeof(::management::GetQuotaLimitsResponse)},
+        {523, 539, -1, sizeof(::management::GetQuotaUsageRequest)},
+        {547, 557, -1, sizeof(::management::GetQuotaUsageResponse)},
+        {559, 568, -1, sizeof(::management::GetLicenseRequest)},
+        {569, 578, -1, sizeof(::management::GetLicenseResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::management::_SetAliasRequest_default_instance_._instance,
@@ -1999,72 +2013,75 @@ const char descriptor_table_protodef_management_2eproto[] ABSL_ATTRIBUTE_SECTION
     "p_space_limitB\024\n\022_group_inode_limit\"\037\n\035S"
     "etDefaultQuotaLimitsResponse\">\n\025SetQuota"
     "LimitsRequest\022%\n\006limits\030\001 \003(\0132\025.manageme"
-    "nt.QuotaInfo\"\030\n\026SetQuotaLimitsResponse\"\335"
-    "\001\n\025GetQuotaLimitsRequest\022\031\n\014quota_id_min"
-    "\030\001 \001(\rH\000\210\001\001\022\031\n\014quota_id_max\030\002 \001(\rH\001\210\001\001\022\025"
-    "\n\rquota_id_list\030\005 \003(\r\022$\n\007id_type\030\003 \001(\0162\023"
-    ".beegfs.QuotaIdType\022&\n\004pool\030\004 \001(\0132\023.beeg"
-    "fs.EntityIdSetH\002\210\001\001B\017\n\r_quota_id_minB\017\n\r"
-    "_quota_id_maxB\007\n\005_pool\"O\n\026GetQuotaLimits"
-    "Response\022*\n\006limits\030\001 \001(\0132\025.management.Qu"
-    "otaInfoH\000\210\001\001B\t\n\007_limits\"\200\002\n\024GetQuotaUsag"
-    "eRequest\022\031\n\014quota_id_min\030\001 \001(\rH\000\210\001\001\022\031\n\014q"
-    "uota_id_max\030\002 \001(\rH\001\210\001\001\022\025\n\rquota_id_list\030"
-    "\006 \003(\r\022$\n\007id_type\030\003 \001(\0162\023.beegfs.QuotaIdT"
-    "ype\022&\n\004pool\030\004 \001(\0132\023.beegfs.EntityIdSetH\002"
-    "\210\001\001\022\025\n\010exceeded\030\005 \001(\010H\003\210\001\001B\017\n\r_quota_id_"
-    "minB\017\n\r_quota_id_maxB\007\n\005_poolB\013\n\t_exceed"
-    "ed\"\200\001\n\025GetQuotaUsageResponse\022)\n\005entry\030\001 "
-    "\001(\0132\025.management.QuotaInfoH\000\210\001\001\022\035\n\020refre"
-    "sh_period_s\030\002 \001(\004H\001\210\001\001B\010\n\006_entryB\023\n\021_ref"
-    "resh_period_s\"3\n\021GetLicenseRequest\022\023\n\006re"
-    "load\030\001 \001(\010H\000\210\001\001B\t\n\007_reload\"V\n\022GetLicense"
-    "Response\0222\n\tcert_data\030\001 \001(\0132\032.license.Ge"
-    "tCertDataResultH\000\210\001\001B\014\n\n_cert_data2\230\r\n\nM"
-    "anagement\022E\n\010SetAlias\022\033.management.SetAl"
-    "iasRequest\032\034.management.SetAliasResponse"
-    "\022E\n\010GetNodes\022\033.management.GetNodesReques"
-    "t\032\034.management.GetNodesResponse\022K\n\nDelet"
-    "eNode\022\035.management.DeleteNodeRequest\032\036.m"
-    "anagement.DeleteNodeResponse\022K\n\nGetTarge"
-    "ts\022\035.management.GetTargetsRequest\032\036.mana"
-    "gement.GetTargetsResponse\022Q\n\014DeleteTarge"
-    "t\022\037.management.DeleteTargetRequest\032 .man"
-    "agement.DeleteTargetResponse\022W\n\016SetTarge"
-    "tState\022!.management.SetTargetStateReques"
-    "t\032\".management.SetTargetStateResponse\022E\n"
-    "\010GetPools\022\033.management.GetPoolsRequest\032\034"
-    ".management.GetPoolsResponse\022K\n\nCreatePo"
-    "ol\022\035.management.CreatePoolRequest\032\036.mana"
-    "gement.CreatePoolResponse\022K\n\nAssignPool\022"
-    "\035.management.AssignPoolRequest\032\036.managem"
-    "ent.AssignPoolResponse\022K\n\nDeletePool\022\035.m"
-    "anagement.DeletePoolRequest\032\036.management"
-    ".DeletePoolResponse\022W\n\016GetBuddyGroups\022!."
-    "management.GetBuddyGroupsRequest\032\".manag"
-    "ement.GetBuddyGroupsResponse\022]\n\020CreateBu"
-    "ddyGroup\022#.management.CreateBuddyGroupRe"
-    "quest\032$.management.CreateBuddyGroupRespo"
-    "nse\022]\n\020DeleteBuddyGroup\022#.management.Del"
-    "eteBuddyGroupRequest\032$.management.Delete"
-    "BuddyGroupResponse\022Z\n\017MirrorRootInode\022\"."
-    "management.MirrorRootInodeRequest\032#.mana"
-    "gement.MirrorRootInodeResponse\022N\n\013StartR"
-    "esync\022\036.management.StartResyncRequest\032\037."
-    "management.StartResyncResponse\022l\n\025SetDef"
-    "aultQuotaLimits\022(.management.SetDefaultQ"
-    "uotaLimitsRequest\032).management.SetDefaul"
-    "tQuotaLimitsResponse\022W\n\016SetQuotaLimits\022!"
-    ".management.SetQuotaLimitsRequest\032\".mana"
-    "gement.SetQuotaLimitsResponse\022Y\n\016GetQuot"
-    "aLimits\022!.management.GetQuotaLimitsReque"
-    "st\032\".management.GetQuotaLimitsResponse0\001"
-    "\022V\n\rGetQuotaUsage\022 .management.GetQuotaU"
-    "sageRequest\032!.management.GetQuotaUsageRe"
-    "sponse0\001\022K\n\nGetLicense\022\035.management.GetL"
-    "icenseRequest\032\036.management.GetLicenseRes"
-    "ponseB-Z+github.com/thinkparq/protobuf/g"
-    "o/managementb\006proto3"
+    "nt.QuotaInfo\"\030\n\026SetQuotaLimitsResponse\"\241"
+    "\002\n\025GetQuotaLimitsRequest\022\030\n\013user_id_min\030"
+    "\001 \001(\rH\000\210\001\001\022\030\n\013user_id_max\030\002 \001(\rH\001\210\001\001\022\024\n\014"
+    "user_id_list\030\003 \003(\r\022\031\n\014group_id_min\030\004 \001(\r"
+    "H\002\210\001\001\022\031\n\014group_id_max\030\005 \001(\rH\003\210\001\001\022\025\n\rgrou"
+    "p_id_list\030\006 \003(\r\022&\n\004pool\030\007 \001(\0132\023.beegfs.E"
+    "ntityIdSetH\004\210\001\001B\016\n\014_user_id_minB\016\n\014_user"
+    "_id_maxB\017\n\r_group_id_minB\017\n\r_group_id_ma"
+    "xB\007\n\005_pool\"O\n\026GetQuotaLimitsResponse\022*\n\006"
+    "limits\030\001 \001(\0132\025.management.QuotaInfoH\000\210\001\001"
+    "B\t\n\007_limits\"\304\002\n\024GetQuotaUsageRequest\022\030\n\013"
+    "user_id_min\030\001 \001(\rH\000\210\001\001\022\030\n\013user_id_max\030\002 "
+    "\001(\rH\001\210\001\001\022\024\n\014user_id_list\030\003 \003(\r\022\031\n\014group_"
+    "id_min\030\004 \001(\rH\002\210\001\001\022\031\n\014group_id_max\030\005 \001(\rH"
+    "\003\210\001\001\022\025\n\rgroup_id_list\030\006 \003(\r\022&\n\004pool\030\007 \001("
+    "\0132\023.beegfs.EntityIdSetH\004\210\001\001\022\025\n\010exceeded\030"
+    "\010 \001(\010H\005\210\001\001B\016\n\014_user_id_minB\016\n\014_user_id_m"
+    "axB\017\n\r_group_id_minB\017\n\r_group_id_maxB\007\n\005"
+    "_poolB\013\n\t_exceeded\"\200\001\n\025GetQuotaUsageResp"
+    "onse\022)\n\005entry\030\001 \001(\0132\025.management.QuotaIn"
+    "foH\000\210\001\001\022\035\n\020refresh_period_s\030\002 \001(\004H\001\210\001\001B\010"
+    "\n\006_entryB\023\n\021_refresh_period_s\"3\n\021GetLice"
+    "nseRequest\022\023\n\006reload\030\001 \001(\010H\000\210\001\001B\t\n\007_relo"
+    "ad\"V\n\022GetLicenseResponse\0222\n\tcert_data\030\001 "
+    "\001(\0132\032.license.GetCertDataResultH\000\210\001\001B\014\n\n"
+    "_cert_data2\230\r\n\nManagement\022E\n\010SetAlias\022\033."
+    "management.SetAliasRequest\032\034.management."
+    "SetAliasResponse\022E\n\010GetNodes\022\033.managemen"
+    "t.GetNodesRequest\032\034.management.GetNodesR"
+    "esponse\022K\n\nDeleteNode\022\035.management.Delet"
+    "eNodeRequest\032\036.management.DeleteNodeResp"
+    "onse\022K\n\nGetTargets\022\035.management.GetTarge"
+    "tsRequest\032\036.management.GetTargetsRespons"
+    "e\022Q\n\014DeleteTarget\022\037.management.DeleteTar"
+    "getRequest\032 .management.DeleteTargetResp"
+    "onse\022W\n\016SetTargetState\022!.management.SetT"
+    "argetStateRequest\032\".management.SetTarget"
+    "StateResponse\022E\n\010GetPools\022\033.management.G"
+    "etPoolsRequest\032\034.management.GetPoolsResp"
+    "onse\022K\n\nCreatePool\022\035.management.CreatePo"
+    "olRequest\032\036.management.CreatePoolRespons"
+    "e\022K\n\nAssignPool\022\035.management.AssignPoolR"
+    "equest\032\036.management.AssignPoolResponse\022K"
+    "\n\nDeletePool\022\035.management.DeletePoolRequ"
+    "est\032\036.management.DeletePoolResponse\022W\n\016G"
+    "etBuddyGroups\022!.management.GetBuddyGroup"
+    "sRequest\032\".management.GetBuddyGroupsResp"
+    "onse\022]\n\020CreateBuddyGroup\022#.management.Cr"
+    "eateBuddyGroupRequest\032$.management.Creat"
+    "eBuddyGroupResponse\022]\n\020DeleteBuddyGroup\022"
+    "#.management.DeleteBuddyGroupRequest\032$.m"
+    "anagement.DeleteBuddyGroupResponse\022Z\n\017Mi"
+    "rrorRootInode\022\".management.MirrorRootIno"
+    "deRequest\032#.management.MirrorRootInodeRe"
+    "sponse\022N\n\013StartResync\022\036.management.Start"
+    "ResyncRequest\032\037.management.StartResyncRe"
+    "sponse\022l\n\025SetDefaultQuotaLimits\022(.manage"
+    "ment.SetDefaultQuotaLimitsRequest\032).mana"
+    "gement.SetDefaultQuotaLimitsResponse\022W\n\016"
+    "SetQuotaLimits\022!.management.SetQuotaLimi"
+    "tsRequest\032\".management.SetQuotaLimitsRes"
+    "ponse\022Y\n\016GetQuotaLimits\022!.management.Get"
+    "QuotaLimitsRequest\032\".management.GetQuota"
+    "LimitsResponse0\001\022V\n\rGetQuotaUsage\022 .mana"
+    "gement.GetQuotaUsageRequest\032!.management"
+    ".GetQuotaUsageResponse0\001\022K\n\nGetLicense\022\035"
+    ".management.GetLicenseRequest\032\036.manageme"
+    "nt.GetLicenseResponseB-Z+github.com/thin"
+    "kparq/protobuf/go/managementb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_management_2eproto_deps[2] =
     {
@@ -2075,7 +2092,7 @@ static ::absl::once_flag descriptor_table_management_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_management_2eproto = {
     false,
     false,
-    7580,
+    7716,
     descriptor_table_protodef_management_2eproto,
     "management.proto",
     &descriptor_table_management_2eproto_once,
@@ -12735,8 +12752,10 @@ inline PROTOBUF_NDEBUG_INLINE GetQuotaLimitsRequest::Impl_::Impl_(
     const Impl_& from, const ::management::GetQuotaLimitsRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        quota_id_list_{visibility, arena, from.quota_id_list_},
-        _quota_id_list_cached_byte_size_{0} {}
+        user_id_list_{visibility, arena, from.user_id_list_},
+        _user_id_list_cached_byte_size_{0},
+        group_id_list_{visibility, arena, from.group_id_list_},
+        _group_id_list_cached_byte_size_{0} {}
 
 GetQuotaLimitsRequest::GetQuotaLimitsRequest(
     ::google::protobuf::Arena* arena,
@@ -12756,12 +12775,12 @@ GetQuotaLimitsRequest::GetQuotaLimitsRequest(
                               arena, *from._impl_.pool_)
                         : nullptr;
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, quota_id_min_),
+               offsetof(Impl_, user_id_min_),
            reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, quota_id_min_),
-           offsetof(Impl_, id_type_) -
-               offsetof(Impl_, quota_id_min_) +
-               sizeof(Impl_::id_type_));
+               offsetof(Impl_, user_id_min_),
+           offsetof(Impl_, group_id_max_) -
+               offsetof(Impl_, user_id_min_) +
+               sizeof(Impl_::group_id_max_));
 
   // @@protoc_insertion_point(copy_constructor:management.GetQuotaLimitsRequest)
 }
@@ -12769,17 +12788,19 @@ inline PROTOBUF_NDEBUG_INLINE GetQuotaLimitsRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        quota_id_list_{visibility, arena},
-        _quota_id_list_cached_byte_size_{0} {}
+        user_id_list_{visibility, arena},
+        _user_id_list_cached_byte_size_{0},
+        group_id_list_{visibility, arena},
+        _group_id_list_cached_byte_size_{0} {}
 
 inline void GetQuotaLimitsRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, pool_),
            0,
-           offsetof(Impl_, id_type_) -
+           offsetof(Impl_, group_id_max_) -
                offsetof(Impl_, pool_) +
-               sizeof(Impl_::id_type_));
+               sizeof(Impl_::group_id_max_));
 }
 GetQuotaLimitsRequest::~GetQuotaLimitsRequest() {
   // @@protoc_insertion_point(destructor:management.GetQuotaLimitsRequest)
@@ -12799,8 +12820,12 @@ inline void* GetQuotaLimitsRequest::PlacementNew_(const void*, void* mem,
 }
 constexpr auto GetQuotaLimitsRequest::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_list_) +
-          decltype(GetQuotaLimitsRequest::_impl_.quota_id_list_)::
+      PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.user_id_list_) +
+          decltype(GetQuotaLimitsRequest::_impl_.user_id_list_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.group_id_list_) +
+          decltype(GetQuotaLimitsRequest::_impl_.group_id_list_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
@@ -12841,15 +12866,15 @@ const ::google::protobuf::internal::ClassData* GetQuotaLimitsRequest::GetClassDa
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 1, 0, 2> GetQuotaLimitsRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 1, 0, 2> GetQuotaLimitsRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_._has_bits_),
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967168,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    7,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -12860,41 +12885,51 @@ const ::_pbi::TcParseTable<3, 5, 1, 0, 2> GetQuotaLimitsRequest::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // optional uint32 quota_id_min = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.quota_id_min_), 1>(),
-     {8, 1, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_min_)}},
-    // optional uint32 quota_id_max = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.quota_id_max_), 2>(),
-     {16, 2, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_max_)}},
-    // .beegfs.QuotaIdType id_type = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.id_type_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.id_type_)}},
-    // optional .beegfs.EntityIdSet pool = 4;
-    {::_pbi::TcParser::FastMtS1,
-     {34, 0, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.pool_)}},
-    // repeated uint32 quota_id_list = 5;
+    // optional uint32 user_id_min = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.user_id_min_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.user_id_min_)}},
+    // optional uint32 user_id_max = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.user_id_max_), 2>(),
+     {16, 2, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.user_id_max_)}},
+    // repeated uint32 user_id_list = 3;
     {::_pbi::TcParser::FastV32P1,
-     {42, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_list_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.user_id_list_)}},
+    // optional uint32 group_id_min = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.group_id_min_), 3>(),
+     {32, 3, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.group_id_min_)}},
+    // optional uint32 group_id_max = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaLimitsRequest, _impl_.group_id_max_), 4>(),
+     {40, 4, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.group_id_max_)}},
+    // repeated uint32 group_id_list = 6;
+    {::_pbi::TcParser::FastV32P1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.group_id_list_)}},
+    // optional .beegfs.EntityIdSet pool = 7;
+    {::_pbi::TcParser::FastMtS1,
+     {58, 0, 0, PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.pool_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // optional uint32 quota_id_min = 1;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_min_), _Internal::kHasBitsOffset + 1, 0,
+    // optional uint32 user_id_min = 1;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.user_id_min_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // optional uint32 quota_id_max = 2;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_max_), _Internal::kHasBitsOffset + 2, 0,
+    // optional uint32 user_id_max = 2;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.user_id_max_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // .beegfs.QuotaIdType id_type = 3;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.id_type_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // optional .beegfs.EntityIdSet pool = 4;
+    // repeated uint32 user_id_list = 3;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.user_id_list_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // optional uint32 group_id_min = 4;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.group_id_min_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // optional uint32 group_id_max = 5;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.group_id_max_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // repeated uint32 group_id_list = 6;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.group_id_list_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // optional .beegfs.EntityIdSet pool = 7;
     {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.pool_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated uint32 quota_id_list = 5;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.quota_id_list_), -1, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
   }}, {{
@@ -12908,18 +12943,18 @@ PROTOBUF_NOINLINE void GetQuotaLimitsRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.quota_id_list_.Clear();
+  _impl_.user_id_list_.Clear();
+  _impl_.group_id_list_.Clear();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.pool_ != nullptr);
     _impl_.pool_->Clear();
   }
-  if (cached_has_bits & 0x00000006u) {
-    ::memset(&_impl_.quota_id_min_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.quota_id_max_) -
-        reinterpret_cast<char*>(&_impl_.quota_id_min_)) + sizeof(_impl_.quota_id_max_));
+  if (cached_has_bits & 0x0000001eu) {
+    ::memset(&_impl_.user_id_min_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.group_id_max_) -
+        reinterpret_cast<char*>(&_impl_.user_id_min_)) + sizeof(_impl_.group_id_max_));
   }
-  _impl_.id_type_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -12940,41 +12975,57 @@ PROTOBUF_NOINLINE void GetQuotaLimitsRequest::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // optional uint32 quota_id_min = 1;
+          // optional uint32 user_id_min = 1;
           if (cached_has_bits & 0x00000002u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                1, this_._internal_quota_id_min(), target);
+                1, this_._internal_user_id_min(), target);
           }
 
-          // optional uint32 quota_id_max = 2;
+          // optional uint32 user_id_max = 2;
           if (cached_has_bits & 0x00000004u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                2, this_._internal_quota_id_max(), target);
+                2, this_._internal_user_id_max(), target);
           }
 
-          // .beegfs.QuotaIdType id_type = 3;
-          if (this_._internal_id_type() != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                3, this_._internal_id_type(), target);
-          }
-
-          // optional .beegfs.EntityIdSet pool = 4;
-          if (cached_has_bits & 0x00000001u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                4, *this_._impl_.pool_, this_._impl_.pool_->GetCachedSize(), target,
-                stream);
-          }
-
-          // repeated uint32 quota_id_list = 5;
+          // repeated uint32 user_id_list = 3;
           {
-            int byte_size = this_._impl_._quota_id_list_cached_byte_size_.Get();
+            int byte_size = this_._impl_._user_id_list_cached_byte_size_.Get();
             if (byte_size > 0) {
               target = stream->WriteUInt32Packed(
-                  5, this_._internal_quota_id_list(), byte_size, target);
+                  3, this_._internal_user_id_list(), byte_size, target);
             }
+          }
+
+          // optional uint32 group_id_min = 4;
+          if (cached_has_bits & 0x00000008u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                4, this_._internal_group_id_min(), target);
+          }
+
+          // optional uint32 group_id_max = 5;
+          if (cached_has_bits & 0x00000010u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                5, this_._internal_group_id_max(), target);
+          }
+
+          // repeated uint32 group_id_list = 6;
+          {
+            int byte_size = this_._impl_._group_id_list_cached_byte_size_.Get();
+            if (byte_size > 0) {
+              target = stream->WriteUInt32Packed(
+                  6, this_._internal_group_id_list(), byte_size, target);
+            }
+          }
+
+          // optional .beegfs.EntityIdSet pool = 7;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                7, *this_._impl_.pool_, this_._impl_.pool_->GetCachedSize(), target,
+                stream);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -13002,37 +13053,47 @@ PROTOBUF_NOINLINE void GetQuotaLimitsRequest::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated uint32 quota_id_list = 5;
+            // repeated uint32 user_id_list = 3;
             {
               total_size +=
                   ::_pbi::WireFormatLite::UInt32SizeWithPackedTagSize(
-                      this_._internal_quota_id_list(), 1,
-                      this_._impl_._quota_id_list_cached_byte_size_);
+                      this_._internal_user_id_list(), 1,
+                      this_._impl_._user_id_list_cached_byte_size_);
+            }
+            // repeated uint32 group_id_list = 6;
+            {
+              total_size +=
+                  ::_pbi::WireFormatLite::UInt32SizeWithPackedTagSize(
+                      this_._internal_group_id_list(), 1,
+                      this_._impl_._group_id_list_cached_byte_size_);
             }
           }
           cached_has_bits = this_._impl_._has_bits_[0];
-          if (cached_has_bits & 0x00000007u) {
-            // optional .beegfs.EntityIdSet pool = 4;
+          if (cached_has_bits & 0x0000001fu) {
+            // optional .beegfs.EntityIdSet pool = 7;
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.pool_);
             }
-            // optional uint32 quota_id_min = 1;
+            // optional uint32 user_id_min = 1;
             if (cached_has_bits & 0x00000002u) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_quota_id_min());
+                  this_._internal_user_id_min());
             }
-            // optional uint32 quota_id_max = 2;
+            // optional uint32 user_id_max = 2;
             if (cached_has_bits & 0x00000004u) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_quota_id_max());
+                  this_._internal_user_id_max());
             }
-          }
-           {
-            // .beegfs.QuotaIdType id_type = 3;
-            if (this_._internal_id_type() != 0) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_id_type());
+            // optional uint32 group_id_min = 4;
+            if (cached_has_bits & 0x00000008u) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_group_id_min());
+            }
+            // optional uint32 group_id_max = 5;
+            if (cached_has_bits & 0x00000010u) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_group_id_max());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -13048,9 +13109,10 @@ void GetQuotaLimitsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, c
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_quota_id_list()->MergeFrom(from._internal_quota_id_list());
+  _this->_internal_mutable_user_id_list()->MergeFrom(from._internal_user_id_list());
+  _this->_internal_mutable_group_id_list()->MergeFrom(from._internal_group_id_list());
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000007u) {
+  if (cached_has_bits & 0x0000001fu) {
     if (cached_has_bits & 0x00000001u) {
       ABSL_DCHECK(from._impl_.pool_ != nullptr);
       if (_this->_impl_.pool_ == nullptr) {
@@ -13061,14 +13123,17 @@ void GetQuotaLimitsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, c
       }
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.quota_id_min_ = from._impl_.quota_id_min_;
+      _this->_impl_.user_id_min_ = from._impl_.user_id_min_;
     }
     if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.quota_id_max_ = from._impl_.quota_id_max_;
+      _this->_impl_.user_id_max_ = from._impl_.user_id_max_;
     }
-  }
-  if (from._internal_id_type() != 0) {
-    _this->_impl_.id_type_ = from._impl_.id_type_;
+    if (cached_has_bits & 0x00000008u) {
+      _this->_impl_.group_id_min_ = from._impl_.group_id_min_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_impl_.group_id_max_ = from._impl_.group_id_max_;
+    }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
@@ -13086,10 +13151,11 @@ void GetQuotaLimitsRequest::InternalSwap(GetQuotaLimitsRequest* PROTOBUF_RESTRIC
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.quota_id_list_.InternalSwap(&other->_impl_.quota_id_list_);
+  _impl_.user_id_list_.InternalSwap(&other->_impl_.user_id_list_);
+  _impl_.group_id_list_.InternalSwap(&other->_impl_.group_id_list_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.id_type_)
-      + sizeof(GetQuotaLimitsRequest::_impl_.id_type_)
+      PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.group_id_max_)
+      + sizeof(GetQuotaLimitsRequest::_impl_.group_id_max_)
       - PROTOBUF_FIELD_OFFSET(GetQuotaLimitsRequest, _impl_.pool_)>(
           reinterpret_cast<char*>(&_impl_.pool_),
           reinterpret_cast<char*>(&other->_impl_.pool_));
@@ -13377,8 +13443,10 @@ inline PROTOBUF_NDEBUG_INLINE GetQuotaUsageRequest::Impl_::Impl_(
     const Impl_& from, const ::management::GetQuotaUsageRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        quota_id_list_{visibility, arena, from.quota_id_list_},
-        _quota_id_list_cached_byte_size_{0} {}
+        user_id_list_{visibility, arena, from.user_id_list_},
+        _user_id_list_cached_byte_size_{0},
+        group_id_list_{visibility, arena, from.group_id_list_},
+        _group_id_list_cached_byte_size_{0} {}
 
 GetQuotaUsageRequest::GetQuotaUsageRequest(
     ::google::protobuf::Arena* arena,
@@ -13398,11 +13466,11 @@ GetQuotaUsageRequest::GetQuotaUsageRequest(
                               arena, *from._impl_.pool_)
                         : nullptr;
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, quota_id_min_),
+               offsetof(Impl_, user_id_min_),
            reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, quota_id_min_),
+               offsetof(Impl_, user_id_min_),
            offsetof(Impl_, exceeded_) -
-               offsetof(Impl_, quota_id_min_) +
+               offsetof(Impl_, user_id_min_) +
                sizeof(Impl_::exceeded_));
 
   // @@protoc_insertion_point(copy_constructor:management.GetQuotaUsageRequest)
@@ -13411,8 +13479,10 @@ inline PROTOBUF_NDEBUG_INLINE GetQuotaUsageRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        quota_id_list_{visibility, arena},
-        _quota_id_list_cached_byte_size_{0} {}
+        user_id_list_{visibility, arena},
+        _user_id_list_cached_byte_size_{0},
+        group_id_list_{visibility, arena},
+        _group_id_list_cached_byte_size_{0} {}
 
 inline void GetQuotaUsageRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -13441,8 +13511,12 @@ inline void* GetQuotaUsageRequest::PlacementNew_(const void*, void* mem,
 }
 constexpr auto GetQuotaUsageRequest::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_list_) +
-          decltype(GetQuotaUsageRequest::_impl_.quota_id_list_)::
+      PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.user_id_list_) +
+          decltype(GetQuotaUsageRequest::_impl_.user_id_list_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.group_id_list_) +
+          decltype(GetQuotaUsageRequest::_impl_.group_id_list_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
@@ -13483,15 +13557,15 @@ const ::google::protobuf::internal::ClassData* GetQuotaUsageRequest::GetClassDat
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 1, 0, 2> GetQuotaUsageRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 1, 0, 2> GetQuotaUsageRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_._has_bits_),
     0, // no _extensions_
-    6, 56,  // max_field_number, fast_idx_mask
+    8, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967232,  // skipmap
+    4294967040,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    6,  // num_field_entries
+    8,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -13501,47 +13575,57 @@ const ::_pbi::TcParseTable<3, 6, 1, 0, 2> GetQuotaUsageRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::management::GetQuotaUsageRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // optional uint32 quota_id_min = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.quota_id_min_), 1>(),
-     {8, 1, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_min_)}},
-    // optional uint32 quota_id_max = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.quota_id_max_), 2>(),
-     {16, 2, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_max_)}},
-    // .beegfs.QuotaIdType id_type = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.id_type_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.id_type_)}},
-    // optional .beegfs.EntityIdSet pool = 4;
-    {::_pbi::TcParser::FastMtS1,
-     {34, 0, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.pool_)}},
-    // optional bool exceeded = 5;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetQuotaUsageRequest, _impl_.exceeded_), 3>(),
-     {40, 3, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.exceeded_)}},
-    // repeated uint32 quota_id_list = 6;
+    // optional bool exceeded = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetQuotaUsageRequest, _impl_.exceeded_), 5>(),
+     {64, 5, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.exceeded_)}},
+    // optional uint32 user_id_min = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.user_id_min_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.user_id_min_)}},
+    // optional uint32 user_id_max = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.user_id_max_), 2>(),
+     {16, 2, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.user_id_max_)}},
+    // repeated uint32 user_id_list = 3;
     {::_pbi::TcParser::FastV32P1,
-     {50, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_list_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.user_id_list_)}},
+    // optional uint32 group_id_min = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.group_id_min_), 3>(),
+     {32, 3, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.group_id_min_)}},
+    // optional uint32 group_id_max = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetQuotaUsageRequest, _impl_.group_id_max_), 4>(),
+     {40, 4, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.group_id_max_)}},
+    // repeated uint32 group_id_list = 6;
+    {::_pbi::TcParser::FastV32P1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.group_id_list_)}},
+    // optional .beegfs.EntityIdSet pool = 7;
+    {::_pbi::TcParser::FastMtS1,
+     {58, 0, 0, PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.pool_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // optional uint32 quota_id_min = 1;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_min_), _Internal::kHasBitsOffset + 1, 0,
+    // optional uint32 user_id_min = 1;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.user_id_min_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // optional uint32 quota_id_max = 2;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_max_), _Internal::kHasBitsOffset + 2, 0,
+    // optional uint32 user_id_max = 2;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.user_id_max_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // .beegfs.QuotaIdType id_type = 3;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.id_type_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // optional .beegfs.EntityIdSet pool = 4;
+    // repeated uint32 user_id_list = 3;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.user_id_list_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // optional uint32 group_id_min = 4;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.group_id_min_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // optional uint32 group_id_max = 5;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.group_id_max_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // repeated uint32 group_id_list = 6;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.group_id_list_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // optional .beegfs.EntityIdSet pool = 7;
     {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.pool_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // optional bool exceeded = 5;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.exceeded_), _Internal::kHasBitsOffset + 3, 0,
+    // optional bool exceeded = 8;
+    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.exceeded_), _Internal::kHasBitsOffset + 5, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kBool)},
-    // repeated uint32 quota_id_list = 6;
-    {PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.quota_id_list_), -1, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
   }}, {{
     {::_pbi::TcParser::GetTable<::beegfs::EntityIdSet>()},
   }}, {{
@@ -13555,19 +13639,18 @@ PROTOBUF_NOINLINE void GetQuotaUsageRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.quota_id_list_.Clear();
+  _impl_.user_id_list_.Clear();
+  _impl_.group_id_list_.Clear();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.pool_ != nullptr);
     _impl_.pool_->Clear();
   }
-  if (cached_has_bits & 0x00000006u) {
-    ::memset(&_impl_.quota_id_min_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.quota_id_max_) -
-        reinterpret_cast<char*>(&_impl_.quota_id_min_)) + sizeof(_impl_.quota_id_max_));
+  if (cached_has_bits & 0x0000003eu) {
+    ::memset(&_impl_.user_id_min_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.exceeded_) -
+        reinterpret_cast<char*>(&_impl_.user_id_min_)) + sizeof(_impl_.exceeded_));
   }
-  _impl_.id_type_ = 0;
-  _impl_.exceeded_ = false;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -13588,48 +13671,64 @@ PROTOBUF_NOINLINE void GetQuotaUsageRequest::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // optional uint32 quota_id_min = 1;
+          // optional uint32 user_id_min = 1;
           if (cached_has_bits & 0x00000002u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                1, this_._internal_quota_id_min(), target);
+                1, this_._internal_user_id_min(), target);
           }
 
-          // optional uint32 quota_id_max = 2;
+          // optional uint32 user_id_max = 2;
           if (cached_has_bits & 0x00000004u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                2, this_._internal_quota_id_max(), target);
+                2, this_._internal_user_id_max(), target);
           }
 
-          // .beegfs.QuotaIdType id_type = 3;
-          if (this_._internal_id_type() != 0) {
+          // repeated uint32 user_id_list = 3;
+          {
+            int byte_size = this_._impl_._user_id_list_cached_byte_size_.Get();
+            if (byte_size > 0) {
+              target = stream->WriteUInt32Packed(
+                  3, this_._internal_user_id_list(), byte_size, target);
+            }
+          }
+
+          // optional uint32 group_id_min = 4;
+          if (cached_has_bits & 0x00000008u) {
             target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                3, this_._internal_id_type(), target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                4, this_._internal_group_id_min(), target);
           }
 
-          // optional .beegfs.EntityIdSet pool = 4;
+          // optional uint32 group_id_max = 5;
+          if (cached_has_bits & 0x00000010u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                5, this_._internal_group_id_max(), target);
+          }
+
+          // repeated uint32 group_id_list = 6;
+          {
+            int byte_size = this_._impl_._group_id_list_cached_byte_size_.Get();
+            if (byte_size > 0) {
+              target = stream->WriteUInt32Packed(
+                  6, this_._internal_group_id_list(), byte_size, target);
+            }
+          }
+
+          // optional .beegfs.EntityIdSet pool = 7;
           if (cached_has_bits & 0x00000001u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                4, *this_._impl_.pool_, this_._impl_.pool_->GetCachedSize(), target,
+                7, *this_._impl_.pool_, this_._impl_.pool_->GetCachedSize(), target,
                 stream);
           }
 
-          // optional bool exceeded = 5;
-          if (cached_has_bits & 0x00000008u) {
+          // optional bool exceeded = 8;
+          if (cached_has_bits & 0x00000020u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteBoolToArray(
-                5, this_._internal_exceeded(), target);
-          }
-
-          // repeated uint32 quota_id_list = 6;
-          {
-            int byte_size = this_._impl_._quota_id_list_cached_byte_size_.Get();
-            if (byte_size > 0) {
-              target = stream->WriteUInt32Packed(
-                  6, this_._internal_quota_id_list(), byte_size, target);
-            }
+                8, this_._internal_exceeded(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -13657,42 +13756,50 @@ PROTOBUF_NOINLINE void GetQuotaUsageRequest::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated uint32 quota_id_list = 6;
+            // repeated uint32 user_id_list = 3;
             {
               total_size +=
                   ::_pbi::WireFormatLite::UInt32SizeWithPackedTagSize(
-                      this_._internal_quota_id_list(), 1,
-                      this_._impl_._quota_id_list_cached_byte_size_);
+                      this_._internal_user_id_list(), 1,
+                      this_._impl_._user_id_list_cached_byte_size_);
+            }
+            // repeated uint32 group_id_list = 6;
+            {
+              total_size +=
+                  ::_pbi::WireFormatLite::UInt32SizeWithPackedTagSize(
+                      this_._internal_group_id_list(), 1,
+                      this_._impl_._group_id_list_cached_byte_size_);
             }
           }
           cached_has_bits = this_._impl_._has_bits_[0];
-          if (cached_has_bits & 0x00000007u) {
-            // optional .beegfs.EntityIdSet pool = 4;
+          if (cached_has_bits & 0x0000003fu) {
+            // optional .beegfs.EntityIdSet pool = 7;
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.pool_);
             }
-            // optional uint32 quota_id_min = 1;
+            // optional uint32 user_id_min = 1;
             if (cached_has_bits & 0x00000002u) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_quota_id_min());
+                  this_._internal_user_id_min());
             }
-            // optional uint32 quota_id_max = 2;
+            // optional uint32 user_id_max = 2;
             if (cached_has_bits & 0x00000004u) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_quota_id_max());
+                  this_._internal_user_id_max());
             }
-          }
-           {
-            // .beegfs.QuotaIdType id_type = 3;
-            if (this_._internal_id_type() != 0) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_id_type());
-            }
-          }
-           {
-            // optional bool exceeded = 5;
+            // optional uint32 group_id_min = 4;
             if (cached_has_bits & 0x00000008u) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_group_id_min());
+            }
+            // optional uint32 group_id_max = 5;
+            if (cached_has_bits & 0x00000010u) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_group_id_max());
+            }
+            // optional bool exceeded = 8;
+            if (cached_has_bits & 0x00000020u) {
               total_size += 2;
             }
           }
@@ -13709,9 +13816,10 @@ void GetQuotaUsageRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, co
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_quota_id_list()->MergeFrom(from._internal_quota_id_list());
+  _this->_internal_mutable_user_id_list()->MergeFrom(from._internal_user_id_list());
+  _this->_internal_mutable_group_id_list()->MergeFrom(from._internal_group_id_list());
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000007u) {
+  if (cached_has_bits & 0x0000003fu) {
     if (cached_has_bits & 0x00000001u) {
       ABSL_DCHECK(from._impl_.pool_ != nullptr);
       if (_this->_impl_.pool_ == nullptr) {
@@ -13722,17 +13830,20 @@ void GetQuotaUsageRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, co
       }
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.quota_id_min_ = from._impl_.quota_id_min_;
+      _this->_impl_.user_id_min_ = from._impl_.user_id_min_;
     }
     if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.quota_id_max_ = from._impl_.quota_id_max_;
+      _this->_impl_.user_id_max_ = from._impl_.user_id_max_;
     }
-  }
-  if (from._internal_id_type() != 0) {
-    _this->_impl_.id_type_ = from._impl_.id_type_;
-  }
-  if (cached_has_bits & 0x00000008u) {
-    _this->_impl_.exceeded_ = from._impl_.exceeded_;
+    if (cached_has_bits & 0x00000008u) {
+      _this->_impl_.group_id_min_ = from._impl_.group_id_min_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_impl_.group_id_max_ = from._impl_.group_id_max_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      _this->_impl_.exceeded_ = from._impl_.exceeded_;
+    }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
@@ -13750,7 +13861,8 @@ void GetQuotaUsageRequest::InternalSwap(GetQuotaUsageRequest* PROTOBUF_RESTRICT 
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.quota_id_list_.InternalSwap(&other->_impl_.quota_id_list_);
+  _impl_.user_id_list_.InternalSwap(&other->_impl_.user_id_list_);
+  _impl_.group_id_list_.InternalSwap(&other->_impl_.group_id_list_);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(GetQuotaUsageRequest, _impl_.exceeded_)
       + sizeof(GetQuotaUsageRequest::_impl_.exceeded_)
