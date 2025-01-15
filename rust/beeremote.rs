@@ -220,8 +220,26 @@ pub mod job_result {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdatePathsRequest {
+    #[prost(string, tag = "1")]
+    pub path_prefix: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub requested_update: ::core::option::Option<UpdateJobsRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdatePathsResponse {
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub update_result: ::core::option::Option<UpdateJobsResponse>,
+}
+/// UpdateJobsRequest is used to update one or more jobs for a particular path.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateJobsRequest {
-    /// Required: The path with the job(s) to update.
+    /// The path with the job(s) to update. Ignored when updating multiple paths via
+    /// UpdatePathsRequest.
     #[prost(string, tag = "1")]
     pub path: ::prost::alloc::string::String,
     /// Optional: Only update a single job for the specified path. If this job ID is not found for
@@ -285,18 +303,16 @@ pub mod update_jobs_request {
         }
     }
 }
-/// Updating jobs can happen asynchronously or synchronously depending if wait is set in the
-/// UpdateJobRequest.If wait == true then JobResponses will contain one or more job responses with
-/// the updated status of the job(s). Otherwise it will be empty.
+/// UpdateJobsResponse returns the result of updating one or more job(s) for a particular path.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateJobsResponse {
-    /// If the newState could not be applied to any of the jobs then ok will be false. Inspect the
-    /// message and individual job responses to troubleshoot further. Generally the message will
-    /// indicate any internal errors whereas the status of individual jobs will indicate problems
-    /// applying the new state to that particular job.
+    /// Required: If the newState could not be applied to any of the jobs then ok will be false.
+    /// Inspect the message and individual job responses to troubleshoot further.
     #[prost(bool, tag = "1")]
     pub ok: bool,
+    /// Required: Generally the message will indicate any overall errors applying the update whereas
+    /// the status of individual jobs will indicate problems applying updates to a particular job.
     #[prost(string, tag = "2")]
     pub message: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "3")]
@@ -494,6 +510,31 @@ pub mod bee_remote_client {
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "SubmitJob"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn update_paths(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdatePathsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<tonic::codec::Streaming<super::UpdatePathsResponse>>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/UpdatePaths",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdatePaths"));
+            self.inner.server_streaming(req, path, codec).await
+        }
         pub async fn update_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateJobsRequest>,
@@ -617,6 +658,19 @@ pub mod bee_remote_server {
             request: tonic::Request<super::SubmitJobRequest>,
         ) -> std::result::Result<
             tonic::Response<super::SubmitJobResponse>,
+            tonic::Status,
+        >;
+        /// Server streaming response type for the UpdatePaths method.
+        type UpdatePathsStream: tonic::codegen::tokio_stream::Stream<
+                Item = std::result::Result<super::UpdatePathsResponse, tonic::Status>,
+            >
+            + Send
+            + 'static;
+        async fn update_paths(
+            &self,
+            request: tonic::Request<super::UpdatePathsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<Self::UpdatePathsStream>,
             tonic::Status,
         >;
         async fn update_jobs(
@@ -783,6 +837,53 @@ pub mod bee_remote_server {
                                 max_encoding_message_size,
                             );
                         let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/UpdatePaths" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdatePathsSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::ServerStreamingService<super::UpdatePathsRequest>
+                    for UpdatePathsSvc<T> {
+                        type Response = super::UpdatePathsResponse;
+                        type ResponseStream = T::UpdatePathsStream;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::ResponseStream>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::UpdatePathsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::update_paths(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdatePathsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.server_streaming(method, req).await;
                         Ok(res)
                     };
                     Box::pin(fut)
