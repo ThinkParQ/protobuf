@@ -558,27 +558,36 @@ pub struct SetQuotaLimitsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SetQuotaLimitsResponse {}
 /// Gets the individually set per-id-and-pool quota limits. Retrieves all explicitly set entries.
+/// By default, nothing shall be returned. Set at least one user_id_* / group_id_* field to enable
+/// querying (e.g. set user_id_min to 0 to return user entries for all user ids).
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetQuotaLimitsRequest {
-    /// The minimum id to return.
-    /// Optional. If set, quota_id_max must also be set.
-    #[prost(uint32, optional, tag = "1")]
-    pub quota_id_min: ::core::option::Option<u32>,
-    /// The maximum id to return.
-    /// Optional. If set, quota_id_min must also be set.
-    #[prost(uint32, optional, tag = "2")]
-    pub quota_id_max: ::core::option::Option<u32>,
-    /// Return only the ids listed.
-    #[prost(uint32, repeated, tag = "5")]
-    pub quota_id_list: ::prost::alloc::vec::Vec<u32>,
-    /// Return only user or group ids.
+    /// The minimum user id to return.
     /// Optional.
-    #[prost(enumeration = "super::beegfs::QuotaIdType", tag = "3")]
-    pub id_type: i32,
+    #[prost(uint32, optional, tag = "1")]
+    pub user_id_min: ::core::option::Option<u32>,
+    /// The maximum id to return.
+    /// Optional.
+    #[prost(uint32, optional, tag = "2")]
+    pub user_id_max: ::core::option::Option<u32>,
+    /// Return only the user ids listed.
+    #[prost(uint32, repeated, tag = "3")]
+    pub user_id_list: ::prost::alloc::vec::Vec<u32>,
+    /// The minimum group id to return.
+    /// Optional.
+    #[prost(uint32, optional, tag = "4")]
+    pub group_id_min: ::core::option::Option<u32>,
+    /// The maximum id to return.
+    /// Optional.
+    #[prost(uint32, optional, tag = "5")]
+    pub group_id_max: ::core::option::Option<u32>,
+    /// Return only the group ids listed.
+    #[prost(uint32, repeated, tag = "6")]
+    pub group_id_list: ::prost::alloc::vec::Vec<u32>,
     /// Return only a specific pool.
     /// Optional. One identifier is sufficient.
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "7")]
     pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
 /// One entry in the quota per-id-and-pool limits list. Meant to be streamed.
@@ -593,31 +602,40 @@ pub struct GetQuotaLimitsResponse {
 }
 /// Gets the quota usage info for all the ids the management knows about. In addition, contains
 /// the effective limits for each entry.
+/// By default, nothing shall be returned. Set at least one user_id_* / group_id_* field to enable
+/// querying (e.g. set user_id_min to 0 to return user entries for all user ids).
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetQuotaUsageRequest {
-    /// The minimum id to return.
-    /// Optional. If set, quota_id_max must also be set.
-    #[prost(uint32, optional, tag = "1")]
-    pub quota_id_min: ::core::option::Option<u32>,
-    /// The maximum id to return.
-    /// Optional. If set, quota_id_min must also be set.
-    #[prost(uint32, optional, tag = "2")]
-    pub quota_id_max: ::core::option::Option<u32>,
-    /// Return only the ids listed.
-    #[prost(uint32, repeated, tag = "6")]
-    pub quota_id_list: ::prost::alloc::vec::Vec<u32>,
-    /// Return only user or group ids.
+    /// The minimum user id to return.
     /// Optional.
-    #[prost(enumeration = "super::beegfs::QuotaIdType", tag = "3")]
-    pub id_type: i32,
+    #[prost(uint32, optional, tag = "1")]
+    pub user_id_min: ::core::option::Option<u32>,
+    /// The maximum id to return.
+    /// Optional. If set, user_id_min must also be set.
+    #[prost(uint32, optional, tag = "2")]
+    pub user_id_max: ::core::option::Option<u32>,
+    /// Return only the user ids listed.
+    #[prost(uint32, repeated, tag = "3")]
+    pub user_id_list: ::prost::alloc::vec::Vec<u32>,
+    /// The minimum group id to return.
+    /// Optional. If set, group_id_max must also be set.
+    #[prost(uint32, optional, tag = "4")]
+    pub group_id_min: ::core::option::Option<u32>,
+    /// The maximum id to return.
+    /// Optional. If set, group_id_min must also be set.
+    #[prost(uint32, optional, tag = "5")]
+    pub group_id_max: ::core::option::Option<u32>,
+    /// Return only the group ids listed.
+    #[prost(uint32, repeated, tag = "6")]
+    pub group_id_list: ::prost::alloc::vec::Vec<u32>,
     /// Return only a specific pool.
     /// Optional. One identifier is sufficient.
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "7")]
     pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
     /// Return only exceeded or not exceeded entries?
     /// Optional.
-    #[prost(bool, optional, tag = "5")]
+    #[prost(bool, optional, tag = "8")]
     pub exceeded: ::core::option::Option<bool>,
 }
 /// One entry in the quota per-id-and-pool limits list. Meant to be streamed.
