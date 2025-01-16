@@ -449,21 +449,28 @@ message SetQuotaLimitsRequest {
 message SetQuotaLimitsResponse {}
 
 // Gets the individually set per-id-and-pool quota limits. Retrieves all explicitly set entries.
+// By default, nothing shall be returned. Set at least one user_id_* / group_id_* field to enable
+// querying (e.g. set user_id_min to 0 to return user entries for all user ids).
 message GetQuotaLimitsRequest {
-  // The minimum id to return.
-  // Optional. If set, quota_id_max must also be set.
-  optional uint32 quota_id_min = 1;
-  // The maximum id to return.
-  // Optional. If set, quota_id_min must also be set.
-  optional uint32 quota_id_max = 2;
-  // Return only the ids listed.
-  repeated uint32 quota_id_list = 5;
-  // Return only user or group ids.
+  // The minimum user id to return.
   // Optional.
-  beegfs.QuotaIdType id_type = 3;
+  optional uint32 user_id_min = 1;
+  // The maximum id to return.
+  // Optional.
+  optional uint32 user_id_max = 2;
+  // Return only the user ids listed.
+  repeated uint32 user_id_list = 3;
+  // The minimum group id to return.
+  // Optional.
+  optional uint32 group_id_min = 4;
+  // The maximum id to return.
+  // Optional.
+  optional uint32 group_id_max = 5;
+  // Return only the group ids listed.
+  repeated uint32 group_id_list = 6;
   // Return only a specific pool.
   // Optional. One identifier is sufficient.
-  optional beegfs.EntityIdSet pool = 4;
+  optional beegfs.EntityIdSet pool = 7;
 }
 // One entry in the quota per-id-and-pool limits list. Meant to be streamed.
 message GetQuotaLimitsResponse {
@@ -475,24 +482,31 @@ message GetQuotaLimitsResponse {
 
 // Gets the quota usage info for all the ids the management knows about. In addition, contains
 // the effective limits for each entry.
+// By default, nothing shall be returned. Set at least one user_id_* / group_id_* field to enable
+// querying (e.g. set user_id_min to 0 to return user entries for all user ids).
 message GetQuotaUsageRequest {
-  // The minimum id to return.
-  // Optional. If set, quota_id_max must also be set.
-  optional uint32 quota_id_min = 1;
-  // The maximum id to return.
-  // Optional. If set, quota_id_min must also be set.
-  optional uint32 quota_id_max = 2;
-  // Return only the ids listed.
-  repeated uint32 quota_id_list = 6;
-  // Return only user or group ids.
+  // The minimum user id to return.
   // Optional.
-  beegfs.QuotaIdType id_type = 3;
+  optional uint32 user_id_min = 1;
+  // The maximum id to return.
+  // Optional. If set, user_id_min must also be set.
+  optional uint32 user_id_max = 2;
+  // Return only the user ids listed.
+  repeated uint32 user_id_list = 3;
+  // The minimum group id to return.
+  // Optional. If set, group_id_max must also be set.
+  optional uint32 group_id_min = 4;
+  // The maximum id to return.
+  // Optional. If set, group_id_min must also be set.
+  optional uint32 group_id_max = 5;
+  // Return only the group ids listed.
+  repeated uint32 group_id_list = 6;
   // Return only a specific pool.
   // Optional. One identifier is sufficient.
-  optional beegfs.EntityIdSet pool = 4;
+  optional beegfs.EntityIdSet pool = 7;
   // Return only exceeded or not exceeded entries?
   // Optional.
-  optional bool exceeded = 5;
+  optional bool exceeded = 8;
 }
 // One entry in the quota per-id-and-pool limits list. Meant to be streamed.
 message GetQuotaUsageResponse {
