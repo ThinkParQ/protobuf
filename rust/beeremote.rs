@@ -220,29 +220,49 @@ pub mod job_result {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateJobRequest {
-    #[prost(enumeration = "update_job_request::NewState", tag = "3")]
+pub struct UpdatePathsRequest {
+    #[prost(string, tag = "1")]
+    pub path_prefix: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub requested_update: ::core::option::Option<UpdateJobsRequest>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdatePathsResponse {
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub update_result: ::core::option::Option<UpdateJobsResponse>,
+}
+/// UpdateJobsRequest is used to update one or more jobs for a particular path.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateJobsRequest {
+    /// The path with the job(s) to update. Ignored when updating multiple paths via
+    /// UpdatePathsRequest.
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
+    /// Optional: Only update a single job for the specified path. If this job ID is not found for
+    /// the specified path, the response will be !ok.
+    #[prost(string, optional, tag = "2")]
+    pub job_id: ::core::option::Option<::prost::alloc::string::String>,
+    /// Optional: Only update job(s) for the specified remote targets. When also filtering by job ID,
+    /// if the specified ID is not for any of these remote targets, the response will be !ok.
+    #[prost(map = "uint32, bool", tag = "3")]
+    pub remote_targets: ::std::collections::HashMap<u32, bool>,
+    /// Required: The new state to set the job(s) to.
+    #[prost(enumeration = "update_jobs_request::NewState", tag = "10")]
     pub new_state: i32,
-    /// Normally completed jobs are ignored when making updates so some number of completed jobs can
-    /// be automatically retained to determine when a path has been successfully synchronized with an
-    /// RST. If a user wants to delete a completed job, or perhaps there was some bug and the user
-    /// wants to go back through the steps to cancel a job to try and cleanup/recover, this can be
-    /// done through a force update.
+    /// Optional: Normally completed jobs are ignored when making updates so some number of completed
+    /// jobs can be automatically retained to determine when a path has been successfully
+    /// synchronized with an RST. If a user wants to delete a completed job, or perhaps there was
+    /// some bug and the user wants to go back through the steps to cancel a job to try and
+    /// cleanup/recover, this can be done through a force update.
     #[prost(bool, tag = "4")]
     pub force_update: bool,
-    #[prost(oneof = "update_job_request::Query", tags = "1, 2")]
-    pub query: ::core::option::Option<update_job_request::Query>,
 }
-/// Nested message and enum types in `UpdateJobRequest`.
-pub mod update_job_request {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct QueryIdAndPath {
-        #[prost(string, tag = "1")]
-        pub job_id: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub path: ::prost::alloc::string::String,
-    }
+/// Nested message and enum types in `UpdateJobsRequest`.
+pub mod update_jobs_request {
     #[derive(
         Clone,
         Copy,
@@ -282,31 +302,17 @@ pub mod update_job_request {
             }
         }
     }
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
-    pub enum Query {
-        /// Updates at most one job.
-        #[prost(message, tag = "1")]
-        ByIdAndPath(QueryIdAndPath),
-        /// Updates all jobs with this path.
-        #[prost(string, tag = "2")]
-        ByExactPath(::prost::alloc::string::String),
-    }
 }
-/// Updating jobs can happen asynchronously or synchronously depending if wait is
-/// set in the UpdateJobRequest.If wait == true then JobResponses will contain
-/// one or morwe job responses with the updated status of the job(s). Otherwise
-/// it will be empty.
+/// UpdateJobsResponse returns the result of updating one or more job(s) for a particular path.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UpdateJobResponse {
-    /// If the newState could not be applied to any of the jobs then ok will be
-    /// false. Inspect the message and individual job responses to troubleshoot
-    /// further. Generally the message will indicate any internal errors whereas
-    /// the status of individual jobs will indicate problems applying the new
-    /// state to that particular job.
+pub struct UpdateJobsResponse {
+    /// Required: If the newState could not be applied to any of the jobs then ok will be false.
+    /// Inspect the message and individual job responses to troubleshoot further.
     #[prost(bool, tag = "1")]
     pub ok: bool,
+    /// Required: Generally the message will indicate any overall errors applying the update whereas
+    /// the status of individual jobs will indicate problems applying updates to a particular job.
     #[prost(string, tag = "2")]
     pub message: ::prost::alloc::string::String,
     #[prost(message, repeated, tag = "3")]
@@ -504,11 +510,11 @@ pub mod bee_remote_client {
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "SubmitJob"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn update_job(
+        pub async fn update_paths(
             &mut self,
-            request: impl tonic::IntoRequest<super::UpdateJobRequest>,
+            request: impl tonic::IntoRequest<super::UpdatePathsRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::UpdateJobResponse>,
+            tonic::Response<tonic::codec::Streaming<super::UpdatePathsResponse>>,
             tonic::Status,
         > {
             self.inner
@@ -522,11 +528,36 @@ pub mod bee_remote_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/beeremote.BeeRemote/UpdateJob",
+                "/beeremote.BeeRemote/UpdatePaths",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdateJob"));
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdatePaths"));
+            self.inner.server_streaming(req, path, codec).await
+        }
+        pub async fn update_jobs(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateJobsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateJobsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/UpdateJobs",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdateJobs"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn get_jobs(
@@ -629,11 +660,24 @@ pub mod bee_remote_server {
             tonic::Response<super::SubmitJobResponse>,
             tonic::Status,
         >;
-        async fn update_job(
+        /// Server streaming response type for the UpdatePaths method.
+        type UpdatePathsStream: tonic::codegen::tokio_stream::Stream<
+                Item = std::result::Result<super::UpdatePathsResponse, tonic::Status>,
+            >
+            + Send
+            + 'static;
+        async fn update_paths(
             &self,
-            request: tonic::Request<super::UpdateJobRequest>,
+            request: tonic::Request<super::UpdatePathsRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::UpdateJobResponse>,
+            tonic::Response<Self::UpdatePathsStream>,
+            tonic::Status,
+        >;
+        async fn update_jobs(
+            &self,
+            request: tonic::Request<super::UpdateJobsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateJobsResponse>,
             tonic::Status,
         >;
         /// Server streaming response type for the GetJobs method.
@@ -797,25 +841,26 @@ pub mod bee_remote_server {
                     };
                     Box::pin(fut)
                 }
-                "/beeremote.BeeRemote/UpdateJob" => {
+                "/beeremote.BeeRemote/UpdatePaths" => {
                     #[allow(non_camel_case_types)]
-                    struct UpdateJobSvc<T: BeeRemote>(pub Arc<T>);
+                    struct UpdatePathsSvc<T: BeeRemote>(pub Arc<T>);
                     impl<
                         T: BeeRemote,
-                    > tonic::server::UnaryService<super::UpdateJobRequest>
-                    for UpdateJobSvc<T> {
-                        type Response = super::UpdateJobResponse;
+                    > tonic::server::ServerStreamingService<super::UpdatePathsRequest>
+                    for UpdatePathsSvc<T> {
+                        type Response = super::UpdatePathsResponse;
+                        type ResponseStream = T::UpdatePathsStream;
                         type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
+                            tonic::Response<Self::ResponseStream>,
                             tonic::Status,
                         >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::UpdateJobRequest>,
+                            request: tonic::Request<super::UpdatePathsRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
                             let fut = async move {
-                                <T as BeeRemote>::update_job(&inner, request).await
+                                <T as BeeRemote>::update_paths(&inner, request).await
                             };
                             Box::pin(fut)
                         }
@@ -827,7 +872,53 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = UpdateJobSvc(inner);
+                        let method = UpdatePathsSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.server_streaming(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/UpdateJobs" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateJobsSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::UpdateJobsRequest>
+                    for UpdateJobsSvc<T> {
+                        type Response = super::UpdateJobsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::UpdateJobsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::update_jobs(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let inner = inner.0;
+                        let method = UpdateJobsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
