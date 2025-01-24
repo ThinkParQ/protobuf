@@ -9,7 +9,8 @@ import "google/protobuf/timestamp.proto";
 // with BeeRemote.
 service BeeRemote {
     rpc SubmitJob(SubmitJobRequest) returns (SubmitJobResponse);
-    rpc UpdateJob(UpdateJobRequest) returns(UpdateJobResponse);    
+    rpc UpdatePaths(UpdatePathsRequest) returns (stream UpdatePathsResponse);
+    rpc UpdateJobs(UpdateJobsRequest) returns(UpdateJobsResponse);
     rpc GetJobs(GetJobsRequest) returns (stream GetJobsResponse);
     // Rather then BeeRemote connecting to a worker node and using a streaming RPC to return work
     // results, we have BeeRemote expose a unary RPC that is used to send results back as they are
@@ -154,45 +155,50 @@ message JobResult {
     }
 }
 
-message UpdateJobRequest { 
-    oneof query {
-        // Updates at most one job.
-        QueryIdAndPath by_id_and_path = 1;
-        // Updates all jobs with this path.
-        string by_exact_path = 2;
-    }
+message UpdatePathsRequest {
+    string path_prefix = 1;
+    UpdateJobsRequest requested_update = 2;
+}
 
-    message QueryIdAndPath {
-        string job_id = 1;
-        string path = 2;
-    }
+message UpdatePathsResponse {
+    string path = 1;
+    UpdateJobsResponse update_result = 2;
+}
 
-    NewState new_state = 3;
+// UpdateJobsRequest is used to update one or more jobs for a particular path.
+message UpdateJobsRequest { 
+    // The path with the job(s) to update. Ignored when updating multiple paths via
+    // UpdatePathsRequest.
+    string path = 1;
+    // Optional: Only update a single job for the specified path. If this job ID is not found for
+    // the specified path, the response will be !ok.
+    optional string job_id = 2;
+    // Optional: Only update job(s) for the specified remote targets. When also filtering by job ID,
+    // if the specified ID is not for any of these remote targets, the response will be !ok.
+    map<uint32, bool> remote_targets = 3;
+    // Required: The new state to set the job(s) to.
+    NewState new_state = 10;
     enum NewState {
         UNSPECIFIED = 0;
         CANCELLED = 1;
         DELETED = 2;
     }
 
-    // Normally completed jobs are ignored when making updates so some number of completed jobs can
-    // be automatically retained to determine when a path has been successfully synchronized with an
-    // RST. If a user wants to delete a completed job, or perhaps there was some bug and the user
-    // wants to go back through the steps to cancel a job to try and cleanup/recover, this can be
-    // done through a force update.
+    // Optional: Normally completed jobs are ignored when making updates so some number of completed
+    // jobs can be automatically retained to determine when a path has been successfully
+    // synchronized with an RST. If a user wants to delete a completed job, or perhaps there was
+    // some bug and the user wants to go back through the steps to cancel a job to try and
+    // cleanup/recover, this can be done through a force update.
     bool force_update = 4;
 }
 
-// Updating jobs can happen asynchronously or synchronously depending if wait is
-// set in the UpdateJobRequest.If wait == true then JobResponses will contain
-// one or morwe job responses with the updated status of the job(s). Otherwise
-// it will be empty.
-message UpdateJobResponse {
-    // If the newState could not be applied to any of the jobs then ok will be
-    // false. Inspect the message and individual job responses to troubleshoot
-    // further. Generally the message will indicate any internal errors whereas
-    // the status of individual jobs will indicate problems applying the new
-    // state to that particular job.
+// UpdateJobsResponse returns the result of updating one or more job(s) for a particular path.
+message UpdateJobsResponse {
+    // Required: If the newState could not be applied to any of the jobs then ok will be false.
+    // Inspect the message and individual job responses to troubleshoot further. 
     bool ok = 1;
+    // Required: Generally the message will indicate any overall errors applying the update whereas
+    // the status of individual jobs will indicate problems applying updates to a particular job.
     string message = 2;
     repeated JobResult results = 3;
 }
