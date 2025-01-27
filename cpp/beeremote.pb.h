@@ -2856,6 +2856,8 @@ class Job final : public ::google::protobuf::Message
     kRequestFieldNumber = 2,
     kCreatedFieldNumber = 3,
     kStatusFieldNumber = 4,
+    kStartMtimeFieldNumber = 6,
+    kStopMtimeFieldNumber = 7,
   };
   // string id = 1;
   void clear_id() ;
@@ -2934,12 +2936,42 @@ class Job final : public ::google::protobuf::Message
   ::beeremote::Job_Status* _internal_mutable_status();
 
   public:
+  // optional .google.protobuf.Timestamp start_mtime = 6;
+  bool has_start_mtime() const;
+  void clear_start_mtime() ;
+  const ::google::protobuf::Timestamp& start_mtime() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_start_mtime();
+  ::google::protobuf::Timestamp* mutable_start_mtime();
+  void set_allocated_start_mtime(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_start_mtime(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_start_mtime();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_start_mtime() const;
+  ::google::protobuf::Timestamp* _internal_mutable_start_mtime();
+
+  public:
+  // optional .google.protobuf.Timestamp stop_mtime = 7;
+  bool has_stop_mtime() const;
+  void clear_stop_mtime() ;
+  const ::google::protobuf::Timestamp& stop_mtime() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_stop_mtime();
+  ::google::protobuf::Timestamp* mutable_stop_mtime();
+  void set_allocated_stop_mtime(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_stop_mtime(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_stop_mtime();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_stop_mtime() const;
+  ::google::protobuf::Timestamp* _internal_mutable_stop_mtime();
+
+  public:
   // @@protoc_insertion_point(class_scope:beeremote.Job)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 3,
+      3, 7, 5,
       35, 2>
       _table_;
 
@@ -2964,6 +2996,8 @@ class Job final : public ::google::protobuf::Message
     ::beeremote::JobRequest* request_;
     ::google::protobuf::Timestamp* created_;
     ::beeremote::Job_Status* status_;
+    ::google::protobuf::Timestamp* start_mtime_;
+    ::google::protobuf::Timestamp* stop_mtime_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5301,6 +5335,188 @@ inline void Job::set_allocated_external_id(std::string* value) {
     _impl_.external_id_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:beeremote.Job.external_id)
+}
+
+// optional .google.protobuf.Timestamp start_mtime = 6;
+inline bool Job::has_start_mtime() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.start_mtime_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& Job::_internal_start_mtime() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.start_mtime_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& Job::start_mtime() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.Job.start_mtime)
+  return _internal_start_mtime();
+}
+inline void Job::unsafe_arena_set_allocated_start_mtime(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_mtime_);
+  }
+  _impl_.start_mtime_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.Job.start_mtime)
+}
+inline ::google::protobuf::Timestamp* Job::release_start_mtime() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* released = _impl_.start_mtime_;
+  _impl_.start_mtime_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* Job::unsafe_arena_release_start_mtime() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.Job.start_mtime)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* temp = _impl_.start_mtime_;
+  _impl_.start_mtime_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* Job::_internal_mutable_start_mtime() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.start_mtime_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.start_mtime_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.start_mtime_;
+}
+inline ::google::protobuf::Timestamp* Job::mutable_start_mtime() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_start_mtime();
+  // @@protoc_insertion_point(field_mutable:beeremote.Job.start_mtime)
+  return _msg;
+}
+inline void Job::set_allocated_start_mtime(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_mtime_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.start_mtime_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beeremote.Job.start_mtime)
+}
+
+// optional .google.protobuf.Timestamp stop_mtime = 7;
+inline bool Job::has_stop_mtime() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.stop_mtime_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& Job::_internal_stop_mtime() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.stop_mtime_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& Job::stop_mtime() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.Job.stop_mtime)
+  return _internal_stop_mtime();
+}
+inline void Job::unsafe_arena_set_allocated_stop_mtime(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.stop_mtime_);
+  }
+  _impl_.stop_mtime_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.Job.stop_mtime)
+}
+inline ::google::protobuf::Timestamp* Job::release_stop_mtime() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::google::protobuf::Timestamp* released = _impl_.stop_mtime_;
+  _impl_.stop_mtime_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* Job::unsafe_arena_release_stop_mtime() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.Job.stop_mtime)
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::google::protobuf::Timestamp* temp = _impl_.stop_mtime_;
+  _impl_.stop_mtime_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* Job::_internal_mutable_stop_mtime() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.stop_mtime_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.stop_mtime_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.stop_mtime_;
+}
+inline ::google::protobuf::Timestamp* Job::mutable_stop_mtime() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000010u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_stop_mtime();
+  // @@protoc_insertion_point(field_mutable:beeremote.Job.stop_mtime)
+  return _msg;
+}
+inline void Job::set_allocated_stop_mtime(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.stop_mtime_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+
+  _impl_.stop_mtime_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beeremote.Job.stop_mtime)
 }
 
 // -------------------------------------------------------------------
