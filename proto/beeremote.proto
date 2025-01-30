@@ -138,6 +138,19 @@ message Job {
     // Used as the upload ID for multipart uploads, or any other time 
     // an external identifer is needed to coordinate a distributed transfer.    
     string external_id = 5;
+    // start_mtime is the modification timestamp from a stat of the local file in BeeGFS captured
+    // just before the job is started and any work requests are scheduled. This may be nil if there
+    // is no file in BeeGFS at the start of the job. A caller might wish to compare the start/stop
+    // mtime to determine if a file changed while being synchronized.
+    optional google.protobuf.Timestamp start_mtime = 6;    
+    // stop_mtime is the modification timestamp from a stat of the local file in BeeGFS captured
+    // just before the job is completed but after all work requests have finished executing. The
+    // stop_mtime is always set regardless if the job completes successfully, was aborted, or there
+    // was an error completing the job. Consumers should not blindly rely on stop_mtime to determine
+    // the state of a file, and should also check the job state. For example to determine if a file
+    // in BeeGFS based on its current mtime matches the mtime of a successfully uploaded file. This
+    // may be nil if there is no file in BeeGFS at the end of the job.
+    optional google.protobuf.Timestamp stop_mtime = 7;    
 }
 
 // The JobResult is used to return information about a job and its work results. Note the work
