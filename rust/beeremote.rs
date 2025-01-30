@@ -72,6 +72,21 @@ pub struct Job {
     /// an external identifer is needed to coordinate a distributed transfer.
     #[prost(string, tag = "5")]
     pub external_id: ::prost::alloc::string::String,
+    /// start_mtime is the modification timestamp from a stat of the local file in BeeGFS captured
+    /// just before the job is started and any work requests are scheduled. This may be nil if there
+    /// is no file in BeeGFS at the start of the job. A caller might wish to compare the start/stop
+    /// mtime to determine if a file changed while being synchronized.
+    #[prost(message, optional, tag = "6")]
+    pub start_mtime: ::core::option::Option<::prost_types::Timestamp>,
+    /// stop_mtime is the modification timestamp from a stat of the local file in BeeGFS captured
+    /// just before the job is completed but after all work requests have finished executing. The
+    /// stop_mtime is always set regardless if the job completes successfully, was aborted, or there
+    /// was an error completing the job. Consumers should not blindly rely on stop_mtime to determine
+    /// the state of a file, and should also check the job state. For example to determine if a file
+    /// in BeeGFS based on its current mtime matches the mtime of a successfully uploaded file. This
+    /// may be nil if there is no file in BeeGFS at the end of the job.
+    #[prost(message, optional, tag = "7")]
+    pub stop_mtime: ::core::option::Option<::prost_types::Timestamp>,
 }
 /// Nested message and enum types in `Job`.
 pub mod job {
