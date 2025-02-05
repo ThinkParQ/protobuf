@@ -10,6 +10,53 @@ pub struct SubmitJobRequest {
 pub struct SubmitJobResponse {
     #[prost(message, optional, tag = "1")]
     pub result: ::core::option::Option<JobResult>,
+    #[prost(enumeration = "submit_job_response::ResponseStatus", tag = "2")]
+    pub status: i32,
+}
+/// Nested message and enum types in `SubmitJobResponse`.
+pub mod submit_job_response {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ResponseStatus {
+        Invalid = 0,
+        Created = 1,
+        Existing = 2,
+        NotAllowed = 3,
+    }
+    impl ResponseStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ResponseStatus::Invalid => "INVALID",
+                ResponseStatus::Created => "CREATED",
+                ResponseStatus::Existing => "EXISTING",
+                ResponseStatus::NotAllowed => "NOT_ALLOWED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "INVALID" => Some(Self::Invalid),
+                "CREATED" => Some(Self::Created),
+                "EXISTING" => Some(Self::Existing),
+                "NOT_ALLOWED" => Some(Self::NotAllowed),
+                _ => None,
+            }
+        }
+    }
 }
 /// A JobRequest contains all the information necessary for BeeRemote to trigger
 /// a job on the appropriate worker node(s) (like BeeSync nodes) based on the
@@ -32,6 +79,12 @@ pub struct JobRequest {
     /// every time we send a Entry (commonly as part of a Job).
     #[prost(uint32, tag = "4")]
     pub remote_storage_target: u32,
+    /// When force is set this request will create a new job even if there is already a completed
+    /// job. When forced the request will return an error if there is already a job running. This is
+    /// part of the JobRequest instead of the SubmitJobRequest message in case it ever is important
+    /// to know if a particular job request was forced.
+    #[prost(bool, tag = "5")]
+    pub force: bool,
     #[prost(oneof = "job_request::Type", tags = "10, 11")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }
