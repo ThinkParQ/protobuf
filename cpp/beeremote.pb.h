@@ -123,6 +123,41 @@ namespace protobuf {
 }  // namespace google
 
 namespace beeremote {
+enum SubmitJobResponse_ResponseStatus : int {
+  SubmitJobResponse_ResponseStatus_INVALID = 0,
+  SubmitJobResponse_ResponseStatus_CREATED = 1,
+  SubmitJobResponse_ResponseStatus_EXISTING = 2,
+  SubmitJobResponse_ResponseStatus_NOT_ALLOWED = 3,
+  SubmitJobResponse_ResponseStatus_SubmitJobResponse_ResponseStatus_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SubmitJobResponse_ResponseStatus_SubmitJobResponse_ResponseStatus_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SubmitJobResponse_ResponseStatus_IsValid(int value);
+extern const uint32_t SubmitJobResponse_ResponseStatus_internal_data_[];
+constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MIN = static_cast<SubmitJobResponse_ResponseStatus>(0);
+constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MAX = static_cast<SubmitJobResponse_ResponseStatus>(3);
+constexpr int SubmitJobResponse_ResponseStatus_ResponseStatus_ARRAYSIZE = 3 + 1;
+const ::google::protobuf::EnumDescriptor*
+SubmitJobResponse_ResponseStatus_descriptor();
+template <typename T>
+const std::string& SubmitJobResponse_ResponseStatus_Name(T value) {
+  static_assert(std::is_same<T, SubmitJobResponse_ResponseStatus>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to ResponseStatus_Name().");
+  return SubmitJobResponse_ResponseStatus_Name(static_cast<SubmitJobResponse_ResponseStatus>(value));
+}
+template <>
+inline const std::string& SubmitJobResponse_ResponseStatus_Name(SubmitJobResponse_ResponseStatus value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SubmitJobResponse_ResponseStatus_descriptor,
+                                                 0, 3>(
+      static_cast<int>(value));
+}
+inline bool SubmitJobResponse_ResponseStatus_Parse(absl::string_view name, SubmitJobResponse_ResponseStatus* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SubmitJobResponse_ResponseStatus>(
+      SubmitJobResponse_ResponseStatus_descriptor(), name, value);
+}
 enum Job_State : int {
   Job_State_UNSPECIFIED = 0,
   Job_State_UNKNOWN = 1,
@@ -1181,6 +1216,7 @@ class JobRequest final : public ::google::protobuf::Message
     kNameFieldNumber = 2,
     kPriorityFieldNumber = 3,
     kRemoteStorageTargetFieldNumber = 4,
+    kForceFieldNumber = 5,
     kSyncFieldNumber = 10,
     kMockFieldNumber = 11,
   };
@@ -1236,6 +1272,16 @@ class JobRequest final : public ::google::protobuf::Message
   void _internal_set_remote_storage_target(::uint32_t value);
 
   public:
+  // bool force = 5;
+  void clear_force() ;
+  bool force() const;
+  void set_force(bool value);
+
+  private:
+  bool _internal_force() const;
+  void _internal_set_force(bool value);
+
+  public:
   // .flex.SyncJob sync = 10;
   bool has_sync() const;
   private:
@@ -1285,7 +1331,7 @@ class JobRequest final : public ::google::protobuf::Message
   inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 6, 2,
+      3, 7, 2,
       37, 2>
       _table_;
 
@@ -1307,6 +1353,7 @@ class JobRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::int32_t priority_;
     ::uint32_t remote_storage_target_;
+    bool force_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -3807,10 +3854,32 @@ class SubmitJobResponse final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
+  using ResponseStatus = SubmitJobResponse_ResponseStatus;
+  static constexpr ResponseStatus INVALID = SubmitJobResponse_ResponseStatus_INVALID;
+  static constexpr ResponseStatus CREATED = SubmitJobResponse_ResponseStatus_CREATED;
+  static constexpr ResponseStatus EXISTING = SubmitJobResponse_ResponseStatus_EXISTING;
+  static constexpr ResponseStatus NOT_ALLOWED = SubmitJobResponse_ResponseStatus_NOT_ALLOWED;
+  static inline bool ResponseStatus_IsValid(int value) {
+    return SubmitJobResponse_ResponseStatus_IsValid(value);
+  }
+  static constexpr ResponseStatus ResponseStatus_MIN = SubmitJobResponse_ResponseStatus_ResponseStatus_MIN;
+  static constexpr ResponseStatus ResponseStatus_MAX = SubmitJobResponse_ResponseStatus_ResponseStatus_MAX;
+  static constexpr int ResponseStatus_ARRAYSIZE = SubmitJobResponse_ResponseStatus_ResponseStatus_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* ResponseStatus_descriptor() {
+    return SubmitJobResponse_ResponseStatus_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& ResponseStatus_Name(T value) {
+    return SubmitJobResponse_ResponseStatus_Name(value);
+  }
+  static inline bool ResponseStatus_Parse(absl::string_view name, ResponseStatus* value) {
+    return SubmitJobResponse_ResponseStatus_Parse(name, value);
+  }
 
   // accessors -------------------------------------------------------
   enum : int {
     kResultFieldNumber = 1,
+    kStatusFieldNumber = 2,
   };
   // .beeremote.JobResult result = 1;
   bool has_result() const;
@@ -3827,12 +3896,22 @@ class SubmitJobResponse final : public ::google::protobuf::Message
   ::beeremote::JobResult* _internal_mutable_result();
 
   public:
+  // .beeremote.SubmitJobResponse.ResponseStatus status = 2;
+  void clear_status() ;
+  ::beeremote::SubmitJobResponse_ResponseStatus status() const;
+  void set_status(::beeremote::SubmitJobResponse_ResponseStatus value);
+
+  private:
+  ::beeremote::SubmitJobResponse_ResponseStatus _internal_status() const;
+  void _internal_set_status(::beeremote::SubmitJobResponse_ResponseStatus value);
+
+  public:
   // @@protoc_insertion_point(class_scope:beeremote.SubmitJobResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 1,
       0, 2>
       _table_;
 
@@ -3853,6 +3932,7 @@ class SubmitJobResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::beeremote::JobResult* result_;
+    int status_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -4500,6 +4580,28 @@ inline void SubmitJobResponse::set_allocated_result(::beeremote::JobResult* valu
   // @@protoc_insertion_point(field_set_allocated:beeremote.SubmitJobResponse.result)
 }
 
+// .beeremote.SubmitJobResponse.ResponseStatus status = 2;
+inline void SubmitJobResponse::clear_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_ = 0;
+}
+inline ::beeremote::SubmitJobResponse_ResponseStatus SubmitJobResponse::status() const {
+  // @@protoc_insertion_point(field_get:beeremote.SubmitJobResponse.status)
+  return _internal_status();
+}
+inline void SubmitJobResponse::set_status(::beeremote::SubmitJobResponse_ResponseStatus value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:beeremote.SubmitJobResponse.status)
+}
+inline ::beeremote::SubmitJobResponse_ResponseStatus SubmitJobResponse::_internal_status() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beeremote::SubmitJobResponse_ResponseStatus>(_impl_.status_);
+}
+inline void SubmitJobResponse::_internal_set_status(::beeremote::SubmitJobResponse_ResponseStatus value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // JobRequest
@@ -4778,6 +4880,28 @@ inline ::flex::MockJob* JobRequest::mutable_mock() ABSL_ATTRIBUTE_LIFETIME_BOUND
   ::flex::MockJob* _msg = _internal_mutable_mock();
   // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.mock)
   return _msg;
+}
+
+// bool force = 5;
+inline void JobRequest::clear_force() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.force_ = false;
+}
+inline bool JobRequest::force() const {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.force)
+  return _internal_force();
+}
+inline void JobRequest::set_force(bool value) {
+  _internal_set_force(value);
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.force)
+}
+inline bool JobRequest::_internal_force() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.force_;
+}
+inline void JobRequest::_internal_set_force(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.force_ = value;
 }
 
 inline bool JobRequest::has_type() const {
@@ -7210,6 +7334,12 @@ GetRSTConfigResponse::_internal_mutable_rsts() {
 namespace google {
 namespace protobuf {
 
+template <>
+struct is_proto_enum<::beeremote::SubmitJobResponse_ResponseStatus> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::beeremote::SubmitJobResponse_ResponseStatus>() {
+  return ::beeremote::SubmitJobResponse_ResponseStatus_descriptor();
+}
 template <>
 struct is_proto_enum<::beeremote::Job_State> : std::true_type {};
 template <>

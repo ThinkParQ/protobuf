@@ -31,6 +31,13 @@ message SubmitJobRequest {
 
 message SubmitJobResponse {
     JobResult result = 1;
+    ResponseStatus status = 2;
+    enum ResponseStatus {
+        INVALID = 0;
+        CREATED = 1;
+        EXISTING = 2;
+        NOT_ALLOWED = 3;
+    }
 }
 
 // A JobRequest contains all the information necessary for BeeRemote to trigger
@@ -52,6 +59,11 @@ message JobRequest {
         flex.SyncJob sync = 10;
         flex.MockJob mock = 11;
     }
+    // When force is set this request will create a new job even if there is already a completed
+    // job. When forced the request will return an error if there is already a job running. This is
+    // part of the JobRequest instead of the SubmitJobRequest message in case it ever is important
+    // to know if a particular job request was forced.
+    bool force = 5;    
 }
 
 // Job contains all the data from the original request plus the job ID and
