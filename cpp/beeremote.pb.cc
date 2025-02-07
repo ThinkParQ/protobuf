@@ -585,6 +585,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_.remote_storage_target_),
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
         PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_.force_),
         PROTOBUF_FIELD_OFFSET(::beeremote::JobRequest, _impl_.type_),
         PROTOBUF_FIELD_OFFSET(::beeremote::Job_Status, _impl_._has_bits_),
@@ -793,22 +794,22 @@ static const ::_pbi::MigrationSchema
         {0, 9, -1, sizeof(::beeremote::SubmitJobRequest)},
         {10, 20, -1, sizeof(::beeremote::SubmitJobResponse)},
         {22, -1, -1, sizeof(::beeremote::JobRequest)},
-        {38, 49, -1, sizeof(::beeremote::Job_Status)},
-        {52, 67, -1, sizeof(::beeremote::Job)},
-        {74, 85, -1, sizeof(::beeremote::JobResult_WorkResult)},
-        {88, 99, -1, sizeof(::beeremote::JobResult)},
-        {102, 112, -1, sizeof(::beeremote::UpdatePathsRequest)},
-        {114, 124, -1, sizeof(::beeremote::UpdatePathsResponse)},
-        {126, 136, -1, sizeof(::beeremote::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse)},
-        {138, 151, -1, sizeof(::beeremote::UpdateJobsRequest)},
-        {156, -1, -1, sizeof(::beeremote::UpdateJobsResponse)},
-        {167, -1, -1, sizeof(::beeremote::GetJobsRequest_QueryIdAndPath)},
-        {177, -1, -1, sizeof(::beeremote::GetJobsRequest)},
-        {192, -1, -1, sizeof(::beeremote::GetJobsResponse)},
-        {202, 211, -1, sizeof(::beeremote::UpdateWorkRequest)},
-        {212, -1, -1, sizeof(::beeremote::UpdateWorkResponse)},
-        {220, -1, -1, sizeof(::beeremote::GetRSTConfigRequest)},
-        {228, -1, -1, sizeof(::beeremote::GetRSTConfigResponse)},
+        {39, 50, -1, sizeof(::beeremote::Job_Status)},
+        {53, 68, -1, sizeof(::beeremote::Job)},
+        {75, 86, -1, sizeof(::beeremote::JobResult_WorkResult)},
+        {89, 100, -1, sizeof(::beeremote::JobResult)},
+        {103, 113, -1, sizeof(::beeremote::UpdatePathsRequest)},
+        {115, 125, -1, sizeof(::beeremote::UpdatePathsResponse)},
+        {127, 137, -1, sizeof(::beeremote::UpdateJobsRequest_RemoteTargetsEntry_DoNotUse)},
+        {139, 152, -1, sizeof(::beeremote::UpdateJobsRequest)},
+        {157, -1, -1, sizeof(::beeremote::UpdateJobsResponse)},
+        {168, -1, -1, sizeof(::beeremote::GetJobsRequest_QueryIdAndPath)},
+        {178, -1, -1, sizeof(::beeremote::GetJobsRequest)},
+        {193, -1, -1, sizeof(::beeremote::GetJobsResponse)},
+        {203, 212, -1, sizeof(::beeremote::UpdateWorkRequest)},
+        {213, -1, -1, sizeof(::beeremote::UpdateWorkResponse)},
+        {221, -1, -1, sizeof(::beeremote::GetRSTConfigRequest)},
+        {229, -1, -1, sizeof(::beeremote::GetRSTConfigResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::beeremote::_SubmitJobRequest_default_instance_._instance,
@@ -836,77 +837,78 @@ const char descriptor_table_protodef_beeremote_2eproto[] ABSL_ATTRIBUTE_SECTION_
     "\n\017beeremote.proto\022\tbeeremote\032\nflex.proto"
     "\032\037google/protobuf/timestamp.proto\":\n\020Sub"
     "mitJobRequest\022&\n\007request\030\001 \001(\0132\025.beeremo"
-    "te.JobRequest\"\301\001\n\021SubmitJobResponse\022$\n\006r"
+    "te.JobRequest\"\327\001\n\021SubmitJobResponse\022$\n\006r"
     "esult\030\001 \001(\0132\024.beeremote.JobResult\022;\n\006sta"
     "tus\030\002 \001(\0162+.beeremote.SubmitJobResponse."
-    "ResponseStatus\"I\n\016ResponseStatus\022\013\n\007INVA"
+    "ResponseStatus\"_\n\016ResponseStatus\022\013\n\007INVA"
     "LID\020\000\022\013\n\007CREATED\020\001\022\014\n\010EXISTING\020\002\022\017\n\013NOT_"
-    "ALLOWED\020\003\"\256\001\n\nJobRequest\022\014\n\004path\030\001 \001(\t\022\014"
-    "\n\004name\030\002 \001(\t\022\020\n\010priority\030\003 \001(\005\022\035\n\025remote"
-    "_storage_target\030\004 \001(\r\022\035\n\004sync\030\n \001(\0132\r.fl"
-    "ex.SyncJobH\000\022\035\n\004mock\030\013 \001(\0132\r.flex.MockJo"
-    "bH\000\022\r\n\005force\030\005 \001(\010B\006\n\004type\"\242\004\n\003Job\022\n\n\002id"
-    "\030\001 \001(\t\022&\n\007request\030\002 \001(\0132\025.beeremote.JobR"
-    "equest\022+\n\007created\030\003 \001(\0132\032.google.protobu"
-    "f.Timestamp\022%\n\006status\030\004 \001(\0132\025.beeremote."
-    "Job.Status\022\023\n\013external_id\030\005 \001(\t\0224\n\013start"
-    "_mtime\030\006 \001(\0132\032.google.protobuf.Timestamp"
-    "H\000\210\001\001\0223\n\nstop_mtime\030\007 \001(\0132\032.google.proto"
-    "buf.TimestampH\001\210\001\001\032k\n\006Status\022#\n\005state\030\001 "
-    "\001(\0162\024.beeremote.Job.State\022\017\n\007message\030\002 \001"
-    "(\t\022+\n\007updated\030\003 \001(\0132\032.google.protobuf.Ti"
-    "mestamp\"\206\001\n\005State\022\017\n\013UNSPECIFIED\020\000\022\013\n\007UN"
-    "KNOWN\020\001\022\016\n\nUNASSIGNED\020\002\022\r\n\tSCHEDULED\020\003\022\013"
-    "\n\007RUNNING\020\004\022\t\n\005ERROR\020\006\022\n\n\006FAILED\020\007\022\r\n\tCA"
-    "NCELLED\020\010\022\r\n\tCOMPLETED\020\tB\016\n\014_start_mtime"
-    "B\r\n\013_stop_mtime\"\337\001\n\tJobResult\022\033\n\003job\030\001 \001"
-    "(\0132\016.beeremote.Job\022(\n\rwork_requests\030\002 \003("
-    "\0132\021.flex.WorkRequest\0225\n\014work_results\030\003 \003"
-    "(\0132\037.beeremote.JobResult.WorkResult\032T\n\nW"
-    "orkResult\022\030\n\004work\030\001 \001(\0132\n.flex.Work\022\025\n\ra"
-    "ssigned_node\030\002 \001(\t\022\025\n\rassigned_pool\030\003 \001("
-    "\t\"a\n\022UpdatePathsRequest\022\023\n\013path_prefix\030\001"
-    " \001(\t\0226\n\020requested_update\030\002 \001(\0132\034.beeremo"
-    "te.UpdateJobsRequest\"Y\n\023UpdatePathsRespo"
-    "nse\022\014\n\004path\030\001 \001(\t\0224\n\rupdate_result\030\002 \001(\013"
-    "2\035.beeremote.UpdateJobsResponse\"\311\002\n\021Upda"
-    "teJobsRequest\022\014\n\004path\030\001 \001(\t\022\023\n\006job_id\030\002 "
-    "\001(\tH\000\210\001\001\022G\n\016remote_targets\030\003 \003(\0132/.beere"
-    "mote.UpdateJobsRequest.RemoteTargetsEntr"
-    "y\0228\n\tnew_state\030\n \001(\0162%.beeremote.UpdateJ"
-    "obsRequest.NewState\022\024\n\014force_update\030\004 \001("
-    "\010\0324\n\022RemoteTargetsEntry\022\013\n\003key\030\001 \001(\r\022\r\n\005"
-    "value\030\002 \001(\010:\0028\001\"7\n\010NewState\022\017\n\013UNSPECIFI"
-    "ED\020\000\022\r\n\tCANCELLED\020\001\022\013\n\007DELETED\020\002B\t\n\007_job"
-    "_id\"X\n\022UpdateJobsResponse\022\n\n\002ok\030\001 \001(\010\022\017\n"
-    "\007message\030\002 \001(\t\022%\n\007results\030\003 \003(\0132\024.beerem"
-    "ote.JobResult\"\236\002\n\016GetJobsRequest\022F\n\022by_j"
-    "ob_id_and_path\030\001 \001(\0132(.beeremote.GetJobs"
-    "Request.QueryIdAndPathH\000\022\027\n\rby_exact_pat"
-    "h\030\002 \001(\tH\000\022\030\n\016by_path_prefix\030\003 \001(\tH\000\022\035\n\025i"
-    "nclude_work_requests\030\004 \001(\010\022\034\n\024include_wo"
-    "rk_results\030\005 \001(\010\022\033\n\023update_work_results\030"
-    "\006 \001(\010\032.\n\016QueryIdAndPath\022\016\n\006job_id\030\001 \001(\t\022"
-    "\014\n\004path\030\002 \001(\tB\007\n\005query\"F\n\017GetJobsRespons"
-    "e\022\014\n\004path\030\001 \001(\t\022%\n\007results\030\002 \003(\0132\024.beere"
-    "mote.JobResult\"-\n\021UpdateWorkRequest\022\030\n\004w"
-    "ork\030\001 \001(\0132\n.flex.Work\"\024\n\022UpdateWorkRespo"
-    "nse\"\025\n\023GetRSTConfigRequest\"\?\n\024GetRSTConf"
-    "igResponse\022\'\n\004rsts\030\001 \003(\0132\031.flex.RemoteSt"
-    "orageTarget2\316\003\n\tBeeRemote\022F\n\tSubmitJob\022\033"
-    ".beeremote.SubmitJobRequest\032\034.beeremote."
-    "SubmitJobResponse\022N\n\013UpdatePaths\022\035.beere"
-    "mote.UpdatePathsRequest\032\036.beeremote.Upda"
-    "tePathsResponse0\001\022I\n\nUpdateJobs\022\034.beerem"
-    "ote.UpdateJobsRequest\032\035.beeremote.Update"
-    "JobsResponse\022B\n\007GetJobs\022\031.beeremote.GetJ"
-    "obsRequest\032\032.beeremote.GetJobsResponse0\001"
-    "\022I\n\nUpdateWork\022\034.beeremote.UpdateWorkReq"
-    "uest\032\035.beeremote.UpdateWorkResponse\022O\n\014G"
-    "etRSTConfig\022\036.beeremote.GetRSTConfigRequ"
-    "est\032\037.beeremote.GetRSTConfigResponseB,Z*"
-    "github.com/thinkparq/protobuf/go/beeremo"
-    "teb\006proto3"
+    "ALLOWED\020\003\022\024\n\020ALREADY_COMPLETE\020\004\"\324\001\n\nJobR"
+    "equest\022\014\n\004path\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010pr"
+    "iority\030\003 \001(\005\022\035\n\025remote_storage_target\030\004 "
+    "\001(\r\022\035\n\004sync\030\n \001(\0132\r.flex.SyncJobH\000\022\035\n\004mo"
+    "ck\030\013 \001(\0132\r.flex.MockJobH\000\022$\n\010dir_sync\030\014 "
+    "\001(\0132\020.flex.DirSyncJobH\000\022\r\n\005force\030\005 \001(\010B\006"
+    "\n\004type\"\242\004\n\003Job\022\n\n\002id\030\001 \001(\t\022&\n\007request\030\002 "
+    "\001(\0132\025.beeremote.JobRequest\022+\n\007created\030\003 "
+    "\001(\0132\032.google.protobuf.Timestamp\022%\n\006statu"
+    "s\030\004 \001(\0132\025.beeremote.Job.Status\022\023\n\013extern"
+    "al_id\030\005 \001(\t\0224\n\013start_mtime\030\006 \001(\0132\032.googl"
+    "e.protobuf.TimestampH\000\210\001\001\0223\n\nstop_mtime\030"
+    "\007 \001(\0132\032.google.protobuf.TimestampH\001\210\001\001\032k"
+    "\n\006Status\022#\n\005state\030\001 \001(\0162\024.beeremote.Job."
+    "State\022\017\n\007message\030\002 \001(\t\022+\n\007updated\030\003 \001(\0132"
+    "\032.google.protobuf.Timestamp\"\206\001\n\005State\022\017\n"
+    "\013UNSPECIFIED\020\000\022\013\n\007UNKNOWN\020\001\022\016\n\nUNASSIGNE"
+    "D\020\002\022\r\n\tSCHEDULED\020\003\022\013\n\007RUNNING\020\004\022\t\n\005ERROR"
+    "\020\006\022\n\n\006FAILED\020\007\022\r\n\tCANCELLED\020\010\022\r\n\tCOMPLET"
+    "ED\020\tB\016\n\014_start_mtimeB\r\n\013_stop_mtime\"\337\001\n\t"
+    "JobResult\022\033\n\003job\030\001 \001(\0132\016.beeremote.Job\022("
+    "\n\rwork_requests\030\002 \003(\0132\021.flex.WorkRequest"
+    "\0225\n\014work_results\030\003 \003(\0132\037.beeremote.JobRe"
+    "sult.WorkResult\032T\n\nWorkResult\022\030\n\004work\030\001 "
+    "\001(\0132\n.flex.Work\022\025\n\rassigned_node\030\002 \001(\t\022\025"
+    "\n\rassigned_pool\030\003 \001(\t\"a\n\022UpdatePathsRequ"
+    "est\022\023\n\013path_prefix\030\001 \001(\t\0226\n\020requested_up"
+    "date\030\002 \001(\0132\034.beeremote.UpdateJobsRequest"
+    "\"Y\n\023UpdatePathsResponse\022\014\n\004path\030\001 \001(\t\0224\n"
+    "\rupdate_result\030\002 \001(\0132\035.beeremote.UpdateJ"
+    "obsResponse\"\311\002\n\021UpdateJobsRequest\022\014\n\004pat"
+    "h\030\001 \001(\t\022\023\n\006job_id\030\002 \001(\tH\000\210\001\001\022G\n\016remote_t"
+    "argets\030\003 \003(\0132/.beeremote.UpdateJobsReque"
+    "st.RemoteTargetsEntry\0228\n\tnew_state\030\n \001(\016"
+    "2%.beeremote.UpdateJobsRequest.NewState\022"
+    "\024\n\014force_update\030\004 \001(\010\0324\n\022RemoteTargetsEn"
+    "try\022\013\n\003key\030\001 \001(\r\022\r\n\005value\030\002 \001(\010:\0028\001\"7\n\010N"
+    "ewState\022\017\n\013UNSPECIFIED\020\000\022\r\n\tCANCELLED\020\001\022"
+    "\013\n\007DELETED\020\002B\t\n\007_job_id\"X\n\022UpdateJobsRes"
+    "ponse\022\n\n\002ok\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022%\n\007re"
+    "sults\030\003 \003(\0132\024.beeremote.JobResult\"\236\002\n\016Ge"
+    "tJobsRequest\022F\n\022by_job_id_and_path\030\001 \001(\013"
+    "2(.beeremote.GetJobsRequest.QueryIdAndPa"
+    "thH\000\022\027\n\rby_exact_path\030\002 \001(\tH\000\022\030\n\016by_path"
+    "_prefix\030\003 \001(\tH\000\022\035\n\025include_work_requests"
+    "\030\004 \001(\010\022\034\n\024include_work_results\030\005 \001(\010\022\033\n\023"
+    "update_work_results\030\006 \001(\010\032.\n\016QueryIdAndP"
+    "ath\022\016\n\006job_id\030\001 \001(\t\022\014\n\004path\030\002 \001(\tB\007\n\005que"
+    "ry\"F\n\017GetJobsResponse\022\014\n\004path\030\001 \001(\t\022%\n\007r"
+    "esults\030\002 \003(\0132\024.beeremote.JobResult\"-\n\021Up"
+    "dateWorkRequest\022\030\n\004work\030\001 \001(\0132\n.flex.Wor"
+    "k\"\024\n\022UpdateWorkResponse\"\025\n\023GetRSTConfigR"
+    "equest\"\?\n\024GetRSTConfigResponse\022\'\n\004rsts\030\001"
+    " \003(\0132\031.flex.RemoteStorageTarget2\316\003\n\tBeeR"
+    "emote\022F\n\tSubmitJob\022\033.beeremote.SubmitJob"
+    "Request\032\034.beeremote.SubmitJobResponse\022N\n"
+    "\013UpdatePaths\022\035.beeremote.UpdatePathsRequ"
+    "est\032\036.beeremote.UpdatePathsResponse0\001\022I\n"
+    "\nUpdateJobs\022\034.beeremote.UpdateJobsReques"
+    "t\032\035.beeremote.UpdateJobsResponse\022B\n\007GetJ"
+    "obs\022\031.beeremote.GetJobsRequest\032\032.beeremo"
+    "te.GetJobsResponse0\001\022I\n\nUpdateWork\022\034.bee"
+    "remote.UpdateWorkRequest\032\035.beeremote.Upd"
+    "ateWorkResponse\022O\n\014GetRSTConfig\022\036.beerem"
+    "ote.GetRSTConfigRequest\032\037.beeremote.GetR"
+    "STConfigResponseB,Z*github.com/thinkparq"
+    "/protobuf/go/beeremoteb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_beeremote_2eproto_deps[2] =
     {
@@ -917,7 +919,7 @@ static ::absl::once_flag descriptor_table_beeremote_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beeremote_2eproto = {
     false,
     false,
-    2930,
+    2990,
     descriptor_table_protodef_beeremote_2eproto,
     "beeremote.proto",
     &descriptor_table_beeremote_2eproto_once,
@@ -936,9 +938,9 @@ const ::google::protobuf::EnumDescriptor* SubmitJobResponse_ResponseStatus_descr
   return file_level_enum_descriptors_beeremote_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t SubmitJobResponse_ResponseStatus_internal_data_[] = {
-    262144u, 0u, };
+    327680u, 0u, };
 bool SubmitJobResponse_ResponseStatus_IsValid(int value) {
-  return 0 <= value && value <= 3;
+  return 0 <= value && value <= 4;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
@@ -947,6 +949,7 @@ constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse::INVALID;
 constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse::CREATED;
 constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse::EXISTING;
 constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse::NOT_ALLOWED;
+constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse::ALREADY_COMPLETE;
 constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse::ResponseStatus_MIN;
 constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse::ResponseStatus_MAX;
 constexpr int SubmitJobResponse::ResponseStatus_ARRAYSIZE;
@@ -1593,6 +1596,30 @@ void JobRequest::clear_mock() {
     clear_has_type();
   }
 }
+void JobRequest::set_allocated_dir_sync(::flex::DirSyncJob* dir_sync) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_type();
+  if (dir_sync) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(dir_sync)->GetArena();
+    if (message_arena != submessage_arena) {
+      dir_sync = ::google::protobuf::internal::GetOwnedMessage(message_arena, dir_sync, submessage_arena);
+    }
+    set_has_dir_sync();
+    _impl_.type_.dir_sync_ = dir_sync;
+  }
+  // @@protoc_insertion_point(field_set_allocated:beeremote.JobRequest.dir_sync)
+}
+void JobRequest::clear_dir_sync() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (type_case() == kDirSync) {
+    if (GetArena() == nullptr) {
+      delete _impl_.type_.dir_sync_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.type_.dir_sync_);
+    }
+    clear_has_type();
+  }
+}
 JobRequest::JobRequest(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
@@ -1639,6 +1666,9 @@ JobRequest::JobRequest(
         break;
       case kMock:
         _impl_.type_.mock_ = ::google::protobuf::Message::CopyConstruct<::flex::MockJob>(arena, *from._impl_.type_.mock_);
+        break;
+      case kDirSync:
+        _impl_.type_.dir_sync_ = ::google::protobuf::Message::CopyConstruct<::flex::DirSyncJob>(arena, *from._impl_.type_.dir_sync_);
         break;
   }
 
@@ -1698,6 +1728,14 @@ void JobRequest::clear_type() {
       }
       break;
     }
+    case kDirSync: {
+      if (GetArena() == nullptr) {
+        delete _impl_.type_.dir_sync_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.type_.dir_sync_);
+      }
+      break;
+    }
     case TYPE_NOT_SET: {
       break;
     }
@@ -1742,16 +1780,16 @@ const ::google::protobuf::internal::ClassData* JobRequest::GetClassData() const 
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 2, 37, 2> JobRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 3, 45, 2> JobRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    11, 56,  // max_field_number, fast_idx_mask
+    12, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294965728,  // skipmap
+    4294963680,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    2,  // num_aux_entries
+    8,  // num_field_entries
+    3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1802,11 +1840,15 @@ const ::_pbi::TcParseTable<3, 7, 2, 37, 2> JobRequest::_table_ = {
     // .flex.MockJob mock = 11;
     {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.type_.mock_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .flex.DirSyncJob dir_sync = 12;
+    {PROTOBUF_FIELD_OFFSET(JobRequest, _impl_.type_.dir_sync_), _Internal::kOneofCaseOffset + 0, 2,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::flex::SyncJob>()},
     {::_pbi::TcParser::GetTable<::flex::MockJob>()},
+    {::_pbi::TcParser::GetTable<::flex::DirSyncJob>()},
   }}, {{
-    "\24\4\4\0\0\0\0\0"
+    "\24\4\4\0\0\0\0\0\0\0\0\0\0\0\0\0"
     "beeremote.JobRequest"
     "path"
     "name"
@@ -1894,6 +1936,12 @@ PROTOBUF_NOINLINE void JobRequest::Clear() {
                   stream);
               break;
             }
+            case kDirSync: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  12, *this_._impl_.type_.dir_sync_, this_._impl_.type_.dir_sync_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
             default:
               break;
           }
@@ -1960,6 +2008,12 @@ PROTOBUF_NOINLINE void JobRequest::Clear() {
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.type_.mock_);
               break;
             }
+            // .flex.DirSyncJob dir_sync = 12;
+            case kDirSync: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.type_.dir_sync_);
+              break;
+            }
             case TYPE_NOT_SET: {
               break;
             }
@@ -2018,6 +2072,15 @@ void JobRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
               ::google::protobuf::Message::CopyConstruct<::flex::MockJob>(arena, *from._impl_.type_.mock_);
         } else {
           _this->_impl_.type_.mock_->MergeFrom(from._internal_mock());
+        }
+        break;
+      }
+      case kDirSync: {
+        if (oneof_needs_init) {
+          _this->_impl_.type_.dir_sync_ =
+              ::google::protobuf::Message::CopyConstruct<::flex::DirSyncJob>(arena, *from._impl_.type_.dir_sync_);
+        } else {
+          _this->_impl_.type_.dir_sync_->MergeFrom(from._internal_dir_sync());
         }
         break;
       }

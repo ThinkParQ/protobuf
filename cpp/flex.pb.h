@@ -63,6 +63,9 @@ extern BulkUpdateWorkRequestDefaultTypeInternal _BulkUpdateWorkRequest_default_i
 class BulkUpdateWorkResponse;
 struct BulkUpdateWorkResponseDefaultTypeInternal;
 extern BulkUpdateWorkResponseDefaultTypeInternal _BulkUpdateWorkResponse_default_instance_;
+class DirSyncJob;
+struct DirSyncJobDefaultTypeInternal;
+extern DirSyncJobDefaultTypeInternal _DirSyncJob_default_instance_;
 class HeartbeatRequest;
 struct HeartbeatRequestDefaultTypeInternal;
 extern HeartbeatRequestDefaultTypeInternal _HeartbeatRequest_default_instance_;
@@ -199,40 +202,6 @@ inline bool BulkUpdateWorkRequest_NewState_Parse(absl::string_view name, BulkUpd
   return ::google::protobuf::internal::ParseNamedEnum<BulkUpdateWorkRequest_NewState>(
       BulkUpdateWorkRequest_NewState_descriptor(), name, value);
 }
-enum SyncJob_Operation : int {
-  SyncJob_Operation_UNSPECIFIED = 0,
-  SyncJob_Operation_UPLOAD = 1,
-  SyncJob_Operation_DOWNLOAD = 2,
-  SyncJob_Operation_SyncJob_Operation_INT_MIN_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::min(),
-  SyncJob_Operation_SyncJob_Operation_INT_MAX_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::max(),
-};
-
-bool SyncJob_Operation_IsValid(int value);
-extern const uint32_t SyncJob_Operation_internal_data_[];
-constexpr SyncJob_Operation SyncJob_Operation_Operation_MIN = static_cast<SyncJob_Operation>(0);
-constexpr SyncJob_Operation SyncJob_Operation_Operation_MAX = static_cast<SyncJob_Operation>(2);
-constexpr int SyncJob_Operation_Operation_ARRAYSIZE = 2 + 1;
-const ::google::protobuf::EnumDescriptor*
-SyncJob_Operation_descriptor();
-template <typename T>
-const std::string& SyncJob_Operation_Name(T value) {
-  static_assert(std::is_same<T, SyncJob_Operation>::value ||
-                    std::is_integral<T>::value,
-                "Incorrect type passed to Operation_Name().");
-  return SyncJob_Operation_Name(static_cast<SyncJob_Operation>(value));
-}
-template <>
-inline const std::string& SyncJob_Operation_Name(SyncJob_Operation value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<SyncJob_Operation_descriptor,
-                                                 0, 2>(
-      static_cast<int>(value));
-}
-inline bool SyncJob_Operation_Parse(absl::string_view name, SyncJob_Operation* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<SyncJob_Operation>(
-      SyncJob_Operation_descriptor(), name, value);
-}
 enum Work_State : int {
   Work_State_UNSPECIFIED = 0,
   Work_State_UNKNOWN = 1,
@@ -307,6 +276,40 @@ inline const std::string& UpdateConfigResponse_Result_Name(UpdateConfigResponse_
 inline bool UpdateConfigResponse_Result_Parse(absl::string_view name, UpdateConfigResponse_Result* value) {
   return ::google::protobuf::internal::ParseNamedEnum<UpdateConfigResponse_Result>(
       UpdateConfigResponse_Result_descriptor(), name, value);
+}
+enum JobOperation : int {
+  OPERATION_UNSPECIFIED = 0,
+  UPLOAD = 1,
+  DOWNLOAD = 2,
+  JobOperation_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  JobOperation_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool JobOperation_IsValid(int value);
+extern const uint32_t JobOperation_internal_data_[];
+constexpr JobOperation JobOperation_MIN = static_cast<JobOperation>(0);
+constexpr JobOperation JobOperation_MAX = static_cast<JobOperation>(2);
+constexpr int JobOperation_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+JobOperation_descriptor();
+template <typename T>
+const std::string& JobOperation_Name(T value) {
+  static_assert(std::is_same<T, JobOperation>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to JobOperation_Name().");
+  return JobOperation_Name(static_cast<JobOperation>(value));
+}
+template <>
+inline const std::string& JobOperation_Name(JobOperation value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<JobOperation_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool JobOperation_Parse(absl::string_view name, JobOperation* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<JobOperation>(
+      JobOperation_descriptor(), name, value);
 }
 
 // ===================================================================
@@ -599,7 +602,7 @@ class Work_Status final : public ::google::protobuf::Message
     return reinterpret_cast<const Work_Status*>(
         &_Work_Status_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(Work_Status& a, Work_Status& b) { a.Swap(&b); }
   inline void Swap(Work_Status* other) {
     if (other == this) return;
@@ -807,7 +810,7 @@ class Work_Part final : public ::google::protobuf::Message
     return reinterpret_cast<const Work_Part*>(
         &_Work_Part_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(Work_Part& a, Work_Part& b) { a.Swap(&b); }
   inline void Swap(Work_Part* other) {
     if (other == this) return;
@@ -1314,7 +1317,7 @@ class UpdateConfigResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateConfigResponse*>(
         &_UpdateConfigResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(UpdateConfigResponse& a, UpdateConfigResponse& b) { a.Swap(&b); }
   inline void Swap(UpdateConfigResponse* other) {
     if (other == this) return;
@@ -1627,32 +1630,13 @@ class SyncJob final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
-  using Operation = SyncJob_Operation;
-  static constexpr Operation UNSPECIFIED = SyncJob_Operation_UNSPECIFIED;
-  static constexpr Operation UPLOAD = SyncJob_Operation_UPLOAD;
-  static constexpr Operation DOWNLOAD = SyncJob_Operation_DOWNLOAD;
-  static inline bool Operation_IsValid(int value) {
-    return SyncJob_Operation_IsValid(value);
-  }
-  static constexpr Operation Operation_MIN = SyncJob_Operation_Operation_MIN;
-  static constexpr Operation Operation_MAX = SyncJob_Operation_Operation_MAX;
-  static constexpr int Operation_ARRAYSIZE = SyncJob_Operation_Operation_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor* Operation_descriptor() {
-    return SyncJob_Operation_descriptor();
-  }
-  template <typename T>
-  static inline const std::string& Operation_Name(T value) {
-    return SyncJob_Operation_Name(value);
-  }
-  static inline bool Operation_Parse(absl::string_view name, Operation* value) {
-    return SyncJob_Operation_Parse(name, value);
-  }
 
   // accessors -------------------------------------------------------
   enum : int {
     kRemotePathFieldNumber = 3,
     kOperationFieldNumber = 1,
     kOverwriteFieldNumber = 2,
+    kStubOnlyFieldNumber = 4,
   };
   // string remote_path = 3;
   void clear_remote_path() ;
@@ -1670,14 +1654,14 @@ class SyncJob final : public ::google::protobuf::Message
   std::string* _internal_mutable_remote_path();
 
   public:
-  // .flex.SyncJob.Operation operation = 1;
+  // .flex.JobOperation operation = 1;
   void clear_operation() ;
-  ::flex::SyncJob_Operation operation() const;
-  void set_operation(::flex::SyncJob_Operation value);
+  ::flex::JobOperation operation() const;
+  void set_operation(::flex::JobOperation value);
 
   private:
-  ::flex::SyncJob_Operation _internal_operation() const;
-  void _internal_set_operation(::flex::SyncJob_Operation value);
+  ::flex::JobOperation _internal_operation() const;
+  void _internal_set_operation(::flex::JobOperation value);
 
   public:
   // bool overwrite = 2;
@@ -1690,12 +1674,22 @@ class SyncJob final : public ::google::protobuf::Message
   void _internal_set_overwrite(bool value);
 
   public:
+  // bool stub_only = 4;
+  void clear_stub_only() ;
+  bool stub_only() const;
+  void set_stub_only(bool value);
+
+  private:
+  bool _internal_stub_only() const;
+  void _internal_set_stub_only(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.SyncJob)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
+      2, 4, 0,
       32, 2>
       _table_;
 
@@ -1716,6 +1710,7 @@ class SyncJob final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr remote_path_;
     int operation_;
     bool overwrite_;
+    bool stub_only_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1783,7 +1778,7 @@ class RemoteStorageTarget_S3 final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoteStorageTarget_S3*>(
         &_RemoteStorageTarget_S3_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(RemoteStorageTarget_S3& a, RemoteStorageTarget_S3& b) { a.Swap(&b); }
   inline void Swap(RemoteStorageTarget_S3* other) {
     if (other == this) return;
@@ -2069,7 +2064,7 @@ class RemoteStorageTarget_Policies final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoteStorageTarget_Policies*>(
         &_RemoteStorageTarget_Policies_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(RemoteStorageTarget_Policies& a, RemoteStorageTarget_Policies& b) { a.Swap(&b); }
   inline void Swap(RemoteStorageTarget_Policies* other) {
     if (other == this) return;
@@ -2259,7 +2254,7 @@ class RemoteStorageTarget_POSIX final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoteStorageTarget_POSIX*>(
         &_RemoteStorageTarget_POSIX_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(RemoteStorageTarget_POSIX& a, RemoteStorageTarget_POSIX& b) { a.Swap(&b); }
   inline void Swap(RemoteStorageTarget_POSIX* other) {
     if (other == this) return;
@@ -2830,6 +2825,262 @@ class HeartbeatRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class DirSyncJob final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:flex.DirSyncJob) */ {
+ public:
+  inline DirSyncJob() : DirSyncJob(nullptr) {}
+  ~DirSyncJob() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(DirSyncJob* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(DirSyncJob));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR DirSyncJob(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline DirSyncJob(const DirSyncJob& from) : DirSyncJob(nullptr, from) {}
+  inline DirSyncJob(DirSyncJob&& from) noexcept
+      : DirSyncJob(nullptr, std::move(from)) {}
+  inline DirSyncJob& operator=(const DirSyncJob& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DirSyncJob& operator=(DirSyncJob&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DirSyncJob& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DirSyncJob* internal_default_instance() {
+    return reinterpret_cast<const DirSyncJob*>(
+        &_DirSyncJob_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 13;
+  friend void swap(DirSyncJob& a, DirSyncJob& b) { a.Swap(&b); }
+  inline void Swap(DirSyncJob* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DirSyncJob* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DirSyncJob* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<DirSyncJob>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DirSyncJob& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const DirSyncJob& from) { DirSyncJob::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(DirSyncJob* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "flex.DirSyncJob"; }
+
+ protected:
+  explicit DirSyncJob(::google::protobuf::Arena* arena);
+  DirSyncJob(::google::protobuf::Arena* arena, const DirSyncJob& from);
+  DirSyncJob(::google::protobuf::Arena* arena, DirSyncJob&& from) noexcept
+      : DirSyncJob(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRemotePathFieldNumber = 3,
+    kOperationFieldNumber = 1,
+    kOverwriteFieldNumber = 2,
+    kFlattenFieldNumber = 4,
+    kForceFieldNumber = 5,
+    kStubOnlyFieldNumber = 6,
+  };
+  // string remote_path = 3;
+  void clear_remote_path() ;
+  const std::string& remote_path() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_remote_path(Arg_&& arg, Args_... args);
+  std::string* mutable_remote_path();
+  PROTOBUF_NODISCARD std::string* release_remote_path();
+  void set_allocated_remote_path(std::string* value);
+
+  private:
+  const std::string& _internal_remote_path() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_remote_path(
+      const std::string& value);
+  std::string* _internal_mutable_remote_path();
+
+  public:
+  // .flex.JobOperation operation = 1;
+  void clear_operation() ;
+  ::flex::JobOperation operation() const;
+  void set_operation(::flex::JobOperation value);
+
+  private:
+  ::flex::JobOperation _internal_operation() const;
+  void _internal_set_operation(::flex::JobOperation value);
+
+  public:
+  // bool overwrite = 2;
+  void clear_overwrite() ;
+  bool overwrite() const;
+  void set_overwrite(bool value);
+
+  private:
+  bool _internal_overwrite() const;
+  void _internal_set_overwrite(bool value);
+
+  public:
+  // bool flatten = 4;
+  void clear_flatten() ;
+  bool flatten() const;
+  void set_flatten(bool value);
+
+  private:
+  bool _internal_flatten() const;
+  void _internal_set_flatten(bool value);
+
+  public:
+  // bool force = 5;
+  void clear_force() ;
+  bool force() const;
+  void set_force(bool value);
+
+  private:
+  bool _internal_force() const;
+  void _internal_set_force(bool value);
+
+  public:
+  // bool stub_only = 6;
+  void clear_stub_only() ;
+  bool stub_only() const;
+  void set_stub_only(bool value);
+
+  private:
+  bool _internal_stub_only() const;
+  void _internal_set_stub_only(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:flex.DirSyncJob)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 6, 0,
+      35, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const DirSyncJob& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr remote_path_;
+    int operation_;
+    bool overwrite_;
+    bool flatten_;
+    bool force_;
+    bool stub_only_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_flex_2eproto;
+};
+// -------------------------------------------------------------------
+
 class BulkUpdateWorkResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:flex.BulkUpdateWorkResponse) */ {
  public:
@@ -3306,7 +3557,7 @@ class BeeRemoteNode final : public ::google::protobuf::Message
     return reinterpret_cast<const BeeRemoteNode*>(
         &_BeeRemoteNode_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(BeeRemoteNode& a, BeeRemoteNode& b) { a.Swap(&b); }
   inline void Swap(BeeRemoteNode* other) {
     if (other == this) return;
@@ -3519,6 +3770,7 @@ class WorkRequest final : public ::google::protobuf::Message
   enum TypeCase {
     kMock = 10,
     kSync = 11,
+    kDirSync = 12,
     TYPE_NOT_SET = 0,
   };
   static inline const WorkRequest* internal_default_instance() {
@@ -3621,6 +3873,7 @@ class WorkRequest final : public ::google::protobuf::Message
     kRemoteStorageTargetFieldNumber = 6,
     kMockFieldNumber = 10,
     kSyncFieldNumber = 11,
+    kDirSyncFieldNumber = 12,
   };
   // string job_id = 1;
   void clear_job_id() ;
@@ -3749,6 +4002,25 @@ class WorkRequest final : public ::google::protobuf::Message
   ::flex::SyncJob* _internal_mutable_sync();
 
   public:
+  // .flex.DirSyncJob dir_sync = 12;
+  bool has_dir_sync() const;
+  private:
+  bool _internal_has_dir_sync() const;
+
+  public:
+  void clear_dir_sync() ;
+  const ::flex::DirSyncJob& dir_sync() const;
+  PROTOBUF_NODISCARD ::flex::DirSyncJob* release_dir_sync();
+  ::flex::DirSyncJob* mutable_dir_sync();
+  void set_allocated_dir_sync(::flex::DirSyncJob* value);
+  void unsafe_arena_set_allocated_dir_sync(::flex::DirSyncJob* value);
+  ::flex::DirSyncJob* unsafe_arena_release_dir_sync();
+
+  private:
+  const ::flex::DirSyncJob& _internal_dir_sync() const;
+  ::flex::DirSyncJob* _internal_mutable_dir_sync();
+
+  public:
   void clear_Type();
   TypeCase Type_case() const;
   // @@protoc_insertion_point(class_scope:flex.WorkRequest)
@@ -3756,11 +4028,12 @@ class WorkRequest final : public ::google::protobuf::Message
   class _Internal;
   void set_has_mock();
   void set_has_sync();
+  void set_has_dir_sync();
   inline bool has_Type() const;
   inline void clear_has_Type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 8, 3,
+      3, 9, 4,
       64, 2>
       _table_;
 
@@ -3791,6 +4064,7 @@ class WorkRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::flex::MockJob* mock_;
       ::flex::SyncJob* sync_;
+      ::flex::DirSyncJob* dir_sync_;
     } Type_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -3859,7 +4133,7 @@ class Work final : public ::google::protobuf::Message
     return reinterpret_cast<const Work*>(
         &_Work_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(Work& a, Work& b) { a.Swap(&b); }
   inline void Swap(Work* other) {
     if (other == this) return;
@@ -4156,7 +4430,7 @@ class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoteStorageTarget_Azure*>(
         &_RemoteStorageTarget_Azure_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(RemoteStorageTarget_Azure& a, RemoteStorageTarget_Azure& b) { a.Swap(&b); }
   inline void Swap(RemoteStorageTarget_Azure* other) {
     if (other == this) return;
@@ -5173,7 +5447,7 @@ class RemoteStorageTarget final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoteStorageTarget*>(
         &_RemoteStorageTarget_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(RemoteStorageTarget& a, RemoteStorageTarget& b) { a.Swap(&b); }
   inline void Swap(RemoteStorageTarget* other) {
     if (other == this) return;
@@ -5706,7 +5980,7 @@ class UpdateConfigRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateConfigRequest*>(
         &_UpdateConfigRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(UpdateConfigRequest& a, UpdateConfigRequest& b) { a.Swap(&b); }
   inline void Swap(UpdateConfigRequest* other) {
     if (other == this) return;
@@ -7224,6 +7498,85 @@ inline ::flex::SyncJob* WorkRequest::mutable_sync() ABSL_ATTRIBUTE_LIFETIME_BOUN
   return _msg;
 }
 
+// .flex.DirSyncJob dir_sync = 12;
+inline bool WorkRequest::has_dir_sync() const {
+  return Type_case() == kDirSync;
+}
+inline bool WorkRequest::_internal_has_dir_sync() const {
+  return Type_case() == kDirSync;
+}
+inline void WorkRequest::set_has_dir_sync() {
+  _impl_._oneof_case_[0] = kDirSync;
+}
+inline void WorkRequest::clear_dir_sync() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (Type_case() == kDirSync) {
+    if (GetArena() == nullptr) {
+      delete _impl_.Type_.dir_sync_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.Type_.dir_sync_);
+    }
+    clear_has_Type();
+  }
+}
+inline ::flex::DirSyncJob* WorkRequest::release_dir_sync() {
+  // @@protoc_insertion_point(field_release:flex.WorkRequest.dir_sync)
+  if (Type_case() == kDirSync) {
+    clear_has_Type();
+    auto* temp = _impl_.Type_.dir_sync_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.Type_.dir_sync_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::flex::DirSyncJob& WorkRequest::_internal_dir_sync() const {
+  return Type_case() == kDirSync ? *_impl_.Type_.dir_sync_ : reinterpret_cast<::flex::DirSyncJob&>(::flex::_DirSyncJob_default_instance_);
+}
+inline const ::flex::DirSyncJob& WorkRequest::dir_sync() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.WorkRequest.dir_sync)
+  return _internal_dir_sync();
+}
+inline ::flex::DirSyncJob* WorkRequest::unsafe_arena_release_dir_sync() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:flex.WorkRequest.dir_sync)
+  if (Type_case() == kDirSync) {
+    clear_has_Type();
+    auto* temp = _impl_.Type_.dir_sync_;
+    _impl_.Type_.dir_sync_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void WorkRequest::unsafe_arena_set_allocated_dir_sync(::flex::DirSyncJob* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_Type();
+  if (value) {
+    set_has_dir_sync();
+    _impl_.Type_.dir_sync_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:flex.WorkRequest.dir_sync)
+}
+inline ::flex::DirSyncJob* WorkRequest::_internal_mutable_dir_sync() {
+  if (Type_case() != kDirSync) {
+    clear_Type();
+    set_has_dir_sync();
+    _impl_.Type_.dir_sync_ =
+        ::google::protobuf::Message::DefaultConstruct<::flex::DirSyncJob>(GetArena());
+  }
+  return _impl_.Type_.dir_sync_;
+}
+inline ::flex::DirSyncJob* WorkRequest::mutable_dir_sync() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::flex::DirSyncJob* _msg = _internal_mutable_dir_sync();
+  // @@protoc_insertion_point(field_mutable:flex.WorkRequest.dir_sync)
+  return _msg;
+}
+
 inline bool WorkRequest::has_Type() const {
   return Type_case() != TYPE_NOT_SET;
 }
@@ -7377,24 +7730,24 @@ inline void MockJob::_internal_set_can_retry(bool value) {
 
 // SyncJob
 
-// .flex.SyncJob.Operation operation = 1;
+// .flex.JobOperation operation = 1;
 inline void SyncJob::clear_operation() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.operation_ = 0;
 }
-inline ::flex::SyncJob_Operation SyncJob::operation() const {
+inline ::flex::JobOperation SyncJob::operation() const {
   // @@protoc_insertion_point(field_get:flex.SyncJob.operation)
   return _internal_operation();
 }
-inline void SyncJob::set_operation(::flex::SyncJob_Operation value) {
+inline void SyncJob::set_operation(::flex::JobOperation value) {
   _internal_set_operation(value);
   // @@protoc_insertion_point(field_set:flex.SyncJob.operation)
 }
-inline ::flex::SyncJob_Operation SyncJob::_internal_operation() const {
+inline ::flex::JobOperation SyncJob::_internal_operation() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::flex::SyncJob_Operation>(_impl_.operation_);
+  return static_cast<::flex::JobOperation>(_impl_.operation_);
 }
-inline void SyncJob::_internal_set_operation(::flex::SyncJob_Operation value) {
+inline void SyncJob::_internal_set_operation(::flex::JobOperation value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.operation_ = value;
 }
@@ -7467,6 +7820,190 @@ inline void SyncJob::set_allocated_remote_path(std::string* value) {
     _impl_.remote_path_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:flex.SyncJob.remote_path)
+}
+
+// bool stub_only = 4;
+inline void SyncJob::clear_stub_only() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.stub_only_ = false;
+}
+inline bool SyncJob::stub_only() const {
+  // @@protoc_insertion_point(field_get:flex.SyncJob.stub_only)
+  return _internal_stub_only();
+}
+inline void SyncJob::set_stub_only(bool value) {
+  _internal_set_stub_only(value);
+  // @@protoc_insertion_point(field_set:flex.SyncJob.stub_only)
+}
+inline bool SyncJob::_internal_stub_only() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.stub_only_;
+}
+inline void SyncJob::_internal_set_stub_only(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.stub_only_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// DirSyncJob
+
+// .flex.JobOperation operation = 1;
+inline void DirSyncJob::clear_operation() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.operation_ = 0;
+}
+inline ::flex::JobOperation DirSyncJob::operation() const {
+  // @@protoc_insertion_point(field_get:flex.DirSyncJob.operation)
+  return _internal_operation();
+}
+inline void DirSyncJob::set_operation(::flex::JobOperation value) {
+  _internal_set_operation(value);
+  // @@protoc_insertion_point(field_set:flex.DirSyncJob.operation)
+}
+inline ::flex::JobOperation DirSyncJob::_internal_operation() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::flex::JobOperation>(_impl_.operation_);
+}
+inline void DirSyncJob::_internal_set_operation(::flex::JobOperation value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.operation_ = value;
+}
+
+// bool overwrite = 2;
+inline void DirSyncJob::clear_overwrite() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.overwrite_ = false;
+}
+inline bool DirSyncJob::overwrite() const {
+  // @@protoc_insertion_point(field_get:flex.DirSyncJob.overwrite)
+  return _internal_overwrite();
+}
+inline void DirSyncJob::set_overwrite(bool value) {
+  _internal_set_overwrite(value);
+  // @@protoc_insertion_point(field_set:flex.DirSyncJob.overwrite)
+}
+inline bool DirSyncJob::_internal_overwrite() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.overwrite_;
+}
+inline void DirSyncJob::_internal_set_overwrite(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.overwrite_ = value;
+}
+
+// string remote_path = 3;
+inline void DirSyncJob::clear_remote_path() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_path_.ClearToEmpty();
+}
+inline const std::string& DirSyncJob::remote_path() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.DirSyncJob.remote_path)
+  return _internal_remote_path();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void DirSyncJob::set_remote_path(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_path_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.DirSyncJob.remote_path)
+}
+inline std::string* DirSyncJob::mutable_remote_path() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_remote_path();
+  // @@protoc_insertion_point(field_mutable:flex.DirSyncJob.remote_path)
+  return _s;
+}
+inline const std::string& DirSyncJob::_internal_remote_path() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.remote_path_.Get();
+}
+inline void DirSyncJob::_internal_set_remote_path(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_path_.Set(value, GetArena());
+}
+inline std::string* DirSyncJob::_internal_mutable_remote_path() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.remote_path_.Mutable( GetArena());
+}
+inline std::string* DirSyncJob::release_remote_path() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.DirSyncJob.remote_path)
+  return _impl_.remote_path_.Release();
+}
+inline void DirSyncJob::set_allocated_remote_path(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_path_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.remote_path_.IsDefault()) {
+    _impl_.remote_path_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.DirSyncJob.remote_path)
+}
+
+// bool flatten = 4;
+inline void DirSyncJob::clear_flatten() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.flatten_ = false;
+}
+inline bool DirSyncJob::flatten() const {
+  // @@protoc_insertion_point(field_get:flex.DirSyncJob.flatten)
+  return _internal_flatten();
+}
+inline void DirSyncJob::set_flatten(bool value) {
+  _internal_set_flatten(value);
+  // @@protoc_insertion_point(field_set:flex.DirSyncJob.flatten)
+}
+inline bool DirSyncJob::_internal_flatten() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.flatten_;
+}
+inline void DirSyncJob::_internal_set_flatten(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.flatten_ = value;
+}
+
+// bool force = 5;
+inline void DirSyncJob::clear_force() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.force_ = false;
+}
+inline bool DirSyncJob::force() const {
+  // @@protoc_insertion_point(field_get:flex.DirSyncJob.force)
+  return _internal_force();
+}
+inline void DirSyncJob::set_force(bool value) {
+  _internal_set_force(value);
+  // @@protoc_insertion_point(field_set:flex.DirSyncJob.force)
+}
+inline bool DirSyncJob::_internal_force() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.force_;
+}
+inline void DirSyncJob::_internal_set_force(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.force_ = value;
+}
+
+// bool stub_only = 6;
+inline void DirSyncJob::clear_stub_only() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.stub_only_ = false;
+}
+inline bool DirSyncJob::stub_only() const {
+  // @@protoc_insertion_point(field_get:flex.DirSyncJob.stub_only)
+  return _internal_stub_only();
+}
+inline void DirSyncJob::set_stub_only(bool value) {
+  _internal_set_stub_only(value);
+  // @@protoc_insertion_point(field_set:flex.DirSyncJob.stub_only)
+}
+inline bool DirSyncJob::_internal_stub_only() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.stub_only_;
+}
+inline void DirSyncJob::_internal_set_stub_only(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.stub_only_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -9390,12 +9927,6 @@ inline const EnumDescriptor* GetEnumDescriptor<::flex::BulkUpdateWorkRequest_New
   return ::flex::BulkUpdateWorkRequest_NewState_descriptor();
 }
 template <>
-struct is_proto_enum<::flex::SyncJob_Operation> : std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor<::flex::SyncJob_Operation>() {
-  return ::flex::SyncJob_Operation_descriptor();
-}
-template <>
 struct is_proto_enum<::flex::Work_State> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::flex::Work_State>() {
@@ -9406,6 +9937,12 @@ struct is_proto_enum<::flex::UpdateConfigResponse_Result> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::flex::UpdateConfigResponse_Result>() {
   return ::flex::UpdateConfigResponse_Result_descriptor();
+}
+template <>
+struct is_proto_enum<::flex::JobOperation> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::flex::JobOperation>() {
+  return ::flex::JobOperation_descriptor();
 }
 
 }  // namespace protobuf

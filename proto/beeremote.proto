@@ -37,6 +37,7 @@ message SubmitJobResponse {
         CREATED = 1;
         EXISTING = 2;
         NOT_ALLOWED = 3;
+        ALREADY_COMPLETE = 4;
     }
 }
 
@@ -58,6 +59,7 @@ message JobRequest {
     oneof type {
         flex.SyncJob sync = 10;
         flex.MockJob mock = 11;
+        flex.DirSyncJob dir_sync = 12;
     }
     // When force is set this request will create a new job even if there is already a completed
     // job. When forced the request will return an error if there is already a job running. This is

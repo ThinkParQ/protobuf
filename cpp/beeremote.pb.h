@@ -128,6 +128,7 @@ enum SubmitJobResponse_ResponseStatus : int {
   SubmitJobResponse_ResponseStatus_CREATED = 1,
   SubmitJobResponse_ResponseStatus_EXISTING = 2,
   SubmitJobResponse_ResponseStatus_NOT_ALLOWED = 3,
+  SubmitJobResponse_ResponseStatus_ALREADY_COMPLETE = 4,
   SubmitJobResponse_ResponseStatus_SubmitJobResponse_ResponseStatus_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   SubmitJobResponse_ResponseStatus_SubmitJobResponse_ResponseStatus_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -137,8 +138,8 @@ enum SubmitJobResponse_ResponseStatus : int {
 bool SubmitJobResponse_ResponseStatus_IsValid(int value);
 extern const uint32_t SubmitJobResponse_ResponseStatus_internal_data_[];
 constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MIN = static_cast<SubmitJobResponse_ResponseStatus>(0);
-constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MAX = static_cast<SubmitJobResponse_ResponseStatus>(3);
-constexpr int SubmitJobResponse_ResponseStatus_ResponseStatus_ARRAYSIZE = 3 + 1;
+constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MAX = static_cast<SubmitJobResponse_ResponseStatus>(4);
+constexpr int SubmitJobResponse_ResponseStatus_ResponseStatus_ARRAYSIZE = 4 + 1;
 const ::google::protobuf::EnumDescriptor*
 SubmitJobResponse_ResponseStatus_descriptor();
 template <typename T>
@@ -151,7 +152,7 @@ const std::string& SubmitJobResponse_ResponseStatus_Name(T value) {
 template <>
 inline const std::string& SubmitJobResponse_ResponseStatus_Name(SubmitJobResponse_ResponseStatus value) {
   return ::google::protobuf::internal::NameOfDenseEnum<SubmitJobResponse_ResponseStatus_descriptor,
-                                                 0, 3>(
+                                                 0, 4>(
       static_cast<int>(value));
 }
 inline bool SubmitJobResponse_ResponseStatus_Parse(absl::string_view name, SubmitJobResponse_ResponseStatus* value) {
@@ -1119,6 +1120,7 @@ class JobRequest final : public ::google::protobuf::Message
   enum TypeCase {
     kSync = 10,
     kMock = 11,
+    kDirSync = 12,
     TYPE_NOT_SET = 0,
   };
   static inline const JobRequest* internal_default_instance() {
@@ -1219,6 +1221,7 @@ class JobRequest final : public ::google::protobuf::Message
     kForceFieldNumber = 5,
     kSyncFieldNumber = 10,
     kMockFieldNumber = 11,
+    kDirSyncFieldNumber = 12,
   };
   // string path = 1;
   void clear_path() ;
@@ -1320,6 +1323,25 @@ class JobRequest final : public ::google::protobuf::Message
   ::flex::MockJob* _internal_mutable_mock();
 
   public:
+  // .flex.DirSyncJob dir_sync = 12;
+  bool has_dir_sync() const;
+  private:
+  bool _internal_has_dir_sync() const;
+
+  public:
+  void clear_dir_sync() ;
+  const ::flex::DirSyncJob& dir_sync() const;
+  PROTOBUF_NODISCARD ::flex::DirSyncJob* release_dir_sync();
+  ::flex::DirSyncJob* mutable_dir_sync();
+  void set_allocated_dir_sync(::flex::DirSyncJob* value);
+  void unsafe_arena_set_allocated_dir_sync(::flex::DirSyncJob* value);
+  ::flex::DirSyncJob* unsafe_arena_release_dir_sync();
+
+  private:
+  const ::flex::DirSyncJob& _internal_dir_sync() const;
+  ::flex::DirSyncJob* _internal_mutable_dir_sync();
+
+  public:
   void clear_type();
   TypeCase type_case() const;
   // @@protoc_insertion_point(class_scope:beeremote.JobRequest)
@@ -1327,12 +1349,13 @@ class JobRequest final : public ::google::protobuf::Message
   class _Internal;
   void set_has_sync();
   void set_has_mock();
+  void set_has_dir_sync();
   inline bool has_type() const;
   inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 2,
-      37, 2>
+      3, 8, 3,
+      45, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1359,6 +1382,7 @@ class JobRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::flex::SyncJob* sync_;
       ::flex::MockJob* mock_;
+      ::flex::DirSyncJob* dir_sync_;
     } type_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
@@ -3859,6 +3883,7 @@ class SubmitJobResponse final : public ::google::protobuf::Message
   static constexpr ResponseStatus CREATED = SubmitJobResponse_ResponseStatus_CREATED;
   static constexpr ResponseStatus EXISTING = SubmitJobResponse_ResponseStatus_EXISTING;
   static constexpr ResponseStatus NOT_ALLOWED = SubmitJobResponse_ResponseStatus_NOT_ALLOWED;
+  static constexpr ResponseStatus ALREADY_COMPLETE = SubmitJobResponse_ResponseStatus_ALREADY_COMPLETE;
   static inline bool ResponseStatus_IsValid(int value) {
     return SubmitJobResponse_ResponseStatus_IsValid(value);
   }
@@ -4879,6 +4904,74 @@ inline ::flex::MockJob* JobRequest::_internal_mutable_mock() {
 inline ::flex::MockJob* JobRequest::mutable_mock() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::flex::MockJob* _msg = _internal_mutable_mock();
   // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.mock)
+  return _msg;
+}
+
+// .flex.DirSyncJob dir_sync = 12;
+inline bool JobRequest::has_dir_sync() const {
+  return type_case() == kDirSync;
+}
+inline bool JobRequest::_internal_has_dir_sync() const {
+  return type_case() == kDirSync;
+}
+inline void JobRequest::set_has_dir_sync() {
+  _impl_._oneof_case_[0] = kDirSync;
+}
+inline ::flex::DirSyncJob* JobRequest::release_dir_sync() {
+  // @@protoc_insertion_point(field_release:beeremote.JobRequest.dir_sync)
+  if (type_case() == kDirSync) {
+    clear_has_type();
+    auto* temp = _impl_.type_.dir_sync_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.type_.dir_sync_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::flex::DirSyncJob& JobRequest::_internal_dir_sync() const {
+  return type_case() == kDirSync ? *_impl_.type_.dir_sync_ : reinterpret_cast<::flex::DirSyncJob&>(::flex::_DirSyncJob_default_instance_);
+}
+inline const ::flex::DirSyncJob& JobRequest::dir_sync() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.dir_sync)
+  return _internal_dir_sync();
+}
+inline ::flex::DirSyncJob* JobRequest::unsafe_arena_release_dir_sync() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beeremote.JobRequest.dir_sync)
+  if (type_case() == kDirSync) {
+    clear_has_type();
+    auto* temp = _impl_.type_.dir_sync_;
+    _impl_.type_.dir_sync_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void JobRequest::unsafe_arena_set_allocated_dir_sync(::flex::DirSyncJob* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_type();
+  if (value) {
+    set_has_dir_sync();
+    _impl_.type_.dir_sync_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.JobRequest.dir_sync)
+}
+inline ::flex::DirSyncJob* JobRequest::_internal_mutable_dir_sync() {
+  if (type_case() != kDirSync) {
+    clear_type();
+    set_has_dir_sync();
+    _impl_.type_.dir_sync_ =
+        ::google::protobuf::Message::DefaultConstruct<::flex::DirSyncJob>(GetArena());
+  }
+  return _impl_.type_.dir_sync_;
+}
+inline ::flex::DirSyncJob* JobRequest::mutable_dir_sync() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::flex::DirSyncJob* _msg = _internal_mutable_dir_sync();
+  // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.dir_sync)
   return _msg;
 }
 

@@ -173,7 +173,7 @@ pub struct WorkRequest {
     pub segment: ::core::option::Option<work_request::Segment>,
     #[prost(uint32, tag = "6")]
     pub remote_storage_target: u32,
-    #[prost(oneof = "work_request::Type", tags = "10, 11")]
+    #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
 /// Nested message and enum types in `WorkRequest`.
@@ -203,6 +203,8 @@ pub mod work_request {
         Mock(super::MockJob),
         #[prost(message, tag = "11")]
         Sync(super::SyncJob),
+        #[prost(message, tag = "12")]
+        DirSync(super::DirSyncJob),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -226,7 +228,7 @@ pub struct MockJob {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncJob {
-    #[prost(enumeration = "sync_job::Operation", tag = "1")]
+    #[prost(enumeration = "JobOperation", tag = "1")]
     pub operation: i32,
     /// When an object already exists in BeeGFS (for downloads) an error is returned by default, or
     /// it can be optionally overwritten. This currently does nothing for uploads, the object is
@@ -239,48 +241,40 @@ pub struct SyncJob {
     /// ignored for uploads.
     #[prost(string, tag = "3")]
     pub remote_path: ::prost::alloc::string::String,
+    /// If true, the local file is replaced with a "stub file" once the job finishes.
+    /// - Download: The stub is created to reference the specified remote path without actually
+    ///    pulling the file contents locally.
+    /// - Upload: The file is uploaded first, then truncated into a stub that points the upload file
+    ///    or object.
+    #[prost(bool, tag = "4")]
+    pub stub_only: bool,
 }
-/// Nested message and enum types in `SyncJob`.
-pub mod sync_job {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum Operation {
-        Unspecified = 0,
-        Upload = 1,
-        Download = 2,
-    }
-    impl Operation {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                Operation::Unspecified => "UNSPECIFIED",
-                Operation::Upload => "UPLOAD",
-                Operation::Download => "DOWNLOAD",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNSPECIFIED" => Some(Self::Unspecified),
-                "UPLOAD" => Some(Self::Upload),
-                "DOWNLOAD" => Some(Self::Download),
-                _ => None,
-            }
-        }
-    }
+/// DirSyncJob initiates job requests for each file or object.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DirSyncJob {
+    /// The operation to perform.
+    #[prost(enumeration = "JobOperation", tag = "1")]
+    pub operation: i32,
+    /// If true, local files will be overwritten if they exist. This flag applies to the subsequent
+    /// job requests created.
+    #[prost(bool, tag = "2")]
+    pub overwrite: bool,
+    /// Specifies the remote file or object in the remote storage target.
+    /// By default, the remote path is assumed to be the same as the local path in BeeGFS.
+    /// For downloads, if the remote path differs from the local path (for example, when restoring
+    /// a file to a different location), it can be explicitly specified.
+    /// This field is ignored for uploads.
+    #[prost(string, tag = "3")]
+    pub remote_path: ::prost::alloc::string::String,
+    /// By default the remote directory structure will be preserved on downloads unless flatten is
+    /// set. If the flag is set then the directory delimiter will be replaced with an underscore.
+    #[prost(bool, tag = "4")]
+    pub flatten: bool,
+    #[prost(bool, tag = "5")]
+    pub force: bool,
+    #[prost(bool, tag = "6")]
+    pub stub_only: bool,
 }
 /// Currently while requests types are specific to a particular worker node type,
 /// we use the same work type for all nodes. This is what allow us to return
@@ -639,6 +633,35 @@ pub mod remote_storage_target {
         Azure(Azure),
         #[prost(string, tag = "7")]
         Mock(::prost::alloc::string::String),
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum JobOperation {
+    OperationUnspecified = 0,
+    Upload = 1,
+    Download = 2,
+}
+impl JobOperation {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            JobOperation::OperationUnspecified => "OPERATION_UNSPECIFIED",
+            JobOperation::Upload => "UPLOAD",
+            JobOperation::Download => "DOWNLOAD",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "OPERATION_UNSPECIFIED" => Some(Self::OperationUnspecified),
+            "UPLOAD" => Some(Self::Upload),
+            "DOWNLOAD" => Some(Self::Download),
+            _ => None,
+        }
     }
 }
 /// Generated client implementations.
