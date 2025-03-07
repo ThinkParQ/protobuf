@@ -10,6 +10,9 @@ option go_package = "github.com/thinkparq/protobuf/go/beewatch";
 message Event {
     uint64 seq_id = 1;
     uint32 meta_id = 2;
+    optional uint32 meta_mirror = 3;
+    // Bitmask representing event flags as defined by the EVENTFLAG constants in EventContext.h
+    uint32 event_flags = 4;
     oneof event_data {
         V1Event v1 = 11;
         V2Event v2 = 12;
