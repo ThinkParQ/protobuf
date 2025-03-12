@@ -1209,6 +1209,8 @@ class Event final : public ::google::protobuf::Message
   enum : int {
     kSeqIdFieldNumber = 1,
     kMetaIdFieldNumber = 2,
+    kMetaMirrorFieldNumber = 3,
+    kEventFlagsFieldNumber = 4,
     kV1FieldNumber = 11,
     kV2FieldNumber = 12,
   };
@@ -1230,6 +1232,27 @@ class Event final : public ::google::protobuf::Message
   private:
   ::uint32_t _internal_meta_id() const;
   void _internal_set_meta_id(::uint32_t value);
+
+  public:
+  // optional uint32 meta_mirror = 3;
+  bool has_meta_mirror() const;
+  void clear_meta_mirror() ;
+  ::uint32_t meta_mirror() const;
+  void set_meta_mirror(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_meta_mirror() const;
+  void _internal_set_meta_mirror(::uint32_t value);
+
+  public:
+  // uint32 event_flags = 4;
+  void clear_event_flags() ;
+  ::uint32_t event_flags() const;
+  void set_event_flags(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_event_flags() const;
+  void _internal_set_event_flags(::uint32_t value);
 
   public:
   // .beewatch.V1Event v1 = 11;
@@ -1281,7 +1304,7 @@ class Event final : public ::google::protobuf::Message
   inline void clear_has_event_data();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 4, 2,
+      2, 6, 2,
       0, 2>
       _table_;
 
@@ -1299,15 +1322,18 @@ class Event final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Event& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint64_t seq_id_;
     ::uint32_t meta_id_;
+    ::uint32_t meta_mirror_;
+    ::uint32_t event_flags_;
     union EventDataUnion {
       constexpr EventDataUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::beewatch::V1Event* v1_;
       ::beewatch::V2Event* v2_;
     } event_data_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1373,6 +1399,56 @@ inline ::uint32_t Event::_internal_meta_id() const {
 inline void Event::_internal_set_meta_id(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.meta_id_ = value;
+}
+
+// optional uint32 meta_mirror = 3;
+inline bool Event::has_meta_mirror() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void Event::clear_meta_mirror() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.meta_mirror_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline ::uint32_t Event::meta_mirror() const {
+  // @@protoc_insertion_point(field_get:beewatch.Event.meta_mirror)
+  return _internal_meta_mirror();
+}
+inline void Event::set_meta_mirror(::uint32_t value) {
+  _internal_set_meta_mirror(value);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  // @@protoc_insertion_point(field_set:beewatch.Event.meta_mirror)
+}
+inline ::uint32_t Event::_internal_meta_mirror() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.meta_mirror_;
+}
+inline void Event::_internal_set_meta_mirror(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.meta_mirror_ = value;
+}
+
+// uint32 event_flags = 4;
+inline void Event::clear_event_flags() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.event_flags_ = 0u;
+}
+inline ::uint32_t Event::event_flags() const {
+  // @@protoc_insertion_point(field_get:beewatch.Event.event_flags)
+  return _internal_event_flags();
+}
+inline void Event::set_event_flags(::uint32_t value) {
+  _internal_set_event_flags(value);
+  // @@protoc_insertion_point(field_set:beewatch.Event.event_flags)
+}
+inline ::uint32_t Event::_internal_event_flags() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.event_flags_;
+}
+inline void Event::_internal_set_event_flags(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.event_flags_ = value;
 }
 
 // .beewatch.V1Event v1 = 11;

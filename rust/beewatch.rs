@@ -11,6 +11,11 @@ pub struct Event {
     pub seq_id: u64,
     #[prost(uint32, tag = "2")]
     pub meta_id: u32,
+    #[prost(uint32, optional, tag = "3")]
+    pub meta_mirror: ::core::option::Option<u32>,
+    /// Bitmask representing event flags as defined by the EVENTFLAG constants in EventContext.h
+    #[prost(uint32, tag = "4")]
+    pub event_flags: u32,
     #[prost(oneof = "event::EventData", tags = "11, 12")]
     pub event_data: ::core::option::Option<event::EventData>,
 }
