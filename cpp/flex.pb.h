@@ -202,6 +202,74 @@ inline bool BulkUpdateWorkRequest_NewState_Parse(absl::string_view name, BulkUpd
   return ::google::protobuf::internal::ParseNamedEnum<BulkUpdateWorkRequest_NewState>(
       BulkUpdateWorkRequest_NewState_descriptor(), name, value);
 }
+enum SyncJob_Operation : int {
+  SyncJob_Operation_UNSPECIFIED = 0,
+  SyncJob_Operation_UPLOAD = 1,
+  SyncJob_Operation_DOWNLOAD = 2,
+  SyncJob_Operation_SyncJob_Operation_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SyncJob_Operation_SyncJob_Operation_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SyncJob_Operation_IsValid(int value);
+extern const uint32_t SyncJob_Operation_internal_data_[];
+constexpr SyncJob_Operation SyncJob_Operation_Operation_MIN = static_cast<SyncJob_Operation>(0);
+constexpr SyncJob_Operation SyncJob_Operation_Operation_MAX = static_cast<SyncJob_Operation>(2);
+constexpr int SyncJob_Operation_Operation_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+SyncJob_Operation_descriptor();
+template <typename T>
+const std::string& SyncJob_Operation_Name(T value) {
+  static_assert(std::is_same<T, SyncJob_Operation>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Operation_Name().");
+  return SyncJob_Operation_Name(static_cast<SyncJob_Operation>(value));
+}
+template <>
+inline const std::string& SyncJob_Operation_Name(SyncJob_Operation value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SyncJob_Operation_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool SyncJob_Operation_Parse(absl::string_view name, SyncJob_Operation* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SyncJob_Operation>(
+      SyncJob_Operation_descriptor(), name, value);
+}
+enum DirSyncJob_Operation : int {
+  DirSyncJob_Operation_UNSPECIFIED = 0,
+  DirSyncJob_Operation_UPLOAD = 1,
+  DirSyncJob_Operation_DOWNLOAD = 2,
+  DirSyncJob_Operation_DirSyncJob_Operation_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  DirSyncJob_Operation_DirSyncJob_Operation_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool DirSyncJob_Operation_IsValid(int value);
+extern const uint32_t DirSyncJob_Operation_internal_data_[];
+constexpr DirSyncJob_Operation DirSyncJob_Operation_Operation_MIN = static_cast<DirSyncJob_Operation>(0);
+constexpr DirSyncJob_Operation DirSyncJob_Operation_Operation_MAX = static_cast<DirSyncJob_Operation>(2);
+constexpr int DirSyncJob_Operation_Operation_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+DirSyncJob_Operation_descriptor();
+template <typename T>
+const std::string& DirSyncJob_Operation_Name(T value) {
+  static_assert(std::is_same<T, DirSyncJob_Operation>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Operation_Name().");
+  return DirSyncJob_Operation_Name(static_cast<DirSyncJob_Operation>(value));
+}
+template <>
+inline const std::string& DirSyncJob_Operation_Name(DirSyncJob_Operation value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<DirSyncJob_Operation_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool DirSyncJob_Operation_Parse(absl::string_view name, DirSyncJob_Operation* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<DirSyncJob_Operation>(
+      DirSyncJob_Operation_descriptor(), name, value);
+}
 enum Work_State : int {
   Work_State_UNSPECIFIED = 0,
   Work_State_UNKNOWN = 1,
@@ -276,40 +344,6 @@ inline const std::string& UpdateConfigResponse_Result_Name(UpdateConfigResponse_
 inline bool UpdateConfigResponse_Result_Parse(absl::string_view name, UpdateConfigResponse_Result* value) {
   return ::google::protobuf::internal::ParseNamedEnum<UpdateConfigResponse_Result>(
       UpdateConfigResponse_Result_descriptor(), name, value);
-}
-enum JobOperation : int {
-  OPERATION_UNSPECIFIED = 0,
-  UPLOAD = 1,
-  DOWNLOAD = 2,
-  JobOperation_INT_MIN_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::min(),
-  JobOperation_INT_MAX_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::max(),
-};
-
-bool JobOperation_IsValid(int value);
-extern const uint32_t JobOperation_internal_data_[];
-constexpr JobOperation JobOperation_MIN = static_cast<JobOperation>(0);
-constexpr JobOperation JobOperation_MAX = static_cast<JobOperation>(2);
-constexpr int JobOperation_ARRAYSIZE = 2 + 1;
-const ::google::protobuf::EnumDescriptor*
-JobOperation_descriptor();
-template <typename T>
-const std::string& JobOperation_Name(T value) {
-  static_assert(std::is_same<T, JobOperation>::value ||
-                    std::is_integral<T>::value,
-                "Incorrect type passed to JobOperation_Name().");
-  return JobOperation_Name(static_cast<JobOperation>(value));
-}
-template <>
-inline const std::string& JobOperation_Name(JobOperation value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<JobOperation_descriptor,
-                                                 0, 2>(
-      static_cast<int>(value));
-}
-inline bool JobOperation_Parse(absl::string_view name, JobOperation* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<JobOperation>(
-      JobOperation_descriptor(), name, value);
 }
 
 // ===================================================================
@@ -1630,6 +1664,26 @@ class SyncJob final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
+  using Operation = SyncJob_Operation;
+  static constexpr Operation UNSPECIFIED = SyncJob_Operation_UNSPECIFIED;
+  static constexpr Operation UPLOAD = SyncJob_Operation_UPLOAD;
+  static constexpr Operation DOWNLOAD = SyncJob_Operation_DOWNLOAD;
+  static inline bool Operation_IsValid(int value) {
+    return SyncJob_Operation_IsValid(value);
+  }
+  static constexpr Operation Operation_MIN = SyncJob_Operation_Operation_MIN;
+  static constexpr Operation Operation_MAX = SyncJob_Operation_Operation_MAX;
+  static constexpr int Operation_ARRAYSIZE = SyncJob_Operation_Operation_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Operation_descriptor() {
+    return SyncJob_Operation_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Operation_Name(T value) {
+    return SyncJob_Operation_Name(value);
+  }
+  static inline bool Operation_Parse(absl::string_view name, Operation* value) {
+    return SyncJob_Operation_Parse(name, value);
+  }
 
   // accessors -------------------------------------------------------
   enum : int {
@@ -1654,14 +1708,14 @@ class SyncJob final : public ::google::protobuf::Message
   std::string* _internal_mutable_remote_path();
 
   public:
-  // .flex.JobOperation operation = 1;
+  // .flex.SyncJob.Operation operation = 1;
   void clear_operation() ;
-  ::flex::JobOperation operation() const;
-  void set_operation(::flex::JobOperation value);
+  ::flex::SyncJob_Operation operation() const;
+  void set_operation(::flex::SyncJob_Operation value);
 
   private:
-  ::flex::JobOperation _internal_operation() const;
-  void _internal_set_operation(::flex::JobOperation value);
+  ::flex::SyncJob_Operation _internal_operation() const;
+  void _internal_set_operation(::flex::SyncJob_Operation value);
 
   public:
   // bool overwrite = 2;
@@ -2968,6 +3022,26 @@ class DirSyncJob final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
+  using Operation = DirSyncJob_Operation;
+  static constexpr Operation UNSPECIFIED = DirSyncJob_Operation_UNSPECIFIED;
+  static constexpr Operation UPLOAD = DirSyncJob_Operation_UPLOAD;
+  static constexpr Operation DOWNLOAD = DirSyncJob_Operation_DOWNLOAD;
+  static inline bool Operation_IsValid(int value) {
+    return DirSyncJob_Operation_IsValid(value);
+  }
+  static constexpr Operation Operation_MIN = DirSyncJob_Operation_Operation_MIN;
+  static constexpr Operation Operation_MAX = DirSyncJob_Operation_Operation_MAX;
+  static constexpr int Operation_ARRAYSIZE = DirSyncJob_Operation_Operation_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Operation_descriptor() {
+    return DirSyncJob_Operation_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Operation_Name(T value) {
+    return DirSyncJob_Operation_Name(value);
+  }
+  static inline bool Operation_Parse(absl::string_view name, Operation* value) {
+    return DirSyncJob_Operation_Parse(name, value);
+  }
 
   // accessors -------------------------------------------------------
   enum : int {
@@ -2994,14 +3068,14 @@ class DirSyncJob final : public ::google::protobuf::Message
   std::string* _internal_mutable_remote_path();
 
   public:
-  // .flex.JobOperation operation = 1;
+  // .flex.DirSyncJob.Operation operation = 1;
   void clear_operation() ;
-  ::flex::JobOperation operation() const;
-  void set_operation(::flex::JobOperation value);
+  ::flex::DirSyncJob_Operation operation() const;
+  void set_operation(::flex::DirSyncJob_Operation value);
 
   private:
-  ::flex::JobOperation _internal_operation() const;
-  void _internal_set_operation(::flex::JobOperation value);
+  ::flex::DirSyncJob_Operation _internal_operation() const;
+  void _internal_set_operation(::flex::DirSyncJob_Operation value);
 
   public:
   // bool overwrite = 2;
@@ -7730,24 +7804,24 @@ inline void MockJob::_internal_set_can_retry(bool value) {
 
 // SyncJob
 
-// .flex.JobOperation operation = 1;
+// .flex.SyncJob.Operation operation = 1;
 inline void SyncJob::clear_operation() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.operation_ = 0;
 }
-inline ::flex::JobOperation SyncJob::operation() const {
+inline ::flex::SyncJob_Operation SyncJob::operation() const {
   // @@protoc_insertion_point(field_get:flex.SyncJob.operation)
   return _internal_operation();
 }
-inline void SyncJob::set_operation(::flex::JobOperation value) {
+inline void SyncJob::set_operation(::flex::SyncJob_Operation value) {
   _internal_set_operation(value);
   // @@protoc_insertion_point(field_set:flex.SyncJob.operation)
 }
-inline ::flex::JobOperation SyncJob::_internal_operation() const {
+inline ::flex::SyncJob_Operation SyncJob::_internal_operation() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::flex::JobOperation>(_impl_.operation_);
+  return static_cast<::flex::SyncJob_Operation>(_impl_.operation_);
 }
-inline void SyncJob::_internal_set_operation(::flex::JobOperation value) {
+inline void SyncJob::_internal_set_operation(::flex::SyncJob_Operation value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.operation_ = value;
 }
@@ -7848,24 +7922,24 @@ inline void SyncJob::_internal_set_stub_only(bool value) {
 
 // DirSyncJob
 
-// .flex.JobOperation operation = 1;
+// .flex.DirSyncJob.Operation operation = 1;
 inline void DirSyncJob::clear_operation() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.operation_ = 0;
 }
-inline ::flex::JobOperation DirSyncJob::operation() const {
+inline ::flex::DirSyncJob_Operation DirSyncJob::operation() const {
   // @@protoc_insertion_point(field_get:flex.DirSyncJob.operation)
   return _internal_operation();
 }
-inline void DirSyncJob::set_operation(::flex::JobOperation value) {
+inline void DirSyncJob::set_operation(::flex::DirSyncJob_Operation value) {
   _internal_set_operation(value);
   // @@protoc_insertion_point(field_set:flex.DirSyncJob.operation)
 }
-inline ::flex::JobOperation DirSyncJob::_internal_operation() const {
+inline ::flex::DirSyncJob_Operation DirSyncJob::_internal_operation() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::flex::JobOperation>(_impl_.operation_);
+  return static_cast<::flex::DirSyncJob_Operation>(_impl_.operation_);
 }
-inline void DirSyncJob::_internal_set_operation(::flex::JobOperation value) {
+inline void DirSyncJob::_internal_set_operation(::flex::DirSyncJob_Operation value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.operation_ = value;
 }
@@ -9927,6 +10001,18 @@ inline const EnumDescriptor* GetEnumDescriptor<::flex::BulkUpdateWorkRequest_New
   return ::flex::BulkUpdateWorkRequest_NewState_descriptor();
 }
 template <>
+struct is_proto_enum<::flex::SyncJob_Operation> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::flex::SyncJob_Operation>() {
+  return ::flex::SyncJob_Operation_descriptor();
+}
+template <>
+struct is_proto_enum<::flex::DirSyncJob_Operation> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::flex::DirSyncJob_Operation>() {
+  return ::flex::DirSyncJob_Operation_descriptor();
+}
+template <>
 struct is_proto_enum<::flex::Work_State> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::flex::Work_State>() {
@@ -9937,12 +10023,6 @@ struct is_proto_enum<::flex::UpdateConfigResponse_Result> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::flex::UpdateConfigResponse_Result>() {
   return ::flex::UpdateConfigResponse_Result_descriptor();
-}
-template <>
-struct is_proto_enum<::flex::JobOperation> : std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor<::flex::JobOperation>() {
-  return ::flex::JobOperation_descriptor();
 }
 
 }  // namespace protobuf

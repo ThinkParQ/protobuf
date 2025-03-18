@@ -120,18 +120,17 @@ message MockJob {
     bool can_retry = 5;
 }
 
-enum JobOperation {
-    OPERATION_UNSPECIFIED = 0;
-    UPLOAD = 1;
-    DOWNLOAD = 2;
-}
-
 // A SyncJob is WHAT work needs to be done. It is populated based on the
 // file system modification event or by a user describing some work that needs
 // to be done. It does not carry any details about HOW the request will be
 // fufilled (that is part of the generated SyncRequest).
 message SyncJob {
-    JobOperation operation = 1;
+    Operation operation = 1;
+    enum Operation {
+        UNSPECIFIED = 0;
+        UPLOAD = 1;
+        DOWNLOAD = 2;
+    }
     // When an object already exists in BeeGFS (for downloads) an error is returned by default, or
     // it can be optionally overwritten. This currently does nothing for uploads, the object is
     // always uploaded and overwritten unless the S3 bucket has object versioning enabled.
@@ -151,8 +150,12 @@ message SyncJob {
 
 // DirSyncJob initiates job requests for each file or object.
 message DirSyncJob {
-    // The operation to perform.
-    JobOperation operation = 1;
+    Operation operation = 1;
+    enum Operation {
+        UNSPECIFIED = 0;
+        UPLOAD = 1;
+        DOWNLOAD = 2;
+    }
     // If true, local files will be overwritten if they exist. This flag applies to the subsequent
     // job requests created.
     bool overwrite = 2;

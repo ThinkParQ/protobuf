@@ -228,7 +228,7 @@ pub struct MockJob {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncJob {
-    #[prost(enumeration = "JobOperation", tag = "1")]
+    #[prost(enumeration = "sync_job::Operation", tag = "1")]
     pub operation: i32,
     /// When an object already exists in BeeGFS (for downloads) an error is returned by default, or
     /// it can be optionally overwritten. This currently does nothing for uploads, the object is
@@ -249,12 +249,53 @@ pub struct SyncJob {
     #[prost(bool, tag = "4")]
     pub stub_only: bool,
 }
+/// Nested message and enum types in `SyncJob`.
+pub mod sync_job {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Operation {
+        Unspecified = 0,
+        Upload = 1,
+        Download = 2,
+    }
+    impl Operation {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Operation::Unspecified => "UNSPECIFIED",
+                Operation::Upload => "UPLOAD",
+                Operation::Download => "DOWNLOAD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UPLOAD" => Some(Self::Upload),
+                "DOWNLOAD" => Some(Self::Download),
+                _ => None,
+            }
+        }
+    }
+}
 /// DirSyncJob initiates job requests for each file or object.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DirSyncJob {
-    /// The operation to perform.
-    #[prost(enumeration = "JobOperation", tag = "1")]
+    #[prost(enumeration = "dir_sync_job::Operation", tag = "1")]
     pub operation: i32,
     /// If true, local files will be overwritten if they exist. This flag applies to the subsequent
     /// job requests created.
@@ -275,6 +316,48 @@ pub struct DirSyncJob {
     pub force: bool,
     #[prost(bool, tag = "6")]
     pub stub_only: bool,
+}
+/// Nested message and enum types in `DirSyncJob`.
+pub mod dir_sync_job {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Operation {
+        Unspecified = 0,
+        Upload = 1,
+        Download = 2,
+    }
+    impl Operation {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Operation::Unspecified => "UNSPECIFIED",
+                Operation::Upload => "UPLOAD",
+                Operation::Download => "DOWNLOAD",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "UPLOAD" => Some(Self::Upload),
+                "DOWNLOAD" => Some(Self::Download),
+                _ => None,
+            }
+        }
+    }
 }
 /// Currently while requests types are specific to a particular worker node type,
 /// we use the same work type for all nodes. This is what allow us to return
@@ -633,35 +716,6 @@ pub mod remote_storage_target {
         Azure(Azure),
         #[prost(string, tag = "7")]
         Mock(::prost::alloc::string::String),
-    }
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum JobOperation {
-    OperationUnspecified = 0,
-    Upload = 1,
-    Download = 2,
-}
-impl JobOperation {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            JobOperation::OperationUnspecified => "OPERATION_UNSPECIFIED",
-            JobOperation::Upload => "UPLOAD",
-            JobOperation::Download => "DOWNLOAD",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "OPERATION_UNSPECIFIED" => Some(Self::OperationUnspecified),
-            "UPLOAD" => Some(Self::Upload),
-            "DOWNLOAD" => Some(Self::Download),
-            _ => None,
-        }
     }
 }
 /// Generated client implementations.

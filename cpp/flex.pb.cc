@@ -180,7 +180,7 @@ inline constexpr SyncJob::Impl_::Impl_(
       : remote_path_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        operation_{static_cast< ::flex::JobOperation >(0)},
+        operation_{static_cast< ::flex::SyncJob_Operation >(0)},
         overwrite_{false},
         stub_only_{false},
         _cached_size_{0} {}
@@ -360,7 +360,7 @@ inline constexpr DirSyncJob::Impl_::Impl_(
       : remote_path_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        operation_{static_cast< ::flex::JobOperation >(0)},
+        operation_{static_cast< ::flex::DirSyncJob_Operation >(0)},
         overwrite_{false},
         flatten_{false},
         force_{false},
@@ -757,7 +757,7 @@ struct UpdateConfigRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateConfigRequestDefaultTypeInternal _UpdateConfigRequest_default_instance_;
 }  // namespace flex
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_flex_2eproto[5];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_flex_2eproto[6];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_flex_2eproto = nullptr;
 const ::uint32_t
@@ -1164,58 +1164,59 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\030\003 \001(\005\022\022\n\nparts_stop\030\004 \001(\005B\006\n\004Type\"t\n\007Mo"
     "ckJob\022\031\n\021num_test_segments\030\001 \001(\005\022\021\n\tfile"
     "_size\030\002 \001(\003\022\023\n\013external_id\030\003 \001(\t\022\023\n\013shou"
-    "ld_fail\030\004 \001(\010\022\021\n\tcan_retry\030\005 \001(\010\"k\n\007Sync"
-    "Job\022%\n\toperation\030\001 \001(\0162\022.flex.JobOperati"
-    "on\022\021\n\toverwrite\030\002 \001(\010\022\023\n\013remote_path\030\003 \001"
-    "(\t\022\021\n\tstub_only\030\004 \001(\010\"\216\001\n\nDirSyncJob\022%\n\t"
-    "operation\030\001 \001(\0162\022.flex.JobOperation\022\021\n\to"
-    "verwrite\030\002 \001(\010\022\023\n\013remote_path\030\003 \001(\t\022\017\n\007f"
-    "latten\030\004 \001(\010\022\r\n\005force\030\005 \001(\010\022\021\n\tstub_only"
-    "\030\006 \001(\010\"\306\003\n\004Work\022\014\n\004path\030\001 \001(\t\022\016\n\006job_id\030"
-    "\002 \001(\t\022\022\n\nrequest_id\030\003 \001(\t\022!\n\006status\030\004 \001("
-    "\0132\021.flex.Work.Status\022\036\n\005parts\030\005 \003(\0132\017.fl"
-    "ex.Work.Part\032:\n\006Status\022\037\n\005state\030\001 \001(\0162\020."
-    "flex.Work.State\022\017\n\007message\030\002 \001(\t\032\206\001\n\004Par"
-    "t\022\023\n\013part_number\030\001 \001(\005\022\024\n\014offset_start\030\002"
-    " \001(\003\022\023\n\013offset_stop\030\003 \001(\003\022\022\n\nentity_tag\030"
-    "\004 \001(\t\022\027\n\017checksum_sha256\030\005 \001(\t\022\021\n\tcomple"
-    "ted\030\006 \001(\010\"\203\001\n\005State\022\017\n\013UNSPECIFIED\020\000\022\013\n\007"
-    "UNKNOWN\020\001\022\013\n\007CREATED\020\002\022\r\n\tSCHEDULED\020\003\022\013\n"
-    "\007RUNNING\020\004\022\t\n\005ERROR\020\006\022\n\n\006FAILED\020\007\022\r\n\tCAN"
-    "CELLED\020\010\022\r\n\tCOMPLETED\020\t\"g\n\023UpdateConfigR"
-    "equest\022\'\n\nbee_remote\030\001 \001(\0132\023.flex.BeeRem"
-    "oteNode\022\'\n\004rsts\030\002 \003(\0132\031.flex.RemoteStora"
-    "geTarget\"\234\001\n\024UpdateConfigResponse\0221\n\006res"
-    "ult\030\001 \001(\0162!.flex.UpdateConfigResponse.Re"
-    "sult\022\017\n\007message\030\002 \001(\t\"@\n\006Result\022\017\n\013UNSPE"
-    "CIFIED\020\000\022\013\n\007SUCCESS\020\001\022\013\n\007PARTIAL\020\002\022\013\n\007FA"
-    "ILURE\020\003\",\n\rBeeRemoteNode\022\n\n\002id\030\001 \001(\t\022\017\n\007"
-    "address\030\002 \001(\t\"\213\004\n\023RemoteStorageTarget\022\n\n"
-    "\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\0224\n\010policies\030\003 \001("
-    "\0132\".flex.RemoteStorageTarget.Policies\022*\n"
-    "\002s3\030\004 \001(\0132\034.flex.RemoteStorageTarget.S3H"
-    "\000\0220\n\005posix\030\005 \001(\0132\037.flex.RemoteStorageTar"
-    "get.POSIXH\000\0220\n\005azure\030\006 \001(\0132\037.flex.Remote"
-    "StorageTarget.AzureH\000\022\016\n\004mock\030\007 \001(\tH\000\032\'\n"
-    "\010Policies\022\033\n\023fast_start_max_size\030\001 \001(\003\032x"
-    "\n\002S3\022\024\n\014endpoint_url\030\001 \001(\t\022\024\n\014partition_"
-    "id\030\002 \001(\t\022\016\n\006region\030\003 \001(\t\022\016\n\006bucket\030\004 \001(\t"
-    "\022\022\n\naccess_key\030\005 \001(\t\022\022\n\nsecret_key\030\006 \001(\t"
-    "\032B\n\005Azure\022(\n\002s3\030\001 \001(\0132\034.flex.RemoteStora"
-    "geTarget.S3\022\017\n\007account\030\002 \001(\t\032\025\n\005POSIX\022\014\n"
-    "\004path\030\001 \001(\tB\006\n\004type*C\n\014JobOperation\022\031\n\025O"
-    "PERATION_UNSPECIFIED\020\000\022\n\n\006UPLOAD\020\001\022\014\n\010DO"
-    "WNLOAD\020\0022\340\002\n\nWorkerNode\022E\n\014UpdateConfig\022"
-    "\031.flex.UpdateConfigRequest\032\032.flex.Update"
-    "ConfigResponse\022<\n\tHeartbeat\022\026.flex.Heart"
-    "beatRequest\032\027.flex.HeartbeatResponse\022\?\n\n"
-    "SubmitWork\022\027.flex.SubmitWorkRequest\032\030.fl"
-    "ex.SubmitWorkResponse\022\?\n\nUpdateWork\022\027.fl"
-    "ex.UpdateWorkRequest\032\030.flex.UpdateWorkRe"
-    "sponse\022K\n\016BulkUpdateWork\022\033.flex.BulkUpda"
-    "teWorkRequest\032\034.flex.BulkUpdateWorkRespo"
-    "nseB\'Z%github.com/thinkparq/protobuf/go/"
-    "flexb\006proto3"
+    "ld_fail\030\004 \001(\010\022\021\n\tcan_retry\030\005 \001(\010\"\250\001\n\007Syn"
+    "cJob\022*\n\toperation\030\001 \001(\0162\027.flex.SyncJob.O"
+    "peration\022\021\n\toverwrite\030\002 \001(\010\022\023\n\013remote_pa"
+    "th\030\003 \001(\t\022\021\n\tstub_only\030\004 \001(\010\"6\n\tOperation"
+    "\022\017\n\013UNSPECIFIED\020\000\022\n\n\006UPLOAD\020\001\022\014\n\010DOWNLOA"
+    "D\020\002\"\316\001\n\nDirSyncJob\022-\n\toperation\030\001 \001(\0162\032."
+    "flex.DirSyncJob.Operation\022\021\n\toverwrite\030\002"
+    " \001(\010\022\023\n\013remote_path\030\003 \001(\t\022\017\n\007flatten\030\004 \001"
+    "(\010\022\r\n\005force\030\005 \001(\010\022\021\n\tstub_only\030\006 \001(\010\"6\n\t"
+    "Operation\022\017\n\013UNSPECIFIED\020\000\022\n\n\006UPLOAD\020\001\022\014"
+    "\n\010DOWNLOAD\020\002\"\306\003\n\004Work\022\014\n\004path\030\001 \001(\t\022\016\n\006j"
+    "ob_id\030\002 \001(\t\022\022\n\nrequest_id\030\003 \001(\t\022!\n\006statu"
+    "s\030\004 \001(\0132\021.flex.Work.Status\022\036\n\005parts\030\005 \003("
+    "\0132\017.flex.Work.Part\032:\n\006Status\022\037\n\005state\030\001 "
+    "\001(\0162\020.flex.Work.State\022\017\n\007message\030\002 \001(\t\032\206"
+    "\001\n\004Part\022\023\n\013part_number\030\001 \001(\005\022\024\n\014offset_s"
+    "tart\030\002 \001(\003\022\023\n\013offset_stop\030\003 \001(\003\022\022\n\nentit"
+    "y_tag\030\004 \001(\t\022\027\n\017checksum_sha256\030\005 \001(\t\022\021\n\t"
+    "completed\030\006 \001(\010\"\203\001\n\005State\022\017\n\013UNSPECIFIED"
+    "\020\000\022\013\n\007UNKNOWN\020\001\022\013\n\007CREATED\020\002\022\r\n\tSCHEDULE"
+    "D\020\003\022\013\n\007RUNNING\020\004\022\t\n\005ERROR\020\006\022\n\n\006FAILED\020\007\022"
+    "\r\n\tCANCELLED\020\010\022\r\n\tCOMPLETED\020\t\"g\n\023UpdateC"
+    "onfigRequest\022\'\n\nbee_remote\030\001 \001(\0132\023.flex."
+    "BeeRemoteNode\022\'\n\004rsts\030\002 \003(\0132\031.flex.Remot"
+    "eStorageTarget\"\234\001\n\024UpdateConfigResponse\022"
+    "1\n\006result\030\001 \001(\0162!.flex.UpdateConfigRespo"
+    "nse.Result\022\017\n\007message\030\002 \001(\t\"@\n\006Result\022\017\n"
+    "\013UNSPECIFIED\020\000\022\013\n\007SUCCESS\020\001\022\013\n\007PARTIAL\020\002"
+    "\022\013\n\007FAILURE\020\003\",\n\rBeeRemoteNode\022\n\n\002id\030\001 \001"
+    "(\t\022\017\n\007address\030\002 \001(\t\"\213\004\n\023RemoteStorageTar"
+    "get\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\0224\n\010policie"
+    "s\030\003 \001(\0132\".flex.RemoteStorageTarget.Polic"
+    "ies\022*\n\002s3\030\004 \001(\0132\034.flex.RemoteStorageTarg"
+    "et.S3H\000\0220\n\005posix\030\005 \001(\0132\037.flex.RemoteStor"
+    "ageTarget.POSIXH\000\0220\n\005azure\030\006 \001(\0132\037.flex."
+    "RemoteStorageTarget.AzureH\000\022\016\n\004mock\030\007 \001("
+    "\tH\000\032\'\n\010Policies\022\033\n\023fast_start_max_size\030\001"
+    " \001(\003\032x\n\002S3\022\024\n\014endpoint_url\030\001 \001(\t\022\024\n\014part"
+    "ition_id\030\002 \001(\t\022\016\n\006region\030\003 \001(\t\022\016\n\006bucket"
+    "\030\004 \001(\t\022\022\n\naccess_key\030\005 \001(\t\022\022\n\nsecret_key"
+    "\030\006 \001(\t\032B\n\005Azure\022(\n\002s3\030\001 \001(\0132\034.flex.Remot"
+    "eStorageTarget.S3\022\017\n\007account\030\002 \001(\t\032\025\n\005PO"
+    "SIX\022\014\n\004path\030\001 \001(\tB\006\n\004type2\340\002\n\nWorkerNode"
+    "\022E\n\014UpdateConfig\022\031.flex.UpdateConfigRequ"
+    "est\032\032.flex.UpdateConfigResponse\022<\n\tHeart"
+    "beat\022\026.flex.HeartbeatRequest\032\027.flex.Hear"
+    "tbeatResponse\022\?\n\nSubmitWork\022\027.flex.Submi"
+    "tWorkRequest\032\030.flex.SubmitWorkResponse\022\?"
+    "\n\nUpdateWork\022\027.flex.UpdateWorkRequest\032\030."
+    "flex.UpdateWorkResponse\022K\n\016BulkUpdateWor"
+    "k\022\033.flex.BulkUpdateWorkRequest\032\034.flex.Bu"
+    "lkUpdateWorkResponseB\'Z%github.com/think"
+    "parq/protobuf/go/flexb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_flex_2eproto_deps[1] =
     {
@@ -1225,7 +1226,7 @@ static ::absl::once_flag descriptor_table_flex_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_flex_2eproto = {
     false,
     false,
-    3252,
+    3309,
     descriptor_table_protodef_flex_2eproto,
     "flex.proto",
     &descriptor_table_flex_2eproto_once,
@@ -1279,9 +1280,51 @@ constexpr int BulkUpdateWorkRequest::NewState_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* Work_State_descriptor() {
+const ::google::protobuf::EnumDescriptor* SyncJob_Operation_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_flex_2eproto);
   return file_level_enum_descriptors_flex_2eproto[2];
+}
+PROTOBUF_CONSTINIT const uint32_t SyncJob_Operation_internal_data_[] = {
+    196608u, 0u, };
+bool SyncJob_Operation_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr SyncJob_Operation SyncJob::UNSPECIFIED;
+constexpr SyncJob_Operation SyncJob::UPLOAD;
+constexpr SyncJob_Operation SyncJob::DOWNLOAD;
+constexpr SyncJob_Operation SyncJob::Operation_MIN;
+constexpr SyncJob_Operation SyncJob::Operation_MAX;
+constexpr int SyncJob::Operation_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* DirSyncJob_Operation_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_flex_2eproto);
+  return file_level_enum_descriptors_flex_2eproto[3];
+}
+PROTOBUF_CONSTINIT const uint32_t DirSyncJob_Operation_internal_data_[] = {
+    196608u, 0u, };
+bool DirSyncJob_Operation_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr DirSyncJob_Operation DirSyncJob::UNSPECIFIED;
+constexpr DirSyncJob_Operation DirSyncJob::UPLOAD;
+constexpr DirSyncJob_Operation DirSyncJob::DOWNLOAD;
+constexpr DirSyncJob_Operation DirSyncJob::Operation_MIN;
+constexpr DirSyncJob_Operation DirSyncJob::Operation_MAX;
+constexpr int DirSyncJob::Operation_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* Work_State_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_flex_2eproto);
+  return file_level_enum_descriptors_flex_2eproto[4];
 }
 PROTOBUF_CONSTINIT const uint32_t Work_State_internal_data_[] = {
     327680u, 32u, 30u, };
@@ -1308,7 +1351,7 @@ constexpr int Work::State_ARRAYSIZE;
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 const ::google::protobuf::EnumDescriptor* UpdateConfigResponse_Result_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_flex_2eproto);
-  return file_level_enum_descriptors_flex_2eproto[3];
+  return file_level_enum_descriptors_flex_2eproto[5];
 }
 PROTOBUF_CONSTINIT const uint32_t UpdateConfigResponse_Result_internal_data_[] = {
     262144u, 0u, };
@@ -1328,15 +1371,6 @@ constexpr int UpdateConfigResponse::Result_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* JobOperation_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_flex_2eproto);
-  return file_level_enum_descriptors_flex_2eproto[4];
-}
-PROTOBUF_CONSTINIT const uint32_t JobOperation_internal_data_[] = {
-    196608u, 0u, };
-bool JobOperation_IsValid(int value) {
-  return 0 <= value && value <= 2;
-}
 // ===================================================================
 
 class HeartbeatRequest::_Internal {
@@ -4973,7 +5007,7 @@ const ::_pbi::TcParseTable<2, 4, 0, 32, 2> SyncJob::_table_ = {
     // bool stub_only = 4;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(SyncJob, _impl_.stub_only_), 63>(),
      {32, 63, 0, PROTOBUF_FIELD_OFFSET(SyncJob, _impl_.stub_only_)}},
-    // .flex.JobOperation operation = 1;
+    // .flex.SyncJob.Operation operation = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SyncJob, _impl_.operation_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(SyncJob, _impl_.operation_)}},
     // bool overwrite = 2;
@@ -4985,7 +5019,7 @@ const ::_pbi::TcParseTable<2, 4, 0, 32, 2> SyncJob::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // .flex.JobOperation operation = 1;
+    // .flex.SyncJob.Operation operation = 1;
     {PROTOBUF_FIELD_OFFSET(SyncJob, _impl_.operation_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bool overwrite = 2;
@@ -5035,7 +5069,7 @@ PROTOBUF_NOINLINE void SyncJob::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // .flex.JobOperation operation = 1;
+          // .flex.SyncJob.Operation operation = 1;
           if (this_._internal_operation() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -5094,7 +5128,7 @@ PROTOBUF_NOINLINE void SyncJob::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_remote_path());
             }
-            // .flex.JobOperation operation = 1;
+            // .flex.SyncJob.Operation operation = 1;
             if (this_._internal_operation() != 0) {
               total_size += 1 +
                             ::_pbi::WireFormatLite::EnumSize(this_._internal_operation());
@@ -5286,7 +5320,7 @@ const ::_pbi::TcParseTable<3, 6, 0, 35, 2> DirSyncJob::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // .flex.JobOperation operation = 1;
+    // .flex.DirSyncJob.Operation operation = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(DirSyncJob, _impl_.operation_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(DirSyncJob, _impl_.operation_)}},
     // bool overwrite = 2;
@@ -5308,7 +5342,7 @@ const ::_pbi::TcParseTable<3, 6, 0, 35, 2> DirSyncJob::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // .flex.JobOperation operation = 1;
+    // .flex.DirSyncJob.Operation operation = 1;
     {PROTOBUF_FIELD_OFFSET(DirSyncJob, _impl_.operation_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bool overwrite = 2;
@@ -5364,7 +5398,7 @@ PROTOBUF_NOINLINE void DirSyncJob::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // .flex.JobOperation operation = 1;
+          // .flex.DirSyncJob.Operation operation = 1;
           if (this_._internal_operation() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -5437,7 +5471,7 @@ PROTOBUF_NOINLINE void DirSyncJob::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_remote_path());
             }
-            // .flex.JobOperation operation = 1;
+            // .flex.DirSyncJob.Operation operation = 1;
             if (this_._internal_operation() != 0) {
               total_size += 1 +
                             ::_pbi::WireFormatLite::EnumSize(this_._internal_operation());
