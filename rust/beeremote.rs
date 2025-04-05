@@ -32,6 +32,7 @@ pub mod submit_job_response {
         Created = 1,
         Existing = 2,
         NotAllowed = 3,
+        AlreadyComplete = 4,
     }
     impl ResponseStatus {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -44,6 +45,7 @@ pub mod submit_job_response {
                 ResponseStatus::Created => "CREATED",
                 ResponseStatus::Existing => "EXISTING",
                 ResponseStatus::NotAllowed => "NOT_ALLOWED",
+                ResponseStatus::AlreadyComplete => "ALREADY_COMPLETE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -53,6 +55,7 @@ pub mod submit_job_response {
                 "CREATED" => Some(Self::Created),
                 "EXISTING" => Some(Self::Existing),
                 "NOT_ALLOWED" => Some(Self::NotAllowed),
+                "ALREADY_COMPLETE" => Some(Self::AlreadyComplete),
                 _ => None,
             }
         }
@@ -85,6 +88,9 @@ pub struct JobRequest {
     /// to know if a particular job request was forced.
     #[prost(bool, tag = "5")]
     pub force: bool,
+    /// Indicates whether the job is a job builder task.
+    #[prost(bool, tag = "6")]
+    pub job_builder: bool,
     #[prost(oneof = "job_request::Type", tags = "10, 11")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }

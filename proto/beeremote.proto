@@ -37,6 +37,7 @@ message SubmitJobResponse {
         CREATED = 1;
         EXISTING = 2;
         NOT_ALLOWED = 3;
+        ALREADY_COMPLETE = 4;
     }
 }
 
@@ -63,7 +64,9 @@ message JobRequest {
     // job. When forced the request will return an error if there is already a job running. This is
     // part of the JobRequest instead of the SubmitJobRequest message in case it ever is important
     // to know if a particular job request was forced.
-    bool force = 5;    
+    bool force = 5;
+    // Indicates whether the job is a job builder task.
+    bool job_builder = 6;
 }
 
 // Job contains all the data from the original request plus the job ID and

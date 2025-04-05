@@ -128,6 +128,7 @@ enum SubmitJobResponse_ResponseStatus : int {
   SubmitJobResponse_ResponseStatus_CREATED = 1,
   SubmitJobResponse_ResponseStatus_EXISTING = 2,
   SubmitJobResponse_ResponseStatus_NOT_ALLOWED = 3,
+  SubmitJobResponse_ResponseStatus_ALREADY_COMPLETE = 4,
   SubmitJobResponse_ResponseStatus_SubmitJobResponse_ResponseStatus_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   SubmitJobResponse_ResponseStatus_SubmitJobResponse_ResponseStatus_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -137,8 +138,8 @@ enum SubmitJobResponse_ResponseStatus : int {
 bool SubmitJobResponse_ResponseStatus_IsValid(int value);
 extern const uint32_t SubmitJobResponse_ResponseStatus_internal_data_[];
 constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MIN = static_cast<SubmitJobResponse_ResponseStatus>(0);
-constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MAX = static_cast<SubmitJobResponse_ResponseStatus>(3);
-constexpr int SubmitJobResponse_ResponseStatus_ResponseStatus_ARRAYSIZE = 3 + 1;
+constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MAX = static_cast<SubmitJobResponse_ResponseStatus>(4);
+constexpr int SubmitJobResponse_ResponseStatus_ResponseStatus_ARRAYSIZE = 4 + 1;
 const ::google::protobuf::EnumDescriptor*
 SubmitJobResponse_ResponseStatus_descriptor();
 template <typename T>
@@ -151,7 +152,7 @@ const std::string& SubmitJobResponse_ResponseStatus_Name(T value) {
 template <>
 inline const std::string& SubmitJobResponse_ResponseStatus_Name(SubmitJobResponse_ResponseStatus value) {
   return ::google::protobuf::internal::NameOfDenseEnum<SubmitJobResponse_ResponseStatus_descriptor,
-                                                 0, 3>(
+                                                 0, 4>(
       static_cast<int>(value));
 }
 inline bool SubmitJobResponse_ResponseStatus_Parse(absl::string_view name, SubmitJobResponse_ResponseStatus* value) {
@@ -1217,6 +1218,7 @@ class JobRequest final : public ::google::protobuf::Message
     kPriorityFieldNumber = 3,
     kRemoteStorageTargetFieldNumber = 4,
     kForceFieldNumber = 5,
+    kJobBuilderFieldNumber = 6,
     kSyncFieldNumber = 10,
     kMockFieldNumber = 11,
   };
@@ -1282,6 +1284,16 @@ class JobRequest final : public ::google::protobuf::Message
   void _internal_set_force(bool value);
 
   public:
+  // bool job_builder = 6;
+  void clear_job_builder() ;
+  bool job_builder() const;
+  void set_job_builder(bool value);
+
+  private:
+  bool _internal_job_builder() const;
+  void _internal_set_job_builder(bool value);
+
+  public:
   // .flex.SyncJob sync = 10;
   bool has_sync() const;
   private:
@@ -1331,8 +1343,8 @@ class JobRequest final : public ::google::protobuf::Message
   inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 2,
-      37, 2>
+      3, 8, 2,
+      45, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1354,6 +1366,7 @@ class JobRequest final : public ::google::protobuf::Message
     ::int32_t priority_;
     ::uint32_t remote_storage_target_;
     bool force_;
+    bool job_builder_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -3859,6 +3872,7 @@ class SubmitJobResponse final : public ::google::protobuf::Message
   static constexpr ResponseStatus CREATED = SubmitJobResponse_ResponseStatus_CREATED;
   static constexpr ResponseStatus EXISTING = SubmitJobResponse_ResponseStatus_EXISTING;
   static constexpr ResponseStatus NOT_ALLOWED = SubmitJobResponse_ResponseStatus_NOT_ALLOWED;
+  static constexpr ResponseStatus ALREADY_COMPLETE = SubmitJobResponse_ResponseStatus_ALREADY_COMPLETE;
   static inline bool ResponseStatus_IsValid(int value) {
     return SubmitJobResponse_ResponseStatus_IsValid(value);
   }
@@ -4902,6 +4916,28 @@ inline bool JobRequest::_internal_force() const {
 inline void JobRequest::_internal_set_force(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.force_ = value;
+}
+
+// bool job_builder = 6;
+inline void JobRequest::clear_job_builder() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.job_builder_ = false;
+}
+inline bool JobRequest::job_builder() const {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.job_builder)
+  return _internal_job_builder();
+}
+inline void JobRequest::set_job_builder(bool value) {
+  _internal_set_job_builder(value);
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.job_builder)
+}
+inline bool JobRequest::_internal_job_builder() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.job_builder_;
+}
+inline void JobRequest::_internal_set_job_builder(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.job_builder_ = value;
 }
 
 inline bool JobRequest::has_type() const {
