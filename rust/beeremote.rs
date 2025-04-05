@@ -13,23 +13,16 @@ pub struct SubmitJobResponse {
 }
 /// Nested message and enum types in `SubmitJobResponse`.
 pub mod submit_job_response {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
     pub enum ResponseStatus {
         Invalid = 0,
         Created = 1,
         Existing = 2,
         NotAllowed = 3,
+        AlreadyComplete = 4,
+        AlreadyOffloaded = 5,
+        FailedPrecondition = 6,
     }
     impl ResponseStatus {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -38,10 +31,13 @@ pub mod submit_job_response {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Self::Invalid => "INVALID",
-                Self::Created => "CREATED",
-                Self::Existing => "EXISTING",
-                Self::NotAllowed => "NOT_ALLOWED",
+                ResponseStatus::Invalid => "INVALID",
+                ResponseStatus::Created => "CREATED",
+                ResponseStatus::Existing => "EXISTING",
+                ResponseStatus::NotAllowed => "NOT_ALLOWED",
+                ResponseStatus::AlreadyComplete => "ALREADY_COMPLETE",
+                ResponseStatus::AlreadyOffloaded => "ALREADY_OFFLOADED",
+                ResponseStatus::FailedPrecondition => "FAILED_PRECONDITION",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -51,13 +47,16 @@ pub mod submit_job_response {
                 "CREATED" => Some(Self::Created),
                 "EXISTING" => Some(Self::Existing),
                 "NOT_ALLOWED" => Some(Self::NotAllowed),
+                "ALREADY_COMPLETE" => Some(Self::AlreadyComplete),
+                "ALREADY_OFFLOADED" => Some(Self::AlreadyOffloaded),
+                "FAILED_PRECONDITION" => Some(Self::FailedPrecondition),
                 _ => None,
             }
         }
     }
 }
 /// A JobRequest contains all the information necessary for BeeRemote to trigger
-/// a job on the appropriate worker node(s) (like BeeSync nodes) based on the
+/// a job on the appropriate worker node(s) (like BeeSync nodes) based on thegit
 /// particular request_type specified by the user. It is the external request
 /// so it does not include automatically generated fields like the job ID or
 /// anything about the work request(s) used to execute the job.
@@ -82,17 +81,86 @@ pub struct JobRequest {
     /// to know if a particular job request was forced.
     #[prost(bool, tag = "5")]
     pub force: bool,
-    #[prost(oneof = "job_request::Type", tags = "10, 11")]
+    /// When stub_local is set the local file with be a stub file
+    #[prost(bool, tag = "7")]
+    pub stub_local: bool,
+    /// generation_status reports the outcome of generating this JobRequest (e.g. already complete,
+    /// already offloaded, or an error message). This is used by job manager to determine whether the
+    /// job is already in a terminal or failed state.
+    #[prost(message, optional, tag = "8")]
+    pub generation_status: ::core::option::Option<job_request::GenerationStatus>,
+    #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }
 /// Nested message and enum types in `JobRequest`.
 pub mod job_request {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct GenerationStatus {
+        #[prost(enumeration = "generation_status::State", tag = "1")]
+        pub state: i32,
+        #[prost(string, tag = "2")]
+        pub message: ::prost::alloc::string::String,
+    }
+    /// Nested message and enum types in `GenerationStatus`.
+    pub mod generation_status {
+        #[derive(
+            Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration,
+        )]
+        #[repr(i32)]
+        pub enum State {
+            /// This state has no semantic value and should never be UNSPECIFIED unless there is a bug.
+            Unspecified = 0,
+            /// This state indicates the request has already been completed. The generation_status's
+            /// message field must be populated with the file's beegfs-mtime in RFC3339 format (i.e.
+            /// 2006-01-02T15:04:05Z07:00).
+            AlreadyComplete = 1,
+            /// This state indicates the request has already been offloaded.
+            AlreadyOffloaded = 2,
+            /// This state indicates a preconditional failed and will always result in the job being
+            /// cancelled. It is imperative that this state is only used when it is safe to submit
+            /// the job request again without first calling rst.CompleteWorkRequests().
+            FailedPrecondition = 3,
+            /// This state indicates an error occurred that requires rst.CompleteWorkRequests() to
+            /// cleanup.
+            Error = 4,
+        }
+        impl State {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    State::Unspecified => "UNSPECIFIED",
+                    State::AlreadyComplete => "ALREADY_COMPLETE",
+                    State::AlreadyOffloaded => "ALREADY_OFFLOADED",
+                    State::FailedPrecondition => "FAILED_PRECONDITION",
+                    State::Error => "ERROR",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "UNSPECIFIED" => Some(Self::Unspecified),
+                    "ALREADY_COMPLETE" => Some(Self::AlreadyComplete),
+                    "ALREADY_OFFLOADED" => Some(Self::AlreadyOffloaded),
+                    "FAILED_PRECONDITION" => Some(Self::FailedPrecondition),
+                    "ERROR" => Some(Self::Error),
+                    _ => None,
+                }
+            }
+        }
+    }
+    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Type {
         #[prost(message, tag = "10")]
         Sync(super::super::flex::SyncJob),
         #[prost(message, tag = "11")]
         Mock(super::super::flex::MockJob),
+        #[prost(message, tag = "12")]
+        Builder(super::super::flex::BuilderJob),
     }
 }
 /// Job contains all the data from the original request plus the job ID and
@@ -158,17 +226,7 @@ pub mod job {
         #[prost(message, optional, tag = "3")]
         pub updated: ::core::option::Option<::prost_types::Timestamp>,
     }
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
     pub enum State {
         /// This state has no semantic value and the state should never be UNSPECIFIED unless there
@@ -218,6 +276,9 @@ pub mod job {
         /// If the job and its WRs completed successfully. This is a terminal state and no further
         /// state changes are possible once a job enters this state.
         Completed = 9,
+        /// If the job's WRs completed successfully and a stub has replaced the local file. This is a
+        /// terminal state and no further state changes are possible once a job enters this state.
+        Offloaded = 10,
     }
     impl State {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -226,15 +287,16 @@ pub mod job {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Self::Unspecified => "UNSPECIFIED",
-                Self::Unknown => "UNKNOWN",
-                Self::Unassigned => "UNASSIGNED",
-                Self::Scheduled => "SCHEDULED",
-                Self::Running => "RUNNING",
-                Self::Error => "ERROR",
-                Self::Failed => "FAILED",
-                Self::Cancelled => "CANCELLED",
-                Self::Completed => "COMPLETED",
+                State::Unspecified => "UNSPECIFIED",
+                State::Unknown => "UNKNOWN",
+                State::Unassigned => "UNASSIGNED",
+                State::Scheduled => "SCHEDULED",
+                State::Running => "RUNNING",
+                State::Error => "ERROR",
+                State::Failed => "FAILED",
+                State::Cancelled => "CANCELLED",
+                State::Completed => "COMPLETED",
+                State::Offloaded => "OFFLOADED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -249,6 +311,7 @@ pub mod job {
                 "FAILED" => Some(Self::Failed),
                 "CANCELLED" => Some(Self::Cancelled),
                 "COMPLETED" => Some(Self::Completed),
+                "OFFLOADED" => Some(Self::Offloaded),
                 _ => None,
             }
         }
@@ -320,17 +383,7 @@ pub struct UpdateJobsRequest {
 }
 /// Nested message and enum types in `UpdateJobsRequest`.
 pub mod update_jobs_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
     pub enum NewState {
         Unspecified = 0,
@@ -453,10 +506,10 @@ pub mod bee_remote_client {
         dead_code,
         missing_docs,
         clippy::wildcard_imports,
-        clippy::let_unit_value,
+        clippy::let_unit_value
     )]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Externally facing RPCs and messages clients and worker nodes use to interact
     /// with BeeRemote.
     #[derive(Debug, Clone)]
@@ -502,9 +555,8 @@ pub mod bee_remote_client {
                     <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::Body>,
-            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::Body>>>::Error:
+                Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             BeeRemoteClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -542,22 +594,12 @@ pub mod bee_remote_client {
         pub async fn submit_job(
             &mut self,
             request: impl tonic::IntoRequest<super::SubmitJobRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SubmitJobResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::SubmitJobResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/beeremote.BeeRemote/SubmitJob",
-            );
+            let path = http::uri::PathAndQuery::from_static("/beeremote.BeeRemote/SubmitJob");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "SubmitJob"));
@@ -570,18 +612,11 @@ pub mod bee_remote_client {
             tonic::Response<tonic::codec::Streaming<super::UpdatePathsResponse>>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/beeremote.BeeRemote/UpdatePaths",
-            );
+            let path = http::uri::PathAndQuery::from_static("/beeremote.BeeRemote/UpdatePaths");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdatePaths"));
@@ -590,22 +625,13 @@ pub mod bee_remote_client {
         pub async fn update_jobs(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateJobsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UpdateJobsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::UpdateJobsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/beeremote.BeeRemote/UpdateJobs",
-            );
+            let path = http::uri::PathAndQuery::from_static("/beeremote.BeeRemote/UpdateJobs");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdateJobs"));
@@ -618,18 +644,11 @@ pub mod bee_remote_client {
             tonic::Response<tonic::codec::Streaming<super::GetJobsResponse>>,
             tonic::Status,
         > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/beeremote.BeeRemote/GetJobs",
-            );
+            let path = http::uri::PathAndQuery::from_static("/beeremote.BeeRemote/GetJobs");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "GetJobs"));
@@ -647,22 +666,13 @@ pub mod bee_remote_client {
         pub async fn update_work(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateWorkRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UpdateWorkResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::UpdateWorkResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/beeremote.BeeRemote/UpdateWork",
-            );
+            let path = http::uri::PathAndQuery::from_static("/beeremote.BeeRemote/UpdateWork");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdateWork"));
@@ -671,22 +681,13 @@ pub mod bee_remote_client {
         pub async fn get_rst_config(
             &mut self,
             request: impl tonic::IntoRequest<super::GetRstConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GetRstConfigResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::unknown(
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> std::result::Result<tonic::Response<super::GetRstConfigResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/beeremote.BeeRemote/GetRSTConfig",
-            );
+            let path = http::uri::PathAndQuery::from_static("/beeremote.BeeRemote/GetRSTConfig");
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "GetRSTConfig"));
@@ -701,7 +702,7 @@ pub mod bee_remote_server {
         dead_code,
         missing_docs,
         clippy::wildcard_imports,
-        clippy::let_unit_value,
+        clippy::let_unit_value
     )]
     use tonic::codegen::*;
     /// Generated trait containing gRPC methods that should be implemented for use with BeeRemoteServer.
@@ -710,35 +711,24 @@ pub mod bee_remote_server {
         async fn submit_job(
             &self,
             request: tonic::Request<super::SubmitJobRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::SubmitJobResponse>,
-            tonic::Status,
-        >;
+        ) -> std::result::Result<tonic::Response<super::SubmitJobResponse>, tonic::Status>;
         /// Server streaming response type for the UpdatePaths method.
         type UpdatePathsStream: tonic::codegen::tokio_stream::Stream<
                 Item = std::result::Result<super::UpdatePathsResponse, tonic::Status>,
-            >
-            + std::marker::Send
+            > + std::marker::Send
             + 'static;
         async fn update_paths(
             &self,
             request: tonic::Request<super::UpdatePathsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<Self::UpdatePathsStream>,
-            tonic::Status,
-        >;
+        ) -> std::result::Result<tonic::Response<Self::UpdatePathsStream>, tonic::Status>;
         async fn update_jobs(
             &self,
             request: tonic::Request<super::UpdateJobsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UpdateJobsResponse>,
-            tonic::Status,
-        >;
+        ) -> std::result::Result<tonic::Response<super::UpdateJobsResponse>, tonic::Status>;
         /// Server streaming response type for the GetJobs method.
         type GetJobsStream: tonic::codegen::tokio_stream::Stream<
                 Item = std::result::Result<super::GetJobsResponse, tonic::Status>,
-            >
-            + std::marker::Send
+            > + std::marker::Send
             + 'static;
         async fn get_jobs(
             &self,
@@ -756,17 +746,11 @@ pub mod bee_remote_server {
         async fn update_work(
             &self,
             request: tonic::Request<super::UpdateWorkRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::UpdateWorkResponse>,
-            tonic::Status,
-        >;
+        ) -> std::result::Result<tonic::Response<super::UpdateWorkResponse>, tonic::Status>;
         async fn get_rst_config(
             &self,
             request: tonic::Request<super::GetRstConfigRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::GetRstConfigResponse>,
-            tonic::Status,
-        >;
+        ) -> std::result::Result<tonic::Response<super::GetRstConfigResponse>, tonic::Status>;
     }
     /// Externally facing RPCs and messages clients and worker nodes use to interact
     /// with BeeRemote.
@@ -791,10 +775,7 @@ pub mod bee_remote_server {
                 max_encoding_message_size: None,
             }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> InterceptedService<Self, F>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
         where
             F: tonic::service::Interceptor,
         {
@@ -849,23 +830,16 @@ pub mod bee_remote_server {
                 "/beeremote.BeeRemote/SubmitJob" => {
                     #[allow(non_camel_case_types)]
                     struct SubmitJobSvc<T: BeeRemote>(pub Arc<T>);
-                    impl<
-                        T: BeeRemote,
-                    > tonic::server::UnaryService<super::SubmitJobRequest>
-                    for SubmitJobSvc<T> {
+                    impl<T: BeeRemote> tonic::server::UnaryService<super::SubmitJobRequest> for SubmitJobSvc<T> {
                         type Response = super::SubmitJobResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::SubmitJobRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                <T as BeeRemote>::submit_job(&inner, request).await
-                            };
+                            let fut =
+                                async move { <T as BeeRemote>::submit_job(&inner, request).await };
                             Box::pin(fut)
                         }
                     }
@@ -894,16 +868,14 @@ pub mod bee_remote_server {
                 "/beeremote.BeeRemote/UpdatePaths" => {
                     #[allow(non_camel_case_types)]
                     struct UpdatePathsSvc<T: BeeRemote>(pub Arc<T>);
-                    impl<
-                        T: BeeRemote,
-                    > tonic::server::ServerStreamingService<super::UpdatePathsRequest>
-                    for UpdatePathsSvc<T> {
+                    impl<T: BeeRemote>
+                        tonic::server::ServerStreamingService<super::UpdatePathsRequest>
+                        for UpdatePathsSvc<T>
+                    {
                         type Response = super::UpdatePathsResponse;
                         type ResponseStream = T::UpdatePathsStream;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::ResponseStream>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::UpdatePathsRequest>,
@@ -940,23 +912,16 @@ pub mod bee_remote_server {
                 "/beeremote.BeeRemote/UpdateJobs" => {
                     #[allow(non_camel_case_types)]
                     struct UpdateJobsSvc<T: BeeRemote>(pub Arc<T>);
-                    impl<
-                        T: BeeRemote,
-                    > tonic::server::UnaryService<super::UpdateJobsRequest>
-                    for UpdateJobsSvc<T> {
+                    impl<T: BeeRemote> tonic::server::UnaryService<super::UpdateJobsRequest> for UpdateJobsSvc<T> {
                         type Response = super::UpdateJobsResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::UpdateJobsRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                <T as BeeRemote>::update_jobs(&inner, request).await
-                            };
+                            let fut =
+                                async move { <T as BeeRemote>::update_jobs(&inner, request).await };
                             Box::pin(fut)
                         }
                     }
@@ -985,24 +950,18 @@ pub mod bee_remote_server {
                 "/beeremote.BeeRemote/GetJobs" => {
                     #[allow(non_camel_case_types)]
                     struct GetJobsSvc<T: BeeRemote>(pub Arc<T>);
-                    impl<
-                        T: BeeRemote,
-                    > tonic::server::ServerStreamingService<super::GetJobsRequest>
-                    for GetJobsSvc<T> {
+                    impl<T: BeeRemote> tonic::server::ServerStreamingService<super::GetJobsRequest> for GetJobsSvc<T> {
                         type Response = super::GetJobsResponse;
                         type ResponseStream = T::GetJobsStream;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::ResponseStream>,
-                            tonic::Status,
-                        >;
+                        type Future =
+                            BoxFuture<tonic::Response<Self::ResponseStream>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::GetJobsRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                <T as BeeRemote>::get_jobs(&inner, request).await
-                            };
+                            let fut =
+                                async move { <T as BeeRemote>::get_jobs(&inner, request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1031,23 +990,16 @@ pub mod bee_remote_server {
                 "/beeremote.BeeRemote/UpdateWork" => {
                     #[allow(non_camel_case_types)]
                     struct UpdateWorkSvc<T: BeeRemote>(pub Arc<T>);
-                    impl<
-                        T: BeeRemote,
-                    > tonic::server::UnaryService<super::UpdateWorkRequest>
-                    for UpdateWorkSvc<T> {
+                    impl<T: BeeRemote> tonic::server::UnaryService<super::UpdateWorkRequest> for UpdateWorkSvc<T> {
                         type Response = super::UpdateWorkResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::UpdateWorkRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut = async move {
-                                <T as BeeRemote>::update_work(&inner, request).await
-                            };
+                            let fut =
+                                async move { <T as BeeRemote>::update_work(&inner, request).await };
                             Box::pin(fut)
                         }
                     }
@@ -1076,15 +1028,9 @@ pub mod bee_remote_server {
                 "/beeremote.BeeRemote/GetRSTConfig" => {
                     #[allow(non_camel_case_types)]
                     struct GetRSTConfigSvc<T: BeeRemote>(pub Arc<T>);
-                    impl<
-                        T: BeeRemote,
-                    > tonic::server::UnaryService<super::GetRstConfigRequest>
-                    for GetRSTConfigSvc<T> {
+                    impl<T: BeeRemote> tonic::server::UnaryService<super::GetRstConfigRequest> for GetRSTConfigSvc<T> {
                         type Response = super::GetRstConfigResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::GetRstConfigRequest>,
@@ -1118,25 +1064,19 @@ pub mod bee_remote_server {
                     };
                     Box::pin(fut)
                 }
-                _ => {
-                    Box::pin(async move {
-                        let mut response = http::Response::new(
-                            tonic::body::Body::default(),
-                        );
-                        let headers = response.headers_mut();
-                        headers
-                            .insert(
-                                tonic::Status::GRPC_STATUS,
-                                (tonic::Code::Unimplemented as i32).into(),
-                            );
-                        headers
-                            .insert(
-                                http::header::CONTENT_TYPE,
-                                tonic::metadata::GRPC_CONTENT_TYPE,
-                            );
-                        Ok(response)
-                    })
-                }
+                _ => Box::pin(async move {
+                    let mut response = http::Response::new(tonic::body::Body::default());
+                    let headers = response.headers_mut();
+                    headers.insert(
+                        tonic::Status::GRPC_STATUS,
+                        (tonic::Code::Unimplemented as i32).into(),
+                    );
+                    headers.insert(
+                        http::header::CONTENT_TYPE,
+                        tonic::metadata::GRPC_CONTENT_TYPE,
+                    );
+                    Ok(response)
+                }),
             }
         }
     }

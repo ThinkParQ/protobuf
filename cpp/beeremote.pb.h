@@ -80,6 +80,9 @@ extern JobDefaultTypeInternal _Job_default_instance_;
 class JobRequest;
 struct JobRequestDefaultTypeInternal;
 extern JobRequestDefaultTypeInternal _JobRequest_default_instance_;
+class JobRequest_GenerationStatus;
+struct JobRequest_GenerationStatusDefaultTypeInternal;
+extern JobRequest_GenerationStatusDefaultTypeInternal _JobRequest_GenerationStatus_default_instance_;
 class JobResult;
 struct JobResultDefaultTypeInternal;
 extern JobResultDefaultTypeInternal _JobResult_default_instance_;
@@ -128,6 +131,9 @@ enum SubmitJobResponse_ResponseStatus : int {
   SubmitJobResponse_ResponseStatus_CREATED = 1,
   SubmitJobResponse_ResponseStatus_EXISTING = 2,
   SubmitJobResponse_ResponseStatus_NOT_ALLOWED = 3,
+  SubmitJobResponse_ResponseStatus_ALREADY_COMPLETE = 4,
+  SubmitJobResponse_ResponseStatus_ALREADY_OFFLOADED = 5,
+  SubmitJobResponse_ResponseStatus_FAILED_PRECONDITION = 6,
   SubmitJobResponse_ResponseStatus_SubmitJobResponse_ResponseStatus_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   SubmitJobResponse_ResponseStatus_SubmitJobResponse_ResponseStatus_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -137,8 +143,8 @@ enum SubmitJobResponse_ResponseStatus : int {
 bool SubmitJobResponse_ResponseStatus_IsValid(int value);
 extern const uint32_t SubmitJobResponse_ResponseStatus_internal_data_[];
 constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MIN = static_cast<SubmitJobResponse_ResponseStatus>(0);
-constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MAX = static_cast<SubmitJobResponse_ResponseStatus>(3);
-constexpr int SubmitJobResponse_ResponseStatus_ResponseStatus_ARRAYSIZE = 3 + 1;
+constexpr SubmitJobResponse_ResponseStatus SubmitJobResponse_ResponseStatus_ResponseStatus_MAX = static_cast<SubmitJobResponse_ResponseStatus>(6);
+constexpr int SubmitJobResponse_ResponseStatus_ResponseStatus_ARRAYSIZE = 6 + 1;
 const ::google::protobuf::EnumDescriptor*
 SubmitJobResponse_ResponseStatus_descriptor();
 template <typename T>
@@ -151,12 +157,48 @@ const std::string& SubmitJobResponse_ResponseStatus_Name(T value) {
 template <>
 inline const std::string& SubmitJobResponse_ResponseStatus_Name(SubmitJobResponse_ResponseStatus value) {
   return ::google::protobuf::internal::NameOfDenseEnum<SubmitJobResponse_ResponseStatus_descriptor,
-                                                 0, 3>(
+                                                 0, 6>(
       static_cast<int>(value));
 }
 inline bool SubmitJobResponse_ResponseStatus_Parse(absl::string_view name, SubmitJobResponse_ResponseStatus* value) {
   return ::google::protobuf::internal::ParseNamedEnum<SubmitJobResponse_ResponseStatus>(
       SubmitJobResponse_ResponseStatus_descriptor(), name, value);
+}
+enum JobRequest_GenerationStatus_State : int {
+  JobRequest_GenerationStatus_State_UNSPECIFIED = 0,
+  JobRequest_GenerationStatus_State_ALREADY_COMPLETE = 1,
+  JobRequest_GenerationStatus_State_ALREADY_OFFLOADED = 2,
+  JobRequest_GenerationStatus_State_FAILED_PRECONDITION = 3,
+  JobRequest_GenerationStatus_State_ERROR = 4,
+  JobRequest_GenerationStatus_State_JobRequest_GenerationStatus_State_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  JobRequest_GenerationStatus_State_JobRequest_GenerationStatus_State_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool JobRequest_GenerationStatus_State_IsValid(int value);
+extern const uint32_t JobRequest_GenerationStatus_State_internal_data_[];
+constexpr JobRequest_GenerationStatus_State JobRequest_GenerationStatus_State_State_MIN = static_cast<JobRequest_GenerationStatus_State>(0);
+constexpr JobRequest_GenerationStatus_State JobRequest_GenerationStatus_State_State_MAX = static_cast<JobRequest_GenerationStatus_State>(4);
+constexpr int JobRequest_GenerationStatus_State_State_ARRAYSIZE = 4 + 1;
+const ::google::protobuf::EnumDescriptor*
+JobRequest_GenerationStatus_State_descriptor();
+template <typename T>
+const std::string& JobRequest_GenerationStatus_State_Name(T value) {
+  static_assert(std::is_same<T, JobRequest_GenerationStatus_State>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to State_Name().");
+  return JobRequest_GenerationStatus_State_Name(static_cast<JobRequest_GenerationStatus_State>(value));
+}
+template <>
+inline const std::string& JobRequest_GenerationStatus_State_Name(JobRequest_GenerationStatus_State value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<JobRequest_GenerationStatus_State_descriptor,
+                                                 0, 4>(
+      static_cast<int>(value));
+}
+inline bool JobRequest_GenerationStatus_State_Parse(absl::string_view name, JobRequest_GenerationStatus_State* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<JobRequest_GenerationStatus_State>(
+      JobRequest_GenerationStatus_State_descriptor(), name, value);
 }
 enum Job_State : int {
   Job_State_UNSPECIFIED = 0,
@@ -168,6 +210,7 @@ enum Job_State : int {
   Job_State_FAILED = 7,
   Job_State_CANCELLED = 8,
   Job_State_COMPLETED = 9,
+  Job_State_OFFLOADED = 10,
   Job_State_Job_State_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   Job_State_Job_State_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -177,8 +220,8 @@ enum Job_State : int {
 bool Job_State_IsValid(int value);
 extern const uint32_t Job_State_internal_data_[];
 constexpr Job_State Job_State_State_MIN = static_cast<Job_State>(0);
-constexpr Job_State Job_State_State_MAX = static_cast<Job_State>(9);
-constexpr int Job_State_State_ARRAYSIZE = 9 + 1;
+constexpr Job_State Job_State_State_MAX = static_cast<Job_State>(10);
+constexpr int Job_State_State_ARRAYSIZE = 10 + 1;
 const ::google::protobuf::EnumDescriptor*
 Job_State_descriptor();
 template <typename T>
@@ -191,7 +234,7 @@ const std::string& Job_State_Name(T value) {
 template <>
 inline const std::string& Job_State_Name(Job_State value) {
   return ::google::protobuf::internal::NameOfDenseEnum<Job_State_descriptor,
-                                                 0, 9>(
+                                                 0, 10>(
       static_cast<int>(value));
 }
 inline bool Job_State_Parse(absl::string_view name, Job_State* value) {
@@ -296,7 +339,7 @@ class UpdateWorkResponse final : public ::google::protobuf::internal::ZeroFields
     return reinterpret_cast<const UpdateWorkResponse*>(
         &_UpdateWorkResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(UpdateWorkResponse& a, UpdateWorkResponse& b) { a.Swap(&b); }
   inline void Swap(UpdateWorkResponse* other) {
     if (other == this) return;
@@ -422,6 +465,236 @@ class UpdateJobsRequest_RemoteTargetsEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
+class JobRequest_GenerationStatus final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beeremote.JobRequest.GenerationStatus) */ {
+ public:
+  inline JobRequest_GenerationStatus() : JobRequest_GenerationStatus(nullptr) {}
+  ~JobRequest_GenerationStatus() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(JobRequest_GenerationStatus* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(JobRequest_GenerationStatus));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR JobRequest_GenerationStatus(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline JobRequest_GenerationStatus(const JobRequest_GenerationStatus& from) : JobRequest_GenerationStatus(nullptr, from) {}
+  inline JobRequest_GenerationStatus(JobRequest_GenerationStatus&& from) noexcept
+      : JobRequest_GenerationStatus(nullptr, std::move(from)) {}
+  inline JobRequest_GenerationStatus& operator=(const JobRequest_GenerationStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JobRequest_GenerationStatus& operator=(JobRequest_GenerationStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JobRequest_GenerationStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JobRequest_GenerationStatus* internal_default_instance() {
+    return reinterpret_cast<const JobRequest_GenerationStatus*>(
+        &_JobRequest_GenerationStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(JobRequest_GenerationStatus& a, JobRequest_GenerationStatus& b) { a.Swap(&b); }
+  inline void Swap(JobRequest_GenerationStatus* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JobRequest_GenerationStatus* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JobRequest_GenerationStatus* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<JobRequest_GenerationStatus>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const JobRequest_GenerationStatus& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const JobRequest_GenerationStatus& from) { JobRequest_GenerationStatus::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(JobRequest_GenerationStatus* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beeremote.JobRequest.GenerationStatus"; }
+
+ protected:
+  explicit JobRequest_GenerationStatus(::google::protobuf::Arena* arena);
+  JobRequest_GenerationStatus(::google::protobuf::Arena* arena, const JobRequest_GenerationStatus& from);
+  JobRequest_GenerationStatus(::google::protobuf::Arena* arena, JobRequest_GenerationStatus&& from) noexcept
+      : JobRequest_GenerationStatus(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using State = JobRequest_GenerationStatus_State;
+  static constexpr State UNSPECIFIED = JobRequest_GenerationStatus_State_UNSPECIFIED;
+  static constexpr State ALREADY_COMPLETE = JobRequest_GenerationStatus_State_ALREADY_COMPLETE;
+  static constexpr State ALREADY_OFFLOADED = JobRequest_GenerationStatus_State_ALREADY_OFFLOADED;
+  static constexpr State FAILED_PRECONDITION = JobRequest_GenerationStatus_State_FAILED_PRECONDITION;
+  static constexpr State ERROR = JobRequest_GenerationStatus_State_ERROR;
+  static inline bool State_IsValid(int value) {
+    return JobRequest_GenerationStatus_State_IsValid(value);
+  }
+  static constexpr State State_MIN = JobRequest_GenerationStatus_State_State_MIN;
+  static constexpr State State_MAX = JobRequest_GenerationStatus_State_State_MAX;
+  static constexpr int State_ARRAYSIZE = JobRequest_GenerationStatus_State_State_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* State_descriptor() {
+    return JobRequest_GenerationStatus_State_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& State_Name(T value) {
+    return JobRequest_GenerationStatus_State_Name(value);
+  }
+  static inline bool State_Parse(absl::string_view name, State* value) {
+    return JobRequest_GenerationStatus_State_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMessageFieldNumber = 2,
+    kStateFieldNumber = 1,
+  };
+  // string message = 2;
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // .beeremote.JobRequest.GenerationStatus.State state = 1;
+  void clear_state() ;
+  ::beeremote::JobRequest_GenerationStatus_State state() const;
+  void set_state(::beeremote::JobRequest_GenerationStatus_State value);
+
+  private:
+  ::beeremote::JobRequest_GenerationStatus_State _internal_state() const;
+  void _internal_set_state(::beeremote::JobRequest_GenerationStatus_State value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:beeremote.JobRequest.GenerationStatus)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      53, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const JobRequest_GenerationStatus& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    int state_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beeremote_2eproto;
+};
+// -------------------------------------------------------------------
+
 class GetRSTConfigRequest final : public ::google::protobuf::internal::ZeroFieldsBase
 /* @@protoc_insertion_point(class_definition:beeremote.GetRSTConfigRequest) */ {
  public:
@@ -480,7 +753,7 @@ class GetRSTConfigRequest final : public ::google::protobuf::internal::ZeroField
     return reinterpret_cast<const GetRSTConfigRequest*>(
         &_GetRSTConfigRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(GetRSTConfigRequest& a, GetRSTConfigRequest& b) { a.Swap(&b); }
   inline void Swap(GetRSTConfigRequest* other) {
     if (other == this) return;
@@ -626,7 +899,7 @@ class GetJobsRequest_QueryIdAndPath final : public ::google::protobuf::Message
     return reinterpret_cast<const GetJobsRequest_QueryIdAndPath*>(
         &_GetJobsRequest_QueryIdAndPath_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(GetJobsRequest_QueryIdAndPath& a, GetJobsRequest_QueryIdAndPath& b) { a.Swap(&b); }
   inline void Swap(GetJobsRequest_QueryIdAndPath* other) {
     if (other == this) return;
@@ -840,7 +1113,7 @@ class UpdateJobsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateJobsRequest*>(
         &_UpdateJobsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(UpdateJobsRequest& a, UpdateJobsRequest& b) { a.Swap(&b); }
   inline void Swap(UpdateJobsRequest* other) {
     if (other == this) return;
@@ -1061,314 +1334,6 @@ class UpdateJobsRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class JobRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:beeremote.JobRequest) */ {
- public:
-  inline JobRequest() : JobRequest(nullptr) {}
-  ~JobRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(JobRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(JobRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR JobRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline JobRequest(const JobRequest& from) : JobRequest(nullptr, from) {}
-  inline JobRequest(JobRequest&& from) noexcept
-      : JobRequest(nullptr, std::move(from)) {}
-  inline JobRequest& operator=(const JobRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline JobRequest& operator=(JobRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const JobRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  enum TypeCase {
-    kSync = 10,
-    kMock = 11,
-    TYPE_NOT_SET = 0,
-  };
-  static inline const JobRequest* internal_default_instance() {
-    return reinterpret_cast<const JobRequest*>(
-        &_JobRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 2;
-  friend void swap(JobRequest& a, JobRequest& b) { a.Swap(&b); }
-  inline void Swap(JobRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(JobRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  JobRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<JobRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const JobRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const JobRequest& from) { JobRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(JobRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "beeremote.JobRequest"; }
-
- protected:
-  explicit JobRequest(::google::protobuf::Arena* arena);
-  JobRequest(::google::protobuf::Arena* arena, const JobRequest& from);
-  JobRequest(::google::protobuf::Arena* arena, JobRequest&& from) noexcept
-      : JobRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kPathFieldNumber = 1,
-    kNameFieldNumber = 2,
-    kPriorityFieldNumber = 3,
-    kRemoteStorageTargetFieldNumber = 4,
-    kForceFieldNumber = 5,
-    kSyncFieldNumber = 10,
-    kMockFieldNumber = 11,
-  };
-  // string path = 1;
-  void clear_path() ;
-  const std::string& path() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_path(Arg_&& arg, Args_... args);
-  std::string* mutable_path();
-  PROTOBUF_NODISCARD std::string* release_path();
-  void set_allocated_path(std::string* value);
-
-  private:
-  const std::string& _internal_path() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_path(
-      const std::string& value);
-  std::string* _internal_mutable_path();
-
-  public:
-  // string name = 2;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
-  // int32 priority = 3;
-  void clear_priority() ;
-  ::int32_t priority() const;
-  void set_priority(::int32_t value);
-
-  private:
-  ::int32_t _internal_priority() const;
-  void _internal_set_priority(::int32_t value);
-
-  public:
-  // uint32 remote_storage_target = 4;
-  void clear_remote_storage_target() ;
-  ::uint32_t remote_storage_target() const;
-  void set_remote_storage_target(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_remote_storage_target() const;
-  void _internal_set_remote_storage_target(::uint32_t value);
-
-  public:
-  // bool force = 5;
-  void clear_force() ;
-  bool force() const;
-  void set_force(bool value);
-
-  private:
-  bool _internal_force() const;
-  void _internal_set_force(bool value);
-
-  public:
-  // .flex.SyncJob sync = 10;
-  bool has_sync() const;
-  private:
-  bool _internal_has_sync() const;
-
-  public:
-  void clear_sync() ;
-  const ::flex::SyncJob& sync() const;
-  PROTOBUF_NODISCARD ::flex::SyncJob* release_sync();
-  ::flex::SyncJob* mutable_sync();
-  void set_allocated_sync(::flex::SyncJob* value);
-  void unsafe_arena_set_allocated_sync(::flex::SyncJob* value);
-  ::flex::SyncJob* unsafe_arena_release_sync();
-
-  private:
-  const ::flex::SyncJob& _internal_sync() const;
-  ::flex::SyncJob* _internal_mutable_sync();
-
-  public:
-  // .flex.MockJob mock = 11;
-  bool has_mock() const;
-  private:
-  bool _internal_has_mock() const;
-
-  public:
-  void clear_mock() ;
-  const ::flex::MockJob& mock() const;
-  PROTOBUF_NODISCARD ::flex::MockJob* release_mock();
-  ::flex::MockJob* mutable_mock();
-  void set_allocated_mock(::flex::MockJob* value);
-  void unsafe_arena_set_allocated_mock(::flex::MockJob* value);
-  ::flex::MockJob* unsafe_arena_release_mock();
-
-  private:
-  const ::flex::MockJob& _internal_mock() const;
-  ::flex::MockJob* _internal_mutable_mock();
-
-  public:
-  void clear_type();
-  TypeCase type_case() const;
-  // @@protoc_insertion_point(class_scope:beeremote.JobRequest)
- private:
-  class _Internal;
-  void set_has_sync();
-  void set_has_mock();
-  inline bool has_type() const;
-  inline void clear_has_type();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 2,
-      37, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const JobRequest& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr path_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
-    ::int32_t priority_;
-    ::uint32_t remote_storage_target_;
-    bool force_;
-    union TypeUnion {
-      constexpr TypeUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::flex::SyncJob* sync_;
-      ::flex::MockJob* mock_;
-    } type_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint32_t _oneof_case_[1];
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_beeremote_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Job_Status final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:beeremote.Job.Status) */ {
  public:
@@ -1428,7 +1393,7 @@ class Job_Status final : public ::google::protobuf::Message
     return reinterpret_cast<const Job_Status*>(
         &_Job_Status_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(Job_Status& a, Job_Status& b) { a.Swap(&b); }
   inline void Swap(Job_Status* other) {
     if (other == this) return;
@@ -1660,7 +1625,7 @@ class GetJobsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetJobsRequest*>(
         &_GetJobsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(GetJobsRequest& a, GetJobsRequest& b) { a.Swap(&b); }
   inline void Swap(GetJobsRequest* other) {
     if (other == this) return;
@@ -1946,7 +1911,7 @@ class UpdateWorkRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateWorkRequest*>(
         &_UpdateWorkRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(UpdateWorkRequest& a, UpdateWorkRequest& b) { a.Swap(&b); }
   inline void Swap(UpdateWorkRequest* other) {
     if (other == this) return;
@@ -2142,7 +2107,7 @@ class UpdatePathsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdatePathsRequest*>(
         &_UpdatePathsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(UpdatePathsRequest& a, UpdatePathsRequest& b) { a.Swap(&b); }
   inline void Swap(UpdatePathsRequest* other) {
     if (other == this) return;
@@ -2290,6 +2255,797 @@ class UpdatePathsRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr path_prefix_;
     ::beeremote::UpdateJobsRequest* requested_update_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beeremote_2eproto;
+};
+// -------------------------------------------------------------------
+
+class JobResult_WorkResult final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beeremote.JobResult.WorkResult) */ {
+ public:
+  inline JobResult_WorkResult() : JobResult_WorkResult(nullptr) {}
+  ~JobResult_WorkResult() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(JobResult_WorkResult* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(JobResult_WorkResult));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR JobResult_WorkResult(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline JobResult_WorkResult(const JobResult_WorkResult& from) : JobResult_WorkResult(nullptr, from) {}
+  inline JobResult_WorkResult(JobResult_WorkResult&& from) noexcept
+      : JobResult_WorkResult(nullptr, std::move(from)) {}
+  inline JobResult_WorkResult& operator=(const JobResult_WorkResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JobResult_WorkResult& operator=(JobResult_WorkResult&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JobResult_WorkResult& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const JobResult_WorkResult* internal_default_instance() {
+    return reinterpret_cast<const JobResult_WorkResult*>(
+        &_JobResult_WorkResult_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(JobResult_WorkResult& a, JobResult_WorkResult& b) { a.Swap(&b); }
+  inline void Swap(JobResult_WorkResult* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JobResult_WorkResult* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JobResult_WorkResult* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<JobResult_WorkResult>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const JobResult_WorkResult& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const JobResult_WorkResult& from) { JobResult_WorkResult::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(JobResult_WorkResult* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beeremote.JobResult.WorkResult"; }
+
+ protected:
+  explicit JobResult_WorkResult(::google::protobuf::Arena* arena);
+  JobResult_WorkResult(::google::protobuf::Arena* arena, const JobResult_WorkResult& from);
+  JobResult_WorkResult(::google::protobuf::Arena* arena, JobResult_WorkResult&& from) noexcept
+      : JobResult_WorkResult(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAssignedNodeFieldNumber = 2,
+    kAssignedPoolFieldNumber = 3,
+    kWorkFieldNumber = 1,
+  };
+  // string assigned_node = 2;
+  void clear_assigned_node() ;
+  const std::string& assigned_node() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_assigned_node(Arg_&& arg, Args_... args);
+  std::string* mutable_assigned_node();
+  PROTOBUF_NODISCARD std::string* release_assigned_node();
+  void set_allocated_assigned_node(std::string* value);
+
+  private:
+  const std::string& _internal_assigned_node() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_assigned_node(
+      const std::string& value);
+  std::string* _internal_mutable_assigned_node();
+
+  public:
+  // string assigned_pool = 3;
+  void clear_assigned_pool() ;
+  const std::string& assigned_pool() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_assigned_pool(Arg_&& arg, Args_... args);
+  std::string* mutable_assigned_pool();
+  PROTOBUF_NODISCARD std::string* release_assigned_pool();
+  void set_allocated_assigned_pool(std::string* value);
+
+  private:
+  const std::string& _internal_assigned_pool() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_assigned_pool(
+      const std::string& value);
+  std::string* _internal_mutable_assigned_pool();
+
+  public:
+  // .flex.Work work = 1;
+  bool has_work() const;
+  void clear_work() ;
+  const ::flex::Work& work() const;
+  PROTOBUF_NODISCARD ::flex::Work* release_work();
+  ::flex::Work* mutable_work();
+  void set_allocated_work(::flex::Work* value);
+  void unsafe_arena_set_allocated_work(::flex::Work* value);
+  ::flex::Work* unsafe_arena_release_work();
+
+  private:
+  const ::flex::Work& _internal_work() const;
+  ::flex::Work* _internal_mutable_work();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beeremote.JobResult.WorkResult)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      65, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const JobResult_WorkResult& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr assigned_node_;
+    ::google::protobuf::internal::ArenaStringPtr assigned_pool_;
+    ::flex::Work* work_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beeremote_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetRSTConfigResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beeremote.GetRSTConfigResponse) */ {
+ public:
+  inline GetRSTConfigResponse() : GetRSTConfigResponse(nullptr) {}
+  ~GetRSTConfigResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(GetRSTConfigResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetRSTConfigResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetRSTConfigResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetRSTConfigResponse(const GetRSTConfigResponse& from) : GetRSTConfigResponse(nullptr, from) {}
+  inline GetRSTConfigResponse(GetRSTConfigResponse&& from) noexcept
+      : GetRSTConfigResponse(nullptr, std::move(from)) {}
+  inline GetRSTConfigResponse& operator=(const GetRSTConfigResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetRSTConfigResponse& operator=(GetRSTConfigResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetRSTConfigResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetRSTConfigResponse* internal_default_instance() {
+    return reinterpret_cast<const GetRSTConfigResponse*>(
+        &_GetRSTConfigResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 19;
+  friend void swap(GetRSTConfigResponse& a, GetRSTConfigResponse& b) { a.Swap(&b); }
+  inline void Swap(GetRSTConfigResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetRSTConfigResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetRSTConfigResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GetRSTConfigResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetRSTConfigResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetRSTConfigResponse& from) { GetRSTConfigResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(GetRSTConfigResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beeremote.GetRSTConfigResponse"; }
+
+ protected:
+  explicit GetRSTConfigResponse(::google::protobuf::Arena* arena);
+  GetRSTConfigResponse(::google::protobuf::Arena* arena, const GetRSTConfigResponse& from);
+  GetRSTConfigResponse(::google::protobuf::Arena* arena, GetRSTConfigResponse&& from) noexcept
+      : GetRSTConfigResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRstsFieldNumber = 1,
+  };
+  // repeated .flex.RemoteStorageTarget rsts = 1;
+  int rsts_size() const;
+  private:
+  int _internal_rsts_size() const;
+
+  public:
+  void clear_rsts() ;
+  ::flex::RemoteStorageTarget* mutable_rsts(int index);
+  ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>* mutable_rsts();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& _internal_rsts() const;
+  ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>* _internal_mutable_rsts();
+  public:
+  const ::flex::RemoteStorageTarget& rsts(int index) const;
+  ::flex::RemoteStorageTarget* add_rsts();
+  const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& rsts() const;
+  // @@protoc_insertion_point(class_scope:beeremote.GetRSTConfigResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetRSTConfigResponse& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::flex::RemoteStorageTarget > rsts_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beeremote_2eproto;
+};
+// -------------------------------------------------------------------
+
+class JobRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beeremote.JobRequest) */ {
+ public:
+  inline JobRequest() : JobRequest(nullptr) {}
+  ~JobRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(JobRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(JobRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR JobRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline JobRequest(const JobRequest& from) : JobRequest(nullptr, from) {}
+  inline JobRequest(JobRequest&& from) noexcept
+      : JobRequest(nullptr, std::move(from)) {}
+  inline JobRequest& operator=(const JobRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline JobRequest& operator=(JobRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const JobRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  enum TypeCase {
+    kSync = 10,
+    kMock = 11,
+    kBuilder = 12,
+    TYPE_NOT_SET = 0,
+  };
+  static inline const JobRequest* internal_default_instance() {
+    return reinterpret_cast<const JobRequest*>(
+        &_JobRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(JobRequest& a, JobRequest& b) { a.Swap(&b); }
+  inline void Swap(JobRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(JobRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  JobRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<JobRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const JobRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const JobRequest& from) { JobRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(JobRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beeremote.JobRequest"; }
+
+ protected:
+  explicit JobRequest(::google::protobuf::Arena* arena);
+  JobRequest(::google::protobuf::Arena* arena, const JobRequest& from);
+  JobRequest(::google::protobuf::Arena* arena, JobRequest&& from) noexcept
+      : JobRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using GenerationStatus = JobRequest_GenerationStatus;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPathFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kGenerationStatusFieldNumber = 8,
+    kPriorityFieldNumber = 3,
+    kRemoteStorageTargetFieldNumber = 4,
+    kForceFieldNumber = 5,
+    kStubLocalFieldNumber = 7,
+    kSyncFieldNumber = 10,
+    kMockFieldNumber = 11,
+    kBuilderFieldNumber = 12,
+  };
+  // string path = 1;
+  void clear_path() ;
+  const std::string& path() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_path(Arg_&& arg, Args_... args);
+  std::string* mutable_path();
+  PROTOBUF_NODISCARD std::string* release_path();
+  void set_allocated_path(std::string* value);
+
+  private:
+  const std::string& _internal_path() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_path(
+      const std::string& value);
+  std::string* _internal_mutable_path();
+
+  public:
+  // string name = 2;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // .beeremote.JobRequest.GenerationStatus generation_status = 8;
+  bool has_generation_status() const;
+  void clear_generation_status() ;
+  const ::beeremote::JobRequest_GenerationStatus& generation_status() const;
+  PROTOBUF_NODISCARD ::beeremote::JobRequest_GenerationStatus* release_generation_status();
+  ::beeremote::JobRequest_GenerationStatus* mutable_generation_status();
+  void set_allocated_generation_status(::beeremote::JobRequest_GenerationStatus* value);
+  void unsafe_arena_set_allocated_generation_status(::beeremote::JobRequest_GenerationStatus* value);
+  ::beeremote::JobRequest_GenerationStatus* unsafe_arena_release_generation_status();
+
+  private:
+  const ::beeremote::JobRequest_GenerationStatus& _internal_generation_status() const;
+  ::beeremote::JobRequest_GenerationStatus* _internal_mutable_generation_status();
+
+  public:
+  // int32 priority = 3;
+  void clear_priority() ;
+  ::int32_t priority() const;
+  void set_priority(::int32_t value);
+
+  private:
+  ::int32_t _internal_priority() const;
+  void _internal_set_priority(::int32_t value);
+
+  public:
+  // uint32 remote_storage_target = 4;
+  void clear_remote_storage_target() ;
+  ::uint32_t remote_storage_target() const;
+  void set_remote_storage_target(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_remote_storage_target() const;
+  void _internal_set_remote_storage_target(::uint32_t value);
+
+  public:
+  // bool force = 5;
+  void clear_force() ;
+  bool force() const;
+  void set_force(bool value);
+
+  private:
+  bool _internal_force() const;
+  void _internal_set_force(bool value);
+
+  public:
+  // bool stub_local = 7;
+  void clear_stub_local() ;
+  bool stub_local() const;
+  void set_stub_local(bool value);
+
+  private:
+  bool _internal_stub_local() const;
+  void _internal_set_stub_local(bool value);
+
+  public:
+  // .flex.SyncJob sync = 10;
+  bool has_sync() const;
+  private:
+  bool _internal_has_sync() const;
+
+  public:
+  void clear_sync() ;
+  const ::flex::SyncJob& sync() const;
+  PROTOBUF_NODISCARD ::flex::SyncJob* release_sync();
+  ::flex::SyncJob* mutable_sync();
+  void set_allocated_sync(::flex::SyncJob* value);
+  void unsafe_arena_set_allocated_sync(::flex::SyncJob* value);
+  ::flex::SyncJob* unsafe_arena_release_sync();
+
+  private:
+  const ::flex::SyncJob& _internal_sync() const;
+  ::flex::SyncJob* _internal_mutable_sync();
+
+  public:
+  // .flex.MockJob mock = 11;
+  bool has_mock() const;
+  private:
+  bool _internal_has_mock() const;
+
+  public:
+  void clear_mock() ;
+  const ::flex::MockJob& mock() const;
+  PROTOBUF_NODISCARD ::flex::MockJob* release_mock();
+  ::flex::MockJob* mutable_mock();
+  void set_allocated_mock(::flex::MockJob* value);
+  void unsafe_arena_set_allocated_mock(::flex::MockJob* value);
+  ::flex::MockJob* unsafe_arena_release_mock();
+
+  private:
+  const ::flex::MockJob& _internal_mock() const;
+  ::flex::MockJob* _internal_mutable_mock();
+
+  public:
+  // .flex.BuilderJob builder = 12;
+  bool has_builder() const;
+  private:
+  bool _internal_has_builder() const;
+
+  public:
+  void clear_builder() ;
+  const ::flex::BuilderJob& builder() const;
+  PROTOBUF_NODISCARD ::flex::BuilderJob* release_builder();
+  ::flex::BuilderJob* mutable_builder();
+  void set_allocated_builder(::flex::BuilderJob* value);
+  void unsafe_arena_set_allocated_builder(::flex::BuilderJob* value);
+  ::flex::BuilderJob* unsafe_arena_release_builder();
+
+  private:
+  const ::flex::BuilderJob& _internal_builder() const;
+  ::flex::BuilderJob* _internal_mutable_builder();
+
+  public:
+  void clear_type();
+  TypeCase type_case() const;
+  // @@protoc_insertion_point(class_scope:beeremote.JobRequest)
+ private:
+  class _Internal;
+  void set_has_sync();
+  void set_has_mock();
+  void set_has_builder();
+  inline bool has_type() const;
+  inline void clear_has_type();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 10, 4,
+      45, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const JobRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr path_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::beeremote::JobRequest_GenerationStatus* generation_status_;
+    ::int32_t priority_;
+    ::uint32_t remote_storage_target_;
+    bool force_;
+    bool stub_local_;
+    union TypeUnion {
+      constexpr TypeUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::flex::SyncJob* sync_;
+      ::flex::MockJob* mock_;
+      ::flex::BuilderJob* builder_;
+    } type_;
+    ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2493,238 +3249,6 @@ class SubmitJobRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class JobResult_WorkResult final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:beeremote.JobResult.WorkResult) */ {
- public:
-  inline JobResult_WorkResult() : JobResult_WorkResult(nullptr) {}
-  ~JobResult_WorkResult() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(JobResult_WorkResult* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(JobResult_WorkResult));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR JobResult_WorkResult(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline JobResult_WorkResult(const JobResult_WorkResult& from) : JobResult_WorkResult(nullptr, from) {}
-  inline JobResult_WorkResult(JobResult_WorkResult&& from) noexcept
-      : JobResult_WorkResult(nullptr, std::move(from)) {}
-  inline JobResult_WorkResult& operator=(const JobResult_WorkResult& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline JobResult_WorkResult& operator=(JobResult_WorkResult&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const JobResult_WorkResult& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const JobResult_WorkResult* internal_default_instance() {
-    return reinterpret_cast<const JobResult_WorkResult*>(
-        &_JobResult_WorkResult_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 5;
-  friend void swap(JobResult_WorkResult& a, JobResult_WorkResult& b) { a.Swap(&b); }
-  inline void Swap(JobResult_WorkResult* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(JobResult_WorkResult* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  JobResult_WorkResult* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<JobResult_WorkResult>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const JobResult_WorkResult& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const JobResult_WorkResult& from) { JobResult_WorkResult::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(JobResult_WorkResult* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "beeremote.JobResult.WorkResult"; }
-
- protected:
-  explicit JobResult_WorkResult(::google::protobuf::Arena* arena);
-  JobResult_WorkResult(::google::protobuf::Arena* arena, const JobResult_WorkResult& from);
-  JobResult_WorkResult(::google::protobuf::Arena* arena, JobResult_WorkResult&& from) noexcept
-      : JobResult_WorkResult(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kAssignedNodeFieldNumber = 2,
-    kAssignedPoolFieldNumber = 3,
-    kWorkFieldNumber = 1,
-  };
-  // string assigned_node = 2;
-  void clear_assigned_node() ;
-  const std::string& assigned_node() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_assigned_node(Arg_&& arg, Args_... args);
-  std::string* mutable_assigned_node();
-  PROTOBUF_NODISCARD std::string* release_assigned_node();
-  void set_allocated_assigned_node(std::string* value);
-
-  private:
-  const std::string& _internal_assigned_node() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_assigned_node(
-      const std::string& value);
-  std::string* _internal_mutable_assigned_node();
-
-  public:
-  // string assigned_pool = 3;
-  void clear_assigned_pool() ;
-  const std::string& assigned_pool() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_assigned_pool(Arg_&& arg, Args_... args);
-  std::string* mutable_assigned_pool();
-  PROTOBUF_NODISCARD std::string* release_assigned_pool();
-  void set_allocated_assigned_pool(std::string* value);
-
-  private:
-  const std::string& _internal_assigned_pool() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_assigned_pool(
-      const std::string& value);
-  std::string* _internal_mutable_assigned_pool();
-
-  public:
-  // .flex.Work work = 1;
-  bool has_work() const;
-  void clear_work() ;
-  const ::flex::Work& work() const;
-  PROTOBUF_NODISCARD ::flex::Work* release_work();
-  ::flex::Work* mutable_work();
-  void set_allocated_work(::flex::Work* value);
-  void unsafe_arena_set_allocated_work(::flex::Work* value);
-  ::flex::Work* unsafe_arena_release_work();
-
-  private:
-  const ::flex::Work& _internal_work() const;
-  ::flex::Work* _internal_mutable_work();
-
-  public:
-  // @@protoc_insertion_point(class_scope:beeremote.JobResult.WorkResult)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 1,
-      65, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const JobResult_WorkResult& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr assigned_node_;
-    ::google::protobuf::internal::ArenaStringPtr assigned_pool_;
-    ::flex::Work* work_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_beeremote_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Job final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:beeremote.Job) */ {
  public:
@@ -2784,7 +3308,7 @@ class Job final : public ::google::protobuf::Message
     return reinterpret_cast<const Job*>(
         &_Job_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(Job& a, Job& b) { a.Swap(&b); }
   inline void Swap(Job* other) {
     if (other == this) return;
@@ -2879,6 +3403,7 @@ class Job final : public ::google::protobuf::Message
   static constexpr State FAILED = Job_State_FAILED;
   static constexpr State CANCELLED = Job_State_CANCELLED;
   static constexpr State COMPLETED = Job_State_COMPLETED;
+  static constexpr State OFFLOADED = Job_State_OFFLOADED;
   static inline bool State_IsValid(int value) {
     return Job_State_IsValid(value);
   }
@@ -3111,7 +3636,7 @@ class JobResult final : public ::google::protobuf::Message
     return reinterpret_cast<const JobResult*>(
         &_JobResult_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(JobResult& a, JobResult& b) { a.Swap(&b); }
   inline void Swap(JobResult* other) {
     if (other == this) return;
@@ -3287,203 +3812,6 @@ class JobResult final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class GetRSTConfigResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:beeremote.GetRSTConfigResponse) */ {
- public:
-  inline GetRSTConfigResponse() : GetRSTConfigResponse(nullptr) {}
-  ~GetRSTConfigResponse() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(GetRSTConfigResponse* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetRSTConfigResponse));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR GetRSTConfigResponse(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline GetRSTConfigResponse(const GetRSTConfigResponse& from) : GetRSTConfigResponse(nullptr, from) {}
-  inline GetRSTConfigResponse(GetRSTConfigResponse&& from) noexcept
-      : GetRSTConfigResponse(nullptr, std::move(from)) {}
-  inline GetRSTConfigResponse& operator=(const GetRSTConfigResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline GetRSTConfigResponse& operator=(GetRSTConfigResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const GetRSTConfigResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const GetRSTConfigResponse* internal_default_instance() {
-    return reinterpret_cast<const GetRSTConfigResponse*>(
-        &_GetRSTConfigResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 18;
-  friend void swap(GetRSTConfigResponse& a, GetRSTConfigResponse& b) { a.Swap(&b); }
-  inline void Swap(GetRSTConfigResponse* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(GetRSTConfigResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  GetRSTConfigResponse* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<GetRSTConfigResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GetRSTConfigResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const GetRSTConfigResponse& from) { GetRSTConfigResponse::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(GetRSTConfigResponse* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "beeremote.GetRSTConfigResponse"; }
-
- protected:
-  explicit GetRSTConfigResponse(::google::protobuf::Arena* arena);
-  GetRSTConfigResponse(::google::protobuf::Arena* arena, const GetRSTConfigResponse& from);
-  GetRSTConfigResponse(::google::protobuf::Arena* arena, GetRSTConfigResponse&& from) noexcept
-      : GetRSTConfigResponse(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kRstsFieldNumber = 1,
-  };
-  // repeated .flex.RemoteStorageTarget rsts = 1;
-  int rsts_size() const;
-  private:
-  int _internal_rsts_size() const;
-
-  public:
-  void clear_rsts() ;
-  ::flex::RemoteStorageTarget* mutable_rsts(int index);
-  ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>* mutable_rsts();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& _internal_rsts() const;
-  ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>* _internal_mutable_rsts();
-  public:
-  const ::flex::RemoteStorageTarget& rsts(int index) const;
-  ::flex::RemoteStorageTarget* add_rsts();
-  const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& rsts() const;
-  // @@protoc_insertion_point(class_scope:beeremote.GetRSTConfigResponse)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const GetRSTConfigResponse& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::flex::RemoteStorageTarget > rsts_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_beeremote_2eproto;
-};
-// -------------------------------------------------------------------
-
 class UpdateJobsResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:beeremote.UpdateJobsResponse) */ {
  public:
@@ -3543,7 +3871,7 @@ class UpdateJobsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdateJobsResponse*>(
         &_UpdateJobsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(UpdateJobsResponse& a, UpdateJobsResponse& b) { a.Swap(&b); }
   inline void Swap(UpdateJobsResponse* other) {
     if (other == this) return;
@@ -3859,6 +4187,9 @@ class SubmitJobResponse final : public ::google::protobuf::Message
   static constexpr ResponseStatus CREATED = SubmitJobResponse_ResponseStatus_CREATED;
   static constexpr ResponseStatus EXISTING = SubmitJobResponse_ResponseStatus_EXISTING;
   static constexpr ResponseStatus NOT_ALLOWED = SubmitJobResponse_ResponseStatus_NOT_ALLOWED;
+  static constexpr ResponseStatus ALREADY_COMPLETE = SubmitJobResponse_ResponseStatus_ALREADY_COMPLETE;
+  static constexpr ResponseStatus ALREADY_OFFLOADED = SubmitJobResponse_ResponseStatus_ALREADY_OFFLOADED;
+  static constexpr ResponseStatus FAILED_PRECONDITION = SubmitJobResponse_ResponseStatus_FAILED_PRECONDITION;
   static inline bool ResponseStatus_IsValid(int value) {
     return SubmitJobResponse_ResponseStatus_IsValid(value);
   }
@@ -3999,7 +4330,7 @@ class GetJobsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetJobsResponse*>(
         &_GetJobsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(GetJobsResponse& a, GetJobsResponse& b) { a.Swap(&b); }
   inline void Swap(GetJobsResponse* other) {
     if (other == this) return;
@@ -4214,7 +4545,7 @@ class UpdatePathsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const UpdatePathsResponse*>(
         &_UpdatePathsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(UpdatePathsResponse& a, UpdatePathsResponse& b) { a.Swap(&b); }
   inline void Swap(UpdatePathsResponse* other) {
     if (other == this) return;
@@ -4604,6 +4935,80 @@ inline void SubmitJobResponse::_internal_set_status(::beeremote::SubmitJobRespon
 
 // -------------------------------------------------------------------
 
+// JobRequest_GenerationStatus
+
+// .beeremote.JobRequest.GenerationStatus.State state = 1;
+inline void JobRequest_GenerationStatus::clear_state() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.state_ = 0;
+}
+inline ::beeremote::JobRequest_GenerationStatus_State JobRequest_GenerationStatus::state() const {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.GenerationStatus.state)
+  return _internal_state();
+}
+inline void JobRequest_GenerationStatus::set_state(::beeremote::JobRequest_GenerationStatus_State value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.GenerationStatus.state)
+}
+inline ::beeremote::JobRequest_GenerationStatus_State JobRequest_GenerationStatus::_internal_state() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beeremote::JobRequest_GenerationStatus_State>(_impl_.state_);
+}
+inline void JobRequest_GenerationStatus::_internal_set_state(::beeremote::JobRequest_GenerationStatus_State value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.state_ = value;
+}
+
+// string message = 2;
+inline void JobRequest_GenerationStatus::clear_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.ClearToEmpty();
+}
+inline const std::string& JobRequest_GenerationStatus::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.GenerationStatus.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void JobRequest_GenerationStatus::set_message(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.GenerationStatus.message)
+}
+inline std::string* JobRequest_GenerationStatus::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.GenerationStatus.message)
+  return _s;
+}
+inline const std::string& JobRequest_GenerationStatus::_internal_message() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.message_.Get();
+}
+inline void JobRequest_GenerationStatus::_internal_set_message(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.Set(value, GetArena());
+}
+inline std::string* JobRequest_GenerationStatus::_internal_mutable_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.message_.Mutable( GetArena());
+}
+inline std::string* JobRequest_GenerationStatus::release_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.JobRequest.GenerationStatus.message)
+  return _impl_.message_.Release();
+}
+inline void JobRequest_GenerationStatus::set_allocated_message(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.message_.IsDefault()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beeremote.JobRequest.GenerationStatus.message)
+}
+
+// -------------------------------------------------------------------
+
 // JobRequest
 
 // string path = 1;
@@ -4882,6 +5287,74 @@ inline ::flex::MockJob* JobRequest::mutable_mock() ABSL_ATTRIBUTE_LIFETIME_BOUND
   return _msg;
 }
 
+// .flex.BuilderJob builder = 12;
+inline bool JobRequest::has_builder() const {
+  return type_case() == kBuilder;
+}
+inline bool JobRequest::_internal_has_builder() const {
+  return type_case() == kBuilder;
+}
+inline void JobRequest::set_has_builder() {
+  _impl_._oneof_case_[0] = kBuilder;
+}
+inline ::flex::BuilderJob* JobRequest::release_builder() {
+  // @@protoc_insertion_point(field_release:beeremote.JobRequest.builder)
+  if (type_case() == kBuilder) {
+    clear_has_type();
+    auto* temp = _impl_.type_.builder_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.type_.builder_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::flex::BuilderJob& JobRequest::_internal_builder() const {
+  return type_case() == kBuilder ? *_impl_.type_.builder_ : reinterpret_cast<::flex::BuilderJob&>(::flex::_BuilderJob_default_instance_);
+}
+inline const ::flex::BuilderJob& JobRequest::builder() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.builder)
+  return _internal_builder();
+}
+inline ::flex::BuilderJob* JobRequest::unsafe_arena_release_builder() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:beeremote.JobRequest.builder)
+  if (type_case() == kBuilder) {
+    clear_has_type();
+    auto* temp = _impl_.type_.builder_;
+    _impl_.type_.builder_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void JobRequest::unsafe_arena_set_allocated_builder(::flex::BuilderJob* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_type();
+  if (value) {
+    set_has_builder();
+    _impl_.type_.builder_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.JobRequest.builder)
+}
+inline ::flex::BuilderJob* JobRequest::_internal_mutable_builder() {
+  if (type_case() != kBuilder) {
+    clear_type();
+    set_has_builder();
+    _impl_.type_.builder_ =
+        ::google::protobuf::Message::DefaultConstruct<::flex::BuilderJob>(GetArena());
+  }
+  return _impl_.type_.builder_;
+}
+inline ::flex::BuilderJob* JobRequest::mutable_builder() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::flex::BuilderJob* _msg = _internal_mutable_builder();
+  // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.builder)
+  return _msg;
+}
+
 // bool force = 5;
 inline void JobRequest::clear_force() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
@@ -4902,6 +5375,124 @@ inline bool JobRequest::_internal_force() const {
 inline void JobRequest::_internal_set_force(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.force_ = value;
+}
+
+// bool stub_local = 7;
+inline void JobRequest::clear_stub_local() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.stub_local_ = false;
+}
+inline bool JobRequest::stub_local() const {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.stub_local)
+  return _internal_stub_local();
+}
+inline void JobRequest::set_stub_local(bool value) {
+  _internal_set_stub_local(value);
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.stub_local)
+}
+inline bool JobRequest::_internal_stub_local() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.stub_local_;
+}
+inline void JobRequest::_internal_set_stub_local(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.stub_local_ = value;
+}
+
+// .beeremote.JobRequest.GenerationStatus generation_status = 8;
+inline bool JobRequest::has_generation_status() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.generation_status_ != nullptr);
+  return value;
+}
+inline void JobRequest::clear_generation_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.generation_status_ != nullptr) _impl_.generation_status_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beeremote::JobRequest_GenerationStatus& JobRequest::_internal_generation_status() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beeremote::JobRequest_GenerationStatus* p = _impl_.generation_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beeremote::JobRequest_GenerationStatus&>(::beeremote::_JobRequest_GenerationStatus_default_instance_);
+}
+inline const ::beeremote::JobRequest_GenerationStatus& JobRequest::generation_status() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.generation_status)
+  return _internal_generation_status();
+}
+inline void JobRequest::unsafe_arena_set_allocated_generation_status(::beeremote::JobRequest_GenerationStatus* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.generation_status_);
+  }
+  _impl_.generation_status_ = reinterpret_cast<::beeremote::JobRequest_GenerationStatus*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.JobRequest.generation_status)
+}
+inline ::beeremote::JobRequest_GenerationStatus* JobRequest::release_generation_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beeremote::JobRequest_GenerationStatus* released = _impl_.generation_status_;
+  _impl_.generation_status_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beeremote::JobRequest_GenerationStatus* JobRequest::unsafe_arena_release_generation_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.JobRequest.generation_status)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beeremote::JobRequest_GenerationStatus* temp = _impl_.generation_status_;
+  _impl_.generation_status_ = nullptr;
+  return temp;
+}
+inline ::beeremote::JobRequest_GenerationStatus* JobRequest::_internal_mutable_generation_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.generation_status_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beeremote::JobRequest_GenerationStatus>(GetArena());
+    _impl_.generation_status_ = reinterpret_cast<::beeremote::JobRequest_GenerationStatus*>(p);
+  }
+  return _impl_.generation_status_;
+}
+inline ::beeremote::JobRequest_GenerationStatus* JobRequest::mutable_generation_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beeremote::JobRequest_GenerationStatus* _msg = _internal_mutable_generation_status();
+  // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.generation_status)
+  return _msg;
+}
+inline void JobRequest::set_allocated_generation_status(::beeremote::JobRequest_GenerationStatus* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.generation_status_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.generation_status_ = reinterpret_cast<::beeremote::JobRequest_GenerationStatus*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beeremote.JobRequest.generation_status)
 }
 
 inline bool JobRequest::has_type() const {
@@ -7339,6 +7930,12 @@ struct is_proto_enum<::beeremote::SubmitJobResponse_ResponseStatus> : std::true_
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::beeremote::SubmitJobResponse_ResponseStatus>() {
   return ::beeremote::SubmitJobResponse_ResponseStatus_descriptor();
+}
+template <>
+struct is_proto_enum<::beeremote::JobRequest_GenerationStatus_State> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::beeremote::JobRequest_GenerationStatus_State>() {
+  return ::beeremote::JobRequest_GenerationStatus_State_descriptor();
 }
 template <>
 struct is_proto_enum<::beeremote::Job_State> : std::true_type {};
