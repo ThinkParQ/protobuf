@@ -5,7 +5,6 @@
 - [Overview](#overview)
 - [Quick Start](#quick-start)
   - [Versioning](#versioning)
-  - [Go](#go)
 - [Advanced: Generate / Compile `.proto` Files](#advanced-generate--compile-proto-files)
   - [Important limitations when adding new .proto files](#important-limitations-when-adding-new-proto-files)
   - [Prerequisites](#prerequisites)
@@ -13,10 +12,10 @@
   - [Generating Code for Golang](#generating-code-for-golang)
   - [Generating Code for Rust](#generating-code-for-rust)
 - [Updating Existing Protocol Buffers](#updating-existing-protocol-buffers)
+  - [Coding Standards](#coding-standards)
   - [Gotchas](#gotchas)
   - [Best Practices](#best-practices)
     - [Field Presence](#field-presence)
-- [References](#references)
 
 # Overview 
 
@@ -39,59 +38,27 @@ Languages with precompiled/generated code:
 
 # Quick Start
 
-Most users will not need to worry about generating code themselves, and can
-simply import this repository into their project using whatever method is
-appropriate for their language.
+Most users will not need to worry about generating code themselves, and can simply import the
+libraries found in this repository into their project using whatever method is appropriate for the
+language. Refer to language specific dependency management documentation or the ThinkParQ wiki for
+languages commonly used with these protocol buffers:
+
+* [Go](https://github.com/ThinkParQ/beegfs-go/wiki/Getting-Started-with-Go#dependency-management)
+* [Rust](https://github.com/ThinkParQ/beegfs-rs/wiki/Getting-Started-with-Rust#dependency-management)
 
 ## Versioning
 
 The major version of the protobuf library will remain at v0, indicating these APIs are not yet
-guaranteed to be stable. For each v8.x.y BeeGFS release, the protobuf API will be versioned as
-v0.x.y and it is preferable to import the library using a tagged version when possible.
+guaranteed to be stable. For each x.y BeeGFS major/minor release, the protobuf API will be versioned
+as v0.x.y. An official tag will not be added for patch versions as in general new functionality
+should only be made available in a major.minor versions. If functionality/fixes are needed elsewhere
+between official releases, those changes should be imported using a pseudo-version (see below).
 
 If you make changes to protobuf that need to be immediately imported elsewhere before a new
 "official" version is tagged, you should import your changes by their commit hash. Depending on the
 language this may either be referenced as a pseudo-version (i.e., for Go using `go get`) or by
-referencing the commit hash directly (i.e., for Rust using cargo). 
-
-See the dependency management documentation for
-[Go](https://github.com/ThinkParQ/developer-handbook/tree/main/getting_started/go#how-to-coordinate-changes-requiring-updates-in-multiple-repositories)
-and
-[Rust](https://github.com/ThinkParQ/developer-handbook/blob/main/getting_started/rust/README.md#working-with-internal-git-dependencies)
-for more details on how to manage internal dependencies. Note this versioning strategy is also used
-for other projects such as
-[beegfs-go](https://github.com/ThinkParQ/beegfs-go?tab=readme-ov-file#versioning). 
-
-## Go
-
-As long as this repository is private, some additional configuration is required
-to allow this repository to be imported as a private module into your Go
-project. From there you can use Go Modules and all of the normal tools such as
-`go get`, `go mod tidy`, and `go mod vendor` to manage the `protobuf` as a
-dependency of your project. 
-
-IMPORTANT: These steps presume you are using SSH and the SSH key for the machine
-you're on is already added to your GitHub account and has access to this
-repository. 
-
-Steps: 
-
-(1) In your .bashrc/similar set the GOPRIVATE variable so the Go tools will
-access the repository directly instead of going through the central services
-(which could potentially leak information, such as the project name):
-```shell
-export GOPRIVATE=github.com/thinkparq/protobuf/go
-```
-(2) Add the following to your global `.gitconfig` file to ensure `go get` will
-use SSH instead of HTTP:
-```shell
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-```
-(3) From here you can add any of the packages from protobuf as a dependency
-with `go get`. For example to use BeeWatch in your project run `go get
-github.com/thinkparq/protobuf/go/beewatch`. When changes are made to the
-`protobuf` project you can update dependencies with `go get -u <URL>`
+referencing the commit hash directly (i.e., for Rust using cargo). In general it is preferable to
+import the library using a tagged version if possible.
 
 # Advanced: Generate / Compile `.proto` Files
 
@@ -127,45 +94,43 @@ The reasons are:
 
 ## Prerequisites
 
-* Before you can start, you need to setup the development tools and / or compiler of the supported
-  languages:
+* Setup the development tools and / or compiler of the supported languages:
     * For Rust: https://rustup.rs/
     * For Go: https://go.dev/doc/install
-* You need read access to the private [protoc-rs](https://github.com/thinkparq/protoc-rs) repository.
-* The simplest way to install all the tooling is to run `make install-tools` (requires `curl`).
-  This will install all the necessary tools using the correct versions to your `$HOME/.local/bin`
-  (the default folder for user programs). Note that if you already have them installed in different
-  locations (e.g. the default `$GOBIN`), they might have higher priority depending on your `$PATH`
-  and still be run instead. Make sure to you remove those manually.
-* If you want to install the tools manually, you can do that as well.
-  * The Makefile defines which tools on which versions you need - make sure you use exactly the
-    same. Do not use your package manager as it will most likely provide a different version.
-  * Install the Protocol buffer compiler `protoc`.
-    * Generally it is recommended to install the [pre-compiled
-      binaries](https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os).
-  * Install any language specific plugins, including anything required to work
-    with gRPC.
-    * For example [for Go](https://grpc.io/docs/languages/go/quickstart/) you need
-      `protoc-gen-go` and `protoc-gen-go-grpc`.
-  * Install the custom Rust protocol buffer compiler from https://github.com/thinkparq/protoc-rs.
-    * This can be done using `cargo`:
-      ```
-      cargo install --git "https://github.com/thinkparq/protoc-rs --tag "$VERSION" --locked"
-
-      ```
+* Install all required tooling:
+  * The simplest way to install all the tooling is to run `make install-tools` (requires `curl`).
+    This will install all the necessary tools using the correct versions to your `$HOME/.local/bin`
+    (the default folder for user programs). 
+    * Note that if you already have them installed in different locations (e.g. the default
+      `$GOBIN`), they might have higher priority depending on your `$PATH` and still be run instead.
+      Make sure to you remove those manually.
+  * If you want to install the tools manually, you can do that as well.
+    * The Makefile defines which tools on which versions you need - make sure you use exactly the
+      same. Do not use your package manager as it will most likely provide a different version.
+    * Install the Protocol buffer compiler `protoc`.
+      * Generally it is recommended to install the [pre-compiled
+        binaries](https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os).
+    * Install any language specific plugins, including anything required to work
+      with gRPC.
+      * For example [for Go](https://grpc.io/docs/languages/go/quickstart/) you need
+        `protoc-gen-go` and `protoc-gen-go-grpc`.
+    * Install the custom Rust protocol buffer compiler from https://github.com/thinkparq/protoc-rs.
+      * This can be done using `cargo`:
+        ```
+        cargo install --git "https://github.com/thinkparq/protoc-rs --tag "$VERSION" --locked"
+        ```
 * Ensure all the necessary paths are added to your `$PATH` variable using `.bashrc` or similar.
   * If you use `make install-tools`, you only need to add `$HOME/.local/bin` if it is not already
     part of your `$PATH`.
   * If you installed manually, it depends on where you installed it.
-    * For Rusts `cargo install`, the default install directory is usually `~/.cargo/bin`.
-    * For Gos `go install` it is usually put to `$GOBIN` or `$GOPATH/bin`. 
+    * For Rust's `cargo install`, the default install directory is usually `~/.cargo/bin`.
+    * For Go's `go install` it is usually put to `$GOBIN` or `$GOPATH/bin`. 
 
 ## Generating Code for a New Language
 
 The project Makefile is setup with targets to compile all protobuf files under the `./proto`
-directory into a multiple target languages when `make` or `make protos` is
-executed. Each languages output is put into a separate output directory (e.g. `./go`, `./rust`,
-`./cpp`).
+directory into a multiple target languages when `make` or `make protos` is executed. Each languages
+output is put into a separate output directory (e.g. `./go`, `./rust`, `./cpp`).
 
 To add a new language amend the Makefile as follows:
 
@@ -199,6 +164,17 @@ and use the code as a dependency in Rust projects.
 
 # Updating Existing Protocol Buffers
 
+## Coding Standards
+
+This project largely adheres to the existing standards for writing and maintaining protocol buffers:
+
+* [Best Practices](https://protobuf.dev/best-practices/)
+* [Style Guide](https://protobuf.dev/programming-guides/style/)
+
+Rather than recreate that existing documentation, this section focuses on anything specific to this
+project's use of protocol buffers along with any "gotchas" we have encountered and "best practices"
+we have defined or are important to contextualize for this project.
+
 ## Gotchas
 
 * Generally [field numbers](https://protobuf.dev/programming-guides/proto3/#assigning) should never
@@ -222,6 +198,9 @@ and use the code as a dependency in Rust projects.
 
 ### [Field Presence](https://protobuf.dev/programming-guides/field_presence/)
 
+TL;DR - Generally expect fields to default to the language specific default values for each type for
+any fields that were not set by the server unless the recommended `optional` keyword is used.
+
 Unless there is a good reason not to, generally use the `optional` keyword to force fields to have
 explicit presence. On a case-by-case basis developers can choose to omit the `optional` keyword if
 one of the following is true:
@@ -244,9 +223,3 @@ to lean away from using `optional`. While this is fine if you are confident one 
 rules hold true, for messages that may be used by multiple languages using explicit field presence
 can help ensure consistency. Take special care to document any special behaviors or assumptions made
 in non-optional fields, for example if "0" has a specific meaning (such as invalid) to the receiver.
-
-# References
-
-* [Style Guide](https://protobuf.dev/programming-guides/style/)
-  * TL;DR - Generally expect fields to default to the language specific default values for each type for any fields that were not set by the server.
-* [Go Generated Code Guide](https://protobuf.dev/reference/go/go-generated/)
