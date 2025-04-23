@@ -31,7 +31,6 @@ jobs:
       - name: Install tools
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          git config --global url."https://${{ secrets.CI_PROTOBUF_ACCESS }}@github.com/thinkparq/protoc-rs".insteadOf https://github.com/thinkparq/protoc-rs
           make install-tools
       - run: echo "${HOME}/.local/bin" >> $GITHUB_PATH
       - name: Check diff
