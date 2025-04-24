@@ -24,6 +24,7 @@ protos: check-tools
 		--cpp_out=$(CPP_OUT_DIR) \
 		$(SRC_DIR)/*.proto
 	protoc-rs compile -I $(SRC_DIR) --out=$(RUST_OUT_DIR) $(SRC_DIR)/*.proto
+	@find $(RUST_OUT_DIR) -name '*.rs' -exec sed -i '1s;^;#![allow(clippy::all)]\n\n;' {} +
 
 
 # Test targets: 
