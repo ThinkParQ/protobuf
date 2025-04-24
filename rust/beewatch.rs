@@ -4,7 +4,6 @@
 /// API. Those should only affect the serialization format between the meta and watch services, and
 /// should adhere to standard protocol buffer best practices. Notably minor updates should be
 /// additive and not remove or change the meaning of existing fields.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Event {
     #[prost(uint64, tag = "1")]
@@ -21,7 +20,6 @@ pub struct Event {
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-    #[allow(clippy::derive_partial_eq_without_eq)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum EventData {
         #[prost(message, tag = "11")]
@@ -31,7 +29,6 @@ pub mod event {
     }
 }
 /// The v1 event format is the legacy format from BeeGFS v7.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct V1Event {
     #[prost(enumeration = "v1_event::Type", tag = "1")]
@@ -87,19 +84,19 @@ pub mod v1_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Flush => "FLUSH",
-                Type::Truncate => "TRUNCATE",
-                Type::Setattr => "SETATTR",
-                Type::CloseWrite => "CLOSE_WRITE",
-                Type::Create => "CREATE",
-                Type::Mkdir => "MKDIR",
-                Type::Mknod => "MKNOD",
-                Type::Symlink => "SYMLINK",
-                Type::Rmdir => "RMDIR",
-                Type::Unlink => "UNLINK",
-                Type::Hardlink => "HARDLINK",
-                Type::Rename => "RENAME",
-                Type::Read => "READ",
+                Self::Flush => "FLUSH",
+                Self::Truncate => "TRUNCATE",
+                Self::Setattr => "SETATTR",
+                Self::CloseWrite => "CLOSE_WRITE",
+                Self::Create => "CREATE",
+                Self::Mkdir => "MKDIR",
+                Self::Mknod => "MKNOD",
+                Self::Symlink => "SYMLINK",
+                Self::Rmdir => "RMDIR",
+                Self::Unlink => "UNLINK",
+                Self::Hardlink => "HARDLINK",
+                Self::Rename => "RENAME",
+                Self::Read => "READ",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -124,7 +121,6 @@ pub mod v1_event {
     }
 }
 /// The v2 event format was introduced in BeeGFS v8.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct V2Event {
     #[prost(enumeration = "v2_event::Type", tag = "1")]
@@ -186,23 +182,23 @@ pub mod v2_event {
         /// (if the ProtoBuf definition does not change) and safe for programmatic use.
         pub fn as_str_name(&self) -> &'static str {
             match self {
-                Type::Invalid => "INVALID",
-                Type::Flush => "FLUSH",
-                Type::Truncate => "TRUNCATE",
-                Type::Setattr => "SETATTR",
-                Type::CloseWrite => "CLOSE_WRITE",
-                Type::Create => "CREATE",
-                Type::Mkdir => "MKDIR",
-                Type::Mknod => "MKNOD",
-                Type::Symlink => "SYMLINK",
-                Type::Rmdir => "RMDIR",
-                Type::Unlink => "UNLINK",
-                Type::Hardlink => "HARDLINK",
-                Type::Rename => "RENAME",
-                Type::OpenRead => "OPEN_READ",
-                Type::OpenWrite => "OPEN_WRITE",
-                Type::OpenReadWrite => "OPEN_READ_WRITE",
-                Type::LastWriterClosed => "LAST_WRITER_CLOSED",
+                Self::Invalid => "INVALID",
+                Self::Flush => "FLUSH",
+                Self::Truncate => "TRUNCATE",
+                Self::Setattr => "SETATTR",
+                Self::CloseWrite => "CLOSE_WRITE",
+                Self::Create => "CREATE",
+                Self::Mkdir => "MKDIR",
+                Self::Mknod => "MKNOD",
+                Self::Symlink => "SYMLINK",
+                Self::Rmdir => "RMDIR",
+                Self::Unlink => "UNLINK",
+                Self::Hardlink => "HARDLINK",
+                Self::Rename => "RENAME",
+                Self::OpenRead => "OPEN_READ",
+                Self::OpenWrite => "OPEN_WRITE",
+                Self::OpenReadWrite => "OPEN_READ_WRITE",
+                Self::LastWriterClosed => "LAST_WRITER_CLOSED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -231,8 +227,7 @@ pub mod v2_event {
     }
 }
 /// Response messages allow the subscribers to acknowledge events they have processed and request a graceful shutdown.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct Response {
     #[prost(uint64, tag = "1")]
     pub completed_seq: u64,
@@ -241,7 +236,13 @@ pub struct Response {
 }
 /// Generated client implementations.
 pub mod subscriber_client {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
     #[derive(Debug, Clone)]
@@ -261,10 +262,10 @@ pub mod subscriber_client {
     }
     impl<T> SubscriberClient<T>
     where
-        T: tonic::client::GrpcService<tonic::body::BoxBody>,
+        T: tonic::client::GrpcService<tonic::body::Body>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
-        <T::ResponseBody as Body>::Error: Into<StdError> + Send,
+        T::ResponseBody: Body<Data = Bytes> + std::marker::Send + 'static,
+        <T::ResponseBody as Body>::Error: Into<StdError> + std::marker::Send,
     {
         pub fn new(inner: T) -> Self {
             let inner = tonic::client::Grpc::new(inner);
@@ -282,14 +283,14 @@ pub mod subscriber_client {
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
             T: tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
+                http::Request<tonic::body::Body>,
                 Response = http::Response<
-                    <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
+                    <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
                 >,
             >,
             <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+                http::Request<tonic::body::Body>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             SubscriberClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -335,8 +336,7 @@ pub mod subscriber_client {
                 .ready()
                 .await
                 .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
+                    tonic::Status::unknown(
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
@@ -353,16 +353,22 @@ pub mod subscriber_client {
 }
 /// Generated server implementations.
 pub mod subscriber_server {
-    #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
+    #![allow(
+        unused_variables,
+        dead_code,
+        missing_docs,
+        clippy::wildcard_imports,
+        clippy::let_unit_value,
+    )]
     use tonic::codegen::*;
     /// Generated trait containing gRPC methods that should be implemented for use with SubscriberServer.
     #[async_trait]
-    pub trait Subscriber: Send + Sync + 'static {
+    pub trait Subscriber: std::marker::Send + std::marker::Sync + 'static {
         /// Server streaming response type for the ReceiveEvents method.
         type ReceiveEventsStream: tonic::codegen::tokio_stream::Stream<
                 Item = std::result::Result<super::Response, tonic::Status>,
             >
-            + Send
+            + std::marker::Send
             + 'static;
         async fn receive_events(
             &self,
@@ -373,20 +379,18 @@ pub mod subscriber_server {
         >;
     }
     #[derive(Debug)]
-    pub struct SubscriberServer<T: Subscriber> {
-        inner: _Inner<T>,
+    pub struct SubscriberServer<T> {
+        inner: Arc<T>,
         accept_compression_encodings: EnabledCompressionEncodings,
         send_compression_encodings: EnabledCompressionEncodings,
         max_decoding_message_size: Option<usize>,
         max_encoding_message_size: Option<usize>,
     }
-    struct _Inner<T>(Arc<T>);
-    impl<T: Subscriber> SubscriberServer<T> {
+    impl<T> SubscriberServer<T> {
         pub fn new(inner: T) -> Self {
             Self::from_arc(Arc::new(inner))
         }
         pub fn from_arc(inner: Arc<T>) -> Self {
-            let inner = _Inner(inner);
             Self {
                 inner,
                 accept_compression_encodings: Default::default(),
@@ -436,10 +440,10 @@ pub mod subscriber_server {
     impl<T, B> tonic::codegen::Service<http::Request<B>> for SubscriberServer<T>
     where
         T: Subscriber,
-        B: Body + Send + 'static,
-        B::Error: Into<StdError> + Send + 'static,
+        B: Body + std::marker::Send + 'static,
+        B::Error: Into<StdError> + std::marker::Send + 'static,
     {
-        type Response = http::Response<tonic::body::BoxBody>;
+        type Response = http::Response<tonic::body::Body>;
         type Error = std::convert::Infallible;
         type Future = BoxFuture<Self::Response, Self::Error>;
         fn poll_ready(
@@ -449,7 +453,6 @@ pub mod subscriber_server {
             Poll::Ready(Ok(()))
         }
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
-            let inner = self.inner.clone();
             match req.uri().path() {
                 "/beewatch.Subscriber/ReceiveEvents" => {
                     #[allow(non_camel_case_types)]
@@ -479,7 +482,6 @@ pub mod subscriber_server {
                     let max_encoding_message_size = self.max_encoding_message_size;
                     let inner = self.inner.clone();
                     let fut = async move {
-                        let inner = inner.0;
                         let method = ReceiveEventsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
@@ -498,20 +500,27 @@ pub mod subscriber_server {
                 }
                 _ => {
                     Box::pin(async move {
-                        Ok(
-                            http::Response::builder()
-                                .status(200)
-                                .header("grpc-status", "12")
-                                .header("content-type", "application/grpc")
-                                .body(empty_body())
-                                .unwrap(),
-                        )
+                        let mut response = http::Response::new(
+                            tonic::body::Body::default(),
+                        );
+                        let headers = response.headers_mut();
+                        headers
+                            .insert(
+                                tonic::Status::GRPC_STATUS,
+                                (tonic::Code::Unimplemented as i32).into(),
+                            );
+                        headers
+                            .insert(
+                                http::header::CONTENT_TYPE,
+                                tonic::metadata::GRPC_CONTENT_TYPE,
+                            );
+                        Ok(response)
                     })
                 }
             }
         }
     }
-    impl<T: Subscriber> Clone for SubscriberServer<T> {
+    impl<T> Clone for SubscriberServer<T> {
         fn clone(&self) -> Self {
             let inner = self.inner.clone();
             Self {
@@ -523,17 +532,9 @@ pub mod subscriber_server {
             }
         }
     }
-    impl<T: Subscriber> Clone for _Inner<T> {
-        fn clone(&self) -> Self {
-            Self(Arc::clone(&self.0))
-        }
-    }
-    impl<T: std::fmt::Debug> std::fmt::Debug for _Inner<T> {
-        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-            write!(f, "{:?}", self.0)
-        }
-    }
-    impl<T: Subscriber> tonic::server::NamedService for SubscriberServer<T> {
-        const NAME: &'static str = "beewatch.Subscriber";
+    /// Generated gRPC service name
+    pub const SERVICE_NAME: &str = "beewatch.Subscriber";
+    impl<T> tonic::server::NamedService for SubscriberServer<T> {
+        const NAME: &'static str = SERVICE_NAME;
     }
 }

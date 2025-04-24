@@ -23,7 +23,7 @@ protos: check-tools
 		--go-grpc_out=$(GO_OUT_DIR) \
 		--cpp_out=$(CPP_OUT_DIR) \
 		$(SRC_DIR)/*.proto
-	protoc-rs compile -I $(SRC_DIR) --out=$(RUST_OUT_DIR) $(SRC_DIR)/*.proto
+	protoc-rs -I $(SRC_DIR) --out=$(RUST_OUT_DIR) $(SRC_DIR)/*.proto
 
 
 # Test targets: 
@@ -57,7 +57,7 @@ clean:
 PROTOC_VERSION := 29.2
 PROTOC_GEN_GO_VERSION := 1.36.2
 PROTOC_GEN_GO_GRPC_VERSION := 1.5.1
-PROTOC_RS_VERSION := 0.3.0
+PROTOC_RS_VERSION := 0.5.0
 
 # Checks the versions of the installed tools, making sure they are what we expect
 .PHONY: check-tools

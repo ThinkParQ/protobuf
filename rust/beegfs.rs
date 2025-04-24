@@ -2,8 +2,7 @@
 /// The "legacy" BeeGFS numeric Id-NodeType combination that can be used to identify an entity like
 /// a node or target. Because each entity type has its own id space (meaning a combination is not
 /// globally unique), the entity type must be known in addition to uniquely identify an entity.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct LegacyId {
     /// BeeGFS numeric id.
     /// Required, 0 is invalid.
@@ -23,7 +22,6 @@ pub struct LegacyId {
 /// 2) In a response message (from the management), _all_ fields should be set. The request processor
 /// should have all info about an entity available. If that isn't the case, leaving fields empty is
 /// allowed.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EntityIdSet {
     /// The global, unique entity id. Identifies an entity from all types without any additional
@@ -59,11 +57,11 @@ impl EntityType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            EntityType::Unspecified => "ENTITY_TYPE_UNSPECIFIED",
-            EntityType::Node => "NODE",
-            EntityType::Target => "TARGET",
-            EntityType::BuddyGroup => "BUDDY_GROUP",
-            EntityType::Pool => "POOL",
+            Self::Unspecified => "ENTITY_TYPE_UNSPECIFIED",
+            Self::Node => "NODE",
+            Self::Target => "TARGET",
+            Self::BuddyGroup => "BUDDY_GROUP",
+            Self::Pool => "POOL",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -94,11 +92,11 @@ impl NodeType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            NodeType::Unspecified => "NODE_TYPE_UNSPECIFIED",
-            NodeType::Client => "CLIENT",
-            NodeType::Meta => "META",
-            NodeType::Storage => "STORAGE",
-            NodeType::Management => "MANAGEMENT",
+            Self::Unspecified => "NODE_TYPE_UNSPECIFIED",
+            Self::Client => "CLIENT",
+            Self::Meta => "META",
+            Self::Storage => "STORAGE",
+            Self::Management => "MANAGEMENT",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -128,10 +126,10 @@ impl ReachabilityState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ReachabilityState::Unspecified => "REACHABILITY_STATE_UNSPECIFIED",
-            ReachabilityState::Online => "ONLINE",
-            ReachabilityState::Poffline => "POFFLINE",
-            ReachabilityState::Offline => "OFFLINE",
+            Self::Unspecified => "REACHABILITY_STATE_UNSPECIFIED",
+            Self::Online => "ONLINE",
+            Self::Poffline => "POFFLINE",
+            Self::Offline => "OFFLINE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -160,10 +158,10 @@ impl ConsistencyState {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            ConsistencyState::Unspecified => "CONSISTENCY_STATE_UNSPECIFIED",
-            ConsistencyState::Good => "GOOD",
-            ConsistencyState::NeedsResync => "NEEDS_RESYNC",
-            ConsistencyState::Bad => "BAD",
+            Self::Unspecified => "CONSISTENCY_STATE_UNSPECIFIED",
+            Self::Good => "GOOD",
+            Self::NeedsResync => "NEEDS_RESYNC",
+            Self::Bad => "BAD",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -192,10 +190,10 @@ impl CapacityPool {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            CapacityPool::Unspecified => "CAPACITY_POOL_UNSPECIFIED",
-            CapacityPool::Normal => "NORMAL",
-            CapacityPool::Low => "LOW",
-            CapacityPool::Emergency => "EMERGENCY",
+            Self::Unspecified => "CAPACITY_POOL_UNSPECIFIED",
+            Self::Normal => "NORMAL",
+            Self::Low => "LOW",
+            Self::Emergency => "EMERGENCY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -223,9 +221,9 @@ impl NicType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            NicType::Unspecified => "NIC_TYPE_UNSPECIFIED",
-            NicType::Ethernet => "ETHERNET",
-            NicType::Rdma => "RDMA",
+            Self::Unspecified => "NIC_TYPE_UNSPECIFIED",
+            Self::Ethernet => "ETHERNET",
+            Self::Rdma => "RDMA",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -252,9 +250,9 @@ impl QuotaIdType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            QuotaIdType::Unspecified => "QUOTA_ID_TYPE_UNSPECIFIED",
-            QuotaIdType::User => "QUOTA_ID_TYPE_USER",
-            QuotaIdType::Group => "QUOTA_ID_TYPE_GROUP",
+            Self::Unspecified => "QUOTA_ID_TYPE_UNSPECIFIED",
+            Self::User => "QUOTA_ID_TYPE_USER",
+            Self::Group => "QUOTA_ID_TYPE_GROUP",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -281,9 +279,9 @@ impl QuotaType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            QuotaType::Unspecified => "QUOTA_TYPE_UNSPECIFIED",
-            QuotaType::Space => "QUOTA_TYPE_SPACE",
-            QuotaType::Inode => "QUOTA_TYPE_INODE",
+            Self::Unspecified => "QUOTA_TYPE_UNSPECIFIED",
+            Self::Space => "QUOTA_TYPE_SPACE",
+            Self::Inode => "QUOTA_TYPE_INODE",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
