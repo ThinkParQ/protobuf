@@ -32,6 +32,8 @@ pub mod submit_job_response {
         Created = 1,
         Existing = 2,
         NotAllowed = 3,
+        AlreadyComplete = 4,
+        AlreadyOffloaded = 5,
     }
     impl ResponseStatus {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -44,6 +46,8 @@ pub mod submit_job_response {
                 ResponseStatus::Created => "CREATED",
                 ResponseStatus::Existing => "EXISTING",
                 ResponseStatus::NotAllowed => "NOT_ALLOWED",
+                ResponseStatus::AlreadyComplete => "ALREADY_COMPLETE",
+                ResponseStatus::AlreadyOffloaded => "ALREADY_OFFLOADED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -53,6 +57,8 @@ pub mod submit_job_response {
                 "CREATED" => Some(Self::Created),
                 "EXISTING" => Some(Self::Existing),
                 "NOT_ALLOWED" => Some(Self::NotAllowed),
+                "ALREADY_COMPLETE" => Some(Self::AlreadyComplete),
+                "ALREADY_OFFLOADED" => Some(Self::AlreadyOffloaded),
                 _ => None,
             }
         }
@@ -85,7 +91,10 @@ pub struct JobRequest {
     /// to know if a particular job request was forced.
     #[prost(bool, tag = "5")]
     pub force: bool,
-    #[prost(oneof = "job_request::Type", tags = "10, 11")]
+    /// When stub_local is set the local file with be a stub file
+    #[prost(bool, tag = "7")]
+    pub stub_local: bool,
+    #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }
 /// Nested message and enum types in `JobRequest`.
@@ -97,6 +106,8 @@ pub mod job_request {
         Sync(super::super::flex::SyncJob),
         #[prost(message, tag = "11")]
         Mock(super::super::flex::MockJob),
+        #[prost(message, tag = "12")]
+        Builder(super::super::flex::BuilderJob),
     }
 }
 /// Job contains all the data from the original request plus the job ID and
@@ -224,6 +235,9 @@ pub mod job {
         /// If the job and its WRs completed successfully. This is a terminal state and no further
         /// state changes are possible once a job enters this state.
         Completed = 9,
+        /// If the job's WRs completed successfully and a stub has replaced the local file. This is a
+        /// terminal state and no further state changes are possible once a job enters this state.
+        Offloaded = 10,
     }
     impl State {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -241,6 +255,7 @@ pub mod job {
                 State::Failed => "FAILED",
                 State::Cancelled => "CANCELLED",
                 State::Completed => "COMPLETED",
+                State::Offloaded => "OFFLOADED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -255,6 +270,7 @@ pub mod job {
                 "FAILED" => Some(Self::Failed),
                 "CANCELLED" => Some(Self::Cancelled),
                 "COMPLETED" => Some(Self::Completed),
+                "OFFLOADED" => Some(Self::Offloaded),
                 _ => None,
             }
         }

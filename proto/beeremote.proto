@@ -37,6 +37,8 @@ message SubmitJobResponse {
         CREATED = 1;
         EXISTING = 2;
         NOT_ALLOWED = 3;
+        ALREADY_COMPLETE = 4;
+        ALREADY_OFFLOADED = 5;
     }
 }
 
@@ -58,12 +60,15 @@ message JobRequest {
     oneof type {
         flex.SyncJob sync = 10;
         flex.MockJob mock = 11;
+        flex.BuilderJob builder = 12;
     }
     // When force is set this request will create a new job even if there is already a completed
     // job. When forced the request will return an error if there is already a job running. This is
     // part of the JobRequest instead of the SubmitJobRequest message in case it ever is important
     // to know if a particular job request was forced.
-    bool force = 5;    
+    bool force = 5;
+    // When stub_local is set the local file with be a stub file
+    bool stub_local = 7;
 }
 
 // Job contains all the data from the original request plus the job ID and
@@ -146,6 +151,9 @@ message Job {
         // If the job and its WRs completed successfully. This is a terminal state and no further 
         // state changes are possible once a job enters this state.
         COMPLETED = 9;
+        // If the job's WRs completed successfully and a stub has replaced the local file. This is a
+        // terminal state and no further state changes are possible once a job enters this state.
+        OFFLOADED = 10;
     }
     // Used as the upload ID for multipart uploads, or any other time 
     // an external identifer is needed to coordinate a distributed transfer.    

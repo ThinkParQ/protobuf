@@ -155,6 +155,62 @@ pub struct BulkUpdateWorkResponse {
     #[prost(string, tag = "2")]
     pub message: ::prost::alloc::string::String,
 }
+/// JobLockedInfo contains require information that must be determined prior to calling a job request for
+/// file. This will be produced by sync's job builder but can be produced anywhere it makes sense such as
+/// in ctl.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobLockedInfo {
+    /// locked indicates the file read-only or read-write lock has already been obtained.
+    #[prost(bool, tag = "1")]
+    pub locked: bool,
+    #[prost(bool, tag = "2")]
+    pub exists: bool,
+    /// Size of the local file.
+    #[prost(int64, tag = "3")]
+    pub size: i64,
+    /// File mode of the local file
+    #[prost(uint32, tag = "4")]
+    pub mode: u32,
+    /// Last modified time of the local file.
+    #[prost(message, optional, tag = "5")]
+    pub mtime: ::core::option::Option<::prost_types::Timestamp>,
+    /// Size of the remote file or object.
+    #[prost(int64, tag = "6")]
+    pub remote_size: i64,
+    /// Last beegfs_mtime of the remote file or object.
+    #[prost(message, optional, tag = "7")]
+    pub remote_mtime: ::core::option::Option<::prost_types::Timestamp>,
+    /// If stub_url is not empty then path is for a stub file with the provided rst url.
+    #[prost(uint32, tag = "8")]
+    pub stub_url_rst_id: u32,
+    #[prost(string, tag = "9")]
+    pub stub_url_path: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub external_id: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct JobRequestCfg {
+    #[prost(uint32, tag = "1")]
+    pub remote_storage_target: u32,
+    #[prost(string, tag = "2")]
+    pub path: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub remote_path: ::prost::alloc::string::String,
+    #[prost(bool, tag = "4")]
+    pub download: bool,
+    #[prost(bool, tag = "5")]
+    pub stub_local: bool,
+    #[prost(bool, tag = "6")]
+    pub overwrite: bool,
+    #[prost(bool, tag = "7")]
+    pub flatten: bool,
+    #[prost(bool, tag = "8")]
+    pub force: bool,
+    #[prost(message, optional, tag = "9")]
+    pub locked_info: ::core::option::Option<JobLockedInfo>,
+}
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -164,7 +220,7 @@ pub struct WorkRequest {
     #[prost(string, tag = "2")]
     pub request_id: ::prost::alloc::string::String,
     /// Used as the upload ID for multipart uploads, or any other time
-    /// an external identifer is needed to coordinate a distributed transfer.
+    /// an external identifier is needed to coordinate a distributed transfer.
     #[prost(string, tag = "3")]
     pub external_id: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
@@ -173,7 +229,13 @@ pub struct WorkRequest {
     pub segment: ::core::option::Option<work_request::Segment>,
     #[prost(uint32, tag = "6")]
     pub remote_storage_target: u32,
-    #[prost(oneof = "work_request::Type", tags = "10, 11")]
+    /// Indicates whether the work request is a job builder task.
+    #[prost(bool, tag = "7")]
+    pub job_builder: bool,
+    /// When stub_local is set the local file with be a stub file
+    #[prost(bool, tag = "8")]
+    pub stub_local: bool,
+    #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
 /// Nested message and enum types in `WorkRequest`.
@@ -203,7 +265,16 @@ pub mod work_request {
         Mock(super::MockJob),
         #[prost(message, tag = "11")]
         Sync(super::SyncJob),
+        #[prost(message, tag = "12")]
+        Builder(super::BuilderJob),
     }
+}
+/// JobBuilderJob is a special type of job that creates job requests of any time.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BuilderJob {
+    #[prost(message, optional, tag = "1")]
+    pub cfg: ::core::option::Option<JobRequestCfg>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -218,6 +289,10 @@ pub struct MockJob {
     pub should_fail: bool,
     #[prost(bool, tag = "5")]
     pub can_retry: bool,
+    #[prost(message, optional, tag = "6")]
+    pub locked_info: ::core::option::Option<JobLockedInfo>,
+    #[prost(message, optional, tag = "7")]
+    pub cfg: ::core::option::Option<JobRequestCfg>,
 }
 /// A SyncJob is WHAT work needs to be done. It is populated based on the
 /// file system modification event or by a user describing some work that needs
@@ -239,6 +314,12 @@ pub struct SyncJob {
     /// ignored for uploads.
     #[prost(string, tag = "3")]
     pub remote_path: ::prost::alloc::string::String,
+    /// By default the remote directory structure will be preserved on downloads unless flatten is
+    /// set. If the flag is set then the directory delimiter will be replaced with an underscore.
+    #[prost(bool, tag = "5")]
+    pub flatten: bool,
+    #[prost(message, optional, tag = "6")]
+    pub locked_info: ::core::option::Option<JobLockedInfo>,
 }
 /// Nested message and enum types in `SyncJob`.
 pub mod sync_job {
@@ -310,6 +391,9 @@ pub struct Work {
     /// transferred in parallel on each assigned node.
     #[prost(message, repeated, tag = "5")]
     pub parts: ::prost::alloc::vec::Vec<work::Part>,
+    /// Indicates whether the work is a job builder task.
+    #[prost(bool, tag = "6")]
+    pub job_builder: bool,
 }
 /// Nested message and enum types in `Work`.
 pub mod work {
@@ -513,6 +597,20 @@ pub struct BeeRemoteNode {
     pub id: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
     pub address: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub mount: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub mgmtd_address: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub mgmtd_tls_cert_file: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub mgmtd_tls_disable_verification: bool,
+    #[prost(bool, tag = "7")]
+    pub mgmtd_tls_disable: bool,
+    #[prost(string, tag = "8")]
+    pub auth_file: ::prost::alloc::string::String,
+    #[prost(bool, tag = "9")]
+    pub auth_disable: bool,
 }
 /// Remote Storage Targets (RSTs) describe where data should be stored or
 /// retrieved from. Different BeeRemote worker nodes like BeeSync nodes should
