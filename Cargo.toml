@@ -1,6 +1,6 @@
 [package]
 name = "protobuf"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2021"
 
 authors = ["ThinkparQ Development Team <development@thinkparq.com>"]
@@ -10,9 +10,11 @@ homepage = "https://github.com/thinkparq/protobuf"
 publish = false
 
 [dependencies]
-tonic = "~0"
-prost = "~0"
-prost-types = "~0"
+# The version requirements of these must match the version requirement of protoc-rs used to
+# generate the code
+tonic = "0.13"
+prost = "0.13"
+prost-types = "0.13"
 
 [lib]
 path = "rust/lib.rs"
