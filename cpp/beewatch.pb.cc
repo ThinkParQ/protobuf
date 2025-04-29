@@ -268,29 +268,29 @@ const char descriptor_table_protodef_beewatch_2eproto[] ABSL_ATTRIBUTE_SECTION_V
     "\001\022\013\n\007SETATTR\020\002\022\017\n\013CLOSE_WRITE\020\003\022\n\n\006CREAT"
     "E\020\004\022\t\n\005MKDIR\020\005\022\t\n\005MKNOD\020\006\022\013\n\007SYMLINK\020\007\022\t"
     "\n\005RMDIR\020\010\022\n\n\006UNLINK\020\t\022\014\n\010HARDLINK\020\n\022\n\n\006R"
-    "ENAME\020\013\022\010\n\004READ\020\014\"\313\003\n\007V2Event\022$\n\004type\030\001 "
+    "ENAME\020\013\022\010\n\004READ\020\014\"\335\003\n\007V2Event\022$\n\004type\030\001 "
     "\001(\0162\026.beewatch.V2Event.Type\022\021\n\tnum_links"
     "\030\002 \001(\004\022\014\n\004path\030\003 \001(\t\022\020\n\010entry_id\030\004 \001(\t\022\027"
     "\n\017parent_entry_id\030\005 \001(\t\022\023\n\013target_path\030\006"
     " \001(\t\022\030\n\020target_parent_id\030\007 \001(\t\022\023\n\013msg_us"
-    "er_id\030\010 \001(\r\022\021\n\ttimestamp\030\t \001(\003\"\366\001\n\004Type\022"
+    "er_id\030\010 \001(\r\022\021\n\ttimestamp\030\t \001(\003\"\210\002\n\004Type\022"
     "\013\n\007INVALID\020\000\022\t\n\005FLUSH\020\001\022\014\n\010TRUNCATE\020\002\022\013\n"
     "\007SETATTR\020\003\022\017\n\013CLOSE_WRITE\020\004\022\n\n\006CREATE\020\005\022"
     "\t\n\005MKDIR\020\006\022\t\n\005MKNOD\020\007\022\013\n\007SYMLINK\020\010\022\t\n\005RM"
     "DIR\020\t\022\n\n\006UNLINK\020\n\022\014\n\010HARDLINK\020\013\022\n\n\006RENAM"
     "E\020\014\022\r\n\tOPEN_READ\020\r\022\016\n\nOPEN_WRITE\020\016\022\023\n\017OP"
-    "EN_READ_WRITE\020\017\022\026\n\022LAST_WRITER_CLOSED\020\020\""
-    "8\n\010Response\022\025\n\rcompleted_seq\030\001 \001(\004\022\025\n\rsh"
-    "utting_down\030\002 \001(\0102F\n\nSubscriber\0228\n\rRecei"
-    "veEvents\022\017.beewatch.Event\032\022.beewatch.Res"
-    "ponse(\0010\001B+Z)github.com/thinkparq/protob"
-    "uf/go/beewatchb\006proto3"
+    "EN_READ_WRITE\020\017\022\026\n\022LAST_WRITER_CLOSED\020\020\022"
+    "\020\n\014OPEN_BLOCKED\020\021\"8\n\010Response\022\025\n\rcomplet"
+    "ed_seq\030\001 \001(\004\022\025\n\rshutting_down\030\002 \001(\0102F\n\nS"
+    "ubscriber\0228\n\rReceiveEvents\022\017.beewatch.Ev"
+    "ent\032\022.beewatch.Response(\0010\001B+Z)github.co"
+    "m/thinkparq/protobuf/go/beewatchb\006proto3"
 };
 static ::absl::once_flag descriptor_table_beewatch_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beewatch_2eproto = {
     false,
     false,
-    1222,
+    1240,
     descriptor_table_protodef_beewatch_2eproto,
     "beewatch.proto",
     &descriptor_table_beewatch_2eproto_once,
@@ -340,9 +340,9 @@ const ::google::protobuf::EnumDescriptor* V2Event_Type_descriptor() {
   return file_level_enum_descriptors_beewatch_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t V2Event_Type_internal_data_[] = {
-    1114112u, 0u, };
+    1179648u, 0u, };
 bool V2Event_Type_IsValid(int value) {
-  return 0 <= value && value <= 16;
+  return 0 <= value && value <= 17;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
@@ -364,6 +364,7 @@ constexpr V2Event_Type V2Event::OPEN_READ;
 constexpr V2Event_Type V2Event::OPEN_WRITE;
 constexpr V2Event_Type V2Event::OPEN_READ_WRITE;
 constexpr V2Event_Type V2Event::LAST_WRITER_CLOSED;
+constexpr V2Event_Type V2Event::OPEN_BLOCKED;
 constexpr V2Event_Type V2Event::Type_MIN;
 constexpr V2Event_Type V2Event::Type_MAX;
 constexpr int V2Event::Type_ARRAYSIZE;
