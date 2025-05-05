@@ -77,6 +77,7 @@ message V2Event {
         OPEN_WRITE         = 14;
         OPEN_READ_WRITE    = 15;
         LAST_WRITER_CLOSED = 16;
+        OPEN_BLOCKED       = 17;
     }
 }
 
