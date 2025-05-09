@@ -26,6 +26,116 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace beegfs {
 
+inline constexpr Target_UnderlyingFSOpts::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : device_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        format_flags_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        mount_flags_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        type_{static_cast< ::beegfs::Target_UnderlyingFSOpts_FsType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Target_UnderlyingFSOpts::Target_UnderlyingFSOpts(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Target_UnderlyingFSOptsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Target_UnderlyingFSOptsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Target_UnderlyingFSOptsDefaultTypeInternal() {}
+  union {
+    Target_UnderlyingFSOpts _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Target_UnderlyingFSOptsDefaultTypeInternal _Target_UnderlyingFSOpts_default_instance_;
+
+inline constexpr Node_Source::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : ref_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        type_{static_cast< ::beegfs::SourceType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Node_Source::Node_Source(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Node_SourceDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Node_SourceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Node_SourceDefaultTypeInternal() {}
+  union {
+    Node_Source _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Node_SourceDefaultTypeInternal _Node_Source_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Node_ConfigEntry_DoNotUse::Node_ConfigEntry_DoNotUse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : Node_ConfigEntry_DoNotUse::MapEntry(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : Node_ConfigEntry_DoNotUse::MapEntry() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Node_ConfigEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Node_ConfigEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Node_ConfigEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    Node_ConfigEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Node_ConfigEntry_DoNotUseDefaultTypeInternal _Node_ConfigEntry_DoNotUse_default_instance_;
+
+inline constexpr Nic::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        addr_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Nic::Nic(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct NicDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NicDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NicDefaultTypeInternal() {}
+  union {
+    Nic _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NicDefaultTypeInternal _Nic_default_instance_;
+
 inline constexpr LegacyId::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : num_id_{0u},
@@ -51,6 +161,256 @@ struct LegacyIdDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LegacyIdDefaultTypeInternal _LegacyId_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Filesystem_Common_StorageConfigEntry_DoNotUse::Filesystem_Common_StorageConfigEntry_DoNotUse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : Filesystem_Common_StorageConfigEntry_DoNotUse::MapEntry(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : Filesystem_Common_StorageConfigEntry_DoNotUse::MapEntry() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Filesystem_Common_StorageConfigEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Filesystem_Common_StorageConfigEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Filesystem_Common_StorageConfigEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    Filesystem_Common_StorageConfigEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Filesystem_Common_StorageConfigEntry_DoNotUseDefaultTypeInternal _Filesystem_Common_StorageConfigEntry_DoNotUse_default_instance_;
+
+inline constexpr Filesystem_Common_Source::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : repo_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        management_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        meta_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        storage_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        remote_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        sync_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        type_{static_cast< ::beegfs::SourceType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Filesystem_Common_Source::Filesystem_Common_Source(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Filesystem_Common_SourceDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Filesystem_Common_SourceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Filesystem_Common_SourceDefaultTypeInternal() {}
+  union {
+    Filesystem_Common_Source _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Filesystem_Common_SourceDefaultTypeInternal _Filesystem_Common_Source_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Filesystem_Common_MetaConfigEntry_DoNotUse::Filesystem_Common_MetaConfigEntry_DoNotUse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : Filesystem_Common_MetaConfigEntry_DoNotUse::MapEntry(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : Filesystem_Common_MetaConfigEntry_DoNotUse::MapEntry() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Filesystem_Common_MetaConfigEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Filesystem_Common_MetaConfigEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Filesystem_Common_MetaConfigEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    Filesystem_Common_MetaConfigEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Filesystem_Common_MetaConfigEntry_DoNotUseDefaultTypeInternal _Filesystem_Common_MetaConfigEntry_DoNotUse_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Filesystem_Common_ClientConfigEntry_DoNotUse::Filesystem_Common_ClientConfigEntry_DoNotUse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : Filesystem_Common_ClientConfigEntry_DoNotUse::MapEntry(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : Filesystem_Common_ClientConfigEntry_DoNotUse::MapEntry() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Filesystem_Common_ClientConfigEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Filesystem_Common_ClientConfigEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Filesystem_Common_ClientConfigEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    Filesystem_Common_ClientConfigEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Filesystem_Common_ClientConfigEntry_DoNotUseDefaultTypeInternal _Filesystem_Common_ClientConfigEntry_DoNotUse_default_instance_;
+
+inline constexpr AgentUpdateResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : fs_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        agent_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AgentUpdateResponse::AgentUpdateResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AgentUpdateResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AgentUpdateResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AgentUpdateResponseDefaultTypeInternal() {}
+  union {
+    AgentUpdateResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgentUpdateResponseDefaultTypeInternal _AgentUpdateResponse_default_instance_;
+
+inline constexpr AgentStatusRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : fs_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        agent_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AgentStatusRequest::AgentStatusRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AgentStatusRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AgentStatusRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AgentStatusRequestDefaultTypeInternal() {}
+  union {
+    AgentStatusRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgentStatusRequestDefaultTypeInternal _AgentStatusRequest_default_instance_;
+
+inline constexpr AgentCancelRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : fs_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        agent_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        reason_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AgentCancelRequest::AgentCancelRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AgentCancelRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AgentCancelRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AgentCancelRequestDefaultTypeInternal() {}
+  union {
+    AgentCancelRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgentCancelRequestDefaultTypeInternal _AgentCancelRequest_default_instance_;
+
+inline constexpr Target::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        root_dir_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        ulfs_{nullptr},
+        num_id_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Target::Target(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct TargetDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TargetDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TargetDefaultTypeInternal() {}
+  union {
+    Target _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TargetDefaultTypeInternal _Target_default_instance_;
+
+inline constexpr Filesystem_Common::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        meta_config_{},
+        storage_config_{},
+        client_config_{},
+        auth_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        source_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Filesystem_Common::Filesystem_Common(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Filesystem_CommonDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Filesystem_CommonDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Filesystem_CommonDefaultTypeInternal() {}
+  union {
+    Filesystem_Common _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Filesystem_CommonDefaultTypeInternal _Filesystem_Common_default_instance_;
 
 inline constexpr EntityIdSet::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -80,8 +440,228 @@ struct EntityIdSetDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EntityIdSetDefaultTypeInternal _EntityIdSet_default_instance_;
+
+inline constexpr AgentStatus::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        messages_{},
+        updated_{nullptr},
+        state_{static_cast< ::beegfs::AgentStatus_State >(0)} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AgentStatus::AgentStatus(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AgentStatusDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AgentStatusDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AgentStatusDefaultTypeInternal() {}
+  union {
+    AgentStatus _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgentStatusDefaultTypeInternal _AgentStatus_default_instance_;
+
+inline constexpr Node::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        config_{},
+        interfaces_{},
+        targets_{},
+        source_{nullptr},
+        num_id_{0u},
+        node_type_{static_cast< ::beegfs::NodeType >(0)} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Node::Node(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct NodeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NodeDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NodeDefaultTypeInternal() {}
+  union {
+    Node _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NodeDefaultTypeInternal _Node_default_instance_;
+
+inline constexpr AgentStatusResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        fs_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        agent_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        status_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AgentStatusResponse::AgentStatusResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AgentStatusResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AgentStatusResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AgentStatusResponseDefaultTypeInternal() {}
+  union {
+    AgentStatusResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgentStatusResponseDefaultTypeInternal _AgentStatusResponse_default_instance_;
+
+inline constexpr AgentCancelResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        fs_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        agent_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        status_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AgentCancelResponse::AgentCancelResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AgentCancelResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AgentCancelResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AgentCancelResponseDefaultTypeInternal() {}
+  union {
+    AgentCancelResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgentCancelResponseDefaultTypeInternal _AgentCancelResponse_default_instance_;
+
+inline constexpr Agent::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : nodes_{},
+        interfaces_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Agent::Agent(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AgentDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AgentDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AgentDefaultTypeInternal() {}
+  union {
+    Agent _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgentDefaultTypeInternal _Agent_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR Filesystem_AgentEntry_DoNotUse::Filesystem_AgentEntry_DoNotUse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : Filesystem_AgentEntry_DoNotUse::MapEntry(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : Filesystem_AgentEntry_DoNotUse::MapEntry() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct Filesystem_AgentEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Filesystem_AgentEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Filesystem_AgentEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    Filesystem_AgentEntry_DoNotUse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Filesystem_AgentEntry_DoNotUseDefaultTypeInternal _Filesystem_AgentEntry_DoNotUse_default_instance_;
+
+inline constexpr Filesystem::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        agent_{},
+        common_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Filesystem::Filesystem(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct FilesystemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FilesystemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FilesystemDefaultTypeInternal() {}
+  union {
+    Filesystem _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FilesystemDefaultTypeInternal _Filesystem_default_instance_;
+
+inline constexpr AgentUpdateRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        fs_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        agent_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        config_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AgentUpdateRequest::AgentUpdateRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct AgentUpdateRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AgentUpdateRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AgentUpdateRequestDefaultTypeInternal() {}
+  union {
+    AgentUpdateRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgentUpdateRequestDefaultTypeInternal _AgentUpdateRequest_default_instance_;
 }  // namespace beegfs
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_beegfs_2eproto[8];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_beegfs_2eproto[11];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_beegfs_2eproto = nullptr;
 const ::uint32_t
@@ -111,55 +691,431 @@ const ::uint32_t
         2,
         0,
         1,
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentUpdateRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentUpdateRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentUpdateRequest, _impl_.fs_uuid_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentUpdateRequest, _impl_.agent_id_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentUpdateRequest, _impl_.config_),
+        ~0u,
+        ~0u,
+        0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentUpdateResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentUpdateResponse, _impl_.fs_uuid_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentUpdateResponse, _impl_.agent_id_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatusRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatusRequest, _impl_.fs_uuid_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatusRequest, _impl_.agent_id_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatusResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatusResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatusResponse, _impl_.fs_uuid_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatusResponse, _impl_.agent_id_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatusResponse, _impl_.status_),
+        ~0u,
+        ~0u,
+        0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelRequest, _impl_.fs_uuid_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelRequest, _impl_.agent_id_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelRequest, _impl_.reason_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelResponse, _impl_.fs_uuid_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelResponse, _impl_.agent_id_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentCancelResponse, _impl_.status_),
+        ~0u,
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatus, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatus, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatus, _impl_.state_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatus, _impl_.messages_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::AgentStatus, _impl_.updated_),
+        ~0u,
+        ~0u,
+        0,
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_AgentEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_AgentEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_AgentEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_AgentEntry_DoNotUse, _impl_.value_),
+        0,
+        1,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_Source, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_Source, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_Source, _impl_.repo_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_Source, _impl_.management_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_Source, _impl_.meta_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_Source, _impl_.storage_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_Source, _impl_.remote_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_Source, _impl_.sync_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_MetaConfigEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_.value_),
+        0,
+        1,
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_StorageConfigEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_.value_),
+        0,
+        1,
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_ClientConfigEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_.value_),
+        0,
+        1,
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common, _impl_.auth_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common, _impl_.source_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common, _impl_.meta_config_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common, _impl_.storage_config_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem_Common, _impl_.client_config_),
+        ~0u,
+        0,
+        ~0u,
+        ~0u,
+        ~0u,
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem, _impl_.agent_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Filesystem, _impl_.common_),
+        ~0u,
+        0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beegfs::Agent, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Agent, _impl_.nodes_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Agent, _impl_.interfaces_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node_ConfigEntry_DoNotUse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node_ConfigEntry_DoNotUse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node_ConfigEntry_DoNotUse, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node_ConfigEntry_DoNotUse, _impl_.value_),
+        0,
+        1,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node_Source, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node_Source, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node_Source, _impl_.ref_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node, _impl_.num_id_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node, _impl_.node_type_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node, _impl_.config_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node, _impl_.interfaces_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node, _impl_.targets_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Node, _impl_.source_),
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beegfs::Nic, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Nic, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Nic, _impl_.addr_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target_UnderlyingFSOpts, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target_UnderlyingFSOpts, _impl_.device_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target_UnderlyingFSOpts, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target_UnderlyingFSOpts, _impl_.format_flags_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target_UnderlyingFSOpts, _impl_.mount_flags_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target, _impl_.num_id_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target, _impl_.root_dir_),
+        PROTOBUF_FIELD_OFFSET(::beegfs::Target, _impl_.ulfs_),
+        ~0u,
+        ~0u,
+        0,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::beegfs::LegacyId)},
         {10, 21, -1, sizeof(::beegfs::EntityIdSet)},
+        {24, 35, -1, sizeof(::beegfs::AgentUpdateRequest)},
+        {38, -1, -1, sizeof(::beegfs::AgentUpdateResponse)},
+        {48, -1, -1, sizeof(::beegfs::AgentStatusRequest)},
+        {58, 69, -1, sizeof(::beegfs::AgentStatusResponse)},
+        {72, -1, -1, sizeof(::beegfs::AgentCancelRequest)},
+        {83, 94, -1, sizeof(::beegfs::AgentCancelResponse)},
+        {97, 108, -1, sizeof(::beegfs::AgentStatus)},
+        {111, 121, -1, sizeof(::beegfs::Filesystem_AgentEntry_DoNotUse)},
+        {123, -1, -1, sizeof(::beegfs::Filesystem_Common_Source)},
+        {138, 148, -1, sizeof(::beegfs::Filesystem_Common_MetaConfigEntry_DoNotUse)},
+        {150, 160, -1, sizeof(::beegfs::Filesystem_Common_StorageConfigEntry_DoNotUse)},
+        {162, 172, -1, sizeof(::beegfs::Filesystem_Common_ClientConfigEntry_DoNotUse)},
+        {174, 187, -1, sizeof(::beegfs::Filesystem_Common)},
+        {192, 202, -1, sizeof(::beegfs::Filesystem)},
+        {204, -1, -1, sizeof(::beegfs::Agent)},
+        {214, 224, -1, sizeof(::beegfs::Node_ConfigEntry_DoNotUse)},
+        {226, -1, -1, sizeof(::beegfs::Node_Source)},
+        {236, 250, -1, sizeof(::beegfs::Node)},
+        {256, -1, -1, sizeof(::beegfs::Nic)},
+        {266, -1, -1, sizeof(::beegfs::Target_UnderlyingFSOpts)},
+        {278, 289, -1, sizeof(::beegfs::Target)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::beegfs::_LegacyId_default_instance_._instance,
     &::beegfs::_EntityIdSet_default_instance_._instance,
+    &::beegfs::_AgentUpdateRequest_default_instance_._instance,
+    &::beegfs::_AgentUpdateResponse_default_instance_._instance,
+    &::beegfs::_AgentStatusRequest_default_instance_._instance,
+    &::beegfs::_AgentStatusResponse_default_instance_._instance,
+    &::beegfs::_AgentCancelRequest_default_instance_._instance,
+    &::beegfs::_AgentCancelResponse_default_instance_._instance,
+    &::beegfs::_AgentStatus_default_instance_._instance,
+    &::beegfs::_Filesystem_AgentEntry_DoNotUse_default_instance_._instance,
+    &::beegfs::_Filesystem_Common_Source_default_instance_._instance,
+    &::beegfs::_Filesystem_Common_MetaConfigEntry_DoNotUse_default_instance_._instance,
+    &::beegfs::_Filesystem_Common_StorageConfigEntry_DoNotUse_default_instance_._instance,
+    &::beegfs::_Filesystem_Common_ClientConfigEntry_DoNotUse_default_instance_._instance,
+    &::beegfs::_Filesystem_Common_default_instance_._instance,
+    &::beegfs::_Filesystem_default_instance_._instance,
+    &::beegfs::_Agent_default_instance_._instance,
+    &::beegfs::_Node_ConfigEntry_DoNotUse_default_instance_._instance,
+    &::beegfs::_Node_Source_default_instance_._instance,
+    &::beegfs::_Node_default_instance_._instance,
+    &::beegfs::_Nic_default_instance_._instance,
+    &::beegfs::_Target_UnderlyingFSOpts_default_instance_._instance,
+    &::beegfs::_Target_default_instance_._instance,
 };
 const char descriptor_table_protodef_beegfs_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\014beegfs.proto\022\006beegfs\"\?\n\010LegacyId\022\016\n\006nu"
-    "m_id\030\001 \001(\r\022#\n\tnode_type\030\002 \001(\0162\020.beegfs.N"
-    "odeType\"}\n\013EntityIdSet\022\020\n\003uid\030\001 \001(\003H\000\210\001\001"
-    "\022\022\n\005alias\030\002 \001(\tH\001\210\001\001\022(\n\tlegacy_id\030\003 \001(\0132"
-    "\020.beegfs.LegacyIdH\002\210\001\001B\006\n\004_uidB\010\n\006_alias"
-    "B\014\n\n_legacy_id*Z\n\nEntityType\022\033\n\027ENTITY_T"
-    "YPE_UNSPECIFIED\020\000\022\010\n\004NODE\020\001\022\n\n\006TARGET\020\002\022"
-    "\017\n\013BUDDY_GROUP\020\003\022\010\n\004POOL\020\004*X\n\010NodeType\022\031"
-    "\n\025NODE_TYPE_UNSPECIFIED\020\000\022\n\n\006CLIENT\020\001\022\010\n"
-    "\004META\020\002\022\013\n\007STORAGE\020\003\022\016\n\nMANAGEMENT\020\004*^\n\021"
-    "ReachabilityState\022\"\n\036REACHABILITY_STATE_"
-    "UNSPECIFIED\020\000\022\n\n\006ONLINE\020\001\022\014\n\010POFFLINE\020\002\022"
-    "\013\n\007OFFLINE\020\003*Z\n\020ConsistencyState\022!\n\035CONS"
-    "ISTENCY_STATE_UNSPECIFIED\020\000\022\010\n\004GOOD\020\001\022\020\n"
-    "\014NEEDS_RESYNC\020\002\022\007\n\003BAD\020\003*Q\n\014CapacityPool"
-    "\022\035\n\031CAPACITY_POOL_UNSPECIFIED\020\000\022\n\n\006NORMA"
-    "L\020\001\022\007\n\003LOW\020\002\022\r\n\tEMERGENCY\020\003*;\n\007NicType\022\030"
-    "\n\024NIC_TYPE_UNSPECIFIED\020\000\022\014\n\010ETHERNET\020\001\022\010"
-    "\n\004RDMA\020\002*]\n\013QuotaIdType\022\035\n\031QUOTA_ID_TYPE"
-    "_UNSPECIFIED\020\000\022\026\n\022QUOTA_ID_TYPE_USER\020\001\022\027"
-    "\n\023QUOTA_ID_TYPE_GROUP\020\002*S\n\tQuotaType\022\032\n\026"
-    "QUOTA_TYPE_UNSPECIFIED\020\000\022\024\n\020QUOTA_TYPE_S"
-    "PACE\020\001\022\024\n\020QUOTA_TYPE_INODE\020\002B)Z\'github.c"
-    "om/thinkparq/protobuf/go/beegfsb\006proto3"
+    "\n\014beegfs.proto\022\006beegfs\032\037google/protobuf/"
+    "timestamp.proto\"\?\n\010LegacyId\022\016\n\006num_id\030\001 "
+    "\001(\r\022#\n\tnode_type\030\002 \001(\0162\020.beegfs.NodeType"
+    "\"}\n\013EntityIdSet\022\020\n\003uid\030\001 \001(\003H\000\210\001\001\022\022\n\005ali"
+    "as\030\002 \001(\tH\001\210\001\001\022(\n\tlegacy_id\030\003 \001(\0132\020.beegf"
+    "s.LegacyIdH\002\210\001\001B\006\n\004_uidB\010\n\006_aliasB\014\n\n_le"
+    "gacy_id\"[\n\022AgentUpdateRequest\022\017\n\007fs_uuid"
+    "\030\001 \001(\t\022\020\n\010agent_id\030\002 \001(\t\022\"\n\006config\030\003 \001(\013"
+    "2\022.beegfs.Filesystem\"8\n\023AgentUpdateRespo"
+    "nse\022\017\n\007fs_uuid\030\001 \001(\t\022\020\n\010agent_id\030\002 \001(\t\"7"
+    "\n\022AgentStatusRequest\022\017\n\007fs_uuid\030\001 \001(\t\022\020\n"
+    "\010agent_id\030\002 \001(\t\"]\n\023AgentStatusResponse\022\017"
+    "\n\007fs_uuid\030\001 \001(\t\022\020\n\010agent_id\030\002 \001(\t\022#\n\006sta"
+    "tus\030\003 \001(\0132\023.beegfs.AgentStatus\"G\n\022AgentC"
+    "ancelRequest\022\017\n\007fs_uuid\030\001 \001(\t\022\020\n\010agent_i"
+    "d\030\002 \001(\t\022\016\n\006reason\030\003 \001(\t\"]\n\023AgentCancelRe"
+    "sponse\022\017\n\007fs_uuid\030\001 \001(\t\022\020\n\010agent_id\030\002 \001("
+    "\t\022#\n\006status\030\003 \001(\0132\023.beegfs.AgentStatus\"\320"
+    "\001\n\013AgentStatus\022(\n\005state\030\001 \001(\0162\031.beegfs.A"
+    "gentStatus.State\022\020\n\010messages\030\002 \003(\t\022+\n\007up"
+    "dated\030\003 \001(\0132\032.google.protobuf.Timestamp\""
+    "X\n\005State\022\017\n\013UNSPECIFIED\020\000\022\010\n\004IDLE\020\001\022\014\n\010A"
+    "PPLYING\020\002\022\013\n\007SUCCESS\020\003\022\n\n\006FAILED\020\004\022\r\n\tCA"
+    "NCELLED\020\005\"\341\005\n\nFilesystem\022,\n\005agent\030\001 \003(\0132"
+    "\035.beegfs.Filesystem.AgentEntry\022)\n\006common"
+    "\030\002 \001(\0132\031.beegfs.Filesystem.Common\032;\n\nAge"
+    "ntEntry\022\013\n\003key\030\001 \001(\t\022\034\n\005value\030\002 \001(\0132\r.be"
+    "egfs.Agent:\0028\001\032\274\004\n\006Common\022\014\n\004auth\030\001 \001(\t\022"
+    "0\n\006source\030\002 \001(\0132 .beegfs.Filesystem.Comm"
+    "on.Source\022>\n\013meta_config\030\003 \003(\0132).beegfs."
+    "Filesystem.Common.MetaConfigEntry\022D\n\016sto"
+    "rage_config\030\004 \003(\0132,.beegfs.Filesystem.Co"
+    "mmon.StorageConfigEntry\022B\n\rclient_config"
+    "\030\005 \003(\0132+.beegfs.Filesystem.Common.Client"
+    "ConfigEntry\032\211\001\n\006Source\022 \n\004type\030\001 \001(\0162\022.b"
+    "eegfs.SourceType\022\014\n\004repo\030\002 \001(\t\022\022\n\nmanage"
+    "ment\030\003 \001(\t\022\014\n\004meta\030\004 \001(\t\022\017\n\007storage\030\005 \001("
+    "\t\022\016\n\006remote\030\006 \001(\t\022\014\n\004sync\030\007 \001(\t\0321\n\017MetaC"
+    "onfigEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002"
+    "8\001\0324\n\022StorageConfigEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
+    "\005value\030\002 \001(\t:\0028\001\0323\n\021ClientConfigEntry\022\013\n"
+    "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"E\n\005Agent\022\033"
+    "\n\005nodes\030\001 \003(\0132\014.beegfs.Node\022\037\n\ninterface"
+    "s\030\002 \003(\0132\013.beegfs.Nic\"\304\002\n\004Node\022\016\n\006num_id\030"
+    "\001 \001(\r\022#\n\tnode_type\030\002 \001(\0162\020.beegfs.NodeTy"
+    "pe\022(\n\006config\030\003 \003(\0132\030.beegfs.Node.ConfigE"
+    "ntry\022\037\n\ninterfaces\030\004 \003(\0132\013.beegfs.Nic\022\037\n"
+    "\007targets\030\005 \003(\0132\016.beegfs.Target\022(\n\006source"
+    "\030\006 \001(\0132\023.beegfs.Node.SourceH\000\210\001\001\032-\n\013Conf"
+    "igEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032"
+    "7\n\006Source\022 \n\004type\030\001 \001(\0162\022.beegfs.SourceT"
+    "ype\022\013\n\003ref\030\002 \001(\tB\t\n\007_source\"!\n\003Nic\022\014\n\004na"
+    "me\030\001 \001(\t\022\014\n\004addr\030\002 \001(\t\"\222\002\n\006Target\022\016\n\006num"
+    "_id\030\001 \001(\r\022\020\n\010root_dir\030\002 \001(\t\0222\n\004ulfs\030\003 \001("
+    "\0132\037.beegfs.Target.UnderlyingFSOptsH\000\210\001\001\032"
+    "\250\001\n\020UnderlyingFSOpts\022\016\n\006device\030\001 \001(\t\0224\n\004"
+    "type\030\002 \001(\0162&.beegfs.Target.UnderlyingFSO"
+    "pts.FsType\022\024\n\014format_flags\030\003 \001(\t\022\023\n\013moun"
+    "t_flags\030\004 \001(\t\"#\n\006FsType\022\017\n\013UNSPECIFIED\020\000"
+    "\022\010\n\004EXT4\020\001B\007\n\005_ulfs*Z\n\nEntityType\022\033\n\027ENT"
+    "ITY_TYPE_UNSPECIFIED\020\000\022\010\n\004NODE\020\001\022\n\n\006TARG"
+    "ET\020\002\022\017\n\013BUDDY_GROUP\020\003\022\010\n\004POOL\020\004*n\n\010NodeT"
+    "ype\022\031\n\025NODE_TYPE_UNSPECIFIED\020\000\022\n\n\006CLIENT"
+    "\020\001\022\010\n\004META\020\002\022\013\n\007STORAGE\020\003\022\016\n\nMANAGEMENT\020"
+    "\004\022\n\n\006REMOTE\020\005\022\010\n\004SYNC\020\006*^\n\021ReachabilityS"
+    "tate\022\"\n\036REACHABILITY_STATE_UNSPECIFIED\020\000"
+    "\022\n\n\006ONLINE\020\001\022\014\n\010POFFLINE\020\002\022\013\n\007OFFLINE\020\003*"
+    "Z\n\020ConsistencyState\022!\n\035CONSISTENCY_STATE"
+    "_UNSPECIFIED\020\000\022\010\n\004GOOD\020\001\022\020\n\014NEEDS_RESYNC"
+    "\020\002\022\007\n\003BAD\020\003*Q\n\014CapacityPool\022\035\n\031CAPACITY_"
+    "POOL_UNSPECIFIED\020\000\022\n\n\006NORMAL\020\001\022\007\n\003LOW\020\002\022"
+    "\r\n\tEMERGENCY\020\003*;\n\007NicType\022\030\n\024NIC_TYPE_UN"
+    "SPECIFIED\020\000\022\014\n\010ETHERNET\020\001\022\010\n\004RDMA\020\002*]\n\013Q"
+    "uotaIdType\022\035\n\031QUOTA_ID_TYPE_UNSPECIFIED\020"
+    "\000\022\026\n\022QUOTA_ID_TYPE_USER\020\001\022\027\n\023QUOTA_ID_TY"
+    "PE_GROUP\020\002*S\n\tQuotaType\022\032\n\026QUOTA_TYPE_UN"
+    "SPECIFIED\020\000\022\024\n\020QUOTA_TYPE_SPACE\020\001\022\024\n\020QUO"
+    "TA_TYPE_INODE\020\002*1\n\nSourceType\022\013\n\007UNKNOWN"
+    "\020\000\022\t\n\005LOCAL\020\001\022\013\n\007PACKAGE\020\0022\323\001\n\010BeeAgent\022"
+    "A\n\006Update\022\032.beegfs.AgentUpdateRequest\032\033."
+    "beegfs.AgentUpdateResponse\022A\n\006Status\022\032.b"
+    "eegfs.AgentStatusRequest\032\033.beegfs.AgentS"
+    "tatusResponse\022A\n\006Cancel\022\032.beegfs.AgentCa"
+    "ncelRequest\032\033.beegfs.AgentCancelResponse"
+    "B)Z\'github.com/thinkparq/protobuf/go/bee"
+    "gfsb\006proto3"
+};
+static const ::_pbi::DescriptorTable* const descriptor_table_beegfs_2eproto_deps[1] =
+    {
+        &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::absl::once_flag descriptor_table_beegfs_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beegfs_2eproto = {
     false,
     false,
-    959,
+    3411,
     descriptor_table_protodef_beegfs_2eproto,
     "beegfs.proto",
     &descriptor_table_beegfs_2eproto_once,
-    nullptr,
-    0,
-    2,
+    descriptor_table_beegfs_2eproto_deps,
+    1,
+    23,
     schemas,
     file_default_instances,
     TableStruct_beegfs_2eproto::offsets,
@@ -167,9 +1123,53 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beegfs_2eproto
     file_level_service_descriptors_beegfs_2eproto,
 };
 namespace beegfs {
-const ::google::protobuf::EnumDescriptor* EntityType_descriptor() {
+const ::google::protobuf::EnumDescriptor* AgentStatus_State_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
   return file_level_enum_descriptors_beegfs_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t AgentStatus_State_internal_data_[] = {
+    393216u, 0u, };
+bool AgentStatus_State_IsValid(int value) {
+  return 0 <= value && value <= 5;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr AgentStatus_State AgentStatus::UNSPECIFIED;
+constexpr AgentStatus_State AgentStatus::IDLE;
+constexpr AgentStatus_State AgentStatus::APPLYING;
+constexpr AgentStatus_State AgentStatus::SUCCESS;
+constexpr AgentStatus_State AgentStatus::FAILED;
+constexpr AgentStatus_State AgentStatus::CANCELLED;
+constexpr AgentStatus_State AgentStatus::State_MIN;
+constexpr AgentStatus_State AgentStatus::State_MAX;
+constexpr int AgentStatus::State_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* Target_UnderlyingFSOpts_FsType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
+  return file_level_enum_descriptors_beegfs_2eproto[1];
+}
+PROTOBUF_CONSTINIT const uint32_t Target_UnderlyingFSOpts_FsType_internal_data_[] = {
+    131072u, 0u, };
+bool Target_UnderlyingFSOpts_FsType_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr Target_UnderlyingFSOpts_FsType Target_UnderlyingFSOpts::UNSPECIFIED;
+constexpr Target_UnderlyingFSOpts_FsType Target_UnderlyingFSOpts::EXT4;
+constexpr Target_UnderlyingFSOpts_FsType Target_UnderlyingFSOpts::FsType_MIN;
+constexpr Target_UnderlyingFSOpts_FsType Target_UnderlyingFSOpts::FsType_MAX;
+constexpr int Target_UnderlyingFSOpts::FsType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* EntityType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
+  return file_level_enum_descriptors_beegfs_2eproto[2];
 }
 PROTOBUF_CONSTINIT const uint32_t EntityType_internal_data_[] = {
     327680u, 0u, };
@@ -178,16 +1178,16 @@ bool EntityType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* NodeType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
-  return file_level_enum_descriptors_beegfs_2eproto[1];
+  return file_level_enum_descriptors_beegfs_2eproto[3];
 }
 PROTOBUF_CONSTINIT const uint32_t NodeType_internal_data_[] = {
-    327680u, 0u, };
+    458752u, 0u, };
 bool NodeType_IsValid(int value) {
-  return 0 <= value && value <= 4;
+  return 0 <= value && value <= 6;
 }
 const ::google::protobuf::EnumDescriptor* ReachabilityState_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
-  return file_level_enum_descriptors_beegfs_2eproto[2];
+  return file_level_enum_descriptors_beegfs_2eproto[4];
 }
 PROTOBUF_CONSTINIT const uint32_t ReachabilityState_internal_data_[] = {
     262144u, 0u, };
@@ -196,7 +1196,7 @@ bool ReachabilityState_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* ConsistencyState_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
-  return file_level_enum_descriptors_beegfs_2eproto[3];
+  return file_level_enum_descriptors_beegfs_2eproto[5];
 }
 PROTOBUF_CONSTINIT const uint32_t ConsistencyState_internal_data_[] = {
     262144u, 0u, };
@@ -205,7 +1205,7 @@ bool ConsistencyState_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* CapacityPool_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
-  return file_level_enum_descriptors_beegfs_2eproto[4];
+  return file_level_enum_descriptors_beegfs_2eproto[6];
 }
 PROTOBUF_CONSTINIT const uint32_t CapacityPool_internal_data_[] = {
     262144u, 0u, };
@@ -214,7 +1214,7 @@ bool CapacityPool_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* NicType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
-  return file_level_enum_descriptors_beegfs_2eproto[5];
+  return file_level_enum_descriptors_beegfs_2eproto[7];
 }
 PROTOBUF_CONSTINIT const uint32_t NicType_internal_data_[] = {
     196608u, 0u, };
@@ -223,7 +1223,7 @@ bool NicType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* QuotaIdType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
-  return file_level_enum_descriptors_beegfs_2eproto[6];
+  return file_level_enum_descriptors_beegfs_2eproto[8];
 }
 PROTOBUF_CONSTINIT const uint32_t QuotaIdType_internal_data_[] = {
     196608u, 0u, };
@@ -232,11 +1232,20 @@ bool QuotaIdType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* QuotaType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
-  return file_level_enum_descriptors_beegfs_2eproto[7];
+  return file_level_enum_descriptors_beegfs_2eproto[9];
 }
 PROTOBUF_CONSTINIT const uint32_t QuotaType_internal_data_[] = {
     196608u, 0u, };
 bool QuotaType_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+const ::google::protobuf::EnumDescriptor* SourceType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
+  return file_level_enum_descriptors_beegfs_2eproto[10];
+}
+PROTOBUF_CONSTINIT const uint32_t SourceType_internal_data_[] = {
+    196608u, 0u, };
+bool SourceType_IsValid(int value) {
   return 0 <= value && value <= 2;
 }
 // ===================================================================
@@ -801,6 +1810,5647 @@ void EntityIdSet::InternalSwap(EntityIdSet* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata EntityIdSet::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AgentUpdateRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<AgentUpdateRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_._has_bits_);
+};
+
+AgentUpdateRequest::AgentUpdateRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.AgentUpdateRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentUpdateRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::AgentUpdateRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        fs_uuid_(arena, from.fs_uuid_),
+        agent_id_(arena, from.agent_id_) {}
+
+AgentUpdateRequest::AgentUpdateRequest(
+    ::google::protobuf::Arena* arena,
+    const AgentUpdateRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  AgentUpdateRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.config_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::Filesystem>(
+                              arena, *from._impl_.config_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.AgentUpdateRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentUpdateRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        fs_uuid_(arena),
+        agent_id_(arena) {}
+
+inline void AgentUpdateRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.config_ = {};
+}
+AgentUpdateRequest::~AgentUpdateRequest() {
+  // @@protoc_insertion_point(destructor:beegfs.AgentUpdateRequest)
+  SharedDtor(*this);
+}
+inline void AgentUpdateRequest::SharedDtor(MessageLite& self) {
+  AgentUpdateRequest& this_ = static_cast<AgentUpdateRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.fs_uuid_.Destroy();
+  this_._impl_.agent_id_.Destroy();
+  delete this_._impl_.config_;
+  this_._impl_.~Impl_();
+}
+
+inline void* AgentUpdateRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) AgentUpdateRequest(arena);
+}
+constexpr auto AgentUpdateRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AgentUpdateRequest),
+                                            alignof(AgentUpdateRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull AgentUpdateRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_AgentUpdateRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &AgentUpdateRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AgentUpdateRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &AgentUpdateRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AgentUpdateRequest>(), &AgentUpdateRequest::ByteSizeLong,
+            &AgentUpdateRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_._cached_size_),
+        false,
+    },
+    &AgentUpdateRequest::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* AgentUpdateRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 49, 2> AgentUpdateRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::AgentUpdateRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string fs_uuid = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_.fs_uuid_)}},
+    // string agent_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_.agent_id_)}},
+    // .beegfs.Filesystem config = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_.config_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string fs_uuid = 1;
+    {PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_.fs_uuid_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string agent_id = 2;
+    {PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_.agent_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.Filesystem config = 3;
+    {PROTOBUF_FIELD_OFFSET(AgentUpdateRequest, _impl_.config_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::Filesystem>()},
+  }}, {{
+    "\31\7\10\0\0\0\0\0"
+    "beegfs.AgentUpdateRequest"
+    "fs_uuid"
+    "agent_id"
+  }},
+};
+
+PROTOBUF_NOINLINE void AgentUpdateRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.AgentUpdateRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fs_uuid_.ClearToEmpty();
+  _impl_.agent_id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.config_ != nullptr);
+    _impl_.config_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* AgentUpdateRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const AgentUpdateRequest& this_ = static_cast<const AgentUpdateRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* AgentUpdateRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const AgentUpdateRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.AgentUpdateRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string fs_uuid = 1;
+          if (!this_._internal_fs_uuid().empty()) {
+            const std::string& _s = this_._internal_fs_uuid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentUpdateRequest.fs_uuid");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string agent_id = 2;
+          if (!this_._internal_agent_id().empty()) {
+            const std::string& _s = this_._internal_agent_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentUpdateRequest.agent_id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .beegfs.Filesystem config = 3;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.config_, this_._impl_.config_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.AgentUpdateRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t AgentUpdateRequest::ByteSizeLong(const MessageLite& base) {
+          const AgentUpdateRequest& this_ = static_cast<const AgentUpdateRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t AgentUpdateRequest::ByteSizeLong() const {
+          const AgentUpdateRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.AgentUpdateRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string fs_uuid = 1;
+            if (!this_._internal_fs_uuid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_fs_uuid());
+            }
+            // string agent_id = 2;
+            if (!this_._internal_agent_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_agent_id());
+            }
+          }
+           {
+            // .beegfs.Filesystem config = 3;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.config_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void AgentUpdateRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AgentUpdateRequest*>(&to_msg);
+  auto& from = static_cast<const AgentUpdateRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.AgentUpdateRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_fs_uuid().empty()) {
+    _this->_internal_set_fs_uuid(from._internal_fs_uuid());
+  }
+  if (!from._internal_agent_id().empty()) {
+    _this->_internal_set_agent_id(from._internal_agent_id());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.config_ != nullptr);
+    if (_this->_impl_.config_ == nullptr) {
+      _this->_impl_.config_ =
+          ::google::protobuf::Message::CopyConstruct<::beegfs::Filesystem>(arena, *from._impl_.config_);
+    } else {
+      _this->_impl_.config_->MergeFrom(*from._impl_.config_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AgentUpdateRequest::CopyFrom(const AgentUpdateRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.AgentUpdateRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AgentUpdateRequest::InternalSwap(AgentUpdateRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.fs_uuid_, &other->_impl_.fs_uuid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.agent_id_, &other->_impl_.agent_id_, arena);
+  swap(_impl_.config_, other->_impl_.config_);
+}
+
+::google::protobuf::Metadata AgentUpdateRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AgentUpdateResponse::_Internal {
+ public:
+};
+
+AgentUpdateResponse::AgentUpdateResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.AgentUpdateResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentUpdateResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::AgentUpdateResponse& from_msg)
+      : fs_uuid_(arena, from.fs_uuid_),
+        agent_id_(arena, from.agent_id_),
+        _cached_size_{0} {}
+
+AgentUpdateResponse::AgentUpdateResponse(
+    ::google::protobuf::Arena* arena,
+    const AgentUpdateResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  AgentUpdateResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.AgentUpdateResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentUpdateResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : fs_uuid_(arena),
+        agent_id_(arena),
+        _cached_size_{0} {}
+
+inline void AgentUpdateResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+AgentUpdateResponse::~AgentUpdateResponse() {
+  // @@protoc_insertion_point(destructor:beegfs.AgentUpdateResponse)
+  SharedDtor(*this);
+}
+inline void AgentUpdateResponse::SharedDtor(MessageLite& self) {
+  AgentUpdateResponse& this_ = static_cast<AgentUpdateResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.fs_uuid_.Destroy();
+  this_._impl_.agent_id_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* AgentUpdateResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) AgentUpdateResponse(arena);
+}
+constexpr auto AgentUpdateResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AgentUpdateResponse),
+                                            alignof(AgentUpdateResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull AgentUpdateResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_AgentUpdateResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &AgentUpdateResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AgentUpdateResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &AgentUpdateResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AgentUpdateResponse>(), &AgentUpdateResponse::ByteSizeLong,
+            &AgentUpdateResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(AgentUpdateResponse, _impl_._cached_size_),
+        false,
+    },
+    &AgentUpdateResponse::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* AgentUpdateResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 50, 2> AgentUpdateResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::AgentUpdateResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string agent_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AgentUpdateResponse, _impl_.agent_id_)}},
+    // string fs_uuid = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AgentUpdateResponse, _impl_.fs_uuid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string fs_uuid = 1;
+    {PROTOBUF_FIELD_OFFSET(AgentUpdateResponse, _impl_.fs_uuid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string agent_id = 2;
+    {PROTOBUF_FIELD_OFFSET(AgentUpdateResponse, _impl_.agent_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\32\7\10\0\0\0\0\0"
+    "beegfs.AgentUpdateResponse"
+    "fs_uuid"
+    "agent_id"
+  }},
+};
+
+PROTOBUF_NOINLINE void AgentUpdateResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.AgentUpdateResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fs_uuid_.ClearToEmpty();
+  _impl_.agent_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* AgentUpdateResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const AgentUpdateResponse& this_ = static_cast<const AgentUpdateResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* AgentUpdateResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const AgentUpdateResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.AgentUpdateResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string fs_uuid = 1;
+          if (!this_._internal_fs_uuid().empty()) {
+            const std::string& _s = this_._internal_fs_uuid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentUpdateResponse.fs_uuid");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string agent_id = 2;
+          if (!this_._internal_agent_id().empty()) {
+            const std::string& _s = this_._internal_agent_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentUpdateResponse.agent_id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.AgentUpdateResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t AgentUpdateResponse::ByteSizeLong(const MessageLite& base) {
+          const AgentUpdateResponse& this_ = static_cast<const AgentUpdateResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t AgentUpdateResponse::ByteSizeLong() const {
+          const AgentUpdateResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.AgentUpdateResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string fs_uuid = 1;
+            if (!this_._internal_fs_uuid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_fs_uuid());
+            }
+            // string agent_id = 2;
+            if (!this_._internal_agent_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_agent_id());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void AgentUpdateResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AgentUpdateResponse*>(&to_msg);
+  auto& from = static_cast<const AgentUpdateResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.AgentUpdateResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_fs_uuid().empty()) {
+    _this->_internal_set_fs_uuid(from._internal_fs_uuid());
+  }
+  if (!from._internal_agent_id().empty()) {
+    _this->_internal_set_agent_id(from._internal_agent_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AgentUpdateResponse::CopyFrom(const AgentUpdateResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.AgentUpdateResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AgentUpdateResponse::InternalSwap(AgentUpdateResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.fs_uuid_, &other->_impl_.fs_uuid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.agent_id_, &other->_impl_.agent_id_, arena);
+}
+
+::google::protobuf::Metadata AgentUpdateResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AgentStatusRequest::_Internal {
+ public:
+};
+
+AgentStatusRequest::AgentStatusRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.AgentStatusRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentStatusRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::AgentStatusRequest& from_msg)
+      : fs_uuid_(arena, from.fs_uuid_),
+        agent_id_(arena, from.agent_id_),
+        _cached_size_{0} {}
+
+AgentStatusRequest::AgentStatusRequest(
+    ::google::protobuf::Arena* arena,
+    const AgentStatusRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  AgentStatusRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.AgentStatusRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentStatusRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : fs_uuid_(arena),
+        agent_id_(arena),
+        _cached_size_{0} {}
+
+inline void AgentStatusRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+AgentStatusRequest::~AgentStatusRequest() {
+  // @@protoc_insertion_point(destructor:beegfs.AgentStatusRequest)
+  SharedDtor(*this);
+}
+inline void AgentStatusRequest::SharedDtor(MessageLite& self) {
+  AgentStatusRequest& this_ = static_cast<AgentStatusRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.fs_uuid_.Destroy();
+  this_._impl_.agent_id_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* AgentStatusRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) AgentStatusRequest(arena);
+}
+constexpr auto AgentStatusRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AgentStatusRequest),
+                                            alignof(AgentStatusRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull AgentStatusRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_AgentStatusRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &AgentStatusRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AgentStatusRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &AgentStatusRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AgentStatusRequest>(), &AgentStatusRequest::ByteSizeLong,
+            &AgentStatusRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(AgentStatusRequest, _impl_._cached_size_),
+        false,
+    },
+    &AgentStatusRequest::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* AgentStatusRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 49, 2> AgentStatusRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::AgentStatusRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string agent_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AgentStatusRequest, _impl_.agent_id_)}},
+    // string fs_uuid = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AgentStatusRequest, _impl_.fs_uuid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string fs_uuid = 1;
+    {PROTOBUF_FIELD_OFFSET(AgentStatusRequest, _impl_.fs_uuid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string agent_id = 2;
+    {PROTOBUF_FIELD_OFFSET(AgentStatusRequest, _impl_.agent_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\31\7\10\0\0\0\0\0"
+    "beegfs.AgentStatusRequest"
+    "fs_uuid"
+    "agent_id"
+  }},
+};
+
+PROTOBUF_NOINLINE void AgentStatusRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.AgentStatusRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fs_uuid_.ClearToEmpty();
+  _impl_.agent_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* AgentStatusRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const AgentStatusRequest& this_ = static_cast<const AgentStatusRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* AgentStatusRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const AgentStatusRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.AgentStatusRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string fs_uuid = 1;
+          if (!this_._internal_fs_uuid().empty()) {
+            const std::string& _s = this_._internal_fs_uuid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentStatusRequest.fs_uuid");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string agent_id = 2;
+          if (!this_._internal_agent_id().empty()) {
+            const std::string& _s = this_._internal_agent_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentStatusRequest.agent_id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.AgentStatusRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t AgentStatusRequest::ByteSizeLong(const MessageLite& base) {
+          const AgentStatusRequest& this_ = static_cast<const AgentStatusRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t AgentStatusRequest::ByteSizeLong() const {
+          const AgentStatusRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.AgentStatusRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string fs_uuid = 1;
+            if (!this_._internal_fs_uuid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_fs_uuid());
+            }
+            // string agent_id = 2;
+            if (!this_._internal_agent_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_agent_id());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void AgentStatusRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AgentStatusRequest*>(&to_msg);
+  auto& from = static_cast<const AgentStatusRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.AgentStatusRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_fs_uuid().empty()) {
+    _this->_internal_set_fs_uuid(from._internal_fs_uuid());
+  }
+  if (!from._internal_agent_id().empty()) {
+    _this->_internal_set_agent_id(from._internal_agent_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AgentStatusRequest::CopyFrom(const AgentStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.AgentStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AgentStatusRequest::InternalSwap(AgentStatusRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.fs_uuid_, &other->_impl_.fs_uuid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.agent_id_, &other->_impl_.agent_id_, arena);
+}
+
+::google::protobuf::Metadata AgentStatusRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AgentStatusResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<AgentStatusResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_._has_bits_);
+};
+
+AgentStatusResponse::AgentStatusResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.AgentStatusResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentStatusResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::AgentStatusResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        fs_uuid_(arena, from.fs_uuid_),
+        agent_id_(arena, from.agent_id_) {}
+
+AgentStatusResponse::AgentStatusResponse(
+    ::google::protobuf::Arena* arena,
+    const AgentStatusResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  AgentStatusResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.status_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::AgentStatus>(
+                              arena, *from._impl_.status_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.AgentStatusResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentStatusResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        fs_uuid_(arena),
+        agent_id_(arena) {}
+
+inline void AgentStatusResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.status_ = {};
+}
+AgentStatusResponse::~AgentStatusResponse() {
+  // @@protoc_insertion_point(destructor:beegfs.AgentStatusResponse)
+  SharedDtor(*this);
+}
+inline void AgentStatusResponse::SharedDtor(MessageLite& self) {
+  AgentStatusResponse& this_ = static_cast<AgentStatusResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.fs_uuid_.Destroy();
+  this_._impl_.agent_id_.Destroy();
+  delete this_._impl_.status_;
+  this_._impl_.~Impl_();
+}
+
+inline void* AgentStatusResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) AgentStatusResponse(arena);
+}
+constexpr auto AgentStatusResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AgentStatusResponse),
+                                            alignof(AgentStatusResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull AgentStatusResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_AgentStatusResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &AgentStatusResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AgentStatusResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &AgentStatusResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AgentStatusResponse>(), &AgentStatusResponse::ByteSizeLong,
+            &AgentStatusResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_._cached_size_),
+        false,
+    },
+    &AgentStatusResponse::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* AgentStatusResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 50, 2> AgentStatusResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::AgentStatusResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string fs_uuid = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_.fs_uuid_)}},
+    // string agent_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_.agent_id_)}},
+    // .beegfs.AgentStatus status = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_.status_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string fs_uuid = 1;
+    {PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_.fs_uuid_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string agent_id = 2;
+    {PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_.agent_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.AgentStatus status = 3;
+    {PROTOBUF_FIELD_OFFSET(AgentStatusResponse, _impl_.status_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::AgentStatus>()},
+  }}, {{
+    "\32\7\10\0\0\0\0\0"
+    "beegfs.AgentStatusResponse"
+    "fs_uuid"
+    "agent_id"
+  }},
+};
+
+PROTOBUF_NOINLINE void AgentStatusResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.AgentStatusResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fs_uuid_.ClearToEmpty();
+  _impl_.agent_id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.status_ != nullptr);
+    _impl_.status_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* AgentStatusResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const AgentStatusResponse& this_ = static_cast<const AgentStatusResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* AgentStatusResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const AgentStatusResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.AgentStatusResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string fs_uuid = 1;
+          if (!this_._internal_fs_uuid().empty()) {
+            const std::string& _s = this_._internal_fs_uuid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentStatusResponse.fs_uuid");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string agent_id = 2;
+          if (!this_._internal_agent_id().empty()) {
+            const std::string& _s = this_._internal_agent_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentStatusResponse.agent_id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .beegfs.AgentStatus status = 3;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.status_, this_._impl_.status_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.AgentStatusResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t AgentStatusResponse::ByteSizeLong(const MessageLite& base) {
+          const AgentStatusResponse& this_ = static_cast<const AgentStatusResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t AgentStatusResponse::ByteSizeLong() const {
+          const AgentStatusResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.AgentStatusResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string fs_uuid = 1;
+            if (!this_._internal_fs_uuid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_fs_uuid());
+            }
+            // string agent_id = 2;
+            if (!this_._internal_agent_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_agent_id());
+            }
+          }
+           {
+            // .beegfs.AgentStatus status = 3;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.status_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void AgentStatusResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AgentStatusResponse*>(&to_msg);
+  auto& from = static_cast<const AgentStatusResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.AgentStatusResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_fs_uuid().empty()) {
+    _this->_internal_set_fs_uuid(from._internal_fs_uuid());
+  }
+  if (!from._internal_agent_id().empty()) {
+    _this->_internal_set_agent_id(from._internal_agent_id());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.status_ != nullptr);
+    if (_this->_impl_.status_ == nullptr) {
+      _this->_impl_.status_ =
+          ::google::protobuf::Message::CopyConstruct<::beegfs::AgentStatus>(arena, *from._impl_.status_);
+    } else {
+      _this->_impl_.status_->MergeFrom(*from._impl_.status_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AgentStatusResponse::CopyFrom(const AgentStatusResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.AgentStatusResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AgentStatusResponse::InternalSwap(AgentStatusResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.fs_uuid_, &other->_impl_.fs_uuid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.agent_id_, &other->_impl_.agent_id_, arena);
+  swap(_impl_.status_, other->_impl_.status_);
+}
+
+::google::protobuf::Metadata AgentStatusResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AgentCancelRequest::_Internal {
+ public:
+};
+
+AgentCancelRequest::AgentCancelRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.AgentCancelRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentCancelRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::AgentCancelRequest& from_msg)
+      : fs_uuid_(arena, from.fs_uuid_),
+        agent_id_(arena, from.agent_id_),
+        reason_(arena, from.reason_),
+        _cached_size_{0} {}
+
+AgentCancelRequest::AgentCancelRequest(
+    ::google::protobuf::Arena* arena,
+    const AgentCancelRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  AgentCancelRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.AgentCancelRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentCancelRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : fs_uuid_(arena),
+        agent_id_(arena),
+        reason_(arena),
+        _cached_size_{0} {}
+
+inline void AgentCancelRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+AgentCancelRequest::~AgentCancelRequest() {
+  // @@protoc_insertion_point(destructor:beegfs.AgentCancelRequest)
+  SharedDtor(*this);
+}
+inline void AgentCancelRequest::SharedDtor(MessageLite& self) {
+  AgentCancelRequest& this_ = static_cast<AgentCancelRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.fs_uuid_.Destroy();
+  this_._impl_.agent_id_.Destroy();
+  this_._impl_.reason_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* AgentCancelRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) AgentCancelRequest(arena);
+}
+constexpr auto AgentCancelRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AgentCancelRequest),
+                                            alignof(AgentCancelRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull AgentCancelRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_AgentCancelRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &AgentCancelRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AgentCancelRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &AgentCancelRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AgentCancelRequest>(), &AgentCancelRequest::ByteSizeLong,
+            &AgentCancelRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(AgentCancelRequest, _impl_._cached_size_),
+        false,
+    },
+    &AgentCancelRequest::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* AgentCancelRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 55, 2> AgentCancelRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::AgentCancelRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string fs_uuid = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AgentCancelRequest, _impl_.fs_uuid_)}},
+    // string agent_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AgentCancelRequest, _impl_.agent_id_)}},
+    // string reason = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(AgentCancelRequest, _impl_.reason_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string fs_uuid = 1;
+    {PROTOBUF_FIELD_OFFSET(AgentCancelRequest, _impl_.fs_uuid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string agent_id = 2;
+    {PROTOBUF_FIELD_OFFSET(AgentCancelRequest, _impl_.agent_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string reason = 3;
+    {PROTOBUF_FIELD_OFFSET(AgentCancelRequest, _impl_.reason_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\31\7\10\6\0\0\0\0"
+    "beegfs.AgentCancelRequest"
+    "fs_uuid"
+    "agent_id"
+    "reason"
+  }},
+};
+
+PROTOBUF_NOINLINE void AgentCancelRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.AgentCancelRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fs_uuid_.ClearToEmpty();
+  _impl_.agent_id_.ClearToEmpty();
+  _impl_.reason_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* AgentCancelRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const AgentCancelRequest& this_ = static_cast<const AgentCancelRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* AgentCancelRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const AgentCancelRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.AgentCancelRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string fs_uuid = 1;
+          if (!this_._internal_fs_uuid().empty()) {
+            const std::string& _s = this_._internal_fs_uuid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentCancelRequest.fs_uuid");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string agent_id = 2;
+          if (!this_._internal_agent_id().empty()) {
+            const std::string& _s = this_._internal_agent_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentCancelRequest.agent_id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // string reason = 3;
+          if (!this_._internal_reason().empty()) {
+            const std::string& _s = this_._internal_reason();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentCancelRequest.reason");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.AgentCancelRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t AgentCancelRequest::ByteSizeLong(const MessageLite& base) {
+          const AgentCancelRequest& this_ = static_cast<const AgentCancelRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t AgentCancelRequest::ByteSizeLong() const {
+          const AgentCancelRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.AgentCancelRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string fs_uuid = 1;
+            if (!this_._internal_fs_uuid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_fs_uuid());
+            }
+            // string agent_id = 2;
+            if (!this_._internal_agent_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_agent_id());
+            }
+            // string reason = 3;
+            if (!this_._internal_reason().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_reason());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void AgentCancelRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AgentCancelRequest*>(&to_msg);
+  auto& from = static_cast<const AgentCancelRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.AgentCancelRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_fs_uuid().empty()) {
+    _this->_internal_set_fs_uuid(from._internal_fs_uuid());
+  }
+  if (!from._internal_agent_id().empty()) {
+    _this->_internal_set_agent_id(from._internal_agent_id());
+  }
+  if (!from._internal_reason().empty()) {
+    _this->_internal_set_reason(from._internal_reason());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AgentCancelRequest::CopyFrom(const AgentCancelRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.AgentCancelRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AgentCancelRequest::InternalSwap(AgentCancelRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.fs_uuid_, &other->_impl_.fs_uuid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.agent_id_, &other->_impl_.agent_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.reason_, &other->_impl_.reason_, arena);
+}
+
+::google::protobuf::Metadata AgentCancelRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AgentCancelResponse::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<AgentCancelResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_._has_bits_);
+};
+
+AgentCancelResponse::AgentCancelResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.AgentCancelResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentCancelResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::AgentCancelResponse& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        fs_uuid_(arena, from.fs_uuid_),
+        agent_id_(arena, from.agent_id_) {}
+
+AgentCancelResponse::AgentCancelResponse(
+    ::google::protobuf::Arena* arena,
+    const AgentCancelResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  AgentCancelResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.status_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::AgentStatus>(
+                              arena, *from._impl_.status_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.AgentCancelResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentCancelResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        fs_uuid_(arena),
+        agent_id_(arena) {}
+
+inline void AgentCancelResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.status_ = {};
+}
+AgentCancelResponse::~AgentCancelResponse() {
+  // @@protoc_insertion_point(destructor:beegfs.AgentCancelResponse)
+  SharedDtor(*this);
+}
+inline void AgentCancelResponse::SharedDtor(MessageLite& self) {
+  AgentCancelResponse& this_ = static_cast<AgentCancelResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.fs_uuid_.Destroy();
+  this_._impl_.agent_id_.Destroy();
+  delete this_._impl_.status_;
+  this_._impl_.~Impl_();
+}
+
+inline void* AgentCancelResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) AgentCancelResponse(arena);
+}
+constexpr auto AgentCancelResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AgentCancelResponse),
+                                            alignof(AgentCancelResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull AgentCancelResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_AgentCancelResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &AgentCancelResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AgentCancelResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &AgentCancelResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AgentCancelResponse>(), &AgentCancelResponse::ByteSizeLong,
+            &AgentCancelResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_._cached_size_),
+        false,
+    },
+    &AgentCancelResponse::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* AgentCancelResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 50, 2> AgentCancelResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::AgentCancelResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string fs_uuid = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_.fs_uuid_)}},
+    // string agent_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_.agent_id_)}},
+    // .beegfs.AgentStatus status = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_.status_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string fs_uuid = 1;
+    {PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_.fs_uuid_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string agent_id = 2;
+    {PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_.agent_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.AgentStatus status = 3;
+    {PROTOBUF_FIELD_OFFSET(AgentCancelResponse, _impl_.status_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::AgentStatus>()},
+  }}, {{
+    "\32\7\10\0\0\0\0\0"
+    "beegfs.AgentCancelResponse"
+    "fs_uuid"
+    "agent_id"
+  }},
+};
+
+PROTOBUF_NOINLINE void AgentCancelResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.AgentCancelResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fs_uuid_.ClearToEmpty();
+  _impl_.agent_id_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.status_ != nullptr);
+    _impl_.status_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* AgentCancelResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const AgentCancelResponse& this_ = static_cast<const AgentCancelResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* AgentCancelResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const AgentCancelResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.AgentCancelResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string fs_uuid = 1;
+          if (!this_._internal_fs_uuid().empty()) {
+            const std::string& _s = this_._internal_fs_uuid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentCancelResponse.fs_uuid");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string agent_id = 2;
+          if (!this_._internal_agent_id().empty()) {
+            const std::string& _s = this_._internal_agent_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentCancelResponse.agent_id");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .beegfs.AgentStatus status = 3;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.status_, this_._impl_.status_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.AgentCancelResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t AgentCancelResponse::ByteSizeLong(const MessageLite& base) {
+          const AgentCancelResponse& this_ = static_cast<const AgentCancelResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t AgentCancelResponse::ByteSizeLong() const {
+          const AgentCancelResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.AgentCancelResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string fs_uuid = 1;
+            if (!this_._internal_fs_uuid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_fs_uuid());
+            }
+            // string agent_id = 2;
+            if (!this_._internal_agent_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_agent_id());
+            }
+          }
+           {
+            // .beegfs.AgentStatus status = 3;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.status_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void AgentCancelResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AgentCancelResponse*>(&to_msg);
+  auto& from = static_cast<const AgentCancelResponse&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.AgentCancelResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_fs_uuid().empty()) {
+    _this->_internal_set_fs_uuid(from._internal_fs_uuid());
+  }
+  if (!from._internal_agent_id().empty()) {
+    _this->_internal_set_agent_id(from._internal_agent_id());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.status_ != nullptr);
+    if (_this->_impl_.status_ == nullptr) {
+      _this->_impl_.status_ =
+          ::google::protobuf::Message::CopyConstruct<::beegfs::AgentStatus>(arena, *from._impl_.status_);
+    } else {
+      _this->_impl_.status_->MergeFrom(*from._impl_.status_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AgentCancelResponse::CopyFrom(const AgentCancelResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.AgentCancelResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AgentCancelResponse::InternalSwap(AgentCancelResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.fs_uuid_, &other->_impl_.fs_uuid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.agent_id_, &other->_impl_.agent_id_, arena);
+  swap(_impl_.status_, other->_impl_.status_);
+}
+
+::google::protobuf::Metadata AgentCancelResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AgentStatus::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<AgentStatus>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_._has_bits_);
+};
+
+void AgentStatus::clear_updated() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.updated_ != nullptr) _impl_.updated_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+AgentStatus::AgentStatus(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.AgentStatus)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentStatus::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::AgentStatus& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        messages_{visibility, arena, from.messages_} {}
+
+AgentStatus::AgentStatus(
+    ::google::protobuf::Arena* arena,
+    const AgentStatus& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  AgentStatus* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.updated_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(
+                              arena, *from._impl_.updated_)
+                        : nullptr;
+  _impl_.state_ = from._impl_.state_;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.AgentStatus)
+}
+inline PROTOBUF_NDEBUG_INLINE AgentStatus::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        messages_{visibility, arena} {}
+
+inline void AgentStatus::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, updated_),
+           0,
+           offsetof(Impl_, state_) -
+               offsetof(Impl_, updated_) +
+               sizeof(Impl_::state_));
+}
+AgentStatus::~AgentStatus() {
+  // @@protoc_insertion_point(destructor:beegfs.AgentStatus)
+  SharedDtor(*this);
+}
+inline void AgentStatus::SharedDtor(MessageLite& self) {
+  AgentStatus& this_ = static_cast<AgentStatus&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.updated_;
+  this_._impl_.~Impl_();
+}
+
+inline void* AgentStatus::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) AgentStatus(arena);
+}
+constexpr auto AgentStatus::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.messages_) +
+          decltype(AgentStatus::_impl_.messages_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(AgentStatus), alignof(AgentStatus), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&AgentStatus::PlacementNew_,
+                                 sizeof(AgentStatus),
+                                 alignof(AgentStatus));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull AgentStatus::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_AgentStatus_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &AgentStatus::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<AgentStatus>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &AgentStatus::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<AgentStatus>(), &AgentStatus::ByteSizeLong,
+            &AgentStatus::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_._cached_size_),
+        false,
+    },
+    &AgentStatus::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* AgentStatus::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 35, 2> AgentStatus::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::AgentStatus>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .beegfs.AgentStatus.State state = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AgentStatus, _impl_.state_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.state_)}},
+    // repeated string messages = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.messages_)}},
+    // .google.protobuf.Timestamp updated = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.updated_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .beegfs.AgentStatus.State state = 1;
+    {PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.state_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // repeated string messages = 2;
+    {PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.messages_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // .google.protobuf.Timestamp updated = 3;
+    {PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.updated_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
+  }}, {{
+    "\22\0\10\0\0\0\0\0"
+    "beegfs.AgentStatus"
+    "messages"
+  }},
+};
+
+PROTOBUF_NOINLINE void AgentStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.AgentStatus)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.messages_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.updated_ != nullptr);
+    _impl_.updated_->Clear();
+  }
+  _impl_.state_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* AgentStatus::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const AgentStatus& this_ = static_cast<const AgentStatus&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* AgentStatus::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const AgentStatus& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.AgentStatus)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // .beegfs.AgentStatus.State state = 1;
+          if (this_._internal_state() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                1, this_._internal_state(), target);
+          }
+
+          // repeated string messages = 2;
+          for (int i = 0, n = this_._internal_messages_size(); i < n; ++i) {
+            const auto& s = this_._internal_messages().Get(i);
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.AgentStatus.messages");
+            target = stream->WriteString(2, s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .google.protobuf.Timestamp updated = 3;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.updated_, this_._impl_.updated_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.AgentStatus)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t AgentStatus::ByteSizeLong(const MessageLite& base) {
+          const AgentStatus& this_ = static_cast<const AgentStatus&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t AgentStatus::ByteSizeLong() const {
+          const AgentStatus& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.AgentStatus)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated string messages = 2;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_messages().size());
+              for (int i = 0, n = this_._internal_messages().size(); i < n; ++i) {
+                total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+                    this_._internal_messages().Get(i));
+              }
+            }
+          }
+           {
+            // .google.protobuf.Timestamp updated = 3;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.updated_);
+            }
+          }
+           {
+            // .beegfs.AgentStatus.State state = 1;
+            if (this_._internal_state() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_state());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void AgentStatus::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AgentStatus*>(&to_msg);
+  auto& from = static_cast<const AgentStatus&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.AgentStatus)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_messages()->MergeFrom(from._internal_messages());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.updated_ != nullptr);
+    if (_this->_impl_.updated_ == nullptr) {
+      _this->_impl_.updated_ =
+          ::google::protobuf::Message::CopyConstruct<::google::protobuf::Timestamp>(arena, *from._impl_.updated_);
+    } else {
+      _this->_impl_.updated_->MergeFrom(*from._impl_.updated_);
+    }
+  }
+  if (from._internal_state() != 0) {
+    _this->_impl_.state_ = from._impl_.state_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AgentStatus::CopyFrom(const AgentStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.AgentStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AgentStatus::InternalSwap(AgentStatus* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.messages_.InternalSwap(&other->_impl_.messages_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.state_)
+      + sizeof(AgentStatus::_impl_.state_)
+      - PROTOBUF_FIELD_OFFSET(AgentStatus, _impl_.updated_)>(
+          reinterpret_cast<char*>(&_impl_.updated_),
+          reinterpret_cast<char*>(&other->_impl_.updated_));
+}
+
+::google::protobuf::Metadata AgentStatus::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              Filesystem_AgentEntry_DoNotUse::Filesystem_AgentEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              Filesystem_AgentEntry_DoNotUse::Filesystem_AgentEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              Filesystem_AgentEntry_DoNotUse::Filesystem_AgentEntry_DoNotUse() : SuperType() {}
+              Filesystem_AgentEntry_DoNotUse::Filesystem_AgentEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* Filesystem_AgentEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) Filesystem_AgentEntry_DoNotUse(arena);
+              }
+              constexpr auto Filesystem_AgentEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Filesystem_AgentEntry_DoNotUse),
+                                                          alignof(Filesystem_AgentEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull Filesystem_AgentEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_Filesystem_AgentEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &Filesystem_AgentEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<Filesystem_AgentEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &Filesystem_AgentEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &Filesystem_AgentEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(Filesystem_AgentEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &Filesystem_AgentEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_beegfs_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* Filesystem_AgentEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 40, 2> Filesystem_AgentEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Filesystem_AgentEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Filesystem_AgentEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .beegfs.Agent value = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Filesystem_AgentEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_AgentEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_AgentEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.Agent value = 2;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_AgentEntry_DoNotUse, _impl_.value_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::Agent>()},
+  }}, {{
+    "\34\3\0\0\0\0\0\0"
+    "beegfs.Filesystem.AgentEntry"
+    "key"
+  }},
+};
+
+// ===================================================================
+
+class Filesystem_Common_Source::_Internal {
+ public:
+};
+
+Filesystem_Common_Source::Filesystem_Common_Source(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Filesystem.Common.Source)
+}
+inline PROTOBUF_NDEBUG_INLINE Filesystem_Common_Source::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Filesystem_Common_Source& from_msg)
+      : repo_(arena, from.repo_),
+        management_(arena, from.management_),
+        meta_(arena, from.meta_),
+        storage_(arena, from.storage_),
+        remote_(arena, from.remote_),
+        sync_(arena, from.sync_),
+        _cached_size_{0} {}
+
+Filesystem_Common_Source::Filesystem_Common_Source(
+    ::google::protobuf::Arena* arena,
+    const Filesystem_Common_Source& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Filesystem_Common_Source* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.type_ = from._impl_.type_;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Filesystem.Common.Source)
+}
+inline PROTOBUF_NDEBUG_INLINE Filesystem_Common_Source::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : repo_(arena),
+        management_(arena),
+        meta_(arena),
+        storage_(arena),
+        remote_(arena),
+        sync_(arena),
+        _cached_size_{0} {}
+
+inline void Filesystem_Common_Source::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.type_ = {};
+}
+Filesystem_Common_Source::~Filesystem_Common_Source() {
+  // @@protoc_insertion_point(destructor:beegfs.Filesystem.Common.Source)
+  SharedDtor(*this);
+}
+inline void Filesystem_Common_Source::SharedDtor(MessageLite& self) {
+  Filesystem_Common_Source& this_ = static_cast<Filesystem_Common_Source&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.repo_.Destroy();
+  this_._impl_.management_.Destroy();
+  this_._impl_.meta_.Destroy();
+  this_._impl_.storage_.Destroy();
+  this_._impl_.remote_.Destroy();
+  this_._impl_.sync_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Filesystem_Common_Source::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Filesystem_Common_Source(arena);
+}
+constexpr auto Filesystem_Common_Source::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Filesystem_Common_Source),
+                                            alignof(Filesystem_Common_Source));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Filesystem_Common_Source::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Filesystem_Common_Source_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Filesystem_Common_Source::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Filesystem_Common_Source>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Filesystem_Common_Source::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Filesystem_Common_Source>(), &Filesystem_Common_Source::ByteSizeLong,
+            &Filesystem_Common_Source::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_._cached_size_),
+        false,
+    },
+    &Filesystem_Common_Source::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Filesystem_Common_Source::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 0, 75, 2> Filesystem_Common_Source::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    7, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967168,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Filesystem_Common_Source>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .beegfs.SourceType type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Filesystem_Common_Source, _impl_.type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.type_)}},
+    // string repo = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.repo_)}},
+    // string management = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.management_)}},
+    // string meta = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.meta_)}},
+    // string storage = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.storage_)}},
+    // string remote = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.remote_)}},
+    // string sync = 7;
+    {::_pbi::TcParser::FastUS1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.sync_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .beegfs.SourceType type = 1;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string repo = 2;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.repo_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string management = 3;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.management_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string meta = 4;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.meta_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string storage = 5;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.storage_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string remote = 6;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.remote_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string sync = 7;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_Source, _impl_.sync_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\0\4\12\4\7\6\4"
+    "beegfs.Filesystem.Common.Source"
+    "repo"
+    "management"
+    "meta"
+    "storage"
+    "remote"
+    "sync"
+  }},
+};
+
+PROTOBUF_NOINLINE void Filesystem_Common_Source::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Filesystem.Common.Source)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.repo_.ClearToEmpty();
+  _impl_.management_.ClearToEmpty();
+  _impl_.meta_.ClearToEmpty();
+  _impl_.storage_.ClearToEmpty();
+  _impl_.remote_.ClearToEmpty();
+  _impl_.sync_.ClearToEmpty();
+  _impl_.type_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Filesystem_Common_Source::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Filesystem_Common_Source& this_ = static_cast<const Filesystem_Common_Source&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Filesystem_Common_Source::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Filesystem_Common_Source& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Filesystem.Common.Source)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // .beegfs.SourceType type = 1;
+          if (this_._internal_type() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                1, this_._internal_type(), target);
+          }
+
+          // string repo = 2;
+          if (!this_._internal_repo().empty()) {
+            const std::string& _s = this_._internal_repo();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.Source.repo");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // string management = 3;
+          if (!this_._internal_management().empty()) {
+            const std::string& _s = this_._internal_management();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.Source.management");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          // string meta = 4;
+          if (!this_._internal_meta().empty()) {
+            const std::string& _s = this_._internal_meta();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.Source.meta");
+            target = stream->WriteStringMaybeAliased(4, _s, target);
+          }
+
+          // string storage = 5;
+          if (!this_._internal_storage().empty()) {
+            const std::string& _s = this_._internal_storage();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.Source.storage");
+            target = stream->WriteStringMaybeAliased(5, _s, target);
+          }
+
+          // string remote = 6;
+          if (!this_._internal_remote().empty()) {
+            const std::string& _s = this_._internal_remote();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.Source.remote");
+            target = stream->WriteStringMaybeAliased(6, _s, target);
+          }
+
+          // string sync = 7;
+          if (!this_._internal_sync().empty()) {
+            const std::string& _s = this_._internal_sync();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.Source.sync");
+            target = stream->WriteStringMaybeAliased(7, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Filesystem.Common.Source)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Filesystem_Common_Source::ByteSizeLong(const MessageLite& base) {
+          const Filesystem_Common_Source& this_ = static_cast<const Filesystem_Common_Source&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Filesystem_Common_Source::ByteSizeLong() const {
+          const Filesystem_Common_Source& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Filesystem.Common.Source)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string repo = 2;
+            if (!this_._internal_repo().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_repo());
+            }
+            // string management = 3;
+            if (!this_._internal_management().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_management());
+            }
+            // string meta = 4;
+            if (!this_._internal_meta().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_meta());
+            }
+            // string storage = 5;
+            if (!this_._internal_storage().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_storage());
+            }
+            // string remote = 6;
+            if (!this_._internal_remote().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_remote());
+            }
+            // string sync = 7;
+            if (!this_._internal_sync().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_sync());
+            }
+            // .beegfs.SourceType type = 1;
+            if (this_._internal_type() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Filesystem_Common_Source::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Filesystem_Common_Source*>(&to_msg);
+  auto& from = static_cast<const Filesystem_Common_Source&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Filesystem.Common.Source)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_repo().empty()) {
+    _this->_internal_set_repo(from._internal_repo());
+  }
+  if (!from._internal_management().empty()) {
+    _this->_internal_set_management(from._internal_management());
+  }
+  if (!from._internal_meta().empty()) {
+    _this->_internal_set_meta(from._internal_meta());
+  }
+  if (!from._internal_storage().empty()) {
+    _this->_internal_set_storage(from._internal_storage());
+  }
+  if (!from._internal_remote().empty()) {
+    _this->_internal_set_remote(from._internal_remote());
+  }
+  if (!from._internal_sync().empty()) {
+    _this->_internal_set_sync(from._internal_sync());
+  }
+  if (from._internal_type() != 0) {
+    _this->_impl_.type_ = from._impl_.type_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Filesystem_Common_Source::CopyFrom(const Filesystem_Common_Source& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Filesystem.Common.Source)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Filesystem_Common_Source::InternalSwap(Filesystem_Common_Source* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.repo_, &other->_impl_.repo_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.management_, &other->_impl_.management_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.meta_, &other->_impl_.meta_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.storage_, &other->_impl_.storage_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.remote_, &other->_impl_.remote_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sync_, &other->_impl_.sync_, arena);
+  swap(_impl_.type_, other->_impl_.type_);
+}
+
+::google::protobuf::Metadata Filesystem_Common_Source::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              Filesystem_Common_MetaConfigEntry_DoNotUse::Filesystem_Common_MetaConfigEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              Filesystem_Common_MetaConfigEntry_DoNotUse::Filesystem_Common_MetaConfigEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              Filesystem_Common_MetaConfigEntry_DoNotUse::Filesystem_Common_MetaConfigEntry_DoNotUse() : SuperType() {}
+              Filesystem_Common_MetaConfigEntry_DoNotUse::Filesystem_Common_MetaConfigEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* Filesystem_Common_MetaConfigEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) Filesystem_Common_MetaConfigEntry_DoNotUse(arena);
+              }
+              constexpr auto Filesystem_Common_MetaConfigEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Filesystem_Common_MetaConfigEntry_DoNotUse),
+                                                          alignof(Filesystem_Common_MetaConfigEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull Filesystem_Common_MetaConfigEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_Filesystem_Common_MetaConfigEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &Filesystem_Common_MetaConfigEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<Filesystem_Common_MetaConfigEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &Filesystem_Common_MetaConfigEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &Filesystem_Common_MetaConfigEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &Filesystem_Common_MetaConfigEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_beegfs_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* Filesystem_Common_MetaConfigEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 57, 2> Filesystem_Common_MetaConfigEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Filesystem_Common_MetaConfigEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string value = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string value = 2;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_MetaConfigEntry_DoNotUse, _impl_.value_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\50\3\5\0\0\0\0\0"
+    "beegfs.Filesystem.Common.MetaConfigEntry"
+    "key"
+    "value"
+  }},
+};
+
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              Filesystem_Common_StorageConfigEntry_DoNotUse::Filesystem_Common_StorageConfigEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              Filesystem_Common_StorageConfigEntry_DoNotUse::Filesystem_Common_StorageConfigEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              Filesystem_Common_StorageConfigEntry_DoNotUse::Filesystem_Common_StorageConfigEntry_DoNotUse() : SuperType() {}
+              Filesystem_Common_StorageConfigEntry_DoNotUse::Filesystem_Common_StorageConfigEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* Filesystem_Common_StorageConfigEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) Filesystem_Common_StorageConfigEntry_DoNotUse(arena);
+              }
+              constexpr auto Filesystem_Common_StorageConfigEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Filesystem_Common_StorageConfigEntry_DoNotUse),
+                                                          alignof(Filesystem_Common_StorageConfigEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull Filesystem_Common_StorageConfigEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_Filesystem_Common_StorageConfigEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &Filesystem_Common_StorageConfigEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<Filesystem_Common_StorageConfigEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &Filesystem_Common_StorageConfigEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &Filesystem_Common_StorageConfigEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &Filesystem_Common_StorageConfigEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_beegfs_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* Filesystem_Common_StorageConfigEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 60, 2> Filesystem_Common_StorageConfigEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Filesystem_Common_StorageConfigEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string value = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string value = 2;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_StorageConfigEntry_DoNotUse, _impl_.value_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\53\3\5\0\0\0\0\0"
+    "beegfs.Filesystem.Common.StorageConfigEntry"
+    "key"
+    "value"
+  }},
+};
+
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              Filesystem_Common_ClientConfigEntry_DoNotUse::Filesystem_Common_ClientConfigEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              Filesystem_Common_ClientConfigEntry_DoNotUse::Filesystem_Common_ClientConfigEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              Filesystem_Common_ClientConfigEntry_DoNotUse::Filesystem_Common_ClientConfigEntry_DoNotUse() : SuperType() {}
+              Filesystem_Common_ClientConfigEntry_DoNotUse::Filesystem_Common_ClientConfigEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* Filesystem_Common_ClientConfigEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) Filesystem_Common_ClientConfigEntry_DoNotUse(arena);
+              }
+              constexpr auto Filesystem_Common_ClientConfigEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Filesystem_Common_ClientConfigEntry_DoNotUse),
+                                                          alignof(Filesystem_Common_ClientConfigEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull Filesystem_Common_ClientConfigEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_Filesystem_Common_ClientConfigEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &Filesystem_Common_ClientConfigEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<Filesystem_Common_ClientConfigEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &Filesystem_Common_ClientConfigEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &Filesystem_Common_ClientConfigEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &Filesystem_Common_ClientConfigEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_beegfs_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* Filesystem_Common_ClientConfigEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 59, 2> Filesystem_Common_ClientConfigEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Filesystem_Common_ClientConfigEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string value = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string value = 2;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common_ClientConfigEntry_DoNotUse, _impl_.value_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\52\3\5\0\0\0\0\0"
+    "beegfs.Filesystem.Common.ClientConfigEntry"
+    "key"
+    "value"
+  }},
+};
+
+// ===================================================================
+
+class Filesystem_Common::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<Filesystem_Common>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_._has_bits_);
+};
+
+Filesystem_Common::Filesystem_Common(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Filesystem.Common)
+}
+inline PROTOBUF_NDEBUG_INLINE Filesystem_Common::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Filesystem_Common& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        meta_config_{visibility, arena, from.meta_config_},
+        storage_config_{visibility, arena, from.storage_config_},
+        client_config_{visibility, arena, from.client_config_},
+        auth_(arena, from.auth_) {}
+
+Filesystem_Common::Filesystem_Common(
+    ::google::protobuf::Arena* arena,
+    const Filesystem_Common& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Filesystem_Common* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.source_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::Filesystem_Common_Source>(
+                              arena, *from._impl_.source_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Filesystem.Common)
+}
+inline PROTOBUF_NDEBUG_INLINE Filesystem_Common::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        meta_config_{visibility, arena},
+        storage_config_{visibility, arena},
+        client_config_{visibility, arena},
+        auth_(arena) {}
+
+inline void Filesystem_Common::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.source_ = {};
+}
+Filesystem_Common::~Filesystem_Common() {
+  // @@protoc_insertion_point(destructor:beegfs.Filesystem.Common)
+  SharedDtor(*this);
+}
+inline void Filesystem_Common::SharedDtor(MessageLite& self) {
+  Filesystem_Common& this_ = static_cast<Filesystem_Common&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.auth_.Destroy();
+  delete this_._impl_.source_;
+  this_._impl_.~Impl_();
+}
+
+inline void* Filesystem_Common::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Filesystem_Common(arena);
+}
+constexpr auto Filesystem_Common::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.meta_config_) +
+          decltype(Filesystem_Common::_impl_.meta_config_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.meta_config_) +
+          decltype(Filesystem_Common::_impl_.meta_config_)::
+              InternalGetArenaOffsetAlt(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.storage_config_) +
+          decltype(Filesystem_Common::_impl_.storage_config_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.storage_config_) +
+          decltype(Filesystem_Common::_impl_.storage_config_)::
+              InternalGetArenaOffsetAlt(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.client_config_) +
+          decltype(Filesystem_Common::_impl_.client_config_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.client_config_) +
+          decltype(Filesystem_Common::_impl_.client_config_)::
+              InternalGetArenaOffsetAlt(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(Filesystem_Common), alignof(Filesystem_Common), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&Filesystem_Common::PlacementNew_,
+                                 sizeof(Filesystem_Common),
+                                 alignof(Filesystem_Common));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Filesystem_Common::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Filesystem_Common_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Filesystem_Common::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Filesystem_Common>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Filesystem_Common::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Filesystem_Common>(), &Filesystem_Common::ByteSizeLong,
+            &Filesystem_Common::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_._cached_size_),
+        false,
+    },
+    &Filesystem_Common::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Filesystem_Common::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 5, 4, 75, 2> Filesystem_Common::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_._has_bits_),
+    0, // no _extensions_
+    5, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    4,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Filesystem_Common>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .beegfs.Filesystem.Common.Source source = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.source_)}},
+    // string auth = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.auth_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string auth = 1;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.auth_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.Filesystem.Common.Source source = 2;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.source_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // map<string, string> meta_config = 3;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.meta_config_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+    // map<string, string> storage_config = 4;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.storage_config_), -1, 2,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+    // map<string, string> client_config = 5;
+    {PROTOBUF_FIELD_OFFSET(Filesystem_Common, _impl_.client_config_), -1, 3,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::Filesystem_Common_Source>()},
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(Filesystem_Common()._impl_.meta_config_)>(
+        1, 0, 0, 9,
+        9)},
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(Filesystem_Common()._impl_.storage_config_)>(
+        1, 0, 0, 9,
+        9)},
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(Filesystem_Common()._impl_.client_config_)>(
+        1, 0, 0, 9,
+        9)},
+  }}, {{
+    "\30\4\0\13\16\15\0\0"
+    "beegfs.Filesystem.Common"
+    "auth"
+    "meta_config"
+    "storage_config"
+    "client_config"
+  }},
+};
+
+PROTOBUF_NOINLINE void Filesystem_Common::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Filesystem.Common)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.meta_config_.Clear();
+  _impl_.storage_config_.Clear();
+  _impl_.client_config_.Clear();
+  _impl_.auth_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.source_ != nullptr);
+    _impl_.source_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Filesystem_Common::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Filesystem_Common& this_ = static_cast<const Filesystem_Common&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Filesystem_Common::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Filesystem_Common& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Filesystem.Common)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string auth = 1;
+          if (!this_._internal_auth().empty()) {
+            const std::string& _s = this_._internal_auth();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.auth");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .beegfs.Filesystem.Common.Source source = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.source_, this_._impl_.source_->GetCachedSize(), target,
+                stream);
+          }
+
+          // map<string, string> meta_config = 3;
+          if (!this_._internal_meta_config().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, std::string>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
+                                           _pbi::WireFormatLite::TYPE_STRING,
+                                           _pbi::WireFormatLite::TYPE_STRING>;
+            const auto& field = this_._internal_meta_config();
+
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    3, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.meta_config");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.meta_config");
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    3, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.meta_config");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.meta_config");
+              }
+            }
+          }
+
+          // map<string, string> storage_config = 4;
+          if (!this_._internal_storage_config().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, std::string>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
+                                           _pbi::WireFormatLite::TYPE_STRING,
+                                           _pbi::WireFormatLite::TYPE_STRING>;
+            const auto& field = this_._internal_storage_config();
+
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    4, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.storage_config");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.storage_config");
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    4, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.storage_config");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.storage_config");
+              }
+            }
+          }
+
+          // map<string, string> client_config = 5;
+          if (!this_._internal_client_config().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, std::string>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
+                                           _pbi::WireFormatLite::TYPE_STRING,
+                                           _pbi::WireFormatLite::TYPE_STRING>;
+            const auto& field = this_._internal_client_config();
+
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    5, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.client_config");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.client_config");
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    5, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.client_config");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.Common.client_config");
+              }
+            }
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Filesystem.Common)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Filesystem_Common::ByteSizeLong(const MessageLite& base) {
+          const Filesystem_Common& this_ = static_cast<const Filesystem_Common&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Filesystem_Common::ByteSizeLong() const {
+          const Filesystem_Common& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Filesystem.Common)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // map<string, string> meta_config = 3;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_meta_config_size());
+              for (const auto& entry : this_._internal_meta_config()) {
+                total_size += _pbi::MapEntryFuncs<std::string, std::string,
+                                               _pbi::WireFormatLite::TYPE_STRING,
+                                               _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+              }
+            }
+            // map<string, string> storage_config = 4;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_storage_config_size());
+              for (const auto& entry : this_._internal_storage_config()) {
+                total_size += _pbi::MapEntryFuncs<std::string, std::string,
+                                               _pbi::WireFormatLite::TYPE_STRING,
+                                               _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+              }
+            }
+            // map<string, string> client_config = 5;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_client_config_size());
+              for (const auto& entry : this_._internal_client_config()) {
+                total_size += _pbi::MapEntryFuncs<std::string, std::string,
+                                               _pbi::WireFormatLite::TYPE_STRING,
+                                               _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+              }
+            }
+          }
+           {
+            // string auth = 1;
+            if (!this_._internal_auth().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_auth());
+            }
+          }
+           {
+            // .beegfs.Filesystem.Common.Source source = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.source_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Filesystem_Common::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Filesystem_Common*>(&to_msg);
+  auto& from = static_cast<const Filesystem_Common&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Filesystem.Common)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.meta_config_.MergeFrom(from._impl_.meta_config_);
+  _this->_impl_.storage_config_.MergeFrom(from._impl_.storage_config_);
+  _this->_impl_.client_config_.MergeFrom(from._impl_.client_config_);
+  if (!from._internal_auth().empty()) {
+    _this->_internal_set_auth(from._internal_auth());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.source_ != nullptr);
+    if (_this->_impl_.source_ == nullptr) {
+      _this->_impl_.source_ =
+          ::google::protobuf::Message::CopyConstruct<::beegfs::Filesystem_Common_Source>(arena, *from._impl_.source_);
+    } else {
+      _this->_impl_.source_->MergeFrom(*from._impl_.source_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Filesystem_Common::CopyFrom(const Filesystem_Common& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Filesystem.Common)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Filesystem_Common::InternalSwap(Filesystem_Common* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.meta_config_.InternalSwap(&other->_impl_.meta_config_);
+  _impl_.storage_config_.InternalSwap(&other->_impl_.storage_config_);
+  _impl_.client_config_.InternalSwap(&other->_impl_.client_config_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.auth_, &other->_impl_.auth_, arena);
+  swap(_impl_.source_, other->_impl_.source_);
+}
+
+::google::protobuf::Metadata Filesystem_Common::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Filesystem::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<Filesystem>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Filesystem, _impl_._has_bits_);
+};
+
+Filesystem::Filesystem(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Filesystem)
+}
+inline PROTOBUF_NDEBUG_INLINE Filesystem::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Filesystem& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        agent_{visibility, arena, from.agent_} {}
+
+Filesystem::Filesystem(
+    ::google::protobuf::Arena* arena,
+    const Filesystem& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Filesystem* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.common_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::Filesystem_Common>(
+                              arena, *from._impl_.common_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Filesystem)
+}
+inline PROTOBUF_NDEBUG_INLINE Filesystem::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        agent_{visibility, arena} {}
+
+inline void Filesystem::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.common_ = {};
+}
+Filesystem::~Filesystem() {
+  // @@protoc_insertion_point(destructor:beegfs.Filesystem)
+  SharedDtor(*this);
+}
+inline void Filesystem::SharedDtor(MessageLite& self) {
+  Filesystem& this_ = static_cast<Filesystem&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.common_;
+  this_._impl_.~Impl_();
+}
+
+inline void* Filesystem::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Filesystem(arena);
+}
+constexpr auto Filesystem::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(Filesystem, _impl_.agent_) +
+          decltype(Filesystem::_impl_.agent_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Filesystem, _impl_.agent_) +
+          decltype(Filesystem::_impl_.agent_)::
+              InternalGetArenaOffsetAlt(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(Filesystem), alignof(Filesystem), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&Filesystem::PlacementNew_,
+                                 sizeof(Filesystem),
+                                 alignof(Filesystem));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Filesystem::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Filesystem_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Filesystem::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Filesystem>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Filesystem::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Filesystem>(), &Filesystem::ByteSizeLong,
+            &Filesystem::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Filesystem, _impl_._cached_size_),
+        false,
+    },
+    &Filesystem::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Filesystem::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 2, 3, 31, 2> Filesystem::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Filesystem, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    3,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Filesystem>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .beegfs.Filesystem.Common common = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Filesystem, _impl_.common_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // map<string, .beegfs.Agent> agent = 1;
+    {PROTOBUF_FIELD_OFFSET(Filesystem, _impl_.agent_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+    // .beegfs.Filesystem.Common common = 2;
+    {PROTOBUF_FIELD_OFFSET(Filesystem, _impl_.common_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::Filesystem_Common>()},
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(Filesystem()._impl_.agent_)>(
+        1, 0, 0, 9,
+        11)},
+    {::_pbi::TcParser::GetTable<::beegfs::Agent>()},
+  }}, {{
+    "\21\5\0\0\0\0\0\0"
+    "beegfs.Filesystem"
+    "agent"
+  }},
+};
+
+PROTOBUF_NOINLINE void Filesystem::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Filesystem)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.agent_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.common_ != nullptr);
+    _impl_.common_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Filesystem::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Filesystem& this_ = static_cast<const Filesystem&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Filesystem::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Filesystem& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Filesystem)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // map<string, .beegfs.Agent> agent = 1;
+          if (!this_._internal_agent().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, ::beegfs::Agent>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, ::beegfs::Agent,
+                                           _pbi::WireFormatLite::TYPE_STRING,
+                                           _pbi::WireFormatLite::TYPE_MESSAGE>;
+            const auto& field = this_._internal_agent();
+
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    1, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.agent");
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    1, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Filesystem.agent");
+              }
+            }
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .beegfs.Filesystem.Common common = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.common_, this_._impl_.common_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Filesystem)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Filesystem::ByteSizeLong(const MessageLite& base) {
+          const Filesystem& this_ = static_cast<const Filesystem&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Filesystem::ByteSizeLong() const {
+          const Filesystem& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Filesystem)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // map<string, .beegfs.Agent> agent = 1;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_agent_size());
+              for (const auto& entry : this_._internal_agent()) {
+                total_size += _pbi::MapEntryFuncs<std::string, ::beegfs::Agent,
+                                               _pbi::WireFormatLite::TYPE_STRING,
+                                               _pbi::WireFormatLite::TYPE_MESSAGE>::ByteSizeLong(entry.first, entry.second);
+              }
+            }
+          }
+           {
+            // .beegfs.Filesystem.Common common = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.common_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Filesystem::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Filesystem*>(&to_msg);
+  auto& from = static_cast<const Filesystem&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Filesystem)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.agent_.MergeFrom(from._impl_.agent_);
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.common_ != nullptr);
+    if (_this->_impl_.common_ == nullptr) {
+      _this->_impl_.common_ =
+          ::google::protobuf::Message::CopyConstruct<::beegfs::Filesystem_Common>(arena, *from._impl_.common_);
+    } else {
+      _this->_impl_.common_->MergeFrom(*from._impl_.common_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Filesystem::CopyFrom(const Filesystem& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Filesystem)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Filesystem::InternalSwap(Filesystem* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.agent_.InternalSwap(&other->_impl_.agent_);
+  swap(_impl_.common_, other->_impl_.common_);
+}
+
+::google::protobuf::Metadata Filesystem::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Agent::_Internal {
+ public:
+};
+
+Agent::Agent(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Agent)
+}
+inline PROTOBUF_NDEBUG_INLINE Agent::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Agent& from_msg)
+      : nodes_{visibility, arena, from.nodes_},
+        interfaces_{visibility, arena, from.interfaces_},
+        _cached_size_{0} {}
+
+Agent::Agent(
+    ::google::protobuf::Arena* arena,
+    const Agent& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Agent* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Agent)
+}
+inline PROTOBUF_NDEBUG_INLINE Agent::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : nodes_{visibility, arena},
+        interfaces_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void Agent::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Agent::~Agent() {
+  // @@protoc_insertion_point(destructor:beegfs.Agent)
+  SharedDtor(*this);
+}
+inline void Agent::SharedDtor(MessageLite& self) {
+  Agent& this_ = static_cast<Agent&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* Agent::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Agent(arena);
+}
+constexpr auto Agent::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(Agent, _impl_.nodes_) +
+          decltype(Agent::_impl_.nodes_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Agent, _impl_.interfaces_) +
+          decltype(Agent::_impl_.interfaces_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(Agent), alignof(Agent), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&Agent::PlacementNew_,
+                                 sizeof(Agent),
+                                 alignof(Agent));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Agent::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Agent_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Agent::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Agent>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Agent::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Agent>(), &Agent::ByteSizeLong,
+            &Agent::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Agent, _impl_._cached_size_),
+        false,
+    },
+    &Agent::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Agent::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> Agent::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Agent>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .beegfs.Nic interfaces = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 1, PROTOBUF_FIELD_OFFSET(Agent, _impl_.interfaces_)}},
+    // repeated .beegfs.Node nodes = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Agent, _impl_.nodes_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .beegfs.Node nodes = 1;
+    {PROTOBUF_FIELD_OFFSET(Agent, _impl_.nodes_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .beegfs.Nic interfaces = 2;
+    {PROTOBUF_FIELD_OFFSET(Agent, _impl_.interfaces_), 0, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::Node>()},
+    {::_pbi::TcParser::GetTable<::beegfs::Nic>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Agent::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Agent)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.nodes_.Clear();
+  _impl_.interfaces_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Agent::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Agent& this_ = static_cast<const Agent&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Agent::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Agent& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Agent)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // repeated .beegfs.Node nodes = 1;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_nodes_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_nodes().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    1, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          // repeated .beegfs.Nic interfaces = 2;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_interfaces_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_interfaces().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    2, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Agent)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Agent::ByteSizeLong(const MessageLite& base) {
+          const Agent& this_ = static_cast<const Agent&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Agent::ByteSizeLong() const {
+          const Agent& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Agent)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated .beegfs.Node nodes = 1;
+            {
+              total_size += 1UL * this_._internal_nodes_size();
+              for (const auto& msg : this_._internal_nodes()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+            // repeated .beegfs.Nic interfaces = 2;
+            {
+              total_size += 1UL * this_._internal_interfaces_size();
+              for (const auto& msg : this_._internal_interfaces()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Agent::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Agent*>(&to_msg);
+  auto& from = static_cast<const Agent&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Agent)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_nodes()->MergeFrom(
+      from._internal_nodes());
+  _this->_internal_mutable_interfaces()->MergeFrom(
+      from._internal_interfaces());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Agent::CopyFrom(const Agent& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Agent)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Agent::InternalSwap(Agent* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.nodes_.InternalSwap(&other->_impl_.nodes_);
+  _impl_.interfaces_.InternalSwap(&other->_impl_.interfaces_);
+}
+
+::google::protobuf::Metadata Agent::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+              Node_ConfigEntry_DoNotUse::Node_ConfigEntry_DoNotUse() : SuperType(_class_data_.base()) {}
+              Node_ConfigEntry_DoNotUse::Node_ConfigEntry_DoNotUse(::google::protobuf::Arena* arena)
+                  : SuperType(arena, _class_data_.base()) {}
+#else   // PROTOBUF_CUSTOM_VTABLE
+              Node_ConfigEntry_DoNotUse::Node_ConfigEntry_DoNotUse() : SuperType() {}
+              Node_ConfigEntry_DoNotUse::Node_ConfigEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+              inline void* Node_ConfigEntry_DoNotUse::PlacementNew_(const void*, void* mem,
+                                                      ::google::protobuf::Arena* arena) {
+                return ::new (mem) Node_ConfigEntry_DoNotUse(arena);
+              }
+              constexpr auto Node_ConfigEntry_DoNotUse::InternalNewImpl_() {
+                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Node_ConfigEntry_DoNotUse),
+                                                          alignof(Node_ConfigEntry_DoNotUse));
+              }
+              PROTOBUF_CONSTINIT
+              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+              const ::google::protobuf::internal::ClassDataFull Node_ConfigEntry_DoNotUse::_class_data_ = {
+                  ::google::protobuf::internal::ClassData{
+                      &_Node_ConfigEntry_DoNotUse_default_instance_._instance,
+                      &_table_.header,
+                      nullptr,  // OnDemandRegisterArenaDtor
+                      nullptr,  // IsInitialized
+                      &Node_ConfigEntry_DoNotUse::MergeImpl,
+                      ::google::protobuf::Message::GetNewImpl<Node_ConfigEntry_DoNotUse>(),
+              #if defined(PROTOBUF_CUSTOM_VTABLE)
+                      &Node_ConfigEntry_DoNotUse::SharedDtor,
+                      static_cast<void (::google::protobuf::MessageLite::*)()>(
+                          &Node_ConfigEntry_DoNotUse::ClearImpl),
+                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
+                          ,
+              #endif  // PROTOBUF_CUSTOM_VTABLE
+                      PROTOBUF_FIELD_OFFSET(Node_ConfigEntry_DoNotUse, _impl_._cached_size_),
+                      false,
+                  },
+                  &Node_ConfigEntry_DoNotUse::kDescriptorMethods,
+                  &descriptor_table_beegfs_2eproto,
+                  nullptr,  // tracker
+              };
+              const ::google::protobuf::internal::ClassData* Node_ConfigEntry_DoNotUse::GetClassData() const {
+                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+                return _class_data_.base();
+              }
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 40, 2> Node_ConfigEntry_DoNotUse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Node_ConfigEntry_DoNotUse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Node_ConfigEntry_DoNotUse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string value = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Node_ConfigEntry_DoNotUse, _impl_.value_)}},
+    // string key = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Node_ConfigEntry_DoNotUse, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string key = 1;
+    {PROTOBUF_FIELD_OFFSET(Node_ConfigEntry_DoNotUse, _impl_.key_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string value = 2;
+    {PROTOBUF_FIELD_OFFSET(Node_ConfigEntry_DoNotUse, _impl_.value_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\27\3\5\0\0\0\0\0"
+    "beegfs.Node.ConfigEntry"
+    "key"
+    "value"
+  }},
+};
+
+// ===================================================================
+
+class Node_Source::_Internal {
+ public:
+};
+
+Node_Source::Node_Source(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Node.Source)
+}
+inline PROTOBUF_NDEBUG_INLINE Node_Source::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Node_Source& from_msg)
+      : ref_(arena, from.ref_),
+        _cached_size_{0} {}
+
+Node_Source::Node_Source(
+    ::google::protobuf::Arena* arena,
+    const Node_Source& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Node_Source* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.type_ = from._impl_.type_;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Node.Source)
+}
+inline PROTOBUF_NDEBUG_INLINE Node_Source::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : ref_(arena),
+        _cached_size_{0} {}
+
+inline void Node_Source::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.type_ = {};
+}
+Node_Source::~Node_Source() {
+  // @@protoc_insertion_point(destructor:beegfs.Node.Source)
+  SharedDtor(*this);
+}
+inline void Node_Source::SharedDtor(MessageLite& self) {
+  Node_Source& this_ = static_cast<Node_Source&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.ref_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Node_Source::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Node_Source(arena);
+}
+constexpr auto Node_Source::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Node_Source),
+                                            alignof(Node_Source));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Node_Source::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Node_Source_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Node_Source::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Node_Source>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Node_Source::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Node_Source>(), &Node_Source::ByteSizeLong,
+            &Node_Source::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Node_Source, _impl_._cached_size_),
+        false,
+    },
+    &Node_Source::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Node_Source::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 30, 2> Node_Source::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Node_Source>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string ref = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Node_Source, _impl_.ref_)}},
+    // .beegfs.SourceType type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Node_Source, _impl_.type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Node_Source, _impl_.type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .beegfs.SourceType type = 1;
+    {PROTOBUF_FIELD_OFFSET(Node_Source, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string ref = 2;
+    {PROTOBUF_FIELD_OFFSET(Node_Source, _impl_.ref_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\22\0\3\0\0\0\0\0"
+    "beegfs.Node.Source"
+    "ref"
+  }},
+};
+
+PROTOBUF_NOINLINE void Node_Source::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Node.Source)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.ref_.ClearToEmpty();
+  _impl_.type_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Node_Source::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Node_Source& this_ = static_cast<const Node_Source&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Node_Source::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Node_Source& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Node.Source)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // .beegfs.SourceType type = 1;
+          if (this_._internal_type() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                1, this_._internal_type(), target);
+          }
+
+          // string ref = 2;
+          if (!this_._internal_ref().empty()) {
+            const std::string& _s = this_._internal_ref();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Node.Source.ref");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Node.Source)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Node_Source::ByteSizeLong(const MessageLite& base) {
+          const Node_Source& this_ = static_cast<const Node_Source&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Node_Source::ByteSizeLong() const {
+          const Node_Source& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Node.Source)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string ref = 2;
+            if (!this_._internal_ref().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_ref());
+            }
+            // .beegfs.SourceType type = 1;
+            if (this_._internal_type() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Node_Source::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Node_Source*>(&to_msg);
+  auto& from = static_cast<const Node_Source&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Node.Source)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_ref().empty()) {
+    _this->_internal_set_ref(from._internal_ref());
+  }
+  if (from._internal_type() != 0) {
+    _this->_impl_.type_ = from._impl_.type_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Node_Source::CopyFrom(const Node_Source& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Node.Source)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Node_Source::InternalSwap(Node_Source* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.ref_, &other->_impl_.ref_, arena);
+  swap(_impl_.type_, other->_impl_.type_);
+}
+
+::google::protobuf::Metadata Node_Source::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Node::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<Node>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Node, _impl_._has_bits_);
+};
+
+Node::Node(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Node)
+}
+inline PROTOBUF_NDEBUG_INLINE Node::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Node& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        config_{visibility, arena, from.config_},
+        interfaces_{visibility, arena, from.interfaces_},
+        targets_{visibility, arena, from.targets_} {}
+
+Node::Node(
+    ::google::protobuf::Arena* arena,
+    const Node& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Node* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.source_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::Node_Source>(
+                              arena, *from._impl_.source_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, num_id_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, num_id_),
+           offsetof(Impl_, node_type_) -
+               offsetof(Impl_, num_id_) +
+               sizeof(Impl_::node_type_));
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Node)
+}
+inline PROTOBUF_NDEBUG_INLINE Node::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        config_{visibility, arena},
+        interfaces_{visibility, arena},
+        targets_{visibility, arena} {}
+
+inline void Node::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, source_),
+           0,
+           offsetof(Impl_, node_type_) -
+               offsetof(Impl_, source_) +
+               sizeof(Impl_::node_type_));
+}
+Node::~Node() {
+  // @@protoc_insertion_point(destructor:beegfs.Node)
+  SharedDtor(*this);
+}
+inline void Node::SharedDtor(MessageLite& self) {
+  Node& this_ = static_cast<Node&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.source_;
+  this_._impl_.~Impl_();
+}
+
+inline void* Node::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Node(arena);
+}
+constexpr auto Node::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(Node, _impl_.config_) +
+          decltype(Node::_impl_.config_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Node, _impl_.config_) +
+          decltype(Node::_impl_.config_)::
+              InternalGetArenaOffsetAlt(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Node, _impl_.interfaces_) +
+          decltype(Node::_impl_.interfaces_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(Node, _impl_.targets_) +
+          decltype(Node::_impl_.targets_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(Node), alignof(Node), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&Node::PlacementNew_,
+                                 sizeof(Node),
+                                 alignof(Node));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Node::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Node_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Node::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Node>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Node::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Node>(), &Node::ByteSizeLong,
+            &Node::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Node, _impl_._cached_size_),
+        false,
+    },
+    &Node::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Node::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 4, 26, 2> Node::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Node, _impl_._has_bits_),
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    4,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Node>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 num_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Node, _impl_.num_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Node, _impl_.num_id_)}},
+    // .beegfs.NodeType node_type = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Node, _impl_.node_type_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Node, _impl_.node_type_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .beegfs.Nic interfaces = 4;
+    {::_pbi::TcParser::FastMtR1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(Node, _impl_.interfaces_)}},
+    // repeated .beegfs.Target targets = 5;
+    {::_pbi::TcParser::FastMtR1,
+     {42, 63, 1, PROTOBUF_FIELD_OFFSET(Node, _impl_.targets_)}},
+    // optional .beegfs.Node.Source source = 6;
+    {::_pbi::TcParser::FastMtS1,
+     {50, 0, 2, PROTOBUF_FIELD_OFFSET(Node, _impl_.source_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 num_id = 1;
+    {PROTOBUF_FIELD_OFFSET(Node, _impl_.num_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // .beegfs.NodeType node_type = 2;
+    {PROTOBUF_FIELD_OFFSET(Node, _impl_.node_type_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // map<string, string> config = 3;
+    {PROTOBUF_FIELD_OFFSET(Node, _impl_.config_), -1, 3,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
+    // repeated .beegfs.Nic interfaces = 4;
+    {PROTOBUF_FIELD_OFFSET(Node, _impl_.interfaces_), -1, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .beegfs.Target targets = 5;
+    {PROTOBUF_FIELD_OFFSET(Node, _impl_.targets_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional .beegfs.Node.Source source = 6;
+    {PROTOBUF_FIELD_OFFSET(Node, _impl_.source_), _Internal::kHasBitsOffset + 0, 2,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::Nic>()},
+    {::_pbi::TcParser::GetTable<::beegfs::Target>()},
+    {::_pbi::TcParser::GetTable<::beegfs::Node_Source>()},
+    {::_pbi::TcParser::GetMapAuxInfo<
+        decltype(Node()._impl_.config_)>(
+        1, 0, 0, 9,
+        9)},
+  }}, {{
+    "\13\0\0\6\0\0\0\0"
+    "beegfs.Node"
+    "config"
+  }},
+};
+
+PROTOBUF_NOINLINE void Node::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Node)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.config_.Clear();
+  _impl_.interfaces_.Clear();
+  _impl_.targets_.Clear();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.source_ != nullptr);
+    _impl_.source_->Clear();
+  }
+  ::memset(&_impl_.num_id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.node_type_) -
+      reinterpret_cast<char*>(&_impl_.num_id_)) + sizeof(_impl_.node_type_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Node::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Node& this_ = static_cast<const Node&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Node::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Node& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Node)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // uint32 num_id = 1;
+          if (this_._internal_num_id() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_num_id(), target);
+          }
+
+          // .beegfs.NodeType node_type = 2;
+          if (this_._internal_node_type() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                2, this_._internal_node_type(), target);
+          }
+
+          // map<string, string> config = 3;
+          if (!this_._internal_config().empty()) {
+            using MapType = ::google::protobuf::Map<std::string, std::string>;
+            using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
+                                           _pbi::WireFormatLite::TYPE_STRING,
+                                           _pbi::WireFormatLite::TYPE_STRING>;
+            const auto& field = this_._internal_config();
+
+            if (stream->IsSerializationDeterministic() && field.size() > 1) {
+              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
+                target = WireHelper::InternalSerialize(
+                    3, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Node.config");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Node.config");
+              }
+            } else {
+              for (const auto& entry : field) {
+                target = WireHelper::InternalSerialize(
+                    3, entry.first, entry.second, target, stream);
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.first.data(), static_cast<int>(entry.first.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Node.config");
+                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                    entry.second.data(), static_cast<int>(entry.second.length()),
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Node.config");
+              }
+            }
+          }
+
+          // repeated .beegfs.Nic interfaces = 4;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_interfaces_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_interfaces().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    4, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          // repeated .beegfs.Target targets = 5;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_targets_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_targets().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    5, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // optional .beegfs.Node.Source source = 6;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                6, *this_._impl_.source_, this_._impl_.source_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Node)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Node::ByteSizeLong(const MessageLite& base) {
+          const Node& this_ = static_cast<const Node&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Node::ByteSizeLong() const {
+          const Node& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Node)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // map<string, string> config = 3;
+            {
+              total_size +=
+                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_config_size());
+              for (const auto& entry : this_._internal_config()) {
+                total_size += _pbi::MapEntryFuncs<std::string, std::string,
+                                               _pbi::WireFormatLite::TYPE_STRING,
+                                               _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+              }
+            }
+            // repeated .beegfs.Nic interfaces = 4;
+            {
+              total_size += 1UL * this_._internal_interfaces_size();
+              for (const auto& msg : this_._internal_interfaces()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+            // repeated .beegfs.Target targets = 5;
+            {
+              total_size += 1UL * this_._internal_targets_size();
+              for (const auto& msg : this_._internal_targets()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+           {
+            // optional .beegfs.Node.Source source = 6;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.source_);
+            }
+          }
+           {
+            // uint32 num_id = 1;
+            if (this_._internal_num_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_num_id());
+            }
+            // .beegfs.NodeType node_type = 2;
+            if (this_._internal_node_type() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_node_type());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Node::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Node*>(&to_msg);
+  auto& from = static_cast<const Node&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Node)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.config_.MergeFrom(from._impl_.config_);
+  _this->_internal_mutable_interfaces()->MergeFrom(
+      from._internal_interfaces());
+  _this->_internal_mutable_targets()->MergeFrom(
+      from._internal_targets());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.source_ != nullptr);
+    if (_this->_impl_.source_ == nullptr) {
+      _this->_impl_.source_ =
+          ::google::protobuf::Message::CopyConstruct<::beegfs::Node_Source>(arena, *from._impl_.source_);
+    } else {
+      _this->_impl_.source_->MergeFrom(*from._impl_.source_);
+    }
+  }
+  if (from._internal_num_id() != 0) {
+    _this->_impl_.num_id_ = from._impl_.num_id_;
+  }
+  if (from._internal_node_type() != 0) {
+    _this->_impl_.node_type_ = from._impl_.node_type_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Node::CopyFrom(const Node& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Node)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Node::InternalSwap(Node* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.config_.InternalSwap(&other->_impl_.config_);
+  _impl_.interfaces_.InternalSwap(&other->_impl_.interfaces_);
+  _impl_.targets_.InternalSwap(&other->_impl_.targets_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Node, _impl_.node_type_)
+      + sizeof(Node::_impl_.node_type_)
+      - PROTOBUF_FIELD_OFFSET(Node, _impl_.source_)>(
+          reinterpret_cast<char*>(&_impl_.source_),
+          reinterpret_cast<char*>(&other->_impl_.source_));
+}
+
+::google::protobuf::Metadata Node::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Nic::_Internal {
+ public:
+};
+
+Nic::Nic(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Nic)
+}
+inline PROTOBUF_NDEBUG_INLINE Nic::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Nic& from_msg)
+      : name_(arena, from.name_),
+        addr_(arena, from.addr_),
+        _cached_size_{0} {}
+
+Nic::Nic(
+    ::google::protobuf::Arena* arena,
+    const Nic& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Nic* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Nic)
+}
+inline PROTOBUF_NDEBUG_INLINE Nic::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        addr_(arena),
+        _cached_size_{0} {}
+
+inline void Nic::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+Nic::~Nic() {
+  // @@protoc_insertion_point(destructor:beegfs.Nic)
+  SharedDtor(*this);
+}
+inline void Nic::SharedDtor(MessageLite& self) {
+  Nic& this_ = static_cast<Nic&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.name_.Destroy();
+  this_._impl_.addr_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Nic::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Nic(arena);
+}
+constexpr auto Nic::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Nic),
+                                            alignof(Nic));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Nic::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Nic_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Nic::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Nic>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Nic::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Nic>(), &Nic::ByteSizeLong,
+            &Nic::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Nic, _impl_._cached_size_),
+        false,
+    },
+    &Nic::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Nic::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 27, 2> Nic::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Nic>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string addr = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Nic, _impl_.addr_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Nic, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(Nic, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string addr = 2;
+    {PROTOBUF_FIELD_OFFSET(Nic, _impl_.addr_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\12\4\4\0\0\0\0\0"
+    "beegfs.Nic"
+    "name"
+    "addr"
+  }},
+};
+
+PROTOBUF_NOINLINE void Nic::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Nic)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _impl_.addr_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Nic::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Nic& this_ = static_cast<const Nic&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Nic::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Nic& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Nic)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string name = 1;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Nic.name");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string addr = 2;
+          if (!this_._internal_addr().empty()) {
+            const std::string& _s = this_._internal_addr();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Nic.addr");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Nic)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Nic::ByteSizeLong(const MessageLite& base) {
+          const Nic& this_ = static_cast<const Nic&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Nic::ByteSizeLong() const {
+          const Nic& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Nic)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string name = 1;
+            if (!this_._internal_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
+            }
+            // string addr = 2;
+            if (!this_._internal_addr().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_addr());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Nic::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Nic*>(&to_msg);
+  auto& from = static_cast<const Nic&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Nic)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_addr().empty()) {
+    _this->_internal_set_addr(from._internal_addr());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Nic::CopyFrom(const Nic& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Nic)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Nic::InternalSwap(Nic* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.addr_, &other->_impl_.addr_, arena);
+}
+
+::google::protobuf::Metadata Nic::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Target_UnderlyingFSOpts::_Internal {
+ public:
+};
+
+Target_UnderlyingFSOpts::Target_UnderlyingFSOpts(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Target.UnderlyingFSOpts)
+}
+inline PROTOBUF_NDEBUG_INLINE Target_UnderlyingFSOpts::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Target_UnderlyingFSOpts& from_msg)
+      : device_(arena, from.device_),
+        format_flags_(arena, from.format_flags_),
+        mount_flags_(arena, from.mount_flags_),
+        _cached_size_{0} {}
+
+Target_UnderlyingFSOpts::Target_UnderlyingFSOpts(
+    ::google::protobuf::Arena* arena,
+    const Target_UnderlyingFSOpts& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Target_UnderlyingFSOpts* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.type_ = from._impl_.type_;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Target.UnderlyingFSOpts)
+}
+inline PROTOBUF_NDEBUG_INLINE Target_UnderlyingFSOpts::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : device_(arena),
+        format_flags_(arena),
+        mount_flags_(arena),
+        _cached_size_{0} {}
+
+inline void Target_UnderlyingFSOpts::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.type_ = {};
+}
+Target_UnderlyingFSOpts::~Target_UnderlyingFSOpts() {
+  // @@protoc_insertion_point(destructor:beegfs.Target.UnderlyingFSOpts)
+  SharedDtor(*this);
+}
+inline void Target_UnderlyingFSOpts::SharedDtor(MessageLite& self) {
+  Target_UnderlyingFSOpts& this_ = static_cast<Target_UnderlyingFSOpts&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.device_.Destroy();
+  this_._impl_.format_flags_.Destroy();
+  this_._impl_.mount_flags_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Target_UnderlyingFSOpts::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Target_UnderlyingFSOpts(arena);
+}
+constexpr auto Target_UnderlyingFSOpts::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Target_UnderlyingFSOpts),
+                                            alignof(Target_UnderlyingFSOpts));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Target_UnderlyingFSOpts::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Target_UnderlyingFSOpts_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Target_UnderlyingFSOpts::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Target_UnderlyingFSOpts>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Target_UnderlyingFSOpts::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Target_UnderlyingFSOpts>(), &Target_UnderlyingFSOpts::ByteSizeLong,
+            &Target_UnderlyingFSOpts::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_._cached_size_),
+        false,
+    },
+    &Target_UnderlyingFSOpts::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Target_UnderlyingFSOpts::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 68, 2> Target_UnderlyingFSOpts::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Target_UnderlyingFSOpts>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string mount_flags = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_.mount_flags_)}},
+    // string device = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_.device_)}},
+    // .beegfs.Target.UnderlyingFSOpts.FsType type = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Target_UnderlyingFSOpts, _impl_.type_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_.type_)}},
+    // string format_flags = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_.format_flags_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string device = 1;
+    {PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_.device_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .beegfs.Target.UnderlyingFSOpts.FsType type = 2;
+    {PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string format_flags = 3;
+    {PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_.format_flags_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string mount_flags = 4;
+    {PROTOBUF_FIELD_OFFSET(Target_UnderlyingFSOpts, _impl_.mount_flags_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\36\6\0\14\13\0\0\0"
+    "beegfs.Target.UnderlyingFSOpts"
+    "device"
+    "format_flags"
+    "mount_flags"
+  }},
+};
+
+PROTOBUF_NOINLINE void Target_UnderlyingFSOpts::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Target.UnderlyingFSOpts)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.device_.ClearToEmpty();
+  _impl_.format_flags_.ClearToEmpty();
+  _impl_.mount_flags_.ClearToEmpty();
+  _impl_.type_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Target_UnderlyingFSOpts::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Target_UnderlyingFSOpts& this_ = static_cast<const Target_UnderlyingFSOpts&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Target_UnderlyingFSOpts::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Target_UnderlyingFSOpts& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Target.UnderlyingFSOpts)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string device = 1;
+          if (!this_._internal_device().empty()) {
+            const std::string& _s = this_._internal_device();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Target.UnderlyingFSOpts.device");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // .beegfs.Target.UnderlyingFSOpts.FsType type = 2;
+          if (this_._internal_type() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                2, this_._internal_type(), target);
+          }
+
+          // string format_flags = 3;
+          if (!this_._internal_format_flags().empty()) {
+            const std::string& _s = this_._internal_format_flags();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Target.UnderlyingFSOpts.format_flags");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          // string mount_flags = 4;
+          if (!this_._internal_mount_flags().empty()) {
+            const std::string& _s = this_._internal_mount_flags();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Target.UnderlyingFSOpts.mount_flags");
+            target = stream->WriteStringMaybeAliased(4, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Target.UnderlyingFSOpts)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Target_UnderlyingFSOpts::ByteSizeLong(const MessageLite& base) {
+          const Target_UnderlyingFSOpts& this_ = static_cast<const Target_UnderlyingFSOpts&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Target_UnderlyingFSOpts::ByteSizeLong() const {
+          const Target_UnderlyingFSOpts& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Target.UnderlyingFSOpts)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string device = 1;
+            if (!this_._internal_device().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_device());
+            }
+            // string format_flags = 3;
+            if (!this_._internal_format_flags().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_format_flags());
+            }
+            // string mount_flags = 4;
+            if (!this_._internal_mount_flags().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_mount_flags());
+            }
+            // .beegfs.Target.UnderlyingFSOpts.FsType type = 2;
+            if (this_._internal_type() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Target_UnderlyingFSOpts::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Target_UnderlyingFSOpts*>(&to_msg);
+  auto& from = static_cast<const Target_UnderlyingFSOpts&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Target.UnderlyingFSOpts)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_device().empty()) {
+    _this->_internal_set_device(from._internal_device());
+  }
+  if (!from._internal_format_flags().empty()) {
+    _this->_internal_set_format_flags(from._internal_format_flags());
+  }
+  if (!from._internal_mount_flags().empty()) {
+    _this->_internal_set_mount_flags(from._internal_mount_flags());
+  }
+  if (from._internal_type() != 0) {
+    _this->_impl_.type_ = from._impl_.type_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Target_UnderlyingFSOpts::CopyFrom(const Target_UnderlyingFSOpts& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Target.UnderlyingFSOpts)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Target_UnderlyingFSOpts::InternalSwap(Target_UnderlyingFSOpts* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.device_, &other->_impl_.device_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.format_flags_, &other->_impl_.format_flags_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mount_flags_, &other->_impl_.mount_flags_, arena);
+  swap(_impl_.type_, other->_impl_.type_);
+}
+
+::google::protobuf::Metadata Target_UnderlyingFSOpts::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Target::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<Target>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Target, _impl_._has_bits_);
+};
+
+Target::Target(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beegfs.Target)
+}
+inline PROTOBUF_NDEBUG_INLINE Target::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beegfs::Target& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        root_dir_(arena, from.root_dir_) {}
+
+Target::Target(
+    ::google::protobuf::Arena* arena,
+    const Target& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Target* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.ulfs_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beegfs::Target_UnderlyingFSOpts>(
+                              arena, *from._impl_.ulfs_)
+                        : nullptr;
+  _impl_.num_id_ = from._impl_.num_id_;
+
+  // @@protoc_insertion_point(copy_constructor:beegfs.Target)
+}
+inline PROTOBUF_NDEBUG_INLINE Target::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        root_dir_(arena) {}
+
+inline void Target::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, ulfs_),
+           0,
+           offsetof(Impl_, num_id_) -
+               offsetof(Impl_, ulfs_) +
+               sizeof(Impl_::num_id_));
+}
+Target::~Target() {
+  // @@protoc_insertion_point(destructor:beegfs.Target)
+  SharedDtor(*this);
+}
+inline void Target::SharedDtor(MessageLite& self) {
+  Target& this_ = static_cast<Target&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.root_dir_.Destroy();
+  delete this_._impl_.ulfs_;
+  this_._impl_.~Impl_();
+}
+
+inline void* Target::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Target(arena);
+}
+constexpr auto Target::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Target),
+                                            alignof(Target));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Target::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Target_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Target::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Target>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Target::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Target>(), &Target::ByteSizeLong,
+            &Target::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Target, _impl_._cached_size_),
+        false,
+    },
+    &Target::kDescriptorMethods,
+    &descriptor_table_beegfs_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Target::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 1, 30, 2> Target::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Target, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beegfs::Target>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 num_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Target, _impl_.num_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Target, _impl_.num_id_)}},
+    // string root_dir = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Target, _impl_.root_dir_)}},
+    // optional .beegfs.Target.UnderlyingFSOpts ulfs = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(Target, _impl_.ulfs_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 num_id = 1;
+    {PROTOBUF_FIELD_OFFSET(Target, _impl_.num_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string root_dir = 2;
+    {PROTOBUF_FIELD_OFFSET(Target, _impl_.root_dir_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional .beegfs.Target.UnderlyingFSOpts ulfs = 3;
+    {PROTOBUF_FIELD_OFFSET(Target, _impl_.ulfs_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beegfs::Target_UnderlyingFSOpts>()},
+  }}, {{
+    "\15\0\10\0\0\0\0\0"
+    "beegfs.Target"
+    "root_dir"
+  }},
+};
+
+PROTOBUF_NOINLINE void Target::Clear() {
+// @@protoc_insertion_point(message_clear_start:beegfs.Target)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.root_dir_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.ulfs_ != nullptr);
+    _impl_.ulfs_->Clear();
+  }
+  _impl_.num_id_ = 0u;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Target::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Target& this_ = static_cast<const Target&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Target::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Target& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beegfs.Target)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // uint32 num_id = 1;
+          if (this_._internal_num_id() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_num_id(), target);
+          }
+
+          // string root_dir = 2;
+          if (!this_._internal_root_dir().empty()) {
+            const std::string& _s = this_._internal_root_dir();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "beegfs.Target.root_dir");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // optional .beegfs.Target.UnderlyingFSOpts ulfs = 3;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.ulfs_, this_._impl_.ulfs_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beegfs.Target)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Target::ByteSizeLong(const MessageLite& base) {
+          const Target& this_ = static_cast<const Target&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Target::ByteSizeLong() const {
+          const Target& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beegfs.Target)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string root_dir = 2;
+            if (!this_._internal_root_dir().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_root_dir());
+            }
+          }
+           {
+            // optional .beegfs.Target.UnderlyingFSOpts ulfs = 3;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.ulfs_);
+            }
+          }
+           {
+            // uint32 num_id = 1;
+            if (this_._internal_num_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_num_id());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Target::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Target*>(&to_msg);
+  auto& from = static_cast<const Target&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:beegfs.Target)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_root_dir().empty()) {
+    _this->_internal_set_root_dir(from._internal_root_dir());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.ulfs_ != nullptr);
+    if (_this->_impl_.ulfs_ == nullptr) {
+      _this->_impl_.ulfs_ =
+          ::google::protobuf::Message::CopyConstruct<::beegfs::Target_UnderlyingFSOpts>(arena, *from._impl_.ulfs_);
+    } else {
+      _this->_impl_.ulfs_->MergeFrom(*from._impl_.ulfs_);
+    }
+  }
+  if (from._internal_num_id() != 0) {
+    _this->_impl_.num_id_ = from._impl_.num_id_;
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Target::CopyFrom(const Target& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beegfs.Target)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Target::InternalSwap(Target* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.root_dir_, &other->_impl_.root_dir_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Target, _impl_.num_id_)
+      + sizeof(Target::_impl_.num_id_)
+      - PROTOBUF_FIELD_OFFSET(Target, _impl_.ulfs_)>(
+          reinterpret_cast<char*>(&_impl_.ulfs_),
+          reinterpret_cast<char*>(&other->_impl_.ulfs_));
+}
+
+::google::protobuf::Metadata Target::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

@@ -28,8 +28,12 @@
 #include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/map.h"  // IWYU pragma: export
+#include "google/protobuf/map_entry.h"
+#include "google/protobuf/map_field_inl.h"
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
+#include "google/protobuf/timestamp.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -53,12 +57,75 @@ struct TableStruct_beegfs_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_beegfs_2eproto;
 namespace beegfs {
+class Agent;
+struct AgentDefaultTypeInternal;
+extern AgentDefaultTypeInternal _Agent_default_instance_;
+class AgentCancelRequest;
+struct AgentCancelRequestDefaultTypeInternal;
+extern AgentCancelRequestDefaultTypeInternal _AgentCancelRequest_default_instance_;
+class AgentCancelResponse;
+struct AgentCancelResponseDefaultTypeInternal;
+extern AgentCancelResponseDefaultTypeInternal _AgentCancelResponse_default_instance_;
+class AgentStatus;
+struct AgentStatusDefaultTypeInternal;
+extern AgentStatusDefaultTypeInternal _AgentStatus_default_instance_;
+class AgentStatusRequest;
+struct AgentStatusRequestDefaultTypeInternal;
+extern AgentStatusRequestDefaultTypeInternal _AgentStatusRequest_default_instance_;
+class AgentStatusResponse;
+struct AgentStatusResponseDefaultTypeInternal;
+extern AgentStatusResponseDefaultTypeInternal _AgentStatusResponse_default_instance_;
+class AgentUpdateRequest;
+struct AgentUpdateRequestDefaultTypeInternal;
+extern AgentUpdateRequestDefaultTypeInternal _AgentUpdateRequest_default_instance_;
+class AgentUpdateResponse;
+struct AgentUpdateResponseDefaultTypeInternal;
+extern AgentUpdateResponseDefaultTypeInternal _AgentUpdateResponse_default_instance_;
 class EntityIdSet;
 struct EntityIdSetDefaultTypeInternal;
 extern EntityIdSetDefaultTypeInternal _EntityIdSet_default_instance_;
+class Filesystem;
+struct FilesystemDefaultTypeInternal;
+extern FilesystemDefaultTypeInternal _Filesystem_default_instance_;
+class Filesystem_AgentEntry_DoNotUse;
+struct Filesystem_AgentEntry_DoNotUseDefaultTypeInternal;
+extern Filesystem_AgentEntry_DoNotUseDefaultTypeInternal _Filesystem_AgentEntry_DoNotUse_default_instance_;
+class Filesystem_Common;
+struct Filesystem_CommonDefaultTypeInternal;
+extern Filesystem_CommonDefaultTypeInternal _Filesystem_Common_default_instance_;
+class Filesystem_Common_ClientConfigEntry_DoNotUse;
+struct Filesystem_Common_ClientConfigEntry_DoNotUseDefaultTypeInternal;
+extern Filesystem_Common_ClientConfigEntry_DoNotUseDefaultTypeInternal _Filesystem_Common_ClientConfigEntry_DoNotUse_default_instance_;
+class Filesystem_Common_MetaConfigEntry_DoNotUse;
+struct Filesystem_Common_MetaConfigEntry_DoNotUseDefaultTypeInternal;
+extern Filesystem_Common_MetaConfigEntry_DoNotUseDefaultTypeInternal _Filesystem_Common_MetaConfigEntry_DoNotUse_default_instance_;
+class Filesystem_Common_Source;
+struct Filesystem_Common_SourceDefaultTypeInternal;
+extern Filesystem_Common_SourceDefaultTypeInternal _Filesystem_Common_Source_default_instance_;
+class Filesystem_Common_StorageConfigEntry_DoNotUse;
+struct Filesystem_Common_StorageConfigEntry_DoNotUseDefaultTypeInternal;
+extern Filesystem_Common_StorageConfigEntry_DoNotUseDefaultTypeInternal _Filesystem_Common_StorageConfigEntry_DoNotUse_default_instance_;
 class LegacyId;
 struct LegacyIdDefaultTypeInternal;
 extern LegacyIdDefaultTypeInternal _LegacyId_default_instance_;
+class Nic;
+struct NicDefaultTypeInternal;
+extern NicDefaultTypeInternal _Nic_default_instance_;
+class Node;
+struct NodeDefaultTypeInternal;
+extern NodeDefaultTypeInternal _Node_default_instance_;
+class Node_ConfigEntry_DoNotUse;
+struct Node_ConfigEntry_DoNotUseDefaultTypeInternal;
+extern Node_ConfigEntry_DoNotUseDefaultTypeInternal _Node_ConfigEntry_DoNotUse_default_instance_;
+class Node_Source;
+struct Node_SourceDefaultTypeInternal;
+extern Node_SourceDefaultTypeInternal _Node_Source_default_instance_;
+class Target;
+struct TargetDefaultTypeInternal;
+extern TargetDefaultTypeInternal _Target_default_instance_;
+class Target_UnderlyingFSOpts;
+struct Target_UnderlyingFSOptsDefaultTypeInternal;
+extern Target_UnderlyingFSOptsDefaultTypeInternal _Target_UnderlyingFSOpts_default_instance_;
 }  // namespace beegfs
 namespace google {
 namespace protobuf {
@@ -66,6 +133,76 @@ namespace protobuf {
 }  // namespace google
 
 namespace beegfs {
+enum AgentStatus_State : int {
+  AgentStatus_State_UNSPECIFIED = 0,
+  AgentStatus_State_IDLE = 1,
+  AgentStatus_State_APPLYING = 2,
+  AgentStatus_State_SUCCESS = 3,
+  AgentStatus_State_FAILED = 4,
+  AgentStatus_State_CANCELLED = 5,
+  AgentStatus_State_AgentStatus_State_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  AgentStatus_State_AgentStatus_State_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool AgentStatus_State_IsValid(int value);
+extern const uint32_t AgentStatus_State_internal_data_[];
+constexpr AgentStatus_State AgentStatus_State_State_MIN = static_cast<AgentStatus_State>(0);
+constexpr AgentStatus_State AgentStatus_State_State_MAX = static_cast<AgentStatus_State>(5);
+constexpr int AgentStatus_State_State_ARRAYSIZE = 5 + 1;
+const ::google::protobuf::EnumDescriptor*
+AgentStatus_State_descriptor();
+template <typename T>
+const std::string& AgentStatus_State_Name(T value) {
+  static_assert(std::is_same<T, AgentStatus_State>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to State_Name().");
+  return AgentStatus_State_Name(static_cast<AgentStatus_State>(value));
+}
+template <>
+inline const std::string& AgentStatus_State_Name(AgentStatus_State value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<AgentStatus_State_descriptor,
+                                                 0, 5>(
+      static_cast<int>(value));
+}
+inline bool AgentStatus_State_Parse(absl::string_view name, AgentStatus_State* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<AgentStatus_State>(
+      AgentStatus_State_descriptor(), name, value);
+}
+enum Target_UnderlyingFSOpts_FsType : int {
+  Target_UnderlyingFSOpts_FsType_UNSPECIFIED = 0,
+  Target_UnderlyingFSOpts_FsType_EXT4 = 1,
+  Target_UnderlyingFSOpts_FsType_Target_UnderlyingFSOpts_FsType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  Target_UnderlyingFSOpts_FsType_Target_UnderlyingFSOpts_FsType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool Target_UnderlyingFSOpts_FsType_IsValid(int value);
+extern const uint32_t Target_UnderlyingFSOpts_FsType_internal_data_[];
+constexpr Target_UnderlyingFSOpts_FsType Target_UnderlyingFSOpts_FsType_FsType_MIN = static_cast<Target_UnderlyingFSOpts_FsType>(0);
+constexpr Target_UnderlyingFSOpts_FsType Target_UnderlyingFSOpts_FsType_FsType_MAX = static_cast<Target_UnderlyingFSOpts_FsType>(1);
+constexpr int Target_UnderlyingFSOpts_FsType_FsType_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor*
+Target_UnderlyingFSOpts_FsType_descriptor();
+template <typename T>
+const std::string& Target_UnderlyingFSOpts_FsType_Name(T value) {
+  static_assert(std::is_same<T, Target_UnderlyingFSOpts_FsType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to FsType_Name().");
+  return Target_UnderlyingFSOpts_FsType_Name(static_cast<Target_UnderlyingFSOpts_FsType>(value));
+}
+template <>
+inline const std::string& Target_UnderlyingFSOpts_FsType_Name(Target_UnderlyingFSOpts_FsType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<Target_UnderlyingFSOpts_FsType_descriptor,
+                                                 0, 1>(
+      static_cast<int>(value));
+}
+inline bool Target_UnderlyingFSOpts_FsType_Parse(absl::string_view name, Target_UnderlyingFSOpts_FsType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Target_UnderlyingFSOpts_FsType>(
+      Target_UnderlyingFSOpts_FsType_descriptor(), name, value);
+}
 enum EntityType : int {
   ENTITY_TYPE_UNSPECIFIED = 0,
   NODE = 1,
@@ -108,6 +245,8 @@ enum NodeType : int {
   META = 2,
   STORAGE = 3,
   MANAGEMENT = 4,
+  REMOTE = 5,
+  SYNC = 6,
   NodeType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   NodeType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -117,8 +256,8 @@ enum NodeType : int {
 bool NodeType_IsValid(int value);
 extern const uint32_t NodeType_internal_data_[];
 constexpr NodeType NodeType_MIN = static_cast<NodeType>(0);
-constexpr NodeType NodeType_MAX = static_cast<NodeType>(4);
-constexpr int NodeType_ARRAYSIZE = 4 + 1;
+constexpr NodeType NodeType_MAX = static_cast<NodeType>(6);
+constexpr int NodeType_ARRAYSIZE = 6 + 1;
 const ::google::protobuf::EnumDescriptor*
 NodeType_descriptor();
 template <typename T>
@@ -131,7 +270,7 @@ const std::string& NodeType_Name(T value) {
 template <>
 inline const std::string& NodeType_Name(NodeType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<NodeType_descriptor,
-                                                 0, 4>(
+                                                 0, 6>(
       static_cast<int>(value));
 }
 inline bool NodeType_Parse(absl::string_view name, NodeType* value) {
@@ -345,10 +484,768 @@ inline bool QuotaType_Parse(absl::string_view name, QuotaType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<QuotaType>(
       QuotaType_descriptor(), name, value);
 }
+enum SourceType : int {
+  UNKNOWN = 0,
+  LOCAL = 1,
+  PACKAGE = 2,
+  SourceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SourceType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SourceType_IsValid(int value);
+extern const uint32_t SourceType_internal_data_[];
+constexpr SourceType SourceType_MIN = static_cast<SourceType>(0);
+constexpr SourceType SourceType_MAX = static_cast<SourceType>(2);
+constexpr int SourceType_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+SourceType_descriptor();
+template <typename T>
+const std::string& SourceType_Name(T value) {
+  static_assert(std::is_same<T, SourceType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to SourceType_Name().");
+  return SourceType_Name(static_cast<SourceType>(value));
+}
+template <>
+inline const std::string& SourceType_Name(SourceType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SourceType_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool SourceType_Parse(absl::string_view name, SourceType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SourceType>(
+      SourceType_descriptor(), name, value);
+}
 
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class Target_UnderlyingFSOpts final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Target.UnderlyingFSOpts) */ {
+ public:
+  inline Target_UnderlyingFSOpts() : Target_UnderlyingFSOpts(nullptr) {}
+  ~Target_UnderlyingFSOpts() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Target_UnderlyingFSOpts* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Target_UnderlyingFSOpts));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Target_UnderlyingFSOpts(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Target_UnderlyingFSOpts(const Target_UnderlyingFSOpts& from) : Target_UnderlyingFSOpts(nullptr, from) {}
+  inline Target_UnderlyingFSOpts(Target_UnderlyingFSOpts&& from) noexcept
+      : Target_UnderlyingFSOpts(nullptr, std::move(from)) {}
+  inline Target_UnderlyingFSOpts& operator=(const Target_UnderlyingFSOpts& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Target_UnderlyingFSOpts& operator=(Target_UnderlyingFSOpts&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Target_UnderlyingFSOpts& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Target_UnderlyingFSOpts* internal_default_instance() {
+    return reinterpret_cast<const Target_UnderlyingFSOpts*>(
+        &_Target_UnderlyingFSOpts_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 21;
+  friend void swap(Target_UnderlyingFSOpts& a, Target_UnderlyingFSOpts& b) { a.Swap(&b); }
+  inline void Swap(Target_UnderlyingFSOpts* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Target_UnderlyingFSOpts* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Target_UnderlyingFSOpts* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Target_UnderlyingFSOpts>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Target_UnderlyingFSOpts& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Target_UnderlyingFSOpts& from) { Target_UnderlyingFSOpts::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Target_UnderlyingFSOpts* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Target.UnderlyingFSOpts"; }
+
+ protected:
+  explicit Target_UnderlyingFSOpts(::google::protobuf::Arena* arena);
+  Target_UnderlyingFSOpts(::google::protobuf::Arena* arena, const Target_UnderlyingFSOpts& from);
+  Target_UnderlyingFSOpts(::google::protobuf::Arena* arena, Target_UnderlyingFSOpts&& from) noexcept
+      : Target_UnderlyingFSOpts(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using FsType = Target_UnderlyingFSOpts_FsType;
+  static constexpr FsType UNSPECIFIED = Target_UnderlyingFSOpts_FsType_UNSPECIFIED;
+  static constexpr FsType EXT4 = Target_UnderlyingFSOpts_FsType_EXT4;
+  static inline bool FsType_IsValid(int value) {
+    return Target_UnderlyingFSOpts_FsType_IsValid(value);
+  }
+  static constexpr FsType FsType_MIN = Target_UnderlyingFSOpts_FsType_FsType_MIN;
+  static constexpr FsType FsType_MAX = Target_UnderlyingFSOpts_FsType_FsType_MAX;
+  static constexpr int FsType_ARRAYSIZE = Target_UnderlyingFSOpts_FsType_FsType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* FsType_descriptor() {
+    return Target_UnderlyingFSOpts_FsType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& FsType_Name(T value) {
+    return Target_UnderlyingFSOpts_FsType_Name(value);
+  }
+  static inline bool FsType_Parse(absl::string_view name, FsType* value) {
+    return Target_UnderlyingFSOpts_FsType_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDeviceFieldNumber = 1,
+    kFormatFlagsFieldNumber = 3,
+    kMountFlagsFieldNumber = 4,
+    kTypeFieldNumber = 2,
+  };
+  // string device = 1;
+  void clear_device() ;
+  const std::string& device() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_device(Arg_&& arg, Args_... args);
+  std::string* mutable_device();
+  PROTOBUF_NODISCARD std::string* release_device();
+  void set_allocated_device(std::string* value);
+
+  private:
+  const std::string& _internal_device() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_device(
+      const std::string& value);
+  std::string* _internal_mutable_device();
+
+  public:
+  // string format_flags = 3;
+  void clear_format_flags() ;
+  const std::string& format_flags() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_format_flags(Arg_&& arg, Args_... args);
+  std::string* mutable_format_flags();
+  PROTOBUF_NODISCARD std::string* release_format_flags();
+  void set_allocated_format_flags(std::string* value);
+
+  private:
+  const std::string& _internal_format_flags() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_format_flags(
+      const std::string& value);
+  std::string* _internal_mutable_format_flags();
+
+  public:
+  // string mount_flags = 4;
+  void clear_mount_flags() ;
+  const std::string& mount_flags() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_mount_flags(Arg_&& arg, Args_... args);
+  std::string* mutable_mount_flags();
+  PROTOBUF_NODISCARD std::string* release_mount_flags();
+  void set_allocated_mount_flags(std::string* value);
+
+  private:
+  const std::string& _internal_mount_flags() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mount_flags(
+      const std::string& value);
+  std::string* _internal_mutable_mount_flags();
+
+  public:
+  // .beegfs.Target.UnderlyingFSOpts.FsType type = 2;
+  void clear_type() ;
+  ::beegfs::Target_UnderlyingFSOpts_FsType type() const;
+  void set_type(::beegfs::Target_UnderlyingFSOpts_FsType value);
+
+  private:
+  ::beegfs::Target_UnderlyingFSOpts_FsType _internal_type() const;
+  void _internal_set_type(::beegfs::Target_UnderlyingFSOpts_FsType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.Target.UnderlyingFSOpts)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 0,
+      68, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Target_UnderlyingFSOpts& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr device_;
+    ::google::protobuf::internal::ArenaStringPtr format_flags_;
+    ::google::protobuf::internal::ArenaStringPtr mount_flags_;
+    int type_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Node_Source final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Node.Source) */ {
+ public:
+  inline Node_Source() : Node_Source(nullptr) {}
+  ~Node_Source() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Node_Source* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Node_Source));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Node_Source(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Node_Source(const Node_Source& from) : Node_Source(nullptr, from) {}
+  inline Node_Source(Node_Source&& from) noexcept
+      : Node_Source(nullptr, std::move(from)) {}
+  inline Node_Source& operator=(const Node_Source& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Node_Source& operator=(Node_Source&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Node_Source& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Node_Source* internal_default_instance() {
+    return reinterpret_cast<const Node_Source*>(
+        &_Node_Source_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 18;
+  friend void swap(Node_Source& a, Node_Source& b) { a.Swap(&b); }
+  inline void Swap(Node_Source* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Node_Source* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Node_Source* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Node_Source>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Node_Source& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Node_Source& from) { Node_Source::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Node_Source* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Node.Source"; }
+
+ protected:
+  explicit Node_Source(::google::protobuf::Arena* arena);
+  Node_Source(::google::protobuf::Arena* arena, const Node_Source& from);
+  Node_Source(::google::protobuf::Arena* arena, Node_Source&& from) noexcept
+      : Node_Source(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRefFieldNumber = 2,
+    kTypeFieldNumber = 1,
+  };
+  // string ref = 2;
+  void clear_ref() ;
+  const std::string& ref() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ref(Arg_&& arg, Args_... args);
+  std::string* mutable_ref();
+  PROTOBUF_NODISCARD std::string* release_ref();
+  void set_allocated_ref(std::string* value);
+
+  private:
+  const std::string& _internal_ref() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ref(
+      const std::string& value);
+  std::string* _internal_mutable_ref();
+
+  public:
+  // .beegfs.SourceType type = 1;
+  void clear_type() ;
+  ::beegfs::SourceType type() const;
+  void set_type(::beegfs::SourceType value);
+
+  private:
+  ::beegfs::SourceType _internal_type() const;
+  void _internal_set_type(::beegfs::SourceType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.Node.Source)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      30, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Node_Source& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr ref_;
+    int type_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Node_ConfigEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, std::string,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+  Node_ConfigEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Node_ConfigEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit Node_ConfigEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Node_ConfigEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Node_ConfigEntry_DoNotUse*>(
+        &_Node_ConfigEntry_DoNotUse_default_instance_);
+  }
+
+
+ private:
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_beegfs_2eproto;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      40, 2>
+      _table_;
+
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+};
+// -------------------------------------------------------------------
+
+class Nic final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Nic) */ {
+ public:
+  inline Nic() : Nic(nullptr) {}
+  ~Nic() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Nic* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Nic));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Nic(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Nic(const Nic& from) : Nic(nullptr, from) {}
+  inline Nic(Nic&& from) noexcept
+      : Nic(nullptr, std::move(from)) {}
+  inline Nic& operator=(const Nic& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Nic& operator=(Nic&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Nic& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Nic* internal_default_instance() {
+    return reinterpret_cast<const Nic*>(
+        &_Nic_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 20;
+  friend void swap(Nic& a, Nic& b) { a.Swap(&b); }
+  inline void Swap(Nic* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Nic* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Nic* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Nic>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Nic& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Nic& from) { Nic::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Nic* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Nic"; }
+
+ protected:
+  explicit Nic(::google::protobuf::Arena* arena);
+  Nic(::google::protobuf::Arena* arena, const Nic& from);
+  Nic(::google::protobuf::Arena* arena, Nic&& from) noexcept
+      : Nic(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNameFieldNumber = 1,
+    kAddrFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string addr = 2;
+  void clear_addr() ;
+  const std::string& addr() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_addr(Arg_&& arg, Args_... args);
+  std::string* mutable_addr();
+  PROTOBUF_NODISCARD std::string* release_addr();
+  void set_allocated_addr(std::string* value);
+
+  private:
+  const std::string& _internal_addr() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_addr(
+      const std::string& value);
+  std::string* _internal_mutable_addr();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.Nic)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      27, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Nic& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr addr_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
 // -------------------------------------------------------------------
 
 class LegacyId final : public ::google::protobuf::Message
@@ -546,6 +1443,1583 @@ class LegacyId final : public ::google::protobuf::Message
     ::uint32_t num_id_;
     int node_type_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Filesystem_Common_StorageConfigEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, std::string,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+  Filesystem_Common_StorageConfigEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Filesystem_Common_StorageConfigEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit Filesystem_Common_StorageConfigEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Filesystem_Common_StorageConfigEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Filesystem_Common_StorageConfigEntry_DoNotUse*>(
+        &_Filesystem_Common_StorageConfigEntry_DoNotUse_default_instance_);
+  }
+
+
+ private:
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_beegfs_2eproto;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      60, 2>
+      _table_;
+
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+};
+// -------------------------------------------------------------------
+
+class Filesystem_Common_Source final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Filesystem.Common.Source) */ {
+ public:
+  inline Filesystem_Common_Source() : Filesystem_Common_Source(nullptr) {}
+  ~Filesystem_Common_Source() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Filesystem_Common_Source* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Filesystem_Common_Source));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Filesystem_Common_Source(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Filesystem_Common_Source(const Filesystem_Common_Source& from) : Filesystem_Common_Source(nullptr, from) {}
+  inline Filesystem_Common_Source(Filesystem_Common_Source&& from) noexcept
+      : Filesystem_Common_Source(nullptr, std::move(from)) {}
+  inline Filesystem_Common_Source& operator=(const Filesystem_Common_Source& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Filesystem_Common_Source& operator=(Filesystem_Common_Source&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Filesystem_Common_Source& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Filesystem_Common_Source* internal_default_instance() {
+    return reinterpret_cast<const Filesystem_Common_Source*>(
+        &_Filesystem_Common_Source_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 10;
+  friend void swap(Filesystem_Common_Source& a, Filesystem_Common_Source& b) { a.Swap(&b); }
+  inline void Swap(Filesystem_Common_Source* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Filesystem_Common_Source* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Filesystem_Common_Source* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Filesystem_Common_Source>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Filesystem_Common_Source& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Filesystem_Common_Source& from) { Filesystem_Common_Source::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Filesystem_Common_Source* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Filesystem.Common.Source"; }
+
+ protected:
+  explicit Filesystem_Common_Source(::google::protobuf::Arena* arena);
+  Filesystem_Common_Source(::google::protobuf::Arena* arena, const Filesystem_Common_Source& from);
+  Filesystem_Common_Source(::google::protobuf::Arena* arena, Filesystem_Common_Source&& from) noexcept
+      : Filesystem_Common_Source(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRepoFieldNumber = 2,
+    kManagementFieldNumber = 3,
+    kMetaFieldNumber = 4,
+    kStorageFieldNumber = 5,
+    kRemoteFieldNumber = 6,
+    kSyncFieldNumber = 7,
+    kTypeFieldNumber = 1,
+  };
+  // string repo = 2;
+  void clear_repo() ;
+  const std::string& repo() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_repo(Arg_&& arg, Args_... args);
+  std::string* mutable_repo();
+  PROTOBUF_NODISCARD std::string* release_repo();
+  void set_allocated_repo(std::string* value);
+
+  private:
+  const std::string& _internal_repo() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_repo(
+      const std::string& value);
+  std::string* _internal_mutable_repo();
+
+  public:
+  // string management = 3;
+  void clear_management() ;
+  const std::string& management() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_management(Arg_&& arg, Args_... args);
+  std::string* mutable_management();
+  PROTOBUF_NODISCARD std::string* release_management();
+  void set_allocated_management(std::string* value);
+
+  private:
+  const std::string& _internal_management() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_management(
+      const std::string& value);
+  std::string* _internal_mutable_management();
+
+  public:
+  // string meta = 4;
+  void clear_meta() ;
+  const std::string& meta() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_meta(Arg_&& arg, Args_... args);
+  std::string* mutable_meta();
+  PROTOBUF_NODISCARD std::string* release_meta();
+  void set_allocated_meta(std::string* value);
+
+  private:
+  const std::string& _internal_meta() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_meta(
+      const std::string& value);
+  std::string* _internal_mutable_meta();
+
+  public:
+  // string storage = 5;
+  void clear_storage() ;
+  const std::string& storage() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_storage(Arg_&& arg, Args_... args);
+  std::string* mutable_storage();
+  PROTOBUF_NODISCARD std::string* release_storage();
+  void set_allocated_storage(std::string* value);
+
+  private:
+  const std::string& _internal_storage() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_storage(
+      const std::string& value);
+  std::string* _internal_mutable_storage();
+
+  public:
+  // string remote = 6;
+  void clear_remote() ;
+  const std::string& remote() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_remote(Arg_&& arg, Args_... args);
+  std::string* mutable_remote();
+  PROTOBUF_NODISCARD std::string* release_remote();
+  void set_allocated_remote(std::string* value);
+
+  private:
+  const std::string& _internal_remote() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_remote(
+      const std::string& value);
+  std::string* _internal_mutable_remote();
+
+  public:
+  // string sync = 7;
+  void clear_sync() ;
+  const std::string& sync() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_sync(Arg_&& arg, Args_... args);
+  std::string* mutable_sync();
+  PROTOBUF_NODISCARD std::string* release_sync();
+  void set_allocated_sync(std::string* value);
+
+  private:
+  const std::string& _internal_sync() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_sync(
+      const std::string& value);
+  std::string* _internal_mutable_sync();
+
+  public:
+  // .beegfs.SourceType type = 1;
+  void clear_type() ;
+  ::beegfs::SourceType type() const;
+  void set_type(::beegfs::SourceType value);
+
+  private:
+  ::beegfs::SourceType _internal_type() const;
+  void _internal_set_type(::beegfs::SourceType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.Filesystem.Common.Source)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 7, 0,
+      75, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Filesystem_Common_Source& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr repo_;
+    ::google::protobuf::internal::ArenaStringPtr management_;
+    ::google::protobuf::internal::ArenaStringPtr meta_;
+    ::google::protobuf::internal::ArenaStringPtr storage_;
+    ::google::protobuf::internal::ArenaStringPtr remote_;
+    ::google::protobuf::internal::ArenaStringPtr sync_;
+    int type_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Filesystem_Common_MetaConfigEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, std::string,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+  Filesystem_Common_MetaConfigEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Filesystem_Common_MetaConfigEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit Filesystem_Common_MetaConfigEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Filesystem_Common_MetaConfigEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Filesystem_Common_MetaConfigEntry_DoNotUse*>(
+        &_Filesystem_Common_MetaConfigEntry_DoNotUse_default_instance_);
+  }
+
+
+ private:
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_beegfs_2eproto;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      57, 2>
+      _table_;
+
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+};
+// -------------------------------------------------------------------
+
+class Filesystem_Common_ClientConfigEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, std::string,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+  Filesystem_Common_ClientConfigEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Filesystem_Common_ClientConfigEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit Filesystem_Common_ClientConfigEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Filesystem_Common_ClientConfigEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Filesystem_Common_ClientConfigEntry_DoNotUse*>(
+        &_Filesystem_Common_ClientConfigEntry_DoNotUse_default_instance_);
+  }
+
+
+ private:
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_beegfs_2eproto;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      59, 2>
+      _table_;
+
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+};
+// -------------------------------------------------------------------
+
+class AgentUpdateResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.AgentUpdateResponse) */ {
+ public:
+  inline AgentUpdateResponse() : AgentUpdateResponse(nullptr) {}
+  ~AgentUpdateResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AgentUpdateResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AgentUpdateResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AgentUpdateResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AgentUpdateResponse(const AgentUpdateResponse& from) : AgentUpdateResponse(nullptr, from) {}
+  inline AgentUpdateResponse(AgentUpdateResponse&& from) noexcept
+      : AgentUpdateResponse(nullptr, std::move(from)) {}
+  inline AgentUpdateResponse& operator=(const AgentUpdateResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AgentUpdateResponse& operator=(AgentUpdateResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AgentUpdateResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AgentUpdateResponse* internal_default_instance() {
+    return reinterpret_cast<const AgentUpdateResponse*>(
+        &_AgentUpdateResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(AgentUpdateResponse& a, AgentUpdateResponse& b) { a.Swap(&b); }
+  inline void Swap(AgentUpdateResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AgentUpdateResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AgentUpdateResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AgentUpdateResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AgentUpdateResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AgentUpdateResponse& from) { AgentUpdateResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AgentUpdateResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.AgentUpdateResponse"; }
+
+ protected:
+  explicit AgentUpdateResponse(::google::protobuf::Arena* arena);
+  AgentUpdateResponse(::google::protobuf::Arena* arena, const AgentUpdateResponse& from);
+  AgentUpdateResponse(::google::protobuf::Arena* arena, AgentUpdateResponse&& from) noexcept
+      : AgentUpdateResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFsUuidFieldNumber = 1,
+    kAgentIdFieldNumber = 2,
+  };
+  // string fs_uuid = 1;
+  void clear_fs_uuid() ;
+  const std::string& fs_uuid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_fs_uuid(Arg_&& arg, Args_... args);
+  std::string* mutable_fs_uuid();
+  PROTOBUF_NODISCARD std::string* release_fs_uuid();
+  void set_allocated_fs_uuid(std::string* value);
+
+  private:
+  const std::string& _internal_fs_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fs_uuid(
+      const std::string& value);
+  std::string* _internal_mutable_fs_uuid();
+
+  public:
+  // string agent_id = 2;
+  void clear_agent_id() ;
+  const std::string& agent_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_agent_id(Arg_&& arg, Args_... args);
+  std::string* mutable_agent_id();
+  PROTOBUF_NODISCARD std::string* release_agent_id();
+  void set_allocated_agent_id(std::string* value);
+
+  private:
+  const std::string& _internal_agent_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_agent_id(
+      const std::string& value);
+  std::string* _internal_mutable_agent_id();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.AgentUpdateResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      50, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AgentUpdateResponse& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr fs_uuid_;
+    ::google::protobuf::internal::ArenaStringPtr agent_id_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AgentStatusRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.AgentStatusRequest) */ {
+ public:
+  inline AgentStatusRequest() : AgentStatusRequest(nullptr) {}
+  ~AgentStatusRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AgentStatusRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AgentStatusRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AgentStatusRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AgentStatusRequest(const AgentStatusRequest& from) : AgentStatusRequest(nullptr, from) {}
+  inline AgentStatusRequest(AgentStatusRequest&& from) noexcept
+      : AgentStatusRequest(nullptr, std::move(from)) {}
+  inline AgentStatusRequest& operator=(const AgentStatusRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AgentStatusRequest& operator=(AgentStatusRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AgentStatusRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AgentStatusRequest* internal_default_instance() {
+    return reinterpret_cast<const AgentStatusRequest*>(
+        &_AgentStatusRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 4;
+  friend void swap(AgentStatusRequest& a, AgentStatusRequest& b) { a.Swap(&b); }
+  inline void Swap(AgentStatusRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AgentStatusRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AgentStatusRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AgentStatusRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AgentStatusRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AgentStatusRequest& from) { AgentStatusRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AgentStatusRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.AgentStatusRequest"; }
+
+ protected:
+  explicit AgentStatusRequest(::google::protobuf::Arena* arena);
+  AgentStatusRequest(::google::protobuf::Arena* arena, const AgentStatusRequest& from);
+  AgentStatusRequest(::google::protobuf::Arena* arena, AgentStatusRequest&& from) noexcept
+      : AgentStatusRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFsUuidFieldNumber = 1,
+    kAgentIdFieldNumber = 2,
+  };
+  // string fs_uuid = 1;
+  void clear_fs_uuid() ;
+  const std::string& fs_uuid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_fs_uuid(Arg_&& arg, Args_... args);
+  std::string* mutable_fs_uuid();
+  PROTOBUF_NODISCARD std::string* release_fs_uuid();
+  void set_allocated_fs_uuid(std::string* value);
+
+  private:
+  const std::string& _internal_fs_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fs_uuid(
+      const std::string& value);
+  std::string* _internal_mutable_fs_uuid();
+
+  public:
+  // string agent_id = 2;
+  void clear_agent_id() ;
+  const std::string& agent_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_agent_id(Arg_&& arg, Args_... args);
+  std::string* mutable_agent_id();
+  PROTOBUF_NODISCARD std::string* release_agent_id();
+  void set_allocated_agent_id(std::string* value);
+
+  private:
+  const std::string& _internal_agent_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_agent_id(
+      const std::string& value);
+  std::string* _internal_mutable_agent_id();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.AgentStatusRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      49, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AgentStatusRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr fs_uuid_;
+    ::google::protobuf::internal::ArenaStringPtr agent_id_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AgentCancelRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.AgentCancelRequest) */ {
+ public:
+  inline AgentCancelRequest() : AgentCancelRequest(nullptr) {}
+  ~AgentCancelRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AgentCancelRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AgentCancelRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AgentCancelRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AgentCancelRequest(const AgentCancelRequest& from) : AgentCancelRequest(nullptr, from) {}
+  inline AgentCancelRequest(AgentCancelRequest&& from) noexcept
+      : AgentCancelRequest(nullptr, std::move(from)) {}
+  inline AgentCancelRequest& operator=(const AgentCancelRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AgentCancelRequest& operator=(AgentCancelRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AgentCancelRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AgentCancelRequest* internal_default_instance() {
+    return reinterpret_cast<const AgentCancelRequest*>(
+        &_AgentCancelRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(AgentCancelRequest& a, AgentCancelRequest& b) { a.Swap(&b); }
+  inline void Swap(AgentCancelRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AgentCancelRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AgentCancelRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AgentCancelRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AgentCancelRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AgentCancelRequest& from) { AgentCancelRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AgentCancelRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.AgentCancelRequest"; }
+
+ protected:
+  explicit AgentCancelRequest(::google::protobuf::Arena* arena);
+  AgentCancelRequest(::google::protobuf::Arena* arena, const AgentCancelRequest& from);
+  AgentCancelRequest(::google::protobuf::Arena* arena, AgentCancelRequest&& from) noexcept
+      : AgentCancelRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFsUuidFieldNumber = 1,
+    kAgentIdFieldNumber = 2,
+    kReasonFieldNumber = 3,
+  };
+  // string fs_uuid = 1;
+  void clear_fs_uuid() ;
+  const std::string& fs_uuid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_fs_uuid(Arg_&& arg, Args_... args);
+  std::string* mutable_fs_uuid();
+  PROTOBUF_NODISCARD std::string* release_fs_uuid();
+  void set_allocated_fs_uuid(std::string* value);
+
+  private:
+  const std::string& _internal_fs_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fs_uuid(
+      const std::string& value);
+  std::string* _internal_mutable_fs_uuid();
+
+  public:
+  // string agent_id = 2;
+  void clear_agent_id() ;
+  const std::string& agent_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_agent_id(Arg_&& arg, Args_... args);
+  std::string* mutable_agent_id();
+  PROTOBUF_NODISCARD std::string* release_agent_id();
+  void set_allocated_agent_id(std::string* value);
+
+  private:
+  const std::string& _internal_agent_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_agent_id(
+      const std::string& value);
+  std::string* _internal_mutable_agent_id();
+
+  public:
+  // string reason = 3;
+  void clear_reason() ;
+  const std::string& reason() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_reason(Arg_&& arg, Args_... args);
+  std::string* mutable_reason();
+  PROTOBUF_NODISCARD std::string* release_reason();
+  void set_allocated_reason(std::string* value);
+
+  private:
+  const std::string& _internal_reason() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reason(
+      const std::string& value);
+  std::string* _internal_mutable_reason();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.AgentCancelRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      55, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AgentCancelRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr fs_uuid_;
+    ::google::protobuf::internal::ArenaStringPtr agent_id_;
+    ::google::protobuf::internal::ArenaStringPtr reason_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Target final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Target) */ {
+ public:
+  inline Target() : Target(nullptr) {}
+  ~Target() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Target* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Target));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Target(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Target(const Target& from) : Target(nullptr, from) {}
+  inline Target(Target&& from) noexcept
+      : Target(nullptr, std::move(from)) {}
+  inline Target& operator=(const Target& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Target& operator=(Target&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Target& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Target* internal_default_instance() {
+    return reinterpret_cast<const Target*>(
+        &_Target_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 22;
+  friend void swap(Target& a, Target& b) { a.Swap(&b); }
+  inline void Swap(Target* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Target* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Target* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Target>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Target& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Target& from) { Target::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Target* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Target"; }
+
+ protected:
+  explicit Target(::google::protobuf::Arena* arena);
+  Target(::google::protobuf::Arena* arena, const Target& from);
+  Target(::google::protobuf::Arena* arena, Target&& from) noexcept
+      : Target(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using UnderlyingFSOpts = Target_UnderlyingFSOpts;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRootDirFieldNumber = 2,
+    kUlfsFieldNumber = 3,
+    kNumIdFieldNumber = 1,
+  };
+  // string root_dir = 2;
+  void clear_root_dir() ;
+  const std::string& root_dir() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_root_dir(Arg_&& arg, Args_... args);
+  std::string* mutable_root_dir();
+  PROTOBUF_NODISCARD std::string* release_root_dir();
+  void set_allocated_root_dir(std::string* value);
+
+  private:
+  const std::string& _internal_root_dir() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_root_dir(
+      const std::string& value);
+  std::string* _internal_mutable_root_dir();
+
+  public:
+  // optional .beegfs.Target.UnderlyingFSOpts ulfs = 3;
+  bool has_ulfs() const;
+  void clear_ulfs() ;
+  const ::beegfs::Target_UnderlyingFSOpts& ulfs() const;
+  PROTOBUF_NODISCARD ::beegfs::Target_UnderlyingFSOpts* release_ulfs();
+  ::beegfs::Target_UnderlyingFSOpts* mutable_ulfs();
+  void set_allocated_ulfs(::beegfs::Target_UnderlyingFSOpts* value);
+  void unsafe_arena_set_allocated_ulfs(::beegfs::Target_UnderlyingFSOpts* value);
+  ::beegfs::Target_UnderlyingFSOpts* unsafe_arena_release_ulfs();
+
+  private:
+  const ::beegfs::Target_UnderlyingFSOpts& _internal_ulfs() const;
+  ::beegfs::Target_UnderlyingFSOpts* _internal_mutable_ulfs();
+
+  public:
+  // uint32 num_id = 1;
+  void clear_num_id() ;
+  ::uint32_t num_id() const;
+  void set_num_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_num_id() const;
+  void _internal_set_num_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.Target)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      30, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Target& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr root_dir_;
+    ::beegfs::Target_UnderlyingFSOpts* ulfs_;
+    ::uint32_t num_id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Filesystem_Common final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Filesystem.Common) */ {
+ public:
+  inline Filesystem_Common() : Filesystem_Common(nullptr) {}
+  ~Filesystem_Common() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Filesystem_Common* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Filesystem_Common));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Filesystem_Common(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Filesystem_Common(const Filesystem_Common& from) : Filesystem_Common(nullptr, from) {}
+  inline Filesystem_Common(Filesystem_Common&& from) noexcept
+      : Filesystem_Common(nullptr, std::move(from)) {}
+  inline Filesystem_Common& operator=(const Filesystem_Common& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Filesystem_Common& operator=(Filesystem_Common&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Filesystem_Common& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Filesystem_Common* internal_default_instance() {
+    return reinterpret_cast<const Filesystem_Common*>(
+        &_Filesystem_Common_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 14;
+  friend void swap(Filesystem_Common& a, Filesystem_Common& b) { a.Swap(&b); }
+  inline void Swap(Filesystem_Common* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Filesystem_Common* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Filesystem_Common* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Filesystem_Common>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Filesystem_Common& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Filesystem_Common& from) { Filesystem_Common::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Filesystem_Common* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Filesystem.Common"; }
+
+ protected:
+  explicit Filesystem_Common(::google::protobuf::Arena* arena);
+  Filesystem_Common(::google::protobuf::Arena* arena, const Filesystem_Common& from);
+  Filesystem_Common(::google::protobuf::Arena* arena, Filesystem_Common&& from) noexcept
+      : Filesystem_Common(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Source = Filesystem_Common_Source;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMetaConfigFieldNumber = 3,
+    kStorageConfigFieldNumber = 4,
+    kClientConfigFieldNumber = 5,
+    kAuthFieldNumber = 1,
+    kSourceFieldNumber = 2,
+  };
+  // map<string, string> meta_config = 3;
+  int meta_config_size() const;
+  private:
+  int _internal_meta_config_size() const;
+
+  public:
+  void clear_meta_config() ;
+  const ::google::protobuf::Map<std::string, std::string>& meta_config() const;
+  ::google::protobuf::Map<std::string, std::string>* mutable_meta_config();
+
+  private:
+  const ::google::protobuf::Map<std::string, std::string>& _internal_meta_config() const;
+  ::google::protobuf::Map<std::string, std::string>* _internal_mutable_meta_config();
+
+  public:
+  // map<string, string> storage_config = 4;
+  int storage_config_size() const;
+  private:
+  int _internal_storage_config_size() const;
+
+  public:
+  void clear_storage_config() ;
+  const ::google::protobuf::Map<std::string, std::string>& storage_config() const;
+  ::google::protobuf::Map<std::string, std::string>* mutable_storage_config();
+
+  private:
+  const ::google::protobuf::Map<std::string, std::string>& _internal_storage_config() const;
+  ::google::protobuf::Map<std::string, std::string>* _internal_mutable_storage_config();
+
+  public:
+  // map<string, string> client_config = 5;
+  int client_config_size() const;
+  private:
+  int _internal_client_config_size() const;
+
+  public:
+  void clear_client_config() ;
+  const ::google::protobuf::Map<std::string, std::string>& client_config() const;
+  ::google::protobuf::Map<std::string, std::string>* mutable_client_config();
+
+  private:
+  const ::google::protobuf::Map<std::string, std::string>& _internal_client_config() const;
+  ::google::protobuf::Map<std::string, std::string>* _internal_mutable_client_config();
+
+  public:
+  // string auth = 1;
+  void clear_auth() ;
+  const std::string& auth() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_auth(Arg_&& arg, Args_... args);
+  std::string* mutable_auth();
+  PROTOBUF_NODISCARD std::string* release_auth();
+  void set_allocated_auth(std::string* value);
+
+  private:
+  const std::string& _internal_auth() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_auth(
+      const std::string& value);
+  std::string* _internal_mutable_auth();
+
+  public:
+  // .beegfs.Filesystem.Common.Source source = 2;
+  bool has_source() const;
+  void clear_source() ;
+  const ::beegfs::Filesystem_Common_Source& source() const;
+  PROTOBUF_NODISCARD ::beegfs::Filesystem_Common_Source* release_source();
+  ::beegfs::Filesystem_Common_Source* mutable_source();
+  void set_allocated_source(::beegfs::Filesystem_Common_Source* value);
+  void unsafe_arena_set_allocated_source(::beegfs::Filesystem_Common_Source* value);
+  ::beegfs::Filesystem_Common_Source* unsafe_arena_release_source();
+
+  private:
+  const ::beegfs::Filesystem_Common_Source& _internal_source() const;
+  ::beegfs::Filesystem_Common_Source* _internal_mutable_source();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.Filesystem.Common)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 5, 4,
+      75, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Filesystem_Common& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::MapField<Filesystem_Common_MetaConfigEntry_DoNotUse, std::string, std::string,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+        meta_config_;
+    ::google::protobuf::internal::MapField<Filesystem_Common_StorageConfigEntry_DoNotUse, std::string, std::string,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+        storage_config_;
+    ::google::protobuf::internal::MapField<Filesystem_Common_ClientConfigEntry_DoNotUse, std::string, std::string,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+        client_config_;
+    ::google::protobuf::internal::ArenaStringPtr auth_;
+    ::beegfs::Filesystem_Common_Source* source_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -774,6 +3248,1708 @@ class EntityIdSet final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr alias_;
     ::beegfs::LegacyId* legacy_id_;
     ::int64_t uid_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AgentStatus final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.AgentStatus) */ {
+ public:
+  inline AgentStatus() : AgentStatus(nullptr) {}
+  ~AgentStatus() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AgentStatus* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AgentStatus));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AgentStatus(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AgentStatus(const AgentStatus& from) : AgentStatus(nullptr, from) {}
+  inline AgentStatus(AgentStatus&& from) noexcept
+      : AgentStatus(nullptr, std::move(from)) {}
+  inline AgentStatus& operator=(const AgentStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AgentStatus& operator=(AgentStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AgentStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AgentStatus* internal_default_instance() {
+    return reinterpret_cast<const AgentStatus*>(
+        &_AgentStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(AgentStatus& a, AgentStatus& b) { a.Swap(&b); }
+  inline void Swap(AgentStatus* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AgentStatus* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AgentStatus* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AgentStatus>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AgentStatus& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AgentStatus& from) { AgentStatus::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AgentStatus* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.AgentStatus"; }
+
+ protected:
+  explicit AgentStatus(::google::protobuf::Arena* arena);
+  AgentStatus(::google::protobuf::Arena* arena, const AgentStatus& from);
+  AgentStatus(::google::protobuf::Arena* arena, AgentStatus&& from) noexcept
+      : AgentStatus(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using State = AgentStatus_State;
+  static constexpr State UNSPECIFIED = AgentStatus_State_UNSPECIFIED;
+  static constexpr State IDLE = AgentStatus_State_IDLE;
+  static constexpr State APPLYING = AgentStatus_State_APPLYING;
+  static constexpr State SUCCESS = AgentStatus_State_SUCCESS;
+  static constexpr State FAILED = AgentStatus_State_FAILED;
+  static constexpr State CANCELLED = AgentStatus_State_CANCELLED;
+  static inline bool State_IsValid(int value) {
+    return AgentStatus_State_IsValid(value);
+  }
+  static constexpr State State_MIN = AgentStatus_State_State_MIN;
+  static constexpr State State_MAX = AgentStatus_State_State_MAX;
+  static constexpr int State_ARRAYSIZE = AgentStatus_State_State_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* State_descriptor() {
+    return AgentStatus_State_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& State_Name(T value) {
+    return AgentStatus_State_Name(value);
+  }
+  static inline bool State_Parse(absl::string_view name, State* value) {
+    return AgentStatus_State_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMessagesFieldNumber = 2,
+    kUpdatedFieldNumber = 3,
+    kStateFieldNumber = 1,
+  };
+  // repeated string messages = 2;
+  int messages_size() const;
+  private:
+  int _internal_messages_size() const;
+
+  public:
+  void clear_messages() ;
+  const std::string& messages(int index) const;
+  std::string* mutable_messages(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_messages(int index, Arg_&& value, Args_... args);
+  std::string* add_messages();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_messages(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& messages() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_messages();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_messages() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_messages();
+
+  public:
+  // .google.protobuf.Timestamp updated = 3;
+  bool has_updated() const;
+  void clear_updated() ;
+  const ::google::protobuf::Timestamp& updated() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_updated();
+  ::google::protobuf::Timestamp* mutable_updated();
+  void set_allocated_updated(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_updated(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_updated();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_updated() const;
+  ::google::protobuf::Timestamp* _internal_mutable_updated();
+
+  public:
+  // .beegfs.AgentStatus.State state = 1;
+  void clear_state() ;
+  ::beegfs::AgentStatus_State state() const;
+  void set_state(::beegfs::AgentStatus_State value);
+
+  private:
+  ::beegfs::AgentStatus_State _internal_state() const;
+  void _internal_set_state(::beegfs::AgentStatus_State value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.AgentStatus)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      35, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AgentStatus& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField<std::string> messages_;
+    ::google::protobuf::Timestamp* updated_;
+    int state_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Node final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Node) */ {
+ public:
+  inline Node() : Node(nullptr) {}
+  ~Node() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Node* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Node));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Node(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Node(const Node& from) : Node(nullptr, from) {}
+  inline Node(Node&& from) noexcept
+      : Node(nullptr, std::move(from)) {}
+  inline Node& operator=(const Node& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Node& operator=(Node&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Node& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Node* internal_default_instance() {
+    return reinterpret_cast<const Node*>(
+        &_Node_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 19;
+  friend void swap(Node& a, Node& b) { a.Swap(&b); }
+  inline void Swap(Node* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Node* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Node* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Node>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Node& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Node& from) { Node::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Node* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Node"; }
+
+ protected:
+  explicit Node(::google::protobuf::Arena* arena);
+  Node(::google::protobuf::Arena* arena, const Node& from);
+  Node(::google::protobuf::Arena* arena, Node&& from) noexcept
+      : Node(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Source = Node_Source;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kConfigFieldNumber = 3,
+    kInterfacesFieldNumber = 4,
+    kTargetsFieldNumber = 5,
+    kSourceFieldNumber = 6,
+    kNumIdFieldNumber = 1,
+    kNodeTypeFieldNumber = 2,
+  };
+  // map<string, string> config = 3;
+  int config_size() const;
+  private:
+  int _internal_config_size() const;
+
+  public:
+  void clear_config() ;
+  const ::google::protobuf::Map<std::string, std::string>& config() const;
+  ::google::protobuf::Map<std::string, std::string>* mutable_config();
+
+  private:
+  const ::google::protobuf::Map<std::string, std::string>& _internal_config() const;
+  ::google::protobuf::Map<std::string, std::string>* _internal_mutable_config();
+
+  public:
+  // repeated .beegfs.Nic interfaces = 4;
+  int interfaces_size() const;
+  private:
+  int _internal_interfaces_size() const;
+
+  public:
+  void clear_interfaces() ;
+  ::beegfs::Nic* mutable_interfaces(int index);
+  ::google::protobuf::RepeatedPtrField<::beegfs::Nic>* mutable_interfaces();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::beegfs::Nic>& _internal_interfaces() const;
+  ::google::protobuf::RepeatedPtrField<::beegfs::Nic>* _internal_mutable_interfaces();
+  public:
+  const ::beegfs::Nic& interfaces(int index) const;
+  ::beegfs::Nic* add_interfaces();
+  const ::google::protobuf::RepeatedPtrField<::beegfs::Nic>& interfaces() const;
+  // repeated .beegfs.Target targets = 5;
+  int targets_size() const;
+  private:
+  int _internal_targets_size() const;
+
+  public:
+  void clear_targets() ;
+  ::beegfs::Target* mutable_targets(int index);
+  ::google::protobuf::RepeatedPtrField<::beegfs::Target>* mutable_targets();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::beegfs::Target>& _internal_targets() const;
+  ::google::protobuf::RepeatedPtrField<::beegfs::Target>* _internal_mutable_targets();
+  public:
+  const ::beegfs::Target& targets(int index) const;
+  ::beegfs::Target* add_targets();
+  const ::google::protobuf::RepeatedPtrField<::beegfs::Target>& targets() const;
+  // optional .beegfs.Node.Source source = 6;
+  bool has_source() const;
+  void clear_source() ;
+  const ::beegfs::Node_Source& source() const;
+  PROTOBUF_NODISCARD ::beegfs::Node_Source* release_source();
+  ::beegfs::Node_Source* mutable_source();
+  void set_allocated_source(::beegfs::Node_Source* value);
+  void unsafe_arena_set_allocated_source(::beegfs::Node_Source* value);
+  ::beegfs::Node_Source* unsafe_arena_release_source();
+
+  private:
+  const ::beegfs::Node_Source& _internal_source() const;
+  ::beegfs::Node_Source* _internal_mutable_source();
+
+  public:
+  // uint32 num_id = 1;
+  void clear_num_id() ;
+  ::uint32_t num_id() const;
+  void set_num_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_num_id() const;
+  void _internal_set_num_id(::uint32_t value);
+
+  public:
+  // .beegfs.NodeType node_type = 2;
+  void clear_node_type() ;
+  ::beegfs::NodeType node_type() const;
+  void set_node_type(::beegfs::NodeType value);
+
+  private:
+  ::beegfs::NodeType _internal_node_type() const;
+  void _internal_set_node_type(::beegfs::NodeType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.Node)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 6, 4,
+      26, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Node& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::MapField<Node_ConfigEntry_DoNotUse, std::string, std::string,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+        config_;
+    ::google::protobuf::RepeatedPtrField< ::beegfs::Nic > interfaces_;
+    ::google::protobuf::RepeatedPtrField< ::beegfs::Target > targets_;
+    ::beegfs::Node_Source* source_;
+    ::uint32_t num_id_;
+    int node_type_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AgentStatusResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.AgentStatusResponse) */ {
+ public:
+  inline AgentStatusResponse() : AgentStatusResponse(nullptr) {}
+  ~AgentStatusResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AgentStatusResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AgentStatusResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AgentStatusResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AgentStatusResponse(const AgentStatusResponse& from) : AgentStatusResponse(nullptr, from) {}
+  inline AgentStatusResponse(AgentStatusResponse&& from) noexcept
+      : AgentStatusResponse(nullptr, std::move(from)) {}
+  inline AgentStatusResponse& operator=(const AgentStatusResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AgentStatusResponse& operator=(AgentStatusResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AgentStatusResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AgentStatusResponse* internal_default_instance() {
+    return reinterpret_cast<const AgentStatusResponse*>(
+        &_AgentStatusResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 5;
+  friend void swap(AgentStatusResponse& a, AgentStatusResponse& b) { a.Swap(&b); }
+  inline void Swap(AgentStatusResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AgentStatusResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AgentStatusResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AgentStatusResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AgentStatusResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AgentStatusResponse& from) { AgentStatusResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AgentStatusResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.AgentStatusResponse"; }
+
+ protected:
+  explicit AgentStatusResponse(::google::protobuf::Arena* arena);
+  AgentStatusResponse(::google::protobuf::Arena* arena, const AgentStatusResponse& from);
+  AgentStatusResponse(::google::protobuf::Arena* arena, AgentStatusResponse&& from) noexcept
+      : AgentStatusResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFsUuidFieldNumber = 1,
+    kAgentIdFieldNumber = 2,
+    kStatusFieldNumber = 3,
+  };
+  // string fs_uuid = 1;
+  void clear_fs_uuid() ;
+  const std::string& fs_uuid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_fs_uuid(Arg_&& arg, Args_... args);
+  std::string* mutable_fs_uuid();
+  PROTOBUF_NODISCARD std::string* release_fs_uuid();
+  void set_allocated_fs_uuid(std::string* value);
+
+  private:
+  const std::string& _internal_fs_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fs_uuid(
+      const std::string& value);
+  std::string* _internal_mutable_fs_uuid();
+
+  public:
+  // string agent_id = 2;
+  void clear_agent_id() ;
+  const std::string& agent_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_agent_id(Arg_&& arg, Args_... args);
+  std::string* mutable_agent_id();
+  PROTOBUF_NODISCARD std::string* release_agent_id();
+  void set_allocated_agent_id(std::string* value);
+
+  private:
+  const std::string& _internal_agent_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_agent_id(
+      const std::string& value);
+  std::string* _internal_mutable_agent_id();
+
+  public:
+  // .beegfs.AgentStatus status = 3;
+  bool has_status() const;
+  void clear_status() ;
+  const ::beegfs::AgentStatus& status() const;
+  PROTOBUF_NODISCARD ::beegfs::AgentStatus* release_status();
+  ::beegfs::AgentStatus* mutable_status();
+  void set_allocated_status(::beegfs::AgentStatus* value);
+  void unsafe_arena_set_allocated_status(::beegfs::AgentStatus* value);
+  ::beegfs::AgentStatus* unsafe_arena_release_status();
+
+  private:
+  const ::beegfs::AgentStatus& _internal_status() const;
+  ::beegfs::AgentStatus* _internal_mutable_status();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.AgentStatusResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      50, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AgentStatusResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr fs_uuid_;
+    ::google::protobuf::internal::ArenaStringPtr agent_id_;
+    ::beegfs::AgentStatus* status_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AgentCancelResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.AgentCancelResponse) */ {
+ public:
+  inline AgentCancelResponse() : AgentCancelResponse(nullptr) {}
+  ~AgentCancelResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AgentCancelResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AgentCancelResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AgentCancelResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AgentCancelResponse(const AgentCancelResponse& from) : AgentCancelResponse(nullptr, from) {}
+  inline AgentCancelResponse(AgentCancelResponse&& from) noexcept
+      : AgentCancelResponse(nullptr, std::move(from)) {}
+  inline AgentCancelResponse& operator=(const AgentCancelResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AgentCancelResponse& operator=(AgentCancelResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AgentCancelResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AgentCancelResponse* internal_default_instance() {
+    return reinterpret_cast<const AgentCancelResponse*>(
+        &_AgentCancelResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(AgentCancelResponse& a, AgentCancelResponse& b) { a.Swap(&b); }
+  inline void Swap(AgentCancelResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AgentCancelResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AgentCancelResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AgentCancelResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AgentCancelResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AgentCancelResponse& from) { AgentCancelResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AgentCancelResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.AgentCancelResponse"; }
+
+ protected:
+  explicit AgentCancelResponse(::google::protobuf::Arena* arena);
+  AgentCancelResponse(::google::protobuf::Arena* arena, const AgentCancelResponse& from);
+  AgentCancelResponse(::google::protobuf::Arena* arena, AgentCancelResponse&& from) noexcept
+      : AgentCancelResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFsUuidFieldNumber = 1,
+    kAgentIdFieldNumber = 2,
+    kStatusFieldNumber = 3,
+  };
+  // string fs_uuid = 1;
+  void clear_fs_uuid() ;
+  const std::string& fs_uuid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_fs_uuid(Arg_&& arg, Args_... args);
+  std::string* mutable_fs_uuid();
+  PROTOBUF_NODISCARD std::string* release_fs_uuid();
+  void set_allocated_fs_uuid(std::string* value);
+
+  private:
+  const std::string& _internal_fs_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fs_uuid(
+      const std::string& value);
+  std::string* _internal_mutable_fs_uuid();
+
+  public:
+  // string agent_id = 2;
+  void clear_agent_id() ;
+  const std::string& agent_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_agent_id(Arg_&& arg, Args_... args);
+  std::string* mutable_agent_id();
+  PROTOBUF_NODISCARD std::string* release_agent_id();
+  void set_allocated_agent_id(std::string* value);
+
+  private:
+  const std::string& _internal_agent_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_agent_id(
+      const std::string& value);
+  std::string* _internal_mutable_agent_id();
+
+  public:
+  // .beegfs.AgentStatus status = 3;
+  bool has_status() const;
+  void clear_status() ;
+  const ::beegfs::AgentStatus& status() const;
+  PROTOBUF_NODISCARD ::beegfs::AgentStatus* release_status();
+  ::beegfs::AgentStatus* mutable_status();
+  void set_allocated_status(::beegfs::AgentStatus* value);
+  void unsafe_arena_set_allocated_status(::beegfs::AgentStatus* value);
+  ::beegfs::AgentStatus* unsafe_arena_release_status();
+
+  private:
+  const ::beegfs::AgentStatus& _internal_status() const;
+  ::beegfs::AgentStatus* _internal_mutable_status();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.AgentCancelResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      50, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AgentCancelResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr fs_uuid_;
+    ::google::protobuf::internal::ArenaStringPtr agent_id_;
+    ::beegfs::AgentStatus* status_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Agent final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Agent) */ {
+ public:
+  inline Agent() : Agent(nullptr) {}
+  ~Agent() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Agent* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Agent));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Agent(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Agent(const Agent& from) : Agent(nullptr, from) {}
+  inline Agent(Agent&& from) noexcept
+      : Agent(nullptr, std::move(from)) {}
+  inline Agent& operator=(const Agent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Agent& operator=(Agent&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Agent& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Agent* internal_default_instance() {
+    return reinterpret_cast<const Agent*>(
+        &_Agent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 16;
+  friend void swap(Agent& a, Agent& b) { a.Swap(&b); }
+  inline void Swap(Agent* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Agent* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Agent* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Agent>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Agent& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Agent& from) { Agent::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Agent* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Agent"; }
+
+ protected:
+  explicit Agent(::google::protobuf::Arena* arena);
+  Agent(::google::protobuf::Arena* arena, const Agent& from);
+  Agent(::google::protobuf::Arena* arena, Agent&& from) noexcept
+      : Agent(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNodesFieldNumber = 1,
+    kInterfacesFieldNumber = 2,
+  };
+  // repeated .beegfs.Node nodes = 1;
+  int nodes_size() const;
+  private:
+  int _internal_nodes_size() const;
+
+  public:
+  void clear_nodes() ;
+  ::beegfs::Node* mutable_nodes(int index);
+  ::google::protobuf::RepeatedPtrField<::beegfs::Node>* mutable_nodes();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::beegfs::Node>& _internal_nodes() const;
+  ::google::protobuf::RepeatedPtrField<::beegfs::Node>* _internal_mutable_nodes();
+  public:
+  const ::beegfs::Node& nodes(int index) const;
+  ::beegfs::Node* add_nodes();
+  const ::google::protobuf::RepeatedPtrField<::beegfs::Node>& nodes() const;
+  // repeated .beegfs.Nic interfaces = 2;
+  int interfaces_size() const;
+  private:
+  int _internal_interfaces_size() const;
+
+  public:
+  void clear_interfaces() ;
+  ::beegfs::Nic* mutable_interfaces(int index);
+  ::google::protobuf::RepeatedPtrField<::beegfs::Nic>* mutable_interfaces();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::beegfs::Nic>& _internal_interfaces() const;
+  ::google::protobuf::RepeatedPtrField<::beegfs::Nic>* _internal_mutable_interfaces();
+  public:
+  const ::beegfs::Nic& interfaces(int index) const;
+  ::beegfs::Nic* add_interfaces();
+  const ::google::protobuf::RepeatedPtrField<::beegfs::Nic>& interfaces() const;
+  // @@protoc_insertion_point(class_scope:beegfs.Agent)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Agent& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::beegfs::Node > nodes_;
+    ::google::protobuf::RepeatedPtrField< ::beegfs::Nic > interfaces_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Filesystem_AgentEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, ::google::protobuf::Message,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, ::google::protobuf::Message,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>;
+  Filesystem_AgentEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Filesystem_AgentEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit Filesystem_AgentEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Filesystem_AgentEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Filesystem_AgentEntry_DoNotUse*>(
+        &_Filesystem_AgentEntry_DoNotUse_default_instance_);
+  }
+
+
+ private:
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_beegfs_2eproto;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      40, 2>
+      _table_;
+
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+};
+// -------------------------------------------------------------------
+
+class Filesystem final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.Filesystem) */ {
+ public:
+  inline Filesystem() : Filesystem(nullptr) {}
+  ~Filesystem() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Filesystem* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Filesystem));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Filesystem(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Filesystem(const Filesystem& from) : Filesystem(nullptr, from) {}
+  inline Filesystem(Filesystem&& from) noexcept
+      : Filesystem(nullptr, std::move(from)) {}
+  inline Filesystem& operator=(const Filesystem& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Filesystem& operator=(Filesystem&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Filesystem& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Filesystem* internal_default_instance() {
+    return reinterpret_cast<const Filesystem*>(
+        &_Filesystem_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 15;
+  friend void swap(Filesystem& a, Filesystem& b) { a.Swap(&b); }
+  inline void Swap(Filesystem* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Filesystem* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Filesystem* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Filesystem>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Filesystem& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Filesystem& from) { Filesystem::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Filesystem* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.Filesystem"; }
+
+ protected:
+  explicit Filesystem(::google::protobuf::Arena* arena);
+  Filesystem(::google::protobuf::Arena* arena, const Filesystem& from);
+  Filesystem(::google::protobuf::Arena* arena, Filesystem&& from) noexcept
+      : Filesystem(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Common = Filesystem_Common;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAgentFieldNumber = 1,
+    kCommonFieldNumber = 2,
+  };
+  // map<string, .beegfs.Agent> agent = 1;
+  int agent_size() const;
+  private:
+  int _internal_agent_size() const;
+
+  public:
+  void clear_agent() ;
+  const ::google::protobuf::Map<std::string, ::beegfs::Agent>& agent() const;
+  ::google::protobuf::Map<std::string, ::beegfs::Agent>* mutable_agent();
+
+  private:
+  const ::google::protobuf::Map<std::string, ::beegfs::Agent>& _internal_agent() const;
+  ::google::protobuf::Map<std::string, ::beegfs::Agent>* _internal_mutable_agent();
+
+  public:
+  // .beegfs.Filesystem.Common common = 2;
+  bool has_common() const;
+  void clear_common() ;
+  const ::beegfs::Filesystem_Common& common() const;
+  PROTOBUF_NODISCARD ::beegfs::Filesystem_Common* release_common();
+  ::beegfs::Filesystem_Common* mutable_common();
+  void set_allocated_common(::beegfs::Filesystem_Common* value);
+  void unsafe_arena_set_allocated_common(::beegfs::Filesystem_Common* value);
+  ::beegfs::Filesystem_Common* unsafe_arena_release_common();
+
+  private:
+  const ::beegfs::Filesystem_Common& _internal_common() const;
+  ::beegfs::Filesystem_Common* _internal_mutable_common();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.Filesystem)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 2, 3,
+      31, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Filesystem& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::MapField<Filesystem_AgentEntry_DoNotUse, std::string, ::beegfs::Agent,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>
+        agent_;
+    ::beegfs::Filesystem_Common* common_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beegfs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AgentUpdateRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beegfs.AgentUpdateRequest) */ {
+ public:
+  inline AgentUpdateRequest() : AgentUpdateRequest(nullptr) {}
+  ~AgentUpdateRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(AgentUpdateRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AgentUpdateRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AgentUpdateRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AgentUpdateRequest(const AgentUpdateRequest& from) : AgentUpdateRequest(nullptr, from) {}
+  inline AgentUpdateRequest(AgentUpdateRequest&& from) noexcept
+      : AgentUpdateRequest(nullptr, std::move(from)) {}
+  inline AgentUpdateRequest& operator=(const AgentUpdateRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AgentUpdateRequest& operator=(AgentUpdateRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AgentUpdateRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AgentUpdateRequest* internal_default_instance() {
+    return reinterpret_cast<const AgentUpdateRequest*>(
+        &_AgentUpdateRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(AgentUpdateRequest& a, AgentUpdateRequest& b) { a.Swap(&b); }
+  inline void Swap(AgentUpdateRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AgentUpdateRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AgentUpdateRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AgentUpdateRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AgentUpdateRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AgentUpdateRequest& from) { AgentUpdateRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(AgentUpdateRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beegfs.AgentUpdateRequest"; }
+
+ protected:
+  explicit AgentUpdateRequest(::google::protobuf::Arena* arena);
+  AgentUpdateRequest(::google::protobuf::Arena* arena, const AgentUpdateRequest& from);
+  AgentUpdateRequest(::google::protobuf::Arena* arena, AgentUpdateRequest&& from) noexcept
+      : AgentUpdateRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFsUuidFieldNumber = 1,
+    kAgentIdFieldNumber = 2,
+    kConfigFieldNumber = 3,
+  };
+  // string fs_uuid = 1;
+  void clear_fs_uuid() ;
+  const std::string& fs_uuid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_fs_uuid(Arg_&& arg, Args_... args);
+  std::string* mutable_fs_uuid();
+  PROTOBUF_NODISCARD std::string* release_fs_uuid();
+  void set_allocated_fs_uuid(std::string* value);
+
+  private:
+  const std::string& _internal_fs_uuid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fs_uuid(
+      const std::string& value);
+  std::string* _internal_mutable_fs_uuid();
+
+  public:
+  // string agent_id = 2;
+  void clear_agent_id() ;
+  const std::string& agent_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_agent_id(Arg_&& arg, Args_... args);
+  std::string* mutable_agent_id();
+  PROTOBUF_NODISCARD std::string* release_agent_id();
+  void set_allocated_agent_id(std::string* value);
+
+  private:
+  const std::string& _internal_agent_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_agent_id(
+      const std::string& value);
+  std::string* _internal_mutable_agent_id();
+
+  public:
+  // .beegfs.Filesystem config = 3;
+  bool has_config() const;
+  void clear_config() ;
+  const ::beegfs::Filesystem& config() const;
+  PROTOBUF_NODISCARD ::beegfs::Filesystem* release_config();
+  ::beegfs::Filesystem* mutable_config();
+  void set_allocated_config(::beegfs::Filesystem* value);
+  void unsafe_arena_set_allocated_config(::beegfs::Filesystem* value);
+  ::beegfs::Filesystem* unsafe_arena_release_config();
+
+  private:
+  const ::beegfs::Filesystem& _internal_config() const;
+  ::beegfs::Filesystem* _internal_mutable_config();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beegfs.AgentUpdateRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      49, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AgentUpdateRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr fs_uuid_;
+    ::google::protobuf::internal::ArenaStringPtr agent_id_;
+    ::beegfs::Filesystem* config_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1037,6 +5213,2693 @@ inline void EntityIdSet::set_allocated_legacy_id(::beegfs::LegacyId* value) {
   // @@protoc_insertion_point(field_set_allocated:beegfs.EntityIdSet.legacy_id)
 }
 
+// -------------------------------------------------------------------
+
+// AgentUpdateRequest
+
+// string fs_uuid = 1;
+inline void AgentUpdateRequest::clear_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.ClearToEmpty();
+}
+inline const std::string& AgentUpdateRequest::fs_uuid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentUpdateRequest.fs_uuid)
+  return _internal_fs_uuid();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentUpdateRequest::set_fs_uuid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentUpdateRequest.fs_uuid)
+}
+inline std::string* AgentUpdateRequest::mutable_fs_uuid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_fs_uuid();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentUpdateRequest.fs_uuid)
+  return _s;
+}
+inline const std::string& AgentUpdateRequest::_internal_fs_uuid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.fs_uuid_.Get();
+}
+inline void AgentUpdateRequest::_internal_set_fs_uuid(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(value, GetArena());
+}
+inline std::string* AgentUpdateRequest::_internal_mutable_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.fs_uuid_.Mutable( GetArena());
+}
+inline std::string* AgentUpdateRequest::release_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentUpdateRequest.fs_uuid)
+  return _impl_.fs_uuid_.Release();
+}
+inline void AgentUpdateRequest::set_allocated_fs_uuid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.fs_uuid_.IsDefault()) {
+    _impl_.fs_uuid_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentUpdateRequest.fs_uuid)
+}
+
+// string agent_id = 2;
+inline void AgentUpdateRequest::clear_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.ClearToEmpty();
+}
+inline const std::string& AgentUpdateRequest::agent_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentUpdateRequest.agent_id)
+  return _internal_agent_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentUpdateRequest::set_agent_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentUpdateRequest.agent_id)
+}
+inline std::string* AgentUpdateRequest::mutable_agent_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_agent_id();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentUpdateRequest.agent_id)
+  return _s;
+}
+inline const std::string& AgentUpdateRequest::_internal_agent_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.agent_id_.Get();
+}
+inline void AgentUpdateRequest::_internal_set_agent_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(value, GetArena());
+}
+inline std::string* AgentUpdateRequest::_internal_mutable_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.agent_id_.Mutable( GetArena());
+}
+inline std::string* AgentUpdateRequest::release_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentUpdateRequest.agent_id)
+  return _impl_.agent_id_.Release();
+}
+inline void AgentUpdateRequest::set_allocated_agent_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.agent_id_.IsDefault()) {
+    _impl_.agent_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentUpdateRequest.agent_id)
+}
+
+// .beegfs.Filesystem config = 3;
+inline bool AgentUpdateRequest::has_config() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.config_ != nullptr);
+  return value;
+}
+inline void AgentUpdateRequest::clear_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.config_ != nullptr) _impl_.config_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beegfs::Filesystem& AgentUpdateRequest::_internal_config() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::Filesystem* p = _impl_.config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::Filesystem&>(::beegfs::_Filesystem_default_instance_);
+}
+inline const ::beegfs::Filesystem& AgentUpdateRequest::config() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentUpdateRequest.config)
+  return _internal_config();
+}
+inline void AgentUpdateRequest::unsafe_arena_set_allocated_config(::beegfs::Filesystem* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.config_);
+  }
+  _impl_.config_ = reinterpret_cast<::beegfs::Filesystem*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.AgentUpdateRequest.config)
+}
+inline ::beegfs::Filesystem* AgentUpdateRequest::release_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Filesystem* released = _impl_.config_;
+  _impl_.config_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beegfs::Filesystem* AgentUpdateRequest::unsafe_arena_release_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentUpdateRequest.config)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Filesystem* temp = _impl_.config_;
+  _impl_.config_ = nullptr;
+  return temp;
+}
+inline ::beegfs::Filesystem* AgentUpdateRequest::_internal_mutable_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.config_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::Filesystem>(GetArena());
+    _impl_.config_ = reinterpret_cast<::beegfs::Filesystem*>(p);
+  }
+  return _impl_.config_;
+}
+inline ::beegfs::Filesystem* AgentUpdateRequest::mutable_config() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::Filesystem* _msg = _internal_mutable_config();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentUpdateRequest.config)
+  return _msg;
+}
+inline void AgentUpdateRequest::set_allocated_config(::beegfs::Filesystem* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.config_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.config_ = reinterpret_cast<::beegfs::Filesystem*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentUpdateRequest.config)
+}
+
+// -------------------------------------------------------------------
+
+// AgentUpdateResponse
+
+// string fs_uuid = 1;
+inline void AgentUpdateResponse::clear_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.ClearToEmpty();
+}
+inline const std::string& AgentUpdateResponse::fs_uuid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentUpdateResponse.fs_uuid)
+  return _internal_fs_uuid();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentUpdateResponse::set_fs_uuid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentUpdateResponse.fs_uuid)
+}
+inline std::string* AgentUpdateResponse::mutable_fs_uuid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_fs_uuid();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentUpdateResponse.fs_uuid)
+  return _s;
+}
+inline const std::string& AgentUpdateResponse::_internal_fs_uuid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.fs_uuid_.Get();
+}
+inline void AgentUpdateResponse::_internal_set_fs_uuid(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(value, GetArena());
+}
+inline std::string* AgentUpdateResponse::_internal_mutable_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.fs_uuid_.Mutable( GetArena());
+}
+inline std::string* AgentUpdateResponse::release_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentUpdateResponse.fs_uuid)
+  return _impl_.fs_uuid_.Release();
+}
+inline void AgentUpdateResponse::set_allocated_fs_uuid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.fs_uuid_.IsDefault()) {
+    _impl_.fs_uuid_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentUpdateResponse.fs_uuid)
+}
+
+// string agent_id = 2;
+inline void AgentUpdateResponse::clear_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.ClearToEmpty();
+}
+inline const std::string& AgentUpdateResponse::agent_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentUpdateResponse.agent_id)
+  return _internal_agent_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentUpdateResponse::set_agent_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentUpdateResponse.agent_id)
+}
+inline std::string* AgentUpdateResponse::mutable_agent_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_agent_id();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentUpdateResponse.agent_id)
+  return _s;
+}
+inline const std::string& AgentUpdateResponse::_internal_agent_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.agent_id_.Get();
+}
+inline void AgentUpdateResponse::_internal_set_agent_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(value, GetArena());
+}
+inline std::string* AgentUpdateResponse::_internal_mutable_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.agent_id_.Mutable( GetArena());
+}
+inline std::string* AgentUpdateResponse::release_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentUpdateResponse.agent_id)
+  return _impl_.agent_id_.Release();
+}
+inline void AgentUpdateResponse::set_allocated_agent_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.agent_id_.IsDefault()) {
+    _impl_.agent_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentUpdateResponse.agent_id)
+}
+
+// -------------------------------------------------------------------
+
+// AgentStatusRequest
+
+// string fs_uuid = 1;
+inline void AgentStatusRequest::clear_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.ClearToEmpty();
+}
+inline const std::string& AgentStatusRequest::fs_uuid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentStatusRequest.fs_uuid)
+  return _internal_fs_uuid();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentStatusRequest::set_fs_uuid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentStatusRequest.fs_uuid)
+}
+inline std::string* AgentStatusRequest::mutable_fs_uuid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_fs_uuid();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentStatusRequest.fs_uuid)
+  return _s;
+}
+inline const std::string& AgentStatusRequest::_internal_fs_uuid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.fs_uuid_.Get();
+}
+inline void AgentStatusRequest::_internal_set_fs_uuid(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(value, GetArena());
+}
+inline std::string* AgentStatusRequest::_internal_mutable_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.fs_uuid_.Mutable( GetArena());
+}
+inline std::string* AgentStatusRequest::release_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentStatusRequest.fs_uuid)
+  return _impl_.fs_uuid_.Release();
+}
+inline void AgentStatusRequest::set_allocated_fs_uuid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.fs_uuid_.IsDefault()) {
+    _impl_.fs_uuid_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentStatusRequest.fs_uuid)
+}
+
+// string agent_id = 2;
+inline void AgentStatusRequest::clear_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.ClearToEmpty();
+}
+inline const std::string& AgentStatusRequest::agent_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentStatusRequest.agent_id)
+  return _internal_agent_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentStatusRequest::set_agent_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentStatusRequest.agent_id)
+}
+inline std::string* AgentStatusRequest::mutable_agent_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_agent_id();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentStatusRequest.agent_id)
+  return _s;
+}
+inline const std::string& AgentStatusRequest::_internal_agent_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.agent_id_.Get();
+}
+inline void AgentStatusRequest::_internal_set_agent_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(value, GetArena());
+}
+inline std::string* AgentStatusRequest::_internal_mutable_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.agent_id_.Mutable( GetArena());
+}
+inline std::string* AgentStatusRequest::release_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentStatusRequest.agent_id)
+  return _impl_.agent_id_.Release();
+}
+inline void AgentStatusRequest::set_allocated_agent_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.agent_id_.IsDefault()) {
+    _impl_.agent_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentStatusRequest.agent_id)
+}
+
+// -------------------------------------------------------------------
+
+// AgentStatusResponse
+
+// string fs_uuid = 1;
+inline void AgentStatusResponse::clear_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.ClearToEmpty();
+}
+inline const std::string& AgentStatusResponse::fs_uuid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentStatusResponse.fs_uuid)
+  return _internal_fs_uuid();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentStatusResponse::set_fs_uuid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentStatusResponse.fs_uuid)
+}
+inline std::string* AgentStatusResponse::mutable_fs_uuid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_fs_uuid();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentStatusResponse.fs_uuid)
+  return _s;
+}
+inline const std::string& AgentStatusResponse::_internal_fs_uuid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.fs_uuid_.Get();
+}
+inline void AgentStatusResponse::_internal_set_fs_uuid(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(value, GetArena());
+}
+inline std::string* AgentStatusResponse::_internal_mutable_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.fs_uuid_.Mutable( GetArena());
+}
+inline std::string* AgentStatusResponse::release_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentStatusResponse.fs_uuid)
+  return _impl_.fs_uuid_.Release();
+}
+inline void AgentStatusResponse::set_allocated_fs_uuid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.fs_uuid_.IsDefault()) {
+    _impl_.fs_uuid_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentStatusResponse.fs_uuid)
+}
+
+// string agent_id = 2;
+inline void AgentStatusResponse::clear_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.ClearToEmpty();
+}
+inline const std::string& AgentStatusResponse::agent_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentStatusResponse.agent_id)
+  return _internal_agent_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentStatusResponse::set_agent_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentStatusResponse.agent_id)
+}
+inline std::string* AgentStatusResponse::mutable_agent_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_agent_id();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentStatusResponse.agent_id)
+  return _s;
+}
+inline const std::string& AgentStatusResponse::_internal_agent_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.agent_id_.Get();
+}
+inline void AgentStatusResponse::_internal_set_agent_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(value, GetArena());
+}
+inline std::string* AgentStatusResponse::_internal_mutable_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.agent_id_.Mutable( GetArena());
+}
+inline std::string* AgentStatusResponse::release_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentStatusResponse.agent_id)
+  return _impl_.agent_id_.Release();
+}
+inline void AgentStatusResponse::set_allocated_agent_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.agent_id_.IsDefault()) {
+    _impl_.agent_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentStatusResponse.agent_id)
+}
+
+// .beegfs.AgentStatus status = 3;
+inline bool AgentStatusResponse::has_status() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.status_ != nullptr);
+  return value;
+}
+inline void AgentStatusResponse::clear_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.status_ != nullptr) _impl_.status_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beegfs::AgentStatus& AgentStatusResponse::_internal_status() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::AgentStatus* p = _impl_.status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::AgentStatus&>(::beegfs::_AgentStatus_default_instance_);
+}
+inline const ::beegfs::AgentStatus& AgentStatusResponse::status() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentStatusResponse.status)
+  return _internal_status();
+}
+inline void AgentStatusResponse::unsafe_arena_set_allocated_status(::beegfs::AgentStatus* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.status_);
+  }
+  _impl_.status_ = reinterpret_cast<::beegfs::AgentStatus*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.AgentStatusResponse.status)
+}
+inline ::beegfs::AgentStatus* AgentStatusResponse::release_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::AgentStatus* released = _impl_.status_;
+  _impl_.status_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beegfs::AgentStatus* AgentStatusResponse::unsafe_arena_release_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentStatusResponse.status)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::AgentStatus* temp = _impl_.status_;
+  _impl_.status_ = nullptr;
+  return temp;
+}
+inline ::beegfs::AgentStatus* AgentStatusResponse::_internal_mutable_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.status_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::AgentStatus>(GetArena());
+    _impl_.status_ = reinterpret_cast<::beegfs::AgentStatus*>(p);
+  }
+  return _impl_.status_;
+}
+inline ::beegfs::AgentStatus* AgentStatusResponse::mutable_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::AgentStatus* _msg = _internal_mutable_status();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentStatusResponse.status)
+  return _msg;
+}
+inline void AgentStatusResponse::set_allocated_status(::beegfs::AgentStatus* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.status_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.status_ = reinterpret_cast<::beegfs::AgentStatus*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentStatusResponse.status)
+}
+
+// -------------------------------------------------------------------
+
+// AgentCancelRequest
+
+// string fs_uuid = 1;
+inline void AgentCancelRequest::clear_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.ClearToEmpty();
+}
+inline const std::string& AgentCancelRequest::fs_uuid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentCancelRequest.fs_uuid)
+  return _internal_fs_uuid();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentCancelRequest::set_fs_uuid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentCancelRequest.fs_uuid)
+}
+inline std::string* AgentCancelRequest::mutable_fs_uuid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_fs_uuid();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentCancelRequest.fs_uuid)
+  return _s;
+}
+inline const std::string& AgentCancelRequest::_internal_fs_uuid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.fs_uuid_.Get();
+}
+inline void AgentCancelRequest::_internal_set_fs_uuid(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(value, GetArena());
+}
+inline std::string* AgentCancelRequest::_internal_mutable_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.fs_uuid_.Mutable( GetArena());
+}
+inline std::string* AgentCancelRequest::release_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentCancelRequest.fs_uuid)
+  return _impl_.fs_uuid_.Release();
+}
+inline void AgentCancelRequest::set_allocated_fs_uuid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.fs_uuid_.IsDefault()) {
+    _impl_.fs_uuid_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentCancelRequest.fs_uuid)
+}
+
+// string agent_id = 2;
+inline void AgentCancelRequest::clear_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.ClearToEmpty();
+}
+inline const std::string& AgentCancelRequest::agent_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentCancelRequest.agent_id)
+  return _internal_agent_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentCancelRequest::set_agent_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentCancelRequest.agent_id)
+}
+inline std::string* AgentCancelRequest::mutable_agent_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_agent_id();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentCancelRequest.agent_id)
+  return _s;
+}
+inline const std::string& AgentCancelRequest::_internal_agent_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.agent_id_.Get();
+}
+inline void AgentCancelRequest::_internal_set_agent_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(value, GetArena());
+}
+inline std::string* AgentCancelRequest::_internal_mutable_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.agent_id_.Mutable( GetArena());
+}
+inline std::string* AgentCancelRequest::release_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentCancelRequest.agent_id)
+  return _impl_.agent_id_.Release();
+}
+inline void AgentCancelRequest::set_allocated_agent_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.agent_id_.IsDefault()) {
+    _impl_.agent_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentCancelRequest.agent_id)
+}
+
+// string reason = 3;
+inline void AgentCancelRequest::clear_reason() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.reason_.ClearToEmpty();
+}
+inline const std::string& AgentCancelRequest::reason() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentCancelRequest.reason)
+  return _internal_reason();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentCancelRequest::set_reason(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.reason_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentCancelRequest.reason)
+}
+inline std::string* AgentCancelRequest::mutable_reason() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_reason();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentCancelRequest.reason)
+  return _s;
+}
+inline const std::string& AgentCancelRequest::_internal_reason() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.reason_.Get();
+}
+inline void AgentCancelRequest::_internal_set_reason(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.reason_.Set(value, GetArena());
+}
+inline std::string* AgentCancelRequest::_internal_mutable_reason() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.reason_.Mutable( GetArena());
+}
+inline std::string* AgentCancelRequest::release_reason() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentCancelRequest.reason)
+  return _impl_.reason_.Release();
+}
+inline void AgentCancelRequest::set_allocated_reason(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.reason_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.reason_.IsDefault()) {
+    _impl_.reason_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentCancelRequest.reason)
+}
+
+// -------------------------------------------------------------------
+
+// AgentCancelResponse
+
+// string fs_uuid = 1;
+inline void AgentCancelResponse::clear_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.ClearToEmpty();
+}
+inline const std::string& AgentCancelResponse::fs_uuid() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentCancelResponse.fs_uuid)
+  return _internal_fs_uuid();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentCancelResponse::set_fs_uuid(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentCancelResponse.fs_uuid)
+}
+inline std::string* AgentCancelResponse::mutable_fs_uuid() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_fs_uuid();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentCancelResponse.fs_uuid)
+  return _s;
+}
+inline const std::string& AgentCancelResponse::_internal_fs_uuid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.fs_uuid_.Get();
+}
+inline void AgentCancelResponse::_internal_set_fs_uuid(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.Set(value, GetArena());
+}
+inline std::string* AgentCancelResponse::_internal_mutable_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.fs_uuid_.Mutable( GetArena());
+}
+inline std::string* AgentCancelResponse::release_fs_uuid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentCancelResponse.fs_uuid)
+  return _impl_.fs_uuid_.Release();
+}
+inline void AgentCancelResponse::set_allocated_fs_uuid(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.fs_uuid_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.fs_uuid_.IsDefault()) {
+    _impl_.fs_uuid_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentCancelResponse.fs_uuid)
+}
+
+// string agent_id = 2;
+inline void AgentCancelResponse::clear_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.ClearToEmpty();
+}
+inline const std::string& AgentCancelResponse::agent_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentCancelResponse.agent_id)
+  return _internal_agent_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AgentCancelResponse::set_agent_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.AgentCancelResponse.agent_id)
+}
+inline std::string* AgentCancelResponse::mutable_agent_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_agent_id();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentCancelResponse.agent_id)
+  return _s;
+}
+inline const std::string& AgentCancelResponse::_internal_agent_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.agent_id_.Get();
+}
+inline void AgentCancelResponse::_internal_set_agent_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.Set(value, GetArena());
+}
+inline std::string* AgentCancelResponse::_internal_mutable_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.agent_id_.Mutable( GetArena());
+}
+inline std::string* AgentCancelResponse::release_agent_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentCancelResponse.agent_id)
+  return _impl_.agent_id_.Release();
+}
+inline void AgentCancelResponse::set_allocated_agent_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.agent_id_.IsDefault()) {
+    _impl_.agent_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentCancelResponse.agent_id)
+}
+
+// .beegfs.AgentStatus status = 3;
+inline bool AgentCancelResponse::has_status() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.status_ != nullptr);
+  return value;
+}
+inline void AgentCancelResponse::clear_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.status_ != nullptr) _impl_.status_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beegfs::AgentStatus& AgentCancelResponse::_internal_status() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::AgentStatus* p = _impl_.status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::AgentStatus&>(::beegfs::_AgentStatus_default_instance_);
+}
+inline const ::beegfs::AgentStatus& AgentCancelResponse::status() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentCancelResponse.status)
+  return _internal_status();
+}
+inline void AgentCancelResponse::unsafe_arena_set_allocated_status(::beegfs::AgentStatus* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.status_);
+  }
+  _impl_.status_ = reinterpret_cast<::beegfs::AgentStatus*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.AgentCancelResponse.status)
+}
+inline ::beegfs::AgentStatus* AgentCancelResponse::release_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::AgentStatus* released = _impl_.status_;
+  _impl_.status_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beegfs::AgentStatus* AgentCancelResponse::unsafe_arena_release_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentCancelResponse.status)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::AgentStatus* temp = _impl_.status_;
+  _impl_.status_ = nullptr;
+  return temp;
+}
+inline ::beegfs::AgentStatus* AgentCancelResponse::_internal_mutable_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.status_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::AgentStatus>(GetArena());
+    _impl_.status_ = reinterpret_cast<::beegfs::AgentStatus*>(p);
+  }
+  return _impl_.status_;
+}
+inline ::beegfs::AgentStatus* AgentCancelResponse::mutable_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::AgentStatus* _msg = _internal_mutable_status();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentCancelResponse.status)
+  return _msg;
+}
+inline void AgentCancelResponse::set_allocated_status(::beegfs::AgentStatus* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.status_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.status_ = reinterpret_cast<::beegfs::AgentStatus*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentCancelResponse.status)
+}
+
+// -------------------------------------------------------------------
+
+// AgentStatus
+
+// .beegfs.AgentStatus.State state = 1;
+inline void AgentStatus::clear_state() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.state_ = 0;
+}
+inline ::beegfs::AgentStatus_State AgentStatus::state() const {
+  // @@protoc_insertion_point(field_get:beegfs.AgentStatus.state)
+  return _internal_state();
+}
+inline void AgentStatus::set_state(::beegfs::AgentStatus_State value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:beegfs.AgentStatus.state)
+}
+inline ::beegfs::AgentStatus_State AgentStatus::_internal_state() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beegfs::AgentStatus_State>(_impl_.state_);
+}
+inline void AgentStatus::_internal_set_state(::beegfs::AgentStatus_State value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.state_ = value;
+}
+
+// repeated string messages = 2;
+inline int AgentStatus::_internal_messages_size() const {
+  return _internal_messages().size();
+}
+inline int AgentStatus::messages_size() const {
+  return _internal_messages_size();
+}
+inline void AgentStatus::clear_messages() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.messages_.Clear();
+}
+inline std::string* AgentStatus::add_messages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_messages()->Add();
+  // @@protoc_insertion_point(field_add_mutable:beegfs.AgentStatus.messages)
+  return _s;
+}
+inline const std::string& AgentStatus::messages(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentStatus.messages)
+  return _internal_messages().Get(index);
+}
+inline std::string* AgentStatus::mutable_messages(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentStatus.messages)
+  return _internal_mutable_messages()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void AgentStatus::set_messages(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_messages()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:beegfs.AgentStatus.messages)
+}
+template <typename Arg_, typename... Args_>
+inline void AgentStatus::add_messages(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_messages(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:beegfs.AgentStatus.messages)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+AgentStatus::messages() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:beegfs.AgentStatus.messages)
+  return _internal_messages();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+AgentStatus::mutable_messages() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:beegfs.AgentStatus.messages)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_messages();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+AgentStatus::_internal_messages() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.messages_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+AgentStatus::_internal_mutable_messages() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.messages_;
+}
+
+// .google.protobuf.Timestamp updated = 3;
+inline bool AgentStatus::has_updated() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.updated_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& AgentStatus::_internal_updated() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.updated_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& AgentStatus::updated() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.AgentStatus.updated)
+  return _internal_updated();
+}
+inline void AgentStatus::unsafe_arena_set_allocated_updated(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.updated_);
+  }
+  _impl_.updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.AgentStatus.updated)
+}
+inline ::google::protobuf::Timestamp* AgentStatus::release_updated() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* released = _impl_.updated_;
+  _impl_.updated_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* AgentStatus::unsafe_arena_release_updated() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.AgentStatus.updated)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* temp = _impl_.updated_;
+  _impl_.updated_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* AgentStatus::_internal_mutable_updated() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.updated_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.updated_;
+}
+inline ::google::protobuf::Timestamp* AgentStatus::mutable_updated() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_updated();
+  // @@protoc_insertion_point(field_mutable:beegfs.AgentStatus.updated)
+  return _msg;
+}
+inline void AgentStatus::set_allocated_updated(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.updated_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.updated_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beegfs.AgentStatus.updated)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// Filesystem_Common_Source
+
+// .beegfs.SourceType type = 1;
+inline void Filesystem_Common_Source::clear_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = 0;
+}
+inline ::beegfs::SourceType Filesystem_Common_Source::type() const {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.Source.type)
+  return _internal_type();
+}
+inline void Filesystem_Common_Source::set_type(::beegfs::SourceType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:beegfs.Filesystem.Common.Source.type)
+}
+inline ::beegfs::SourceType Filesystem_Common_Source::_internal_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beegfs::SourceType>(_impl_.type_);
+}
+inline void Filesystem_Common_Source::_internal_set_type(::beegfs::SourceType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = value;
+}
+
+// string repo = 2;
+inline void Filesystem_Common_Source::clear_repo() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.repo_.ClearToEmpty();
+}
+inline const std::string& Filesystem_Common_Source::repo() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.Source.repo)
+  return _internal_repo();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Filesystem_Common_Source::set_repo(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.repo_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Filesystem.Common.Source.repo)
+}
+inline std::string* Filesystem_Common_Source::mutable_repo() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_repo();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.Common.Source.repo)
+  return _s;
+}
+inline const std::string& Filesystem_Common_Source::_internal_repo() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.repo_.Get();
+}
+inline void Filesystem_Common_Source::_internal_set_repo(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.repo_.Set(value, GetArena());
+}
+inline std::string* Filesystem_Common_Source::_internal_mutable_repo() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.repo_.Mutable( GetArena());
+}
+inline std::string* Filesystem_Common_Source::release_repo() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.Common.Source.repo)
+  return _impl_.repo_.Release();
+}
+inline void Filesystem_Common_Source::set_allocated_repo(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.repo_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.repo_.IsDefault()) {
+    _impl_.repo_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.Common.Source.repo)
+}
+
+// string management = 3;
+inline void Filesystem_Common_Source::clear_management() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.management_.ClearToEmpty();
+}
+inline const std::string& Filesystem_Common_Source::management() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.Source.management)
+  return _internal_management();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Filesystem_Common_Source::set_management(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.management_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Filesystem.Common.Source.management)
+}
+inline std::string* Filesystem_Common_Source::mutable_management() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_management();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.Common.Source.management)
+  return _s;
+}
+inline const std::string& Filesystem_Common_Source::_internal_management() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.management_.Get();
+}
+inline void Filesystem_Common_Source::_internal_set_management(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.management_.Set(value, GetArena());
+}
+inline std::string* Filesystem_Common_Source::_internal_mutable_management() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.management_.Mutable( GetArena());
+}
+inline std::string* Filesystem_Common_Source::release_management() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.Common.Source.management)
+  return _impl_.management_.Release();
+}
+inline void Filesystem_Common_Source::set_allocated_management(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.management_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.management_.IsDefault()) {
+    _impl_.management_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.Common.Source.management)
+}
+
+// string meta = 4;
+inline void Filesystem_Common_Source::clear_meta() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.meta_.ClearToEmpty();
+}
+inline const std::string& Filesystem_Common_Source::meta() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.Source.meta)
+  return _internal_meta();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Filesystem_Common_Source::set_meta(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.meta_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Filesystem.Common.Source.meta)
+}
+inline std::string* Filesystem_Common_Source::mutable_meta() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_meta();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.Common.Source.meta)
+  return _s;
+}
+inline const std::string& Filesystem_Common_Source::_internal_meta() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.meta_.Get();
+}
+inline void Filesystem_Common_Source::_internal_set_meta(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.meta_.Set(value, GetArena());
+}
+inline std::string* Filesystem_Common_Source::_internal_mutable_meta() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.meta_.Mutable( GetArena());
+}
+inline std::string* Filesystem_Common_Source::release_meta() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.Common.Source.meta)
+  return _impl_.meta_.Release();
+}
+inline void Filesystem_Common_Source::set_allocated_meta(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.meta_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.meta_.IsDefault()) {
+    _impl_.meta_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.Common.Source.meta)
+}
+
+// string storage = 5;
+inline void Filesystem_Common_Source::clear_storage() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.storage_.ClearToEmpty();
+}
+inline const std::string& Filesystem_Common_Source::storage() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.Source.storage)
+  return _internal_storage();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Filesystem_Common_Source::set_storage(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.storage_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Filesystem.Common.Source.storage)
+}
+inline std::string* Filesystem_Common_Source::mutable_storage() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_storage();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.Common.Source.storage)
+  return _s;
+}
+inline const std::string& Filesystem_Common_Source::_internal_storage() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.storage_.Get();
+}
+inline void Filesystem_Common_Source::_internal_set_storage(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.storage_.Set(value, GetArena());
+}
+inline std::string* Filesystem_Common_Source::_internal_mutable_storage() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.storage_.Mutable( GetArena());
+}
+inline std::string* Filesystem_Common_Source::release_storage() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.Common.Source.storage)
+  return _impl_.storage_.Release();
+}
+inline void Filesystem_Common_Source::set_allocated_storage(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.storage_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.storage_.IsDefault()) {
+    _impl_.storage_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.Common.Source.storage)
+}
+
+// string remote = 6;
+inline void Filesystem_Common_Source::clear_remote() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_.ClearToEmpty();
+}
+inline const std::string& Filesystem_Common_Source::remote() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.Source.remote)
+  return _internal_remote();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Filesystem_Common_Source::set_remote(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Filesystem.Common.Source.remote)
+}
+inline std::string* Filesystem_Common_Source::mutable_remote() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_remote();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.Common.Source.remote)
+  return _s;
+}
+inline const std::string& Filesystem_Common_Source::_internal_remote() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.remote_.Get();
+}
+inline void Filesystem_Common_Source::_internal_set_remote(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_.Set(value, GetArena());
+}
+inline std::string* Filesystem_Common_Source::_internal_mutable_remote() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.remote_.Mutable( GetArena());
+}
+inline std::string* Filesystem_Common_Source::release_remote() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.Common.Source.remote)
+  return _impl_.remote_.Release();
+}
+inline void Filesystem_Common_Source::set_allocated_remote(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.remote_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.remote_.IsDefault()) {
+    _impl_.remote_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.Common.Source.remote)
+}
+
+// string sync = 7;
+inline void Filesystem_Common_Source::clear_sync() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sync_.ClearToEmpty();
+}
+inline const std::string& Filesystem_Common_Source::sync() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.Source.sync)
+  return _internal_sync();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Filesystem_Common_Source::set_sync(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sync_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Filesystem.Common.Source.sync)
+}
+inline std::string* Filesystem_Common_Source::mutable_sync() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_sync();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.Common.Source.sync)
+  return _s;
+}
+inline const std::string& Filesystem_Common_Source::_internal_sync() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.sync_.Get();
+}
+inline void Filesystem_Common_Source::_internal_set_sync(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sync_.Set(value, GetArena());
+}
+inline std::string* Filesystem_Common_Source::_internal_mutable_sync() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.sync_.Mutable( GetArena());
+}
+inline std::string* Filesystem_Common_Source::release_sync() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.Common.Source.sync)
+  return _impl_.sync_.Release();
+}
+inline void Filesystem_Common_Source::set_allocated_sync(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sync_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.sync_.IsDefault()) {
+    _impl_.sync_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.Common.Source.sync)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// Filesystem_Common
+
+// string auth = 1;
+inline void Filesystem_Common::clear_auth() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.auth_.ClearToEmpty();
+}
+inline const std::string& Filesystem_Common::auth() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.auth)
+  return _internal_auth();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Filesystem_Common::set_auth(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.auth_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Filesystem.Common.auth)
+}
+inline std::string* Filesystem_Common::mutable_auth() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_auth();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.Common.auth)
+  return _s;
+}
+inline const std::string& Filesystem_Common::_internal_auth() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.auth_.Get();
+}
+inline void Filesystem_Common::_internal_set_auth(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.auth_.Set(value, GetArena());
+}
+inline std::string* Filesystem_Common::_internal_mutable_auth() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.auth_.Mutable( GetArena());
+}
+inline std::string* Filesystem_Common::release_auth() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.Common.auth)
+  return _impl_.auth_.Release();
+}
+inline void Filesystem_Common::set_allocated_auth(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.auth_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.auth_.IsDefault()) {
+    _impl_.auth_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.Common.auth)
+}
+
+// .beegfs.Filesystem.Common.Source source = 2;
+inline bool Filesystem_Common::has_source() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.source_ != nullptr);
+  return value;
+}
+inline void Filesystem_Common::clear_source() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.source_ != nullptr) _impl_.source_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beegfs::Filesystem_Common_Source& Filesystem_Common::_internal_source() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::Filesystem_Common_Source* p = _impl_.source_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::Filesystem_Common_Source&>(::beegfs::_Filesystem_Common_Source_default_instance_);
+}
+inline const ::beegfs::Filesystem_Common_Source& Filesystem_Common::source() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.Common.source)
+  return _internal_source();
+}
+inline void Filesystem_Common::unsafe_arena_set_allocated_source(::beegfs::Filesystem_Common_Source* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.source_);
+  }
+  _impl_.source_ = reinterpret_cast<::beegfs::Filesystem_Common_Source*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Filesystem.Common.source)
+}
+inline ::beegfs::Filesystem_Common_Source* Filesystem_Common::release_source() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Filesystem_Common_Source* released = _impl_.source_;
+  _impl_.source_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beegfs::Filesystem_Common_Source* Filesystem_Common::unsafe_arena_release_source() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.Common.source)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Filesystem_Common_Source* temp = _impl_.source_;
+  _impl_.source_ = nullptr;
+  return temp;
+}
+inline ::beegfs::Filesystem_Common_Source* Filesystem_Common::_internal_mutable_source() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.source_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::Filesystem_Common_Source>(GetArena());
+    _impl_.source_ = reinterpret_cast<::beegfs::Filesystem_Common_Source*>(p);
+  }
+  return _impl_.source_;
+}
+inline ::beegfs::Filesystem_Common_Source* Filesystem_Common::mutable_source() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::Filesystem_Common_Source* _msg = _internal_mutable_source();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.Common.source)
+  return _msg;
+}
+inline void Filesystem_Common::set_allocated_source(::beegfs::Filesystem_Common_Source* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.source_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.source_ = reinterpret_cast<::beegfs::Filesystem_Common_Source*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.Common.source)
+}
+
+// map<string, string> meta_config = 3;
+inline int Filesystem_Common::_internal_meta_config_size() const {
+  return _internal_meta_config().size();
+}
+inline int Filesystem_Common::meta_config_size() const {
+  return _internal_meta_config_size();
+}
+inline void Filesystem_Common::clear_meta_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.meta_config_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Filesystem_Common::_internal_meta_config() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.meta_config_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Filesystem_Common::meta_config() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:beegfs.Filesystem.Common.meta_config)
+  return _internal_meta_config();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Filesystem_Common::_internal_mutable_meta_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.meta_config_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Filesystem_Common::mutable_meta_config() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:beegfs.Filesystem.Common.meta_config)
+  return _internal_mutable_meta_config();
+}
+
+// map<string, string> storage_config = 4;
+inline int Filesystem_Common::_internal_storage_config_size() const {
+  return _internal_storage_config().size();
+}
+inline int Filesystem_Common::storage_config_size() const {
+  return _internal_storage_config_size();
+}
+inline void Filesystem_Common::clear_storage_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.storage_config_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Filesystem_Common::_internal_storage_config() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.storage_config_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Filesystem_Common::storage_config() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:beegfs.Filesystem.Common.storage_config)
+  return _internal_storage_config();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Filesystem_Common::_internal_mutable_storage_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.storage_config_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Filesystem_Common::mutable_storage_config() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:beegfs.Filesystem.Common.storage_config)
+  return _internal_mutable_storage_config();
+}
+
+// map<string, string> client_config = 5;
+inline int Filesystem_Common::_internal_client_config_size() const {
+  return _internal_client_config().size();
+}
+inline int Filesystem_Common::client_config_size() const {
+  return _internal_client_config_size();
+}
+inline void Filesystem_Common::clear_client_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.client_config_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Filesystem_Common::_internal_client_config() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.client_config_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Filesystem_Common::client_config() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:beegfs.Filesystem.Common.client_config)
+  return _internal_client_config();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Filesystem_Common::_internal_mutable_client_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.client_config_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Filesystem_Common::mutable_client_config() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:beegfs.Filesystem.Common.client_config)
+  return _internal_mutable_client_config();
+}
+
+// -------------------------------------------------------------------
+
+// Filesystem
+
+// map<string, .beegfs.Agent> agent = 1;
+inline int Filesystem::_internal_agent_size() const {
+  return _internal_agent().size();
+}
+inline int Filesystem::agent_size() const {
+  return _internal_agent_size();
+}
+inline void Filesystem::clear_agent() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.agent_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, ::beegfs::Agent>& Filesystem::_internal_agent() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.agent_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, ::beegfs::Agent>& Filesystem::agent() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:beegfs.Filesystem.agent)
+  return _internal_agent();
+}
+inline ::google::protobuf::Map<std::string, ::beegfs::Agent>* Filesystem::_internal_mutable_agent() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.agent_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, ::beegfs::Agent>* Filesystem::mutable_agent() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:beegfs.Filesystem.agent)
+  return _internal_mutable_agent();
+}
+
+// .beegfs.Filesystem.Common common = 2;
+inline bool Filesystem::has_common() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.common_ != nullptr);
+  return value;
+}
+inline void Filesystem::clear_common() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.common_ != nullptr) _impl_.common_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beegfs::Filesystem_Common& Filesystem::_internal_common() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::Filesystem_Common* p = _impl_.common_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::Filesystem_Common&>(::beegfs::_Filesystem_Common_default_instance_);
+}
+inline const ::beegfs::Filesystem_Common& Filesystem::common() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Filesystem.common)
+  return _internal_common();
+}
+inline void Filesystem::unsafe_arena_set_allocated_common(::beegfs::Filesystem_Common* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.common_);
+  }
+  _impl_.common_ = reinterpret_cast<::beegfs::Filesystem_Common*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Filesystem.common)
+}
+inline ::beegfs::Filesystem_Common* Filesystem::release_common() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Filesystem_Common* released = _impl_.common_;
+  _impl_.common_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beegfs::Filesystem_Common* Filesystem::unsafe_arena_release_common() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Filesystem.common)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Filesystem_Common* temp = _impl_.common_;
+  _impl_.common_ = nullptr;
+  return temp;
+}
+inline ::beegfs::Filesystem_Common* Filesystem::_internal_mutable_common() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.common_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::Filesystem_Common>(GetArena());
+    _impl_.common_ = reinterpret_cast<::beegfs::Filesystem_Common*>(p);
+  }
+  return _impl_.common_;
+}
+inline ::beegfs::Filesystem_Common* Filesystem::mutable_common() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::Filesystem_Common* _msg = _internal_mutable_common();
+  // @@protoc_insertion_point(field_mutable:beegfs.Filesystem.common)
+  return _msg;
+}
+inline void Filesystem::set_allocated_common(::beegfs::Filesystem_Common* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.common_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.common_ = reinterpret_cast<::beegfs::Filesystem_Common*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Filesystem.common)
+}
+
+// -------------------------------------------------------------------
+
+// Agent
+
+// repeated .beegfs.Node nodes = 1;
+inline int Agent::_internal_nodes_size() const {
+  return _internal_nodes().size();
+}
+inline int Agent::nodes_size() const {
+  return _internal_nodes_size();
+}
+inline void Agent::clear_nodes() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nodes_.Clear();
+}
+inline ::beegfs::Node* Agent::mutable_nodes(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:beegfs.Agent.nodes)
+  return _internal_mutable_nodes()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::beegfs::Node>* Agent::mutable_nodes()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:beegfs.Agent.nodes)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_nodes();
+}
+inline const ::beegfs::Node& Agent::nodes(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Agent.nodes)
+  return _internal_nodes().Get(index);
+}
+inline ::beegfs::Node* Agent::add_nodes() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::beegfs::Node* _add = _internal_mutable_nodes()->Add();
+  // @@protoc_insertion_point(field_add:beegfs.Agent.nodes)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::beegfs::Node>& Agent::nodes() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:beegfs.Agent.nodes)
+  return _internal_nodes();
+}
+inline const ::google::protobuf::RepeatedPtrField<::beegfs::Node>&
+Agent::_internal_nodes() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.nodes_;
+}
+inline ::google::protobuf::RepeatedPtrField<::beegfs::Node>*
+Agent::_internal_mutable_nodes() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.nodes_;
+}
+
+// repeated .beegfs.Nic interfaces = 2;
+inline int Agent::_internal_interfaces_size() const {
+  return _internal_interfaces().size();
+}
+inline int Agent::interfaces_size() const {
+  return _internal_interfaces_size();
+}
+inline void Agent::clear_interfaces() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.interfaces_.Clear();
+}
+inline ::beegfs::Nic* Agent::mutable_interfaces(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:beegfs.Agent.interfaces)
+  return _internal_mutable_interfaces()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::beegfs::Nic>* Agent::mutable_interfaces()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:beegfs.Agent.interfaces)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_interfaces();
+}
+inline const ::beegfs::Nic& Agent::interfaces(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Agent.interfaces)
+  return _internal_interfaces().Get(index);
+}
+inline ::beegfs::Nic* Agent::add_interfaces() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::beegfs::Nic* _add = _internal_mutable_interfaces()->Add();
+  // @@protoc_insertion_point(field_add:beegfs.Agent.interfaces)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::beegfs::Nic>& Agent::interfaces() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:beegfs.Agent.interfaces)
+  return _internal_interfaces();
+}
+inline const ::google::protobuf::RepeatedPtrField<::beegfs::Nic>&
+Agent::_internal_interfaces() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.interfaces_;
+}
+inline ::google::protobuf::RepeatedPtrField<::beegfs::Nic>*
+Agent::_internal_mutable_interfaces() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.interfaces_;
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// Node_Source
+
+// .beegfs.SourceType type = 1;
+inline void Node_Source::clear_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = 0;
+}
+inline ::beegfs::SourceType Node_Source::type() const {
+  // @@protoc_insertion_point(field_get:beegfs.Node.Source.type)
+  return _internal_type();
+}
+inline void Node_Source::set_type(::beegfs::SourceType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:beegfs.Node.Source.type)
+}
+inline ::beegfs::SourceType Node_Source::_internal_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beegfs::SourceType>(_impl_.type_);
+}
+inline void Node_Source::_internal_set_type(::beegfs::SourceType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = value;
+}
+
+// string ref = 2;
+inline void Node_Source::clear_ref() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ref_.ClearToEmpty();
+}
+inline const std::string& Node_Source::ref() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Node.Source.ref)
+  return _internal_ref();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Node_Source::set_ref(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ref_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Node.Source.ref)
+}
+inline std::string* Node_Source::mutable_ref() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_ref();
+  // @@protoc_insertion_point(field_mutable:beegfs.Node.Source.ref)
+  return _s;
+}
+inline const std::string& Node_Source::_internal_ref() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.ref_.Get();
+}
+inline void Node_Source::_internal_set_ref(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ref_.Set(value, GetArena());
+}
+inline std::string* Node_Source::_internal_mutable_ref() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.ref_.Mutable( GetArena());
+}
+inline std::string* Node_Source::release_ref() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Node.Source.ref)
+  return _impl_.ref_.Release();
+}
+inline void Node_Source::set_allocated_ref(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ref_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.ref_.IsDefault()) {
+    _impl_.ref_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Node.Source.ref)
+}
+
+// -------------------------------------------------------------------
+
+// Node
+
+// uint32 num_id = 1;
+inline void Node::clear_num_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.num_id_ = 0u;
+}
+inline ::uint32_t Node::num_id() const {
+  // @@protoc_insertion_point(field_get:beegfs.Node.num_id)
+  return _internal_num_id();
+}
+inline void Node::set_num_id(::uint32_t value) {
+  _internal_set_num_id(value);
+  // @@protoc_insertion_point(field_set:beegfs.Node.num_id)
+}
+inline ::uint32_t Node::_internal_num_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.num_id_;
+}
+inline void Node::_internal_set_num_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.num_id_ = value;
+}
+
+// .beegfs.NodeType node_type = 2;
+inline void Node::clear_node_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.node_type_ = 0;
+}
+inline ::beegfs::NodeType Node::node_type() const {
+  // @@protoc_insertion_point(field_get:beegfs.Node.node_type)
+  return _internal_node_type();
+}
+inline void Node::set_node_type(::beegfs::NodeType value) {
+  _internal_set_node_type(value);
+  // @@protoc_insertion_point(field_set:beegfs.Node.node_type)
+}
+inline ::beegfs::NodeType Node::_internal_node_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beegfs::NodeType>(_impl_.node_type_);
+}
+inline void Node::_internal_set_node_type(::beegfs::NodeType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.node_type_ = value;
+}
+
+// map<string, string> config = 3;
+inline int Node::_internal_config_size() const {
+  return _internal_config().size();
+}
+inline int Node::config_size() const {
+  return _internal_config_size();
+}
+inline void Node::clear_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.config_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Node::_internal_config() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.config_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Node::config() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:beegfs.Node.config)
+  return _internal_config();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Node::_internal_mutable_config() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.config_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Node::mutable_config() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:beegfs.Node.config)
+  return _internal_mutable_config();
+}
+
+// repeated .beegfs.Nic interfaces = 4;
+inline int Node::_internal_interfaces_size() const {
+  return _internal_interfaces().size();
+}
+inline int Node::interfaces_size() const {
+  return _internal_interfaces_size();
+}
+inline void Node::clear_interfaces() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.interfaces_.Clear();
+}
+inline ::beegfs::Nic* Node::mutable_interfaces(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:beegfs.Node.interfaces)
+  return _internal_mutable_interfaces()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::beegfs::Nic>* Node::mutable_interfaces()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:beegfs.Node.interfaces)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_interfaces();
+}
+inline const ::beegfs::Nic& Node::interfaces(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Node.interfaces)
+  return _internal_interfaces().Get(index);
+}
+inline ::beegfs::Nic* Node::add_interfaces() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::beegfs::Nic* _add = _internal_mutable_interfaces()->Add();
+  // @@protoc_insertion_point(field_add:beegfs.Node.interfaces)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::beegfs::Nic>& Node::interfaces() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:beegfs.Node.interfaces)
+  return _internal_interfaces();
+}
+inline const ::google::protobuf::RepeatedPtrField<::beegfs::Nic>&
+Node::_internal_interfaces() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.interfaces_;
+}
+inline ::google::protobuf::RepeatedPtrField<::beegfs::Nic>*
+Node::_internal_mutable_interfaces() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.interfaces_;
+}
+
+// repeated .beegfs.Target targets = 5;
+inline int Node::_internal_targets_size() const {
+  return _internal_targets().size();
+}
+inline int Node::targets_size() const {
+  return _internal_targets_size();
+}
+inline void Node::clear_targets() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.targets_.Clear();
+}
+inline ::beegfs::Target* Node::mutable_targets(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:beegfs.Node.targets)
+  return _internal_mutable_targets()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::beegfs::Target>* Node::mutable_targets()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:beegfs.Node.targets)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_targets();
+}
+inline const ::beegfs::Target& Node::targets(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Node.targets)
+  return _internal_targets().Get(index);
+}
+inline ::beegfs::Target* Node::add_targets() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::beegfs::Target* _add = _internal_mutable_targets()->Add();
+  // @@protoc_insertion_point(field_add:beegfs.Node.targets)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::beegfs::Target>& Node::targets() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:beegfs.Node.targets)
+  return _internal_targets();
+}
+inline const ::google::protobuf::RepeatedPtrField<::beegfs::Target>&
+Node::_internal_targets() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.targets_;
+}
+inline ::google::protobuf::RepeatedPtrField<::beegfs::Target>*
+Node::_internal_mutable_targets() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.targets_;
+}
+
+// optional .beegfs.Node.Source source = 6;
+inline bool Node::has_source() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.source_ != nullptr);
+  return value;
+}
+inline void Node::clear_source() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.source_ != nullptr) _impl_.source_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beegfs::Node_Source& Node::_internal_source() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::Node_Source* p = _impl_.source_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::Node_Source&>(::beegfs::_Node_Source_default_instance_);
+}
+inline const ::beegfs::Node_Source& Node::source() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Node.source)
+  return _internal_source();
+}
+inline void Node::unsafe_arena_set_allocated_source(::beegfs::Node_Source* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.source_);
+  }
+  _impl_.source_ = reinterpret_cast<::beegfs::Node_Source*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Node.source)
+}
+inline ::beegfs::Node_Source* Node::release_source() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Node_Source* released = _impl_.source_;
+  _impl_.source_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beegfs::Node_Source* Node::unsafe_arena_release_source() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Node.source)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Node_Source* temp = _impl_.source_;
+  _impl_.source_ = nullptr;
+  return temp;
+}
+inline ::beegfs::Node_Source* Node::_internal_mutable_source() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.source_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::Node_Source>(GetArena());
+    _impl_.source_ = reinterpret_cast<::beegfs::Node_Source*>(p);
+  }
+  return _impl_.source_;
+}
+inline ::beegfs::Node_Source* Node::mutable_source() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::Node_Source* _msg = _internal_mutable_source();
+  // @@protoc_insertion_point(field_mutable:beegfs.Node.source)
+  return _msg;
+}
+inline void Node::set_allocated_source(::beegfs::Node_Source* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.source_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.source_ = reinterpret_cast<::beegfs::Node_Source*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Node.source)
+}
+
+// -------------------------------------------------------------------
+
+// Nic
+
+// string name = 1;
+inline void Nic::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& Nic::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Nic.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Nic::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Nic.name)
+}
+inline std::string* Nic::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:beegfs.Nic.name)
+  return _s;
+}
+inline const std::string& Nic::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void Nic::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* Nic::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* Nic::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Nic.name)
+  return _impl_.name_.Release();
+}
+inline void Nic::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Nic.name)
+}
+
+// string addr = 2;
+inline void Nic::clear_addr() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.addr_.ClearToEmpty();
+}
+inline const std::string& Nic::addr() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Nic.addr)
+  return _internal_addr();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Nic::set_addr(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.addr_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Nic.addr)
+}
+inline std::string* Nic::mutable_addr() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_addr();
+  // @@protoc_insertion_point(field_mutable:beegfs.Nic.addr)
+  return _s;
+}
+inline const std::string& Nic::_internal_addr() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.addr_.Get();
+}
+inline void Nic::_internal_set_addr(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.addr_.Set(value, GetArena());
+}
+inline std::string* Nic::_internal_mutable_addr() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.addr_.Mutable( GetArena());
+}
+inline std::string* Nic::release_addr() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Nic.addr)
+  return _impl_.addr_.Release();
+}
+inline void Nic::set_allocated_addr(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.addr_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.addr_.IsDefault()) {
+    _impl_.addr_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Nic.addr)
+}
+
+// -------------------------------------------------------------------
+
+// Target_UnderlyingFSOpts
+
+// string device = 1;
+inline void Target_UnderlyingFSOpts::clear_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.ClearToEmpty();
+}
+inline const std::string& Target_UnderlyingFSOpts::device() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Target.UnderlyingFSOpts.device)
+  return _internal_device();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Target_UnderlyingFSOpts::set_device(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Target.UnderlyingFSOpts.device)
+}
+inline std::string* Target_UnderlyingFSOpts::mutable_device() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_device();
+  // @@protoc_insertion_point(field_mutable:beegfs.Target.UnderlyingFSOpts.device)
+  return _s;
+}
+inline const std::string& Target_UnderlyingFSOpts::_internal_device() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.device_.Get();
+}
+inline void Target_UnderlyingFSOpts::_internal_set_device(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.Set(value, GetArena());
+}
+inline std::string* Target_UnderlyingFSOpts::_internal_mutable_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.device_.Mutable( GetArena());
+}
+inline std::string* Target_UnderlyingFSOpts::release_device() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Target.UnderlyingFSOpts.device)
+  return _impl_.device_.Release();
+}
+inline void Target_UnderlyingFSOpts::set_allocated_device(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.device_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.device_.IsDefault()) {
+    _impl_.device_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Target.UnderlyingFSOpts.device)
+}
+
+// .beegfs.Target.UnderlyingFSOpts.FsType type = 2;
+inline void Target_UnderlyingFSOpts::clear_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = 0;
+}
+inline ::beegfs::Target_UnderlyingFSOpts_FsType Target_UnderlyingFSOpts::type() const {
+  // @@protoc_insertion_point(field_get:beegfs.Target.UnderlyingFSOpts.type)
+  return _internal_type();
+}
+inline void Target_UnderlyingFSOpts::set_type(::beegfs::Target_UnderlyingFSOpts_FsType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:beegfs.Target.UnderlyingFSOpts.type)
+}
+inline ::beegfs::Target_UnderlyingFSOpts_FsType Target_UnderlyingFSOpts::_internal_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::beegfs::Target_UnderlyingFSOpts_FsType>(_impl_.type_);
+}
+inline void Target_UnderlyingFSOpts::_internal_set_type(::beegfs::Target_UnderlyingFSOpts_FsType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.type_ = value;
+}
+
+// string format_flags = 3;
+inline void Target_UnderlyingFSOpts::clear_format_flags() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.format_flags_.ClearToEmpty();
+}
+inline const std::string& Target_UnderlyingFSOpts::format_flags() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Target.UnderlyingFSOpts.format_flags)
+  return _internal_format_flags();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Target_UnderlyingFSOpts::set_format_flags(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.format_flags_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Target.UnderlyingFSOpts.format_flags)
+}
+inline std::string* Target_UnderlyingFSOpts::mutable_format_flags() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_format_flags();
+  // @@protoc_insertion_point(field_mutable:beegfs.Target.UnderlyingFSOpts.format_flags)
+  return _s;
+}
+inline const std::string& Target_UnderlyingFSOpts::_internal_format_flags() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.format_flags_.Get();
+}
+inline void Target_UnderlyingFSOpts::_internal_set_format_flags(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.format_flags_.Set(value, GetArena());
+}
+inline std::string* Target_UnderlyingFSOpts::_internal_mutable_format_flags() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.format_flags_.Mutable( GetArena());
+}
+inline std::string* Target_UnderlyingFSOpts::release_format_flags() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Target.UnderlyingFSOpts.format_flags)
+  return _impl_.format_flags_.Release();
+}
+inline void Target_UnderlyingFSOpts::set_allocated_format_flags(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.format_flags_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.format_flags_.IsDefault()) {
+    _impl_.format_flags_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Target.UnderlyingFSOpts.format_flags)
+}
+
+// string mount_flags = 4;
+inline void Target_UnderlyingFSOpts::clear_mount_flags() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mount_flags_.ClearToEmpty();
+}
+inline const std::string& Target_UnderlyingFSOpts::mount_flags() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Target.UnderlyingFSOpts.mount_flags)
+  return _internal_mount_flags();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Target_UnderlyingFSOpts::set_mount_flags(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mount_flags_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Target.UnderlyingFSOpts.mount_flags)
+}
+inline std::string* Target_UnderlyingFSOpts::mutable_mount_flags() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_mount_flags();
+  // @@protoc_insertion_point(field_mutable:beegfs.Target.UnderlyingFSOpts.mount_flags)
+  return _s;
+}
+inline const std::string& Target_UnderlyingFSOpts::_internal_mount_flags() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.mount_flags_.Get();
+}
+inline void Target_UnderlyingFSOpts::_internal_set_mount_flags(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mount_flags_.Set(value, GetArena());
+}
+inline std::string* Target_UnderlyingFSOpts::_internal_mutable_mount_flags() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.mount_flags_.Mutable( GetArena());
+}
+inline std::string* Target_UnderlyingFSOpts::release_mount_flags() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Target.UnderlyingFSOpts.mount_flags)
+  return _impl_.mount_flags_.Release();
+}
+inline void Target_UnderlyingFSOpts::set_allocated_mount_flags(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mount_flags_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.mount_flags_.IsDefault()) {
+    _impl_.mount_flags_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Target.UnderlyingFSOpts.mount_flags)
+}
+
+// -------------------------------------------------------------------
+
+// Target
+
+// uint32 num_id = 1;
+inline void Target::clear_num_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.num_id_ = 0u;
+}
+inline ::uint32_t Target::num_id() const {
+  // @@protoc_insertion_point(field_get:beegfs.Target.num_id)
+  return _internal_num_id();
+}
+inline void Target::set_num_id(::uint32_t value) {
+  _internal_set_num_id(value);
+  // @@protoc_insertion_point(field_set:beegfs.Target.num_id)
+}
+inline ::uint32_t Target::_internal_num_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.num_id_;
+}
+inline void Target::_internal_set_num_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.num_id_ = value;
+}
+
+// string root_dir = 2;
+inline void Target::clear_root_dir() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.root_dir_.ClearToEmpty();
+}
+inline const std::string& Target::root_dir() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Target.root_dir)
+  return _internal_root_dir();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Target::set_root_dir(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.root_dir_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beegfs.Target.root_dir)
+}
+inline std::string* Target::mutable_root_dir() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_root_dir();
+  // @@protoc_insertion_point(field_mutable:beegfs.Target.root_dir)
+  return _s;
+}
+inline const std::string& Target::_internal_root_dir() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.root_dir_.Get();
+}
+inline void Target::_internal_set_root_dir(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.root_dir_.Set(value, GetArena());
+}
+inline std::string* Target::_internal_mutable_root_dir() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.root_dir_.Mutable( GetArena());
+}
+inline std::string* Target::release_root_dir() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Target.root_dir)
+  return _impl_.root_dir_.Release();
+}
+inline void Target::set_allocated_root_dir(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.root_dir_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.root_dir_.IsDefault()) {
+    _impl_.root_dir_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Target.root_dir)
+}
+
+// optional .beegfs.Target.UnderlyingFSOpts ulfs = 3;
+inline bool Target::has_ulfs() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.ulfs_ != nullptr);
+  return value;
+}
+inline void Target::clear_ulfs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.ulfs_ != nullptr) _impl_.ulfs_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beegfs::Target_UnderlyingFSOpts& Target::_internal_ulfs() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::Target_UnderlyingFSOpts* p = _impl_.ulfs_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::Target_UnderlyingFSOpts&>(::beegfs::_Target_UnderlyingFSOpts_default_instance_);
+}
+inline const ::beegfs::Target_UnderlyingFSOpts& Target::ulfs() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beegfs.Target.ulfs)
+  return _internal_ulfs();
+}
+inline void Target::unsafe_arena_set_allocated_ulfs(::beegfs::Target_UnderlyingFSOpts* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.ulfs_);
+  }
+  _impl_.ulfs_ = reinterpret_cast<::beegfs::Target_UnderlyingFSOpts*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beegfs.Target.ulfs)
+}
+inline ::beegfs::Target_UnderlyingFSOpts* Target::release_ulfs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Target_UnderlyingFSOpts* released = _impl_.ulfs_;
+  _impl_.ulfs_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beegfs::Target_UnderlyingFSOpts* Target::unsafe_arena_release_ulfs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beegfs.Target.ulfs)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beegfs::Target_UnderlyingFSOpts* temp = _impl_.ulfs_;
+  _impl_.ulfs_ = nullptr;
+  return temp;
+}
+inline ::beegfs::Target_UnderlyingFSOpts* Target::_internal_mutable_ulfs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.ulfs_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::Target_UnderlyingFSOpts>(GetArena());
+    _impl_.ulfs_ = reinterpret_cast<::beegfs::Target_UnderlyingFSOpts*>(p);
+  }
+  return _impl_.ulfs_;
+}
+inline ::beegfs::Target_UnderlyingFSOpts* Target::mutable_ulfs() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beegfs::Target_UnderlyingFSOpts* _msg = _internal_mutable_ulfs();
+  // @@protoc_insertion_point(field_mutable:beegfs.Target.ulfs)
+  return _msg;
+}
+inline void Target::set_allocated_ulfs(::beegfs::Target_UnderlyingFSOpts* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.ulfs_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.ulfs_ = reinterpret_cast<::beegfs::Target_UnderlyingFSOpts*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beegfs.Target.ulfs)
+}
+
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -1048,6 +7911,18 @@ inline void EntityIdSet::set_allocated_legacy_id(::beegfs::LegacyId* value) {
 namespace google {
 namespace protobuf {
 
+template <>
+struct is_proto_enum<::beegfs::AgentStatus_State> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::beegfs::AgentStatus_State>() {
+  return ::beegfs::AgentStatus_State_descriptor();
+}
+template <>
+struct is_proto_enum<::beegfs::Target_UnderlyingFSOpts_FsType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::beegfs::Target_UnderlyingFSOpts_FsType>() {
+  return ::beegfs::Target_UnderlyingFSOpts_FsType_descriptor();
+}
 template <>
 struct is_proto_enum<::beegfs::EntityType> : std::true_type {};
 template <>
@@ -1095,6 +7970,12 @@ struct is_proto_enum<::beegfs::QuotaType> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::beegfs::QuotaType>() {
   return ::beegfs::QuotaType_descriptor();
+}
+template <>
+struct is_proto_enum<::beegfs::SourceType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::beegfs::SourceType>() {
+  return ::beegfs::SourceType_descriptor();
 }
 
 }  // namespace protobuf
