@@ -108,6 +108,8 @@ enum NodeType : int {
   META = 2,
   STORAGE = 3,
   MANAGEMENT = 4,
+  REMOTE = 5,
+  SYNC = 6,
   NodeType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   NodeType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -117,8 +119,8 @@ enum NodeType : int {
 bool NodeType_IsValid(int value);
 extern const uint32_t NodeType_internal_data_[];
 constexpr NodeType NodeType_MIN = static_cast<NodeType>(0);
-constexpr NodeType NodeType_MAX = static_cast<NodeType>(4);
-constexpr int NodeType_ARRAYSIZE = 4 + 1;
+constexpr NodeType NodeType_MAX = static_cast<NodeType>(6);
+constexpr int NodeType_ARRAYSIZE = 6 + 1;
 const ::google::protobuf::EnumDescriptor*
 NodeType_descriptor();
 template <typename T>
@@ -131,7 +133,7 @@ const std::string& NodeType_Name(T value) {
 template <>
 inline const std::string& NodeType_Name(NodeType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<NodeType_descriptor,
-                                                 0, 4>(
+                                                 0, 6>(
       static_cast<int>(value));
 }
 inline bool NodeType_Parse(absl::string_view name, NodeType* value) {

@@ -84,6 +84,8 @@ pub enum NodeType {
     Meta = 2,
     Storage = 3,
     Management = 4,
+    Remote = 5,
+    Sync = 6,
 }
 impl NodeType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -97,6 +99,8 @@ impl NodeType {
             Self::Meta => "META",
             Self::Storage => "STORAGE",
             Self::Management => "MANAGEMENT",
+            Self::Remote => "REMOTE",
+            Self::Sync => "SYNC",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -107,6 +111,8 @@ impl NodeType {
             "META" => Some(Self::Meta),
             "STORAGE" => Some(Self::Storage),
             "MANAGEMENT" => Some(Self::Management),
+            "REMOTE" => Some(Self::Remote),
+            "SYNC" => Some(Self::Sync),
             _ => None,
         }
     }
