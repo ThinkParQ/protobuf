@@ -3975,7 +3975,7 @@ class JobLockedInfo final : public ::google::protobuf::Message
     kExternalIdFieldNumber = 10,
     kMtimeFieldNumber = 5,
     kRemoteMtimeFieldNumber = 7,
-    kWriteLockedFieldNumber = 1,
+    kReadWriteLockedFieldNumber = 1,
     kExistsFieldNumber = 2,
     kModeFieldNumber = 4,
     kSizeFieldNumber = 3,
@@ -4044,14 +4044,14 @@ class JobLockedInfo final : public ::google::protobuf::Message
   ::google::protobuf::Timestamp* _internal_mutable_remote_mtime();
 
   public:
-  // bool write_locked = 1;
-  void clear_write_locked() ;
-  bool write_locked() const;
-  void set_write_locked(bool value);
+  // bool read_write_locked = 1;
+  void clear_read_write_locked() ;
+  bool read_write_locked() const;
+  void set_read_write_locked(bool value);
 
   private:
-  bool _internal_write_locked() const;
-  void _internal_set_write_locked(bool value);
+  bool _internal_read_write_locked() const;
+  void _internal_set_read_write_locked(bool value);
 
   public:
   // bool exists = 2;
@@ -4133,7 +4133,7 @@ class JobLockedInfo final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr externalid_;
     ::google::protobuf::Timestamp* mtime_;
     ::google::protobuf::Timestamp* remote_mtime_;
-    bool write_locked_;
+    bool read_write_locked_;
     bool exists_;
     ::uint32_t mode_;
     ::int64_t size_;
@@ -7702,26 +7702,26 @@ inline void BulkUpdateWorkResponse::set_allocated_message(std::string* value) {
 
 // JobLockedInfo
 
-// bool write_locked = 1;
-inline void JobLockedInfo::clear_write_locked() {
+// bool read_write_locked = 1;
+inline void JobLockedInfo::clear_read_write_locked() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.write_locked_ = false;
+  _impl_.read_write_locked_ = false;
 }
-inline bool JobLockedInfo::write_locked() const {
-  // @@protoc_insertion_point(field_get:flex.JobLockedInfo.write_locked)
-  return _internal_write_locked();
+inline bool JobLockedInfo::read_write_locked() const {
+  // @@protoc_insertion_point(field_get:flex.JobLockedInfo.read_write_locked)
+  return _internal_read_write_locked();
 }
-inline void JobLockedInfo::set_write_locked(bool value) {
-  _internal_set_write_locked(value);
-  // @@protoc_insertion_point(field_set:flex.JobLockedInfo.write_locked)
+inline void JobLockedInfo::set_read_write_locked(bool value) {
+  _internal_set_read_write_locked(value);
+  // @@protoc_insertion_point(field_set:flex.JobLockedInfo.read_write_locked)
 }
-inline bool JobLockedInfo::_internal_write_locked() const {
+inline bool JobLockedInfo::_internal_read_write_locked() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.write_locked_;
+  return _impl_.read_write_locked_;
 }
-inline void JobLockedInfo::_internal_set_write_locked(bool value) {
+inline void JobLockedInfo::_internal_set_read_write_locked(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.write_locked_ = value;
+  _impl_.read_write_locked_ = value;
 }
 
 // bool exists = 2;

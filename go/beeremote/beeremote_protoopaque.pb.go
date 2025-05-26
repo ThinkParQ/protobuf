@@ -439,7 +439,7 @@ func (b0 SubmitJobResponse_builder) Build() *SubmitJobResponse {
 }
 
 // A JobRequest contains all the information necessary for BeeRemote to trigger
-// a job on the appropriate worker node(s) (like BeeSync nodes) based on thegit
+// a job on the appropriate worker node(s) (like BeeSync nodes) based on the
 // particular request_type specified by the user. It is the external request
 // so it does not include automatically generated fields like the job ID or
 // anything about the work request(s) used to execute the job.

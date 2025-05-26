@@ -41,7 +41,17 @@ pub struct UpdateWorkRequest {
 }
 /// Nested message and enum types in `UpdateWorkRequest`.
 pub mod update_work_request {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NewState {
         /// This state has no semantic value and the state should never be UNSPECIFIED unless there
@@ -88,7 +98,17 @@ pub struct BulkUpdateWorkRequest {
 pub mod bulk_update_work_request {
     /// TODO: <https://github.com/ThinkParQ/bee-sync/issues/5>
     /// Allow bulk updates to work requests
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum NewState {
         /// This state has no semantic value and the state should never be UNSPECIFIED unless there
@@ -129,12 +149,11 @@ pub struct BulkUpdateWorkResponse {
 /// JobLockedInfo contains require information that must be determined prior to calling a job request for
 /// file. This will be produced by sync's job builder but can be produced anywhere it makes sense such as
 /// in ctl.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobLockedInfo {
     /// locked indicates the file read-only or read-write lock has already been obtained.
     #[prost(bool, tag = "1")]
-    pub write_locked: bool,
+    pub read_write_locked: bool,
     #[prost(bool, tag = "2")]
     pub exists: bool,
     /// Size of the local file.
@@ -160,7 +179,6 @@ pub struct JobLockedInfo {
     #[prost(string, tag = "10")]
     pub external_id: ::prost::alloc::string::String,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobRequestCfg {
     #[prost(uint32, tag = "1")]
@@ -183,7 +201,6 @@ pub struct JobRequestCfg {
     pub locked_info: ::core::option::Option<JobLockedInfo>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkRequest {
     #[prost(string, tag = "1")]
@@ -236,13 +253,11 @@ pub mod work_request {
     }
 }
 /// JobBuilderJob is a special type of job that creates job requests of any time.
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuilderJob {
     #[prost(message, optional, tag = "1")]
     pub cfg: ::core::option::Option<JobRequestCfg>,
 }
-#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MockJob {
     #[prost(int32, tag = "1")]
@@ -286,7 +301,17 @@ pub struct SyncJob {
 }
 /// Nested message and enum types in `SyncJob`.
 pub mod sync_job {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Operation {
         Unspecified = 0,
@@ -382,7 +407,17 @@ pub mod work {
         #[prost(bool, tag = "6")]
         pub completed: bool,
     }
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum State {
         /// This state has no semantic value and the state should never be UNSPECIFIED unless there
@@ -481,7 +516,17 @@ pub struct UpdateConfigResponse {
 }
 /// Nested message and enum types in `UpdateConfigResponse`.
 pub mod update_config_response {
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum Result {
         /// Should not be used. Exists only as the default if there is a programming error.
@@ -667,10 +712,10 @@ pub mod worker_node_client {
         dead_code,
         missing_docs,
         clippy::wildcard_imports,
-        clippy::let_unit_value
+        clippy::let_unit_value,
     )]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// A WorkerNode is able to handle one or more types of work requests.
     #[derive(Debug, Clone)]
     pub struct WorkerNodeClient<T> {
@@ -715,8 +760,9 @@ pub mod worker_node_client {
                     <T as tonic::client::GrpcService<tonic::body::Body>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::Body>>>::Error:
-                Into<StdError> + std::marker::Send + std::marker::Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::Body>,
+            >>::Error: Into<StdError> + std::marker::Send + std::marker::Sync,
         {
             WorkerNodeClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -754,13 +800,22 @@ pub mod worker_node_client {
         pub async fn update_config(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::UpdateConfigResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateConfigResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/flex.WorkerNode/UpdateConfig");
+            let path = http::uri::PathAndQuery::from_static(
+                "/flex.WorkerNode/UpdateConfig",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("flex.WorkerNode", "UpdateConfig"));
@@ -769,27 +824,45 @@ pub mod worker_node_client {
         pub async fn heartbeat(
             &mut self,
             request: impl tonic::IntoRequest<super::HeartbeatRequest>,
-        ) -> std::result::Result<tonic::Response<super::HeartbeatResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::HeartbeatResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/flex.WorkerNode/Heartbeat");
+            let path = http::uri::PathAndQuery::from_static(
+                "/flex.WorkerNode/Heartbeat",
+            );
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("flex.WorkerNode", "Heartbeat"));
+            req.extensions_mut().insert(GrpcMethod::new("flex.WorkerNode", "Heartbeat"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn submit_work(
             &mut self,
             request: impl tonic::IntoRequest<super::SubmitWorkRequest>,
-        ) -> std::result::Result<tonic::Response<super::SubmitWorkResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::SubmitWorkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/flex.WorkerNode/SubmitWork");
+            let path = http::uri::PathAndQuery::from_static(
+                "/flex.WorkerNode/SubmitWork",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("flex.WorkerNode", "SubmitWork"));
@@ -800,13 +873,22 @@ pub mod worker_node_client {
         pub async fn update_work(
             &mut self,
             request: impl tonic::IntoRequest<super::UpdateWorkRequest>,
-        ) -> std::result::Result<tonic::Response<super::UpdateWorkResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateWorkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/flex.WorkerNode/UpdateWork");
+            let path = http::uri::PathAndQuery::from_static(
+                "/flex.WorkerNode/UpdateWork",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("flex.WorkerNode", "UpdateWork"));
@@ -818,13 +900,22 @@ pub mod worker_node_client {
         pub async fn bulk_update_work(
             &mut self,
             request: impl tonic::IntoRequest<super::BulkUpdateWorkRequest>,
-        ) -> std::result::Result<tonic::Response<super::BulkUpdateWorkResponse>, tonic::Status>
-        {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::unknown(format!("Service was not ready: {}", e.into()))
-            })?;
+        ) -> std::result::Result<
+            tonic::Response<super::BulkUpdateWorkResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/flex.WorkerNode/BulkUpdateWork");
+            let path = http::uri::PathAndQuery::from_static(
+                "/flex.WorkerNode/BulkUpdateWork",
+            );
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("flex.WorkerNode", "BulkUpdateWork"));
@@ -839,7 +930,7 @@ pub mod worker_node_server {
         dead_code,
         missing_docs,
         clippy::wildcard_imports,
-        clippy::let_unit_value
+        clippy::let_unit_value,
     )]
     use tonic::codegen::*;
     /// Generated trait containing gRPC methods that should be implemented for use with WorkerNodeServer.
@@ -848,28 +939,43 @@ pub mod worker_node_server {
         async fn update_config(
             &self,
             request: tonic::Request<super::UpdateConfigRequest>,
-        ) -> std::result::Result<tonic::Response<super::UpdateConfigResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateConfigResponse>,
+            tonic::Status,
+        >;
         async fn heartbeat(
             &self,
             request: tonic::Request<super::HeartbeatRequest>,
-        ) -> std::result::Result<tonic::Response<super::HeartbeatResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::HeartbeatResponse>,
+            tonic::Status,
+        >;
         async fn submit_work(
             &self,
             request: tonic::Request<super::SubmitWorkRequest>,
-        ) -> std::result::Result<tonic::Response<super::SubmitWorkResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::SubmitWorkResponse>,
+            tonic::Status,
+        >;
         /// UpdateWork is used to change the state of existing work, such as cancelling work at a users
         /// request.
         async fn update_work(
             &self,
             request: tonic::Request<super::UpdateWorkRequest>,
-        ) -> std::result::Result<tonic::Response<super::UpdateWorkResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateWorkResponse>,
+            tonic::Status,
+        >;
         /// Used to change the state of all WRs assigned to a particular node. This is typically only
         /// used when initially connecting to a node, or if we want to drain the WRs assigned to a node
         /// if it is being removed.
         async fn bulk_update_work(
             &self,
             request: tonic::Request<super::BulkUpdateWorkRequest>,
-        ) -> std::result::Result<tonic::Response<super::BulkUpdateWorkResponse>, tonic::Status>;
+        ) -> std::result::Result<
+            tonic::Response<super::BulkUpdateWorkResponse>,
+            tonic::Status,
+        >;
     }
     /// A WorkerNode is able to handle one or more types of work requests.
     #[derive(Debug)]
@@ -893,7 +999,10 @@ pub mod worker_node_server {
                 max_encoding_message_size: None,
             }
         }
-        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
+        pub fn with_interceptor<F>(
+            inner: T,
+            interceptor: F,
+        ) -> InterceptedService<Self, F>
         where
             F: tonic::service::Interceptor,
         {
@@ -948,9 +1057,15 @@ pub mod worker_node_server {
                 "/flex.WorkerNode/UpdateConfig" => {
                     #[allow(non_camel_case_types)]
                     struct UpdateConfigSvc<T: WorkerNode>(pub Arc<T>);
-                    impl<T: WorkerNode> tonic::server::UnaryService<super::UpdateConfigRequest> for UpdateConfigSvc<T> {
+                    impl<
+                        T: WorkerNode,
+                    > tonic::server::UnaryService<super::UpdateConfigRequest>
+                    for UpdateConfigSvc<T> {
                         type Response = super::UpdateConfigResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::UpdateConfigRequest>,
@@ -987,16 +1102,23 @@ pub mod worker_node_server {
                 "/flex.WorkerNode/Heartbeat" => {
                     #[allow(non_camel_case_types)]
                     struct HeartbeatSvc<T: WorkerNode>(pub Arc<T>);
-                    impl<T: WorkerNode> tonic::server::UnaryService<super::HeartbeatRequest> for HeartbeatSvc<T> {
+                    impl<
+                        T: WorkerNode,
+                    > tonic::server::UnaryService<super::HeartbeatRequest>
+                    for HeartbeatSvc<T> {
                         type Response = super::HeartbeatResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::HeartbeatRequest>,
                         ) -> Self::Future {
                             let inner = Arc::clone(&self.0);
-                            let fut =
-                                async move { <T as WorkerNode>::heartbeat(&inner, request).await };
+                            let fut = async move {
+                                <T as WorkerNode>::heartbeat(&inner, request).await
+                            };
                             Box::pin(fut)
                         }
                     }
@@ -1025,9 +1147,15 @@ pub mod worker_node_server {
                 "/flex.WorkerNode/SubmitWork" => {
                     #[allow(non_camel_case_types)]
                     struct SubmitWorkSvc<T: WorkerNode>(pub Arc<T>);
-                    impl<T: WorkerNode> tonic::server::UnaryService<super::SubmitWorkRequest> for SubmitWorkSvc<T> {
+                    impl<
+                        T: WorkerNode,
+                    > tonic::server::UnaryService<super::SubmitWorkRequest>
+                    for SubmitWorkSvc<T> {
                         type Response = super::SubmitWorkResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::SubmitWorkRequest>,
@@ -1064,9 +1192,15 @@ pub mod worker_node_server {
                 "/flex.WorkerNode/UpdateWork" => {
                     #[allow(non_camel_case_types)]
                     struct UpdateWorkSvc<T: WorkerNode>(pub Arc<T>);
-                    impl<T: WorkerNode> tonic::server::UnaryService<super::UpdateWorkRequest> for UpdateWorkSvc<T> {
+                    impl<
+                        T: WorkerNode,
+                    > tonic::server::UnaryService<super::UpdateWorkRequest>
+                    for UpdateWorkSvc<T> {
                         type Response = super::UpdateWorkResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::UpdateWorkRequest>,
@@ -1103,11 +1237,15 @@ pub mod worker_node_server {
                 "/flex.WorkerNode/BulkUpdateWork" => {
                     #[allow(non_camel_case_types)]
                     struct BulkUpdateWorkSvc<T: WorkerNode>(pub Arc<T>);
-                    impl<T: WorkerNode> tonic::server::UnaryService<super::BulkUpdateWorkRequest>
-                        for BulkUpdateWorkSvc<T>
-                    {
+                    impl<
+                        T: WorkerNode,
+                    > tonic::server::UnaryService<super::BulkUpdateWorkRequest>
+                    for BulkUpdateWorkSvc<T> {
                         type Response = super::BulkUpdateWorkResponse;
-                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::BulkUpdateWorkRequest>,
@@ -1141,19 +1279,25 @@ pub mod worker_node_server {
                     };
                     Box::pin(fut)
                 }
-                _ => Box::pin(async move {
-                    let mut response = http::Response::new(tonic::body::Body::default());
-                    let headers = response.headers_mut();
-                    headers.insert(
-                        tonic::Status::GRPC_STATUS,
-                        (tonic::Code::Unimplemented as i32).into(),
-                    );
-                    headers.insert(
-                        http::header::CONTENT_TYPE,
-                        tonic::metadata::GRPC_CONTENT_TYPE,
-                    );
-                    Ok(response)
-                }),
+                _ => {
+                    Box::pin(async move {
+                        let mut response = http::Response::new(
+                            tonic::body::Body::default(),
+                        );
+                        let headers = response.headers_mut();
+                        headers
+                            .insert(
+                                tonic::Status::GRPC_STATUS,
+                                (tonic::Code::Unimplemented as i32).into(),
+                            );
+                        headers
+                            .insert(
+                                http::header::CONTENT_TYPE,
+                                tonic::metadata::GRPC_CONTENT_TYPE,
+                            );
+                        Ok(response)
+                    })
+                }
             }
         }
     }

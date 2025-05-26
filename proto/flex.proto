@@ -87,7 +87,7 @@ message BulkUpdateWorkResponse {
 // in ctl.
 message JobLockedInfo {
     // locked indicates the file read-only or read-write lock has already been obtained.
-    bool write_locked = 1;
+    bool read_write_locked = 1;
     bool exists = 2;
     // Size of the local file.
     int64 size = 3;
