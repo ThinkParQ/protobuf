@@ -2920,13 +2920,12 @@ class BeeRemoteNode final : public ::google::protobuf::Message
   enum : int {
     kIdFieldNumber = 1,
     kAddressFieldNumber = 2,
-    kMountFieldNumber = 3,
-    kMgmtdAddressFieldNumber = 4,
-    kMgmtdTlsCertFileFieldNumber = 5,
-    kAuthFileFieldNumber = 8,
-    kMgmtdTlsDisableVerificationFieldNumber = 6,
-    kMgmtdTlsDisableFieldNumber = 7,
-    kAuthDisableFieldNumber = 9,
+    kMgmtdAddressFieldNumber = 3,
+    kMgmtdTlsCertFieldNumber = 4,
+    kAuthSecretFieldNumber = 7,
+    kMgmtdTlsDisableVerificationFieldNumber = 5,
+    kMgmtdTlsDisableFieldNumber = 6,
+    kAuthDisableFieldNumber = 8,
   };
   // string id = 1;
   void clear_id() ;
@@ -2960,23 +2959,7 @@ class BeeRemoteNode final : public ::google::protobuf::Message
   std::string* _internal_mutable_address();
 
   public:
-  // string mount = 3;
-  void clear_mount() ;
-  const std::string& mount() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_mount(Arg_&& arg, Args_... args);
-  std::string* mutable_mount();
-  PROTOBUF_NODISCARD std::string* release_mount();
-  void set_allocated_mount(std::string* value);
-
-  private:
-  const std::string& _internal_mount() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mount(
-      const std::string& value);
-  std::string* _internal_mutable_mount();
-
-  public:
-  // string mgmtd_address = 4;
+  // string mgmtd_address = 3;
   void clear_mgmtd_address() ;
   const std::string& mgmtd_address() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -2992,39 +2975,39 @@ class BeeRemoteNode final : public ::google::protobuf::Message
   std::string* _internal_mutable_mgmtd_address();
 
   public:
-  // string mgmtd_tls_cert_file = 5;
-  void clear_mgmtd_tls_cert_file() ;
-  const std::string& mgmtd_tls_cert_file() const;
+  // bytes mgmtd_tls_cert = 4;
+  void clear_mgmtd_tls_cert() ;
+  const std::string& mgmtd_tls_cert() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_mgmtd_tls_cert_file(Arg_&& arg, Args_... args);
-  std::string* mutable_mgmtd_tls_cert_file();
-  PROTOBUF_NODISCARD std::string* release_mgmtd_tls_cert_file();
-  void set_allocated_mgmtd_tls_cert_file(std::string* value);
+  void set_mgmtd_tls_cert(Arg_&& arg, Args_... args);
+  std::string* mutable_mgmtd_tls_cert();
+  PROTOBUF_NODISCARD std::string* release_mgmtd_tls_cert();
+  void set_allocated_mgmtd_tls_cert(std::string* value);
 
   private:
-  const std::string& _internal_mgmtd_tls_cert_file() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mgmtd_tls_cert_file(
+  const std::string& _internal_mgmtd_tls_cert() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mgmtd_tls_cert(
       const std::string& value);
-  std::string* _internal_mutable_mgmtd_tls_cert_file();
+  std::string* _internal_mutable_mgmtd_tls_cert();
 
   public:
-  // string auth_file = 8;
-  void clear_auth_file() ;
-  const std::string& auth_file() const;
+  // bytes auth_secret = 7;
+  void clear_auth_secret() ;
+  const std::string& auth_secret() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_auth_file(Arg_&& arg, Args_... args);
-  std::string* mutable_auth_file();
-  PROTOBUF_NODISCARD std::string* release_auth_file();
-  void set_allocated_auth_file(std::string* value);
+  void set_auth_secret(Arg_&& arg, Args_... args);
+  std::string* mutable_auth_secret();
+  PROTOBUF_NODISCARD std::string* release_auth_secret();
+  void set_allocated_auth_secret(std::string* value);
 
   private:
-  const std::string& _internal_auth_file() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_auth_file(
+  const std::string& _internal_auth_secret() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_auth_secret(
       const std::string& value);
-  std::string* _internal_mutable_auth_file();
+  std::string* _internal_mutable_auth_secret();
 
   public:
-  // bool mgmtd_tls_disable_verification = 6;
+  // bool mgmtd_tls_disable_verification = 5;
   void clear_mgmtd_tls_disable_verification() ;
   bool mgmtd_tls_disable_verification() const;
   void set_mgmtd_tls_disable_verification(bool value);
@@ -3034,7 +3017,7 @@ class BeeRemoteNode final : public ::google::protobuf::Message
   void _internal_set_mgmtd_tls_disable_verification(bool value);
 
   public:
-  // bool mgmtd_tls_disable = 7;
+  // bool mgmtd_tls_disable = 6;
   void clear_mgmtd_tls_disable() ;
   bool mgmtd_tls_disable() const;
   void set_mgmtd_tls_disable(bool value);
@@ -3044,7 +3027,7 @@ class BeeRemoteNode final : public ::google::protobuf::Message
   void _internal_set_mgmtd_tls_disable(bool value);
 
   public:
-  // bool auth_disable = 9;
+  // bool auth_disable = 8;
   void clear_auth_disable() ;
   bool auth_disable() const;
   void set_auth_disable(bool value);
@@ -3059,8 +3042,8 @@ class BeeRemoteNode final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 9, 0,
-      90, 2>
+      3, 8, 0,
+      57, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3079,10 +3062,9 @@ class BeeRemoteNode final : public ::google::protobuf::Message
                           const BeeRemoteNode& from_msg);
     ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::ArenaStringPtr address_;
-    ::google::protobuf::internal::ArenaStringPtr mount_;
     ::google::protobuf::internal::ArenaStringPtr mgmtd_address_;
-    ::google::protobuf::internal::ArenaStringPtr mgmtd_tls_cert_file_;
-    ::google::protobuf::internal::ArenaStringPtr auth_file_;
+    ::google::protobuf::internal::ArenaStringPtr mgmtd_tls_cert_;
+    ::google::protobuf::internal::ArenaStringPtr auth_secret_;
     bool mgmtd_tls_disable_verification_;
     bool mgmtd_tls_disable_;
     bool auth_disable_;
@@ -10638,55 +10620,7 @@ inline void BeeRemoteNode::set_allocated_address(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:flex.BeeRemoteNode.address)
 }
 
-// string mount = 3;
-inline void BeeRemoteNode::clear_mount() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.mount_.ClearToEmpty();
-}
-inline const std::string& BeeRemoteNode::mount() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:flex.BeeRemoteNode.mount)
-  return _internal_mount();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BeeRemoteNode::set_mount(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.mount_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:flex.BeeRemoteNode.mount)
-}
-inline std::string* BeeRemoteNode::mutable_mount() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_mount();
-  // @@protoc_insertion_point(field_mutable:flex.BeeRemoteNode.mount)
-  return _s;
-}
-inline const std::string& BeeRemoteNode::_internal_mount() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.mount_.Get();
-}
-inline void BeeRemoteNode::_internal_set_mount(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.mount_.Set(value, GetArena());
-}
-inline std::string* BeeRemoteNode::_internal_mutable_mount() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.mount_.Mutable( GetArena());
-}
-inline std::string* BeeRemoteNode::release_mount() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:flex.BeeRemoteNode.mount)
-  return _impl_.mount_.Release();
-}
-inline void BeeRemoteNode::set_allocated_mount(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.mount_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.mount_.IsDefault()) {
-    _impl_.mount_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:flex.BeeRemoteNode.mount)
-}
-
-// string mgmtd_address = 4;
+// string mgmtd_address = 3;
 inline void BeeRemoteNode::clear_mgmtd_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.mgmtd_address_.ClearToEmpty();
@@ -10734,55 +10668,55 @@ inline void BeeRemoteNode::set_allocated_mgmtd_address(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:flex.BeeRemoteNode.mgmtd_address)
 }
 
-// string mgmtd_tls_cert_file = 5;
-inline void BeeRemoteNode::clear_mgmtd_tls_cert_file() {
+// bytes mgmtd_tls_cert = 4;
+inline void BeeRemoteNode::clear_mgmtd_tls_cert() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.mgmtd_tls_cert_file_.ClearToEmpty();
+  _impl_.mgmtd_tls_cert_.ClearToEmpty();
 }
-inline const std::string& BeeRemoteNode::mgmtd_tls_cert_file() const
+inline const std::string& BeeRemoteNode::mgmtd_tls_cert() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:flex.BeeRemoteNode.mgmtd_tls_cert_file)
-  return _internal_mgmtd_tls_cert_file();
+  // @@protoc_insertion_point(field_get:flex.BeeRemoteNode.mgmtd_tls_cert)
+  return _internal_mgmtd_tls_cert();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BeeRemoteNode::set_mgmtd_tls_cert_file(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void BeeRemoteNode::set_mgmtd_tls_cert(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.mgmtd_tls_cert_file_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:flex.BeeRemoteNode.mgmtd_tls_cert_file)
+  _impl_.mgmtd_tls_cert_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.BeeRemoteNode.mgmtd_tls_cert)
 }
-inline std::string* BeeRemoteNode::mutable_mgmtd_tls_cert_file() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_mgmtd_tls_cert_file();
-  // @@protoc_insertion_point(field_mutable:flex.BeeRemoteNode.mgmtd_tls_cert_file)
+inline std::string* BeeRemoteNode::mutable_mgmtd_tls_cert() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_mgmtd_tls_cert();
+  // @@protoc_insertion_point(field_mutable:flex.BeeRemoteNode.mgmtd_tls_cert)
   return _s;
 }
-inline const std::string& BeeRemoteNode::_internal_mgmtd_tls_cert_file() const {
+inline const std::string& BeeRemoteNode::_internal_mgmtd_tls_cert() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.mgmtd_tls_cert_file_.Get();
+  return _impl_.mgmtd_tls_cert_.Get();
 }
-inline void BeeRemoteNode::_internal_set_mgmtd_tls_cert_file(const std::string& value) {
+inline void BeeRemoteNode::_internal_set_mgmtd_tls_cert(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.mgmtd_tls_cert_file_.Set(value, GetArena());
+  _impl_.mgmtd_tls_cert_.Set(value, GetArena());
 }
-inline std::string* BeeRemoteNode::_internal_mutable_mgmtd_tls_cert_file() {
+inline std::string* BeeRemoteNode::_internal_mutable_mgmtd_tls_cert() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.mgmtd_tls_cert_file_.Mutable( GetArena());
+  return _impl_.mgmtd_tls_cert_.Mutable( GetArena());
 }
-inline std::string* BeeRemoteNode::release_mgmtd_tls_cert_file() {
+inline std::string* BeeRemoteNode::release_mgmtd_tls_cert() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:flex.BeeRemoteNode.mgmtd_tls_cert_file)
-  return _impl_.mgmtd_tls_cert_file_.Release();
+  // @@protoc_insertion_point(field_release:flex.BeeRemoteNode.mgmtd_tls_cert)
+  return _impl_.mgmtd_tls_cert_.Release();
 }
-inline void BeeRemoteNode::set_allocated_mgmtd_tls_cert_file(std::string* value) {
+inline void BeeRemoteNode::set_allocated_mgmtd_tls_cert(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.mgmtd_tls_cert_file_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.mgmtd_tls_cert_file_.IsDefault()) {
-    _impl_.mgmtd_tls_cert_file_.Set("", GetArena());
+  _impl_.mgmtd_tls_cert_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.mgmtd_tls_cert_.IsDefault()) {
+    _impl_.mgmtd_tls_cert_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:flex.BeeRemoteNode.mgmtd_tls_cert_file)
+  // @@protoc_insertion_point(field_set_allocated:flex.BeeRemoteNode.mgmtd_tls_cert)
 }
 
-// bool mgmtd_tls_disable_verification = 6;
+// bool mgmtd_tls_disable_verification = 5;
 inline void BeeRemoteNode::clear_mgmtd_tls_disable_verification() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.mgmtd_tls_disable_verification_ = false;
@@ -10804,7 +10738,7 @@ inline void BeeRemoteNode::_internal_set_mgmtd_tls_disable_verification(bool val
   _impl_.mgmtd_tls_disable_verification_ = value;
 }
 
-// bool mgmtd_tls_disable = 7;
+// bool mgmtd_tls_disable = 6;
 inline void BeeRemoteNode::clear_mgmtd_tls_disable() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.mgmtd_tls_disable_ = false;
@@ -10826,55 +10760,55 @@ inline void BeeRemoteNode::_internal_set_mgmtd_tls_disable(bool value) {
   _impl_.mgmtd_tls_disable_ = value;
 }
 
-// string auth_file = 8;
-inline void BeeRemoteNode::clear_auth_file() {
+// bytes auth_secret = 7;
+inline void BeeRemoteNode::clear_auth_secret() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.auth_file_.ClearToEmpty();
+  _impl_.auth_secret_.ClearToEmpty();
 }
-inline const std::string& BeeRemoteNode::auth_file() const
+inline const std::string& BeeRemoteNode::auth_secret() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:flex.BeeRemoteNode.auth_file)
-  return _internal_auth_file();
+  // @@protoc_insertion_point(field_get:flex.BeeRemoteNode.auth_secret)
+  return _internal_auth_secret();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void BeeRemoteNode::set_auth_file(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void BeeRemoteNode::set_auth_secret(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.auth_file_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:flex.BeeRemoteNode.auth_file)
+  _impl_.auth_secret_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.BeeRemoteNode.auth_secret)
 }
-inline std::string* BeeRemoteNode::mutable_auth_file() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_auth_file();
-  // @@protoc_insertion_point(field_mutable:flex.BeeRemoteNode.auth_file)
+inline std::string* BeeRemoteNode::mutable_auth_secret() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_auth_secret();
+  // @@protoc_insertion_point(field_mutable:flex.BeeRemoteNode.auth_secret)
   return _s;
 }
-inline const std::string& BeeRemoteNode::_internal_auth_file() const {
+inline const std::string& BeeRemoteNode::_internal_auth_secret() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.auth_file_.Get();
+  return _impl_.auth_secret_.Get();
 }
-inline void BeeRemoteNode::_internal_set_auth_file(const std::string& value) {
+inline void BeeRemoteNode::_internal_set_auth_secret(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.auth_file_.Set(value, GetArena());
+  _impl_.auth_secret_.Set(value, GetArena());
 }
-inline std::string* BeeRemoteNode::_internal_mutable_auth_file() {
+inline std::string* BeeRemoteNode::_internal_mutable_auth_secret() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.auth_file_.Mutable( GetArena());
+  return _impl_.auth_secret_.Mutable( GetArena());
 }
-inline std::string* BeeRemoteNode::release_auth_file() {
+inline std::string* BeeRemoteNode::release_auth_secret() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:flex.BeeRemoteNode.auth_file)
-  return _impl_.auth_file_.Release();
+  // @@protoc_insertion_point(field_release:flex.BeeRemoteNode.auth_secret)
+  return _impl_.auth_secret_.Release();
 }
-inline void BeeRemoteNode::set_allocated_auth_file(std::string* value) {
+inline void BeeRemoteNode::set_allocated_auth_secret(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.auth_file_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.auth_file_.IsDefault()) {
-    _impl_.auth_file_.Set("", GetArena());
+  _impl_.auth_secret_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.auth_secret_.IsDefault()) {
+    _impl_.auth_secret_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:flex.BeeRemoteNode.auth_file)
+  // @@protoc_insertion_point(field_set_allocated:flex.BeeRemoteNode.auth_secret)
 }
 
-// bool auth_disable = 9;
+// bool auth_disable = 8;
 inline void BeeRemoteNode::clear_auth_disable() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.auth_disable_ = false;

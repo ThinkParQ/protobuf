@@ -355,16 +355,13 @@ inline constexpr BeeRemoteNode::Impl_::Impl_(
         address_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        mount_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         mgmtd_address_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        mgmtd_tls_cert_file_(
+        mgmtd_tls_cert_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        auth_file_(
+        auth_secret_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         mgmtd_tls_disable_verification_{false},
@@ -1162,12 +1159,11 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.address_),
-        PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mount_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_address_),
-        PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_tls_cert_file_),
+        PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_tls_cert_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_tls_disable_verification_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_tls_disable_),
-        PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.auth_file_),
+        PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.auth_secret_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.auth_disable_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Policies, _internal_metadata_),
@@ -1262,11 +1258,11 @@ static const ::_pbi::MigrationSchema
         {280, 290, -1, sizeof(::flex::UpdateConfigRequest)},
         {292, -1, -1, sizeof(::flex::UpdateConfigResponse)},
         {302, -1, -1, sizeof(::flex::BeeRemoteNode)},
-        {319, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
-        {328, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
-        {342, 352, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
-        {354, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
-        {363, 379, -1, sizeof(::flex::RemoteStorageTarget)},
+        {318, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
+        {327, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
+        {341, 351, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
+        {353, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
+        {362, 378, -1, sizeof(::flex::RemoteStorageTarget)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::flex::_HeartbeatRequest_default_instance_._instance,
@@ -1368,36 +1364,36 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "ConfigResponse\0221\n\006result\030\001 \001(\0162!.flex.Up"
     "dateConfigResponse.Result\022\017\n\007message\030\002 \001"
     "(\t\"@\n\006Result\022\017\n\013UNSPECIFIED\020\000\022\013\n\007SUCCESS"
-    "\020\001\022\013\n\007PARTIAL\020\002\022\013\n\007FAILURE\020\003\"\333\001\n\rBeeRemo"
-    "teNode\022\n\n\002id\030\001 \001(\t\022\017\n\007address\030\002 \001(\t\022\r\n\005m"
-    "ount\030\003 \001(\t\022\025\n\rmgmtd_address\030\004 \001(\t\022\033\n\023mgm"
-    "td_tls_cert_file\030\005 \001(\t\022&\n\036mgmtd_tls_disa"
-    "ble_verification\030\006 \001(\010\022\031\n\021mgmtd_tls_disa"
-    "ble\030\007 \001(\010\022\021\n\tauth_file\030\010 \001(\t\022\024\n\014auth_dis"
-    "able\030\t \001(\010\"\213\004\n\023RemoteStorageTarget\022\n\n\002id"
-    "\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\0224\n\010policies\030\003 \001(\0132\""
-    ".flex.RemoteStorageTarget.Policies\022*\n\002s3"
-    "\030\004 \001(\0132\034.flex.RemoteStorageTarget.S3H\000\0220"
-    "\n\005posix\030\005 \001(\0132\037.flex.RemoteStorageTarget"
-    ".POSIXH\000\0220\n\005azure\030\006 \001(\0132\037.flex.RemoteSto"
-    "rageTarget.AzureH\000\022\016\n\004mock\030\007 \001(\tH\000\032\'\n\010Po"
-    "licies\022\033\n\023fast_start_max_size\030\001 \001(\003\032x\n\002S"
-    "3\022\024\n\014endpoint_url\030\001 \001(\t\022\024\n\014partition_id\030"
-    "\002 \001(\t\022\016\n\006region\030\003 \001(\t\022\016\n\006bucket\030\004 \001(\t\022\022\n"
-    "\naccess_key\030\005 \001(\t\022\022\n\nsecret_key\030\006 \001(\t\032B\n"
-    "\005Azure\022(\n\002s3\030\001 \001(\0132\034.flex.RemoteStorageT"
-    "arget.S3\022\017\n\007account\030\002 \001(\t\032\025\n\005POSIX\022\014\n\004pa"
-    "th\030\001 \001(\tB\006\n\004type2\340\002\n\nWorkerNode\022E\n\014Updat"
-    "eConfig\022\031.flex.UpdateConfigRequest\032\032.fle"
-    "x.UpdateConfigResponse\022<\n\tHeartbeat\022\026.fl"
-    "ex.HeartbeatRequest\032\027.flex.HeartbeatResp"
-    "onse\022\?\n\nSubmitWork\022\027.flex.SubmitWorkRequ"
-    "est\032\030.flex.SubmitWorkResponse\022\?\n\nUpdateW"
-    "ork\022\027.flex.UpdateWorkRequest\032\030.flex.Upda"
-    "teWorkResponse\022K\n\016BulkUpdateWork\022\033.flex."
-    "BulkUpdateWorkRequest\032\034.flex.BulkUpdateW"
-    "orkResponseB\'Z%github.com/thinkparq/prot"
-    "obuf/go/flexb\006proto3"
+    "\020\001\022\013\n\007PARTIAL\020\002\022\013\n\007FAILURE\020\003\"\311\001\n\rBeeRemo"
+    "teNode\022\n\n\002id\030\001 \001(\t\022\017\n\007address\030\002 \001(\t\022\025\n\rm"
+    "gmtd_address\030\003 \001(\t\022\026\n\016mgmtd_tls_cert\030\004 \001"
+    "(\014\022&\n\036mgmtd_tls_disable_verification\030\005 \001"
+    "(\010\022\031\n\021mgmtd_tls_disable\030\006 \001(\010\022\023\n\013auth_se"
+    "cret\030\007 \001(\014\022\024\n\014auth_disable\030\010 \001(\010\"\213\004\n\023Rem"
+    "oteStorageTarget\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001"
+    "(\t\0224\n\010policies\030\003 \001(\0132\".flex.RemoteStorag"
+    "eTarget.Policies\022*\n\002s3\030\004 \001(\0132\034.flex.Remo"
+    "teStorageTarget.S3H\000\0220\n\005posix\030\005 \001(\0132\037.fl"
+    "ex.RemoteStorageTarget.POSIXH\000\0220\n\005azure\030"
+    "\006 \001(\0132\037.flex.RemoteStorageTarget.AzureH\000"
+    "\022\016\n\004mock\030\007 \001(\tH\000\032\'\n\010Policies\022\033\n\023fast_sta"
+    "rt_max_size\030\001 \001(\003\032x\n\002S3\022\024\n\014endpoint_url\030"
+    "\001 \001(\t\022\024\n\014partition_id\030\002 \001(\t\022\016\n\006region\030\003 "
+    "\001(\t\022\016\n\006bucket\030\004 \001(\t\022\022\n\naccess_key\030\005 \001(\t\022"
+    "\022\n\nsecret_key\030\006 \001(\t\032B\n\005Azure\022(\n\002s3\030\001 \001(\013"
+    "2\034.flex.RemoteStorageTarget.S3\022\017\n\007accoun"
+    "t\030\002 \001(\t\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\tB\006\n\004type2\340"
+    "\002\n\nWorkerNode\022E\n\014UpdateConfig\022\031.flex.Upd"
+    "ateConfigRequest\032\032.flex.UpdateConfigResp"
+    "onse\022<\n\tHeartbeat\022\026.flex.HeartbeatReques"
+    "t\032\027.flex.HeartbeatResponse\022\?\n\nSubmitWork"
+    "\022\027.flex.SubmitWorkRequest\032\030.flex.SubmitW"
+    "orkResponse\022\?\n\nUpdateWork\022\027.flex.UpdateW"
+    "orkRequest\032\030.flex.UpdateWorkResponse\022K\n\016"
+    "BulkUpdateWork\022\033.flex.BulkUpdateWorkRequ"
+    "est\032\034.flex.BulkUpdateWorkResponseB\'Z%git"
+    "hub.com/thinkparq/protobuf/go/flexb\006prot"
+    "o3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_flex_2eproto_deps[1] =
     {
@@ -1407,7 +1403,7 @@ static ::absl::once_flag descriptor_table_flex_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_flex_2eproto = {
     false,
     false,
-    3940,
+    3922,
     descriptor_table_protodef_flex_2eproto,
     "flex.proto",
     &descriptor_table_flex_2eproto_once,
@@ -8356,10 +8352,9 @@ inline PROTOBUF_NDEBUG_INLINE BeeRemoteNode::Impl_::Impl_(
     const Impl_& from, const ::flex::BeeRemoteNode& from_msg)
       : id_(arena, from.id_),
         address_(arena, from.address_),
-        mount_(arena, from.mount_),
         mgmtd_address_(arena, from.mgmtd_address_),
-        mgmtd_tls_cert_file_(arena, from.mgmtd_tls_cert_file_),
-        auth_file_(arena, from.auth_file_),
+        mgmtd_tls_cert_(arena, from.mgmtd_tls_cert_),
+        auth_secret_(arena, from.auth_secret_),
         _cached_size_{0} {}
 
 BeeRemoteNode::BeeRemoteNode(
@@ -8390,10 +8385,9 @@ inline PROTOBUF_NDEBUG_INLINE BeeRemoteNode::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : id_(arena),
         address_(arena),
-        mount_(arena),
         mgmtd_address_(arena),
-        mgmtd_tls_cert_file_(arena),
-        auth_file_(arena),
+        mgmtd_tls_cert_(arena),
+        auth_secret_(arena),
         _cached_size_{0} {}
 
 inline void BeeRemoteNode::SharedCtor(::_pb::Arena* arena) {
@@ -8415,10 +8409,9 @@ inline void BeeRemoteNode::SharedDtor(MessageLite& self) {
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.id_.Destroy();
   this_._impl_.address_.Destroy();
-  this_._impl_.mount_.Destroy();
   this_._impl_.mgmtd_address_.Destroy();
-  this_._impl_.mgmtd_tls_cert_file_.Destroy();
-  this_._impl_.auth_file_.Destroy();
+  this_._impl_.mgmtd_tls_cert_.Destroy();
+  this_._impl_.auth_secret_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -8458,15 +8451,15 @@ const ::google::protobuf::internal::ClassData* BeeRemoteNode::GetClassData() con
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 9, 0, 90, 2> BeeRemoteNode::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 0, 57, 2> BeeRemoteNode::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    9, 120,  // max_field_number, fast_idx_mask
+    8, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966784,  // skipmap
+    4294967040,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    9,  // num_field_entries
+    8,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -8476,40 +8469,30 @@ const ::_pbi::TcParseTable<4, 9, 0, 90, 2> BeeRemoteNode::_table_ = {
     ::_pbi::TcParser::GetTable<::flex::BeeRemoteNode>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // bool auth_disable = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BeeRemoteNode, _impl_.auth_disable_), 63>(),
+     {64, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_disable_)}},
     // string id = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.id_)}},
     // string address = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.address_)}},
-    // string mount = 3;
+    // string mgmtd_address = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mount_)}},
-    // string mgmtd_address = 4;
-    {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_address_)}},
-    // string mgmtd_tls_cert_file = 5;
-    {::_pbi::TcParser::FastUS1,
-     {42, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_cert_file_)}},
-    // bool mgmtd_tls_disable_verification = 6;
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_address_)}},
+    // bytes mgmtd_tls_cert = 4;
+    {::_pbi::TcParser::FastBS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_cert_)}},
+    // bool mgmtd_tls_disable_verification = 5;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BeeRemoteNode, _impl_.mgmtd_tls_disable_verification_), 63>(),
-     {48, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_disable_verification_)}},
-    // bool mgmtd_tls_disable = 7;
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_disable_verification_)}},
+    // bool mgmtd_tls_disable = 6;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BeeRemoteNode, _impl_.mgmtd_tls_disable_), 63>(),
-     {56, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_disable_)}},
-    // string auth_file = 8;
-    {::_pbi::TcParser::FastUS1,
-     {66, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_file_)}},
-    // bool auth_disable = 9;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BeeRemoteNode, _impl_.auth_disable_), 63>(),
-     {72, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_disable_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_disable_)}},
+    // bytes auth_secret = 7;
+    {::_pbi::TcParser::FastBS1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_secret_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -8519,38 +8502,32 @@ const ::_pbi::TcParseTable<4, 9, 0, 90, 2> BeeRemoteNode::_table_ = {
     // string address = 2;
     {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string mount = 3;
-    {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mount_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string mgmtd_address = 4;
+    // string mgmtd_address = 3;
     {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string mgmtd_tls_cert_file = 5;
-    {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_cert_file_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // bool mgmtd_tls_disable_verification = 6;
+    // bytes mgmtd_tls_cert = 4;
+    {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_cert_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bool mgmtd_tls_disable_verification = 5;
     {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_disable_verification_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // bool mgmtd_tls_disable = 7;
+    // bool mgmtd_tls_disable = 6;
     {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_tls_disable_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string auth_file = 8;
-    {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_file_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // bool auth_disable = 9;
+    // bytes auth_secret = 7;
+    {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_secret_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bool auth_disable = 8;
     {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_disable_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
   // no aux_entries
   {{
-    "\22\2\7\5\15\23\0\0\11\0\0\0\0\0\0\0"
+    "\22\2\7\15\0\0\0\0\0\0\0\0\0\0\0\0"
     "flex.BeeRemoteNode"
     "id"
     "address"
-    "mount"
     "mgmtd_address"
-    "mgmtd_tls_cert_file"
-    "auth_file"
   }},
 };
 
@@ -8563,10 +8540,9 @@ PROTOBUF_NOINLINE void BeeRemoteNode::Clear() {
 
   _impl_.id_.ClearToEmpty();
   _impl_.address_.ClearToEmpty();
-  _impl_.mount_.ClearToEmpty();
   _impl_.mgmtd_address_.ClearToEmpty();
-  _impl_.mgmtd_tls_cert_file_.ClearToEmpty();
-  _impl_.auth_file_.ClearToEmpty();
+  _impl_.mgmtd_tls_cert_.ClearToEmpty();
+  _impl_.auth_secret_.ClearToEmpty();
   ::memset(&_impl_.mgmtd_tls_disable_verification_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.auth_disable_) -
       reinterpret_cast<char*>(&_impl_.mgmtd_tls_disable_verification_)) + sizeof(_impl_.auth_disable_));
@@ -8604,57 +8580,45 @@ PROTOBUF_NOINLINE void BeeRemoteNode::Clear() {
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
-          // string mount = 3;
-          if (!this_._internal_mount().empty()) {
-            const std::string& _s = this_._internal_mount();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.BeeRemoteNode.mount");
-            target = stream->WriteStringMaybeAliased(3, _s, target);
-          }
-
-          // string mgmtd_address = 4;
+          // string mgmtd_address = 3;
           if (!this_._internal_mgmtd_address().empty()) {
             const std::string& _s = this_._internal_mgmtd_address();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                 _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.BeeRemoteNode.mgmtd_address");
-            target = stream->WriteStringMaybeAliased(4, _s, target);
+            target = stream->WriteStringMaybeAliased(3, _s, target);
           }
 
-          // string mgmtd_tls_cert_file = 5;
-          if (!this_._internal_mgmtd_tls_cert_file().empty()) {
-            const std::string& _s = this_._internal_mgmtd_tls_cert_file();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.BeeRemoteNode.mgmtd_tls_cert_file");
-            target = stream->WriteStringMaybeAliased(5, _s, target);
+          // bytes mgmtd_tls_cert = 4;
+          if (!this_._internal_mgmtd_tls_cert().empty()) {
+            const std::string& _s = this_._internal_mgmtd_tls_cert();
+            target = stream->WriteBytesMaybeAliased(4, _s, target);
           }
 
-          // bool mgmtd_tls_disable_verification = 6;
+          // bool mgmtd_tls_disable_verification = 5;
           if (this_._internal_mgmtd_tls_disable_verification() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteBoolToArray(
-                6, this_._internal_mgmtd_tls_disable_verification(), target);
+                5, this_._internal_mgmtd_tls_disable_verification(), target);
           }
 
-          // bool mgmtd_tls_disable = 7;
+          // bool mgmtd_tls_disable = 6;
           if (this_._internal_mgmtd_tls_disable() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteBoolToArray(
-                7, this_._internal_mgmtd_tls_disable(), target);
+                6, this_._internal_mgmtd_tls_disable(), target);
           }
 
-          // string auth_file = 8;
-          if (!this_._internal_auth_file().empty()) {
-            const std::string& _s = this_._internal_auth_file();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.BeeRemoteNode.auth_file");
-            target = stream->WriteStringMaybeAliased(8, _s, target);
+          // bytes auth_secret = 7;
+          if (!this_._internal_auth_secret().empty()) {
+            const std::string& _s = this_._internal_auth_secret();
+            target = stream->WriteBytesMaybeAliased(7, _s, target);
           }
 
-          // bool auth_disable = 9;
+          // bool auth_disable = 8;
           if (this_._internal_auth_disable() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteBoolToArray(
-                9, this_._internal_auth_disable(), target);
+                8, this_._internal_auth_disable(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -8692,35 +8656,30 @@ PROTOBUF_NOINLINE void BeeRemoteNode::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_address());
             }
-            // string mount = 3;
-            if (!this_._internal_mount().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_mount());
-            }
-            // string mgmtd_address = 4;
+            // string mgmtd_address = 3;
             if (!this_._internal_mgmtd_address().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_mgmtd_address());
             }
-            // string mgmtd_tls_cert_file = 5;
-            if (!this_._internal_mgmtd_tls_cert_file().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_mgmtd_tls_cert_file());
+            // bytes mgmtd_tls_cert = 4;
+            if (!this_._internal_mgmtd_tls_cert().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                              this_._internal_mgmtd_tls_cert());
             }
-            // string auth_file = 8;
-            if (!this_._internal_auth_file().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_auth_file());
+            // bytes auth_secret = 7;
+            if (!this_._internal_auth_secret().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                              this_._internal_auth_secret());
             }
-            // bool mgmtd_tls_disable_verification = 6;
+            // bool mgmtd_tls_disable_verification = 5;
             if (this_._internal_mgmtd_tls_disable_verification() != 0) {
               total_size += 2;
             }
-            // bool mgmtd_tls_disable = 7;
+            // bool mgmtd_tls_disable = 6;
             if (this_._internal_mgmtd_tls_disable() != 0) {
               total_size += 2;
             }
-            // bool auth_disable = 9;
+            // bool auth_disable = 8;
             if (this_._internal_auth_disable() != 0) {
               total_size += 2;
             }
@@ -8743,17 +8702,14 @@ void BeeRemoteNode::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::g
   if (!from._internal_address().empty()) {
     _this->_internal_set_address(from._internal_address());
   }
-  if (!from._internal_mount().empty()) {
-    _this->_internal_set_mount(from._internal_mount());
-  }
   if (!from._internal_mgmtd_address().empty()) {
     _this->_internal_set_mgmtd_address(from._internal_mgmtd_address());
   }
-  if (!from._internal_mgmtd_tls_cert_file().empty()) {
-    _this->_internal_set_mgmtd_tls_cert_file(from._internal_mgmtd_tls_cert_file());
+  if (!from._internal_mgmtd_tls_cert().empty()) {
+    _this->_internal_set_mgmtd_tls_cert(from._internal_mgmtd_tls_cert());
   }
-  if (!from._internal_auth_file().empty()) {
-    _this->_internal_set_auth_file(from._internal_auth_file());
+  if (!from._internal_auth_secret().empty()) {
+    _this->_internal_set_auth_secret(from._internal_auth_secret());
   }
   if (from._internal_mgmtd_tls_disable_verification() != 0) {
     _this->_impl_.mgmtd_tls_disable_verification_ = from._impl_.mgmtd_tls_disable_verification_;
@@ -8782,10 +8738,9 @@ void BeeRemoteNode::InternalSwap(BeeRemoteNode* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_, &other->_impl_.id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mount_, &other->_impl_.mount_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mgmtd_address_, &other->_impl_.mgmtd_address_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mgmtd_tls_cert_file_, &other->_impl_.mgmtd_tls_cert_file_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.auth_file_, &other->_impl_.auth_file_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mgmtd_tls_cert_, &other->_impl_.mgmtd_tls_cert_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.auth_secret_, &other->_impl_.auth_secret_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_disable_)
       + sizeof(BeeRemoteNode::_impl_.auth_disable_)

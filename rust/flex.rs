@@ -571,18 +571,16 @@ pub struct BeeRemoteNode {
     #[prost(string, tag = "2")]
     pub address: ::prost::alloc::string::String,
     #[prost(string, tag = "3")]
-    pub mount: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
     pub mgmtd_address: ::prost::alloc::string::String,
-    #[prost(string, tag = "5")]
-    pub mgmtd_tls_cert_file: ::prost::alloc::string::String,
-    #[prost(bool, tag = "6")]
+    #[prost(bytes = "vec", tag = "4")]
+    pub mgmtd_tls_cert: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bool, tag = "5")]
     pub mgmtd_tls_disable_verification: bool,
-    #[prost(bool, tag = "7")]
+    #[prost(bool, tag = "6")]
     pub mgmtd_tls_disable: bool,
-    #[prost(string, tag = "8")]
-    pub auth_file: ::prost::alloc::string::String,
-    #[prost(bool, tag = "9")]
+    #[prost(bytes = "vec", tag = "7")]
+    pub auth_secret: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bool, tag = "8")]
     pub auth_disable: bool,
 }
 /// Remote Storage Targets (RSTs) describe where data should be stored or

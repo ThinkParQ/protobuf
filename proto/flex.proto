@@ -305,13 +305,12 @@ message UpdateConfigResponse {
 message BeeRemoteNode {
     string id = 1;
     string address = 2;
-    string mount = 3;
-    string mgmtd_address = 4;
-    string mgmtd_tls_cert_file = 5;
-    bool mgmtd_tls_disable_verification = 6;
-    bool mgmtd_tls_disable = 7;
-    string auth_file = 8;
-    bool auth_disable = 9;
+    string mgmtd_address = 3;
+    bytes mgmtd_tls_cert = 4;
+    bool mgmtd_tls_disable_verification = 5;
+    bool mgmtd_tls_disable = 6;
+    bytes auth_secret = 7;
+    bool auth_disable = 8;
 }
 
 // Remote Storage Targets (RSTs) describe where data should be stored or
