@@ -151,9 +151,10 @@ pub struct BulkUpdateWorkResponse {
 /// in ctl.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobLockedInfo {
-    /// locked indicates the file read-only or read-write lock has already been obtained.
+    /// Indicates the file write lock has already been obtained.
     #[prost(bool, tag = "1")]
-    pub read_write_locked: bool,
+    pub write_locked: bool,
+    /// Whether the local file exists.
     #[prost(bool, tag = "2")]
     pub exists: bool,
     /// Size of the local file.

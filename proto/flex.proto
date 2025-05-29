@@ -86,8 +86,9 @@ message BulkUpdateWorkResponse {
 // file. This will be produced by sync's job builder but can be produced anywhere it makes sense such as
 // in ctl.
 message JobLockedInfo {
-    // locked indicates the file read-only or read-write lock has already been obtained.
-    bool read_write_locked = 1;
+    // Indicates the file write lock has already been obtained.
+    bool write_locked = 1;
+    // Whether the local file exists.
     bool exists = 2;
     // Size of the local file.
     int64 size = 3;
