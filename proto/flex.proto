@@ -82,12 +82,48 @@ message BulkUpdateWorkResponse {
     string message = 2;
 }
 
+// JobLockedInfo contains require information that must be determined prior to calling a job request for
+// file. This will be produced by sync's job builder but can be produced anywhere it makes sense such as
+// in ctl.
+message JobLockedInfo {
+    // Indicates the file write lock has already been obtained.
+    bool write_locked = 1;
+    // Whether the local file exists.
+    bool exists = 2;
+    // Size of the local file.
+    int64 size = 3;
+    // File mode of the local file
+    uint32 mode = 4;
+    // Last modified time of the local file.
+    google.protobuf.Timestamp mtime = 5;
+    // Size of the remote file or object.
+    int64 remote_size = 6;
+    // Last beegfs_mtime of the remote file or object.
+    google.protobuf.Timestamp remote_mtime = 7;
+    // If stub_url is not empty then path is for a stub file with the provided rst url.
+    uint32 stub_url_rst_id = 8;
+    string stub_url_path = 9;
+    string externalId = 10;
+}
+
+message JobRequestCfg {
+    uint32 remoteStorageTarget = 1;
+    string path = 2;
+    string remotePath = 3;
+    bool download = 4;
+    bool stub_local = 5;
+    bool overwrite = 6;
+    bool flatten = 7;
+    bool force = 8;
+    JobLockedInfo locked_info = 9;
+}
+
 // BeeRemote assigns work for a job to one or more worker nodes.
 message WorkRequest {
     string job_id = 1;
     string request_id = 2;
     // Used as the upload ID for multipart uploads, or any other time 
-    // an external identifer is needed to coordinate a distributed transfer.
+    // an external identifier is needed to coordinate a distributed transfer.
     string external_id = 3;
     string path = 4;
     Segment segment = 5;
@@ -95,8 +131,8 @@ message WorkRequest {
     oneof Type {
         MockJob mock = 10;
         SyncJob sync = 11;
+        BuilderJob builder = 12;
     }
-
     // A segment indicates what portion of the file a particular worker node should
     // work on. Segments can be divided into one or more parts, which can be used to
     // execute the requested operation in parallel if supported by the RST type.
@@ -109,7 +145,13 @@ message WorkRequest {
         // Inclusive of the last part.
         int32 parts_stop = 4;
     }
+    // When stub_local is set the local file with be a stub file
+    bool stub_local = 8;
+}
 
+// JobBuilderJob is a special type of job that creates job requests of any time.
+message BuilderJob {
+    JobRequestCfg cfg = 1;
 }
 
 message MockJob {
@@ -117,7 +159,8 @@ message MockJob {
     int64 file_size = 2;
     string external_id = 3;
     bool should_fail = 4;
-    bool can_retry = 5;
+    JobLockedInfo locked_info = 6;
+    JobRequestCfg cfg = 7;
 }
 
 // A SyncJob is WHAT work needs to be done. It is populated based on the
@@ -140,6 +183,10 @@ message SyncJob {
     // for example to restore a file in an RST to a different location in BeeGFS. This currently is
     // ignored for uploads.
     string remote_path = 3;
+    // By default the remote directory structure will be preserved on downloads unless flatten is
+    // set. If the flag is set then the directory delimiter will be replaced with an underscore.
+    bool flatten = 5;
+    JobLockedInfo locked_info = 6;
 }
 
 // Currently while requests types are specific to a particular worker node type,
@@ -226,6 +273,8 @@ message Work {
         string checksum_sha256 = 5;
         bool completed = 6;
     }
+    // Indicates whether the work is a job builder task.
+    bool job_builder = 6;
 }
 
 // We use a common configuration update request/response types for all worker
@@ -256,6 +305,12 @@ message UpdateConfigResponse {
 message BeeRemoteNode {
     string id = 1;
     string address = 2;
+    string mgmtd_address = 3;
+    bytes mgmtd_tls_cert = 4;
+    bool mgmtd_tls_disable_verification = 5;
+    bool mgmtd_tls_disable = 6;
+    bytes auth_secret = 7;
+    bool auth_disable = 8;
 }
 
 // Remote Storage Targets (RSTs) describe where data should be stored or
