@@ -257,6 +257,7 @@ enum Work_State : int {
   Work_State_CREATED = 2,
   Work_State_SCHEDULED = 3,
   Work_State_RUNNING = 4,
+  Work_State_RESCHEDULED = 5,
   Work_State_ERROR = 6,
   Work_State_FAILED = 7,
   Work_State_CANCELLED = 8,
@@ -3326,6 +3327,7 @@ class Work final : public ::google::protobuf::Message
   static constexpr State CREATED = Work_State_CREATED;
   static constexpr State SCHEDULED = Work_State_SCHEDULED;
   static constexpr State RUNNING = Work_State_RUNNING;
+  static constexpr State RESCHEDULED = Work_State_RESCHEDULED;
   static constexpr State ERROR = Work_State_ERROR;
   static constexpr State FAILED = Work_State_FAILED;
   static constexpr State CANCELLED = Work_State_CANCELLED;
@@ -5431,6 +5433,7 @@ class JobRequestCfg final : public ::google::protobuf::Message
     kFlattenFieldNumber = 7,
     kForceFieldNumber = 8,
     kUpdateFieldNumber = 10,
+    kPriorityFieldNumber = 11,
   };
   // map<string, string> metadata = 13;
   int metadata_size() const;
@@ -5582,12 +5585,23 @@ class JobRequestCfg final : public ::google::protobuf::Message
   void _internal_set_update(bool value);
 
   public:
+  // optional int32 priority = 11;
+  bool has_priority() const;
+  void clear_priority() ;
+  ::int32_t priority() const;
+  void set_priority(::int32_t value);
+
+  private:
+  ::int32_t _internal_priority() const;
+  void _internal_set_priority(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.JobRequestCfg)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 12, 2,
+      4, 13, 2,
       64, 2>
       _table_;
 
@@ -5622,6 +5636,7 @@ class JobRequestCfg final : public ::google::protobuf::Message
     bool flatten_;
     bool force_;
     bool update_;
+    ::int32_t priority_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6675,6 +6690,7 @@ class WorkRequest final : public ::google::protobuf::Message
     kSegmentFieldNumber = 5,
     kRemoteStorageTargetFieldNumber = 6,
     kStubLocalFieldNumber = 8,
+    kPriorityFieldNumber = 9,
     kMockFieldNumber = 10,
     kSyncFieldNumber = 11,
     kBuilderFieldNumber = 12,
@@ -6778,6 +6794,17 @@ class WorkRequest final : public ::google::protobuf::Message
   void _internal_set_stub_local(bool value);
 
   public:
+  // optional int32 priority = 9;
+  bool has_priority() const;
+  void clear_priority() ;
+  ::int32_t priority() const;
+  void set_priority(::int32_t value);
+
+  private:
+  ::int32_t _internal_priority() const;
+  void _internal_set_priority(::int32_t value);
+
+  public:
   // .flex.MockJob mock = 10;
   bool has_mock() const;
   private:
@@ -6847,7 +6874,7 @@ class WorkRequest final : public ::google::protobuf::Message
   inline void clear_has_Type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 10, 4,
+      4, 11, 4,
       64, 2>
       _table_;
 
@@ -6874,6 +6901,7 @@ class WorkRequest final : public ::google::protobuf::Message
     ::flex::WorkRequest_Segment* segment_;
     ::uint32_t remote_storage_target_;
     bool stub_local_;
+    ::int32_t priority_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -8752,6 +8780,34 @@ inline void JobRequestCfg::set_allocated_tagging(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:flex.JobRequestCfg.tagging)
 }
 
+// optional int32 priority = 11;
+inline bool JobRequestCfg::has_priority() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void JobRequestCfg::clear_priority() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.priority_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::int32_t JobRequestCfg::priority() const {
+  // @@protoc_insertion_point(field_get:flex.JobRequestCfg.priority)
+  return _internal_priority();
+}
+inline void JobRequestCfg::set_priority(::int32_t value) {
+  _internal_set_priority(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:flex.JobRequestCfg.priority)
+}
+inline ::int32_t JobRequestCfg::_internal_priority() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.priority_;
+}
+inline void JobRequestCfg::_internal_set_priority(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.priority_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // WorkRequest_Segment
@@ -9415,6 +9471,34 @@ inline bool WorkRequest::_internal_stub_local() const {
 inline void WorkRequest::_internal_set_stub_local(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.stub_local_ = value;
+}
+
+// optional int32 priority = 9;
+inline bool WorkRequest::has_priority() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void WorkRequest::clear_priority() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.priority_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::int32_t WorkRequest::priority() const {
+  // @@protoc_insertion_point(field_get:flex.WorkRequest.priority)
+  return _internal_priority();
+}
+inline void WorkRequest::set_priority(::int32_t value) {
+  _internal_set_priority(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:flex.WorkRequest.priority)
+}
+inline ::int32_t WorkRequest::_internal_priority() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.priority_;
+}
+inline void WorkRequest::_internal_set_priority(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.priority_ = value;
 }
 
 inline bool WorkRequest::has_Type() const {
