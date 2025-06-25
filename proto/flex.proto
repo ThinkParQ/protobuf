@@ -116,6 +116,7 @@ message JobRequestCfg {
     bool flatten = 7;
     bool force = 8;
     JobLockedInfo locked_info = 9;
+    int32 priority = 10;
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.
@@ -147,6 +148,7 @@ message WorkRequest {
     }
     // When stub_local is set the local file with be a stub file
     bool stub_local = 8;
+    int32 priority = 9;
 }
 
 // JobBuilderJob is a special type of job that creates job requests of any time.

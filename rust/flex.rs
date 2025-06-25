@@ -200,6 +200,8 @@ pub struct JobRequestCfg {
     pub force: bool,
     #[prost(message, optional, tag = "9")]
     pub locked_info: ::core::option::Option<JobLockedInfo>,
+    #[prost(int32, tag = "10")]
+    pub priority: i32,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -221,6 +223,8 @@ pub struct WorkRequest {
     /// When stub_local is set the local file with be a stub file
     #[prost(bool, tag = "8")]
     pub stub_local: bool,
+    #[prost(int32, tag = "9")]
+    pub priority: i32,
     #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
