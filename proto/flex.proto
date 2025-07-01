@@ -104,6 +104,8 @@ message JobLockedInfo {
     uint32 stub_url_rst_id = 8;
     string stub_url_path = 9;
     string externalId = 10;
+    // Whether the file or object have been archived and needs to be retrieved prior to download.
+    bool is_archived = 11;
 }
 
 message JobRequestCfg {
@@ -372,7 +374,7 @@ message RemoteStorageTarget {
     // The S3 type uses the AWS S3 SDK under the hood. To support non-AWS S3
     // services we implement the EndPointResolverWithOptions interface to
     // provide custom endpoint resolving behavior. By specifying the
-    // endpoint_url and optionally the parition_id and region we can support
+    // endpoint_url and optionally the partition_id and region we can support
     // local S3 services like MinIO and theoretically other cloud providers like
     // Azure or GCP.
     message S3 {
@@ -391,6 +393,8 @@ message RemoteStorageTarget {
         string bucket = 4;        
         string access_key = 5;
         string secret_key = 6;
+        // Time a restored object that is archived will be accessible measured in days.
+        int32 archive_restore_retention_days = 7;
     }
 
     message Azure {

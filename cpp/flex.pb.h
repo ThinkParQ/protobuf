@@ -1645,6 +1645,7 @@ class RemoteStorageTarget_S3 final : public ::google::protobuf::Message
     kBucketFieldNumber = 4,
     kAccessKeyFieldNumber = 5,
     kSecretKeyFieldNumber = 6,
+    kArchiveRestoreRetentionDaysFieldNumber = 7,
   };
   // string endpoint_url = 1;
   void clear_endpoint_url() ;
@@ -1742,12 +1743,22 @@ class RemoteStorageTarget_S3 final : public ::google::protobuf::Message
   std::string* _internal_mutable_secret_key();
 
   public:
+  // int32 archive_restore_retention_days = 7;
+  void clear_archive_restore_retention_days() ;
+  ::int32_t archive_restore_retention_days() const;
+  void set_archive_restore_retention_days(::int32_t value);
+
+  private:
+  ::int32_t _internal_archive_restore_retention_days() const;
+  void _internal_set_archive_restore_retention_days(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.RemoteStorageTarget.S3)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 0,
+      3, 7, 0,
       92, 2>
       _table_;
 
@@ -1771,6 +1782,7 @@ class RemoteStorageTarget_S3 final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr bucket_;
     ::google::protobuf::internal::ArenaStringPtr access_key_;
     ::google::protobuf::internal::ArenaStringPtr secret_key_;
+    ::int32_t archive_restore_retention_days_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3957,10 +3969,11 @@ class JobLockedInfo final : public ::google::protobuf::Message
     kExternalIdFieldNumber = 10,
     kMtimeFieldNumber = 5,
     kRemoteMtimeFieldNumber = 7,
+    kSizeFieldNumber = 3,
+    kModeFieldNumber = 4,
     kReadWriteLockedFieldNumber = 1,
     kExistsFieldNumber = 2,
-    kModeFieldNumber = 4,
-    kSizeFieldNumber = 3,
+    kIsArchivedFieldNumber = 11,
     kRemoteSizeFieldNumber = 6,
     kStubUrlRstIdFieldNumber = 8,
   };
@@ -4026,6 +4039,26 @@ class JobLockedInfo final : public ::google::protobuf::Message
   ::google::protobuf::Timestamp* _internal_mutable_remote_mtime();
 
   public:
+  // int64 size = 3;
+  void clear_size() ;
+  ::int64_t size() const;
+  void set_size(::int64_t value);
+
+  private:
+  ::int64_t _internal_size() const;
+  void _internal_set_size(::int64_t value);
+
+  public:
+  // uint32 mode = 4;
+  void clear_mode() ;
+  ::uint32_t mode() const;
+  void set_mode(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_mode() const;
+  void _internal_set_mode(::uint32_t value);
+
+  public:
   // bool read_write_locked = 1;
   void clear_read_write_locked() ;
   bool read_write_locked() const;
@@ -4046,24 +4079,14 @@ class JobLockedInfo final : public ::google::protobuf::Message
   void _internal_set_exists(bool value);
 
   public:
-  // uint32 mode = 4;
-  void clear_mode() ;
-  ::uint32_t mode() const;
-  void set_mode(::uint32_t value);
+  // bool is_archived = 11;
+  void clear_is_archived() ;
+  bool is_archived() const;
+  void set_is_archived(bool value);
 
   private:
-  ::uint32_t _internal_mode() const;
-  void _internal_set_mode(::uint32_t value);
-
-  public:
-  // int64 size = 3;
-  void clear_size() ;
-  ::int64_t size() const;
-  void set_size(::int64_t value);
-
-  private:
-  ::int64_t _internal_size() const;
-  void _internal_set_size(::int64_t value);
+  bool _internal_is_archived() const;
+  void _internal_set_is_archived(bool value);
 
   public:
   // int64 remote_size = 6;
@@ -4091,7 +4114,7 @@ class JobLockedInfo final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 10, 2,
+      4, 11, 2,
       58, 2>
       _table_;
 
@@ -4115,10 +4138,11 @@ class JobLockedInfo final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr externalid_;
     ::google::protobuf::Timestamp* mtime_;
     ::google::protobuf::Timestamp* remote_mtime_;
+    ::int64_t size_;
+    ::uint32_t mode_;
     bool read_write_locked_;
     bool exists_;
-    ::uint32_t mode_;
-    ::int64_t size_;
+    bool is_archived_;
     ::int64_t remote_size_;
     ::uint32_t stub_url_rst_id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -8118,6 +8142,28 @@ inline void JobLockedInfo::set_allocated_externalid(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:flex.JobLockedInfo.externalId)
 }
 
+// bool is_archived = 11;
+inline void JobLockedInfo::clear_is_archived() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.is_archived_ = false;
+}
+inline bool JobLockedInfo::is_archived() const {
+  // @@protoc_insertion_point(field_get:flex.JobLockedInfo.is_archived)
+  return _internal_is_archived();
+}
+inline void JobLockedInfo::set_is_archived(bool value) {
+  _internal_set_is_archived(value);
+  // @@protoc_insertion_point(field_set:flex.JobLockedInfo.is_archived)
+}
+inline bool JobLockedInfo::_internal_is_archived() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.is_archived_;
+}
+inline void JobLockedInfo::_internal_set_is_archived(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.is_archived_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // JobRequestCfg
@@ -11214,6 +11260,28 @@ inline void RemoteStorageTarget_S3::set_allocated_secret_key(std::string* value)
     _impl_.secret_key_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.S3.secret_key)
+}
+
+// int32 archive_restore_retention_days = 7;
+inline void RemoteStorageTarget_S3::clear_archive_restore_retention_days() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.archive_restore_retention_days_ = 0;
+}
+inline ::int32_t RemoteStorageTarget_S3::archive_restore_retention_days() const {
+  // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.S3.archive_restore_retention_days)
+  return _internal_archive_restore_retention_days();
+}
+inline void RemoteStorageTarget_S3::set_archive_restore_retention_days(::int32_t value) {
+  _internal_set_archive_restore_retention_days(value);
+  // @@protoc_insertion_point(field_set:flex.RemoteStorageTarget.S3.archive_restore_retention_days)
+}
+inline ::int32_t RemoteStorageTarget_S3::_internal_archive_restore_retention_days() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.archive_restore_retention_days_;
+}
+inline void RemoteStorageTarget_S3::_internal_set_archive_restore_retention_days(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.archive_restore_retention_days_ = value;
 }
 
 // -------------------------------------------------------------------
