@@ -104,6 +104,8 @@ message JobLockedInfo {
     uint32 stub_url_rst_id = 8;
     string stub_url_path = 9;
     string externalId = 10;
+    // Whether the file or object have been archived and needs to be retrieved prior to download.
+    bool is_archived = 11;
 }
 
 message JobRequestCfg {
@@ -120,6 +122,8 @@ message JobRequestCfg {
     map<string, string> metadata = 13;
     optional string tagging = 14;
     optional int32 priority = 11;
+    optional string storage_class = 12;
+    optional bool allow_restore = 15;
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.
@@ -157,6 +161,10 @@ message WorkRequest {
 // JobBuilderJob is a special type of job that creates job requests of any time.
 message BuilderJob {
     JobRequestCfg cfg = 1;
+    // Stores the total number of job requests that were submitted regardless of success.
+    int32 submitted = 2;
+    // Stores the number of failed job requests.
+    int32 errors = 3;
 }
 
 message MockJob {
@@ -195,6 +203,8 @@ message SyncJob {
     optional bool update = 7;
     map<string, string> metadata = 9;
     optional string tagging = 10;
+    optional string storage_class = 12;
+    optional bool allow_restore = 13;
 }
 
 // Currently while requests types are specific to a particular worker node type,
@@ -381,7 +391,7 @@ message RemoteStorageTarget {
     // The S3 type uses the AWS S3 SDK under the hood. To support non-AWS S3
     // services we implement the EndPointResolverWithOptions interface to
     // provide custom endpoint resolving behavior. By specifying the
-    // endpoint_url and optionally the parition_id and region we can support
+    // endpoint_url and optionally the partition_id and region we can support
     // local S3 services like MinIO and theoretically other cloud providers like
     // Azure or GCP.
     message S3 {
@@ -400,6 +410,28 @@ message RemoteStorageTarget {
         string bucket = 4;        
         string access_key = 5;
         string secret_key = 6;
+        // User-defined list of storage classes. Only archival storage class are currently
+        // supported.
+        repeated StorageClass storage_class = 8;
+        message StorageClass {
+            // Name of the storage class
+            string name = 1;
+            // Defines whether the class is archival and options for restore process
+            optional Archival archival = 2;
+            message Archival {
+                string retrieval_tier = 1;
+                // Time a restored object that is archived will be accessible measured in days.
+                int32 retention_days = 2;
+                // Initial retry duration. Should be a positive number with a valid time
+                // unit (ms, s, m, h). For example, "1h"
+                string check_time = 3;
+                // Subsequent retry polling duration. Should be a positive number with a valid time
+                // unit (ms, s, m, h). For example, "30m"
+                string recheck_time = 4;
+                // Automatically restore from this storage class when needed.
+                bool auto_restore = 5;
+            }
+        }
     }
 
     message Azure {
