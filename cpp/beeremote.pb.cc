@@ -368,31 +368,6 @@ struct JobResult_WorkResultDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JobResult_WorkResultDefaultTypeInternal _JobResult_WorkResult_default_instance_;
 
-inline constexpr GetRSTConfigResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : rsts_{},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GetRSTConfigResponse::GetRSTConfigResponse(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct GetRSTConfigResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetRSTConfigResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetRSTConfigResponseDefaultTypeInternal() {}
-  union {
-    GetRSTConfigResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetRSTConfigResponseDefaultTypeInternal _GetRSTConfigResponse_default_instance_;
-
 inline constexpr JobRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -490,6 +465,31 @@ struct JobDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JobDefaultTypeInternal _Job_default_instance_;
+
+inline constexpr GetRSTConfigResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : rsts_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetRSTConfigResponse::GetRSTConfigResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct GetRSTConfigResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetRSTConfigResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetRSTConfigResponseDefaultTypeInternal() {}
+  union {
+    GetRSTConfigResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetRSTConfigResponseDefaultTypeInternal _GetRSTConfigResponse_default_instance_;
 
 inline constexpr JobResult::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
