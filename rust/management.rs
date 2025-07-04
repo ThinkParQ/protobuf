@@ -35,9 +35,13 @@ pub struct GetNodesResponse {
     /// without any meta targets/nodes).
     #[prost(message, optional, tag = "2")]
     pub meta_root_node: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// The buddy‐mirror group identifier and alias for the root metadata.
+    /// Optional, populated when the root metadata is mirrored across buddy groups.
+    #[prost(message, optional, tag = "3")]
+    pub meta_root_mirror: ::core::option::Option<super::beegfs::EntityIdSet>,
     /// The file system UUID for this BeeGFS.
     /// Required.
-    #[prost(string, optional, tag = "3")]
+    #[prost(string, optional, tag = "4")]
     pub fs_uuid: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// Nested message and enum types in `GetNodesResponse`.
