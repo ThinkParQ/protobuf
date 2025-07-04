@@ -398,8 +398,13 @@ message RemoteStorageTarget {
     }
 
     message Azure {
-        S3 s3 = 1;
-        string account = 2;
+        string account_name = 3;
+        string account_key = 4;
+        string container = 5;
+
+        // azurite_url is to be a hidden url meant to override Azure storage url based on
+        // account/container specifically for testing.
+        string azurite_url = 6;
     }
     
     message POSIX {

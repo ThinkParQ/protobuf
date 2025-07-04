@@ -684,10 +684,16 @@ pub mod remote_storage_target {
     }
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Azure {
-        #[prost(message, optional, tag = "1")]
-        pub s3: ::core::option::Option<S3>,
-        #[prost(string, tag = "2")]
-        pub account: ::prost::alloc::string::String,
+        #[prost(string, tag = "3")]
+        pub account_name: ::prost::alloc::string::String,
+        #[prost(string, tag = "4")]
+        pub account_key: ::prost::alloc::string::String,
+        #[prost(string, tag = "5")]
+        pub container: ::prost::alloc::string::String,
+        /// azurite_url is to be a hidden url meant to override Azure storage url based on
+        /// account/container specifically for testing.
+        #[prost(string, tag = "6")]
+        pub azurite_url: ::prost::alloc::string::String,
     }
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Posix {

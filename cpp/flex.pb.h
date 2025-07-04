@@ -2177,6 +2177,256 @@ class RemoteStorageTarget_POSIX final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:flex.RemoteStorageTarget.Azure) */ {
+ public:
+  inline RemoteStorageTarget_Azure() : RemoteStorageTarget_Azure(nullptr) {}
+  ~RemoteStorageTarget_Azure() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(RemoteStorageTarget_Azure* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(RemoteStorageTarget_Azure));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR RemoteStorageTarget_Azure(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline RemoteStorageTarget_Azure(const RemoteStorageTarget_Azure& from) : RemoteStorageTarget_Azure(nullptr, from) {}
+  inline RemoteStorageTarget_Azure(RemoteStorageTarget_Azure&& from) noexcept
+      : RemoteStorageTarget_Azure(nullptr, std::move(from)) {}
+  inline RemoteStorageTarget_Azure& operator=(const RemoteStorageTarget_Azure& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RemoteStorageTarget_Azure& operator=(RemoteStorageTarget_Azure&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RemoteStorageTarget_Azure& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RemoteStorageTarget_Azure* internal_default_instance() {
+    return reinterpret_cast<const RemoteStorageTarget_Azure*>(
+        &_RemoteStorageTarget_Azure_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 24;
+  friend void swap(RemoteStorageTarget_Azure& a, RemoteStorageTarget_Azure& b) { a.Swap(&b); }
+  inline void Swap(RemoteStorageTarget_Azure* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RemoteStorageTarget_Azure* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RemoteStorageTarget_Azure* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<RemoteStorageTarget_Azure>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const RemoteStorageTarget_Azure& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const RemoteStorageTarget_Azure& from) { RemoteStorageTarget_Azure::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(RemoteStorageTarget_Azure* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "flex.RemoteStorageTarget.Azure"; }
+
+ protected:
+  explicit RemoteStorageTarget_Azure(::google::protobuf::Arena* arena);
+  RemoteStorageTarget_Azure(::google::protobuf::Arena* arena, const RemoteStorageTarget_Azure& from);
+  RemoteStorageTarget_Azure(::google::protobuf::Arena* arena, RemoteStorageTarget_Azure&& from) noexcept
+      : RemoteStorageTarget_Azure(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAccountNameFieldNumber = 3,
+    kAccountKeyFieldNumber = 4,
+    kContainerFieldNumber = 5,
+    kAzuriteUrlFieldNumber = 6,
+  };
+  // string account_name = 3;
+  void clear_account_name() ;
+  const std::string& account_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account_name(Arg_&& arg, Args_... args);
+  std::string* mutable_account_name();
+  PROTOBUF_NODISCARD std::string* release_account_name();
+  void set_allocated_account_name(std::string* value);
+
+  private:
+  const std::string& _internal_account_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_name(
+      const std::string& value);
+  std::string* _internal_mutable_account_name();
+
+  public:
+  // string account_key = 4;
+  void clear_account_key() ;
+  const std::string& account_key() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account_key(Arg_&& arg, Args_... args);
+  std::string* mutable_account_key();
+  PROTOBUF_NODISCARD std::string* release_account_key();
+  void set_allocated_account_key(std::string* value);
+
+  private:
+  const std::string& _internal_account_key() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account_key(
+      const std::string& value);
+  std::string* _internal_mutable_account_key();
+
+  public:
+  // string container = 5;
+  void clear_container() ;
+  const std::string& container() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_container(Arg_&& arg, Args_... args);
+  std::string* mutable_container();
+  PROTOBUF_NODISCARD std::string* release_container();
+  void set_allocated_container(std::string* value);
+
+  private:
+  const std::string& _internal_container() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_container(
+      const std::string& value);
+  std::string* _internal_mutable_container();
+
+  public:
+  // string azurite_url = 6;
+  void clear_azurite_url() ;
+  const std::string& azurite_url() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_azurite_url(Arg_&& arg, Args_... args);
+  std::string* mutable_azurite_url();
+  PROTOBUF_NODISCARD std::string* release_azurite_url();
+  void set_allocated_azurite_url(std::string* value);
+
+  private:
+  const std::string& _internal_azurite_url() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_azurite_url(
+      const std::string& value);
+  std::string* _internal_mutable_azurite_url();
+
+  public:
+  // @@protoc_insertion_point(class_scope:flex.RemoteStorageTarget.Azure)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 0,
+      82, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const RemoteStorageTarget_Azure& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr account_name_;
+    ::google::protobuf::internal::ArenaStringPtr account_key_;
+    ::google::protobuf::internal::ArenaStringPtr container_;
+    ::google::protobuf::internal::ArenaStringPtr azurite_url_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_flex_2eproto;
+};
+// -------------------------------------------------------------------
+
 class HeartbeatRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:flex.HeartbeatRequest) */ {
  public:
@@ -3397,31 +3647,31 @@ class Work final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:flex.RemoteStorageTarget.Azure) */ {
+class RemoteStorageTarget final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:flex.RemoteStorageTarget) */ {
  public:
-  inline RemoteStorageTarget_Azure() : RemoteStorageTarget_Azure(nullptr) {}
-  ~RemoteStorageTarget_Azure() PROTOBUF_FINAL;
+  inline RemoteStorageTarget() : RemoteStorageTarget(nullptr) {}
+  ~RemoteStorageTarget() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RemoteStorageTarget_Azure* msg, std::destroying_delete_t) {
+  void operator delete(RemoteStorageTarget* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RemoteStorageTarget_Azure));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(RemoteStorageTarget));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RemoteStorageTarget_Azure(
+  explicit PROTOBUF_CONSTEXPR RemoteStorageTarget(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline RemoteStorageTarget_Azure(const RemoteStorageTarget_Azure& from) : RemoteStorageTarget_Azure(nullptr, from) {}
-  inline RemoteStorageTarget_Azure(RemoteStorageTarget_Azure&& from) noexcept
-      : RemoteStorageTarget_Azure(nullptr, std::move(from)) {}
-  inline RemoteStorageTarget_Azure& operator=(const RemoteStorageTarget_Azure& from) {
+  inline RemoteStorageTarget(const RemoteStorageTarget& from) : RemoteStorageTarget(nullptr, from) {}
+  inline RemoteStorageTarget(RemoteStorageTarget&& from) noexcept
+      : RemoteStorageTarget(nullptr, std::move(from)) {}
+  inline RemoteStorageTarget& operator=(const RemoteStorageTarget& from) {
     CopyFrom(from);
     return *this;
   }
-  inline RemoteStorageTarget_Azure& operator=(RemoteStorageTarget_Azure&& from) noexcept {
+  inline RemoteStorageTarget& operator=(RemoteStorageTarget&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -3449,16 +3699,23 @@ class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const RemoteStorageTarget_Azure& default_instance() {
+  static const RemoteStorageTarget& default_instance() {
     return *internal_default_instance();
   }
-  static inline const RemoteStorageTarget_Azure* internal_default_instance() {
-    return reinterpret_cast<const RemoteStorageTarget_Azure*>(
-        &_RemoteStorageTarget_Azure_default_instance_);
+  enum TypeCase {
+    kS3 = 4,
+    kPosix = 5,
+    kAzure = 6,
+    kMock = 7,
+    TYPE_NOT_SET = 0,
+  };
+  static inline const RemoteStorageTarget* internal_default_instance() {
+    return reinterpret_cast<const RemoteStorageTarget*>(
+        &_RemoteStorageTarget_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 24;
-  friend void swap(RemoteStorageTarget_Azure& a, RemoteStorageTarget_Azure& b) { a.Swap(&b); }
-  inline void Swap(RemoteStorageTarget_Azure* other) {
+  static constexpr int kIndexInFileMessages = 26;
+  friend void swap(RemoteStorageTarget& a, RemoteStorageTarget& b) { a.Swap(&b); }
+  inline void Swap(RemoteStorageTarget* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -3466,7 +3723,7 @@ class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(RemoteStorageTarget_Azure* other) {
+  void UnsafeArenaSwap(RemoteStorageTarget* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -3474,13 +3731,13 @@ class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  RemoteStorageTarget_Azure* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<RemoteStorageTarget_Azure>(arena);
+  RemoteStorageTarget* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<RemoteStorageTarget>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RemoteStorageTarget_Azure& from);
+  void CopyFrom(const RemoteStorageTarget& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const RemoteStorageTarget_Azure& from) { RemoteStorageTarget_Azure::MergeImpl(*this, from); }
+  void MergeFrom(const RemoteStorageTarget& from) { RemoteStorageTarget::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -3517,18 +3774,18 @@ class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(RemoteStorageTarget_Azure* other);
+  void InternalSwap(RemoteStorageTarget* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "flex.RemoteStorageTarget.Azure"; }
+  static ::absl::string_view FullMessageName() { return "flex.RemoteStorageTarget"; }
 
  protected:
-  explicit RemoteStorageTarget_Azure(::google::protobuf::Arena* arena);
-  RemoteStorageTarget_Azure(::google::protobuf::Arena* arena, const RemoteStorageTarget_Azure& from);
-  RemoteStorageTarget_Azure(::google::protobuf::Arena* arena, RemoteStorageTarget_Azure&& from) noexcept
-      : RemoteStorageTarget_Azure(arena) {
+  explicit RemoteStorageTarget(::google::protobuf::Arena* arena);
+  RemoteStorageTarget(::google::protobuf::Arena* arena, const RemoteStorageTarget& from);
+  RemoteStorageTarget(::google::protobuf::Arena* arena, RemoteStorageTarget&& from) noexcept
+      : RemoteStorageTarget(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -3540,30 +3797,68 @@ class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
+  using Policies = RemoteStorageTarget_Policies;
+  using S3 = RemoteStorageTarget_S3;
+  using Azure = RemoteStorageTarget_Azure;
+  using POSIX = RemoteStorageTarget_POSIX;
 
   // accessors -------------------------------------------------------
   enum : int {
-    kAccountFieldNumber = 2,
-    kS3FieldNumber = 1,
+    kNameFieldNumber = 2,
+    kPoliciesFieldNumber = 3,
+    kIdFieldNumber = 1,
+    kS3FieldNumber = 4,
+    kPosixFieldNumber = 5,
+    kAzureFieldNumber = 6,
+    kMockFieldNumber = 7,
   };
-  // string account = 2;
-  void clear_account() ;
-  const std::string& account() const;
+  // string name = 2;
+  void clear_name() ;
+  const std::string& name() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_account(Arg_&& arg, Args_... args);
-  std::string* mutable_account();
-  PROTOBUF_NODISCARD std::string* release_account();
-  void set_allocated_account(std::string* value);
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
 
   private:
-  const std::string& _internal_account() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account(
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
       const std::string& value);
-  std::string* _internal_mutable_account();
+  std::string* _internal_mutable_name();
 
   public:
-  // .flex.RemoteStorageTarget.S3 s3 = 1;
+  // .flex.RemoteStorageTarget.Policies policies = 3;
+  bool has_policies() const;
+  void clear_policies() ;
+  const ::flex::RemoteStorageTarget_Policies& policies() const;
+  PROTOBUF_NODISCARD ::flex::RemoteStorageTarget_Policies* release_policies();
+  ::flex::RemoteStorageTarget_Policies* mutable_policies();
+  void set_allocated_policies(::flex::RemoteStorageTarget_Policies* value);
+  void unsafe_arena_set_allocated_policies(::flex::RemoteStorageTarget_Policies* value);
+  ::flex::RemoteStorageTarget_Policies* unsafe_arena_release_policies();
+
+  private:
+  const ::flex::RemoteStorageTarget_Policies& _internal_policies() const;
+  ::flex::RemoteStorageTarget_Policies* _internal_mutable_policies();
+
+  public:
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // .flex.RemoteStorageTarget.S3 s3 = 4;
   bool has_s3() const;
+  private:
+  bool _internal_has_s3() const;
+
+  public:
   void clear_s3() ;
   const ::flex::RemoteStorageTarget_S3& s3() const;
   PROTOBUF_NODISCARD ::flex::RemoteStorageTarget_S3* release_s3();
@@ -3577,13 +3872,76 @@ class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
   ::flex::RemoteStorageTarget_S3* _internal_mutable_s3();
 
   public:
-  // @@protoc_insertion_point(class_scope:flex.RemoteStorageTarget.Azure)
+  // .flex.RemoteStorageTarget.POSIX posix = 5;
+  bool has_posix() const;
+  private:
+  bool _internal_has_posix() const;
+
+  public:
+  void clear_posix() ;
+  const ::flex::RemoteStorageTarget_POSIX& posix() const;
+  PROTOBUF_NODISCARD ::flex::RemoteStorageTarget_POSIX* release_posix();
+  ::flex::RemoteStorageTarget_POSIX* mutable_posix();
+  void set_allocated_posix(::flex::RemoteStorageTarget_POSIX* value);
+  void unsafe_arena_set_allocated_posix(::flex::RemoteStorageTarget_POSIX* value);
+  ::flex::RemoteStorageTarget_POSIX* unsafe_arena_release_posix();
+
+  private:
+  const ::flex::RemoteStorageTarget_POSIX& _internal_posix() const;
+  ::flex::RemoteStorageTarget_POSIX* _internal_mutable_posix();
+
+  public:
+  // .flex.RemoteStorageTarget.Azure azure = 6;
+  bool has_azure() const;
+  private:
+  bool _internal_has_azure() const;
+
+  public:
+  void clear_azure() ;
+  const ::flex::RemoteStorageTarget_Azure& azure() const;
+  PROTOBUF_NODISCARD ::flex::RemoteStorageTarget_Azure* release_azure();
+  ::flex::RemoteStorageTarget_Azure* mutable_azure();
+  void set_allocated_azure(::flex::RemoteStorageTarget_Azure* value);
+  void unsafe_arena_set_allocated_azure(::flex::RemoteStorageTarget_Azure* value);
+  ::flex::RemoteStorageTarget_Azure* unsafe_arena_release_azure();
+
+  private:
+  const ::flex::RemoteStorageTarget_Azure& _internal_azure() const;
+  ::flex::RemoteStorageTarget_Azure* _internal_mutable_azure();
+
+  public:
+  // string mock = 7;
+  bool has_mock() const;
+  void clear_mock() ;
+  const std::string& mock() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_mock(Arg_&& arg, Args_... args);
+  std::string* mutable_mock();
+  PROTOBUF_NODISCARD std::string* release_mock();
+  void set_allocated_mock(std::string* value);
+
+  private:
+  const std::string& _internal_mock() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mock(
+      const std::string& value);
+  std::string* _internal_mutable_mock();
+
+  public:
+  void clear_type();
+  TypeCase type_case() const;
+  // @@protoc_insertion_point(class_scope:flex.RemoteStorageTarget)
  private:
   class _Internal;
+  void set_has_s3();
+  void set_has_posix();
+  void set_has_azure();
+  void set_has_mock();
+  inline bool has_type() const;
+  inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
-      46, 2>
+      2, 7, 4,
+      41, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3599,11 +3957,21 @@ class RemoteStorageTarget_Azure final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RemoteStorageTarget_Azure& from_msg);
+                          const RemoteStorageTarget& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr account_;
-    ::flex::RemoteStorageTarget_S3* s3_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::flex::RemoteStorageTarget_Policies* policies_;
+    ::uint32_t id_;
+    union TypeUnion {
+      constexpr TypeUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::flex::RemoteStorageTarget_S3* s3_;
+      ::flex::RemoteStorageTarget_POSIX* posix_;
+      ::flex::RemoteStorageTarget_Azure* azure_;
+      ::google::protobuf::internal::ArenaStringPtr mock_;
+    } type_;
+    ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -4348,6 +4716,221 @@ class UpdateWorkResponse final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class UpdateConfigRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:flex.UpdateConfigRequest) */ {
+ public:
+  inline UpdateConfigRequest() : UpdateConfigRequest(nullptr) {}
+  ~UpdateConfigRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UpdateConfigRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdateConfigRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UpdateConfigRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline UpdateConfigRequest(const UpdateConfigRequest& from) : UpdateConfigRequest(nullptr, from) {}
+  inline UpdateConfigRequest(UpdateConfigRequest&& from) noexcept
+      : UpdateConfigRequest(nullptr, std::move(from)) {}
+  inline UpdateConfigRequest& operator=(const UpdateConfigRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UpdateConfigRequest& operator=(UpdateConfigRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UpdateConfigRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UpdateConfigRequest* internal_default_instance() {
+    return reinterpret_cast<const UpdateConfigRequest*>(
+        &_UpdateConfigRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 19;
+  friend void swap(UpdateConfigRequest& a, UpdateConfigRequest& b) { a.Swap(&b); }
+  inline void Swap(UpdateConfigRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UpdateConfigRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UpdateConfigRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UpdateConfigRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UpdateConfigRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UpdateConfigRequest& from) { UpdateConfigRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UpdateConfigRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "flex.UpdateConfigRequest"; }
+
+ protected:
+  explicit UpdateConfigRequest(::google::protobuf::Arena* arena);
+  UpdateConfigRequest(::google::protobuf::Arena* arena, const UpdateConfigRequest& from);
+  UpdateConfigRequest(::google::protobuf::Arena* arena, UpdateConfigRequest&& from) noexcept
+      : UpdateConfigRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRstsFieldNumber = 2,
+    kBeeRemoteFieldNumber = 1,
+  };
+  // repeated .flex.RemoteStorageTarget rsts = 2;
+  int rsts_size() const;
+  private:
+  int _internal_rsts_size() const;
+
+  public:
+  void clear_rsts() ;
+  ::flex::RemoteStorageTarget* mutable_rsts(int index);
+  ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>* mutable_rsts();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& _internal_rsts() const;
+  ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>* _internal_mutable_rsts();
+  public:
+  const ::flex::RemoteStorageTarget& rsts(int index) const;
+  ::flex::RemoteStorageTarget* add_rsts();
+  const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& rsts() const;
+  // .flex.BeeRemoteNode bee_remote = 1;
+  bool has_bee_remote() const;
+  void clear_bee_remote() ;
+  const ::flex::BeeRemoteNode& bee_remote() const;
+  PROTOBUF_NODISCARD ::flex::BeeRemoteNode* release_bee_remote();
+  ::flex::BeeRemoteNode* mutable_bee_remote();
+  void set_allocated_bee_remote(::flex::BeeRemoteNode* value);
+  void unsafe_arena_set_allocated_bee_remote(::flex::BeeRemoteNode* value);
+  ::flex::BeeRemoteNode* unsafe_arena_release_bee_remote();
+
+  private:
+  const ::flex::BeeRemoteNode& _internal_bee_remote() const;
+  ::flex::BeeRemoteNode* _internal_mutable_bee_remote();
+
+  public:
+  // @@protoc_insertion_point(class_scope:flex.UpdateConfigRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 2,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const UpdateConfigRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::flex::RemoteStorageTarget > rsts_;
+    ::flex::BeeRemoteNode* bee_remote_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_flex_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SyncJob final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:flex.SyncJob) */ {
  public:
@@ -4807,338 +5390,6 @@ class SubmitWorkResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::flex::Work* work_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_flex_2eproto;
-};
-// -------------------------------------------------------------------
-
-class RemoteStorageTarget final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:flex.RemoteStorageTarget) */ {
- public:
-  inline RemoteStorageTarget() : RemoteStorageTarget(nullptr) {}
-  ~RemoteStorageTarget() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(RemoteStorageTarget* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(RemoteStorageTarget));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR RemoteStorageTarget(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline RemoteStorageTarget(const RemoteStorageTarget& from) : RemoteStorageTarget(nullptr, from) {}
-  inline RemoteStorageTarget(RemoteStorageTarget&& from) noexcept
-      : RemoteStorageTarget(nullptr, std::move(from)) {}
-  inline RemoteStorageTarget& operator=(const RemoteStorageTarget& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RemoteStorageTarget& operator=(RemoteStorageTarget&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RemoteStorageTarget& default_instance() {
-    return *internal_default_instance();
-  }
-  enum TypeCase {
-    kS3 = 4,
-    kPosix = 5,
-    kAzure = 6,
-    kMock = 7,
-    TYPE_NOT_SET = 0,
-  };
-  static inline const RemoteStorageTarget* internal_default_instance() {
-    return reinterpret_cast<const RemoteStorageTarget*>(
-        &_RemoteStorageTarget_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 26;
-  friend void swap(RemoteStorageTarget& a, RemoteStorageTarget& b) { a.Swap(&b); }
-  inline void Swap(RemoteStorageTarget* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RemoteStorageTarget* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RemoteStorageTarget* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<RemoteStorageTarget>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RemoteStorageTarget& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const RemoteStorageTarget& from) { RemoteStorageTarget::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(RemoteStorageTarget* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "flex.RemoteStorageTarget"; }
-
- protected:
-  explicit RemoteStorageTarget(::google::protobuf::Arena* arena);
-  RemoteStorageTarget(::google::protobuf::Arena* arena, const RemoteStorageTarget& from);
-  RemoteStorageTarget(::google::protobuf::Arena* arena, RemoteStorageTarget&& from) noexcept
-      : RemoteStorageTarget(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using Policies = RemoteStorageTarget_Policies;
-  using S3 = RemoteStorageTarget_S3;
-  using Azure = RemoteStorageTarget_Azure;
-  using POSIX = RemoteStorageTarget_POSIX;
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kNameFieldNumber = 2,
-    kPoliciesFieldNumber = 3,
-    kIdFieldNumber = 1,
-    kS3FieldNumber = 4,
-    kPosixFieldNumber = 5,
-    kAzureFieldNumber = 6,
-    kMockFieldNumber = 7,
-  };
-  // string name = 2;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
-  // .flex.RemoteStorageTarget.Policies policies = 3;
-  bool has_policies() const;
-  void clear_policies() ;
-  const ::flex::RemoteStorageTarget_Policies& policies() const;
-  PROTOBUF_NODISCARD ::flex::RemoteStorageTarget_Policies* release_policies();
-  ::flex::RemoteStorageTarget_Policies* mutable_policies();
-  void set_allocated_policies(::flex::RemoteStorageTarget_Policies* value);
-  void unsafe_arena_set_allocated_policies(::flex::RemoteStorageTarget_Policies* value);
-  ::flex::RemoteStorageTarget_Policies* unsafe_arena_release_policies();
-
-  private:
-  const ::flex::RemoteStorageTarget_Policies& _internal_policies() const;
-  ::flex::RemoteStorageTarget_Policies* _internal_mutable_policies();
-
-  public:
-  // uint32 id = 1;
-  void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
-
-  public:
-  // .flex.RemoteStorageTarget.S3 s3 = 4;
-  bool has_s3() const;
-  private:
-  bool _internal_has_s3() const;
-
-  public:
-  void clear_s3() ;
-  const ::flex::RemoteStorageTarget_S3& s3() const;
-  PROTOBUF_NODISCARD ::flex::RemoteStorageTarget_S3* release_s3();
-  ::flex::RemoteStorageTarget_S3* mutable_s3();
-  void set_allocated_s3(::flex::RemoteStorageTarget_S3* value);
-  void unsafe_arena_set_allocated_s3(::flex::RemoteStorageTarget_S3* value);
-  ::flex::RemoteStorageTarget_S3* unsafe_arena_release_s3();
-
-  private:
-  const ::flex::RemoteStorageTarget_S3& _internal_s3() const;
-  ::flex::RemoteStorageTarget_S3* _internal_mutable_s3();
-
-  public:
-  // .flex.RemoteStorageTarget.POSIX posix = 5;
-  bool has_posix() const;
-  private:
-  bool _internal_has_posix() const;
-
-  public:
-  void clear_posix() ;
-  const ::flex::RemoteStorageTarget_POSIX& posix() const;
-  PROTOBUF_NODISCARD ::flex::RemoteStorageTarget_POSIX* release_posix();
-  ::flex::RemoteStorageTarget_POSIX* mutable_posix();
-  void set_allocated_posix(::flex::RemoteStorageTarget_POSIX* value);
-  void unsafe_arena_set_allocated_posix(::flex::RemoteStorageTarget_POSIX* value);
-  ::flex::RemoteStorageTarget_POSIX* unsafe_arena_release_posix();
-
-  private:
-  const ::flex::RemoteStorageTarget_POSIX& _internal_posix() const;
-  ::flex::RemoteStorageTarget_POSIX* _internal_mutable_posix();
-
-  public:
-  // .flex.RemoteStorageTarget.Azure azure = 6;
-  bool has_azure() const;
-  private:
-  bool _internal_has_azure() const;
-
-  public:
-  void clear_azure() ;
-  const ::flex::RemoteStorageTarget_Azure& azure() const;
-  PROTOBUF_NODISCARD ::flex::RemoteStorageTarget_Azure* release_azure();
-  ::flex::RemoteStorageTarget_Azure* mutable_azure();
-  void set_allocated_azure(::flex::RemoteStorageTarget_Azure* value);
-  void unsafe_arena_set_allocated_azure(::flex::RemoteStorageTarget_Azure* value);
-  ::flex::RemoteStorageTarget_Azure* unsafe_arena_release_azure();
-
-  private:
-  const ::flex::RemoteStorageTarget_Azure& _internal_azure() const;
-  ::flex::RemoteStorageTarget_Azure* _internal_mutable_azure();
-
-  public:
-  // string mock = 7;
-  bool has_mock() const;
-  void clear_mock() ;
-  const std::string& mock() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_mock(Arg_&& arg, Args_... args);
-  std::string* mutable_mock();
-  PROTOBUF_NODISCARD std::string* release_mock();
-  void set_allocated_mock(std::string* value);
-
-  private:
-  const std::string& _internal_mock() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mock(
-      const std::string& value);
-  std::string* _internal_mutable_mock();
-
-  public:
-  void clear_type();
-  TypeCase type_case() const;
-  // @@protoc_insertion_point(class_scope:flex.RemoteStorageTarget)
- private:
-  class _Internal;
-  void set_has_s3();
-  void set_has_posix();
-  void set_has_azure();
-  void set_has_mock();
-  inline bool has_type() const;
-  inline void clear_has_type();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 7, 4,
-      41, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const RemoteStorageTarget& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
-    ::flex::RemoteStorageTarget_Policies* policies_;
-    ::uint32_t id_;
-    union TypeUnion {
-      constexpr TypeUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::flex::RemoteStorageTarget_S3* s3_;
-      ::flex::RemoteStorageTarget_POSIX* posix_;
-      ::flex::RemoteStorageTarget_Azure* azure_;
-      ::google::protobuf::internal::ArenaStringPtr mock_;
-    } type_;
-    ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5663,221 +5914,6 @@ class HeartbeatResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::flex::NodeStats* node_stats_;
     bool is_ready_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_flex_2eproto;
-};
-// -------------------------------------------------------------------
-
-class UpdateConfigRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:flex.UpdateConfigRequest) */ {
- public:
-  inline UpdateConfigRequest() : UpdateConfigRequest(nullptr) {}
-  ~UpdateConfigRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(UpdateConfigRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(UpdateConfigRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR UpdateConfigRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline UpdateConfigRequest(const UpdateConfigRequest& from) : UpdateConfigRequest(nullptr, from) {}
-  inline UpdateConfigRequest(UpdateConfigRequest&& from) noexcept
-      : UpdateConfigRequest(nullptr, std::move(from)) {}
-  inline UpdateConfigRequest& operator=(const UpdateConfigRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline UpdateConfigRequest& operator=(UpdateConfigRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const UpdateConfigRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const UpdateConfigRequest* internal_default_instance() {
-    return reinterpret_cast<const UpdateConfigRequest*>(
-        &_UpdateConfigRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 19;
-  friend void swap(UpdateConfigRequest& a, UpdateConfigRequest& b) { a.Swap(&b); }
-  inline void Swap(UpdateConfigRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(UpdateConfigRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  UpdateConfigRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<UpdateConfigRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UpdateConfigRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const UpdateConfigRequest& from) { UpdateConfigRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(UpdateConfigRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "flex.UpdateConfigRequest"; }
-
- protected:
-  explicit UpdateConfigRequest(::google::protobuf::Arena* arena);
-  UpdateConfigRequest(::google::protobuf::Arena* arena, const UpdateConfigRequest& from);
-  UpdateConfigRequest(::google::protobuf::Arena* arena, UpdateConfigRequest&& from) noexcept
-      : UpdateConfigRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kRstsFieldNumber = 2,
-    kBeeRemoteFieldNumber = 1,
-  };
-  // repeated .flex.RemoteStorageTarget rsts = 2;
-  int rsts_size() const;
-  private:
-  int _internal_rsts_size() const;
-
-  public:
-  void clear_rsts() ;
-  ::flex::RemoteStorageTarget* mutable_rsts(int index);
-  ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>* mutable_rsts();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& _internal_rsts() const;
-  ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>* _internal_mutable_rsts();
-  public:
-  const ::flex::RemoteStorageTarget& rsts(int index) const;
-  ::flex::RemoteStorageTarget* add_rsts();
-  const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& rsts() const;
-  // .flex.BeeRemoteNode bee_remote = 1;
-  bool has_bee_remote() const;
-  void clear_bee_remote() ;
-  const ::flex::BeeRemoteNode& bee_remote() const;
-  PROTOBUF_NODISCARD ::flex::BeeRemoteNode* release_bee_remote();
-  ::flex::BeeRemoteNode* mutable_bee_remote();
-  void set_allocated_bee_remote(::flex::BeeRemoteNode* value);
-  void unsafe_arena_set_allocated_bee_remote(::flex::BeeRemoteNode* value);
-  ::flex::BeeRemoteNode* unsafe_arena_release_bee_remote();
-
-  private:
-  const ::flex::BeeRemoteNode& _internal_bee_remote() const;
-  ::flex::BeeRemoteNode* _internal_mutable_bee_remote();
-
-  public:
-  // @@protoc_insertion_point(class_scope:flex.UpdateConfigRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 2,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const UpdateConfigRequest& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::flex::RemoteStorageTarget > rsts_;
-    ::flex::BeeRemoteNode* bee_remote_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -11288,148 +11324,196 @@ inline void RemoteStorageTarget_S3::_internal_set_archive_restore_retention_days
 
 // RemoteStorageTarget_Azure
 
-// .flex.RemoteStorageTarget.S3 s3 = 1;
-inline bool RemoteStorageTarget_Azure::has_s3() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.s3_ != nullptr);
-  return value;
-}
-inline void RemoteStorageTarget_Azure::clear_s3() {
+// string account_name = 3;
+inline void RemoteStorageTarget_Azure::clear_account_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.s3_ != nullptr) _impl_.s3_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_.account_name_.ClearToEmpty();
 }
-inline const ::flex::RemoteStorageTarget_S3& RemoteStorageTarget_Azure::_internal_s3() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::flex::RemoteStorageTarget_S3* p = _impl_.s3_;
-  return p != nullptr ? *p : reinterpret_cast<const ::flex::RemoteStorageTarget_S3&>(::flex::_RemoteStorageTarget_S3_default_instance_);
-}
-inline const ::flex::RemoteStorageTarget_S3& RemoteStorageTarget_Azure::s3() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.Azure.s3)
-  return _internal_s3();
-}
-inline void RemoteStorageTarget_Azure::unsafe_arena_set_allocated_s3(::flex::RemoteStorageTarget_S3* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.s3_);
-  }
-  _impl_.s3_ = reinterpret_cast<::flex::RemoteStorageTarget_S3*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:flex.RemoteStorageTarget.Azure.s3)
-}
-inline ::flex::RemoteStorageTarget_S3* RemoteStorageTarget_Azure::release_s3() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::flex::RemoteStorageTarget_S3* released = _impl_.s3_;
-  _impl_.s3_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::flex::RemoteStorageTarget_S3* RemoteStorageTarget_Azure::unsafe_arena_release_s3() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:flex.RemoteStorageTarget.Azure.s3)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::flex::RemoteStorageTarget_S3* temp = _impl_.s3_;
-  _impl_.s3_ = nullptr;
-  return temp;
-}
-inline ::flex::RemoteStorageTarget_S3* RemoteStorageTarget_Azure::_internal_mutable_s3() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.s3_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::flex::RemoteStorageTarget_S3>(GetArena());
-    _impl_.s3_ = reinterpret_cast<::flex::RemoteStorageTarget_S3*>(p);
-  }
-  return _impl_.s3_;
-}
-inline ::flex::RemoteStorageTarget_S3* RemoteStorageTarget_Azure::mutable_s3() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::flex::RemoteStorageTarget_S3* _msg = _internal_mutable_s3();
-  // @@protoc_insertion_point(field_mutable:flex.RemoteStorageTarget.Azure.s3)
-  return _msg;
-}
-inline void RemoteStorageTarget_Azure::set_allocated_s3(::flex::RemoteStorageTarget_S3* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.s3_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.s3_ = reinterpret_cast<::flex::RemoteStorageTarget_S3*>(value);
-  // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.Azure.s3)
-}
-
-// string account = 2;
-inline void RemoteStorageTarget_Azure::clear_account() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.account_.ClearToEmpty();
-}
-inline const std::string& RemoteStorageTarget_Azure::account() const
+inline const std::string& RemoteStorageTarget_Azure::account_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.Azure.account)
-  return _internal_account();
+  // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.Azure.account_name)
+  return _internal_account_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RemoteStorageTarget_Azure::set_account(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void RemoteStorageTarget_Azure::set_account_name(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.account_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:flex.RemoteStorageTarget.Azure.account)
+  _impl_.account_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.RemoteStorageTarget.Azure.account_name)
 }
-inline std::string* RemoteStorageTarget_Azure::mutable_account() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_account();
-  // @@protoc_insertion_point(field_mutable:flex.RemoteStorageTarget.Azure.account)
+inline std::string* RemoteStorageTarget_Azure::mutable_account_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account_name();
+  // @@protoc_insertion_point(field_mutable:flex.RemoteStorageTarget.Azure.account_name)
   return _s;
 }
-inline const std::string& RemoteStorageTarget_Azure::_internal_account() const {
+inline const std::string& RemoteStorageTarget_Azure::_internal_account_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.account_.Get();
+  return _impl_.account_name_.Get();
 }
-inline void RemoteStorageTarget_Azure::_internal_set_account(const std::string& value) {
+inline void RemoteStorageTarget_Azure::_internal_set_account_name(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.account_.Set(value, GetArena());
+  _impl_.account_name_.Set(value, GetArena());
 }
-inline std::string* RemoteStorageTarget_Azure::_internal_mutable_account() {
+inline std::string* RemoteStorageTarget_Azure::_internal_mutable_account_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.account_.Mutable( GetArena());
+  return _impl_.account_name_.Mutable( GetArena());
 }
-inline std::string* RemoteStorageTarget_Azure::release_account() {
+inline std::string* RemoteStorageTarget_Azure::release_account_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:flex.RemoteStorageTarget.Azure.account)
-  return _impl_.account_.Release();
+  // @@protoc_insertion_point(field_release:flex.RemoteStorageTarget.Azure.account_name)
+  return _impl_.account_name_.Release();
 }
-inline void RemoteStorageTarget_Azure::set_allocated_account(std::string* value) {
+inline void RemoteStorageTarget_Azure::set_allocated_account_name(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.account_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.account_.IsDefault()) {
-    _impl_.account_.Set("", GetArena());
+  _impl_.account_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.account_name_.IsDefault()) {
+    _impl_.account_name_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.Azure.account)
+  // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.Azure.account_name)
+}
+
+// string account_key = 4;
+inline void RemoteStorageTarget_Azure::clear_account_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.account_key_.ClearToEmpty();
+}
+inline const std::string& RemoteStorageTarget_Azure::account_key() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.Azure.account_key)
+  return _internal_account_key();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RemoteStorageTarget_Azure::set_account_key(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.account_key_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.RemoteStorageTarget.Azure.account_key)
+}
+inline std::string* RemoteStorageTarget_Azure::mutable_account_key() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account_key();
+  // @@protoc_insertion_point(field_mutable:flex.RemoteStorageTarget.Azure.account_key)
+  return _s;
+}
+inline const std::string& RemoteStorageTarget_Azure::_internal_account_key() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.account_key_.Get();
+}
+inline void RemoteStorageTarget_Azure::_internal_set_account_key(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.account_key_.Set(value, GetArena());
+}
+inline std::string* RemoteStorageTarget_Azure::_internal_mutable_account_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.account_key_.Mutable( GetArena());
+}
+inline std::string* RemoteStorageTarget_Azure::release_account_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.RemoteStorageTarget.Azure.account_key)
+  return _impl_.account_key_.Release();
+}
+inline void RemoteStorageTarget_Azure::set_allocated_account_key(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.account_key_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.account_key_.IsDefault()) {
+    _impl_.account_key_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.Azure.account_key)
+}
+
+// string container = 5;
+inline void RemoteStorageTarget_Azure::clear_container() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.container_.ClearToEmpty();
+}
+inline const std::string& RemoteStorageTarget_Azure::container() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.Azure.container)
+  return _internal_container();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RemoteStorageTarget_Azure::set_container(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.container_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.RemoteStorageTarget.Azure.container)
+}
+inline std::string* RemoteStorageTarget_Azure::mutable_container() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_container();
+  // @@protoc_insertion_point(field_mutable:flex.RemoteStorageTarget.Azure.container)
+  return _s;
+}
+inline const std::string& RemoteStorageTarget_Azure::_internal_container() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.container_.Get();
+}
+inline void RemoteStorageTarget_Azure::_internal_set_container(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.container_.Set(value, GetArena());
+}
+inline std::string* RemoteStorageTarget_Azure::_internal_mutable_container() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.container_.Mutable( GetArena());
+}
+inline std::string* RemoteStorageTarget_Azure::release_container() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.RemoteStorageTarget.Azure.container)
+  return _impl_.container_.Release();
+}
+inline void RemoteStorageTarget_Azure::set_allocated_container(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.container_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.container_.IsDefault()) {
+    _impl_.container_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.Azure.container)
+}
+
+// string azurite_url = 6;
+inline void RemoteStorageTarget_Azure::clear_azurite_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.azurite_url_.ClearToEmpty();
+}
+inline const std::string& RemoteStorageTarget_Azure::azurite_url() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.Azure.azurite_url)
+  return _internal_azurite_url();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RemoteStorageTarget_Azure::set_azurite_url(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.azurite_url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.RemoteStorageTarget.Azure.azurite_url)
+}
+inline std::string* RemoteStorageTarget_Azure::mutable_azurite_url() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_azurite_url();
+  // @@protoc_insertion_point(field_mutable:flex.RemoteStorageTarget.Azure.azurite_url)
+  return _s;
+}
+inline const std::string& RemoteStorageTarget_Azure::_internal_azurite_url() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.azurite_url_.Get();
+}
+inline void RemoteStorageTarget_Azure::_internal_set_azurite_url(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.azurite_url_.Set(value, GetArena());
+}
+inline std::string* RemoteStorageTarget_Azure::_internal_mutable_azurite_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.azurite_url_.Mutable( GetArena());
+}
+inline std::string* RemoteStorageTarget_Azure::release_azurite_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.RemoteStorageTarget.Azure.azurite_url)
+  return _impl_.azurite_url_.Release();
+}
+inline void RemoteStorageTarget_Azure::set_allocated_azurite_url(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.azurite_url_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.azurite_url_.IsDefault()) {
+    _impl_.azurite_url_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.Azure.azurite_url)
 }
 
 // -------------------------------------------------------------------

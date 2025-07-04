@@ -270,6 +270,42 @@ struct RemoteStorageTarget_POSIXDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoteStorageTarget_POSIXDefaultTypeInternal _RemoteStorageTarget_POSIX_default_instance_;
 
+inline constexpr RemoteStorageTarget_Azure::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : account_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        account_key_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        container_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        azurite_url_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct RemoteStorageTarget_AzureDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RemoteStorageTarget_AzureDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RemoteStorageTarget_AzureDefaultTypeInternal() {}
+  union {
+    RemoteStorageTarget_Azure _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoteStorageTarget_AzureDefaultTypeInternal _RemoteStorageTarget_Azure_default_instance_;
+
 inline constexpr HeartbeatRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : include_stats_{false},
@@ -426,16 +462,19 @@ struct WorkDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WorkDefaultTypeInternal _Work_default_instance_;
 
-inline constexpr RemoteStorageTarget_Azure::Impl_::Impl_(
+inline constexpr RemoteStorageTarget::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        account_(
+        name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        s3_{nullptr} {}
+        policies_{nullptr},
+        id_{0u},
+        type_{},
+        _oneof_case_{} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR RemoteStorageTarget::RemoteStorageTarget(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -443,16 +482,16 @@ PROTOBUF_CONSTEXPR RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(::_pbi::
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct RemoteStorageTarget_AzureDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RemoteStorageTarget_AzureDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RemoteStorageTarget_AzureDefaultTypeInternal() {}
+struct RemoteStorageTargetDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RemoteStorageTargetDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RemoteStorageTargetDefaultTypeInternal() {}
   union {
-    RemoteStorageTarget_Azure _instance;
+    RemoteStorageTarget _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoteStorageTarget_AzureDefaultTypeInternal _RemoteStorageTarget_Azure_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoteStorageTargetDefaultTypeInternal _RemoteStorageTarget_default_instance_;
 
 inline constexpr NodeStats::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -544,6 +583,32 @@ struct UpdateWorkResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateWorkResponseDefaultTypeInternal _UpdateWorkResponse_default_instance_;
 
+inline constexpr UpdateConfigRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        rsts_{},
+        bee_remote_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UpdateConfigRequest::UpdateConfigRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct UpdateConfigRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateConfigRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateConfigRequestDefaultTypeInternal() {}
+  union {
+    UpdateConfigRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateConfigRequestDefaultTypeInternal _UpdateConfigRequest_default_instance_;
+
 inline constexpr SyncJob::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -599,37 +664,6 @@ struct SubmitWorkResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubmitWorkResponseDefaultTypeInternal _SubmitWorkResponse_default_instance_;
-
-inline constexpr RemoteStorageTarget::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        policies_{nullptr},
-        id_{0u},
-        type_{},
-        _oneof_case_{} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR RemoteStorageTarget::RemoteStorageTarget(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct RemoteStorageTargetDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RemoteStorageTargetDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RemoteStorageTargetDefaultTypeInternal() {}
-  union {
-    RemoteStorageTarget _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoteStorageTargetDefaultTypeInternal _RemoteStorageTarget_default_instance_;
 
 inline constexpr JobRequestCfg::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -694,32 +728,6 @@ struct HeartbeatResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatResponseDefaultTypeInternal _HeartbeatResponse_default_instance_;
-
-inline constexpr UpdateConfigRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        rsts_{},
-        bee_remote_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR UpdateConfigRequest::UpdateConfigRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct UpdateConfigRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UpdateConfigRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UpdateConfigRequestDefaultTypeInternal() {}
-  union {
-    UpdateConfigRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateConfigRequestDefaultTypeInternal _UpdateConfigRequest_default_instance_;
 
 inline constexpr MockJob::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -1199,7 +1207,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3, _impl_.access_key_),
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3, _impl_.secret_key_),
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3, _impl_.archive_restore_retention_days_),
-        PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Azure, _impl_._has_bits_),
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Azure, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -1207,10 +1215,10 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Azure, _impl_.s3_),
-        PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Azure, _impl_.account_),
-        0,
-        ~0u,
+        PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Azure, _impl_.account_name_),
+        PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Azure, _impl_.account_key_),
+        PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Azure, _impl_.container_),
+        PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_Azure, _impl_.azurite_url_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_POSIX, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1271,7 +1279,7 @@ static const ::_pbi::MigrationSchema
         {308, -1, -1, sizeof(::flex::BeeRemoteNode)},
         {324, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
         {333, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
-        {348, 358, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
+        {348, -1, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
         {360, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
         {369, 385, -1, sizeof(::flex::RemoteStorageTarget)},
 };
@@ -1382,7 +1390,7 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\022\026\n\016mgmtd_tls_cert\030\004 \001(\014\022&\n\036mgmtd_tls_di"
     "sable_verification\030\005 \001(\010\022\031\n\021mgmtd_tls_di"
     "sable\030\006 \001(\010\022\023\n\013auth_secret\030\007 \001(\014\022\024\n\014auth"
-    "_disable\030\010 \001(\010\"\264\004\n\023RemoteStorageTarget\022\n"
+    "_disable\030\010 \001(\010\"\314\004\n\023RemoteStorageTarget\022\n"
     "\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\0224\n\010policies\030\003 \001"
     "(\0132\".flex.RemoteStorageTarget.Policies\022*"
     "\n\002s3\030\004 \001(\0132\034.flex.RemoteStorageTarget.S3"
@@ -1394,19 +1402,20 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "n_id\030\002 \001(\t\022\016\n\006region\030\003 \001(\t\022\016\n\006bucket\030\004 \001"
     "(\t\022\022\n\naccess_key\030\005 \001(\t\022\022\n\nsecret_key\030\006 \001"
     "(\t\022&\n\036archive_restore_retention_days\030\007 \001"
-    "(\005\032B\n\005Azure\022(\n\002s3\030\001 \001(\0132\034.flex.RemoteSto"
-    "rageTarget.S3\022\017\n\007account\030\002 \001(\t\032\025\n\005POSIX\022"
-    "\014\n\004path\030\001 \001(\tB\006\n\004type2\340\002\n\nWorkerNode\022E\n\014"
-    "UpdateConfig\022\031.flex.UpdateConfigRequest\032"
-    "\032.flex.UpdateConfigResponse\022<\n\tHeartbeat"
-    "\022\026.flex.HeartbeatRequest\032\027.flex.Heartbea"
-    "tResponse\022\?\n\nSubmitWork\022\027.flex.SubmitWor"
-    "kRequest\032\030.flex.SubmitWorkResponse\022\?\n\nUp"
-    "dateWork\022\027.flex.UpdateWorkRequest\032\030.flex"
-    ".UpdateWorkResponse\022K\n\016BulkUpdateWork\022\033."
-    "flex.BulkUpdateWorkRequest\032\034.flex.BulkUp"
-    "dateWorkResponseB\'Z%github.com/thinkparq"
-    "/protobuf/go/flexb\006proto3"
+    "(\005\032Z\n\005Azure\022\024\n\014account_name\030\003 \001(\t\022\023\n\013acc"
+    "ount_key\030\004 \001(\t\022\021\n\tcontainer\030\005 \001(\t\022\023\n\013azu"
+    "rite_url\030\006 \001(\t\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\tB\006\n"
+    "\004type2\340\002\n\nWorkerNode\022E\n\014UpdateConfig\022\031.f"
+    "lex.UpdateConfigRequest\032\032.flex.UpdateCon"
+    "figResponse\022<\n\tHeartbeat\022\026.flex.Heartbea"
+    "tRequest\032\027.flex.HeartbeatResponse\022\?\n\nSub"
+    "mitWork\022\027.flex.SubmitWorkRequest\032\030.flex."
+    "SubmitWorkResponse\022\?\n\nUpdateWork\022\027.flex."
+    "UpdateWorkRequest\032\030.flex.UpdateWorkRespo"
+    "nse\022K\n\016BulkUpdateWork\022\033.flex.BulkUpdateW"
+    "orkRequest\032\034.flex.BulkUpdateWorkResponse"
+    "B\'Z%github.com/thinkparq/protobuf/go/fle"
+    "xb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_flex_2eproto_deps[1] =
     {
@@ -1416,7 +1425,7 @@ static ::absl::once_flag descriptor_table_flex_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_flex_2eproto = {
     false,
     false,
-    4025,
+    4049,
     descriptor_table_protodef_flex_2eproto,
     "flex.proto",
     &descriptor_table_flex_2eproto_once,
@@ -9441,10 +9450,6 @@ void RemoteStorageTarget_S3::InternalSwap(RemoteStorageTarget_S3* PROTOBUF_RESTR
 
 class RemoteStorageTarget_Azure::_Internal {
  public:
-  using HasBits =
-      decltype(std::declval<RemoteStorageTarget_Azure>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_._has_bits_);
 };
 
 RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(::google::protobuf::Arena* arena)
@@ -9459,9 +9464,11 @@ RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(::google::protobuf::Arena* 
 inline PROTOBUF_NDEBUG_INLINE RemoteStorageTarget_Azure::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::flex::RemoteStorageTarget_Azure& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        account_(arena, from.account_) {}
+      : account_name_(arena, from.account_name_),
+        account_key_(arena, from.account_key_),
+        container_(arena, from.container_),
+        azurite_url_(arena, from.azurite_url_),
+        _cached_size_{0} {}
 
 RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(
     ::google::protobuf::Arena* arena,
@@ -9476,22 +9483,20 @@ RemoteStorageTarget_Azure::RemoteStorageTarget_Azure(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.s3_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::flex::RemoteStorageTarget_S3>(
-                              arena, *from._impl_.s3_)
-                        : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:flex.RemoteStorageTarget.Azure)
 }
 inline PROTOBUF_NDEBUG_INLINE RemoteStorageTarget_Azure::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        account_(arena) {}
+      : account_name_(arena),
+        account_key_(arena),
+        container_(arena),
+        azurite_url_(arena),
+        _cached_size_{0} {}
 
 inline void RemoteStorageTarget_Azure::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.s3_ = {};
 }
 RemoteStorageTarget_Azure::~RemoteStorageTarget_Azure() {
   // @@protoc_insertion_point(destructor:flex.RemoteStorageTarget.Azure)
@@ -9501,8 +9506,10 @@ inline void RemoteStorageTarget_Azure::SharedDtor(MessageLite& self) {
   RemoteStorageTarget_Azure& this_ = static_cast<RemoteStorageTarget_Azure&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.account_.Destroy();
-  delete this_._impl_.s3_;
+  this_._impl_.account_name_.Destroy();
+  this_._impl_.account_key_.Destroy();
+  this_._impl_.container_.Destroy();
+  this_._impl_.azurite_url_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -9542,17 +9549,17 @@ const ::google::protobuf::internal::ClassData* RemoteStorageTarget_Azure::GetCla
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 46, 2> RemoteStorageTarget_Azure::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 0, 82, 2> RemoteStorageTarget_Azure::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    6, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967235,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -9560,27 +9567,42 @@ const ::_pbi::TcParseTable<1, 2, 1, 46, 2> RemoteStorageTarget_Azure::_table_ = 
     ::_pbi::TcParser::GetTable<::flex::RemoteStorageTarget_Azure>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string account = 2;
+    // string account_key = 4;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.account_)}},
-    // .flex.RemoteStorageTarget.S3 s3 = 1;
-    {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.s3_)}},
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.account_key_)}},
+    // string container = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.container_)}},
+    // string azurite_url = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.azurite_url_)}},
+    // string account_name = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.account_name_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .flex.RemoteStorageTarget.S3 s3 = 1;
-    {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.s3_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string account = 2;
-    {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.account_), -1, 0,
+    // string account_name = 3;
+    {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.account_name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::flex::RemoteStorageTarget_S3>()},
-  }}, {{
-    "\36\0\7\0\0\0\0\0"
+    // string account_key = 4;
+    {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.account_key_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string container = 5;
+    {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.container_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string azurite_url = 6;
+    {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_Azure, _impl_.azurite_url_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\36\14\13\11\13\0\0\0"
     "flex.RemoteStorageTarget.Azure"
-    "account"
+    "account_name"
+    "account_key"
+    "container"
+    "azurite_url"
   }},
 };
 
@@ -9591,13 +9613,10 @@ PROTOBUF_NOINLINE void RemoteStorageTarget_Azure::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.account_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.s3_ != nullptr);
-    _impl_.s3_->Clear();
-  }
-  _impl_._has_bits_.Clear();
+  _impl_.account_name_.ClearToEmpty();
+  _impl_.account_key_.ClearToEmpty();
+  _impl_.container_.ClearToEmpty();
+  _impl_.azurite_url_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -9616,20 +9635,36 @@ PROTOBUF_NOINLINE void RemoteStorageTarget_Azure::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          cached_has_bits = this_._impl_._has_bits_[0];
-          // .flex.RemoteStorageTarget.S3 s3 = 1;
-          if (cached_has_bits & 0x00000001u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                1, *this_._impl_.s3_, this_._impl_.s3_->GetCachedSize(), target,
-                stream);
+          // string account_name = 3;
+          if (!this_._internal_account_name().empty()) {
+            const std::string& _s = this_._internal_account_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.RemoteStorageTarget.Azure.account_name");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
           }
 
-          // string account = 2;
-          if (!this_._internal_account().empty()) {
-            const std::string& _s = this_._internal_account();
+          // string account_key = 4;
+          if (!this_._internal_account_key().empty()) {
+            const std::string& _s = this_._internal_account_key();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.RemoteStorageTarget.Azure.account");
-            target = stream->WriteStringMaybeAliased(2, _s, target);
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.RemoteStorageTarget.Azure.account_key");
+            target = stream->WriteStringMaybeAliased(4, _s, target);
+          }
+
+          // string container = 5;
+          if (!this_._internal_container().empty()) {
+            const std::string& _s = this_._internal_container();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.RemoteStorageTarget.Azure.container");
+            target = stream->WriteStringMaybeAliased(5, _s, target);
+          }
+
+          // string azurite_url = 6;
+          if (!this_._internal_azurite_url().empty()) {
+            const std::string& _s = this_._internal_azurite_url();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.RemoteStorageTarget.Azure.azurite_url");
+            target = stream->WriteStringMaybeAliased(6, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -9657,18 +9692,25 @@ PROTOBUF_NOINLINE void RemoteStorageTarget_Azure::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // string account = 2;
-            if (!this_._internal_account().empty()) {
+            // string account_name = 3;
+            if (!this_._internal_account_name().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_account());
+                                              this_._internal_account_name());
             }
-          }
-           {
-            // .flex.RemoteStorageTarget.S3 s3 = 1;
-            cached_has_bits = this_._impl_._has_bits_[0];
-            if (cached_has_bits & 0x00000001u) {
-              total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.s3_);
+            // string account_key = 4;
+            if (!this_._internal_account_key().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_account_key());
+            }
+            // string container = 5;
+            if (!this_._internal_container().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_container());
+            }
+            // string azurite_url = 6;
+            if (!this_._internal_azurite_url().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_azurite_url());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -9678,26 +9720,23 @@ PROTOBUF_NOINLINE void RemoteStorageTarget_Azure::Clear() {
 void RemoteStorageTarget_Azure::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<RemoteStorageTarget_Azure*>(&to_msg);
   auto& from = static_cast<const RemoteStorageTarget_Azure&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:flex.RemoteStorageTarget.Azure)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_account().empty()) {
-    _this->_internal_set_account(from._internal_account());
+  if (!from._internal_account_name().empty()) {
+    _this->_internal_set_account_name(from._internal_account_name());
   }
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.s3_ != nullptr);
-    if (_this->_impl_.s3_ == nullptr) {
-      _this->_impl_.s3_ =
-          ::google::protobuf::Message::CopyConstruct<::flex::RemoteStorageTarget_S3>(arena, *from._impl_.s3_);
-    } else {
-      _this->_impl_.s3_->MergeFrom(*from._impl_.s3_);
-    }
+  if (!from._internal_account_key().empty()) {
+    _this->_internal_set_account_key(from._internal_account_key());
   }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  if (!from._internal_container().empty()) {
+    _this->_internal_set_container(from._internal_container());
+  }
+  if (!from._internal_azurite_url().empty()) {
+    _this->_internal_set_azurite_url(from._internal_azurite_url());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -9714,9 +9753,10 @@ void RemoteStorageTarget_Azure::InternalSwap(RemoteStorageTarget_Azure* PROTOBUF
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
-  swap(_impl_.s3_, other->_impl_.s3_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_name_, &other->_impl_.account_name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_key_, &other->_impl_.account_key_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.container_, &other->_impl_.container_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.azurite_url_, &other->_impl_.azurite_url_, arena);
 }
 
 ::google::protobuf::Metadata RemoteStorageTarget_Azure::GetMetadata() const {
