@@ -9342,6 +9342,7 @@ class GetNodesResponse final : public ::google::protobuf::Message
     kNodesFieldNumber = 1,
     kFsUuidFieldNumber = 3,
     kMetaRootNodeFieldNumber = 2,
+    kMetaRootBuddyGroupFieldNumber = 4,
   };
   // repeated .management.GetNodesResponse.Node nodes = 1;
   int nodes_size() const;
@@ -9392,12 +9393,27 @@ class GetNodesResponse final : public ::google::protobuf::Message
   ::beegfs::EntityIdSet* _internal_mutable_meta_root_node();
 
   public:
+  // optional .beegfs.EntityIdSet meta_root_buddy_group = 4;
+  bool has_meta_root_buddy_group() const;
+  void clear_meta_root_buddy_group() ;
+  const ::beegfs::EntityIdSet& meta_root_buddy_group() const;
+  PROTOBUF_NODISCARD ::beegfs::EntityIdSet* release_meta_root_buddy_group();
+  ::beegfs::EntityIdSet* mutable_meta_root_buddy_group();
+  void set_allocated_meta_root_buddy_group(::beegfs::EntityIdSet* value);
+  void unsafe_arena_set_allocated_meta_root_buddy_group(::beegfs::EntityIdSet* value);
+  ::beegfs::EntityIdSet* unsafe_arena_release_meta_root_buddy_group();
+
+  private:
+  const ::beegfs::EntityIdSet& _internal_meta_root_buddy_group() const;
+  ::beegfs::EntityIdSet* _internal_mutable_meta_root_buddy_group();
+
+  public:
   // @@protoc_insertion_point(class_scope:management.GetNodesResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 2,
+      2, 4, 3,
       43, 2>
       _table_;
 
@@ -9420,6 +9436,7 @@ class GetNodesResponse final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedPtrField< ::management::GetNodesResponse_Node > nodes_;
     ::google::protobuf::internal::ArenaStringPtr fs_uuid_;
     ::beegfs::EntityIdSet* meta_root_node_;
+    ::beegfs::EntityIdSet* meta_root_buddy_group_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10548,6 +10565,97 @@ inline void GetNodesResponse::set_allocated_fs_uuid(std::string* value) {
     _impl_.fs_uuid_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:management.GetNodesResponse.fs_uuid)
+}
+
+// optional .beegfs.EntityIdSet meta_root_buddy_group = 4;
+inline bool GetNodesResponse::has_meta_root_buddy_group() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.meta_root_buddy_group_ != nullptr);
+  return value;
+}
+inline const ::beegfs::EntityIdSet& GetNodesResponse::_internal_meta_root_buddy_group() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beegfs::EntityIdSet* p = _impl_.meta_root_buddy_group_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beegfs::EntityIdSet&>(::beegfs::_EntityIdSet_default_instance_);
+}
+inline const ::beegfs::EntityIdSet& GetNodesResponse::meta_root_buddy_group() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.GetNodesResponse.meta_root_buddy_group)
+  return _internal_meta_root_buddy_group();
+}
+inline void GetNodesResponse::unsafe_arena_set_allocated_meta_root_buddy_group(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.meta_root_buddy_group_);
+  }
+  _impl_.meta_root_buddy_group_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:management.GetNodesResponse.meta_root_buddy_group)
+}
+inline ::beegfs::EntityIdSet* GetNodesResponse::release_meta_root_buddy_group() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::beegfs::EntityIdSet* released = _impl_.meta_root_buddy_group_;
+  _impl_.meta_root_buddy_group_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beegfs::EntityIdSet* GetNodesResponse::unsafe_arena_release_meta_root_buddy_group() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:management.GetNodesResponse.meta_root_buddy_group)
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::beegfs::EntityIdSet* temp = _impl_.meta_root_buddy_group_;
+  _impl_.meta_root_buddy_group_ = nullptr;
+  return temp;
+}
+inline ::beegfs::EntityIdSet* GetNodesResponse::_internal_mutable_meta_root_buddy_group() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.meta_root_buddy_group_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beegfs::EntityIdSet>(GetArena());
+    _impl_.meta_root_buddy_group_ = reinterpret_cast<::beegfs::EntityIdSet*>(p);
+  }
+  return _impl_.meta_root_buddy_group_;
+}
+inline ::beegfs::EntityIdSet* GetNodesResponse::mutable_meta_root_buddy_group() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000004u;
+  ::beegfs::EntityIdSet* _msg = _internal_mutable_meta_root_buddy_group();
+  // @@protoc_insertion_point(field_mutable:management.GetNodesResponse.meta_root_buddy_group)
+  return _msg;
+}
+inline void GetNodesResponse::set_allocated_meta_root_buddy_group(::beegfs::EntityIdSet* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.meta_root_buddy_group_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+
+  _impl_.meta_root_buddy_group_ = reinterpret_cast<::beegfs::EntityIdSet*>(value);
+  // @@protoc_insertion_point(field_set_allocated:management.GetNodesResponse.meta_root_buddy_group)
 }
 
 // -------------------------------------------------------------------

@@ -101,6 +101,9 @@ message GetNodesResponse {
   // The file system UUID for this BeeGFS.
   // Required.
   optional string fs_uuid = 3;
+  // The buddy‐mirror group identifier and alias for the root metadata.
+  // Optional, populated when the root metadata is mirrored across buddy groups.
+  optional beegfs.EntityIdSet meta_root_buddy_group = 4;
 }
 
 // Deletes a node from the system.

@@ -39,6 +39,10 @@ pub struct GetNodesResponse {
     /// Required.
     #[prost(string, optional, tag = "3")]
     pub fs_uuid: ::core::option::Option<::prost::alloc::string::String>,
+    /// The buddy‐mirror group identifier and alias for the root metadata.
+    /// Optional, populated when the root metadata is mirrored across buddy groups.
+    #[prost(message, optional, tag = "4")]
+    pub meta_root_buddy_group: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
 /// Nested message and enum types in `GetNodesResponse`.
 pub mod get_nodes_response {
