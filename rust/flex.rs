@@ -200,6 +200,8 @@ pub struct JobRequestCfg {
     pub force: bool,
     #[prost(message, optional, tag = "9")]
     pub locked_info: ::core::option::Option<JobLockedInfo>,
+    #[prost(bool, tag = "10")]
+    pub update: bool,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
