@@ -535,6 +535,18 @@ pub struct GetRstConfigResponse {
     #[prost(message, repeated, tag = "1")]
     pub rsts: ::prost::alloc::vec::Vec<super::flex::RemoteStorageTarget>,
 }
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetStubContentsRequest {
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetStubContentsResponse {
+    #[prost(uint32, optional, tag = "1")]
+    pub rst_id: ::core::option::Option<u32>,
+    #[prost(string, optional, tag = "2")]
+    pub url: ::core::option::Option<::prost::alloc::string::String>,
+}
 /// Generated client implementations.
 pub mod bee_remote_client {
     #![allow(
@@ -781,6 +793,30 @@ pub mod bee_remote_client {
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "GetRSTConfig"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn get_stub_contents(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetStubContentsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetStubContentsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/GetStubContents",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "GetStubContents"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -854,6 +890,13 @@ pub mod bee_remote_server {
             request: tonic::Request<super::GetRstConfigRequest>,
         ) -> std::result::Result<
             tonic::Response<super::GetRstConfigResponse>,
+            tonic::Status,
+        >;
+        async fn get_stub_contents(
+            &self,
+            request: tonic::Request<super::GetStubContentsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetStubContentsResponse>,
             tonic::Status,
         >;
     }
@@ -1192,6 +1235,51 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetRSTConfigSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/GetStubContents" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetStubContentsSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::GetStubContentsRequest>
+                    for GetStubContentsSvc<T> {
+                        type Response = super::GetStubContentsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetStubContentsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::get_stub_contents(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = GetStubContentsSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
