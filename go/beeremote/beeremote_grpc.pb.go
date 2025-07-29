@@ -19,12 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BeeRemote_SubmitJob_FullMethodName    = "/beeremote.BeeRemote/SubmitJob"
-	BeeRemote_UpdatePaths_FullMethodName  = "/beeremote.BeeRemote/UpdatePaths"
-	BeeRemote_UpdateJobs_FullMethodName   = "/beeremote.BeeRemote/UpdateJobs"
-	BeeRemote_GetJobs_FullMethodName      = "/beeremote.BeeRemote/GetJobs"
-	BeeRemote_UpdateWork_FullMethodName   = "/beeremote.BeeRemote/UpdateWork"
-	BeeRemote_GetRSTConfig_FullMethodName = "/beeremote.BeeRemote/GetRSTConfig"
+	BeeRemote_SubmitJob_FullMethodName       = "/beeremote.BeeRemote/SubmitJob"
+	BeeRemote_UpdatePaths_FullMethodName     = "/beeremote.BeeRemote/UpdatePaths"
+	BeeRemote_UpdateJobs_FullMethodName      = "/beeremote.BeeRemote/UpdateJobs"
+	BeeRemote_GetJobs_FullMethodName         = "/beeremote.BeeRemote/GetJobs"
+	BeeRemote_UpdateWork_FullMethodName      = "/beeremote.BeeRemote/UpdateWork"
+	BeeRemote_GetRSTConfig_FullMethodName    = "/beeremote.BeeRemote/GetRSTConfig"
+	BeeRemote_GetStubContents_FullMethodName = "/beeremote.BeeRemote/GetStubContents"
 )
 
 // BeeRemoteClient is the client API for BeeRemote service.
@@ -49,6 +50,7 @@ type BeeRemoteClient interface {
 	// by worker nodes.
 	UpdateWork(ctx context.Context, in *UpdateWorkRequest, opts ...grpc.CallOption) (*UpdateWorkResponse, error)
 	GetRSTConfig(ctx context.Context, in *GetRSTConfigRequest, opts ...grpc.CallOption) (*GetRSTConfigResponse, error)
+	GetStubContents(ctx context.Context, in *GetStubContentsRequest, opts ...grpc.CallOption) (*GetStubContentsResponse, error)
 }
 
 type beeRemoteClient struct {
@@ -137,6 +139,16 @@ func (c *beeRemoteClient) GetRSTConfig(ctx context.Context, in *GetRSTConfigRequ
 	return out, nil
 }
 
+func (c *beeRemoteClient) GetStubContents(ctx context.Context, in *GetStubContentsRequest, opts ...grpc.CallOption) (*GetStubContentsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStubContentsResponse)
+	err := c.cc.Invoke(ctx, BeeRemote_GetStubContents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BeeRemoteServer is the server API for BeeRemote service.
 // All implementations must embed UnimplementedBeeRemoteServer
 // for forward compatibility.
@@ -159,6 +171,7 @@ type BeeRemoteServer interface {
 	// by worker nodes.
 	UpdateWork(context.Context, *UpdateWorkRequest) (*UpdateWorkResponse, error)
 	GetRSTConfig(context.Context, *GetRSTConfigRequest) (*GetRSTConfigResponse, error)
+	GetStubContents(context.Context, *GetStubContentsRequest) (*GetStubContentsResponse, error)
 	mustEmbedUnimplementedBeeRemoteServer()
 }
 
@@ -186,6 +199,9 @@ func (UnimplementedBeeRemoteServer) UpdateWork(context.Context, *UpdateWorkReque
 }
 func (UnimplementedBeeRemoteServer) GetRSTConfig(context.Context, *GetRSTConfigRequest) (*GetRSTConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRSTConfig not implemented")
+}
+func (UnimplementedBeeRemoteServer) GetStubContents(context.Context, *GetStubContentsRequest) (*GetStubContentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStubContents not implemented")
 }
 func (UnimplementedBeeRemoteServer) mustEmbedUnimplementedBeeRemoteServer() {}
 func (UnimplementedBeeRemoteServer) testEmbeddedByValue()                   {}
@@ -302,6 +318,24 @@ func _BeeRemote_GetRSTConfig_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BeeRemote_GetStubContents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStubContentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeeRemoteServer).GetStubContents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BeeRemote_GetStubContents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeeRemoteServer).GetStubContents(ctx, req.(*GetStubContentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BeeRemote_ServiceDesc is the grpc.ServiceDesc for BeeRemote service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -324,6 +358,10 @@ var BeeRemote_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRSTConfig",
 			Handler:    _BeeRemote_GetRSTConfig_Handler,
+		},
+		{
+			MethodName: "GetStubContents",
+			Handler:    _BeeRemote_GetStubContents_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

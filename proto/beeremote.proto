@@ -23,6 +23,7 @@ service BeeRemote {
     // by worker nodes.
     rpc UpdateWork(UpdateWorkRequest) returns (UpdateWorkResponse);
     rpc GetRSTConfig(GetRSTConfigRequest) returns (GetRSTConfigResponse);
+    rpc GetStubContents(GetStubContentsRequest) returns (GetStubContentsResponse);
 }
 
 message SubmitJobRequest {
@@ -316,4 +317,13 @@ message GetRSTConfigRequest {
 
 message GetRSTConfigResponse {
     repeated flex.RemoteStorageTarget rsts = 1;
+}
+
+message GetStubContentsRequest {
+    string path = 1;
+}
+
+message GetStubContentsResponse {
+    optional uint32 rst_id = 1;
+    optional string url = 2;
 }
