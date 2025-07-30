@@ -5386,7 +5386,8 @@ class JobRequestCfg final : public ::google::protobuf::Message
   void _internal_set_force(bool value);
 
   public:
-  // bool update = 10;
+  // optional bool update = 10;
+  bool has_update() const;
   void clear_update() ;
   bool update() const;
   void set_update(bool value);
@@ -8434,10 +8435,15 @@ inline void JobRequestCfg::set_allocated_locked_info(::flex::JobLockedInfo* valu
   // @@protoc_insertion_point(field_set_allocated:flex.JobRequestCfg.locked_info)
 }
 
-// bool update = 10;
+// optional bool update = 10;
+inline bool JobRequestCfg::has_update() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
 inline void JobRequestCfg::clear_update() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.update_ = false;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 inline bool JobRequestCfg::update() const {
   // @@protoc_insertion_point(field_get:flex.JobRequestCfg.update)
@@ -8445,6 +8451,7 @@ inline bool JobRequestCfg::update() const {
 }
 inline void JobRequestCfg::set_update(bool value) {
   _internal_set_update(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
   // @@protoc_insertion_point(field_set:flex.JobRequestCfg.update)
 }
 inline bool JobRequestCfg::_internal_update() const {
