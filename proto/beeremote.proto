@@ -95,6 +95,8 @@ message JobRequest {
         }
         string message = 2;
     }
+
+    bool update = 9;
 }
 
 // Job contains all the data from the original request plus the job ID and

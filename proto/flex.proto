@@ -116,7 +116,7 @@ message JobRequestCfg {
     bool flatten = 7;
     bool force = 8;
     JobLockedInfo locked_info = 9;
-    optional bool update = 10;
+    bool update = 10;
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.
@@ -148,6 +148,7 @@ message WorkRequest {
     }
     // When stub_local is set the local file with be a stub file
     bool stub_local = 8;
+    bool update = 9;
 }
 
 // JobBuilderJob is a special type of job that creates job requests of any time.
@@ -188,6 +189,7 @@ message SyncJob {
     // set. If the flag is set then the directory delimiter will be replaced with an underscore.
     bool flatten = 5;
     JobLockedInfo locked_info = 6;
+    bool update = 7;
 }
 
 // Currently while requests types are specific to a particular worker node type,

@@ -4495,6 +4495,7 @@ class SyncJob final : public ::google::protobuf::Message
     kOperationFieldNumber = 1,
     kOverwriteFieldNumber = 2,
     kFlattenFieldNumber = 5,
+    kUpdateFieldNumber = 7,
   };
   // string remote_path = 3;
   void clear_remote_path() ;
@@ -4557,12 +4558,22 @@ class SyncJob final : public ::google::protobuf::Message
   void _internal_set_flatten(bool value);
 
   public:
+  // bool update = 7;
+  void clear_update() ;
+  bool update() const;
+  void set_update(bool value);
+
+  private:
+  bool _internal_update() const;
+  void _internal_set_update(bool value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.SyncJob)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 1,
+      3, 6, 1,
       32, 2>
       _table_;
 
@@ -4587,6 +4598,7 @@ class SyncJob final : public ::google::protobuf::Message
     int operation_;
     bool overwrite_;
     bool flatten_;
+    bool update_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5386,8 +5398,7 @@ class JobRequestCfg final : public ::google::protobuf::Message
   void _internal_set_force(bool value);
 
   public:
-  // optional bool update = 10;
-  bool has_update() const;
+  // bool update = 10;
   void clear_update() ;
   bool update() const;
   void set_update(bool value);
@@ -6485,6 +6496,7 @@ class WorkRequest final : public ::google::protobuf::Message
     kSegmentFieldNumber = 5,
     kRemoteStorageTargetFieldNumber = 6,
     kStubLocalFieldNumber = 8,
+    kUpdateFieldNumber = 9,
     kMockFieldNumber = 10,
     kSyncFieldNumber = 11,
     kBuilderFieldNumber = 12,
@@ -6588,6 +6600,16 @@ class WorkRequest final : public ::google::protobuf::Message
   void _internal_set_stub_local(bool value);
 
   public:
+  // bool update = 9;
+  void clear_update() ;
+  bool update() const;
+  void set_update(bool value);
+
+  private:
+  bool _internal_update() const;
+  void _internal_set_update(bool value);
+
+  public:
   // .flex.MockJob mock = 10;
   bool has_mock() const;
   private:
@@ -6657,7 +6679,7 @@ class WorkRequest final : public ::google::protobuf::Message
   inline void clear_has_Type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 10, 4,
+      4, 11, 4,
       64, 2>
       _table_;
 
@@ -6684,6 +6706,7 @@ class WorkRequest final : public ::google::protobuf::Message
     ::flex::WorkRequest_Segment* segment_;
     ::uint32_t remote_storage_target_;
     bool stub_local_;
+    bool update_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -8435,15 +8458,10 @@ inline void JobRequestCfg::set_allocated_locked_info(::flex::JobLockedInfo* valu
   // @@protoc_insertion_point(field_set_allocated:flex.JobRequestCfg.locked_info)
 }
 
-// optional bool update = 10;
-inline bool JobRequestCfg::has_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  return value;
-}
+// bool update = 10;
 inline void JobRequestCfg::clear_update() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.update_ = false;
-  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 inline bool JobRequestCfg::update() const {
   // @@protoc_insertion_point(field_get:flex.JobRequestCfg.update)
@@ -8451,7 +8469,6 @@ inline bool JobRequestCfg::update() const {
 }
 inline void JobRequestCfg::set_update(bool value) {
   _internal_set_update(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
   // @@protoc_insertion_point(field_set:flex.JobRequestCfg.update)
 }
 inline bool JobRequestCfg::_internal_update() const {
@@ -9128,6 +9145,28 @@ inline void WorkRequest::_internal_set_stub_local(bool value) {
   _impl_.stub_local_ = value;
 }
 
+// bool update = 9;
+inline void WorkRequest::clear_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.update_ = false;
+}
+inline bool WorkRequest::update() const {
+  // @@protoc_insertion_point(field_get:flex.WorkRequest.update)
+  return _internal_update();
+}
+inline void WorkRequest::set_update(bool value) {
+  _internal_set_update(value);
+  // @@protoc_insertion_point(field_set:flex.WorkRequest.update)
+}
+inline bool WorkRequest::_internal_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.update_;
+}
+inline void WorkRequest::_internal_set_update(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.update_ = value;
+}
+
 inline bool WorkRequest::has_Type() const {
   return Type_case() != TYPE_NOT_SET;
 }
@@ -9759,6 +9798,28 @@ inline void SyncJob::set_allocated_locked_info(::flex::JobLockedInfo* value) {
 
   _impl_.locked_info_ = reinterpret_cast<::flex::JobLockedInfo*>(value);
   // @@protoc_insertion_point(field_set_allocated:flex.SyncJob.locked_info)
+}
+
+// bool update = 7;
+inline void SyncJob::clear_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.update_ = false;
+}
+inline bool SyncJob::update() const {
+  // @@protoc_insertion_point(field_get:flex.SyncJob.update)
+  return _internal_update();
+}
+inline void SyncJob::set_update(bool value) {
+  _internal_set_update(value);
+  // @@protoc_insertion_point(field_set:flex.SyncJob.update)
+}
+inline bool SyncJob::_internal_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.update_;
+}
+inline void SyncJob::_internal_set_update(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.update_ = value;
 }
 
 // -------------------------------------------------------------------
