@@ -99,6 +99,8 @@ pub struct JobRequest {
     /// job is already in a terminal or failed state.
     #[prost(message, optional, tag = "8")]
     pub generation_status: ::core::option::Option<job_request::GenerationStatus>,
+    #[prost(bool, optional, tag = "9")]
+    pub update: ::core::option::Option<bool>,
     #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }
