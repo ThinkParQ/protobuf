@@ -223,6 +223,8 @@ pub struct WorkRequest {
     /// When stub_local is set the local file with be a stub file
     #[prost(bool, tag = "8")]
     pub stub_local: bool,
+    #[prost(bool, optional, tag = "9")]
+    pub update: ::core::option::Option<bool>,
     #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
@@ -301,6 +303,8 @@ pub struct SyncJob {
     pub flatten: bool,
     #[prost(message, optional, tag = "6")]
     pub locked_info: ::core::option::Option<JobLockedInfo>,
+    #[prost(bool, optional, tag = "7")]
+    pub update: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `SyncJob`.
 pub mod sync_job {
