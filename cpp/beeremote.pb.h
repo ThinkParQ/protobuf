@@ -3264,6 +3264,7 @@ class JobRequest final : public ::google::protobuf::Message
     kRemoteStorageTargetFieldNumber = 4,
     kForceFieldNumber = 5,
     kStubLocalFieldNumber = 7,
+    kUpdateFieldNumber = 9,
     kSyncFieldNumber = 10,
     kMockFieldNumber = 11,
     kBuilderFieldNumber = 12,
@@ -3355,6 +3356,17 @@ class JobRequest final : public ::google::protobuf::Message
   void _internal_set_stub_local(bool value);
 
   public:
+  // optional bool update = 9;
+  bool has_update() const;
+  void clear_update() ;
+  bool update() const;
+  void set_update(bool value);
+
+  private:
+  bool _internal_update() const;
+  void _internal_set_update(bool value);
+
+  public:
   // .flex.SyncJob sync = 10;
   bool has_sync() const;
   private:
@@ -3424,7 +3436,7 @@ class JobRequest final : public ::google::protobuf::Message
   inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 10, 4,
+      4, 11, 4,
       45, 2>
       _table_;
 
@@ -3451,6 +3463,7 @@ class JobRequest final : public ::google::protobuf::Message
     ::uint32_t remote_storage_target_;
     bool force_;
     bool stub_local_;
+    bool update_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -5906,6 +5919,34 @@ inline void JobRequest::set_allocated_generation_status(::beeremote::JobRequest_
 
   _impl_.generation_status_ = reinterpret_cast<::beeremote::JobRequest_GenerationStatus*>(value);
   // @@protoc_insertion_point(field_set_allocated:beeremote.JobRequest.generation_status)
+}
+
+// optional bool update = 9;
+inline bool JobRequest::has_update() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void JobRequest::clear_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.update_ = false;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline bool JobRequest::update() const {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.update)
+  return _internal_update();
+}
+inline void JobRequest::set_update(bool value) {
+  _internal_set_update(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.update)
+}
+inline bool JobRequest::_internal_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.update_;
+}
+inline void JobRequest::_internal_set_update(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.update_ = value;
 }
 
 inline bool JobRequest::has_type() const {

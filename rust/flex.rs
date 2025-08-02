@@ -200,6 +200,8 @@ pub struct JobRequestCfg {
     pub force: bool,
     #[prost(message, optional, tag = "9")]
     pub locked_info: ::core::option::Option<JobLockedInfo>,
+    #[prost(bool, optional, tag = "10")]
+    pub update: ::core::option::Option<bool>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -299,6 +301,8 @@ pub struct SyncJob {
     pub flatten: bool,
     #[prost(message, optional, tag = "6")]
     pub locked_info: ::core::option::Option<JobLockedInfo>,
+    #[prost(bool, optional, tag = "7")]
+    pub update: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `SyncJob`.
 pub mod sync_job {
