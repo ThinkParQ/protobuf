@@ -148,7 +148,6 @@ message WorkRequest {
     }
     // When stub_local is set the local file with be a stub file
     bool stub_local = 8;
-    optional bool update = 9;
 }
 
 // JobBuilderJob is a special type of job that creates job requests of any time.

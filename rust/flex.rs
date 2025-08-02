@@ -223,8 +223,6 @@ pub struct WorkRequest {
     /// When stub_local is set the local file with be a stub file
     #[prost(bool, tag = "8")]
     pub stub_local: bool,
-    #[prost(bool, optional, tag = "9")]
-    pub update: ::core::option::Option<bool>,
     #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
