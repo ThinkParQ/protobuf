@@ -131,29 +131,30 @@ const char descriptor_table_protodef_beegfs_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "\020.beegfs.LegacyIdH\002\210\001\001B\006\n\004_uidB\010\n\006_alias"
     "B\014\n\n_legacy_id*Z\n\nEntityType\022\033\n\027ENTITY_T"
     "YPE_UNSPECIFIED\020\000\022\010\n\004NODE\020\001\022\n\n\006TARGET\020\002\022"
-    "\017\n\013BUDDY_GROUP\020\003\022\010\n\004POOL\020\004*X\n\010NodeType\022\031"
+    "\017\n\013BUDDY_GROUP\020\003\022\010\n\004POOL\020\004*n\n\010NodeType\022\031"
     "\n\025NODE_TYPE_UNSPECIFIED\020\000\022\n\n\006CLIENT\020\001\022\010\n"
-    "\004META\020\002\022\013\n\007STORAGE\020\003\022\016\n\nMANAGEMENT\020\004*^\n\021"
-    "ReachabilityState\022\"\n\036REACHABILITY_STATE_"
-    "UNSPECIFIED\020\000\022\n\n\006ONLINE\020\001\022\014\n\010POFFLINE\020\002\022"
-    "\013\n\007OFFLINE\020\003*Z\n\020ConsistencyState\022!\n\035CONS"
-    "ISTENCY_STATE_UNSPECIFIED\020\000\022\010\n\004GOOD\020\001\022\020\n"
-    "\014NEEDS_RESYNC\020\002\022\007\n\003BAD\020\003*Q\n\014CapacityPool"
-    "\022\035\n\031CAPACITY_POOL_UNSPECIFIED\020\000\022\n\n\006NORMA"
-    "L\020\001\022\007\n\003LOW\020\002\022\r\n\tEMERGENCY\020\003*;\n\007NicType\022\030"
-    "\n\024NIC_TYPE_UNSPECIFIED\020\000\022\014\n\010ETHERNET\020\001\022\010"
-    "\n\004RDMA\020\002*]\n\013QuotaIdType\022\035\n\031QUOTA_ID_TYPE"
-    "_UNSPECIFIED\020\000\022\026\n\022QUOTA_ID_TYPE_USER\020\001\022\027"
-    "\n\023QUOTA_ID_TYPE_GROUP\020\002*S\n\tQuotaType\022\032\n\026"
-    "QUOTA_TYPE_UNSPECIFIED\020\000\022\024\n\020QUOTA_TYPE_S"
-    "PACE\020\001\022\024\n\020QUOTA_TYPE_INODE\020\002B)Z\'github.c"
-    "om/thinkparq/protobuf/go/beegfsb\006proto3"
+    "\004META\020\002\022\013\n\007STORAGE\020\003\022\016\n\nMANAGEMENT\020\004\022\n\n\006"
+    "REMOTE\020\005\022\010\n\004SYNC\020\006*^\n\021ReachabilityState\022"
+    "\"\n\036REACHABILITY_STATE_UNSPECIFIED\020\000\022\n\n\006O"
+    "NLINE\020\001\022\014\n\010POFFLINE\020\002\022\013\n\007OFFLINE\020\003*Z\n\020Co"
+    "nsistencyState\022!\n\035CONSISTENCY_STATE_UNSP"
+    "ECIFIED\020\000\022\010\n\004GOOD\020\001\022\020\n\014NEEDS_RESYNC\020\002\022\007\n"
+    "\003BAD\020\003*Q\n\014CapacityPool\022\035\n\031CAPACITY_POOL_"
+    "UNSPECIFIED\020\000\022\n\n\006NORMAL\020\001\022\007\n\003LOW\020\002\022\r\n\tEM"
+    "ERGENCY\020\003*;\n\007NicType\022\030\n\024NIC_TYPE_UNSPECI"
+    "FIED\020\000\022\014\n\010ETHERNET\020\001\022\010\n\004RDMA\020\002*]\n\013QuotaI"
+    "dType\022\035\n\031QUOTA_ID_TYPE_UNSPECIFIED\020\000\022\026\n\022"
+    "QUOTA_ID_TYPE_USER\020\001\022\027\n\023QUOTA_ID_TYPE_GR"
+    "OUP\020\002*S\n\tQuotaType\022\032\n\026QUOTA_TYPE_UNSPECI"
+    "FIED\020\000\022\024\n\020QUOTA_TYPE_SPACE\020\001\022\024\n\020QUOTA_TY"
+    "PE_INODE\020\002B)Z\'github.com/thinkparq/proto"
+    "buf/go/beegfsb\006proto3"
 };
 static ::absl::once_flag descriptor_table_beegfs_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beegfs_2eproto = {
     false,
     false,
-    959,
+    981,
     descriptor_table_protodef_beegfs_2eproto,
     "beegfs.proto",
     &descriptor_table_beegfs_2eproto_once,
@@ -181,9 +182,9 @@ const ::google::protobuf::EnumDescriptor* NodeType_descriptor() {
   return file_level_enum_descriptors_beegfs_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t NodeType_internal_data_[] = {
-    327680u, 0u, };
+    458752u, 0u, };
 bool NodeType_IsValid(int value) {
-  return 0 <= value && value <= 4;
+  return 0 <= value && value <= 6;
 }
 const ::google::protobuf::EnumDescriptor* ReachabilityState_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_beegfs_2eproto);
