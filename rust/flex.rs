@@ -179,6 +179,9 @@ pub struct JobLockedInfo {
     pub stub_url_path: ::prost::alloc::string::String,
     #[prost(string, tag = "10")]
     pub external_id: ::prost::alloc::string::String,
+    /// Whether the file or object have been archived and needs to be retrieved prior to download.
+    #[prost(bool, tag = "11")]
+    pub is_archived: bool,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobRequestCfg {
@@ -200,6 +203,8 @@ pub struct JobRequestCfg {
     pub force: bool,
     #[prost(message, optional, tag = "9")]
     pub locked_info: ::core::option::Option<JobLockedInfo>,
+    #[prost(int32, tag = "10")]
+    pub priority: i32,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -221,6 +226,8 @@ pub struct WorkRequest {
     /// When stub_local is set the local file with be a stub file
     #[prost(bool, tag = "8")]
     pub stub_local: bool,
+    #[prost(int32, tag = "9")]
+    pub priority: i32,
     #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
@@ -645,7 +652,7 @@ pub mod remote_storage_target {
     /// The S3 type uses the AWS S3 SDK under the hood. To support non-AWS S3
     /// services we implement the EndPointResolverWithOptions interface to
     /// provide custom endpoint resolving behavior. By specifying the
-    /// endpoint_url and optionally the parition_id and region we can support
+    /// endpoint_url and optionally the partition_id and region we can support
     /// local S3 services like MinIO and theoretically other cloud providers like
     /// Azure or GCP.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -671,6 +678,9 @@ pub mod remote_storage_target {
         pub access_key: ::prost::alloc::string::String,
         #[prost(string, tag = "6")]
         pub secret_key: ::prost::alloc::string::String,
+        /// Time a restored object that is archived will be accessible measured in days.
+        #[prost(int32, tag = "7")]
+        pub archive_restore_retention_days: i32,
     }
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Azure {
