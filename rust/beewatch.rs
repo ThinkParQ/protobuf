@@ -175,6 +175,8 @@ pub mod v2_event {
         OpenReadWrite = 15,
         LastWriterClosed = 16,
         OpenBlocked = 17,
+        StripePatternChanged = 18,
+        InodeLocked = 19,
     }
     impl Type {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -201,6 +203,8 @@ pub mod v2_event {
                 Self::OpenReadWrite => "OPEN_READ_WRITE",
                 Self::LastWriterClosed => "LAST_WRITER_CLOSED",
                 Self::OpenBlocked => "OPEN_BLOCKED",
+                Self::StripePatternChanged => "STRIPE_PATTERN_CHANGED",
+                Self::InodeLocked => "INODE_LOCKED",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -224,6 +228,8 @@ pub mod v2_event {
                 "OPEN_READ_WRITE" => Some(Self::OpenReadWrite),
                 "LAST_WRITER_CLOSED" => Some(Self::LastWriterClosed),
                 "OPEN_BLOCKED" => Some(Self::OpenBlocked),
+                "STRIPE_PATTERN_CHANGED" => Some(Self::StripePatternChanged),
+                "INODE_LOCKED" => Some(Self::InodeLocked),
                 _ => None,
             }
         }

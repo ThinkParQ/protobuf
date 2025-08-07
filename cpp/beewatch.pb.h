@@ -135,6 +135,8 @@ enum V2Event_Type : int {
   V2Event_Type_OPEN_READ_WRITE = 15,
   V2Event_Type_LAST_WRITER_CLOSED = 16,
   V2Event_Type_OPEN_BLOCKED = 17,
+  V2Event_Type_STRIPE_PATTERN_CHANGED = 18,
+  V2Event_Type_INODE_LOCKED = 19,
   V2Event_Type_V2Event_Type_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   V2Event_Type_V2Event_Type_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -144,8 +146,8 @@ enum V2Event_Type : int {
 bool V2Event_Type_IsValid(int value);
 extern const uint32_t V2Event_Type_internal_data_[];
 constexpr V2Event_Type V2Event_Type_Type_MIN = static_cast<V2Event_Type>(0);
-constexpr V2Event_Type V2Event_Type_Type_MAX = static_cast<V2Event_Type>(17);
-constexpr int V2Event_Type_Type_ARRAYSIZE = 17 + 1;
+constexpr V2Event_Type V2Event_Type_Type_MAX = static_cast<V2Event_Type>(19);
+constexpr int V2Event_Type_Type_ARRAYSIZE = 19 + 1;
 const ::google::protobuf::EnumDescriptor*
 V2Event_Type_descriptor();
 template <typename T>
@@ -158,7 +160,7 @@ const std::string& V2Event_Type_Name(T value) {
 template <>
 inline const std::string& V2Event_Type_Name(V2Event_Type value) {
   return ::google::protobuf::internal::NameOfDenseEnum<V2Event_Type_descriptor,
-                                                 0, 17>(
+                                                 0, 19>(
       static_cast<int>(value));
 }
 inline bool V2Event_Type_Parse(absl::string_view name, V2Event_Type* value) {
@@ -333,6 +335,8 @@ class V2Event final : public ::google::protobuf::Message
   static constexpr Type OPEN_READ_WRITE = V2Event_Type_OPEN_READ_WRITE;
   static constexpr Type LAST_WRITER_CLOSED = V2Event_Type_LAST_WRITER_CLOSED;
   static constexpr Type OPEN_BLOCKED = V2Event_Type_OPEN_BLOCKED;
+  static constexpr Type STRIPE_PATTERN_CHANGED = V2Event_Type_STRIPE_PATTERN_CHANGED;
+  static constexpr Type INODE_LOCKED = V2Event_Type_INODE_LOCKED;
   static inline bool Type_IsValid(int value) {
     return V2Event_Type_IsValid(value);
   }
