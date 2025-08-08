@@ -366,6 +366,7 @@ inline constexpr BeeRemoteNode::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         mgmtd_tls_disable_verification_{false},
         mgmtd_tls_disable_{false},
+        mgmtd_use_proxy_{false},
         auth_disable_{false},
         _cached_size_{0} {}
 
@@ -1163,6 +1164,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_tls_cert_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_tls_disable_verification_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_tls_disable_),
+        PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.mgmtd_use_proxy_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.auth_secret_),
         PROTOBUF_FIELD_OFFSET(::flex::BeeRemoteNode, _impl_.auth_disable_),
         ~0u,  // no _has_bits_
@@ -1258,11 +1260,11 @@ static const ::_pbi::MigrationSchema
         {280, 290, -1, sizeof(::flex::UpdateConfigRequest)},
         {292, -1, -1, sizeof(::flex::UpdateConfigResponse)},
         {302, -1, -1, sizeof(::flex::BeeRemoteNode)},
-        {318, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
-        {327, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
-        {341, 351, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
-        {353, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
-        {362, 378, -1, sizeof(::flex::RemoteStorageTarget)},
+        {319, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
+        {328, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
+        {342, 352, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
+        {354, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
+        {363, 379, -1, sizeof(::flex::RemoteStorageTarget)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::flex::_HeartbeatRequest_default_instance_._instance,
@@ -1364,36 +1366,36 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "pdateConfigResponse\0221\n\006result\030\001 \001(\0162!.fl"
     "ex.UpdateConfigResponse.Result\022\017\n\007messag"
     "e\030\002 \001(\t\"@\n\006Result\022\017\n\013UNSPECIFIED\020\000\022\013\n\007SU"
-    "CCESS\020\001\022\013\n\007PARTIAL\020\002\022\013\n\007FAILURE\020\003\"\311\001\n\rBe"
+    "CCESS\020\001\022\013\n\007PARTIAL\020\002\022\013\n\007FAILURE\020\003\"\342\001\n\rBe"
     "eRemoteNode\022\n\n\002id\030\001 \001(\t\022\017\n\007address\030\002 \001(\t"
     "\022\025\n\rmgmtd_address\030\003 \001(\t\022\026\n\016mgmtd_tls_cer"
     "t\030\004 \001(\014\022&\n\036mgmtd_tls_disable_verificatio"
-    "n\030\005 \001(\010\022\031\n\021mgmtd_tls_disable\030\006 \001(\010\022\023\n\013au"
-    "th_secret\030\007 \001(\014\022\024\n\014auth_disable\030\010 \001(\010\"\213\004"
-    "\n\023RemoteStorageTarget\022\n\n\002id\030\001 \001(\r\022\014\n\004nam"
-    "e\030\002 \001(\t\0224\n\010policies\030\003 \001(\0132\".flex.RemoteS"
-    "torageTarget.Policies\022*\n\002s3\030\004 \001(\0132\034.flex"
-    ".RemoteStorageTarget.S3H\000\0220\n\005posix\030\005 \001(\013"
-    "2\037.flex.RemoteStorageTarget.POSIXH\000\0220\n\005a"
-    "zure\030\006 \001(\0132\037.flex.RemoteStorageTarget.Az"
-    "ureH\000\022\016\n\004mock\030\007 \001(\tH\000\032\'\n\010Policies\022\033\n\023fas"
-    "t_start_max_size\030\001 \001(\003\032x\n\002S3\022\024\n\014endpoint"
-    "_url\030\001 \001(\t\022\024\n\014partition_id\030\002 \001(\t\022\016\n\006regi"
-    "on\030\003 \001(\t\022\016\n\006bucket\030\004 \001(\t\022\022\n\naccess_key\030\005"
-    " \001(\t\022\022\n\nsecret_key\030\006 \001(\t\032B\n\005Azure\022(\n\002s3\030"
-    "\001 \001(\0132\034.flex.RemoteStorageTarget.S3\022\017\n\007a"
-    "ccount\030\002 \001(\t\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\tB\006\n\004t"
-    "ype2\340\002\n\nWorkerNode\022E\n\014UpdateConfig\022\031.fle"
-    "x.UpdateConfigRequest\032\032.flex.UpdateConfi"
-    "gResponse\022<\n\tHeartbeat\022\026.flex.HeartbeatR"
-    "equest\032\027.flex.HeartbeatResponse\022\?\n\nSubmi"
-    "tWork\022\027.flex.SubmitWorkRequest\032\030.flex.Su"
-    "bmitWorkResponse\022\?\n\nUpdateWork\022\027.flex.Up"
-    "dateWorkRequest\032\030.flex.UpdateWorkRespons"
-    "e\022K\n\016BulkUpdateWork\022\033.flex.BulkUpdateWor"
-    "kRequest\032\034.flex.BulkUpdateWorkResponseB\'"
-    "Z%github.com/thinkparq/protobuf/go/flexb"
-    "\006proto3"
+    "n\030\005 \001(\010\022\031\n\021mgmtd_tls_disable\030\006 \001(\010\022\027\n\017mg"
+    "mtd_use_proxy\030\t \001(\010\022\023\n\013auth_secret\030\007 \001(\014"
+    "\022\024\n\014auth_disable\030\010 \001(\010\"\213\004\n\023RemoteStorage"
+    "Target\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\0224\n\010poli"
+    "cies\030\003 \001(\0132\".flex.RemoteStorageTarget.Po"
+    "licies\022*\n\002s3\030\004 \001(\0132\034.flex.RemoteStorageT"
+    "arget.S3H\000\0220\n\005posix\030\005 \001(\0132\037.flex.RemoteS"
+    "torageTarget.POSIXH\000\0220\n\005azure\030\006 \001(\0132\037.fl"
+    "ex.RemoteStorageTarget.AzureH\000\022\016\n\004mock\030\007"
+    " \001(\tH\000\032\'\n\010Policies\022\033\n\023fast_start_max_siz"
+    "e\030\001 \001(\003\032x\n\002S3\022\024\n\014endpoint_url\030\001 \001(\t\022\024\n\014p"
+    "artition_id\030\002 \001(\t\022\016\n\006region\030\003 \001(\t\022\016\n\006buc"
+    "ket\030\004 \001(\t\022\022\n\naccess_key\030\005 \001(\t\022\022\n\nsecret_"
+    "key\030\006 \001(\t\032B\n\005Azure\022(\n\002s3\030\001 \001(\0132\034.flex.Re"
+    "moteStorageTarget.S3\022\017\n\007account\030\002 \001(\t\032\025\n"
+    "\005POSIX\022\014\n\004path\030\001 \001(\tB\006\n\004type2\340\002\n\nWorkerN"
+    "ode\022E\n\014UpdateConfig\022\031.flex.UpdateConfigR"
+    "equest\032\032.flex.UpdateConfigResponse\022<\n\tHe"
+    "artbeat\022\026.flex.HeartbeatRequest\032\027.flex.H"
+    "eartbeatResponse\022\?\n\nSubmitWork\022\027.flex.Su"
+    "bmitWorkRequest\032\030.flex.SubmitWorkRespons"
+    "e\022\?\n\nUpdateWork\022\027.flex.UpdateWorkRequest"
+    "\032\030.flex.UpdateWorkResponse\022K\n\016BulkUpdate"
+    "Work\022\033.flex.BulkUpdateWorkRequest\032\034.flex"
+    ".BulkUpdateWorkResponseB\'Z%github.com/th"
+    "inkparq/protobuf/go/flexb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_flex_2eproto_deps[1] =
     {
@@ -1403,7 +1405,7 @@ static ::absl::once_flag descriptor_table_flex_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_flex_2eproto = {
     false,
     false,
-    3927,
+    3952,
     descriptor_table_protodef_flex_2eproto,
     "flex.proto",
     &descriptor_table_flex_2eproto_once,
@@ -8451,15 +8453,15 @@ const ::google::protobuf::internal::ClassData* BeeRemoteNode::GetClassData() con
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 8, 0, 57, 2> BeeRemoteNode::_table_ = {
+const ::_pbi::TcParseTable<4, 9, 0, 57, 2> BeeRemoteNode::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    8, 56,  // max_field_number, fast_idx_mask
+    9, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967040,  // skipmap
+    4294966784,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    8,  // num_field_entries
+    9,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -8469,9 +8471,7 @@ const ::_pbi::TcParseTable<3, 8, 0, 57, 2> BeeRemoteNode::_table_ = {
     ::_pbi::TcParser::GetTable<::flex::BeeRemoteNode>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // bool auth_disable = 8;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BeeRemoteNode, _impl_.auth_disable_), 63>(),
-     {64, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_disable_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string id = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.id_)}},
@@ -8493,6 +8493,18 @@ const ::_pbi::TcParseTable<3, 8, 0, 57, 2> BeeRemoteNode::_table_ = {
     // bytes auth_secret = 7;
     {::_pbi::TcParser::FastBS1,
      {58, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_secret_)}},
+    // bool auth_disable = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BeeRemoteNode, _impl_.auth_disable_), 63>(),
+     {64, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_disable_)}},
+    // bool mgmtd_use_proxy = 9;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BeeRemoteNode, _impl_.mgmtd_use_proxy_), 63>(),
+     {72, 63, 0, PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_use_proxy_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -8519,6 +8531,9 @@ const ::_pbi::TcParseTable<3, 8, 0, 57, 2> BeeRemoteNode::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // bool auth_disable = 8;
     {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.auth_disable_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool mgmtd_use_proxy = 9;
+    {PROTOBUF_FIELD_OFFSET(BeeRemoteNode, _impl_.mgmtd_use_proxy_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
   // no aux_entries
@@ -8621,6 +8636,13 @@ PROTOBUF_NOINLINE void BeeRemoteNode::Clear() {
                 8, this_._internal_auth_disable(), target);
           }
 
+          // bool mgmtd_use_proxy = 9;
+          if (this_._internal_mgmtd_use_proxy() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                9, this_._internal_mgmtd_use_proxy(), target);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -8679,6 +8701,10 @@ PROTOBUF_NOINLINE void BeeRemoteNode::Clear() {
             if (this_._internal_mgmtd_tls_disable() != 0) {
               total_size += 2;
             }
+            // bool mgmtd_use_proxy = 9;
+            if (this_._internal_mgmtd_use_proxy() != 0) {
+              total_size += 2;
+            }
             // bool auth_disable = 8;
             if (this_._internal_auth_disable() != 0) {
               total_size += 2;
@@ -8716,6 +8742,9 @@ void BeeRemoteNode::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::g
   }
   if (from._internal_mgmtd_tls_disable() != 0) {
     _this->_impl_.mgmtd_tls_disable_ = from._impl_.mgmtd_tls_disable_;
+  }
+  if (from._internal_mgmtd_use_proxy() != 0) {
+    _this->_impl_.mgmtd_use_proxy_ = from._impl_.mgmtd_use_proxy_;
   }
   if (from._internal_auth_disable() != 0) {
     _this->_impl_.auth_disable_ = from._impl_.auth_disable_;

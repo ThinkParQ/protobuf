@@ -309,6 +309,7 @@ message BeeRemoteNode {
     bytes mgmtd_tls_cert = 4;
     bool mgmtd_tls_disable_verification = 5;
     bool mgmtd_tls_disable = 6;
+    bool mgmtd_use_proxy = 9;
     bytes auth_secret = 7;
     bool auth_disable = 8;
 }
