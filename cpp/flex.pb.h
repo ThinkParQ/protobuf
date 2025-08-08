@@ -2925,6 +2925,7 @@ class BeeRemoteNode final : public ::google::protobuf::Message
     kAuthSecretFieldNumber = 7,
     kMgmtdTlsDisableVerificationFieldNumber = 5,
     kMgmtdTlsDisableFieldNumber = 6,
+    kMgmtdUseProxyFieldNumber = 9,
     kAuthDisableFieldNumber = 8,
   };
   // string id = 1;
@@ -3027,6 +3028,16 @@ class BeeRemoteNode final : public ::google::protobuf::Message
   void _internal_set_mgmtd_tls_disable(bool value);
 
   public:
+  // bool mgmtd_use_proxy = 9;
+  void clear_mgmtd_use_proxy() ;
+  bool mgmtd_use_proxy() const;
+  void set_mgmtd_use_proxy(bool value);
+
+  private:
+  bool _internal_mgmtd_use_proxy() const;
+  void _internal_set_mgmtd_use_proxy(bool value);
+
+  public:
   // bool auth_disable = 8;
   void clear_auth_disable() ;
   bool auth_disable() const;
@@ -3042,7 +3053,7 @@ class BeeRemoteNode final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 8, 0,
+      4, 9, 0,
       57, 2>
       _table_;
 
@@ -3067,6 +3078,7 @@ class BeeRemoteNode final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr auth_secret_;
     bool mgmtd_tls_disable_verification_;
     bool mgmtd_tls_disable_;
+    bool mgmtd_use_proxy_;
     bool auth_disable_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -10758,6 +10770,28 @@ inline bool BeeRemoteNode::_internal_mgmtd_tls_disable() const {
 inline void BeeRemoteNode::_internal_set_mgmtd_tls_disable(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.mgmtd_tls_disable_ = value;
+}
+
+// bool mgmtd_use_proxy = 9;
+inline void BeeRemoteNode::clear_mgmtd_use_proxy() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mgmtd_use_proxy_ = false;
+}
+inline bool BeeRemoteNode::mgmtd_use_proxy() const {
+  // @@protoc_insertion_point(field_get:flex.BeeRemoteNode.mgmtd_use_proxy)
+  return _internal_mgmtd_use_proxy();
+}
+inline void BeeRemoteNode::set_mgmtd_use_proxy(bool value) {
+  _internal_set_mgmtd_use_proxy(value);
+  // @@protoc_insertion_point(field_set:flex.BeeRemoteNode.mgmtd_use_proxy)
+}
+inline bool BeeRemoteNode::_internal_mgmtd_use_proxy() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.mgmtd_use_proxy_;
+}
+inline void BeeRemoteNode::_internal_set_mgmtd_use_proxy(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mgmtd_use_proxy_ = value;
 }
 
 // bytes auth_secret = 7;

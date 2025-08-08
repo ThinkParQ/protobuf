@@ -578,6 +578,8 @@ pub struct BeeRemoteNode {
     pub mgmtd_tls_disable_verification: bool,
     #[prost(bool, tag = "6")]
     pub mgmtd_tls_disable: bool,
+    #[prost(bool, tag = "9")]
+    pub mgmtd_use_proxy: bool,
     #[prost(bytes = "vec", tag = "7")]
     pub auth_secret: ::prost::alloc::vec::Vec<u8>,
     #[prost(bool, tag = "8")]
