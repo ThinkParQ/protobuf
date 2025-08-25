@@ -647,7 +647,8 @@ inline constexpr JobRequestCfg::Impl_::Impl_(
         overwrite_{false},
         flatten_{false},
         force_{false},
-        update_{false} {}
+        update_{false},
+        priority_{0} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR JobRequestCfg::JobRequestCfg(::_pbi::ConstantInitialized)
@@ -796,6 +797,7 @@ inline constexpr WorkRequest::Impl_::Impl_(
         segment_{nullptr},
         remote_storage_target_{0u},
         stub_local_{false},
+        priority_{0},
         Type_{},
         _oneof_case_{} {}
 
@@ -989,6 +991,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::flex::JobRequestCfg, _impl_.force_),
         PROTOBUF_FIELD_OFFSET(::flex::JobRequestCfg, _impl_.locked_info_),
         PROTOBUF_FIELD_OFFSET(::flex::JobRequestCfg, _impl_.update_),
+        PROTOBUF_FIELD_OFFSET(::flex::JobRequestCfg, _impl_.priority_),
         ~0u,
         ~0u,
         ~0u,
@@ -999,6 +1002,7 @@ const ::uint32_t
         ~0u,
         0,
         1,
+        ~0u,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::flex::WorkRequest_Segment, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1029,12 +1033,14 @@ const ::uint32_t
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         PROTOBUF_FIELD_OFFSET(::flex::WorkRequest, _impl_.stub_local_),
+        PROTOBUF_FIELD_OFFSET(::flex::WorkRequest, _impl_.priority_),
         PROTOBUF_FIELD_OFFSET(::flex::WorkRequest, _impl_.Type_),
         ~0u,
         ~0u,
         ~0u,
         ~0u,
         0,
+        ~0u,
         ~0u,
         ~0u,
         ~0u,
@@ -1254,23 +1260,23 @@ static const ::_pbi::MigrationSchema
         {74, -1, -1, sizeof(::flex::BulkUpdateWorkRequest)},
         {83, -1, -1, sizeof(::flex::BulkUpdateWorkResponse)},
         {93, 111, -1, sizeof(::flex::JobLockedInfo)},
-        {121, 139, -1, sizeof(::flex::JobRequestCfg)},
-        {149, -1, -1, sizeof(::flex::WorkRequest_Segment)},
-        {161, 180, -1, sizeof(::flex::WorkRequest)},
-        {190, 199, -1, sizeof(::flex::BuilderJob)},
-        {200, 214, -1, sizeof(::flex::MockJob)},
-        {220, 234, -1, sizeof(::flex::SyncJob)},
-        {240, -1, -1, sizeof(::flex::Work_Status)},
-        {250, -1, -1, sizeof(::flex::Work_Part)},
-        {264, 278, -1, sizeof(::flex::Work)},
-        {284, 294, -1, sizeof(::flex::UpdateConfigRequest)},
-        {296, -1, -1, sizeof(::flex::UpdateConfigResponse)},
-        {306, -1, -1, sizeof(::flex::BeeRemoteNode)},
-        {323, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
-        {332, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
-        {346, 356, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
-        {358, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
-        {367, 383, -1, sizeof(::flex::RemoteStorageTarget)},
+        {121, 140, -1, sizeof(::flex::JobRequestCfg)},
+        {151, -1, -1, sizeof(::flex::WorkRequest_Segment)},
+        {163, 183, -1, sizeof(::flex::WorkRequest)},
+        {194, 203, -1, sizeof(::flex::BuilderJob)},
+        {204, 218, -1, sizeof(::flex::MockJob)},
+        {224, 238, -1, sizeof(::flex::SyncJob)},
+        {244, -1, -1, sizeof(::flex::Work_Status)},
+        {254, -1, -1, sizeof(::flex::Work_Part)},
+        {268, 282, -1, sizeof(::flex::Work)},
+        {288, 298, -1, sizeof(::flex::UpdateConfigRequest)},
+        {300, -1, -1, sizeof(::flex::UpdateConfigResponse)},
+        {310, -1, -1, sizeof(::flex::BeeRemoteNode)},
+        {327, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
+        {336, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
+        {350, 360, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
+        {362, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
+        {371, 387, -1, sizeof(::flex::RemoteStorageTarget)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::flex::_HeartbeatRequest_default_instance_._instance,
@@ -1328,82 +1334,83 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "p\022\023\n\013remote_size\030\006 \001(\003\0220\n\014remote_mtime\030\007"
     " \001(\0132\032.google.protobuf.Timestamp\022\027\n\017stub"
     "_url_rst_id\030\010 \001(\r\022\025\n\rstub_url_path\030\t \001(\t"
-    "\022\022\n\nexternalId\030\n \001(\t\"\361\001\n\rJobRequestCfg\022\033"
+    "\022\022\n\nexternalId\030\n \001(\t\"\203\002\n\rJobRequestCfg\022\033"
     "\n\023remoteStorageTarget\030\001 \001(\r\022\014\n\004path\030\002 \001("
     "\t\022\022\n\nremotePath\030\003 \001(\t\022\020\n\010download\030\004 \001(\010\022"
     "\022\n\nstub_local\030\005 \001(\010\022\021\n\toverwrite\030\006 \001(\010\022\017"
     "\n\007flatten\030\007 \001(\010\022\r\n\005force\030\010 \001(\010\022(\n\013locked"
     "_info\030\t \001(\0132\023.flex.JobLockedInfo\022\023\n\006upda"
-    "te\030\n \001(\010H\000\210\001\001B\t\n\007_update\"\375\002\n\013WorkRequest"
-    "\022\016\n\006job_id\030\001 \001(\t\022\022\n\nrequest_id\030\002 \001(\t\022\023\n\013"
-    "external_id\030\003 \001(\t\022\014\n\004path\030\004 \001(\t\022*\n\007segme"
-    "nt\030\005 \001(\0132\031.flex.WorkRequest.Segment\022\035\n\025r"
-    "emote_storage_target\030\006 \001(\r\022\035\n\004mock\030\n \001(\013"
-    "2\r.flex.MockJobH\000\022\035\n\004sync\030\013 \001(\0132\r.flex.S"
-    "yncJobH\000\022#\n\007builder\030\014 \001(\0132\020.flex.Builder"
-    "JobH\000\022\022\n\nstub_local\030\010 \001(\010\032]\n\007Segment\022\024\n\014"
-    "offset_start\030\001 \001(\003\022\023\n\013offset_stop\030\002 \001(\003\022"
-    "\023\n\013parts_start\030\003 \001(\005\022\022\n\nparts_stop\030\004 \001(\005"
-    "B\006\n\004Type\".\n\nBuilderJob\022 \n\003cfg\030\001 \001(\0132\023.fl"
-    "ex.JobRequestCfg\"\255\001\n\007MockJob\022\031\n\021num_test"
-    "_segments\030\001 \001(\005\022\021\n\tfile_size\030\002 \001(\003\022\023\n\013ex"
-    "ternal_id\030\003 \001(\t\022\023\n\013should_fail\030\004 \001(\010\022(\n\013"
-    "locked_info\030\006 \001(\0132\023.flex.JobLockedInfo\022 "
-    "\n\003cfg\030\007 \001(\0132\023.flex.JobRequestCfg\"\360\001\n\007Syn"
-    "cJob\022*\n\toperation\030\001 \001(\0162\027.flex.SyncJob.O"
-    "peration\022\021\n\toverwrite\030\002 \001(\010\022\023\n\013remote_pa"
-    "th\030\003 \001(\t\022\017\n\007flatten\030\005 \001(\010\022(\n\013locked_info"
-    "\030\006 \001(\0132\023.flex.JobLockedInfo\022\023\n\006update\030\007 "
-    "\001(\010H\000\210\001\001\"6\n\tOperation\022\017\n\013UNSPECIFIED\020\000\022\n"
-    "\n\006UPLOAD\020\001\022\014\n\010DOWNLOAD\020\002B\t\n\007_update\"\333\003\n\004"
-    "Work\022\014\n\004path\030\001 \001(\t\022\016\n\006job_id\030\002 \001(\t\022\022\n\nre"
-    "quest_id\030\003 \001(\t\022!\n\006status\030\004 \001(\0132\021.flex.Wo"
-    "rk.Status\022\036\n\005parts\030\005 \003(\0132\017.flex.Work.Par"
-    "t\022\023\n\013job_builder\030\006 \001(\010\032:\n\006Status\022\037\n\005stat"
-    "e\030\001 \001(\0162\020.flex.Work.State\022\017\n\007message\030\002 \001"
-    "(\t\032\206\001\n\004Part\022\023\n\013part_number\030\001 \001(\005\022\024\n\014offs"
-    "et_start\030\002 \001(\003\022\023\n\013offset_stop\030\003 \001(\003\022\022\n\ne"
-    "ntity_tag\030\004 \001(\t\022\027\n\017checksum_sha256\030\005 \001(\t"
-    "\022\021\n\tcompleted\030\006 \001(\010\"\203\001\n\005State\022\017\n\013UNSPECI"
-    "FIED\020\000\022\013\n\007UNKNOWN\020\001\022\013\n\007CREATED\020\002\022\r\n\tSCHE"
-    "DULED\020\003\022\013\n\007RUNNING\020\004\022\t\n\005ERROR\020\006\022\n\n\006FAILE"
-    "D\020\007\022\r\n\tCANCELLED\020\010\022\r\n\tCOMPLETED\020\t\"g\n\023Upd"
-    "ateConfigRequest\022\'\n\nbee_remote\030\001 \001(\0132\023.f"
-    "lex.BeeRemoteNode\022\'\n\004rsts\030\002 \003(\0132\031.flex.R"
-    "emoteStorageTarget\"\234\001\n\024UpdateConfigRespo"
-    "nse\0221\n\006result\030\001 \001(\0162!.flex.UpdateConfigR"
-    "esponse.Result\022\017\n\007message\030\002 \001(\t\"@\n\006Resul"
-    "t\022\017\n\013UNSPECIFIED\020\000\022\013\n\007SUCCESS\020\001\022\013\n\007PARTI"
-    "AL\020\002\022\013\n\007FAILURE\020\003\"\342\001\n\rBeeRemoteNode\022\n\n\002i"
-    "d\030\001 \001(\t\022\017\n\007address\030\002 \001(\t\022\025\n\rmgmtd_addres"
-    "s\030\003 \001(\t\022\026\n\016mgmtd_tls_cert\030\004 \001(\014\022&\n\036mgmtd"
-    "_tls_disable_verification\030\005 \001(\010\022\031\n\021mgmtd"
-    "_tls_disable\030\006 \001(\010\022\027\n\017mgmtd_use_proxy\030\t "
-    "\001(\010\022\023\n\013auth_secret\030\007 \001(\014\022\024\n\014auth_disable"
-    "\030\010 \001(\010\"\213\004\n\023RemoteStorageTarget\022\n\n\002id\030\001 \001"
-    "(\r\022\014\n\004name\030\002 \001(\t\0224\n\010policies\030\003 \001(\0132\".fle"
-    "x.RemoteStorageTarget.Policies\022*\n\002s3\030\004 \001"
-    "(\0132\034.flex.RemoteStorageTarget.S3H\000\0220\n\005po"
-    "six\030\005 \001(\0132\037.flex.RemoteStorageTarget.POS"
-    "IXH\000\0220\n\005azure\030\006 \001(\0132\037.flex.RemoteStorage"
-    "Target.AzureH\000\022\016\n\004mock\030\007 \001(\tH\000\032\'\n\010Polici"
-    "es\022\033\n\023fast_start_max_size\030\001 \001(\003\032x\n\002S3\022\024\n"
-    "\014endpoint_url\030\001 \001(\t\022\024\n\014partition_id\030\002 \001("
-    "\t\022\016\n\006region\030\003 \001(\t\022\016\n\006bucket\030\004 \001(\t\022\022\n\nacc"
-    "ess_key\030\005 \001(\t\022\022\n\nsecret_key\030\006 \001(\t\032B\n\005Azu"
-    "re\022(\n\002s3\030\001 \001(\0132\034.flex.RemoteStorageTarge"
-    "t.S3\022\017\n\007account\030\002 \001(\t\032\025\n\005POSIX\022\014\n\004path\030\001"
-    " \001(\tB\006\n\004type2\340\002\n\nWorkerNode\022E\n\014UpdateCon"
-    "fig\022\031.flex.UpdateConfigRequest\032\032.flex.Up"
-    "dateConfigResponse\022<\n\tHeartbeat\022\026.flex.H"
-    "eartbeatRequest\032\027.flex.HeartbeatResponse"
-    "\022\?\n\nSubmitWork\022\027.flex.SubmitWorkRequest\032"
-    "\030.flex.SubmitWorkResponse\022\?\n\nUpdateWork\022"
-    "\027.flex.UpdateWorkRequest\032\030.flex.UpdateWo"
-    "rkResponse\022K\n\016BulkUpdateWork\022\033.flex.Bulk"
-    "UpdateWorkRequest\032\034.flex.BulkUpdateWorkR"
-    "esponseB\'Z%github.com/thinkparq/protobuf"
-    "/go/flexb\006proto3"
+    "te\030\n \001(\010H\000\210\001\001\022\020\n\010priority\030\013 \001(\005B\t\n\007_upda"
+    "te\"\217\003\n\013WorkRequest\022\016\n\006job_id\030\001 \001(\t\022\022\n\nre"
+    "quest_id\030\002 \001(\t\022\023\n\013external_id\030\003 \001(\t\022\014\n\004p"
+    "ath\030\004 \001(\t\022*\n\007segment\030\005 \001(\0132\031.flex.WorkRe"
+    "quest.Segment\022\035\n\025remote_storage_target\030\006"
+    " \001(\r\022\035\n\004mock\030\n \001(\0132\r.flex.MockJobH\000\022\035\n\004s"
+    "ync\030\013 \001(\0132\r.flex.SyncJobH\000\022#\n\007builder\030\014 "
+    "\001(\0132\020.flex.BuilderJobH\000\022\022\n\nstub_local\030\010 "
+    "\001(\010\022\020\n\010priority\030\t \001(\005\032]\n\007Segment\022\024\n\014offs"
+    "et_start\030\001 \001(\003\022\023\n\013offset_stop\030\002 \001(\003\022\023\n\013p"
+    "arts_start\030\003 \001(\005\022\022\n\nparts_stop\030\004 \001(\005B\006\n\004"
+    "Type\".\n\nBuilderJob\022 \n\003cfg\030\001 \001(\0132\023.flex.J"
+    "obRequestCfg\"\255\001\n\007MockJob\022\031\n\021num_test_seg"
+    "ments\030\001 \001(\005\022\021\n\tfile_size\030\002 \001(\003\022\023\n\013extern"
+    "al_id\030\003 \001(\t\022\023\n\013should_fail\030\004 \001(\010\022(\n\013lock"
+    "ed_info\030\006 \001(\0132\023.flex.JobLockedInfo\022 \n\003cf"
+    "g\030\007 \001(\0132\023.flex.JobRequestCfg\"\360\001\n\007SyncJob"
+    "\022*\n\toperation\030\001 \001(\0162\027.flex.SyncJob.Opera"
+    "tion\022\021\n\toverwrite\030\002 \001(\010\022\023\n\013remote_path\030\003"
+    " \001(\t\022\017\n\007flatten\030\005 \001(\010\022(\n\013locked_info\030\006 \001"
+    "(\0132\023.flex.JobLockedInfo\022\023\n\006update\030\007 \001(\010H"
+    "\000\210\001\001\"6\n\tOperation\022\017\n\013UNSPECIFIED\020\000\022\n\n\006UP"
+    "LOAD\020\001\022\014\n\010DOWNLOAD\020\002B\t\n\007_update\"\333\003\n\004Work"
+    "\022\014\n\004path\030\001 \001(\t\022\016\n\006job_id\030\002 \001(\t\022\022\n\nreques"
+    "t_id\030\003 \001(\t\022!\n\006status\030\004 \001(\0132\021.flex.Work.S"
+    "tatus\022\036\n\005parts\030\005 \003(\0132\017.flex.Work.Part\022\023\n"
+    "\013job_builder\030\006 \001(\010\032:\n\006Status\022\037\n\005state\030\001 "
+    "\001(\0162\020.flex.Work.State\022\017\n\007message\030\002 \001(\t\032\206"
+    "\001\n\004Part\022\023\n\013part_number\030\001 \001(\005\022\024\n\014offset_s"
+    "tart\030\002 \001(\003\022\023\n\013offset_stop\030\003 \001(\003\022\022\n\nentit"
+    "y_tag\030\004 \001(\t\022\027\n\017checksum_sha256\030\005 \001(\t\022\021\n\t"
+    "completed\030\006 \001(\010\"\203\001\n\005State\022\017\n\013UNSPECIFIED"
+    "\020\000\022\013\n\007UNKNOWN\020\001\022\013\n\007CREATED\020\002\022\r\n\tSCHEDULE"
+    "D\020\003\022\013\n\007RUNNING\020\004\022\t\n\005ERROR\020\006\022\n\n\006FAILED\020\007\022"
+    "\r\n\tCANCELLED\020\010\022\r\n\tCOMPLETED\020\t\"g\n\023UpdateC"
+    "onfigRequest\022\'\n\nbee_remote\030\001 \001(\0132\023.flex."
+    "BeeRemoteNode\022\'\n\004rsts\030\002 \003(\0132\031.flex.Remot"
+    "eStorageTarget\"\234\001\n\024UpdateConfigResponse\022"
+    "1\n\006result\030\001 \001(\0162!.flex.UpdateConfigRespo"
+    "nse.Result\022\017\n\007message\030\002 \001(\t\"@\n\006Result\022\017\n"
+    "\013UNSPECIFIED\020\000\022\013\n\007SUCCESS\020\001\022\013\n\007PARTIAL\020\002"
+    "\022\013\n\007FAILURE\020\003\"\342\001\n\rBeeRemoteNode\022\n\n\002id\030\001 "
+    "\001(\t\022\017\n\007address\030\002 \001(\t\022\025\n\rmgmtd_address\030\003 "
+    "\001(\t\022\026\n\016mgmtd_tls_cert\030\004 \001(\014\022&\n\036mgmtd_tls"
+    "_disable_verification\030\005 \001(\010\022\031\n\021mgmtd_tls"
+    "_disable\030\006 \001(\010\022\027\n\017mgmtd_use_proxy\030\t \001(\010\022"
+    "\023\n\013auth_secret\030\007 \001(\014\022\024\n\014auth_disable\030\010 \001"
+    "(\010\"\213\004\n\023RemoteStorageTarget\022\n\n\002id\030\001 \001(\r\022\014"
+    "\n\004name\030\002 \001(\t\0224\n\010policies\030\003 \001(\0132\".flex.Re"
+    "moteStorageTarget.Policies\022*\n\002s3\030\004 \001(\0132\034"
+    ".flex.RemoteStorageTarget.S3H\000\0220\n\005posix\030"
+    "\005 \001(\0132\037.flex.RemoteStorageTarget.POSIXH\000"
+    "\0220\n\005azure\030\006 \001(\0132\037.flex.RemoteStorageTarg"
+    "et.AzureH\000\022\016\n\004mock\030\007 \001(\tH\000\032\'\n\010Policies\022\033"
+    "\n\023fast_start_max_size\030\001 \001(\003\032x\n\002S3\022\024\n\014end"
+    "point_url\030\001 \001(\t\022\024\n\014partition_id\030\002 \001(\t\022\016\n"
+    "\006region\030\003 \001(\t\022\016\n\006bucket\030\004 \001(\t\022\022\n\naccess_"
+    "key\030\005 \001(\t\022\022\n\nsecret_key\030\006 \001(\t\032B\n\005Azure\022("
+    "\n\002s3\030\001 \001(\0132\034.flex.RemoteStorageTarget.S3"
+    "\022\017\n\007account\030\002 \001(\t\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\t"
+    "B\006\n\004type2\340\002\n\nWorkerNode\022E\n\014UpdateConfig\022"
+    "\031.flex.UpdateConfigRequest\032\032.flex.Update"
+    "ConfigResponse\022<\n\tHeartbeat\022\026.flex.Heart"
+    "beatRequest\032\027.flex.HeartbeatResponse\022\?\n\n"
+    "SubmitWork\022\027.flex.SubmitWorkRequest\032\030.fl"
+    "ex.SubmitWorkResponse\022\?\n\nUpdateWork\022\027.fl"
+    "ex.UpdateWorkRequest\032\030.flex.UpdateWorkRe"
+    "sponse\022K\n\016BulkUpdateWork\022\033.flex.BulkUpda"
+    "teWorkRequest\032\034.flex.BulkUpdateWorkRespo"
+    "nseB\'Z%github.com/thinkparq/protobuf/go/"
+    "flexb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_flex_2eproto_deps[1] =
     {
@@ -1413,7 +1420,7 @@ static ::absl::once_flag descriptor_table_flex_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_flex_2eproto = {
     false,
     false,
-    4016,
+    4052,
     descriptor_table_protodef_flex_2eproto,
     "flex.proto",
     &descriptor_table_flex_2eproto_once,
@@ -4381,9 +4388,9 @@ JobRequestCfg::JobRequestCfg(
                offsetof(Impl_, remotestoragetarget_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, remotestoragetarget_),
-           offsetof(Impl_, update_) -
+           offsetof(Impl_, priority_) -
                offsetof(Impl_, remotestoragetarget_) +
-               sizeof(Impl_::update_));
+               sizeof(Impl_::priority_));
 
   // @@protoc_insertion_point(copy_constructor:flex.JobRequestCfg)
 }
@@ -4399,9 +4406,9 @@ inline void JobRequestCfg::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, locked_info_),
            0,
-           offsetof(Impl_, update_) -
+           offsetof(Impl_, priority_) -
                offsetof(Impl_, locked_info_) +
-               sizeof(Impl_::update_));
+               sizeof(Impl_::priority_));
 }
 JobRequestCfg::~JobRequestCfg() {
   // @@protoc_insertion_point(destructor:flex.JobRequestCfg)
@@ -4453,15 +4460,15 @@ const ::google::protobuf::internal::ClassData* JobRequestCfg::GetClassData() con
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 10, 1, 49, 2> JobRequestCfg::_table_ = {
+const ::_pbi::TcParseTable<4, 11, 1, 49, 2> JobRequestCfg::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(JobRequestCfg, _impl_._has_bits_),
     0, // no _extensions_
-    10, 120,  // max_field_number, fast_idx_mask
+    11, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966272,  // skipmap
+    4294965248,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    10,  // num_field_entries
+    11,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -4502,7 +4509,9 @@ const ::_pbi::TcParseTable<4, 10, 1, 49, 2> JobRequestCfg::_table_ = {
     // optional bool update = 10;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(JobRequestCfg, _impl_.update_), 1>(),
      {80, 1, 0, PROTOBUF_FIELD_OFFSET(JobRequestCfg, _impl_.update_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // int32 priority = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(JobRequestCfg, _impl_.priority_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(JobRequestCfg, _impl_.priority_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -4540,6 +4549,9 @@ const ::_pbi::TcParseTable<4, 10, 1, 49, 2> JobRequestCfg::_table_ = {
     // optional bool update = 10;
     {PROTOBUF_FIELD_OFFSET(JobRequestCfg, _impl_.update_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // int32 priority = 11;
+    {PROTOBUF_FIELD_OFFSET(JobRequestCfg, _impl_.priority_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }}, {{
     {::_pbi::TcParser::GetTable<::flex::JobLockedInfo>()},
   }}, {{
@@ -4568,6 +4580,7 @@ PROTOBUF_NOINLINE void JobRequestCfg::Clear() {
       reinterpret_cast<char*>(&_impl_.force_) -
       reinterpret_cast<char*>(&_impl_.remotestoragetarget_)) + sizeof(_impl_.force_));
   _impl_.update_ = false;
+  _impl_.priority_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -4660,6 +4673,13 @@ PROTOBUF_NOINLINE void JobRequestCfg::Clear() {
                 10, this_._internal_update(), target);
           }
 
+          // int32 priority = 11;
+          if (this_._internal_priority() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<11>(
+                    stream, this_._internal_priority(), target);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -4737,6 +4757,13 @@ PROTOBUF_NOINLINE void JobRequestCfg::Clear() {
               total_size += 2;
             }
           }
+           {
+            // int32 priority = 11;
+            if (this_._internal_priority() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_priority());
+            }
+          }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
@@ -4787,6 +4814,9 @@ void JobRequestCfg::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::g
   if (cached_has_bits & 0x00000002u) {
     _this->_impl_.update_ = from._impl_.update_;
   }
+  if (from._internal_priority() != 0) {
+    _this->_impl_.priority_ = from._impl_.priority_;
+  }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -4808,8 +4838,8 @@ void JobRequestCfg::InternalSwap(JobRequestCfg* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, &other->_impl_.path_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.remotepath_, &other->_impl_.remotepath_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(JobRequestCfg, _impl_.update_)
-      + sizeof(JobRequestCfg::_impl_.update_)
+      PROTOBUF_FIELD_OFFSET(JobRequestCfg, _impl_.priority_)
+      + sizeof(JobRequestCfg::_impl_.priority_)
       - PROTOBUF_FIELD_OFFSET(JobRequestCfg, _impl_.locked_info_)>(
           reinterpret_cast<char*>(&_impl_.locked_info_),
           reinterpret_cast<char*>(&other->_impl_.locked_info_));
@@ -5194,9 +5224,9 @@ WorkRequest::WorkRequest(
                offsetof(Impl_, remote_storage_target_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, remote_storage_target_),
-           offsetof(Impl_, stub_local_) -
+           offsetof(Impl_, priority_) -
                offsetof(Impl_, remote_storage_target_) +
-               sizeof(Impl_::stub_local_));
+               sizeof(Impl_::priority_));
   switch (Type_case()) {
     case TYPE_NOT_SET:
       break;
@@ -5229,9 +5259,9 @@ inline void WorkRequest::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, segment_),
            0,
-           offsetof(Impl_, stub_local_) -
+           offsetof(Impl_, priority_) -
                offsetof(Impl_, segment_) +
-               sizeof(Impl_::stub_local_));
+               sizeof(Impl_::priority_));
 }
 WorkRequest::~WorkRequest() {
   // @@protoc_insertion_point(destructor:flex.WorkRequest)
@@ -5324,15 +5354,15 @@ const ::google::protobuf::internal::ClassData* WorkRequest::GetClassData() const
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 10, 4, 64, 2> WorkRequest::_table_ = {
+const ::_pbi::TcParseTable<4, 11, 4, 64, 2> WorkRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_._has_bits_),
     0, // no _extensions_
-    12, 56,  // max_field_number, fast_idx_mask
+    12, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294963520,  // skipmap
+    4294963264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    10,  // num_field_entries
+    11,  // num_field_entries
     4,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -5342,9 +5372,7 @@ const ::_pbi::TcParseTable<3, 10, 4, 64, 2> WorkRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::flex::WorkRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // bool stub_local = 8;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(WorkRequest, _impl_.stub_local_), 63>(),
-     {64, 63, 0, PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.stub_local_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string job_id = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.job_id_)}},
@@ -5363,6 +5391,18 @@ const ::_pbi::TcParseTable<3, 10, 4, 64, 2> WorkRequest::_table_ = {
     // uint32 remote_storage_target = 6;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WorkRequest, _impl_.remote_storage_target_), 63>(),
      {48, 63, 0, PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.remote_storage_target_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool stub_local = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(WorkRequest, _impl_.stub_local_), 63>(),
+     {64, 63, 0, PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.stub_local_)}},
+    // int32 priority = 9;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WorkRequest, _impl_.priority_), 63>(),
+     {72, 63, 0, PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.priority_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
@@ -5388,6 +5428,9 @@ const ::_pbi::TcParseTable<3, 10, 4, 64, 2> WorkRequest::_table_ = {
     // bool stub_local = 8;
     {PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.stub_local_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // int32 priority = 9;
+    {PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.priority_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
     // .flex.MockJob mock = 10;
     {PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.Type_.mock_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -5429,8 +5472,8 @@ PROTOBUF_NOINLINE void WorkRequest::Clear() {
     _impl_.segment_->Clear();
   }
   ::memset(&_impl_.remote_storage_target_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.stub_local_) -
-      reinterpret_cast<char*>(&_impl_.remote_storage_target_)) + sizeof(_impl_.stub_local_));
+      reinterpret_cast<char*>(&_impl_.priority_) -
+      reinterpret_cast<char*>(&_impl_.remote_storage_target_)) + sizeof(_impl_.priority_));
   clear_Type();
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -5503,6 +5546,13 @@ PROTOBUF_NOINLINE void WorkRequest::Clear() {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteBoolToArray(
                 8, this_._internal_stub_local(), target);
+          }
+
+          // int32 priority = 9;
+          if (this_._internal_priority() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<9>(
+                    stream, this_._internal_priority(), target);
           }
 
           switch (this_.Type_case()) {
@@ -5591,6 +5641,11 @@ PROTOBUF_NOINLINE void WorkRequest::Clear() {
             if (this_._internal_stub_local() != 0) {
               total_size += 2;
             }
+            // int32 priority = 9;
+            if (this_._internal_priority() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_priority());
+            }
           }
           switch (this_.Type_case()) {
             // .flex.MockJob mock = 10;
@@ -5655,6 +5710,9 @@ void WorkRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   }
   if (from._internal_stub_local() != 0) {
     _this->_impl_.stub_local_ = from._impl_.stub_local_;
+  }
+  if (from._internal_priority() != 0) {
+    _this->_impl_.priority_ = from._impl_.priority_;
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
@@ -5721,8 +5779,8 @@ void WorkRequest::InternalSwap(WorkRequest* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.external_id_, &other->_impl_.external_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.path_, &other->_impl_.path_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.stub_local_)
-      + sizeof(WorkRequest::_impl_.stub_local_)
+      PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.priority_)
+      + sizeof(WorkRequest::_impl_.priority_)
       - PROTOBUF_FIELD_OFFSET(WorkRequest, _impl_.segment_)>(
           reinterpret_cast<char*>(&_impl_.segment_),
           reinterpret_cast<char*>(&other->_impl_.segment_));
