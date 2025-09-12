@@ -179,6 +179,16 @@ pub struct JobLockedInfo {
     pub stub_url_path: ::prost::alloc::string::String,
     #[prost(string, tag = "10")]
     pub external_id: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "11")]
+    pub user_xattrs: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(map = "string, string", tag = "12")]
+    pub remote_user_xattrs: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobRequestCfg {
@@ -202,6 +212,13 @@ pub struct JobRequestCfg {
     pub locked_info: ::core::option::Option<JobLockedInfo>,
     #[prost(bool, optional, tag = "10")]
     pub update: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "12")]
+    pub enable_xattr: ::core::option::Option<bool>,
+    #[prost(map = "string, string", tag = "13")]
+    pub meta_tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -303,6 +320,13 @@ pub struct SyncJob {
     pub locked_info: ::core::option::Option<JobLockedInfo>,
     #[prost(bool, optional, tag = "7")]
     pub update: ::core::option::Option<bool>,
+    #[prost(bool, optional, tag = "8")]
+    pub enable_xattr: ::core::option::Option<bool>,
+    #[prost(map = "string, string", tag = "9")]
+    pub meta_tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `SyncJob`.
 pub mod sync_job {
