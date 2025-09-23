@@ -104,6 +104,8 @@ message JobLockedInfo {
     uint32 stub_url_rst_id = 8;
     string stub_url_path = 9;
     string externalId = 10;
+    map<string, string> user_xattrs = 11;
+    map<string, string> remote_user_xattrs = 12;
 }
 
 message JobRequestCfg {
@@ -119,6 +121,7 @@ message JobRequestCfg {
     optional bool update = 10;
     map<string, string> metadata = 13;
     optional string tagging = 14;
+    optional bool enable_xattr = 15;
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.

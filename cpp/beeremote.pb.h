@@ -3265,6 +3265,7 @@ class JobRequest final : public ::google::protobuf::Message
     kForceFieldNumber = 5,
     kStubLocalFieldNumber = 7,
     kUpdateFieldNumber = 9,
+    kEnableXattrFieldNumber = 13,
     kSyncFieldNumber = 10,
     kMockFieldNumber = 11,
     kBuilderFieldNumber = 12,
@@ -3367,6 +3368,17 @@ class JobRequest final : public ::google::protobuf::Message
   void _internal_set_update(bool value);
 
   public:
+  // optional bool enable_xattr = 13;
+  bool has_enable_xattr() const;
+  void clear_enable_xattr() ;
+  bool enable_xattr() const;
+  void set_enable_xattr(bool value);
+
+  private:
+  bool _internal_enable_xattr() const;
+  void _internal_set_enable_xattr(bool value);
+
+  public:
   // .flex.SyncJob sync = 10;
   bool has_sync() const;
   private:
@@ -3436,7 +3448,7 @@ class JobRequest final : public ::google::protobuf::Message
   inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 11, 4,
+      4, 12, 4,
       45, 2>
       _table_;
 
@@ -3464,6 +3476,7 @@ class JobRequest final : public ::google::protobuf::Message
     bool force_;
     bool stub_local_;
     bool update_;
+    bool enable_xattr_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -5947,6 +5960,34 @@ inline bool JobRequest::_internal_update() const {
 inline void JobRequest::_internal_set_update(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.update_ = value;
+}
+
+// optional bool enable_xattr = 13;
+inline bool JobRequest::has_enable_xattr() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void JobRequest::clear_enable_xattr() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enable_xattr_ = false;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline bool JobRequest::enable_xattr() const {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.enable_xattr)
+  return _internal_enable_xattr();
+}
+inline void JobRequest::set_enable_xattr(bool value) {
+  _internal_set_enable_xattr(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.enable_xattr)
+}
+inline bool JobRequest::_internal_enable_xattr() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.enable_xattr_;
+}
+inline void JobRequest::_internal_set_enable_xattr(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enable_xattr_ = value;
 }
 
 inline bool JobRequest::has_type() const {

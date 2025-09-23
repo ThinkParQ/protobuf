@@ -97,6 +97,7 @@ message JobRequest {
         string message = 2;
     }
     optional bool update = 9;
+    optional bool enable_xattr = 13;
 }
 
 // Job contains all the data from the original request plus the job ID and
