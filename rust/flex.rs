@@ -179,6 +179,16 @@ pub struct JobLockedInfo {
     pub stub_url_path: ::prost::alloc::string::String,
     #[prost(string, tag = "10")]
     pub external_id: ::prost::alloc::string::String,
+    #[prost(map = "string, string", tag = "11")]
+    pub user_xattrs: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(map = "string, string", tag = "12")]
+    pub remote_user_xattrs: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobRequestCfg {
@@ -209,6 +219,8 @@ pub struct JobRequestCfg {
     >,
     #[prost(string, optional, tag = "14")]
     pub tagging: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "15")]
+    pub enable_xattr: ::core::option::Option<bool>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
