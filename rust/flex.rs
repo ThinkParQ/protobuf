@@ -209,6 +209,8 @@ pub struct JobRequestCfg {
     >,
     #[prost(string, optional, tag = "14")]
     pub tagging: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(int32, optional, tag = "11")]
+    pub priority: ::core::option::Option<i32>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -230,6 +232,8 @@ pub struct WorkRequest {
     /// When stub_local is set the local file with be a stub file
     #[prost(bool, tag = "8")]
     pub stub_local: bool,
+    #[prost(int32, optional, tag = "9")]
+    pub priority: ::core::option::Option<i32>,
     #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
@@ -452,10 +456,9 @@ pub mod work {
         Scheduled = 3,
         /// When a worker node is actively running a request.
         Running = 4,
-        /// A user manually requested the job be paused.
-        /// TODO: <https://github.com/ThinkParQ/bee-remote/issues/16>
-        /// PAUSED = 5;
-        ///
+        /// Remote storage target is busy or resource is temporarily unavailable so the request has
+        /// been rescheduled. For example, if a restore object is needed before a get object request.
+        Rescheduled = 5,
         /// ERROR indicates one or more transient/ephemeral error(s) occurred carrying out the
         /// request, but the worker node is still retrying the request. Once the allowed number of
         /// retries or retry timeout is exceed, the work request will fail.
@@ -474,6 +477,10 @@ pub mod work {
         /// If the work request completed successfully. Once work reaches this state and a response
         /// is sent to BeeRemote, the worker node should no longer have a record or be acting on this
         /// request.
+        ///
+        /// A user manually requested the job be paused.
+        /// TODO: <https://github.com/ThinkParQ/bee-remote/issues/16>
+        /// PAUSED = 10;
         Completed = 9,
     }
     impl State {
@@ -488,6 +495,7 @@ pub mod work {
                 Self::Created => "CREATED",
                 Self::Scheduled => "SCHEDULED",
                 Self::Running => "RUNNING",
+                Self::Rescheduled => "RESCHEDULED",
                 Self::Error => "ERROR",
                 Self::Failed => "FAILED",
                 Self::Cancelled => "CANCELLED",
@@ -502,6 +510,7 @@ pub mod work {
                 "CREATED" => Some(Self::Created),
                 "SCHEDULED" => Some(Self::Scheduled),
                 "RUNNING" => Some(Self::Running),
+                "RESCHEDULED" => Some(Self::Rescheduled),
                 "ERROR" => Some(Self::Error),
                 "FAILED" => Some(Self::Failed),
                 "CANCELLED" => Some(Self::Cancelled),

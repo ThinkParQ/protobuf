@@ -119,6 +119,7 @@ message JobRequestCfg {
     optional bool update = 10;
     map<string, string> metadata = 13;
     optional string tagging = 14;
+    optional int32 priority = 11;
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.
@@ -150,6 +151,7 @@ message WorkRequest {
     }
     // When stub_local is set the local file with be a stub file
     bool stub_local = 8;
+    optional int32 priority = 9;
 }
 
 // JobBuilderJob is a special type of job that creates job requests of any time.
@@ -233,10 +235,9 @@ message Work {
         SCHEDULED = 3;
         // When a worker node is actively running a request. 
         RUNNING = 4;
-        // A user manually requested the job be paused. 
-        // TODO: https://github.com/ThinkParQ/bee-remote/issues/16 
-        // PAUSED = 5;
-        //
+        // Remote storage target is busy or resource is temporarily unavailable so the request has
+        // been rescheduled. For example, if a restore object is needed before a get object request.
+        RESCHEDULED = 5;
         // ERROR indicates one or more transient/ephemeral error(s) occurred carrying out the
         // request, but the worker node is still retrying the request. Once the allowed number of
         // retries or retry timeout is exceed, the work request will fail.
@@ -255,7 +256,10 @@ message Work {
         // If the work request completed successfully. Once work reaches this state and a response
         // is sent to BeeRemote, the worker node should no longer have a record or be acting on this
         // request.
-        COMPLETED = 9;        
+        COMPLETED = 9;
+        // A user manually requested the job be paused.
+        // TODO: https://github.com/ThinkParQ/bee-remote/issues/16
+        // PAUSED = 10;
     }
 
     // Each work request is split into one or more parts so data can be
