@@ -124,6 +124,7 @@ message JobRequestCfg {
     optional int32 priority = 11;
     optional string storage_class = 12;
     optional bool allow_restore = 15;
+    optional string filter_expr = 16;
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.
@@ -179,7 +180,7 @@ message MockJob {
 // A SyncJob is WHAT work needs to be done. It is populated based on the
 // file system modification event or by a user describing some work that needs
 // to be done. It does not carry any details about HOW the request will be
-// fufilled (that is part of the generated SyncRequest).
+// fulfilled (that is part of the generated SyncRequest).
 message SyncJob {
     Operation operation = 1;
     enum Operation {

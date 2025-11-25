@@ -218,6 +218,8 @@ pub struct JobRequestCfg {
     pub storage_class: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(bool, optional, tag = "15")]
     pub allow_restore: ::core::option::Option<bool>,
+    #[prost(string, optional, tag = "16")]
+    pub filter_expr: ::core::option::Option<::prost::alloc::string::String>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -303,7 +305,7 @@ pub struct MockJob {
 /// A SyncJob is WHAT work needs to be done. It is populated based on the
 /// file system modification event or by a user describing some work that needs
 /// to be done. It does not carry any details about HOW the request will be
-/// fufilled (that is part of the generated SyncRequest).
+/// fulfilled (that is part of the generated SyncRequest).
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SyncJob {
     #[prost(enumeration = "sync_job::Operation", tag = "1")]
