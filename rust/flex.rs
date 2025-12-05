@@ -179,6 +179,9 @@ pub struct JobLockedInfo {
     pub stub_url_path: ::prost::alloc::string::String,
     #[prost(string, tag = "10")]
     pub external_id: ::prost::alloc::string::String,
+    /// Whether the file or object have been archived and needs to be retrieved prior to download.
+    #[prost(bool, tag = "11")]
+    pub is_archived: bool,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobRequestCfg {
@@ -211,6 +214,10 @@ pub struct JobRequestCfg {
     pub tagging: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(int32, optional, tag = "11")]
     pub priority: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "12")]
+    pub storage_class: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "15")]
+    pub allow_restore: ::core::option::Option<bool>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -271,6 +278,12 @@ pub mod work_request {
 pub struct BuilderJob {
     #[prost(message, optional, tag = "1")]
     pub cfg: ::core::option::Option<JobRequestCfg>,
+    /// Stores the total number of job requests that were submitted regardless of success.
+    #[prost(int32, tag = "2")]
+    pub submitted: i32,
+    /// Stores the number of failed job requests.
+    #[prost(int32, tag = "3")]
+    pub errors: i32,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MockJob {
@@ -321,6 +334,10 @@ pub struct SyncJob {
     >,
     #[prost(string, optional, tag = "10")]
     pub tagging: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "12")]
+    pub storage_class: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "13")]
+    pub allow_restore: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `SyncJob`.
 pub mod sync_job {
@@ -674,7 +691,7 @@ pub mod remote_storage_target {
     /// The S3 type uses the AWS S3 SDK under the hood. To support non-AWS S3
     /// services we implement the EndPointResolverWithOptions interface to
     /// provide custom endpoint resolving behavior. By specifying the
-    /// endpoint_url and optionally the parition_id and region we can support
+    /// endpoint_url and optionally the partition_id and region we can support
     /// local S3 services like MinIO and theoretically other cloud providers like
     /// Azure or GCP.
     #[derive(Clone, PartialEq, ::prost::Message)]
@@ -700,6 +717,44 @@ pub mod remote_storage_target {
         pub access_key: ::prost::alloc::string::String,
         #[prost(string, tag = "6")]
         pub secret_key: ::prost::alloc::string::String,
+        /// User-defined list of storage classes. Only archival storage class are currently
+        /// supported.
+        #[prost(message, repeated, tag = "8")]
+        pub storage_class: ::prost::alloc::vec::Vec<s3::StorageClass>,
+    }
+    /// Nested message and enum types in `S3`.
+    pub mod s3 {
+        #[derive(Clone, PartialEq, ::prost::Message)]
+        pub struct StorageClass {
+            /// Name of the storage class
+            #[prost(string, tag = "1")]
+            pub name: ::prost::alloc::string::String,
+            /// Defines whether the class is archival and options for restore process
+            #[prost(message, optional, tag = "2")]
+            pub archival: ::core::option::Option<storage_class::Archival>,
+        }
+        /// Nested message and enum types in `StorageClass`.
+        pub mod storage_class {
+            #[derive(Clone, PartialEq, ::prost::Message)]
+            pub struct Archival {
+                #[prost(string, tag = "1")]
+                pub retrieval_tier: ::prost::alloc::string::String,
+                /// Time a restored object that is archived will be accessible measured in days.
+                #[prost(int32, tag = "2")]
+                pub retention_days: i32,
+                /// Initial retry duration. Should be a positive number with a valid time
+                /// unit (ms, s, m, h). For example, "1h"
+                #[prost(string, tag = "3")]
+                pub check_time: ::prost::alloc::string::String,
+                /// Subsequent retry polling duration. Should be a positive number with a valid time
+                /// unit (ms, s, m, h). For example, "30m"
+                #[prost(string, tag = "4")]
+                pub recheck_time: ::prost::alloc::string::String,
+                /// Automatically restore from this storage class when needed.
+                #[prost(bool, tag = "5")]
+                pub auto_restore: bool,
+            }
+        }
     }
     #[derive(Clone, PartialEq, ::prost::Message)]
     pub struct Azure {
