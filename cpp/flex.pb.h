@@ -5421,6 +5421,7 @@ class JobRequestCfg final : public ::google::protobuf::Message
     kRemotePathFieldNumber = 3,
     kStorageClassFieldNumber = 12,
     kTaggingFieldNumber = 14,
+    kFilterExprFieldNumber = 16,
     kLockedInfoFieldNumber = 9,
     kRemoteStorageTargetFieldNumber = 1,
     kDownloadFieldNumber = 4,
@@ -5511,6 +5512,23 @@ class JobRequestCfg final : public ::google::protobuf::Message
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_tagging(
       const std::string& value);
   std::string* _internal_mutable_tagging();
+
+  public:
+  // optional string filter_expr = 16;
+  bool has_filter_expr() const;
+  void clear_filter_expr() ;
+  const std::string& filter_expr() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_filter_expr(Arg_&& arg, Args_... args);
+  std::string* mutable_filter_expr();
+  PROTOBUF_NODISCARD std::string* release_filter_expr();
+  void set_allocated_filter_expr(std::string* value);
+
+  private:
+  const std::string& _internal_filter_expr() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filter_expr(
+      const std::string& value);
+  std::string* _internal_mutable_filter_expr();
 
   public:
   // .flex.JobLockedInfo locked_info = 9;
@@ -5626,8 +5644,8 @@ class JobRequestCfg final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 15, 2,
-      77, 2>
+      4, 16, 2,
+      96, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -5654,6 +5672,7 @@ class JobRequestCfg final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr remotepath_;
     ::google::protobuf::internal::ArenaStringPtr storage_class_;
     ::google::protobuf::internal::ArenaStringPtr tagging_;
+    ::google::protobuf::internal::ArenaStringPtr filter_expr_;
     ::flex::JobLockedInfo* locked_info_;
     ::uint32_t remotestoragetarget_;
     bool download_;
@@ -9180,14 +9199,14 @@ inline void JobRequestCfg::_internal_set_force(bool value) {
 
 // .flex.JobLockedInfo locked_info = 9;
 inline bool JobRequestCfg::has_locked_info() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.locked_info_ != nullptr);
   return value;
 }
 inline void JobRequestCfg::clear_locked_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.locked_info_ != nullptr) _impl_.locked_info_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
 inline const ::flex::JobLockedInfo& JobRequestCfg::_internal_locked_info() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -9205,16 +9224,16 @@ inline void JobRequestCfg::unsafe_arena_set_allocated_locked_info(::flex::JobLoc
   }
   _impl_.locked_info_ = reinterpret_cast<::flex::JobLockedInfo*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000008u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000008u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:flex.JobRequestCfg.locked_info)
 }
 inline ::flex::JobLockedInfo* JobRequestCfg::release_locked_info() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
   ::flex::JobLockedInfo* released = _impl_.locked_info_;
   _impl_.locked_info_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -9234,7 +9253,7 @@ inline ::flex::JobLockedInfo* JobRequestCfg::unsafe_arena_release_locked_info() 
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:flex.JobRequestCfg.locked_info)
 
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
   ::flex::JobLockedInfo* temp = _impl_.locked_info_;
   _impl_.locked_info_ = nullptr;
   return temp;
@@ -9248,7 +9267,7 @@ inline ::flex::JobLockedInfo* JobRequestCfg::_internal_mutable_locked_info() {
   return _impl_.locked_info_;
 }
 inline ::flex::JobLockedInfo* JobRequestCfg::mutable_locked_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   ::flex::JobLockedInfo* _msg = _internal_mutable_locked_info();
   // @@protoc_insertion_point(field_mutable:flex.JobRequestCfg.locked_info)
   return _msg;
@@ -9265,9 +9284,9 @@ inline void JobRequestCfg::set_allocated_locked_info(::flex::JobLockedInfo* valu
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000008u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000008u;
   }
 
   _impl_.locked_info_ = reinterpret_cast<::flex::JobLockedInfo*>(value);
@@ -9276,13 +9295,13 @@ inline void JobRequestCfg::set_allocated_locked_info(::flex::JobLockedInfo* valu
 
 // optional bool update = 10;
 inline bool JobRequestCfg::has_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
   return value;
 }
 inline void JobRequestCfg::clear_update() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.update_ = false;
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
 }
 inline bool JobRequestCfg::update() const {
   // @@protoc_insertion_point(field_get:flex.JobRequestCfg.update)
@@ -9290,7 +9309,7 @@ inline bool JobRequestCfg::update() const {
 }
 inline void JobRequestCfg::set_update(bool value) {
   _internal_set_update(value);
-  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_._has_bits_[0] |= 0x00000020u;
   // @@protoc_insertion_point(field_set:flex.JobRequestCfg.update)
 }
 inline bool JobRequestCfg::_internal_update() const {
@@ -9401,13 +9420,13 @@ inline void JobRequestCfg::set_allocated_tagging(std::string* value) {
 
 // optional int32 priority = 11;
 inline bool JobRequestCfg::has_priority() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
 inline void JobRequestCfg::clear_priority() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.priority_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
 inline ::int32_t JobRequestCfg::priority() const {
   // @@protoc_insertion_point(field_get:flex.JobRequestCfg.priority)
@@ -9415,7 +9434,7 @@ inline ::int32_t JobRequestCfg::priority() const {
 }
 inline void JobRequestCfg::set_priority(::int32_t value) {
   _internal_set_priority(value);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   // @@protoc_insertion_point(field_set:flex.JobRequestCfg.priority)
 }
 inline ::int32_t JobRequestCfg::_internal_priority() const {
@@ -9498,13 +9517,13 @@ inline void JobRequestCfg::set_allocated_storage_class(std::string* value) {
 
 // optional bool allow_restore = 15;
 inline bool JobRequestCfg::has_allow_restore() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
   return value;
 }
 inline void JobRequestCfg::clear_allow_restore() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.allow_restore_ = false;
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000040u;
 }
 inline bool JobRequestCfg::allow_restore() const {
   // @@protoc_insertion_point(field_get:flex.JobRequestCfg.allow_restore)
@@ -9512,7 +9531,7 @@ inline bool JobRequestCfg::allow_restore() const {
 }
 inline void JobRequestCfg::set_allow_restore(bool value) {
   _internal_set_allow_restore(value);
-  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_._has_bits_[0] |= 0x00000040u;
   // @@protoc_insertion_point(field_set:flex.JobRequestCfg.allow_restore)
 }
 inline bool JobRequestCfg::_internal_allow_restore() const {
@@ -9522,6 +9541,75 @@ inline bool JobRequestCfg::_internal_allow_restore() const {
 inline void JobRequestCfg::_internal_set_allow_restore(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.allow_restore_ = value;
+}
+
+// optional string filter_expr = 16;
+inline bool JobRequestCfg::has_filter_expr() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void JobRequestCfg::clear_filter_expr() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.filter_expr_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& JobRequestCfg::filter_expr() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.JobRequestCfg.filter_expr)
+  return _internal_filter_expr();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void JobRequestCfg::set_filter_expr(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.filter_expr_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.JobRequestCfg.filter_expr)
+}
+inline std::string* JobRequestCfg::mutable_filter_expr() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_filter_expr();
+  // @@protoc_insertion_point(field_mutable:flex.JobRequestCfg.filter_expr)
+  return _s;
+}
+inline const std::string& JobRequestCfg::_internal_filter_expr() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.filter_expr_.Get();
+}
+inline void JobRequestCfg::_internal_set_filter_expr(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.filter_expr_.Set(value, GetArena());
+}
+inline std::string* JobRequestCfg::_internal_mutable_filter_expr() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.filter_expr_.Mutable( GetArena());
+}
+inline std::string* JobRequestCfg::release_filter_expr() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.JobRequestCfg.filter_expr)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.filter_expr_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.filter_expr_.Set("", GetArena());
+  }
+  return released;
+}
+inline void JobRequestCfg::set_allocated_filter_expr(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.filter_expr_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.filter_expr_.IsDefault()) {
+    _impl_.filter_expr_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.JobRequestCfg.filter_expr)
 }
 
 // -------------------------------------------------------------------
