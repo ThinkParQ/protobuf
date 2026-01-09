@@ -101,6 +101,8 @@ pub struct JobRequest {
     pub generation_status: ::core::option::Option<job_request::GenerationStatus>,
     #[prost(bool, optional, tag = "9")]
     pub update: ::core::option::Option<bool>,
+    #[prost(string, repeated, tag = "13")]
+    pub sort_values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }

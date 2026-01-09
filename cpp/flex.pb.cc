@@ -204,6 +204,9 @@ inline constexpr RemoteStorageTarget_S3_StorageClass_Archival::Impl_::Impl_(
         recheck_time_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        placement_hints_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         retention_days_{0},
         auto_restore_{false},
         _cached_size_{0} {}
@@ -1371,6 +1374,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3_StorageClass_Archival, _impl_.check_time_),
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3_StorageClass_Archival, _impl_.recheck_time_),
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3_StorageClass_Archival, _impl_.auto_restore_),
+        PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3_StorageClass_Archival, _impl_.placement_hints_),
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3_StorageClass, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::flex::RemoteStorageTarget_S3_StorageClass, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -1472,11 +1476,11 @@ static const ::_pbi::MigrationSchema
         {358, -1, -1, sizeof(::flex::BeeRemoteNode)},
         {375, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
         {384, -1, -1, sizeof(::flex::RemoteStorageTarget_S3_StorageClass_Archival)},
-        {397, 407, -1, sizeof(::flex::RemoteStorageTarget_S3_StorageClass)},
-        {409, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
-        {424, 434, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
-        {436, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
-        {445, 461, -1, sizeof(::flex::RemoteStorageTarget)},
+        {398, 408, -1, sizeof(::flex::RemoteStorageTarget_S3_StorageClass)},
+        {410, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
+        {425, 435, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
+        {437, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
+        {446, 462, -1, sizeof(::flex::RemoteStorageTarget)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::flex::_HeartbeatRequest_default_instance_._instance,
@@ -1606,38 +1610,38 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "s_disable_verification\030\005 \001(\010\022\031\n\021mgmtd_tl"
     "s_disable\030\006 \001(\010\022\027\n\017mgmtd_use_proxy\030\t \001(\010"
     "\022\023\n\013auth_secret\030\007 \001(\014\022\024\n\014auth_disable\030\010 "
-    "\001(\010\"\301\006\n\023RemoteStorageTarget\022\n\n\002id\030\001 \001(\r\022"
+    "\001(\010\"\333\006\n\023RemoteStorageTarget\022\n\n\002id\030\001 \001(\r\022"
     "\014\n\004name\030\002 \001(\t\0224\n\010policies\030\003 \001(\0132\".flex.R"
     "emoteStorageTarget.Policies\022*\n\002s3\030\004 \001(\0132"
     "\034.flex.RemoteStorageTarget.S3H\000\0220\n\005posix"
     "\030\005 \001(\0132\037.flex.RemoteStorageTarget.POSIXH"
     "\000\0220\n\005azure\030\006 \001(\0132\037.flex.RemoteStorageTar"
     "get.AzureH\000\022\016\n\004mock\030\007 \001(\tH\000\032\'\n\010Policies\022"
-    "\033\n\023fast_start_max_size\030\001 \001(\003\032\255\003\n\002S3\022\024\n\014e"
+    "\033\n\023fast_start_max_size\030\001 \001(\003\032\307\003\n\002S3\022\024\n\014e"
     "ndpoint_url\030\001 \001(\t\022\024\n\014partition_id\030\002 \001(\t\022"
     "\016\n\006region\030\003 \001(\t\022\016\n\006bucket\030\004 \001(\t\022\022\n\nacces"
     "s_key\030\005 \001(\t\022\022\n\nsecret_key\030\006 \001(\t\022@\n\rstora"
     "ge_class\030\010 \003(\0132).flex.RemoteStorageTarge"
-    "t.S3.StorageClass\032\360\001\n\014StorageClass\022\014\n\004na"
+    "t.S3.StorageClass\032\212\002\n\014StorageClass\022\014\n\004na"
     "me\030\001 \001(\t\022I\n\010archival\030\002 \001(\01322.flex.Remote"
     "StorageTarget.S3.StorageClass.ArchivalH\000"
-    "\210\001\001\032z\n\010Archival\022\026\n\016retrieval_tier\030\001 \001(\t\022"
-    "\026\n\016retention_days\030\002 \001(\005\022\022\n\ncheck_time\030\003 "
-    "\001(\t\022\024\n\014recheck_time\030\004 \001(\t\022\024\n\014auto_restor"
-    "e\030\005 \001(\010B\013\n\t_archival\032B\n\005Azure\022(\n\002s3\030\001 \001("
-    "\0132\034.flex.RemoteStorageTarget.S3\022\017\n\007accou"
-    "nt\030\002 \001(\t\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\tB\006\n\004type2"
-    "\340\002\n\nWorkerNode\022E\n\014UpdateConfig\022\031.flex.Up"
-    "dateConfigRequest\032\032.flex.UpdateConfigRes"
-    "ponse\022<\n\tHeartbeat\022\026.flex.HeartbeatReque"
-    "st\032\027.flex.HeartbeatResponse\022\?\n\nSubmitWor"
-    "k\022\027.flex.SubmitWorkRequest\032\030.flex.Submit"
-    "WorkResponse\022\?\n\nUpdateWork\022\027.flex.Update"
-    "WorkRequest\032\030.flex.UpdateWorkResponse\022K\n"
-    "\016BulkUpdateWork\022\033.flex.BulkUpdateWorkReq"
-    "uest\032\034.flex.BulkUpdateWorkResponseB\'Z%gi"
-    "thub.com/thinkparq/protobuf/go/flexb\006pro"
-    "to3"
+    "\210\001\001\032\223\001\n\010Archival\022\026\n\016retrieval_tier\030\001 \001(\t"
+    "\022\026\n\016retention_days\030\002 \001(\005\022\022\n\ncheck_time\030\003"
+    " \001(\t\022\024\n\014recheck_time\030\004 \001(\t\022\024\n\014auto_resto"
+    "re\030\005 \001(\010\022\027\n\017placement_hints\030\006 \001(\tB\013\n\t_ar"
+    "chival\032B\n\005Azure\022(\n\002s3\030\001 \001(\0132\034.flex.Remot"
+    "eStorageTarget.S3\022\017\n\007account\030\002 \001(\t\032\025\n\005PO"
+    "SIX\022\014\n\004path\030\001 \001(\tB\006\n\004type2\340\002\n\nWorkerNode"
+    "\022E\n\014UpdateConfig\022\031.flex.UpdateConfigRequ"
+    "est\032\032.flex.UpdateConfigResponse\022<\n\tHeart"
+    "beat\022\026.flex.HeartbeatRequest\032\027.flex.Hear"
+    "tbeatResponse\022\?\n\nSubmitWork\022\027.flex.Submi"
+    "tWorkRequest\032\030.flex.SubmitWorkResponse\022\?"
+    "\n\nUpdateWork\022\027.flex.UpdateWorkRequest\032\030."
+    "flex.UpdateWorkResponse\022K\n\016BulkUpdateWor"
+    "k\022\033.flex.BulkUpdateWorkRequest\032\034.flex.Bu"
+    "lkUpdateWorkResponseB\'Z%github.com/think"
+    "parq/protobuf/go/flexb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_flex_2eproto_deps[1] =
     {
@@ -1647,7 +1651,7 @@ static ::absl::once_flag descriptor_table_flex_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_flex_2eproto = {
     false,
     false,
-    4963,
+    4989,
     descriptor_table_protodef_flex_2eproto,
     "flex.proto",
     &descriptor_table_flex_2eproto_once,
@@ -9979,6 +9983,7 @@ inline PROTOBUF_NDEBUG_INLINE RemoteStorageTarget_S3_StorageClass_Archival::Impl
       : retrieval_tier_(arena, from.retrieval_tier_),
         check_time_(arena, from.check_time_),
         recheck_time_(arena, from.recheck_time_),
+        placement_hints_(arena, from.placement_hints_),
         _cached_size_{0} {}
 
 RemoteStorageTarget_S3_StorageClass_Archival::RemoteStorageTarget_S3_StorageClass_Archival(
@@ -10010,6 +10015,7 @@ inline PROTOBUF_NDEBUG_INLINE RemoteStorageTarget_S3_StorageClass_Archival::Impl
       : retrieval_tier_(arena),
         check_time_(arena),
         recheck_time_(arena),
+        placement_hints_(arena),
         _cached_size_{0} {}
 
 inline void RemoteStorageTarget_S3_StorageClass_Archival::SharedCtor(::_pb::Arena* arena) {
@@ -10032,6 +10038,7 @@ inline void RemoteStorageTarget_S3_StorageClass_Archival::SharedDtor(MessageLite
   this_._impl_.retrieval_tier_.Destroy();
   this_._impl_.check_time_.Destroy();
   this_._impl_.recheck_time_.Destroy();
+  this_._impl_.placement_hints_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -10071,15 +10078,15 @@ const ::google::protobuf::internal::ClassData* RemoteStorageTarget_S3_StorageCla
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 0, 94, 2> RemoteStorageTarget_S3_StorageClass_Archival::_table_ = {
+const ::_pbi::TcParseTable<3, 6, 0, 109, 2> RemoteStorageTarget_S3_StorageClass_Archival::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    6, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967232,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    6,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -10105,7 +10112,9 @@ const ::_pbi::TcParseTable<3, 5, 0, 94, 2> RemoteStorageTarget_S3_StorageClass_A
     // bool auto_restore = 5;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(RemoteStorageTarget_S3_StorageClass_Archival, _impl_.auto_restore_), 63>(),
      {40, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_S3_StorageClass_Archival, _impl_.auto_restore_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // string placement_hints = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_S3_StorageClass_Archival, _impl_.placement_hints_)}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
@@ -10125,14 +10134,18 @@ const ::_pbi::TcParseTable<3, 5, 0, 94, 2> RemoteStorageTarget_S3_StorageClass_A
     // bool auto_restore = 5;
     {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_S3_StorageClass_Archival, _impl_.auto_restore_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string placement_hints = 6;
+    {PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_S3_StorageClass_Archival, _impl_.placement_hints_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\61\16\0\12\14\0\0\0"
+    "\61\16\0\12\14\0\17\0"
     "flex.RemoteStorageTarget.S3.StorageClass.Archival"
     "retrieval_tier"
     "check_time"
     "recheck_time"
+    "placement_hints"
   }},
 };
 
@@ -10146,6 +10159,7 @@ PROTOBUF_NOINLINE void RemoteStorageTarget_S3_StorageClass_Archival::Clear() {
   _impl_.retrieval_tier_.ClearToEmpty();
   _impl_.check_time_.ClearToEmpty();
   _impl_.recheck_time_.ClearToEmpty();
+  _impl_.placement_hints_.ClearToEmpty();
   ::memset(&_impl_.retention_days_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.auto_restore_) -
       reinterpret_cast<char*>(&_impl_.retention_days_)) + sizeof(_impl_.auto_restore_));
@@ -10205,6 +10219,14 @@ PROTOBUF_NOINLINE void RemoteStorageTarget_S3_StorageClass_Archival::Clear() {
                 5, this_._internal_auto_restore(), target);
           }
 
+          // string placement_hints = 6;
+          if (!this_._internal_placement_hints().empty()) {
+            const std::string& _s = this_._internal_placement_hints();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.RemoteStorageTarget.S3.StorageClass.Archival.placement_hints");
+            target = stream->WriteStringMaybeAliased(6, _s, target);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -10245,6 +10267,11 @@ PROTOBUF_NOINLINE void RemoteStorageTarget_S3_StorageClass_Archival::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_recheck_time());
             }
+            // string placement_hints = 6;
+            if (!this_._internal_placement_hints().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_placement_hints());
+            }
             // int32 retention_days = 2;
             if (this_._internal_retention_days() != 0) {
               total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
@@ -10276,6 +10303,9 @@ void RemoteStorageTarget_S3_StorageClass_Archival::MergeImpl(::google::protobuf:
   if (!from._internal_recheck_time().empty()) {
     _this->_internal_set_recheck_time(from._internal_recheck_time());
   }
+  if (!from._internal_placement_hints().empty()) {
+    _this->_internal_set_placement_hints(from._internal_placement_hints());
+  }
   if (from._internal_retention_days() != 0) {
     _this->_impl_.retention_days_ = from._impl_.retention_days_;
   }
@@ -10301,6 +10331,7 @@ void RemoteStorageTarget_S3_StorageClass_Archival::InternalSwap(RemoteStorageTar
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.retrieval_tier_, &other->_impl_.retrieval_tier_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.check_time_, &other->_impl_.check_time_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.recheck_time_, &other->_impl_.recheck_time_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.placement_hints_, &other->_impl_.placement_hints_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(RemoteStorageTarget_S3_StorageClass_Archival, _impl_.auto_restore_)
       + sizeof(RemoteStorageTarget_S3_StorageClass_Archival::_impl_.auto_restore_)
