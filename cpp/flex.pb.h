@@ -1697,6 +1697,7 @@ class RemoteStorageTarget_S3_StorageClass_Archival final : public ::google::prot
     kRetrievalTierFieldNumber = 1,
     kCheckTimeFieldNumber = 3,
     kRecheckTimeFieldNumber = 4,
+    kPlacementHintsFieldNumber = 6,
     kRetentionDaysFieldNumber = 2,
     kAutoRestoreFieldNumber = 5,
   };
@@ -1748,6 +1749,22 @@ class RemoteStorageTarget_S3_StorageClass_Archival final : public ::google::prot
   std::string* _internal_mutable_recheck_time();
 
   public:
+  // string placement_hints = 6;
+  void clear_placement_hints() ;
+  const std::string& placement_hints() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_placement_hints(Arg_&& arg, Args_... args);
+  std::string* mutable_placement_hints();
+  PROTOBUF_NODISCARD std::string* release_placement_hints();
+  void set_allocated_placement_hints(std::string* value);
+
+  private:
+  const std::string& _internal_placement_hints() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_placement_hints(
+      const std::string& value);
+  std::string* _internal_mutable_placement_hints();
+
+  public:
   // int32 retention_days = 2;
   void clear_retention_days() ;
   ::int32_t retention_days() const;
@@ -1773,8 +1790,8 @@ class RemoteStorageTarget_S3_StorageClass_Archival final : public ::google::prot
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 0,
-      94, 2>
+      3, 6, 0,
+      109, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1794,6 +1811,7 @@ class RemoteStorageTarget_S3_StorageClass_Archival final : public ::google::prot
     ::google::protobuf::internal::ArenaStringPtr retrieval_tier_;
     ::google::protobuf::internal::ArenaStringPtr check_time_;
     ::google::protobuf::internal::ArenaStringPtr recheck_time_;
+    ::google::protobuf::internal::ArenaStringPtr placement_hints_;
     ::int32_t retention_days_;
     bool auto_restore_;
     ::google::protobuf::internal::CachedSize _cached_size_;
@@ -12554,6 +12572,54 @@ inline bool RemoteStorageTarget_S3_StorageClass_Archival::_internal_auto_restore
 inline void RemoteStorageTarget_S3_StorageClass_Archival::_internal_set_auto_restore(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.auto_restore_ = value;
+}
+
+// string placement_hints = 6;
+inline void RemoteStorageTarget_S3_StorageClass_Archival::clear_placement_hints() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.placement_hints_.ClearToEmpty();
+}
+inline const std::string& RemoteStorageTarget_S3_StorageClass_Archival::placement_hints() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.RemoteStorageTarget.S3.StorageClass.Archival.placement_hints)
+  return _internal_placement_hints();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RemoteStorageTarget_S3_StorageClass_Archival::set_placement_hints(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.placement_hints_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.RemoteStorageTarget.S3.StorageClass.Archival.placement_hints)
+}
+inline std::string* RemoteStorageTarget_S3_StorageClass_Archival::mutable_placement_hints() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_placement_hints();
+  // @@protoc_insertion_point(field_mutable:flex.RemoteStorageTarget.S3.StorageClass.Archival.placement_hints)
+  return _s;
+}
+inline const std::string& RemoteStorageTarget_S3_StorageClass_Archival::_internal_placement_hints() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.placement_hints_.Get();
+}
+inline void RemoteStorageTarget_S3_StorageClass_Archival::_internal_set_placement_hints(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.placement_hints_.Set(value, GetArena());
+}
+inline std::string* RemoteStorageTarget_S3_StorageClass_Archival::_internal_mutable_placement_hints() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.placement_hints_.Mutable( GetArena());
+}
+inline std::string* RemoteStorageTarget_S3_StorageClass_Archival::release_placement_hints() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.RemoteStorageTarget.S3.StorageClass.Archival.placement_hints)
+  return _impl_.placement_hints_.Release();
+}
+inline void RemoteStorageTarget_S3_StorageClass_Archival::set_allocated_placement_hints(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.placement_hints_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.placement_hints_.IsDefault()) {
+    _impl_.placement_hints_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.RemoteStorageTarget.S3.StorageClass.Archival.placement_hints)
 }
 
 // -------------------------------------------------------------------

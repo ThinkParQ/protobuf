@@ -431,6 +431,9 @@ message RemoteStorageTarget {
                 string recheck_time = 4;
                 // Automatically restore from this storage class when needed.
                 bool auto_restore = 5;
+                // Comma separated list of metadata keys and their type (str|int|float) to order job
+                // requests for bulk restores. For example, "tag1:str,tag2:int,tag3:float"
+                string placement_hints = 6;
             }
         }
     }

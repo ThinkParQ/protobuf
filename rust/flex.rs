@@ -755,6 +755,10 @@ pub mod remote_storage_target {
                 /// Automatically restore from this storage class when needed.
                 #[prost(bool, tag = "5")]
                 pub auto_restore: bool,
+                /// Comma separated list of metadata keys and their type (str|int|float) to order job
+                /// requests for bulk restores. For example, "tag1:str,tag2:int,tag3:float"
+                #[prost(string, tag = "6")]
+                pub placement_hints: ::prost::alloc::string::String,
             }
         }
     }

@@ -3060,6 +3060,7 @@ class JobRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kSortValuesFieldNumber = 13,
     kPathFieldNumber = 1,
     kNameFieldNumber = 2,
     kGenerationStatusFieldNumber = 8,
@@ -3072,6 +3073,28 @@ class JobRequest final : public ::google::protobuf::Message
     kMockFieldNumber = 11,
     kBuilderFieldNumber = 12,
   };
+  // repeated string sort_values = 13;
+  int sort_values_size() const;
+  private:
+  int _internal_sort_values_size() const;
+
+  public:
+  void clear_sort_values() ;
+  const std::string& sort_values(int index) const;
+  std::string* mutable_sort_values(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_sort_values(int index, Arg_&& value, Args_... args);
+  std::string* add_sort_values();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_sort_values(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& sort_values() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_sort_values();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_sort_values() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_sort_values();
+
+  public:
   // string path = 1;
   void clear_path() ;
   const std::string& path() const;
@@ -3239,8 +3262,8 @@ class JobRequest final : public ::google::protobuf::Message
   inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 11, 4,
-      45, 2>
+      4, 12, 4,
+      56, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3259,6 +3282,7 @@ class JobRequest final : public ::google::protobuf::Message
                           const JobRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField<std::string> sort_values_;
     ::google::protobuf::internal::ArenaStringPtr path_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::beeremote::JobRequest_GenerationStatus* generation_status_;
@@ -5947,6 +5971,70 @@ inline bool JobRequest::_internal_update() const {
 inline void JobRequest::_internal_set_update(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.update_ = value;
+}
+
+// repeated string sort_values = 13;
+inline int JobRequest::_internal_sort_values_size() const {
+  return _internal_sort_values().size();
+}
+inline int JobRequest::sort_values_size() const {
+  return _internal_sort_values_size();
+}
+inline void JobRequest::clear_sort_values() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sort_values_.Clear();
+}
+inline std::string* JobRequest::add_sort_values() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_sort_values()->Add();
+  // @@protoc_insertion_point(field_add_mutable:beeremote.JobRequest.sort_values)
+  return _s;
+}
+inline const std::string& JobRequest::sort_values(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.sort_values)
+  return _internal_sort_values().Get(index);
+}
+inline std::string* JobRequest::mutable_sort_values(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.sort_values)
+  return _internal_mutable_sort_values()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void JobRequest::set_sort_values(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_sort_values()->Mutable(index),
+      std::forward<Arg_>(value), args... );
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.sort_values)
+}
+template <typename Arg_, typename... Args_>
+inline void JobRequest::add_sort_values(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_sort_values(),
+                               std::forward<Arg_>(value),
+                               args... );
+  // @@protoc_insertion_point(field_add:beeremote.JobRequest.sort_values)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+JobRequest::sort_values() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:beeremote.JobRequest.sort_values)
+  return _internal_sort_values();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+JobRequest::mutable_sort_values() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:beeremote.JobRequest.sort_values)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_sort_values();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+JobRequest::_internal_sort_values() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.sort_values_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+JobRequest::_internal_mutable_sort_values() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.sort_values_;
 }
 
 inline bool JobRequest::has_type() const {
