@@ -115,6 +115,7 @@ enum CertType : int {
   CERT_TYPE_PARTNER = 3,
   CERT_TYPE_CUSTOMER = 4,
   CERT_TYPE_TEMPORARY = 5,
+  CERT_TYPE_COMMUNITY = 6,
   CertType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   CertType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -124,8 +125,8 @@ enum CertType : int {
 bool CertType_IsValid(int value);
 extern const uint32_t CertType_internal_data_[];
 constexpr CertType CertType_MIN = static_cast<CertType>(0);
-constexpr CertType CertType_MAX = static_cast<CertType>(5);
-constexpr int CertType_ARRAYSIZE = 5 + 1;
+constexpr CertType CertType_MAX = static_cast<CertType>(6);
+constexpr int CertType_ARRAYSIZE = 6 + 1;
 const ::google::protobuf::EnumDescriptor*
 CertType_descriptor();
 template <typename T>
@@ -138,7 +139,7 @@ const std::string& CertType_Name(T value) {
 template <>
 inline const std::string& CertType_Name(CertType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<CertType_descriptor,
-                                                 0, 5>(
+                                                 0, 6>(
       static_cast<int>(value));
 }
 inline bool CertType_Parse(absl::string_view name, CertType* value) {
