@@ -790,6 +790,44 @@ pub mod remote_storage_target {
         Mock(::prost::alloc::string::String),
     }
 }
+#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+pub struct GetCapabilitiesRequest {}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetCapabilitiesResponse {
+    /// Defines the worker node's build information.
+    #[prost(message, optional, tag = "1")]
+    pub build_info: ::core::option::Option<BuildInfo>,
+    /// Features defines the capabilities advertised by the worker node. Each feature key maps to a
+    /// value that optionally contains nested sub-features to refine or qualify the capability (e.g.
+    /// supported modes, versions, or related/derived capabilities).
+    #[prost(map = "string, message", tag = "2")]
+    pub features: ::std::collections::HashMap<::prost::alloc::string::String, Feature>,
+    /// Timestamp for when the component started.
+    #[prost(message, optional, tag = "3")]
+    pub start_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+}
+/// Feature describes a single advertised capability. Each sub-feature key maps to a value that
+/// optionally contains nested sub-features that further qualify the capability (e.g., supported
+/// modes, versions, or related/derived capabilities).
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Feature {
+    #[prost(map = "string, message", tag = "1")]
+    pub sub_feature: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        Feature,
+    >,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BuildInfo {
+    #[prost(string, tag = "1")]
+    pub binary_name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub commit: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub build_time: ::prost::alloc::string::String,
+}
 /// Generated client implementations.
 pub mod worker_node_client {
     #![allow(
@@ -1006,6 +1044,30 @@ pub mod worker_node_client {
                 .insert(GrpcMethod::new("flex.WorkerNode", "BulkUpdateWork"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn get_capabilities(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetCapabilitiesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetCapabilitiesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/flex.WorkerNode/GetCapabilities",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("flex.WorkerNode", "GetCapabilities"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -1059,6 +1121,13 @@ pub mod worker_node_server {
             request: tonic::Request<super::BulkUpdateWorkRequest>,
         ) -> std::result::Result<
             tonic::Response<super::BulkUpdateWorkResponse>,
+            tonic::Status,
+        >;
+        async fn get_capabilities(
+            &self,
+            request: tonic::Request<super::GetCapabilitiesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetCapabilitiesResponse>,
             tonic::Status,
         >;
     }
@@ -1349,6 +1418,51 @@ pub mod worker_node_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = BulkUpdateWorkSvc(inner);
+                        let codec = tonic::codec::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/flex.WorkerNode/GetCapabilities" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetCapabilitiesSvc<T: WorkerNode>(pub Arc<T>);
+                    impl<
+                        T: WorkerNode,
+                    > tonic::server::UnaryService<super::GetCapabilitiesRequest>
+                    for GetCapabilitiesSvc<T> {
+                        type Response = super::GetCapabilitiesResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetCapabilitiesRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as WorkerNode>::get_capabilities(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = GetCapabilitiesSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

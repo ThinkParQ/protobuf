@@ -1045,7 +1045,7 @@ const char descriptor_table_protodef_beeremote_2eproto[] ABSL_ATTRIBUTE_SECTION_
     "RemoteStorageTarget\"&\n\026GetStubContentsRe"
     "quest\022\014\n\004path\030\001 \001(\t\"S\n\027GetStubContentsRe"
     "sponse\022\023\n\006rst_id\030\001 \001(\rH\000\210\001\001\022\020\n\003url\030\002 \001(\t"
-    "H\001\210\001\001B\t\n\007_rst_idB\006\n\004_url2\250\004\n\tBeeRemote\022F"
+    "H\001\210\001\001B\t\n\007_rst_idB\006\n\004_url2\370\004\n\tBeeRemote\022F"
     "\n\tSubmitJob\022\033.beeremote.SubmitJobRequest"
     "\032\034.beeremote.SubmitJobResponse\022N\n\013Update"
     "Paths\022\035.beeremote.UpdatePathsRequest\032\036.b"
@@ -1059,7 +1059,9 @@ const char descriptor_table_protodef_beeremote_2eproto[] ABSL_ATTRIBUTE_SECTION_
     "RSTConfigRequest\032\037.beeremote.GetRSTConfi"
     "gResponse\022X\n\017GetStubContents\022!.beeremote"
     ".GetStubContentsRequest\032\".beeremote.GetS"
-    "tubContentsResponseB,Z*github.com/thinkp"
+    "tubContentsResponse\022N\n\017GetCapabilities\022\034"
+    ".flex.GetCapabilitiesRequest\032\035.flex.GetC"
+    "apabilitiesResponseB,Z*github.com/thinkp"
     "arq/protobuf/go/beeremoteb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_beeremote_2eproto_deps[2] =
@@ -1071,7 +1073,7 @@ static ::absl::once_flag descriptor_table_beeremote_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beeremote_2eproto = {
     false,
     false,
-    3593,
+    3673,
     descriptor_table_protodef_beeremote_2eproto,
     "beeremote.proto",
     &descriptor_table_beeremote_2eproto_once,
