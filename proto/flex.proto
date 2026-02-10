@@ -17,6 +17,7 @@ service WorkerNode {
     // used when initially connecting to a node, or if we want to drain the WRs assigned to a node
     // if it is being removed.
     rpc BulkUpdateWork(BulkUpdateWorkRequest) returns (BulkUpdateWorkResponse);
+    rpc GetCapabilities(GetCapabilitiesRequest) returns (GetCapabilitiesResponse);
 }
 
 message HeartbeatRequest {
@@ -443,4 +444,34 @@ message RemoteStorageTarget {
     message POSIX {
         string path = 1;
     }
+}
+
+
+message GetCapabilitiesRequest {
+}
+
+message GetCapabilitiesResponse {
+  // Defines the worker node's build information.
+  BuildInfo build_info = 1;
+  // Features defines the capabilities advertised by the worker node. Each feature key maps to a
+  // value that optionally contains nested sub-features to refine or qualify the capability (e.g.
+  // supported modes, versions, or related/derived capabilities).
+  map<string, Feature> features = 2;
+  // Timestamp for when the component started.
+  google.protobuf.Timestamp start_timestamp = 3;
+}
+
+// Feature describes a single advertised capability. Each sub-feature key maps to a value that
+// optionally contains nested sub-features that further qualify the capability (e.g., supported
+// modes, versions, or related/derived capabilities).
+message Feature {
+  map<string, Feature> sub_feature = 1;
+}
+
+
+message BuildInfo {
+  string binary_name = 1;
+  string version = 2;
+  string commit = 3;
+  string build_time = 4;
 }

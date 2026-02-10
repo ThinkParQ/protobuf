@@ -24,6 +24,7 @@ service BeeRemote {
     rpc UpdateWork(UpdateWorkRequest) returns (UpdateWorkResponse);
     rpc GetRSTConfig(GetRSTConfigRequest) returns (GetRSTConfigResponse);
     rpc GetStubContents(GetStubContentsRequest) returns (GetStubContentsResponse);
+    rpc GetCapabilities(flex.GetCapabilitiesRequest) returns (flex.GetCapabilitiesResponse);
 }
 
 message SubmitJobRequest {

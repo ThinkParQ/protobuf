@@ -8,6 +8,7 @@ package beeremote
 
 import (
 	context "context"
+	flex "github.com/thinkparq/protobuf/go/flex"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -26,6 +27,7 @@ const (
 	BeeRemote_UpdateWork_FullMethodName      = "/beeremote.BeeRemote/UpdateWork"
 	BeeRemote_GetRSTConfig_FullMethodName    = "/beeremote.BeeRemote/GetRSTConfig"
 	BeeRemote_GetStubContents_FullMethodName = "/beeremote.BeeRemote/GetStubContents"
+	BeeRemote_GetCapabilities_FullMethodName = "/beeremote.BeeRemote/GetCapabilities"
 )
 
 // BeeRemoteClient is the client API for BeeRemote service.
@@ -51,6 +53,7 @@ type BeeRemoteClient interface {
 	UpdateWork(ctx context.Context, in *UpdateWorkRequest, opts ...grpc.CallOption) (*UpdateWorkResponse, error)
 	GetRSTConfig(ctx context.Context, in *GetRSTConfigRequest, opts ...grpc.CallOption) (*GetRSTConfigResponse, error)
 	GetStubContents(ctx context.Context, in *GetStubContentsRequest, opts ...grpc.CallOption) (*GetStubContentsResponse, error)
+	GetCapabilities(ctx context.Context, in *flex.GetCapabilitiesRequest, opts ...grpc.CallOption) (*flex.GetCapabilitiesResponse, error)
 }
 
 type beeRemoteClient struct {
@@ -149,6 +152,16 @@ func (c *beeRemoteClient) GetStubContents(ctx context.Context, in *GetStubConten
 	return out, nil
 }
 
+func (c *beeRemoteClient) GetCapabilities(ctx context.Context, in *flex.GetCapabilitiesRequest, opts ...grpc.CallOption) (*flex.GetCapabilitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(flex.GetCapabilitiesResponse)
+	err := c.cc.Invoke(ctx, BeeRemote_GetCapabilities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BeeRemoteServer is the server API for BeeRemote service.
 // All implementations must embed UnimplementedBeeRemoteServer
 // for forward compatibility.
@@ -172,6 +185,7 @@ type BeeRemoteServer interface {
 	UpdateWork(context.Context, *UpdateWorkRequest) (*UpdateWorkResponse, error)
 	GetRSTConfig(context.Context, *GetRSTConfigRequest) (*GetRSTConfigResponse, error)
 	GetStubContents(context.Context, *GetStubContentsRequest) (*GetStubContentsResponse, error)
+	GetCapabilities(context.Context, *flex.GetCapabilitiesRequest) (*flex.GetCapabilitiesResponse, error)
 	mustEmbedUnimplementedBeeRemoteServer()
 }
 
@@ -202,6 +216,9 @@ func (UnimplementedBeeRemoteServer) GetRSTConfig(context.Context, *GetRSTConfigR
 }
 func (UnimplementedBeeRemoteServer) GetStubContents(context.Context, *GetStubContentsRequest) (*GetStubContentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStubContents not implemented")
+}
+func (UnimplementedBeeRemoteServer) GetCapabilities(context.Context, *flex.GetCapabilitiesRequest) (*flex.GetCapabilitiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCapabilities not implemented")
 }
 func (UnimplementedBeeRemoteServer) mustEmbedUnimplementedBeeRemoteServer() {}
 func (UnimplementedBeeRemoteServer) testEmbeddedByValue()                   {}
@@ -336,6 +353,24 @@ func _BeeRemote_GetStubContents_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BeeRemote_GetCapabilities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(flex.GetCapabilitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeeRemoteServer).GetCapabilities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BeeRemote_GetCapabilities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeeRemoteServer).GetCapabilities(ctx, req.(*flex.GetCapabilitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BeeRemote_ServiceDesc is the grpc.ServiceDesc for BeeRemote service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -362,6 +397,10 @@ var BeeRemote_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStubContents",
 			Handler:    _BeeRemote_GetStubContents_Handler,
+		},
+		{
+			MethodName: "GetCapabilities",
+			Handler:    _BeeRemote_GetCapabilities_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -20,6 +20,7 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
+#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -60,6 +61,9 @@ namespace flex {
 class BeeRemoteNode;
 struct BeeRemoteNodeDefaultTypeInternal;
 extern BeeRemoteNodeDefaultTypeInternal _BeeRemoteNode_default_instance_;
+class BuildInfo;
+struct BuildInfoDefaultTypeInternal;
+extern BuildInfoDefaultTypeInternal _BuildInfo_default_instance_;
 class BuilderJob;
 struct BuilderJobDefaultTypeInternal;
 extern BuilderJobDefaultTypeInternal _BuilderJob_default_instance_;
@@ -69,6 +73,21 @@ extern BulkUpdateWorkRequestDefaultTypeInternal _BulkUpdateWorkRequest_default_i
 class BulkUpdateWorkResponse;
 struct BulkUpdateWorkResponseDefaultTypeInternal;
 extern BulkUpdateWorkResponseDefaultTypeInternal _BulkUpdateWorkResponse_default_instance_;
+class Feature;
+struct FeatureDefaultTypeInternal;
+extern FeatureDefaultTypeInternal _Feature_default_instance_;
+class Feature_SubFeatureEntry_DoNotUse;
+struct Feature_SubFeatureEntry_DoNotUseDefaultTypeInternal;
+extern Feature_SubFeatureEntry_DoNotUseDefaultTypeInternal _Feature_SubFeatureEntry_DoNotUse_default_instance_;
+class GetCapabilitiesRequest;
+struct GetCapabilitiesRequestDefaultTypeInternal;
+extern GetCapabilitiesRequestDefaultTypeInternal _GetCapabilitiesRequest_default_instance_;
+class GetCapabilitiesResponse;
+struct GetCapabilitiesResponseDefaultTypeInternal;
+extern GetCapabilitiesResponseDefaultTypeInternal _GetCapabilitiesResponse_default_instance_;
+class GetCapabilitiesResponse_FeaturesEntry_DoNotUse;
+struct GetCapabilitiesResponse_FeaturesEntry_DoNotUseDefaultTypeInternal;
+extern GetCapabilitiesResponse_FeaturesEntry_DoNotUseDefaultTypeInternal _GetCapabilitiesResponse_FeaturesEntry_DoNotUse_default_instance_;
 class HeartbeatRequest;
 struct HeartbeatRequestDefaultTypeInternal;
 extern HeartbeatRequestDefaultTypeInternal _HeartbeatRequest_default_instance_;
@@ -2419,6 +2438,388 @@ class HeartbeatRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class GetCapabilitiesRequest final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:flex.GetCapabilitiesRequest) */ {
+ public:
+  inline GetCapabilitiesRequest() : GetCapabilitiesRequest(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(GetCapabilitiesRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetCapabilitiesRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetCapabilitiesRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetCapabilitiesRequest(const GetCapabilitiesRequest& from) : GetCapabilitiesRequest(nullptr, from) {}
+  inline GetCapabilitiesRequest(GetCapabilitiesRequest&& from) noexcept
+      : GetCapabilitiesRequest(nullptr, std::move(from)) {}
+  inline GetCapabilitiesRequest& operator=(const GetCapabilitiesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetCapabilitiesRequest& operator=(GetCapabilitiesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetCapabilitiesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetCapabilitiesRequest* internal_default_instance() {
+    return reinterpret_cast<const GetCapabilitiesRequest*>(
+        &_GetCapabilitiesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 31;
+  friend void swap(GetCapabilitiesRequest& a, GetCapabilitiesRequest& b) { a.Swap(&b); }
+  inline void Swap(GetCapabilitiesRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetCapabilitiesRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetCapabilitiesRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<GetCapabilitiesRequest>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const GetCapabilitiesRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const GetCapabilitiesRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "flex.GetCapabilitiesRequest"; }
+
+ protected:
+  explicit GetCapabilitiesRequest(::google::protobuf::Arena* arena);
+  GetCapabilitiesRequest(::google::protobuf::Arena* arena, const GetCapabilitiesRequest& from);
+  GetCapabilitiesRequest(::google::protobuf::Arena* arena, GetCapabilitiesRequest&& from) noexcept
+      : GetCapabilitiesRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:flex.GetCapabilitiesRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetCapabilitiesRequest& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_flex_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Feature final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:flex.Feature) */ {
+ public:
+  inline Feature() : Feature(nullptr) {}
+  ~Feature() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Feature* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Feature));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Feature(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Feature(const Feature& from) : Feature(nullptr, from) {}
+  inline Feature(Feature&& from) noexcept
+      : Feature(nullptr, std::move(from)) {}
+  inline Feature& operator=(const Feature& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Feature& operator=(Feature&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Feature& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Feature* internal_default_instance() {
+    return reinterpret_cast<const Feature*>(
+        &_Feature_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 35;
+  friend void swap(Feature& a, Feature& b) { a.Swap(&b); }
+  inline void Swap(Feature* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Feature* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Feature* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Feature>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Feature& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Feature& from) { Feature::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Feature* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "flex.Feature"; }
+
+ protected:
+  explicit Feature(::google::protobuf::Arena* arena);
+  Feature(::google::protobuf::Arena* arena, const Feature& from);
+  Feature(::google::protobuf::Arena* arena, Feature&& from) noexcept
+      : Feature(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSubFeatureFieldNumber = 1,
+  };
+  // map<string, .flex.Feature> sub_feature = 1;
+  int sub_feature_size() const;
+  private:
+  int _internal_sub_feature_size() const;
+
+  public:
+  void clear_sub_feature() ;
+  const ::google::protobuf::Map<std::string, ::flex::Feature>& sub_feature() const;
+  ::google::protobuf::Map<std::string, ::flex::Feature>* mutable_sub_feature();
+
+  private:
+  const ::google::protobuf::Map<std::string, ::flex::Feature>& _internal_sub_feature() const;
+  ::google::protobuf::Map<std::string, ::flex::Feature>* _internal_mutable_sub_feature();
+
+  public:
+  // @@protoc_insertion_point(class_scope:flex.Feature)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 2,
+      32, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Feature& from_msg);
+    ::google::protobuf::internal::MapField<Feature_SubFeatureEntry_DoNotUse, std::string, ::flex::Feature,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>
+        sub_feature_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_flex_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Feature_SubFeatureEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, ::google::protobuf::Message,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, ::google::protobuf::Message,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>;
+  Feature_SubFeatureEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Feature_SubFeatureEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit Feature_SubFeatureEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Feature_SubFeatureEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Feature_SubFeatureEntry_DoNotUse*>(
+        &_Feature_SubFeatureEntry_DoNotUse_default_instance_);
+  }
+
+
+ private:
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_flex_2eproto;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      40, 2>
+      _table_;
+
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+};
+// -------------------------------------------------------------------
+
 class BulkUpdateWorkResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:flex.BulkUpdateWorkResponse) */ {
  public:
@@ -2828,6 +3229,256 @@ class BulkUpdateWorkRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const BulkUpdateWorkRequest& from_msg);
     int new_state_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_flex_2eproto;
+};
+// -------------------------------------------------------------------
+
+class BuildInfo final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:flex.BuildInfo) */ {
+ public:
+  inline BuildInfo() : BuildInfo(nullptr) {}
+  ~BuildInfo() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(BuildInfo* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(BuildInfo));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR BuildInfo(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline BuildInfo(const BuildInfo& from) : BuildInfo(nullptr, from) {}
+  inline BuildInfo(BuildInfo&& from) noexcept
+      : BuildInfo(nullptr, std::move(from)) {}
+  inline BuildInfo& operator=(const BuildInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BuildInfo& operator=(BuildInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BuildInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BuildInfo* internal_default_instance() {
+    return reinterpret_cast<const BuildInfo*>(
+        &_BuildInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 36;
+  friend void swap(BuildInfo& a, BuildInfo& b) { a.Swap(&b); }
+  inline void Swap(BuildInfo* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BuildInfo* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BuildInfo* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<BuildInfo>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const BuildInfo& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const BuildInfo& from) { BuildInfo::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(BuildInfo* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "flex.BuildInfo"; }
+
+ protected:
+  explicit BuildInfo(::google::protobuf::Arena* arena);
+  BuildInfo(::google::protobuf::Arena* arena, const BuildInfo& from);
+  BuildInfo(::google::protobuf::Arena* arena, BuildInfo&& from) noexcept
+      : BuildInfo(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBinaryNameFieldNumber = 1,
+    kVersionFieldNumber = 2,
+    kCommitFieldNumber = 3,
+    kBuildTimeFieldNumber = 4,
+  };
+  // string binary_name = 1;
+  void clear_binary_name() ;
+  const std::string& binary_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_binary_name(Arg_&& arg, Args_... args);
+  std::string* mutable_binary_name();
+  PROTOBUF_NODISCARD std::string* release_binary_name();
+  void set_allocated_binary_name(std::string* value);
+
+  private:
+  const std::string& _internal_binary_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_binary_name(
+      const std::string& value);
+  std::string* _internal_mutable_binary_name();
+
+  public:
+  // string version = 2;
+  void clear_version() ;
+  const std::string& version() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_version(Arg_&& arg, Args_... args);
+  std::string* mutable_version();
+  PROTOBUF_NODISCARD std::string* release_version();
+  void set_allocated_version(std::string* value);
+
+  private:
+  const std::string& _internal_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version(
+      const std::string& value);
+  std::string* _internal_mutable_version();
+
+  public:
+  // string commit = 3;
+  void clear_commit() ;
+  const std::string& commit() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_commit(Arg_&& arg, Args_... args);
+  std::string* mutable_commit();
+  PROTOBUF_NODISCARD std::string* release_commit();
+  void set_allocated_commit(std::string* value);
+
+  private:
+  const std::string& _internal_commit() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_commit(
+      const std::string& value);
+  std::string* _internal_mutable_commit();
+
+  public:
+  // string build_time = 4;
+  void clear_build_time() ;
+  const std::string& build_time() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_build_time(Arg_&& arg, Args_... args);
+  std::string* mutable_build_time();
+  PROTOBUF_NODISCARD std::string* release_build_time();
+  void set_allocated_build_time(std::string* value);
+
+  private:
+  const std::string& _internal_build_time() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_build_time(
+      const std::string& value);
+  std::string* _internal_mutable_build_time();
+
+  public:
+  // @@protoc_insertion_point(class_scope:flex.BuildInfo)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 0,
+      57, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const BuildInfo& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr binary_name_;
+    ::google::protobuf::internal::ArenaStringPtr version_;
+    ::google::protobuf::internal::ArenaStringPtr commit_;
+    ::google::protobuf::internal::ArenaStringPtr build_time_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4215,6 +4866,45 @@ class JobLockedInfo final : public ::google::protobuf::Message
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_flex_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetCapabilitiesResponse_FeaturesEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          std::string, ::google::protobuf::Message,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      std::string, ::google::protobuf::Message,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>;
+  GetCapabilitiesResponse_FeaturesEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetCapabilitiesResponse_FeaturesEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit GetCapabilitiesResponse_FeaturesEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const GetCapabilitiesResponse_FeaturesEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const GetCapabilitiesResponse_FeaturesEntry_DoNotUse*>(
+        &_GetCapabilitiesResponse_FeaturesEntry_DoNotUse_default_instance_);
+  }
+
+
+ private:
+  friend class ::google::protobuf::MessageLite;
+  friend struct ::TableStruct_flex_2eproto;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      54, 2>
+      _table_;
+
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
 };
 // -------------------------------------------------------------------
 
@@ -5891,6 +6581,239 @@ class HeartbeatResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::flex::NodeStats* node_stats_;
     bool is_ready_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_flex_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetCapabilitiesResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:flex.GetCapabilitiesResponse) */ {
+ public:
+  inline GetCapabilitiesResponse() : GetCapabilitiesResponse(nullptr) {}
+  ~GetCapabilitiesResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(GetCapabilitiesResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetCapabilitiesResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GetCapabilitiesResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline GetCapabilitiesResponse(const GetCapabilitiesResponse& from) : GetCapabilitiesResponse(nullptr, from) {}
+  inline GetCapabilitiesResponse(GetCapabilitiesResponse&& from) noexcept
+      : GetCapabilitiesResponse(nullptr, std::move(from)) {}
+  inline GetCapabilitiesResponse& operator=(const GetCapabilitiesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetCapabilitiesResponse& operator=(GetCapabilitiesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetCapabilitiesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetCapabilitiesResponse* internal_default_instance() {
+    return reinterpret_cast<const GetCapabilitiesResponse*>(
+        &_GetCapabilitiesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 33;
+  friend void swap(GetCapabilitiesResponse& a, GetCapabilitiesResponse& b) { a.Swap(&b); }
+  inline void Swap(GetCapabilitiesResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetCapabilitiesResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetCapabilitiesResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GetCapabilitiesResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GetCapabilitiesResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GetCapabilitiesResponse& from) { GetCapabilitiesResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(GetCapabilitiesResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "flex.GetCapabilitiesResponse"; }
+
+ protected:
+  explicit GetCapabilitiesResponse(::google::protobuf::Arena* arena);
+  GetCapabilitiesResponse(::google::protobuf::Arena* arena, const GetCapabilitiesResponse& from);
+  GetCapabilitiesResponse(::google::protobuf::Arena* arena, GetCapabilitiesResponse&& from) noexcept
+      : GetCapabilitiesResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kFeaturesFieldNumber = 2,
+    kBuildInfoFieldNumber = 1,
+    kStartTimestampFieldNumber = 3,
+  };
+  // map<string, .flex.Feature> features = 2;
+  int features_size() const;
+  private:
+  int _internal_features_size() const;
+
+  public:
+  void clear_features() ;
+  const ::google::protobuf::Map<std::string, ::flex::Feature>& features() const;
+  ::google::protobuf::Map<std::string, ::flex::Feature>* mutable_features();
+
+  private:
+  const ::google::protobuf::Map<std::string, ::flex::Feature>& _internal_features() const;
+  ::google::protobuf::Map<std::string, ::flex::Feature>* _internal_mutable_features();
+
+  public:
+  // .flex.BuildInfo build_info = 1;
+  bool has_build_info() const;
+  void clear_build_info() ;
+  const ::flex::BuildInfo& build_info() const;
+  PROTOBUF_NODISCARD ::flex::BuildInfo* release_build_info();
+  ::flex::BuildInfo* mutable_build_info();
+  void set_allocated_build_info(::flex::BuildInfo* value);
+  void unsafe_arena_set_allocated_build_info(::flex::BuildInfo* value);
+  ::flex::BuildInfo* unsafe_arena_release_build_info();
+
+  private:
+  const ::flex::BuildInfo& _internal_build_info() const;
+  ::flex::BuildInfo* _internal_mutable_build_info();
+
+  public:
+  // .google.protobuf.Timestamp start_timestamp = 3;
+  bool has_start_timestamp() const;
+  void clear_start_timestamp() ;
+  const ::google::protobuf::Timestamp& start_timestamp() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_start_timestamp();
+  ::google::protobuf::Timestamp* mutable_start_timestamp();
+  void set_allocated_start_timestamp(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_start_timestamp(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_start_timestamp();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_start_timestamp() const;
+  ::google::protobuf::Timestamp* _internal_mutable_start_timestamp();
+
+  public:
+  // @@protoc_insertion_point(class_scope:flex.GetCapabilitiesResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 4,
+      45, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const GetCapabilitiesResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::MapField<GetCapabilitiesResponse_FeaturesEntry_DoNotUse, std::string, ::flex::Feature,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE>
+        features_;
+    ::flex::BuildInfo* build_info_;
+    ::google::protobuf::Timestamp* start_timestamp_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -13746,6 +14669,461 @@ inline void RemoteStorageTarget::clear_has_type() {
 inline RemoteStorageTarget::TypeCase RemoteStorageTarget::type_case() const {
   return RemoteStorageTarget::TypeCase(_impl_._oneof_case_[0]);
 }
+// -------------------------------------------------------------------
+
+// GetCapabilitiesRequest
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// GetCapabilitiesResponse
+
+// .flex.BuildInfo build_info = 1;
+inline bool GetCapabilitiesResponse::has_build_info() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.build_info_ != nullptr);
+  return value;
+}
+inline void GetCapabilitiesResponse::clear_build_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.build_info_ != nullptr) _impl_.build_info_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::flex::BuildInfo& GetCapabilitiesResponse::_internal_build_info() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::flex::BuildInfo* p = _impl_.build_info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::flex::BuildInfo&>(::flex::_BuildInfo_default_instance_);
+}
+inline const ::flex::BuildInfo& GetCapabilitiesResponse::build_info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.GetCapabilitiesResponse.build_info)
+  return _internal_build_info();
+}
+inline void GetCapabilitiesResponse::unsafe_arena_set_allocated_build_info(::flex::BuildInfo* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.build_info_);
+  }
+  _impl_.build_info_ = reinterpret_cast<::flex::BuildInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:flex.GetCapabilitiesResponse.build_info)
+}
+inline ::flex::BuildInfo* GetCapabilitiesResponse::release_build_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::flex::BuildInfo* released = _impl_.build_info_;
+  _impl_.build_info_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::flex::BuildInfo* GetCapabilitiesResponse::unsafe_arena_release_build_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.GetCapabilitiesResponse.build_info)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::flex::BuildInfo* temp = _impl_.build_info_;
+  _impl_.build_info_ = nullptr;
+  return temp;
+}
+inline ::flex::BuildInfo* GetCapabilitiesResponse::_internal_mutable_build_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.build_info_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::flex::BuildInfo>(GetArena());
+    _impl_.build_info_ = reinterpret_cast<::flex::BuildInfo*>(p);
+  }
+  return _impl_.build_info_;
+}
+inline ::flex::BuildInfo* GetCapabilitiesResponse::mutable_build_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::flex::BuildInfo* _msg = _internal_mutable_build_info();
+  // @@protoc_insertion_point(field_mutable:flex.GetCapabilitiesResponse.build_info)
+  return _msg;
+}
+inline void GetCapabilitiesResponse::set_allocated_build_info(::flex::BuildInfo* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.build_info_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.build_info_ = reinterpret_cast<::flex::BuildInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:flex.GetCapabilitiesResponse.build_info)
+}
+
+// map<string, .flex.Feature> features = 2;
+inline int GetCapabilitiesResponse::_internal_features_size() const {
+  return _internal_features().size();
+}
+inline int GetCapabilitiesResponse::features_size() const {
+  return _internal_features_size();
+}
+inline void GetCapabilitiesResponse::clear_features() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.features_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, ::flex::Feature>& GetCapabilitiesResponse::_internal_features() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.features_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, ::flex::Feature>& GetCapabilitiesResponse::features() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:flex.GetCapabilitiesResponse.features)
+  return _internal_features();
+}
+inline ::google::protobuf::Map<std::string, ::flex::Feature>* GetCapabilitiesResponse::_internal_mutable_features() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.features_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, ::flex::Feature>* GetCapabilitiesResponse::mutable_features() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:flex.GetCapabilitiesResponse.features)
+  return _internal_mutable_features();
+}
+
+// .google.protobuf.Timestamp start_timestamp = 3;
+inline bool GetCapabilitiesResponse::has_start_timestamp() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.start_timestamp_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& GetCapabilitiesResponse::_internal_start_timestamp() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.start_timestamp_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& GetCapabilitiesResponse::start_timestamp() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.GetCapabilitiesResponse.start_timestamp)
+  return _internal_start_timestamp();
+}
+inline void GetCapabilitiesResponse::unsafe_arena_set_allocated_start_timestamp(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_timestamp_);
+  }
+  _impl_.start_timestamp_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:flex.GetCapabilitiesResponse.start_timestamp)
+}
+inline ::google::protobuf::Timestamp* GetCapabilitiesResponse::release_start_timestamp() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Timestamp* released = _impl_.start_timestamp_;
+  _impl_.start_timestamp_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* GetCapabilitiesResponse::unsafe_arena_release_start_timestamp() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.GetCapabilitiesResponse.start_timestamp)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Timestamp* temp = _impl_.start_timestamp_;
+  _impl_.start_timestamp_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* GetCapabilitiesResponse::_internal_mutable_start_timestamp() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.start_timestamp_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.start_timestamp_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.start_timestamp_;
+}
+inline ::google::protobuf::Timestamp* GetCapabilitiesResponse::mutable_start_timestamp() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_start_timestamp();
+  // @@protoc_insertion_point(field_mutable:flex.GetCapabilitiesResponse.start_timestamp)
+  return _msg;
+}
+inline void GetCapabilitiesResponse::set_allocated_start_timestamp(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_timestamp_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.start_timestamp_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:flex.GetCapabilitiesResponse.start_timestamp)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// Feature
+
+// map<string, .flex.Feature> sub_feature = 1;
+inline int Feature::_internal_sub_feature_size() const {
+  return _internal_sub_feature().size();
+}
+inline int Feature::sub_feature_size() const {
+  return _internal_sub_feature_size();
+}
+inline void Feature::clear_sub_feature() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sub_feature_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, ::flex::Feature>& Feature::_internal_sub_feature() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.sub_feature_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, ::flex::Feature>& Feature::sub_feature() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:flex.Feature.sub_feature)
+  return _internal_sub_feature();
+}
+inline ::google::protobuf::Map<std::string, ::flex::Feature>* Feature::_internal_mutable_sub_feature() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.sub_feature_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, ::flex::Feature>* Feature::mutable_sub_feature() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:flex.Feature.sub_feature)
+  return _internal_mutable_sub_feature();
+}
+
+// -------------------------------------------------------------------
+
+// BuildInfo
+
+// string binary_name = 1;
+inline void BuildInfo::clear_binary_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.binary_name_.ClearToEmpty();
+}
+inline const std::string& BuildInfo::binary_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.BuildInfo.binary_name)
+  return _internal_binary_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BuildInfo::set_binary_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.binary_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.BuildInfo.binary_name)
+}
+inline std::string* BuildInfo::mutable_binary_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_binary_name();
+  // @@protoc_insertion_point(field_mutable:flex.BuildInfo.binary_name)
+  return _s;
+}
+inline const std::string& BuildInfo::_internal_binary_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.binary_name_.Get();
+}
+inline void BuildInfo::_internal_set_binary_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.binary_name_.Set(value, GetArena());
+}
+inline std::string* BuildInfo::_internal_mutable_binary_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.binary_name_.Mutable( GetArena());
+}
+inline std::string* BuildInfo::release_binary_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.BuildInfo.binary_name)
+  return _impl_.binary_name_.Release();
+}
+inline void BuildInfo::set_allocated_binary_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.binary_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.binary_name_.IsDefault()) {
+    _impl_.binary_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.BuildInfo.binary_name)
+}
+
+// string version = 2;
+inline void BuildInfo::clear_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_.ClearToEmpty();
+}
+inline const std::string& BuildInfo::version() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.BuildInfo.version)
+  return _internal_version();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BuildInfo::set_version(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.BuildInfo.version)
+}
+inline std::string* BuildInfo::mutable_version() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:flex.BuildInfo.version)
+  return _s;
+}
+inline const std::string& BuildInfo::_internal_version() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.version_.Get();
+}
+inline void BuildInfo::_internal_set_version(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_.Set(value, GetArena());
+}
+inline std::string* BuildInfo::_internal_mutable_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.version_.Mutable( GetArena());
+}
+inline std::string* BuildInfo::release_version() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.BuildInfo.version)
+  return _impl_.version_.Release();
+}
+inline void BuildInfo::set_allocated_version(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.version_.IsDefault()) {
+    _impl_.version_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.BuildInfo.version)
+}
+
+// string commit = 3;
+inline void BuildInfo::clear_commit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.commit_.ClearToEmpty();
+}
+inline const std::string& BuildInfo::commit() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.BuildInfo.commit)
+  return _internal_commit();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BuildInfo::set_commit(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.commit_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.BuildInfo.commit)
+}
+inline std::string* BuildInfo::mutable_commit() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_commit();
+  // @@protoc_insertion_point(field_mutable:flex.BuildInfo.commit)
+  return _s;
+}
+inline const std::string& BuildInfo::_internal_commit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.commit_.Get();
+}
+inline void BuildInfo::_internal_set_commit(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.commit_.Set(value, GetArena());
+}
+inline std::string* BuildInfo::_internal_mutable_commit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.commit_.Mutable( GetArena());
+}
+inline std::string* BuildInfo::release_commit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.BuildInfo.commit)
+  return _impl_.commit_.Release();
+}
+inline void BuildInfo::set_allocated_commit(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.commit_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.commit_.IsDefault()) {
+    _impl_.commit_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.BuildInfo.commit)
+}
+
+// string build_time = 4;
+inline void BuildInfo::clear_build_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.build_time_.ClearToEmpty();
+}
+inline const std::string& BuildInfo::build_time() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.BuildInfo.build_time)
+  return _internal_build_time();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BuildInfo::set_build_time(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.build_time_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.BuildInfo.build_time)
+}
+inline std::string* BuildInfo::mutable_build_time() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_build_time();
+  // @@protoc_insertion_point(field_mutable:flex.BuildInfo.build_time)
+  return _s;
+}
+inline const std::string& BuildInfo::_internal_build_time() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.build_time_.Get();
+}
+inline void BuildInfo::_internal_set_build_time(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.build_time_.Set(value, GetArena());
+}
+inline std::string* BuildInfo::_internal_mutable_build_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.build_time_.Mutable( GetArena());
+}
+inline std::string* BuildInfo::release_build_time() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.BuildInfo.build_time)
+  return _impl_.build_time_.Release();
+}
+inline void BuildInfo::set_allocated_build_time(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.build_time_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.build_time_.IsDefault()) {
+    _impl_.build_time_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.BuildInfo.build_time)
+}
+
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__

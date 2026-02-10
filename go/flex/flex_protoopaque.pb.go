@@ -3263,6 +3263,320 @@ func (*remoteStorageTarget_Azure_) isRemoteStorageTarget_Type() {}
 
 func (*remoteStorageTarget_Mock) isRemoteStorageTarget_Type() {}
 
+type GetCapabilitiesRequest struct {
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCapabilitiesRequest) Reset() {
+	*x = GetCapabilitiesRequest{}
+	mi := &file_flex_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCapabilitiesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCapabilitiesRequest) ProtoMessage() {}
+
+func (x *GetCapabilitiesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_flex_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+type GetCapabilitiesRequest_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+}
+
+func (b0 GetCapabilitiesRequest_builder) Build() *GetCapabilitiesRequest {
+	m0 := &GetCapabilitiesRequest{}
+	b, x := &b0, m0
+	_, _ = b, x
+	return m0
+}
+
+type GetCapabilitiesResponse struct {
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_BuildInfo      *BuildInfo             `protobuf:"bytes,1,opt,name=build_info,json=buildInfo,proto3" json:"build_info,omitempty"`
+	xxx_hidden_Features       map[string]*Feature    `protobuf:"bytes,2,rep,name=features,proto3" json:"features,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_StartTimestamp *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=start_timestamp,json=startTimestamp,proto3" json:"start_timestamp,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
+}
+
+func (x *GetCapabilitiesResponse) Reset() {
+	*x = GetCapabilitiesResponse{}
+	mi := &file_flex_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCapabilitiesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCapabilitiesResponse) ProtoMessage() {}
+
+func (x *GetCapabilitiesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_flex_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *GetCapabilitiesResponse) GetBuildInfo() *BuildInfo {
+	if x != nil {
+		return x.xxx_hidden_BuildInfo
+	}
+	return nil
+}
+
+func (x *GetCapabilitiesResponse) GetFeatures() map[string]*Feature {
+	if x != nil {
+		return x.xxx_hidden_Features
+	}
+	return nil
+}
+
+func (x *GetCapabilitiesResponse) GetStartTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.xxx_hidden_StartTimestamp
+	}
+	return nil
+}
+
+func (x *GetCapabilitiesResponse) SetBuildInfo(v *BuildInfo) {
+	x.xxx_hidden_BuildInfo = v
+}
+
+func (x *GetCapabilitiesResponse) SetFeatures(v map[string]*Feature) {
+	x.xxx_hidden_Features = v
+}
+
+func (x *GetCapabilitiesResponse) SetStartTimestamp(v *timestamppb.Timestamp) {
+	x.xxx_hidden_StartTimestamp = v
+}
+
+func (x *GetCapabilitiesResponse) HasBuildInfo() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_BuildInfo != nil
+}
+
+func (x *GetCapabilitiesResponse) HasStartTimestamp() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_StartTimestamp != nil
+}
+
+func (x *GetCapabilitiesResponse) ClearBuildInfo() {
+	x.xxx_hidden_BuildInfo = nil
+}
+
+func (x *GetCapabilitiesResponse) ClearStartTimestamp() {
+	x.xxx_hidden_StartTimestamp = nil
+}
+
+type GetCapabilitiesResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	// Defines the worker node's build information.
+	BuildInfo *BuildInfo
+	// Features defines the capabilities advertised by the worker node. Each feature key maps to a
+	// value that optionally contains nested sub-features to refine or qualify the capability (e.g.
+	// supported modes, versions, or related/derived capabilities).
+	Features map[string]*Feature
+	// Timestamp for when the component started.
+	StartTimestamp *timestamppb.Timestamp
+}
+
+func (b0 GetCapabilitiesResponse_builder) Build() *GetCapabilitiesResponse {
+	m0 := &GetCapabilitiesResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_BuildInfo = b.BuildInfo
+	x.xxx_hidden_Features = b.Features
+	x.xxx_hidden_StartTimestamp = b.StartTimestamp
+	return m0
+}
+
+// Feature describes a single advertised capability. Each sub-feature key maps to a value that
+// optionally contains nested sub-features that further qualify the capability (e.g., supported
+// modes, versions, or related/derived capabilities).
+type Feature struct {
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_SubFeature map[string]*Feature    `protobuf:"bytes,1,rep,name=sub_feature,json=subFeature,proto3" json:"sub_feature,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *Feature) Reset() {
+	*x = Feature{}
+	mi := &file_flex_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Feature) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Feature) ProtoMessage() {}
+
+func (x *Feature) ProtoReflect() protoreflect.Message {
+	mi := &file_flex_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *Feature) GetSubFeature() map[string]*Feature {
+	if x != nil {
+		return x.xxx_hidden_SubFeature
+	}
+	return nil
+}
+
+func (x *Feature) SetSubFeature(v map[string]*Feature) {
+	x.xxx_hidden_SubFeature = v
+}
+
+type Feature_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	SubFeature map[string]*Feature
+}
+
+func (b0 Feature_builder) Build() *Feature {
+	m0 := &Feature{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_SubFeature = b.SubFeature
+	return m0
+}
+
+type BuildInfo struct {
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_BinaryName string                 `protobuf:"bytes,1,opt,name=binary_name,json=binaryName,proto3" json:"binary_name,omitempty"`
+	xxx_hidden_Version    string                 `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	xxx_hidden_Commit     string                 `protobuf:"bytes,3,opt,name=commit,proto3" json:"commit,omitempty"`
+	xxx_hidden_BuildTime  string                 `protobuf:"bytes,4,opt,name=build_time,json=buildTime,proto3" json:"build_time,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *BuildInfo) Reset() {
+	*x = BuildInfo{}
+	mi := &file_flex_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BuildInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BuildInfo) ProtoMessage() {}
+
+func (x *BuildInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_flex_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *BuildInfo) GetBinaryName() string {
+	if x != nil {
+		return x.xxx_hidden_BinaryName
+	}
+	return ""
+}
+
+func (x *BuildInfo) GetVersion() string {
+	if x != nil {
+		return x.xxx_hidden_Version
+	}
+	return ""
+}
+
+func (x *BuildInfo) GetCommit() string {
+	if x != nil {
+		return x.xxx_hidden_Commit
+	}
+	return ""
+}
+
+func (x *BuildInfo) GetBuildTime() string {
+	if x != nil {
+		return x.xxx_hidden_BuildTime
+	}
+	return ""
+}
+
+func (x *BuildInfo) SetBinaryName(v string) {
+	x.xxx_hidden_BinaryName = v
+}
+
+func (x *BuildInfo) SetVersion(v string) {
+	x.xxx_hidden_Version = v
+}
+
+func (x *BuildInfo) SetCommit(v string) {
+	x.xxx_hidden_Commit = v
+}
+
+func (x *BuildInfo) SetBuildTime(v string) {
+	x.xxx_hidden_BuildTime = v
+}
+
+type BuildInfo_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	BinaryName string
+	Version    string
+	Commit     string
+	BuildTime  string
+}
+
+func (b0 BuildInfo_builder) Build() *BuildInfo {
+	m0 := &BuildInfo{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_BinaryName = b.BinaryName
+	x.xxx_hidden_Version = b.Version
+	x.xxx_hidden_Commit = b.Commit
+	x.xxx_hidden_BuildTime = b.BuildTime
+	return m0
+}
+
 // A segment indicates what portion of the file a particular worker node should
 // work on. Segments can be divided into one or more parts, which can be used to
 // execute the requested operation in parallel if supported by the RST type.
@@ -3278,7 +3592,7 @@ type WorkRequest_Segment struct {
 
 func (x *WorkRequest_Segment) Reset() {
 	*x = WorkRequest_Segment{}
-	mi := &file_flex_proto_msgTypes[21]
+	mi := &file_flex_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3290,7 +3604,7 @@ func (x *WorkRequest_Segment) String() string {
 func (*WorkRequest_Segment) ProtoMessage() {}
 
 func (x *WorkRequest_Segment) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[21]
+	mi := &file_flex_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3378,7 +3692,7 @@ type Work_Status struct {
 
 func (x *Work_Status) Reset() {
 	*x = Work_Status{}
-	mi := &file_flex_proto_msgTypes[23]
+	mi := &file_flex_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3390,7 +3704,7 @@ func (x *Work_Status) String() string {
 func (*Work_Status) ProtoMessage() {}
 
 func (x *Work_Status) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[23]
+	mi := &file_flex_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3459,7 +3773,7 @@ type Work_Part struct {
 
 func (x *Work_Part) Reset() {
 	*x = Work_Part{}
-	mi := &file_flex_proto_msgTypes[24]
+	mi := &file_flex_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3471,7 +3785,7 @@ func (x *Work_Part) String() string {
 func (*Work_Part) ProtoMessage() {}
 
 func (x *Work_Part) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[24]
+	mi := &file_flex_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3586,7 +3900,7 @@ type RemoteStorageTarget_Policies struct {
 
 func (x *RemoteStorageTarget_Policies) Reset() {
 	*x = RemoteStorageTarget_Policies{}
-	mi := &file_flex_proto_msgTypes[25]
+	mi := &file_flex_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3598,7 +3912,7 @@ func (x *RemoteStorageTarget_Policies) String() string {
 func (*RemoteStorageTarget_Policies) ProtoMessage() {}
 
 func (x *RemoteStorageTarget_Policies) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[25]
+	mi := &file_flex_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3659,7 +3973,7 @@ type RemoteStorageTarget_S3 struct {
 
 func (x *RemoteStorageTarget_S3) Reset() {
 	*x = RemoteStorageTarget_S3{}
-	mi := &file_flex_proto_msgTypes[26]
+	mi := &file_flex_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3671,7 +3985,7 @@ func (x *RemoteStorageTarget_S3) String() string {
 func (*RemoteStorageTarget_S3) ProtoMessage() {}
 
 func (x *RemoteStorageTarget_S3) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[26]
+	mi := &file_flex_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3808,7 +4122,7 @@ type RemoteStorageTarget_Azure struct {
 
 func (x *RemoteStorageTarget_Azure) Reset() {
 	*x = RemoteStorageTarget_Azure{}
-	mi := &file_flex_proto_msgTypes[27]
+	mi := &file_flex_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3820,7 +4134,7 @@ func (x *RemoteStorageTarget_Azure) String() string {
 func (*RemoteStorageTarget_Azure) ProtoMessage() {}
 
 func (x *RemoteStorageTarget_Azure) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[27]
+	mi := &file_flex_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3889,7 +4203,7 @@ type RemoteStorageTarget_POSIX struct {
 
 func (x *RemoteStorageTarget_POSIX) Reset() {
 	*x = RemoteStorageTarget_POSIX{}
-	mi := &file_flex_proto_msgTypes[28]
+	mi := &file_flex_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3901,7 +4215,7 @@ func (x *RemoteStorageTarget_POSIX) String() string {
 func (*RemoteStorageTarget_POSIX) ProtoMessage() {}
 
 func (x *RemoteStorageTarget_POSIX) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[28]
+	mi := &file_flex_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3947,7 +4261,7 @@ type RemoteStorageTarget_S3_StorageClass struct {
 
 func (x *RemoteStorageTarget_S3_StorageClass) Reset() {
 	*x = RemoteStorageTarget_S3_StorageClass{}
-	mi := &file_flex_proto_msgTypes[29]
+	mi := &file_flex_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3959,7 +4273,7 @@ func (x *RemoteStorageTarget_S3_StorageClass) String() string {
 func (*RemoteStorageTarget_S3_StorageClass) ProtoMessage() {}
 
 func (x *RemoteStorageTarget_S3_StorageClass) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[29]
+	mi := &file_flex_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4034,7 +4348,7 @@ type RemoteStorageTarget_S3_StorageClass_Archival struct {
 
 func (x *RemoteStorageTarget_S3_StorageClass_Archival) Reset() {
 	*x = RemoteStorageTarget_S3_StorageClass_Archival{}
-	mi := &file_flex_proto_msgTypes[30]
+	mi := &file_flex_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4046,7 +4360,7 @@ func (x *RemoteStorageTarget_S3_StorageClass_Archival) String() string {
 func (*RemoteStorageTarget_S3_StorageClass_Archival) ProtoMessage() {}
 
 func (x *RemoteStorageTarget_S3_StorageClass_Archival) ProtoReflect() protoreflect.Message {
-	mi := &file_flex_proto_msgTypes[30]
+	mi := &file_flex_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4513,36 +4827,78 @@ var file_flex_proto_rawDesc = []byte{
 	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x1a, 0x1b,
 	0x0a, 0x05, 0x50, 0x4f, 0x53, 0x49, 0x58, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x42, 0x06, 0x0a, 0x04, 0x74,
-	0x79, 0x70, 0x65, 0x32, 0xe0, 0x02, 0x0a, 0x0a, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x4e, 0x6f,
-	0x64, 0x65, 0x12, 0x45, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66,
-	0x69, 0x67, 0x12, 0x19, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e,
-	0x66, 0x6c, 0x65, 0x78, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69,
-	0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x09, 0x48, 0x65, 0x61,
-	0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x12, 0x16, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x48, 0x65,
-	0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17,
-	0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x48, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0a, 0x53, 0x75, 0x62, 0x6d, 0x69,
-	0x74, 0x57, 0x6f, 0x72, 0x6b, 0x12, 0x17, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x53, 0x75, 0x62,
-	0x6d, 0x69, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18,
+	0x79, 0x70, 0x65, 0x22, 0x18, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x43, 0x61, 0x70, 0x61, 0x62, 0x69,
+	0x6c, 0x69, 0x74, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0xa3, 0x02,
+	0x0a, 0x17, 0x47, 0x65, 0x74, 0x43, 0x61, 0x70, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69, 0x65,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x0a, 0x62, 0x75, 0x69,
+	0x6c, 0x64, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e,
+	0x66, 0x6c, 0x65, 0x78, 0x2e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x09,
+	0x62, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x47, 0x0a, 0x08, 0x66, 0x65, 0x61,
+	0x74, 0x75, 0x72, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x66, 0x6c,
+	0x65, 0x78, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x70, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69,
+	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x46, 0x65, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x08, 0x66, 0x65, 0x61, 0x74, 0x75, 0x72,
+	0x65, 0x73, 0x12, 0x43, 0x0a, 0x0f, 0x73, 0x74, 0x61, 0x72, 0x74, 0x5f, 0x74, 0x69, 0x6d, 0x65,
+	0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0e, 0x73, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x1a, 0x4a, 0x0a, 0x0d, 0x46, 0x65, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x23, 0x0a, 0x05, 0x76, 0x61,
+	0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x66, 0x6c, 0x65, 0x78,
+	0x2e, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a,
+	0x02, 0x38, 0x01, 0x22, 0x97, 0x01, 0x0a, 0x07, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x12,
+	0x3e, 0x0a, 0x0b, 0x73, 0x75, 0x62, 0x5f, 0x66, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x46, 0x65, 0x61, 0x74,
+	0x75, 0x72, 0x65, 0x2e, 0x53, 0x75, 0x62, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x45, 0x6e,
+	0x74, 0x72, 0x79, 0x52, 0x0a, 0x73, 0x75, 0x62, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x1a,
+	0x4c, 0x0a, 0x0f, 0x53, 0x75, 0x62, 0x46, 0x65, 0x61, 0x74, 0x75, 0x72, 0x65, 0x45, 0x6e, 0x74,
+	0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x6b, 0x65, 0x79, 0x12, 0x23, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x46, 0x65, 0x61, 0x74, 0x75,
+	0x72, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x7d, 0x0a,
+	0x09, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1f, 0x0a, 0x0b, 0x62, 0x69,
+	0x6e, 0x61, 0x72, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x62, 0x69, 0x6e, 0x61, 0x72, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x76,
+	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65,
+	0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x12, 0x1d, 0x0a,
+	0x0a, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x09, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x32, 0xb0, 0x03, 0x0a,
+	0x0a, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x45, 0x0a, 0x0c, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x19, 0x2e, 0x66, 0x6c,
+	0x65, 0x78, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x3c, 0x0a, 0x09, 0x48, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x12,
+	0x16, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x48, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x48,
+	0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x3f, 0x0a, 0x0a, 0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x12, 0x17,
 	0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x57, 0x6f, 0x72, 0x6b,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0a, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x12, 0x17, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x18, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72,
-	0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4b, 0x0a, 0x0e, 0x42, 0x75, 0x6c,
-	0x6b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x12, 0x1b, 0x2e, 0x66, 0x6c,
-	0x65, 0x78, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72,
-	0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e,
-	0x42, 0x75, 0x6c, 0x6b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x27, 0x5a, 0x25, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
-	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x74, 0x68, 0x69, 0x6e, 0x6b, 0x70, 0x61, 0x72, 0x71, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x67, 0x6f, 0x2f, 0x66, 0x6c, 0x65, 0x78, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x53,
+	0x75, 0x62, 0x6d, 0x69, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x3f, 0x0a, 0x0a, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x12,
+	0x17, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72,
+	0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x4b, 0x0a, 0x0e, 0x42, 0x75, 0x6c, 0x6b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x57, 0x6f, 0x72, 0x6b, 0x12, 0x1b, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x42, 0x75, 0x6c, 0x6b,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1c, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x42, 0x75, 0x6c, 0x6b, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x4e, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x43, 0x61, 0x70, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69,
+	0x65, 0x73, 0x12, 0x1c, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x70,
+	0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x1d, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x70, 0x61, 0x62,
+	0x69, 0x6c, 0x69, 0x74, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42,
+	0x27, 0x5a, 0x25, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x74, 0x68,
+	0x69, 0x6e, 0x6b, 0x70, 0x61, 0x72, 0x71, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2f, 0x67, 0x6f, 0x2f, 0x66, 0x6c, 0x65, 0x78, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_flex_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_flex_proto_msgTypes = make([]protoimpl.MessageInfo, 31)
+var file_flex_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
 var file_flex_proto_goTypes = []any{
 	(UpdateWorkRequest_NewState)(0),                      // 0: flex.UpdateWorkRequest.NewState
 	(BulkUpdateWorkRequest_NewState)(0),                  // 1: flex.BulkUpdateWorkRequest.NewState
@@ -4569,32 +4925,38 @@ var file_flex_proto_goTypes = []any{
 	(*UpdateConfigResponse)(nil),                         // 22: flex.UpdateConfigResponse
 	(*BeeRemoteNode)(nil),                                // 23: flex.BeeRemoteNode
 	(*RemoteStorageTarget)(nil),                          // 24: flex.RemoteStorageTarget
-	nil,                                                  // 25: flex.JobRequestCfg.MetadataEntry
-	(*WorkRequest_Segment)(nil),                          // 26: flex.WorkRequest.Segment
-	nil,                                                  // 27: flex.SyncJob.MetadataEntry
-	(*Work_Status)(nil),                                  // 28: flex.Work.Status
-	(*Work_Part)(nil),                                    // 29: flex.Work.Part
-	(*RemoteStorageTarget_Policies)(nil),                 // 30: flex.RemoteStorageTarget.Policies
-	(*RemoteStorageTarget_S3)(nil),                       // 31: flex.RemoteStorageTarget.S3
-	(*RemoteStorageTarget_Azure)(nil),                    // 32: flex.RemoteStorageTarget.Azure
-	(*RemoteStorageTarget_POSIX)(nil),                    // 33: flex.RemoteStorageTarget.POSIX
-	(*RemoteStorageTarget_S3_StorageClass)(nil),          // 34: flex.RemoteStorageTarget.S3.StorageClass
-	(*RemoteStorageTarget_S3_StorageClass_Archival)(nil), // 35: flex.RemoteStorageTarget.S3.StorageClass.Archival
-	(*timestamppb.Timestamp)(nil),                        // 36: google.protobuf.Timestamp
+	(*GetCapabilitiesRequest)(nil),                       // 25: flex.GetCapabilitiesRequest
+	(*GetCapabilitiesResponse)(nil),                      // 26: flex.GetCapabilitiesResponse
+	(*Feature)(nil),                                      // 27: flex.Feature
+	(*BuildInfo)(nil),                                    // 28: flex.BuildInfo
+	nil,                                                  // 29: flex.JobRequestCfg.MetadataEntry
+	(*WorkRequest_Segment)(nil),                          // 30: flex.WorkRequest.Segment
+	nil,                                                  // 31: flex.SyncJob.MetadataEntry
+	(*Work_Status)(nil),                                  // 32: flex.Work.Status
+	(*Work_Part)(nil),                                    // 33: flex.Work.Part
+	(*RemoteStorageTarget_Policies)(nil),                 // 34: flex.RemoteStorageTarget.Policies
+	(*RemoteStorageTarget_S3)(nil),                       // 35: flex.RemoteStorageTarget.S3
+	(*RemoteStorageTarget_Azure)(nil),                    // 36: flex.RemoteStorageTarget.Azure
+	(*RemoteStorageTarget_POSIX)(nil),                    // 37: flex.RemoteStorageTarget.POSIX
+	(*RemoteStorageTarget_S3_StorageClass)(nil),          // 38: flex.RemoteStorageTarget.S3.StorageClass
+	(*RemoteStorageTarget_S3_StorageClass_Archival)(nil), // 39: flex.RemoteStorageTarget.S3.StorageClass.Archival
+	nil,                           // 40: flex.GetCapabilitiesResponse.FeaturesEntry
+	nil,                           // 41: flex.Feature.SubFeatureEntry
+	(*timestamppb.Timestamp)(nil), // 42: google.protobuf.Timestamp
 }
 var file_flex_proto_depIdxs = []int32{
 	7,  // 0: flex.HeartbeatResponse.node_stats:type_name -> flex.NodeStats
-	36, // 1: flex.NodeStats.timestamp:type_name -> google.protobuf.Timestamp
+	42, // 1: flex.NodeStats.timestamp:type_name -> google.protobuf.Timestamp
 	16, // 2: flex.SubmitWorkRequest.request:type_name -> flex.WorkRequest
 	20, // 3: flex.SubmitWorkResponse.work:type_name -> flex.Work
 	0,  // 4: flex.UpdateWorkRequest.new_state:type_name -> flex.UpdateWorkRequest.NewState
 	20, // 5: flex.UpdateWorkResponse.work:type_name -> flex.Work
 	1,  // 6: flex.BulkUpdateWorkRequest.new_state:type_name -> flex.BulkUpdateWorkRequest.NewState
-	36, // 7: flex.JobLockedInfo.mtime:type_name -> google.protobuf.Timestamp
-	36, // 8: flex.JobLockedInfo.remote_mtime:type_name -> google.protobuf.Timestamp
+	42, // 7: flex.JobLockedInfo.mtime:type_name -> google.protobuf.Timestamp
+	42, // 8: flex.JobLockedInfo.remote_mtime:type_name -> google.protobuf.Timestamp
 	14, // 9: flex.JobRequestCfg.locked_info:type_name -> flex.JobLockedInfo
-	25, // 10: flex.JobRequestCfg.metadata:type_name -> flex.JobRequestCfg.MetadataEntry
-	26, // 11: flex.WorkRequest.segment:type_name -> flex.WorkRequest.Segment
+	29, // 10: flex.JobRequestCfg.metadata:type_name -> flex.JobRequestCfg.MetadataEntry
+	30, // 11: flex.WorkRequest.segment:type_name -> flex.WorkRequest.Segment
 	18, // 12: flex.WorkRequest.mock:type_name -> flex.MockJob
 	19, // 13: flex.WorkRequest.sync:type_name -> flex.SyncJob
 	17, // 14: flex.WorkRequest.builder:type_name -> flex.BuilderJob
@@ -4603,35 +4965,43 @@ var file_flex_proto_depIdxs = []int32{
 	15, // 17: flex.MockJob.cfg:type_name -> flex.JobRequestCfg
 	2,  // 18: flex.SyncJob.operation:type_name -> flex.SyncJob.Operation
 	14, // 19: flex.SyncJob.locked_info:type_name -> flex.JobLockedInfo
-	27, // 20: flex.SyncJob.metadata:type_name -> flex.SyncJob.MetadataEntry
-	28, // 21: flex.Work.status:type_name -> flex.Work.Status
-	29, // 22: flex.Work.parts:type_name -> flex.Work.Part
+	31, // 20: flex.SyncJob.metadata:type_name -> flex.SyncJob.MetadataEntry
+	32, // 21: flex.Work.status:type_name -> flex.Work.Status
+	33, // 22: flex.Work.parts:type_name -> flex.Work.Part
 	23, // 23: flex.UpdateConfigRequest.bee_remote:type_name -> flex.BeeRemoteNode
 	24, // 24: flex.UpdateConfigRequest.rsts:type_name -> flex.RemoteStorageTarget
 	4,  // 25: flex.UpdateConfigResponse.result:type_name -> flex.UpdateConfigResponse.Result
-	30, // 26: flex.RemoteStorageTarget.policies:type_name -> flex.RemoteStorageTarget.Policies
-	31, // 27: flex.RemoteStorageTarget.s3:type_name -> flex.RemoteStorageTarget.S3
-	33, // 28: flex.RemoteStorageTarget.posix:type_name -> flex.RemoteStorageTarget.POSIX
-	32, // 29: flex.RemoteStorageTarget.azure:type_name -> flex.RemoteStorageTarget.Azure
-	3,  // 30: flex.Work.Status.state:type_name -> flex.Work.State
-	34, // 31: flex.RemoteStorageTarget.S3.storage_class:type_name -> flex.RemoteStorageTarget.S3.StorageClass
-	31, // 32: flex.RemoteStorageTarget.Azure.s3:type_name -> flex.RemoteStorageTarget.S3
-	35, // 33: flex.RemoteStorageTarget.S3.StorageClass.archival:type_name -> flex.RemoteStorageTarget.S3.StorageClass.Archival
-	21, // 34: flex.WorkerNode.UpdateConfig:input_type -> flex.UpdateConfigRequest
-	5,  // 35: flex.WorkerNode.Heartbeat:input_type -> flex.HeartbeatRequest
-	8,  // 36: flex.WorkerNode.SubmitWork:input_type -> flex.SubmitWorkRequest
-	10, // 37: flex.WorkerNode.UpdateWork:input_type -> flex.UpdateWorkRequest
-	12, // 38: flex.WorkerNode.BulkUpdateWork:input_type -> flex.BulkUpdateWorkRequest
-	22, // 39: flex.WorkerNode.UpdateConfig:output_type -> flex.UpdateConfigResponse
-	6,  // 40: flex.WorkerNode.Heartbeat:output_type -> flex.HeartbeatResponse
-	9,  // 41: flex.WorkerNode.SubmitWork:output_type -> flex.SubmitWorkResponse
-	11, // 42: flex.WorkerNode.UpdateWork:output_type -> flex.UpdateWorkResponse
-	13, // 43: flex.WorkerNode.BulkUpdateWork:output_type -> flex.BulkUpdateWorkResponse
-	39, // [39:44] is the sub-list for method output_type
-	34, // [34:39] is the sub-list for method input_type
-	34, // [34:34] is the sub-list for extension type_name
-	34, // [34:34] is the sub-list for extension extendee
-	0,  // [0:34] is the sub-list for field type_name
+	34, // 26: flex.RemoteStorageTarget.policies:type_name -> flex.RemoteStorageTarget.Policies
+	35, // 27: flex.RemoteStorageTarget.s3:type_name -> flex.RemoteStorageTarget.S3
+	37, // 28: flex.RemoteStorageTarget.posix:type_name -> flex.RemoteStorageTarget.POSIX
+	36, // 29: flex.RemoteStorageTarget.azure:type_name -> flex.RemoteStorageTarget.Azure
+	28, // 30: flex.GetCapabilitiesResponse.build_info:type_name -> flex.BuildInfo
+	40, // 31: flex.GetCapabilitiesResponse.features:type_name -> flex.GetCapabilitiesResponse.FeaturesEntry
+	42, // 32: flex.GetCapabilitiesResponse.start_timestamp:type_name -> google.protobuf.Timestamp
+	41, // 33: flex.Feature.sub_feature:type_name -> flex.Feature.SubFeatureEntry
+	3,  // 34: flex.Work.Status.state:type_name -> flex.Work.State
+	38, // 35: flex.RemoteStorageTarget.S3.storage_class:type_name -> flex.RemoteStorageTarget.S3.StorageClass
+	35, // 36: flex.RemoteStorageTarget.Azure.s3:type_name -> flex.RemoteStorageTarget.S3
+	39, // 37: flex.RemoteStorageTarget.S3.StorageClass.archival:type_name -> flex.RemoteStorageTarget.S3.StorageClass.Archival
+	27, // 38: flex.GetCapabilitiesResponse.FeaturesEntry.value:type_name -> flex.Feature
+	27, // 39: flex.Feature.SubFeatureEntry.value:type_name -> flex.Feature
+	21, // 40: flex.WorkerNode.UpdateConfig:input_type -> flex.UpdateConfigRequest
+	5,  // 41: flex.WorkerNode.Heartbeat:input_type -> flex.HeartbeatRequest
+	8,  // 42: flex.WorkerNode.SubmitWork:input_type -> flex.SubmitWorkRequest
+	10, // 43: flex.WorkerNode.UpdateWork:input_type -> flex.UpdateWorkRequest
+	12, // 44: flex.WorkerNode.BulkUpdateWork:input_type -> flex.BulkUpdateWorkRequest
+	25, // 45: flex.WorkerNode.GetCapabilities:input_type -> flex.GetCapabilitiesRequest
+	22, // 46: flex.WorkerNode.UpdateConfig:output_type -> flex.UpdateConfigResponse
+	6,  // 47: flex.WorkerNode.Heartbeat:output_type -> flex.HeartbeatResponse
+	9,  // 48: flex.WorkerNode.SubmitWork:output_type -> flex.SubmitWorkResponse
+	11, // 49: flex.WorkerNode.UpdateWork:output_type -> flex.UpdateWorkResponse
+	13, // 50: flex.WorkerNode.BulkUpdateWork:output_type -> flex.BulkUpdateWorkResponse
+	26, // 51: flex.WorkerNode.GetCapabilities:output_type -> flex.GetCapabilitiesResponse
+	46, // [46:52] is the sub-list for method output_type
+	40, // [40:46] is the sub-list for method input_type
+	40, // [40:40] is the sub-list for extension type_name
+	40, // [40:40] is the sub-list for extension extendee
+	0,  // [0:40] is the sub-list for field type_name
 }
 
 func init() { file_flex_proto_init() }
@@ -4652,14 +5022,14 @@ func file_flex_proto_init() {
 		(*remoteStorageTarget_Azure_)(nil),
 		(*remoteStorageTarget_Mock)(nil),
 	}
-	file_flex_proto_msgTypes[29].OneofWrappers = []any{}
+	file_flex_proto_msgTypes[33].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_flex_proto_rawDesc,
 			NumEnums:      5,
-			NumMessages:   31,
+			NumMessages:   37,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
