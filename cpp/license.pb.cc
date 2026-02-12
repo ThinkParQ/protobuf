@@ -275,13 +275,13 @@ const char descriptor_table_protodef_license_2eproto[] ABSL_ATTRIBUTE_SECTION_VA
     "nt_data\030\r \001(\0132\021.license.CertDataH\000\210\001\001B\016\n"
     "\014_parent_data*^\n\014VerifyResult\022\026\n\022VERIFY_"
     "UNSPECIFIED\020\000\022\020\n\014VERIFY_ERROR\020\001\022\020\n\014VERIF"
-    "Y_VALID\020\002\022\022\n\016VERIFY_INVALID\020\003*\243\001\n\010CertTy"
+    "Y_VALID\020\002\022\022\n\016VERIFY_INVALID\020\003*\274\001\n\010CertTy"
     "pe\022\031\n\025CERT_TYPE_UNSPECIFIED\020\000\022\025\n\021CERT_TY"
     "PE_CA_ROOT\020\001\022\035\n\031CERT_TYPE_CA_INTERMEDIAT"
     "E\020\002\022\025\n\021CERT_TYPE_PARTNER\020\003\022\026\n\022CERT_TYPE_"
-    "CUSTOMER\020\004\022\027\n\023CERT_TYPE_TEMPORARY\020\005B*Z(g"
-    "ithub.com/thinkparq/protobuf/go/licenseb"
-    "\006proto3"
+    "CUSTOMER\020\004\022\027\n\023CERT_TYPE_TEMPORARY\020\005\022\027\n\023C"
+    "ERT_TYPE_COMMUNITY\020\006B*Z(github.com/think"
+    "parq/protobuf/go/licenseb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_license_2eproto_deps[1] =
     {
@@ -291,7 +291,7 @@ static ::absl::once_flag descriptor_table_license_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_license_2eproto = {
     false,
     false,
-    1047,
+    1072,
     descriptor_table_protodef_license_2eproto,
     "license.proto",
     &descriptor_table_license_2eproto_once,
@@ -319,9 +319,9 @@ const ::google::protobuf::EnumDescriptor* CertType_descriptor() {
   return file_level_enum_descriptors_license_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t CertType_internal_data_[] = {
-    393216u, 0u, };
+    458752u, 0u, };
 bool CertType_IsValid(int value) {
-  return 0 <= value && value <= 5;
+  return 0 <= value && value <= 6;
 }
 // ===================================================================
 
