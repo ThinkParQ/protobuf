@@ -1,0 +1,155 @@
+syntax = "proto3";
+package agent;
+option go_package = "github.com/thinkparq/protobuf/go/agent";
+import "beegfs.proto";
+import "google/protobuf/timestamp.proto";
+
+service BeeAgent {
+  rpc UpdateManifest(UpdateManifestRequest) returns (UpdateManifestResponse);
+  rpc ReconciliationStatus(ReconciliationStatusRequest) returns (ReconciliationStatusResponse);
+  rpc CancelReconciliation(CancelReconciliationRequest) returns (CancelReconciliationResponse);
+}
+
+message UpdateManifestRequest {
+  // Map of FsUUIDs to file systems.
+  map<string, Filesystem> config = 1;
+}
+
+message UpdateManifestResponse {
+  string agent_id = 1;
+}
+
+message ReconciliationStatusRequest{
+  string agent_id = 1;
+}
+
+message ReconciliationStatusResponse {
+  string agent_id = 1;
+  Status status = 2;
+}
+
+message CancelReconciliationRequest {
+  string agent_id = 1;
+  string reason = 2;
+}
+
+message CancelReconciliationResponse {
+  string agent_id = 1;
+  Status status = 2;
+}
+
+message Status {
+  State state = 1;
+  enum State {
+    UNSPECIFIED = 0; // Should not be used. Exists only as the default if there is a programming error.
+    IDLE = 1; // No configuration has been provided to the agent.
+    APPLYING = 2; // Agent is applying the requested configuration.
+    SUCCESS = 3; // Agent has applied all requested configuration.
+    FAILED = 4; // The agent has failed to apply the requested configuration.
+    CANCELLED = 5; // The user requested the agent cancel applying the requested configuration. 
+  }
+  repeated string messages = 2;
+  google.protobuf.Timestamp updated = 3;
+}
+
+// The manifest defining an entire BeeGFS instance.
+message Filesystem {
+  // Map of agentIDs to agents.
+  map<string, Agent> agent = 1;
+  // Common configuration to apply to all Services.
+  Common common = 2;
+  message Common {
+    optional Auth auth = 1;
+    optional TLS tls = 2;
+    InstallSource install_source = 3;
+    repeated ServiceConfig global_config = 4;
+  }
+}
+
+message Auth {
+    string secret = 1;
+}
+
+message TLS {
+    string key = 1;
+    string cert = 2;
+}
+
+message InstallSource {
+    InstallType type = 1;
+    string repo = 2;
+    repeated SourceRef refs = 3;
+}
+
+// SourceRef exists because protobuf maps do not support enums as a map key. The expected use is a
+// repeated SourceRef field with one entry per NodeType. It is up to the consumer to decide what to
+// do if multiple of the same service_type are found, typically the last entry wins.
+message SourceRef {
+    beegfs.NodeType service_type = 1;
+    string ref = 2;
+}
+
+enum InstallType {
+  UNKNOWN = 0;
+  LOCAL = 1;
+  PACKAGE = 2;
+}
+ 
+// ServiceConfig exists because protobuf maps do not support enums as a map key or maps as a value. The
+// expected use is a repeated ServiceConfig field with one entry per NodeType. It is up to the consumer
+// to decide what to do if multiple of the same service_type are found, typically the last entry wins.
+message ServiceConfig {
+    beegfs.NodeType service_type = 1;
+    map<string, string> string_map = 2;
+}
+
+// A physical or virtual machine where the BeeGFS agent is running and one or more BeeGFS services
+// (services or clients) should be deployed by the agent.
+message Agent {
+  // The agent can deploy one or more services on each host machine/VM.
+  repeated Service services = 1;
+  // The agent can configure global interfaces used by multiple services.
+  repeated Nic interfaces = 2;
+}
+
+// A service is a single instance of a particular BeeGFS NodeType (e.g., meta, client, sync).
+message Service {
+  uint32 num_id = 1;
+  beegfs.NodeType service_type = 2;
+  // Configuration that should be applied to this specific service.
+  map<string, string> config = 3;
+  repeated Nic interfaces = 4;
+  repeated Target targets = 5;
+  string executable = 6;
+}
+
+message Nic {
+  // The name of the interface to use.
+  string name = 1;
+  // The IP/subnet of the interface. Only required if the IP should be configured if needed.
+  string addr = 2;
+}
+
+message Target {
+  // The target ID. Note the type is derived from the associated service.
+  uint32 num_id = 1;
+  // Path to the directory under which this BeeGFS target directory will be created. For example
+  // given path /mnt/ and storage target 101 the target contents would be at /mnt/s_101/. Always
+  // required and this directory must already exist unless mount_opts is also specified. 
+  string path = 2;
+  // Optionally set to format+mount the underlying file system if needed. The underlying file system
+  // will be mounted at path/shortFsUUID/type_id where shortFsUUID is the first 8 hex digits of the
+  // full 128-bit v4 FsUUID. For example given FsUUID 3b6f972b-64c7-4378-9f8e-172cf88c7d93, storage
+  // target 101 and root_dir `/mnt/` the target will be mounted at `/mnt/3b6f972b/storage_101`.
+  optional UnderlyingFSOpts ulfs = 3;
+  message UnderlyingFSOpts {
+    string device = 1;
+    FsType type = 2;
+    string format_flags = 3;
+    string mount_flags = 4;
+    enum FsType {
+      UNSPECIFIED = 0;
+      EXT4 = 1;
+    }
+  }
+}
