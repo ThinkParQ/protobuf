@@ -2,7 +2,7 @@
 /// The "legacy" BeeGFS numeric Id-NodeType combination that can be used to identify an entity like
 /// a node or target. Because each entity type has its own id space (meaning a combination is not
 /// globally unique), the entity type must be known in addition to uniquely identify an entity.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct LegacyId {
     /// BeeGFS numeric id.
     /// Required, 0 is invalid.
@@ -17,12 +17,13 @@ pub struct LegacyId {
 /// Contains all identifiers used to uniquely identify an entity like a node or a target. Mainly
 /// meant for communication with management as management has access to all the information. This
 /// message should be used in two ways:
-/// 1) In a request message (to the management),  only _one_ of the fields needs to be set (each is
-/// enough to identify an entity (legacy_id with extra knowledge).
-/// 2) In a response message (from the management), _all_ fields should be set. The request processor
-/// should have all info about an entity available. If that isn't the case, leaving fields empty is
-/// allowed.
-#[derive(Clone, PartialEq, ::prost::Message)]
+///
+/// 1. In a request message (to the management),  only *one* of the fields needs to be set (each is
+///    enough to identify an entity (legacy_id with extra knowledge).
+/// 1. In a response message (from the management), *all* fields should be set. The request processor
+///    should have all info about an entity available. If that isn't the case, leaving fields empty is
+///    allowed.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EntityIdSet {
     /// The global, unique entity id. Identifies an entity from all types without any additional
     /// context.
@@ -32,7 +33,7 @@ pub struct EntityIdSet {
     /// The user definable globally unique alias of an entity. Identifies an entity from all types
     /// without any additional context.
     /// Optional or Required, depending on the use case. Aliases must start with letter and contain
-    /// only \[a-zA-Z0-9_-.\].
+    /// only \[a-zA-Z0-9\_-.\].
     #[prost(string, optional, tag = "2")]
     pub alias: ::core::option::Option<::prost::alloc::string::String>,
     /// The "legacy" style numeric Id-NodeType combination. The entity type must be known in addition
