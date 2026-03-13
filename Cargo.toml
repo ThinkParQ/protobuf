@@ -12,9 +12,10 @@ publish = false
 [dependencies]
 # The version requirements of these must match the version requirement of protoc-rs used to
 # generate the code
-tonic = "0.13"
-prost = "0.13"
-prost-types = "0.13"
+tonic = "0.14"
+prost = "0.14"
+tonic-prost = "0.14"
+prost-types = "0.14"
 
 [lib]
 path = "rust/lib.rs"

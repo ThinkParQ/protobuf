@@ -4,7 +4,7 @@
 /// API. Those should only affect the serialization format between the meta and watch services, and
 /// should adhere to standard protocol buffer best practices. Notably minor updates should be
 /// additive and not remove or change the meaning of existing fields.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Event {
     #[prost(uint64, tag = "1")]
     pub seq_id: u64,
@@ -20,7 +20,7 @@ pub struct Event {
 }
 /// Nested message and enum types in `Event`.
 pub mod event {
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum EventData {
         #[prost(message, tag = "11")]
         V1(super::V1Event),
@@ -29,7 +29,7 @@ pub mod event {
     }
 }
 /// The v1 event format is the legacy format from BeeGFS v7.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct V1Event {
     #[prost(enumeration = "v1_event::Type", tag = "1")]
     pub r#type: i32,
@@ -121,7 +121,7 @@ pub mod v1_event {
     }
 }
 /// The v2 event format was introduced in BeeGFS v8.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct V2Event {
     #[prost(enumeration = "v2_event::Type", tag = "1")]
     pub r#type: i32,
@@ -236,7 +236,7 @@ pub mod v2_event {
     }
 }
 /// Response messages allow the subscribers to acknowledge events they have processed and request a graceful shutdown.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Response {
     #[prost(uint64, tag = "1")]
     pub completed_seq: u64,
@@ -349,7 +349,7 @@ pub mod subscriber_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beewatch.Subscriber/ReceiveEvents",
             );
@@ -492,7 +492,7 @@ pub mod subscriber_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = ReceiveEventsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,

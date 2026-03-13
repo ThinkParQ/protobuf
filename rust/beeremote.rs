@@ -106,7 +106,7 @@ pub struct JobRequest {
 }
 /// Nested message and enum types in `JobRequest`.
 pub mod job_request {
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct GenerationStatus {
         #[prost(enumeration = "generation_status::State", tag = "1")]
         pub state: i32,
@@ -224,7 +224,7 @@ pub struct Job {
 }
 /// Nested message and enum types in `Job`.
 pub mod job {
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Status {
         #[prost(enumeration = "State", tag = "1")]
         pub state: i32,
@@ -472,7 +472,7 @@ pub struct UpdateJobsResponse {
 /// With the MapStore used as a wrapper around the BadgerDB k/v store we don't
 /// have to duplicate all information and can use the Metadata field of the
 /// MapStore to create references to data stored in other MapStores.
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetJobsRequest {
     #[prost(bool, tag = "4")]
     pub include_work_requests: bool,
@@ -493,14 +493,14 @@ pub struct GetJobsRequest {
 }
 /// Nested message and enum types in `GetJobsRequest`.
 pub mod get_jobs_request {
-    #[derive(Clone, PartialEq, ::prost::Message)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct QueryIdAndPath {
         #[prost(string, tag = "1")]
         pub job_id: ::prost::alloc::string::String,
         #[prost(string, tag = "2")]
         pub path: ::prost::alloc::string::String,
     }
-    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum Query {
         /// Returns at most one Job.
         #[prost(message, tag = "1")]
@@ -528,21 +528,21 @@ pub struct UpdateWorkRequest {
 }
 /// We use our own empty message instead of google.protobuf.Empty to ensure backwards
 /// compatibility should we need to add fields in the future.
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateWorkResponse {}
-#[derive(Clone, Copy, PartialEq, ::prost::Message)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetRstConfigRequest {}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetRstConfigResponse {
     #[prost(message, repeated, tag = "1")]
     pub rsts: ::prost::alloc::vec::Vec<super::flex::RemoteStorageTarget>,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetStubContentsRequest {
     #[prost(string, tag = "1")]
     pub path: ::prost::alloc::string::String,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetStubContentsResponse {
     #[prost(uint32, optional, tag = "1")]
     pub rst_id: ::core::option::Option<u32>,
@@ -657,7 +657,7 @@ pub mod bee_remote_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beeremote.BeeRemote/SubmitJob",
             );
@@ -681,7 +681,7 @@ pub mod bee_remote_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beeremote.BeeRemote/UpdatePaths",
             );
@@ -705,7 +705,7 @@ pub mod bee_remote_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beeremote.BeeRemote/UpdateJobs",
             );
@@ -729,7 +729,7 @@ pub mod bee_remote_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beeremote.BeeRemote/GetJobs",
             );
@@ -762,7 +762,7 @@ pub mod bee_remote_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beeremote.BeeRemote/UpdateWork",
             );
@@ -786,7 +786,7 @@ pub mod bee_remote_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beeremote.BeeRemote/GetRSTConfig",
             );
@@ -810,7 +810,7 @@ pub mod bee_remote_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beeremote.BeeRemote/GetStubContents",
             );
@@ -834,7 +834,7 @@ pub mod bee_remote_client {
                         format!("Service was not ready: {}", e.into()),
                     )
                 })?;
-            let codec = tonic::codec::ProstCodec::default();
+            let codec = tonic_prost::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/beeremote.BeeRemote/GetCapabilities",
             );
@@ -1041,7 +1041,7 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = SubmitJobSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,
@@ -1087,7 +1087,7 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = UpdatePathsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,
@@ -1132,7 +1132,7 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = UpdateJobsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,
@@ -1178,7 +1178,7 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetJobsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,
@@ -1223,7 +1223,7 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = UpdateWorkSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,
@@ -1268,7 +1268,7 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetRSTConfigSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,
@@ -1313,7 +1313,7 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetStubContentsSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,
@@ -1361,7 +1361,7 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetCapabilitiesSvc(inner);
-                        let codec = tonic::codec::ProstCodec::default();
+                        let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
                                 accept_compression_encodings,

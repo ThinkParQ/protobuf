@@ -57,7 +57,7 @@ clean:
 PROTOC_VERSION := 29.2
 PROTOC_GEN_GO_VERSION := 1.36.2
 PROTOC_GEN_GO_GRPC_VERSION := 1.5.1
-PROTOC_RS_VERSION := 0.5.0
+PROTOC_RS_VERSION := 0.6.0
 
 # Checks the versions of the installed tools, making sure they are what we expect
 .PHONY: check-tools
