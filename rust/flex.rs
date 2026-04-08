@@ -256,6 +256,11 @@ pub struct WorkRequest {
     /// Time in seconds to wait after a file is closed before replication begins.
     #[prost(uint32, optional, tag = "14")]
     pub cooldown_secs: ::core::option::Option<u32>,
+    /// bulk_info is optionally set when this work request belongs to a provider-controlled bulk
+    /// operation. It carries builder-maintained metadata used to correlate the request with the
+    /// provider's bulk operation and track its state within that operation.
+    #[prost(message, optional, tag = "16")]
+    pub bulk_info: ::core::option::Option<BulkJobRequestInfo>,
     #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
@@ -288,17 +293,43 @@ pub mod work_request {
         Builder(super::BuilderJob),
     }
 }
+/// BulkJobRequestInfo contains builder-maintained metadata for requests that participate in a
+/// provider controlled bulk operation.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BulkJobRequestInfo {
+    /// Builder-maintained in-mount path for provider bulk-operation state.
+    #[prost(string, tag = "1")]
+    pub state_mount_path: ::prost::alloc::string::String,
+    /// Provider-defined bulk operation identifier for this request.
+    #[prost(string, tag = "2")]
+    pub operation: ::prost::alloc::string::String,
+    /// Zero-based request index within the bulk operation.
+    #[prost(int64, tag = "3")]
+    pub job_index: i64,
+}
 /// JobBuilderJob is a special type of job that creates job requests of any time.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BuilderJob {
     #[prost(message, optional, tag = "1")]
     pub cfg: ::core::option::Option<JobRequestCfg>,
-    /// Stores the total number of job requests that were submitted regardless of success.
+    /// Number of job requests submitted to BeeGFS Remote.
     #[prost(int32, tag = "2")]
     pub submitted: i32,
-    /// Stores the number of failed job requests.
+    /// Number of job requests submitted with a GenerationStatus of ERROR or FAILED_PRECONDITION.
     #[prost(int32, tag = "3")]
     pub errors: i32,
+    /// Number of jobs for which there's already an equivalent active job.
+    #[prost(int32, tag = "8")]
+    pub jobs_already_exist: i32,
+    /// Number of jobs for which there's an existing equivalent failed job.
+    #[prost(int32, tag = "9")]
+    pub jobs_not_allowed: i32,
+    /// Number of jobs that were already complete.
+    #[prost(int32, tag = "10")]
+    pub jobs_already_complete: i32,
+    /// Number of jobs that were already offloaded.
+    #[prost(int32, tag = "11")]
+    pub jobs_already_offloaded: i32,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MockJob {
@@ -461,6 +492,8 @@ pub mod work {
         pub checksum_sha256: ::prost::alloc::string::String,
         #[prost(bool, tag = "6")]
         pub completed: bool,
+        #[prost(bool, optional, tag = "7")]
+        pub started: ::core::option::Option<bool>,
     }
     #[derive(
         Clone,
@@ -672,7 +705,7 @@ pub struct RemoteStorageTarget {
     /// in the rst package for additional details.
     ///
     /// Ref: <https://groups.google.com/g/protobuf/c/ojpYHqx2l04>
-    #[prost(oneof = "remote_storage_target::Type", tags = "4, 5, 6, 7")]
+    #[prost(oneof = "remote_storage_target::Type", tags = "4, 5, 6, 7, 8")]
     pub r#type: ::core::option::Option<remote_storage_target::Type>,
 }
 /// Nested message and enum types in `RemoteStorageTarget`.
@@ -778,6 +811,11 @@ pub mod remote_storage_target {
         #[prost(string, tag = "2")]
         pub account: ::prost::alloc::string::String,
     }
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct XtreemStore {
+        #[prost(message, optional, tag = "1")]
+        pub s3: ::core::option::Option<S3>,
+    }
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Posix {
         #[prost(string, tag = "1")]
@@ -801,6 +839,8 @@ pub mod remote_storage_target {
         Azure(Azure),
         #[prost(string, tag = "7")]
         Mock(::prost::alloc::string::String),
+        #[prost(message, tag = "8")]
+        Xtreemstore(XtreemStore),
     }
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
