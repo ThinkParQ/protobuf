@@ -98,6 +98,8 @@ message JobRequest {
         string message = 2;
     }
     optional bool update = 9;
+    // Controls the data state of the stub file when stub_local is true.
+    optional flex.RestorePolicy restore_policy = 13;
 }
 
 // Job contains all the data from the original request plus the job ID and
