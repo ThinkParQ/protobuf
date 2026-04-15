@@ -56,6 +56,9 @@ namespace beewatch {
 class Event;
 struct EventDefaultTypeInternal;
 extern EventDefaultTypeInternal _Event_default_instance_;
+class EventFilter;
+struct EventFilterDefaultTypeInternal;
+extern EventFilterDefaultTypeInternal _EventFilter_default_instance_;
 class Response;
 struct ResponseDefaultTypeInternal;
 extern ResponseDefaultTypeInternal _Response_default_instance_;
@@ -860,6 +863,228 @@ class V1Event final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class EventFilter final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:beewatch.EventFilter) */ {
+ public:
+  inline EventFilter() : EventFilter(nullptr) {}
+  ~EventFilter() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EventFilter* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EventFilter));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EventFilter(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline EventFilter(const EventFilter& from) : EventFilter(nullptr, from) {}
+  inline EventFilter(EventFilter&& from) noexcept
+      : EventFilter(nullptr, std::move(from)) {}
+  inline EventFilter& operator=(const EventFilter& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EventFilter& operator=(EventFilter&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EventFilter& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const EventFilter* internal_default_instance() {
+    return reinterpret_cast<const EventFilter*>(
+        &_EventFilter_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(EventFilter& a, EventFilter& b) { a.Swap(&b); }
+  inline void Swap(EventFilter* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EventFilter* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EventFilter* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EventFilter>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EventFilter& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EventFilter& from) { EventFilter::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EventFilter* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "beewatch.EventFilter"; }
+
+ protected:
+  explicit EventFilter(::google::protobuf::Arena* arena);
+  EventFilter(::google::protobuf::Arena* arena, const EventFilter& from);
+  EventFilter(::google::protobuf::Arena* arena, EventFilter&& from) noexcept
+      : EventFilter(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kV1TypesFieldNumber = 1,
+    kV2TypesFieldNumber = 2,
+  };
+  // repeated .beewatch.V1Event.Type v1_types = 1;
+  int v1_types_size() const;
+  private:
+  int _internal_v1_types_size() const;
+
+  public:
+  void clear_v1_types() ;
+  public:
+  ::beewatch::V1Event_Type v1_types(int index) const;
+  void set_v1_types(int index, ::beewatch::V1Event_Type value);
+  void add_v1_types(::beewatch::V1Event_Type value);
+  const ::google::protobuf::RepeatedField<int>& v1_types() const;
+  ::google::protobuf::RepeatedField<int>* mutable_v1_types();
+
+  private:
+  const ::google::protobuf::RepeatedField<int>& _internal_v1_types() const;
+  ::google::protobuf::RepeatedField<int>* _internal_mutable_v1_types();
+
+  public:
+  // repeated .beewatch.V2Event.Type v2_types = 2;
+  int v2_types_size() const;
+  private:
+  int _internal_v2_types_size() const;
+
+  public:
+  void clear_v2_types() ;
+  public:
+  ::beewatch::V2Event_Type v2_types(int index) const;
+  void set_v2_types(int index, ::beewatch::V2Event_Type value);
+  void add_v2_types(::beewatch::V2Event_Type value);
+  const ::google::protobuf::RepeatedField<int>& v2_types() const;
+  ::google::protobuf::RepeatedField<int>* mutable_v2_types();
+
+  private:
+  const ::google::protobuf::RepeatedField<int>& _internal_v2_types() const;
+  ::google::protobuf::RepeatedField<int>* _internal_mutable_v2_types();
+
+  public:
+  // @@protoc_insertion_point(class_scope:beewatch.EventFilter)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const EventFilter& from_msg);
+    ::google::protobuf::RepeatedField<int> v1_types_;
+    ::google::protobuf::internal::CachedSize _v1_types_cached_byte_size_;
+    ::google::protobuf::RepeatedField<int> v2_types_;
+    ::google::protobuf::internal::CachedSize _v2_types_cached_byte_size_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_beewatch_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Response final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:beewatch.Response) */ {
  public:
@@ -919,7 +1144,7 @@ class Response final : public ::google::protobuf::Message
     return reinterpret_cast<const Response*>(
         &_Response_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(Response& a, Response& b) { a.Swap(&b); }
   inline void Swap(Response* other) {
     if (other == this) return;
@@ -1006,9 +1231,25 @@ class Response final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kFilterFieldNumber = 3,
     kCompletedSeqFieldNumber = 1,
     kShuttingDownFieldNumber = 2,
   };
+  // optional .beewatch.EventFilter filter = 3;
+  bool has_filter() const;
+  void clear_filter() ;
+  const ::beewatch::EventFilter& filter() const;
+  PROTOBUF_NODISCARD ::beewatch::EventFilter* release_filter();
+  ::beewatch::EventFilter* mutable_filter();
+  void set_allocated_filter(::beewatch::EventFilter* value);
+  void unsafe_arena_set_allocated_filter(::beewatch::EventFilter* value);
+  ::beewatch::EventFilter* unsafe_arena_release_filter();
+
+  private:
+  const ::beewatch::EventFilter& _internal_filter() const;
+  ::beewatch::EventFilter* _internal_mutable_filter();
+
+  public:
   // uint64 completed_seq = 1;
   void clear_completed_seq() ;
   ::uint64_t completed_seq() const;
@@ -1034,7 +1275,7 @@ class Response final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
+      2, 3, 1,
       0, 2>
       _table_;
 
@@ -1052,9 +1293,11 @@ class Response final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Response& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::beewatch::EventFilter* filter_;
     ::uint64_t completed_seq_;
     bool shutting_down_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2268,6 +2511,100 @@ inline void V2Event::_internal_set_timestamp(::int64_t value) {
 
 // -------------------------------------------------------------------
 
+// EventFilter
+
+// repeated .beewatch.V1Event.Type v1_types = 1;
+inline int EventFilter::_internal_v1_types_size() const {
+  return _internal_v1_types().size();
+}
+inline int EventFilter::v1_types_size() const {
+  return _internal_v1_types_size();
+}
+inline void EventFilter::clear_v1_types() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.v1_types_.Clear();
+}
+inline ::beewatch::V1Event_Type EventFilter::v1_types(int index) const {
+  // @@protoc_insertion_point(field_get:beewatch.EventFilter.v1_types)
+  return static_cast<::beewatch::V1Event_Type>(_internal_v1_types().Get(index));
+}
+inline void EventFilter::set_v1_types(int index, ::beewatch::V1Event_Type value) {
+  _internal_mutable_v1_types()->Set(index, value);
+  // @@protoc_insertion_point(field_set:beewatch.EventFilter.v1_types)
+}
+inline void EventFilter::add_v1_types(::beewatch::V1Event_Type value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_v1_types()->Add(value);
+  // @@protoc_insertion_point(field_add:beewatch.EventFilter.v1_types)
+}
+inline const ::google::protobuf::RepeatedField<int>& EventFilter::v1_types() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:beewatch.EventFilter.v1_types)
+  return _internal_v1_types();
+}
+inline ::google::protobuf::RepeatedField<int>* EventFilter::mutable_v1_types()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:beewatch.EventFilter.v1_types)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_v1_types();
+}
+inline const ::google::protobuf::RepeatedField<int>& EventFilter::_internal_v1_types()
+    const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.v1_types_;
+}
+inline ::google::protobuf::RepeatedField<int>* EventFilter::_internal_mutable_v1_types() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.v1_types_;
+}
+
+// repeated .beewatch.V2Event.Type v2_types = 2;
+inline int EventFilter::_internal_v2_types_size() const {
+  return _internal_v2_types().size();
+}
+inline int EventFilter::v2_types_size() const {
+  return _internal_v2_types_size();
+}
+inline void EventFilter::clear_v2_types() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.v2_types_.Clear();
+}
+inline ::beewatch::V2Event_Type EventFilter::v2_types(int index) const {
+  // @@protoc_insertion_point(field_get:beewatch.EventFilter.v2_types)
+  return static_cast<::beewatch::V2Event_Type>(_internal_v2_types().Get(index));
+}
+inline void EventFilter::set_v2_types(int index, ::beewatch::V2Event_Type value) {
+  _internal_mutable_v2_types()->Set(index, value);
+  // @@protoc_insertion_point(field_set:beewatch.EventFilter.v2_types)
+}
+inline void EventFilter::add_v2_types(::beewatch::V2Event_Type value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_v2_types()->Add(value);
+  // @@protoc_insertion_point(field_add:beewatch.EventFilter.v2_types)
+}
+inline const ::google::protobuf::RepeatedField<int>& EventFilter::v2_types() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:beewatch.EventFilter.v2_types)
+  return _internal_v2_types();
+}
+inline ::google::protobuf::RepeatedField<int>* EventFilter::mutable_v2_types()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:beewatch.EventFilter.v2_types)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_v2_types();
+}
+inline const ::google::protobuf::RepeatedField<int>& EventFilter::_internal_v2_types()
+    const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.v2_types_;
+}
+inline ::google::protobuf::RepeatedField<int>* EventFilter::_internal_mutable_v2_types() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.v2_types_;
+}
+
+// -------------------------------------------------------------------
+
 // Response
 
 // uint64 completed_seq = 1;
@@ -2312,6 +2649,102 @@ inline bool Response::_internal_shutting_down() const {
 inline void Response::_internal_set_shutting_down(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.shutting_down_ = value;
+}
+
+// optional .beewatch.EventFilter filter = 3;
+inline bool Response::has_filter() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.filter_ != nullptr);
+  return value;
+}
+inline void Response::clear_filter() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.filter_ != nullptr) _impl_.filter_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::beewatch::EventFilter& Response::_internal_filter() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::beewatch::EventFilter* p = _impl_.filter_;
+  return p != nullptr ? *p : reinterpret_cast<const ::beewatch::EventFilter&>(::beewatch::_EventFilter_default_instance_);
+}
+inline const ::beewatch::EventFilter& Response::filter() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beewatch.Response.filter)
+  return _internal_filter();
+}
+inline void Response::unsafe_arena_set_allocated_filter(::beewatch::EventFilter* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.filter_);
+  }
+  _impl_.filter_ = reinterpret_cast<::beewatch::EventFilter*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beewatch.Response.filter)
+}
+inline ::beewatch::EventFilter* Response::release_filter() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beewatch::EventFilter* released = _impl_.filter_;
+  _impl_.filter_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::beewatch::EventFilter* Response::unsafe_arena_release_filter() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beewatch.Response.filter)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::beewatch::EventFilter* temp = _impl_.filter_;
+  _impl_.filter_ = nullptr;
+  return temp;
+}
+inline ::beewatch::EventFilter* Response::_internal_mutable_filter() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.filter_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::beewatch::EventFilter>(GetArena());
+    _impl_.filter_ = reinterpret_cast<::beewatch::EventFilter*>(p);
+  }
+  return _impl_.filter_;
+}
+inline ::beewatch::EventFilter* Response::mutable_filter() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::beewatch::EventFilter* _msg = _internal_mutable_filter();
+  // @@protoc_insertion_point(field_mutable:beewatch.Response.filter)
+  return _msg;
+}
+inline void Response::set_allocated_filter(::beewatch::EventFilter* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.filter_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.filter_ = reinterpret_cast<::beewatch::EventFilter*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beewatch.Response.filter)
 }
 
 #ifdef __GNUC__

@@ -235,13 +235,42 @@ pub mod v2_event {
         }
     }
 }
-/// Response messages allow the subscribers to acknowledge events they have processed and request a graceful shutdown.
-#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+/// EventFilter allows subscribers to restrict which events are delivered to them by specifying
+/// per-version allowlists of event types. It is intended as a performance optimization to avoid
+/// sending unwanted events over the network; it does not provide delivery guarantees. Subscribers
+/// must always check the type of each event they receive before taking any action.
+///
+/// A version field that is absent or empty means all types for that version are delivered. The
+/// filter as a whole being absent (no filter set in the initial Response) means all events are
+/// delivered regardless of type or version.
+///
+/// Filter support is best-effort: Watch instances that predate this field will silently ignore it
+/// and deliver all events.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct EventFilter {
+    /// Allowlist of V1 event types the subscriber wants to receive.
+    /// Empty = receive all V1 event types.
+    #[prost(enumeration = "v1_event::Type", repeated, tag = "1")]
+    pub v1_types: ::prost::alloc::vec::Vec<i32>,
+    /// Allowlist of V2 event types the subscriber wants to receive.
+    /// Empty = receive all V2 event types.
+    #[prost(enumeration = "v2_event::Type", repeated, tag = "2")]
+    pub v2_types: ::prost::alloc::vec::Vec<i32>,
+}
+/// Response messages allow the subscribers to acknowledge events they have processed and request a
+/// graceful shutdown.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct Response {
     #[prost(uint64, tag = "1")]
     pub completed_seq: u64,
     #[prost(bool, tag = "2")]
     pub shutting_down: bool,
+    /// Optional event type filter. Only read from the first Response message the subscriber sends
+    /// after connecting. When absent, all events are delivered without filtering, preserving the
+    /// behavior of older subscribers that do not set this field. EventFilter support is best effort,
+    /// if Watch doesn't support event filters or a specific filter configuration, this is ignored.
+    #[prost(message, optional, tag = "3")]
+    pub filter: ::core::option::Option<EventFilter>,
 }
 /// Generated client implementations.
 pub mod subscriber_client {
