@@ -6,22 +6,27 @@ SRC_DIR := proto
 # Output directory for compiled Go files
 GO_OUT_DIR := go
 # Output directory for compiled C++ files
-CPP_OUT_DIR := cpp
+CPP_OUT_DIR := cpp/include/proto
 # Output directory for compiled Rust files
 RUST_OUT_DIR := rust
+
+# grpc install directory
+GRPC_INSTALL_DIR := $(HOME)/.local/grpc
 
 all: protos
 
 .PHONY: protos
 protos: check-tools
 	mkdir -p $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)
-	protoc -I $(SRC_DIR) \
+	$(GRPC_INSTALL_DIR)/bin/protoc -I $(SRC_DIR) \
 		--go_opt=module="github.com/thinkparq/protobuf/go" \
 		--go_opt=default_api_level=API_HYBRID \
 		--go_out=$(GO_OUT_DIR) \
 		--go-grpc_opt=module="github.com/thinkparq/protobuf/go" \
 		--go-grpc_out=$(GO_OUT_DIR) \
 		--cpp_out=$(CPP_OUT_DIR) \
+		--grpc_out=$(CPP_OUT_DIR) \
+		--plugin=protoc-gen-grpc=$(GRPC_INSTALL_DIR)/bin/grpc_cpp_plugin \
 		$(SRC_DIR)/*.proto
 	protoc-rs -I $(SRC_DIR) --out=$(RUST_OUT_DIR) $(SRC_DIR)/*.proto
 
@@ -54,7 +59,7 @@ clean:
 
 
 # The tools versions we want to use
-PROTOC_VERSION := 29.2
+PROTOC_VERSION := 31.1
 PROTOC_GEN_GO_VERSION := 1.36.2
 PROTOC_GEN_GO_GRPC_VERSION := 1.5.1
 PROTOC_RS_VERSION := 0.6.0
@@ -64,7 +69,7 @@ PROTOC_RS_VERSION := 0.6.0
 .ONESHELL: check-tools
 check-tools:
 	@function check() { [[ "$$1" == "$$2" ]] || { echo "tool version mismatch: expected $$1, got $$2" ; exit 1 ; } }
-	check "libprotoc $(PROTOC_VERSION)" "$$(protoc --version)"
+	check "libprotoc $(PROTOC_VERSION)" "$$($(GRPC_INSTALL_DIR)/bin/protoc --version)"
 	check "protoc-gen-go v$(PROTOC_GEN_GO_VERSION)" "$$(protoc-gen-go --version)"
 	check "protoc-gen-go-grpc $(PROTOC_GEN_GO_GRPC_VERSION)" "$$(protoc-gen-go-grpc --version)"
 	check "protoc-rs $(PROTOC_RS_VERSION)" "$$(protoc-rs --version)"
@@ -85,10 +90,8 @@ install-tools:
 
 	(
 		set -x
-		# protoc
-		curl -LfsSo /tmp/protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v$(PROTOC_VERSION)/protoc-$(PROTOC_VERSION)-linux-$${ARCH}.zip
-		rm -rf "$${HOME}/.local/bin/protoc" "$${HOME}/.local/include/google/protobuf"
-		unzip -o -q -d "$${HOME}/.local" /tmp/protoc.zip "bin/protoc" "include/google/protobuf/*"
+		# grpc installation
+		# TODO: do an automatic clone and install here or require to do it manually?
 		# other tools
 		GOBIN="$${HOME}/.local/bin" go install google.golang.org/protobuf/cmd/protoc-gen-go@v$(PROTOC_GEN_GO_VERSION)
 		GOBIN="$${HOME}/.local/bin" go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v$(PROTOC_GEN_GO_GRPC_VERSION)
