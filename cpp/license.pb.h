@@ -113,8 +113,8 @@ enum CertType : int {
   CERT_TYPE_CA_ROOT = 1,
   CERT_TYPE_CA_INTERMEDIATE = 2,
   CERT_TYPE_PARTNER = 3,
-  CERT_TYPE_CUSTOMER = 4,
-  CERT_TYPE_TEMPORARY = 5,
+  CERT_TYPE_ENTERPRISE = 4,
+  CERT_TYPE_TRIAL = 5,
   CERT_TYPE_COMMUNITY = 6,
   CertType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
