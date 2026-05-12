@@ -124,8 +124,8 @@ pub enum CertType {
     CaRoot = 1,
     CaIntermediate = 2,
     Partner = 3,
-    Customer = 4,
-    Temporary = 5,
+    Enterprise = 4,
+    Trial = 5,
     Community = 6,
 }
 impl CertType {
@@ -139,8 +139,8 @@ impl CertType {
             Self::CaRoot => "CERT_TYPE_CA_ROOT",
             Self::CaIntermediate => "CERT_TYPE_CA_INTERMEDIATE",
             Self::Partner => "CERT_TYPE_PARTNER",
-            Self::Customer => "CERT_TYPE_CUSTOMER",
-            Self::Temporary => "CERT_TYPE_TEMPORARY",
+            Self::Enterprise => "CERT_TYPE_ENTERPRISE",
+            Self::Trial => "CERT_TYPE_TRIAL",
             Self::Community => "CERT_TYPE_COMMUNITY",
         }
     }
@@ -151,8 +151,8 @@ impl CertType {
             "CERT_TYPE_CA_ROOT" => Some(Self::CaRoot),
             "CERT_TYPE_CA_INTERMEDIATE" => Some(Self::CaIntermediate),
             "CERT_TYPE_PARTNER" => Some(Self::Partner),
-            "CERT_TYPE_CUSTOMER" => Some(Self::Customer),
-            "CERT_TYPE_TEMPORARY" => Some(Self::Temporary),
+            "CERT_TYPE_ENTERPRISE" => Some(Self::Enterprise),
+            "CERT_TYPE_TRIAL" => Some(Self::Trial),
             "CERT_TYPE_COMMUNITY" => Some(Self::Community),
             _ => None,
         }
