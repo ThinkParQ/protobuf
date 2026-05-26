@@ -223,6 +223,10 @@ pub struct JobRequestCfg {
     /// Controls the data state of the stub file when stub_local is true.
     #[prost(enumeration = "RestorePolicy", optional, tag = "17")]
     pub restore_policy: ::core::option::Option<i32>,
+    /// Time in seconds to wait after a file is closed before replication begins.
+    /// Maps to the RST CoolDownPeriod metadata field. Max value is 65535 (uint16).
+    #[prost(uint32, optional, tag = "18")]
+    pub cooldown_secs: ::core::option::Option<u32>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -249,6 +253,9 @@ pub struct WorkRequest {
     /// Controls the data state of the stub file when stub_local is true.
     #[prost(enumeration = "RestorePolicy", optional, tag = "13")]
     pub restore_policy: ::core::option::Option<i32>,
+    /// Time in seconds to wait after a file is closed before replication begins.
+    #[prost(uint32, optional, tag = "14")]
+    pub cooldown_secs: ::core::option::Option<u32>,
     #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }

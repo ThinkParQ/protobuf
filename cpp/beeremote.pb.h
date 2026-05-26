@@ -3069,6 +3069,7 @@ class JobRequest final : public ::google::protobuf::Message
     kStubLocalFieldNumber = 7,
     kUpdateFieldNumber = 9,
     kRestorePolicyFieldNumber = 13,
+    kCooldownSecsFieldNumber = 14,
     kSyncFieldNumber = 10,
     kMockFieldNumber = 11,
     kBuilderFieldNumber = 12,
@@ -3182,6 +3183,17 @@ class JobRequest final : public ::google::protobuf::Message
   void _internal_set_restore_policy(::flex::RestorePolicy value);
 
   public:
+  // optional uint32 cooldown_secs = 14;
+  bool has_cooldown_secs() const;
+  void clear_cooldown_secs() ;
+  ::uint32_t cooldown_secs() const;
+  void set_cooldown_secs(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_cooldown_secs() const;
+  void _internal_set_cooldown_secs(::uint32_t value);
+
+  public:
   // .flex.SyncJob sync = 10;
   bool has_sync() const;
   private:
@@ -3251,7 +3263,7 @@ class JobRequest final : public ::google::protobuf::Message
   inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 12, 4,
+      4, 13, 4,
       45, 2>
       _table_;
 
@@ -3280,6 +3292,7 @@ class JobRequest final : public ::google::protobuf::Message
     bool stub_local_;
     bool update_;
     int restore_policy_;
+    ::uint32_t cooldown_secs_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -5988,6 +6001,34 @@ inline ::flex::RestorePolicy JobRequest::_internal_restore_policy() const {
 inline void JobRequest::_internal_set_restore_policy(::flex::RestorePolicy value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.restore_policy_ = value;
+}
+
+// optional uint32 cooldown_secs = 14;
+inline bool JobRequest::has_cooldown_secs() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void JobRequest::clear_cooldown_secs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::uint32_t JobRequest::cooldown_secs() const {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.cooldown_secs)
+  return _internal_cooldown_secs();
+}
+inline void JobRequest::set_cooldown_secs(::uint32_t value) {
+  _internal_set_cooldown_secs(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:beeremote.JobRequest.cooldown_secs)
+}
+inline ::uint32_t JobRequest::_internal_cooldown_secs() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.cooldown_secs_;
+}
+inline void JobRequest::_internal_set_cooldown_secs(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = value;
 }
 
 inline bool JobRequest::has_type() const {

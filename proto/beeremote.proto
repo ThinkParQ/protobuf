@@ -100,6 +100,8 @@ message JobRequest {
     optional bool update = 9;
     // Controls the data state of the stub file when stub_local is true.
     optional flex.RestorePolicy restore_policy = 13;
+    // Time in seconds to wait after a file is closed before replication begins.
+    optional uint32 cooldown_secs = 14;
 }
 
 // Job contains all the data from the original request plus the job ID and

@@ -6158,6 +6158,7 @@ class JobRequestCfg final : public ::google::protobuf::Message
     kUpdateFieldNumber = 10,
     kAllowRestoreFieldNumber = 15,
     kRestorePolicyFieldNumber = 17,
+    kCooldownSecsFieldNumber = 18,
   };
   // map<string, string> metadata = 13;
   int metadata_size() const;
@@ -6376,12 +6377,23 @@ class JobRequestCfg final : public ::google::protobuf::Message
   void _internal_set_restore_policy(::flex::RestorePolicy value);
 
   public:
+  // optional uint32 cooldown_secs = 18;
+  bool has_cooldown_secs() const;
+  void clear_cooldown_secs() ;
+  ::uint32_t cooldown_secs() const;
+  void set_cooldown_secs(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_cooldown_secs() const;
+  void _internal_set_cooldown_secs(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.JobRequestCfg)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      5, 17, 2,
+      5, 18, 2,
       96, 2>
       _table_;
 
@@ -6421,6 +6433,7 @@ class JobRequestCfg final : public ::google::protobuf::Message
     bool update_;
     bool allow_restore_;
     int restore_policy_;
+    ::uint32_t cooldown_secs_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7732,6 +7745,7 @@ class WorkRequest final : public ::google::protobuf::Message
     kStubLocalFieldNumber = 8,
     kPriorityFieldNumber = 9,
     kRestorePolicyFieldNumber = 13,
+    kCooldownSecsFieldNumber = 14,
     kMockFieldNumber = 10,
     kSyncFieldNumber = 11,
     kBuilderFieldNumber = 12,
@@ -7857,6 +7871,17 @@ class WorkRequest final : public ::google::protobuf::Message
   void _internal_set_restore_policy(::flex::RestorePolicy value);
 
   public:
+  // optional uint32 cooldown_secs = 14;
+  bool has_cooldown_secs() const;
+  void clear_cooldown_secs() ;
+  ::uint32_t cooldown_secs() const;
+  void set_cooldown_secs(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_cooldown_secs() const;
+  void _internal_set_cooldown_secs(::uint32_t value);
+
+  public:
   // .flex.MockJob mock = 10;
   bool has_mock() const;
   private:
@@ -7926,7 +7951,7 @@ class WorkRequest final : public ::google::protobuf::Message
   inline void clear_has_Type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 12, 4,
+      4, 13, 4,
       64, 2>
       _table_;
 
@@ -7955,6 +7980,7 @@ class WorkRequest final : public ::google::protobuf::Message
     bool stub_local_;
     ::int32_t priority_;
     int restore_policy_;
+    ::uint32_t cooldown_secs_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -10624,6 +10650,34 @@ inline void JobRequestCfg::_internal_set_restore_policy(::flex::RestorePolicy va
   _impl_.restore_policy_ = value;
 }
 
+// optional uint32 cooldown_secs = 18;
+inline bool JobRequestCfg::has_cooldown_secs() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000100u) != 0;
+  return value;
+}
+inline void JobRequestCfg::clear_cooldown_secs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000100u;
+}
+inline ::uint32_t JobRequestCfg::cooldown_secs() const {
+  // @@protoc_insertion_point(field_get:flex.JobRequestCfg.cooldown_secs)
+  return _internal_cooldown_secs();
+}
+inline void JobRequestCfg::set_cooldown_secs(::uint32_t value) {
+  _internal_set_cooldown_secs(value);
+  _impl_._has_bits_[0] |= 0x00000100u;
+  // @@protoc_insertion_point(field_set:flex.JobRequestCfg.cooldown_secs)
+}
+inline ::uint32_t JobRequestCfg::_internal_cooldown_secs() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.cooldown_secs_;
+}
+inline void JobRequestCfg::_internal_set_cooldown_secs(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // WorkRequest_Segment
@@ -11343,6 +11397,34 @@ inline ::flex::RestorePolicy WorkRequest::_internal_restore_policy() const {
 inline void WorkRequest::_internal_set_restore_policy(::flex::RestorePolicy value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.restore_policy_ = value;
+}
+
+// optional uint32 cooldown_secs = 14;
+inline bool WorkRequest::has_cooldown_secs() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void WorkRequest::clear_cooldown_secs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::uint32_t WorkRequest::cooldown_secs() const {
+  // @@protoc_insertion_point(field_get:flex.WorkRequest.cooldown_secs)
+  return _internal_cooldown_secs();
+}
+inline void WorkRequest::set_cooldown_secs(::uint32_t value) {
+  _internal_set_cooldown_secs(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:flex.WorkRequest.cooldown_secs)
+}
+inline ::uint32_t WorkRequest::_internal_cooldown_secs() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.cooldown_secs_;
+}
+inline void WorkRequest::_internal_set_cooldown_secs(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = value;
 }
 
 inline bool WorkRequest::has_Type() const {

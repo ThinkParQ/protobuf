@@ -237,15 +237,17 @@ pub mod v2_event {
 }
 /// EventFilter allows subscribers to restrict which events are delivered to them by specifying
 /// per-version allowlists of event types. It is intended as a performance optimization to avoid
-/// sending unwanted events over the network; it does not provide delivery guarantees. Subscribers
-/// must always check the type of each event they receive before taking any action.
+/// sending unwanted events over the network; it does not guarantee only events matching the filter
+/// will be delivered. Subscribers must always check the type of each event they receive before
+/// taking any action.
 ///
 /// A version field that is absent or empty means all types for that version are delivered. The
 /// filter as a whole being absent (no filter set in the initial Response) means all events are
 /// delivered regardless of type or version.
 ///
 /// Filter support is best-effort: Watch instances that predate this field will silently ignore it
-/// and deliver all events.
+/// and deliver all events. If new ways of filtering events are added in the future, those will be
+/// silently ignored by Watch instances that do not know about them.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EventFilter {
     /// Allowlist of V1 event types the subscriber wants to receive.
