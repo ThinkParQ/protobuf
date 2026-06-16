@@ -101,6 +101,12 @@ pub struct JobRequest {
     pub generation_status: ::core::option::Option<job_request::GenerationStatus>,
     #[prost(bool, optional, tag = "9")]
     pub update: ::core::option::Option<bool>,
+    /// Controls the data state of the stub file when stub_local is true.
+    #[prost(enumeration = "super::flex::RestorePolicy", optional, tag = "13")]
+    pub restore_policy: ::core::option::Option<i32>,
+    /// Time in seconds to wait after a file is closed before replication begins.
+    #[prost(uint32, optional, tag = "14")]
+    pub cooldown_secs: ::core::option::Option<u32>,
     #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }

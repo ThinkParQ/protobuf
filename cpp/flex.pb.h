@@ -352,6 +352,41 @@ inline bool UpdateConfigResponse_Result_Parse(absl::string_view name, UpdateConf
   return ::google::protobuf::internal::ParseNamedEnum<UpdateConfigResponse_Result>(
       UpdateConfigResponse_Result_descriptor(), name, value);
 }
+enum RestorePolicy : int {
+  RESTORE_POLICY_UNSPECIFIED = 0,
+  RESTORE_POLICY_MANUAL = 1,
+  RESTORE_POLICY_AUTO = 2,
+  RESTORE_POLICY_DELAYED = 3,
+  RestorePolicy_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  RestorePolicy_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool RestorePolicy_IsValid(int value);
+extern const uint32_t RestorePolicy_internal_data_[];
+constexpr RestorePolicy RestorePolicy_MIN = static_cast<RestorePolicy>(0);
+constexpr RestorePolicy RestorePolicy_MAX = static_cast<RestorePolicy>(3);
+constexpr int RestorePolicy_ARRAYSIZE = 3 + 1;
+const ::google::protobuf::EnumDescriptor*
+RestorePolicy_descriptor();
+template <typename T>
+const std::string& RestorePolicy_Name(T value) {
+  static_assert(std::is_same<T, RestorePolicy>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to RestorePolicy_Name().");
+  return RestorePolicy_Name(static_cast<RestorePolicy>(value));
+}
+template <>
+inline const std::string& RestorePolicy_Name(RestorePolicy value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<RestorePolicy_descriptor,
+                                                 0, 3>(
+      static_cast<int>(value));
+}
+inline bool RestorePolicy_Parse(absl::string_view name, RestorePolicy* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<RestorePolicy>(
+      RestorePolicy_descriptor(), name, value);
+}
 
 // ===================================================================
 
@@ -6122,6 +6157,8 @@ class JobRequestCfg final : public ::google::protobuf::Message
     kForceFieldNumber = 8,
     kUpdateFieldNumber = 10,
     kAllowRestoreFieldNumber = 15,
+    kRestorePolicyFieldNumber = 17,
+    kCooldownSecsFieldNumber = 18,
   };
   // map<string, string> metadata = 13;
   int metadata_size() const;
@@ -6329,12 +6366,34 @@ class JobRequestCfg final : public ::google::protobuf::Message
   void _internal_set_allow_restore(bool value);
 
   public:
+  // optional .flex.RestorePolicy restore_policy = 17;
+  bool has_restore_policy() const;
+  void clear_restore_policy() ;
+  ::flex::RestorePolicy restore_policy() const;
+  void set_restore_policy(::flex::RestorePolicy value);
+
+  private:
+  ::flex::RestorePolicy _internal_restore_policy() const;
+  void _internal_set_restore_policy(::flex::RestorePolicy value);
+
+  public:
+  // optional uint32 cooldown_secs = 18;
+  bool has_cooldown_secs() const;
+  void clear_cooldown_secs() ;
+  ::uint32_t cooldown_secs() const;
+  void set_cooldown_secs(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_cooldown_secs() const;
+  void _internal_set_cooldown_secs(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.JobRequestCfg)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 16, 2,
+      5, 18, 2,
       96, 2>
       _table_;
 
@@ -6373,6 +6432,8 @@ class JobRequestCfg final : public ::google::protobuf::Message
     bool force_;
     bool update_;
     bool allow_restore_;
+    int restore_policy_;
+    ::uint32_t cooldown_secs_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7683,6 +7744,8 @@ class WorkRequest final : public ::google::protobuf::Message
     kRemoteStorageTargetFieldNumber = 6,
     kStubLocalFieldNumber = 8,
     kPriorityFieldNumber = 9,
+    kRestorePolicyFieldNumber = 13,
+    kCooldownSecsFieldNumber = 14,
     kMockFieldNumber = 10,
     kSyncFieldNumber = 11,
     kBuilderFieldNumber = 12,
@@ -7797,6 +7860,28 @@ class WorkRequest final : public ::google::protobuf::Message
   void _internal_set_priority(::int32_t value);
 
   public:
+  // optional .flex.RestorePolicy restore_policy = 13;
+  bool has_restore_policy() const;
+  void clear_restore_policy() ;
+  ::flex::RestorePolicy restore_policy() const;
+  void set_restore_policy(::flex::RestorePolicy value);
+
+  private:
+  ::flex::RestorePolicy _internal_restore_policy() const;
+  void _internal_set_restore_policy(::flex::RestorePolicy value);
+
+  public:
+  // optional uint32 cooldown_secs = 14;
+  bool has_cooldown_secs() const;
+  void clear_cooldown_secs() ;
+  ::uint32_t cooldown_secs() const;
+  void set_cooldown_secs(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_cooldown_secs() const;
+  void _internal_set_cooldown_secs(::uint32_t value);
+
+  public:
   // .flex.MockJob mock = 10;
   bool has_mock() const;
   private:
@@ -7866,7 +7951,7 @@ class WorkRequest final : public ::google::protobuf::Message
   inline void clear_has_Type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 11, 4,
+      4, 13, 4,
       64, 2>
       _table_;
 
@@ -7894,6 +7979,8 @@ class WorkRequest final : public ::google::protobuf::Message
     ::uint32_t remote_storage_target_;
     bool stub_local_;
     ::int32_t priority_;
+    int restore_policy_;
+    ::uint32_t cooldown_secs_;
     union TypeUnion {
       constexpr TypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -10535,6 +10622,62 @@ inline void JobRequestCfg::set_allocated_filter_expr(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:flex.JobRequestCfg.filter_expr)
 }
 
+// optional .flex.RestorePolicy restore_policy = 17;
+inline bool JobRequestCfg::has_restore_policy() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000080u) != 0;
+  return value;
+}
+inline void JobRequestCfg::clear_restore_policy() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.restore_policy_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000080u;
+}
+inline ::flex::RestorePolicy JobRequestCfg::restore_policy() const {
+  // @@protoc_insertion_point(field_get:flex.JobRequestCfg.restore_policy)
+  return _internal_restore_policy();
+}
+inline void JobRequestCfg::set_restore_policy(::flex::RestorePolicy value) {
+  _internal_set_restore_policy(value);
+  _impl_._has_bits_[0] |= 0x00000080u;
+  // @@protoc_insertion_point(field_set:flex.JobRequestCfg.restore_policy)
+}
+inline ::flex::RestorePolicy JobRequestCfg::_internal_restore_policy() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::flex::RestorePolicy>(_impl_.restore_policy_);
+}
+inline void JobRequestCfg::_internal_set_restore_policy(::flex::RestorePolicy value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.restore_policy_ = value;
+}
+
+// optional uint32 cooldown_secs = 18;
+inline bool JobRequestCfg::has_cooldown_secs() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000100u) != 0;
+  return value;
+}
+inline void JobRequestCfg::clear_cooldown_secs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000100u;
+}
+inline ::uint32_t JobRequestCfg::cooldown_secs() const {
+  // @@protoc_insertion_point(field_get:flex.JobRequestCfg.cooldown_secs)
+  return _internal_cooldown_secs();
+}
+inline void JobRequestCfg::set_cooldown_secs(::uint32_t value) {
+  _internal_set_cooldown_secs(value);
+  _impl_._has_bits_[0] |= 0x00000100u;
+  // @@protoc_insertion_point(field_set:flex.JobRequestCfg.cooldown_secs)
+}
+inline ::uint32_t JobRequestCfg::_internal_cooldown_secs() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.cooldown_secs_;
+}
+inline void JobRequestCfg::_internal_set_cooldown_secs(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // WorkRequest_Segment
@@ -11226,6 +11369,62 @@ inline ::int32_t WorkRequest::_internal_priority() const {
 inline void WorkRequest::_internal_set_priority(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.priority_ = value;
+}
+
+// optional .flex.RestorePolicy restore_policy = 13;
+inline bool WorkRequest::has_restore_policy() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void WorkRequest::clear_restore_policy() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.restore_policy_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::flex::RestorePolicy WorkRequest::restore_policy() const {
+  // @@protoc_insertion_point(field_get:flex.WorkRequest.restore_policy)
+  return _internal_restore_policy();
+}
+inline void WorkRequest::set_restore_policy(::flex::RestorePolicy value) {
+  _internal_set_restore_policy(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:flex.WorkRequest.restore_policy)
+}
+inline ::flex::RestorePolicy WorkRequest::_internal_restore_policy() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::flex::RestorePolicy>(_impl_.restore_policy_);
+}
+inline void WorkRequest::_internal_set_restore_policy(::flex::RestorePolicy value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.restore_policy_ = value;
+}
+
+// optional uint32 cooldown_secs = 14;
+inline bool WorkRequest::has_cooldown_secs() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline void WorkRequest::clear_cooldown_secs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::uint32_t WorkRequest::cooldown_secs() const {
+  // @@protoc_insertion_point(field_get:flex.WorkRequest.cooldown_secs)
+  return _internal_cooldown_secs();
+}
+inline void WorkRequest::set_cooldown_secs(::uint32_t value) {
+  _internal_set_cooldown_secs(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:flex.WorkRequest.cooldown_secs)
+}
+inline ::uint32_t WorkRequest::_internal_cooldown_secs() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.cooldown_secs_;
+}
+inline void WorkRequest::_internal_set_cooldown_secs(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.cooldown_secs_ = value;
 }
 
 inline bool WorkRequest::has_Type() const {
@@ -15164,6 +15363,12 @@ struct is_proto_enum<::flex::UpdateConfigResponse_Result> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::flex::UpdateConfigResponse_Result>() {
   return ::flex::UpdateConfigResponse_Result_descriptor();
+}
+template <>
+struct is_proto_enum<::flex::RestorePolicy> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::flex::RestorePolicy>() {
+  return ::flex::RestorePolicy_descriptor();
 }
 
 }  // namespace protobuf

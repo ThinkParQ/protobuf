@@ -220,6 +220,13 @@ pub struct JobRequestCfg {
     pub allow_restore: ::core::option::Option<bool>,
     #[prost(string, optional, tag = "16")]
     pub filter_expr: ::core::option::Option<::prost::alloc::string::String>,
+    /// Controls the data state of the stub file when stub_local is true.
+    #[prost(enumeration = "RestorePolicy", optional, tag = "17")]
+    pub restore_policy: ::core::option::Option<i32>,
+    /// Time in seconds to wait after a file is closed before replication begins.
+    /// Maps to the RST CoolDownPeriod metadata field. Max value is 65535 (uint16).
+    #[prost(uint32, optional, tag = "18")]
+    pub cooldown_secs: ::core::option::Option<u32>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -243,6 +250,12 @@ pub struct WorkRequest {
     pub stub_local: bool,
     #[prost(int32, optional, tag = "9")]
     pub priority: ::core::option::Option<i32>,
+    /// Controls the data state of the stub file when stub_local is true.
+    #[prost(enumeration = "RestorePolicy", optional, tag = "13")]
+    pub restore_policy: ::core::option::Option<i32>,
+    /// Time in seconds to wait after a file is closed before replication begins.
+    #[prost(uint32, optional, tag = "14")]
+    pub cooldown_secs: ::core::option::Option<u32>,
     #[prost(oneof = "work_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<work_request::Type>,
 }
@@ -827,6 +840,44 @@ pub struct BuildInfo {
     pub commit: ::prost::alloc::string::String,
     #[prost(string, tag = "4")]
     pub build_time: ::prost::alloc::string::String,
+}
+/// RestorePolicy controls the data state set on a stub file created when
+/// stub_local is true. Ignored when stub_local is false.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum RestorePolicy {
+    /// Defaults to MANUAL when stub_local is true.
+    Unspecified = 0,
+    /// Stub requires explicit user action to restore (DataStateManualRestore).
+    Manual = 1,
+    /// Stub is automatically restored when the file is opened (DataStateAutoRestore).
+    Auto = 2,
+    /// Stub uses delayed restore semantics (DataStateDelayedRestore).
+    Delayed = 3,
+}
+impl RestorePolicy {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Unspecified => "RESTORE_POLICY_UNSPECIFIED",
+            Self::Manual => "RESTORE_POLICY_MANUAL",
+            Self::Auto => "RESTORE_POLICY_AUTO",
+            Self::Delayed => "RESTORE_POLICY_DELAYED",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "RESTORE_POLICY_UNSPECIFIED" => Some(Self::Unspecified),
+            "RESTORE_POLICY_MANUAL" => Some(Self::Manual),
+            "RESTORE_POLICY_AUTO" => Some(Self::Auto),
+            "RESTORE_POLICY_DELAYED" => Some(Self::Delayed),
+            _ => None,
+        }
+    }
 }
 /// Generated client implementations.
 pub mod worker_node_client {

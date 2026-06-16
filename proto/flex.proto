@@ -109,6 +109,19 @@ message JobLockedInfo {
     bool is_archived = 11;
 }
 
+// RestorePolicy controls the data state set on a stub file created when
+// stub_local is true. Ignored when stub_local is false.
+enum RestorePolicy {
+    // Defaults to MANUAL when stub_local is true.
+    RESTORE_POLICY_UNSPECIFIED = 0;
+    // Stub requires explicit user action to restore (DataStateManualRestore).
+    RESTORE_POLICY_MANUAL = 1;
+    // Stub is automatically restored when the file is opened (DataStateAutoRestore).
+    RESTORE_POLICY_AUTO = 2;
+    // Stub uses delayed restore semantics (DataStateDelayedRestore).
+    RESTORE_POLICY_DELAYED = 3;
+}
+
 message JobRequestCfg {
     uint32 remoteStorageTarget = 1;
     string path = 2;
@@ -126,6 +139,11 @@ message JobRequestCfg {
     optional string storage_class = 12;
     optional bool allow_restore = 15;
     optional string filter_expr = 16;
+    // Controls the data state of the stub file when stub_local is true.
+    optional RestorePolicy restore_policy = 17;
+    // Time in seconds to wait after a file is closed before replication begins.
+    // Maps to the RST CoolDownPeriod metadata field. Max value is 65535 (uint16).
+    optional uint32 cooldown_secs = 18;
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.
@@ -158,6 +176,10 @@ message WorkRequest {
     // When stub_local is set the local file with be a stub file
     bool stub_local = 8;
     optional int32 priority = 9;
+    // Controls the data state of the stub file when stub_local is true.
+    optional RestorePolicy restore_policy = 13;
+    // Time in seconds to wait after a file is closed before replication begins.
+    optional uint32 cooldown_secs = 14;
 }
 
 // JobBuilderJob is a special type of job that creates job requests of any time.

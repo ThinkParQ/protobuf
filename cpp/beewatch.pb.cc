@@ -111,11 +111,40 @@ struct V1EventDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 V1EventDefaultTypeInternal _V1Event_default_instance_;
 
+inline constexpr EventFilter::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : v1_types_{},
+        _v1_types_cached_byte_size_{0},
+        v2_types_{},
+        _v2_types_cached_byte_size_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR EventFilter::EventFilter(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct EventFilterDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR EventFilterDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~EventFilterDefaultTypeInternal() {}
+  union {
+    EventFilter _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EventFilterDefaultTypeInternal _EventFilter_default_instance_;
+
 inline constexpr Response::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : completed_seq_{::uint64_t{0u}},
-        shutting_down_{false},
-        _cached_size_{0} {}
+      : _cached_size_{0},
+        filter_{nullptr},
+        completed_seq_{::uint64_t{0u}},
+        shutting_down_{false} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Response::Response(::_pbi::ConstantInitialized)
@@ -228,6 +257,16 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::beewatch::V2Event, _impl_.msg_user_id_),
         PROTOBUF_FIELD_OFFSET(::beewatch::V2Event, _impl_.timestamp_),
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::beewatch::EventFilter, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::beewatch::EventFilter, _impl_.v1_types_),
+        PROTOBUF_FIELD_OFFSET(::beewatch::EventFilter, _impl_.v2_types_),
+        PROTOBUF_FIELD_OFFSET(::beewatch::Response, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::beewatch::Response, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -237,6 +276,10 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::beewatch::Response, _impl_.completed_seq_),
         PROTOBUF_FIELD_OFFSET(::beewatch::Response, _impl_.shutting_down_),
+        PROTOBUF_FIELD_OFFSET(::beewatch::Response, _impl_.filter_),
+        ~0u,
+        ~0u,
+        0,
 };
 
 static const ::_pbi::MigrationSchema
@@ -244,12 +287,14 @@ static const ::_pbi::MigrationSchema
         {0, 15, -1, sizeof(::beewatch::Event)},
         {21, -1, -1, sizeof(::beewatch::V1Event)},
         {37, -1, -1, sizeof(::beewatch::V2Event)},
-        {54, -1, -1, sizeof(::beewatch::Response)},
+        {54, -1, -1, sizeof(::beewatch::EventFilter)},
+        {64, 75, -1, sizeof(::beewatch::Response)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::beewatch::_Event_default_instance_._instance,
     &::beewatch::_V1Event_default_instance_._instance,
     &::beewatch::_V2Event_default_instance_._instance,
+    &::beewatch::_EventFilter_default_instance_._instance,
     &::beewatch::_Response_default_instance_._instance,
 };
 const char descriptor_table_protodef_beewatch_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
@@ -281,24 +326,27 @@ const char descriptor_table_protodef_beewatch_2eproto[] ABSL_ATTRIBUTE_SECTION_V
     "E\020\014\022\r\n\tOPEN_READ\020\r\022\016\n\nOPEN_WRITE\020\016\022\023\n\017OP"
     "EN_READ_WRITE\020\017\022\026\n\022LAST_WRITER_CLOSED\020\020\022"
     "\020\n\014OPEN_BLOCKED\020\021\022\032\n\026STRIPE_PATTERN_CHAN"
-    "GED\020\022\022\020\n\014INODE_LOCKED\020\023\"8\n\010Response\022\025\n\rc"
-    "ompleted_seq\030\001 \001(\004\022\025\n\rshutting_down\030\002 \001("
-    "\0102F\n\nSubscriber\0228\n\rReceiveEvents\022\017.beewa"
-    "tch.Event\032\022.beewatch.Response(\0010\001B+Z)git"
-    "hub.com/thinkparq/protobuf/go/beewatchb\006"
-    "proto3"
+    "GED\020\022\022\020\n\014INODE_LOCKED\020\023\"a\n\013EventFilter\022("
+    "\n\010v1_types\030\001 \003(\0162\026.beewatch.V1Event.Type"
+    "\022(\n\010v2_types\030\002 \003(\0162\026.beewatch.V2Event.Ty"
+    "pe\"o\n\010Response\022\025\n\rcompleted_seq\030\001 \001(\004\022\025\n"
+    "\rshutting_down\030\002 \001(\010\022*\n\006filter\030\003 \001(\0132\025.b"
+    "eewatch.EventFilterH\000\210\001\001B\t\n\007_filter2F\n\nS"
+    "ubscriber\0228\n\rReceiveEvents\022\017.beewatch.Ev"
+    "ent\032\022.beewatch.Response(\0010\001B+Z)github.co"
+    "m/thinkparq/protobuf/go/beewatchb\006proto3"
 };
 static ::absl::once_flag descriptor_table_beewatch_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_beewatch_2eproto = {
     false,
     false,
-    1286,
+    1440,
     descriptor_table_protodef_beewatch_2eproto,
     "beewatch.proto",
     &descriptor_table_beewatch_2eproto_once,
     nullptr,
     0,
-    4,
+    5,
     schemas,
     file_default_instances,
     TableStruct_beewatch_2eproto::offsets,
@@ -1736,8 +1784,284 @@ void V2Event::InternalSwap(V2Event* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class EventFilter::_Internal {
+ public:
+};
+
+EventFilter::EventFilter(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:beewatch.EventFilter)
+}
+inline PROTOBUF_NDEBUG_INLINE EventFilter::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beewatch::EventFilter& from_msg)
+      : v1_types_{visibility, arena, from.v1_types_},
+        _v1_types_cached_byte_size_{0},
+        v2_types_{visibility, arena, from.v2_types_},
+        _v2_types_cached_byte_size_{0},
+        _cached_size_{0} {}
+
+EventFilter::EventFilter(
+    ::google::protobuf::Arena* arena,
+    const EventFilter& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  EventFilter* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:beewatch.EventFilter)
+}
+inline PROTOBUF_NDEBUG_INLINE EventFilter::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : v1_types_{visibility, arena},
+        _v1_types_cached_byte_size_{0},
+        v2_types_{visibility, arena},
+        _v2_types_cached_byte_size_{0},
+        _cached_size_{0} {}
+
+inline void EventFilter::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+EventFilter::~EventFilter() {
+  // @@protoc_insertion_point(destructor:beewatch.EventFilter)
+  SharedDtor(*this);
+}
+inline void EventFilter::SharedDtor(MessageLite& self) {
+  EventFilter& this_ = static_cast<EventFilter&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* EventFilter::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) EventFilter(arena);
+}
+constexpr auto EventFilter::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(EventFilter, _impl_.v1_types_) +
+          decltype(EventFilter::_impl_.v1_types_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+      PROTOBUF_FIELD_OFFSET(EventFilter, _impl_.v2_types_) +
+          decltype(EventFilter::_impl_.v2_types_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(EventFilter), alignof(EventFilter), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&EventFilter::PlacementNew_,
+                                 sizeof(EventFilter),
+                                 alignof(EventFilter));
+  }
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull EventFilter::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_EventFilter_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &EventFilter::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<EventFilter>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &EventFilter::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<EventFilter>(), &EventFilter::ByteSizeLong,
+            &EventFilter::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(EventFilter, _impl_._cached_size_),
+        false,
+    },
+    &EventFilter::kDescriptorMethods,
+    &descriptor_table_beewatch_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* EventFilter::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> EventFilter::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::beewatch::EventFilter>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .beewatch.V2Event.Type v2_types = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(EventFilter, _impl_.v2_types_)}},
+    // repeated .beewatch.V1Event.Type v1_types = 1;
+    {::_pbi::TcParser::FastV32P1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(EventFilter, _impl_.v1_types_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .beewatch.V1Event.Type v1_types = 1;
+    {PROTOBUF_FIELD_OFFSET(EventFilter, _impl_.v1_types_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedOpenEnum)},
+    // repeated .beewatch.V2Event.Type v2_types = 2;
+    {PROTOBUF_FIELD_OFFSET(EventFilter, _impl_.v2_types_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void EventFilter::Clear() {
+// @@protoc_insertion_point(message_clear_start:beewatch.EventFilter)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.v1_types_.Clear();
+  _impl_.v2_types_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* EventFilter::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const EventFilter& this_ = static_cast<const EventFilter&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* EventFilter::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const EventFilter& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:beewatch.EventFilter)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // repeated .beewatch.V1Event.Type v1_types = 1;
+          {
+            std::size_t byte_size =
+                                              this_._impl_._v1_types_cached_byte_size_.Get();
+            if (byte_size > 0) {
+              target = stream->WriteEnumPacked(
+                  1, this_._internal_v1_types(), byte_size, target);
+            }
+          }
+
+          // repeated .beewatch.V2Event.Type v2_types = 2;
+          {
+            std::size_t byte_size =
+                                              this_._impl_._v2_types_cached_byte_size_.Get();
+            if (byte_size > 0) {
+              target = stream->WriteEnumPacked(
+                  2, this_._internal_v2_types(), byte_size, target);
+            }
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:beewatch.EventFilter)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t EventFilter::ByteSizeLong(const MessageLite& base) {
+          const EventFilter& this_ = static_cast<const EventFilter&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t EventFilter::ByteSizeLong() const {
+          const EventFilter& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:beewatch.EventFilter)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // repeated .beewatch.V1Event.Type v1_types = 1;
+            {
+              total_size += ::_pbi::WireFormatLite::EnumSizeWithPackedTagSize(
+                  this_._internal_v1_types(), 1, this_._impl_._v1_types_cached_byte_size_);
+            }
+            // repeated .beewatch.V2Event.Type v2_types = 2;
+            {
+              total_size += ::_pbi::WireFormatLite::EnumSizeWithPackedTagSize(
+                  this_._internal_v2_types(), 1, this_._impl_._v2_types_cached_byte_size_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void EventFilter::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<EventFilter*>(&to_msg);
+  auto& from = static_cast<const EventFilter&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:beewatch.EventFilter)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_v1_types()->MergeFrom(from._internal_v1_types());
+  _this->_internal_mutable_v2_types()->MergeFrom(from._internal_v2_types());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void EventFilter::CopyFrom(const EventFilter& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:beewatch.EventFilter)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void EventFilter::InternalSwap(EventFilter* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.v1_types_.InternalSwap(&other->_impl_.v1_types_);
+  _impl_.v2_types_.InternalSwap(&other->_impl_.v2_types_);
+}
+
+::google::protobuf::Metadata EventFilter::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class Response::_Internal {
  public:
+  using HasBits =
+      decltype(std::declval<Response>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Response, _impl_._has_bits_);
 };
 
 Response::Response(::google::protobuf::Arena* arena)
@@ -1749,10 +2073,38 @@ Response::Response(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:beewatch.Response)
 }
+inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::beewatch::Response& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
 Response::Response(
-    ::google::protobuf::Arena* arena, const Response& from)
-    : Response(arena) {
-  MergeFrom(from);
+    ::google::protobuf::Arena* arena,
+    const Response& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Response* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.filter_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::beewatch::EventFilter>(
+                              arena, *from._impl_.filter_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, completed_seq_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, completed_seq_),
+           offsetof(Impl_, shutting_down_) -
+               offsetof(Impl_, completed_seq_) +
+               sizeof(Impl_::shutting_down_));
+
+  // @@protoc_insertion_point(copy_constructor:beewatch.Response)
 }
 inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -1762,10 +2114,10 @@ inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
 inline void Response::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, completed_seq_),
+               offsetof(Impl_, filter_),
            0,
            offsetof(Impl_, shutting_down_) -
-               offsetof(Impl_, completed_seq_) +
+               offsetof(Impl_, filter_) +
                sizeof(Impl_::shutting_down_));
 }
 Response::~Response() {
@@ -1776,6 +2128,7 @@ inline void Response::SharedDtor(MessageLite& self) {
   Response& this_ = static_cast<Response&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.filter_;
   this_._impl_.~Impl_();
 }
 
@@ -1815,17 +2168,17 @@ const ::google::protobuf::internal::ClassData* Response::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Response::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> Response::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(Response, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -1833,24 +2186,31 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Response::_table_ = {
     ::_pbi::TcParser::GetTable<::beewatch::Response>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // bool shutting_down = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Response, _impl_.shutting_down_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.shutting_down_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // uint64 completed_seq = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Response, _impl_.completed_seq_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.completed_seq_)}},
+    // bool shutting_down = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Response, _impl_.shutting_down_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.shutting_down_)}},
+    // optional .beewatch.EventFilter filter = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.filter_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint64 completed_seq = 1;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.completed_seq_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.completed_seq_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
     // bool shutting_down = 2;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.shutting_down_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.shutting_down_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-  }},
-  // no aux_entries
-  {{
+    // optional .beewatch.EventFilter filter = 3;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.filter_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::beewatch::EventFilter>()},
+  }}, {{
   }},
 };
 
@@ -1861,9 +2221,15 @@ PROTOBUF_NOINLINE void Response::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.filter_ != nullptr);
+    _impl_.filter_->Clear();
+  }
   ::memset(&_impl_.completed_seq_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.shutting_down_) -
       reinterpret_cast<char*>(&_impl_.completed_seq_)) + sizeof(_impl_.shutting_down_));
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1896,6 +2262,14 @@ PROTOBUF_NOINLINE void Response::Clear() {
                 2, this_._internal_shutting_down(), target);
           }
 
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // optional .beewatch.EventFilter filter = 3;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.filter_, this_._impl_.filter_->GetCachedSize(), target,
+                stream);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1921,6 +2295,14 @@ PROTOBUF_NOINLINE void Response::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
+            // optional .beewatch.EventFilter filter = 3;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.filter_);
+            }
+          }
+           {
             // uint64 completed_seq = 1;
             if (this_._internal_completed_seq() != 0) {
               total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
@@ -1938,17 +2320,29 @@ PROTOBUF_NOINLINE void Response::Clear() {
 void Response::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<Response*>(&to_msg);
   auto& from = static_cast<const Response&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:beewatch.Response)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.filter_ != nullptr);
+    if (_this->_impl_.filter_ == nullptr) {
+      _this->_impl_.filter_ =
+          ::google::protobuf::Message::CopyConstruct<::beewatch::EventFilter>(arena, *from._impl_.filter_);
+    } else {
+      _this->_impl_.filter_->MergeFrom(*from._impl_.filter_);
+    }
+  }
   if (from._internal_completed_seq() != 0) {
     _this->_impl_.completed_seq_ = from._impl_.completed_seq_;
   }
   if (from._internal_shutting_down() != 0) {
     _this->_impl_.shutting_down_ = from._impl_.shutting_down_;
   }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1963,12 +2357,13 @@ void Response::CopyFrom(const Response& from) {
 void Response::InternalSwap(Response* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Response, _impl_.shutting_down_)
       + sizeof(Response::_impl_.shutting_down_)
-      - PROTOBUF_FIELD_OFFSET(Response, _impl_.completed_seq_)>(
-          reinterpret_cast<char*>(&_impl_.completed_seq_),
-          reinterpret_cast<char*>(&other->_impl_.completed_seq_));
+      - PROTOBUF_FIELD_OFFSET(Response, _impl_.filter_)>(
+          reinterpret_cast<char*>(&_impl_.filter_),
+          reinterpret_cast<char*>(&other->_impl_.filter_));
 }
 
 ::google::protobuf::Metadata Response::GetMetadata() const {

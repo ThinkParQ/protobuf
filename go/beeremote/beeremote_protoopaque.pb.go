@@ -454,6 +454,8 @@ type JobRequest struct {
 	xxx_hidden_StubLocal           bool                         `protobuf:"varint,7,opt,name=stub_local,json=stubLocal,proto3" json:"stub_local,omitempty"`
 	xxx_hidden_GenerationStatus    *JobRequest_GenerationStatus `protobuf:"bytes,8,opt,name=generation_status,json=generationStatus,proto3" json:"generation_status,omitempty"`
 	xxx_hidden_Update              bool                         `protobuf:"varint,9,opt,name=update,proto3,oneof" json:"update,omitempty"`
+	xxx_hidden_RestorePolicy       flex.RestorePolicy           `protobuf:"varint,13,opt,name=restore_policy,json=restorePolicy,proto3,enum=flex.RestorePolicy,oneof" json:"restore_policy,omitempty"`
+	xxx_hidden_CooldownSecs        uint32                       `protobuf:"varint,14,opt,name=cooldown_secs,json=cooldownSecs,proto3,oneof" json:"cooldown_secs,omitempty"`
 	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
 	XXX_presence                   [1]uint32
 	unknownFields                  protoimpl.UnknownFields
@@ -568,6 +570,22 @@ func (x *JobRequest) GetUpdate() bool {
 	return false
 }
 
+func (x *JobRequest) GetRestorePolicy() flex.RestorePolicy {
+	if x != nil {
+		if protoimpl.X.Present(&(x.XXX_presence[0]), 9) {
+			return x.xxx_hidden_RestorePolicy
+		}
+	}
+	return flex.RestorePolicy(0)
+}
+
+func (x *JobRequest) GetCooldownSecs() uint32 {
+	if x != nil {
+		return x.xxx_hidden_CooldownSecs
+	}
+	return 0
+}
+
 func (x *JobRequest) SetPath(v string) {
 	x.xxx_hidden_Path = v
 }
@@ -622,7 +640,17 @@ func (x *JobRequest) SetGenerationStatus(v *JobRequest_GenerationStatus) {
 
 func (x *JobRequest) SetUpdate(v bool) {
 	x.xxx_hidden_Update = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 11)
+}
+
+func (x *JobRequest) SetRestorePolicy(v flex.RestorePolicy) {
+	x.xxx_hidden_RestorePolicy = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 9, 11)
+}
+
+func (x *JobRequest) SetCooldownSecs(v uint32) {
+	x.xxx_hidden_CooldownSecs = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 10, 11)
 }
 
 func (x *JobRequest) HasType() bool {
@@ -670,6 +698,20 @@ func (x *JobRequest) HasUpdate() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 8)
 }
 
+func (x *JobRequest) HasRestorePolicy() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 9)
+}
+
+func (x *JobRequest) HasCooldownSecs() bool {
+	if x == nil {
+		return false
+	}
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 10)
+}
+
 func (x *JobRequest) ClearType() {
 	x.xxx_hidden_Type = nil
 }
@@ -699,6 +741,16 @@ func (x *JobRequest) ClearGenerationStatus() {
 func (x *JobRequest) ClearUpdate() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
 	x.xxx_hidden_Update = false
+}
+
+func (x *JobRequest) ClearRestorePolicy() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 9)
+	x.xxx_hidden_RestorePolicy = flex.RestorePolicy_RESTORE_POLICY_UNSPECIFIED
+}
+
+func (x *JobRequest) ClearCooldownSecs() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 10)
+	x.xxx_hidden_CooldownSecs = 0
 }
 
 const JobRequest_Type_not_set_case case_JobRequest_Type = 0
@@ -751,6 +803,10 @@ type JobRequest_builder struct {
 	// job is already in a terminal or failed state.
 	GenerationStatus *JobRequest_GenerationStatus
 	Update           *bool
+	// Controls the data state of the stub file when stub_local is true.
+	RestorePolicy *flex.RestorePolicy
+	// Time in seconds to wait after a file is closed before replication begins.
+	CooldownSecs *uint32
 }
 
 func (b0 JobRequest_builder) Build() *JobRequest {
@@ -774,8 +830,16 @@ func (b0 JobRequest_builder) Build() *JobRequest {
 	x.xxx_hidden_StubLocal = b.StubLocal
 	x.xxx_hidden_GenerationStatus = b.GenerationStatus
 	if b.Update != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 11)
 		x.xxx_hidden_Update = *b.Update
+	}
+	if b.RestorePolicy != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 9, 11)
+		x.xxx_hidden_RestorePolicy = *b.RestorePolicy
+	}
+	if b.CooldownSecs != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 10, 11)
+		x.xxx_hidden_CooldownSecs = *b.CooldownSecs
 	}
 	return m0
 }
@@ -2635,7 +2699,7 @@ var file_beeremote_proto_rawDesc = []byte{
 	0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x10, 0x04, 0x12, 0x15, 0x0a, 0x11, 0x41, 0x4c, 0x52,
 	0x45, 0x41, 0x44, 0x59, 0x5f, 0x4f, 0x46, 0x46, 0x4c, 0x4f, 0x41, 0x44, 0x45, 0x44, 0x10, 0x05,
 	0x12, 0x17, 0x0a, 0x13, 0x46, 0x41, 0x49, 0x4c, 0x45, 0x44, 0x5f, 0x50, 0x52, 0x45, 0x43, 0x4f,
-	0x4e, 0x44, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x10, 0x06, 0x22, 0x94, 0x05, 0x0a, 0x0a, 0x4a, 0x6f,
+	0x4e, 0x44, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x10, 0x06, 0x22, 0xa4, 0x06, 0x0a, 0x0a, 0x4a, 0x6f,
 	0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x12, 0x12, 0x0a, 0x04,
 	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
@@ -2661,22 +2725,31 @@ var file_beeremote_proto_rawDesc = []byte{
 	0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
 	0x52, 0x10, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74,
 	0x75, 0x73, 0x12, 0x1b, 0x0a, 0x06, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x18, 0x09, 0x20, 0x01,
-	0x28, 0x08, 0x48, 0x01, 0x52, 0x06, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x88, 0x01, 0x01, 0x1a,
-	0xdb, 0x01, 0x0a, 0x10, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74,
-	0x61, 0x74, 0x75, 0x73, 0x12, 0x42, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0e, 0x32, 0x2c, 0x2e, 0x62, 0x65, 0x65, 0x72, 0x65, 0x6d, 0x6f, 0x74, 0x65, 0x2e,
-	0x4a, 0x6f, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x2e, 0x53, 0x74, 0x61, 0x74,
-	0x65, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73,
-	0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61,
-	0x67, 0x65, 0x22, 0x69, 0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x0f, 0x0a, 0x0b, 0x55,
-	0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x14, 0x0a, 0x10,
-	0x41, 0x4c, 0x52, 0x45, 0x41, 0x44, 0x59, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45,
-	0x10, 0x01, 0x12, 0x15, 0x0a, 0x11, 0x41, 0x4c, 0x52, 0x45, 0x41, 0x44, 0x59, 0x5f, 0x4f, 0x46,
-	0x46, 0x4c, 0x4f, 0x41, 0x44, 0x45, 0x44, 0x10, 0x02, 0x12, 0x17, 0x0a, 0x13, 0x46, 0x41, 0x49,
-	0x4c, 0x45, 0x44, 0x5f, 0x50, 0x52, 0x45, 0x43, 0x4f, 0x4e, 0x44, 0x49, 0x54, 0x49, 0x4f, 0x4e,
-	0x10, 0x03, 0x12, 0x09, 0x0a, 0x05, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x10, 0x04, 0x42, 0x06, 0x0a,
-	0x04, 0x74, 0x79, 0x70, 0x65, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x28, 0x08, 0x48, 0x01, 0x52, 0x06, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x88, 0x01, 0x01, 0x12,
+	0x3f, 0x0a, 0x0e, 0x72, 0x65, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x13, 0x2e, 0x66, 0x6c, 0x65, 0x78, 0x2e, 0x52,
+	0x65, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x48, 0x02, 0x52, 0x0d,
+	0x72, 0x65, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x88, 0x01, 0x01,
+	0x12, 0x28, 0x0a, 0x0d, 0x63, 0x6f, 0x6f, 0x6c, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x73, 0x65, 0x63,
+	0x73, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x0d, 0x48, 0x03, 0x52, 0x0c, 0x63, 0x6f, 0x6f, 0x6c, 0x64,
+	0x6f, 0x77, 0x6e, 0x53, 0x65, 0x63, 0x73, 0x88, 0x01, 0x01, 0x1a, 0xdb, 0x01, 0x0a, 0x10, 0x47,
+	0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12,
+	0x42, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2c,
+	0x2e, 0x62, 0x65, 0x65, 0x72, 0x65, 0x6d, 0x6f, 0x74, 0x65, 0x2e, 0x4a, 0x6f, 0x62, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05, 0x73, 0x74,
+	0x61, 0x74, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x69, 0x0a,
+	0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x0f, 0x0a, 0x0b, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43,
+	0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x14, 0x0a, 0x10, 0x41, 0x4c, 0x52, 0x45, 0x41,
+	0x44, 0x59, 0x5f, 0x43, 0x4f, 0x4d, 0x50, 0x4c, 0x45, 0x54, 0x45, 0x10, 0x01, 0x12, 0x15, 0x0a,
+	0x11, 0x41, 0x4c, 0x52, 0x45, 0x41, 0x44, 0x59, 0x5f, 0x4f, 0x46, 0x46, 0x4c, 0x4f, 0x41, 0x44,
+	0x45, 0x44, 0x10, 0x02, 0x12, 0x17, 0x0a, 0x13, 0x46, 0x41, 0x49, 0x4c, 0x45, 0x44, 0x5f, 0x50,
+	0x52, 0x45, 0x43, 0x4f, 0x4e, 0x44, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x10, 0x03, 0x12, 0x09, 0x0a,
+	0x05, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x10, 0x04, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x42, 0x09, 0x0a, 0x07, 0x5f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x42, 0x11, 0x0a, 0x0f, 0x5f,
+	0x72, 0x65, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x42, 0x10,
+	0x0a, 0x0e, 0x5f, 0x63, 0x6f, 0x6f, 0x6c, 0x64, 0x6f, 0x77, 0x6e, 0x5f, 0x73, 0x65, 0x63, 0x73,
 	0x22, 0x8c, 0x05, 0x0a, 0x03, 0x4a, 0x6f, 0x62, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x2f, 0x0a, 0x07, 0x72, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x65, 0x65, 0x72,
@@ -2911,12 +2984,13 @@ var file_beeremote_proto_goTypes = []any{
 	(*flex.SyncJob)(nil),                   // 26: flex.SyncJob
 	(*flex.MockJob)(nil),                   // 27: flex.MockJob
 	(*flex.BuilderJob)(nil),                // 28: flex.BuilderJob
-	(*timestamppb.Timestamp)(nil),          // 29: google.protobuf.Timestamp
-	(*flex.WorkRequest)(nil),               // 30: flex.WorkRequest
-	(*flex.Work)(nil),                      // 31: flex.Work
-	(*flex.RemoteStorageTarget)(nil),       // 32: flex.RemoteStorageTarget
-	(*flex.GetCapabilitiesRequest)(nil),    // 33: flex.GetCapabilitiesRequest
-	(*flex.GetCapabilitiesResponse)(nil),   // 34: flex.GetCapabilitiesResponse
+	(flex.RestorePolicy)(0),                // 29: flex.RestorePolicy
+	(*timestamppb.Timestamp)(nil),          // 30: google.protobuf.Timestamp
+	(*flex.WorkRequest)(nil),               // 31: flex.WorkRequest
+	(*flex.Work)(nil),                      // 32: flex.Work
+	(*flex.RemoteStorageTarget)(nil),       // 33: flex.RemoteStorageTarget
+	(*flex.GetCapabilitiesRequest)(nil),    // 34: flex.GetCapabilitiesRequest
+	(*flex.GetCapabilitiesResponse)(nil),   // 35: flex.GetCapabilitiesResponse
 }
 var file_beeremote_proto_depIdxs = []int32{
 	6,  // 0: beeremote.SubmitJobRequest.request:type_name -> beeremote.JobRequest
@@ -2926,48 +3000,49 @@ var file_beeremote_proto_depIdxs = []int32{
 	27, // 4: beeremote.JobRequest.mock:type_name -> flex.MockJob
 	28, // 5: beeremote.JobRequest.builder:type_name -> flex.BuilderJob
 	21, // 6: beeremote.JobRequest.generation_status:type_name -> beeremote.JobRequest.GenerationStatus
-	6,  // 7: beeremote.Job.request:type_name -> beeremote.JobRequest
-	29, // 8: beeremote.Job.created:type_name -> google.protobuf.Timestamp
-	22, // 9: beeremote.Job.status:type_name -> beeremote.Job.Status
-	29, // 10: beeremote.Job.start_mtime:type_name -> google.protobuf.Timestamp
-	29, // 11: beeremote.Job.stop_mtime:type_name -> google.protobuf.Timestamp
-	7,  // 12: beeremote.JobResult.job:type_name -> beeremote.Job
-	30, // 13: beeremote.JobResult.work_requests:type_name -> flex.WorkRequest
-	23, // 14: beeremote.JobResult.work_results:type_name -> beeremote.JobResult.WorkResult
-	11, // 15: beeremote.UpdatePathsRequest.requested_update:type_name -> beeremote.UpdateJobsRequest
-	12, // 16: beeremote.UpdatePathsResponse.update_result:type_name -> beeremote.UpdateJobsResponse
-	24, // 17: beeremote.UpdateJobsRequest.remote_targets:type_name -> beeremote.UpdateJobsRequest.RemoteTargetsEntry
-	3,  // 18: beeremote.UpdateJobsRequest.new_state:type_name -> beeremote.UpdateJobsRequest.NewState
-	8,  // 19: beeremote.UpdateJobsResponse.results:type_name -> beeremote.JobResult
-	25, // 20: beeremote.GetJobsRequest.by_job_id_and_path:type_name -> beeremote.GetJobsRequest.QueryIdAndPath
-	8,  // 21: beeremote.GetJobsResponse.results:type_name -> beeremote.JobResult
-	31, // 22: beeremote.UpdateWorkRequest.work:type_name -> flex.Work
-	32, // 23: beeremote.GetRSTConfigResponse.rsts:type_name -> flex.RemoteStorageTarget
-	1,  // 24: beeremote.JobRequest.GenerationStatus.state:type_name -> beeremote.JobRequest.GenerationStatus.State
-	2,  // 25: beeremote.Job.Status.state:type_name -> beeremote.Job.State
-	29, // 26: beeremote.Job.Status.updated:type_name -> google.protobuf.Timestamp
-	31, // 27: beeremote.JobResult.WorkResult.work:type_name -> flex.Work
-	4,  // 28: beeremote.BeeRemote.SubmitJob:input_type -> beeremote.SubmitJobRequest
-	9,  // 29: beeremote.BeeRemote.UpdatePaths:input_type -> beeremote.UpdatePathsRequest
-	11, // 30: beeremote.BeeRemote.UpdateJobs:input_type -> beeremote.UpdateJobsRequest
-	13, // 31: beeremote.BeeRemote.GetJobs:input_type -> beeremote.GetJobsRequest
-	15, // 32: beeremote.BeeRemote.UpdateWork:input_type -> beeremote.UpdateWorkRequest
-	17, // 33: beeremote.BeeRemote.GetRSTConfig:input_type -> beeremote.GetRSTConfigRequest
-	19, // 34: beeremote.BeeRemote.GetStubContents:input_type -> beeremote.GetStubContentsRequest
-	33, // 35: beeremote.BeeRemote.GetCapabilities:input_type -> flex.GetCapabilitiesRequest
-	5,  // 36: beeremote.BeeRemote.SubmitJob:output_type -> beeremote.SubmitJobResponse
-	10, // 37: beeremote.BeeRemote.UpdatePaths:output_type -> beeremote.UpdatePathsResponse
-	12, // 38: beeremote.BeeRemote.UpdateJobs:output_type -> beeremote.UpdateJobsResponse
-	14, // 39: beeremote.BeeRemote.GetJobs:output_type -> beeremote.GetJobsResponse
-	16, // 40: beeremote.BeeRemote.UpdateWork:output_type -> beeremote.UpdateWorkResponse
-	18, // 41: beeremote.BeeRemote.GetRSTConfig:output_type -> beeremote.GetRSTConfigResponse
-	20, // 42: beeremote.BeeRemote.GetStubContents:output_type -> beeremote.GetStubContentsResponse
-	34, // 43: beeremote.BeeRemote.GetCapabilities:output_type -> flex.GetCapabilitiesResponse
-	36, // [36:44] is the sub-list for method output_type
-	28, // [28:36] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	29, // 7: beeremote.JobRequest.restore_policy:type_name -> flex.RestorePolicy
+	6,  // 8: beeremote.Job.request:type_name -> beeremote.JobRequest
+	30, // 9: beeremote.Job.created:type_name -> google.protobuf.Timestamp
+	22, // 10: beeremote.Job.status:type_name -> beeremote.Job.Status
+	30, // 11: beeremote.Job.start_mtime:type_name -> google.protobuf.Timestamp
+	30, // 12: beeremote.Job.stop_mtime:type_name -> google.protobuf.Timestamp
+	7,  // 13: beeremote.JobResult.job:type_name -> beeremote.Job
+	31, // 14: beeremote.JobResult.work_requests:type_name -> flex.WorkRequest
+	23, // 15: beeremote.JobResult.work_results:type_name -> beeremote.JobResult.WorkResult
+	11, // 16: beeremote.UpdatePathsRequest.requested_update:type_name -> beeremote.UpdateJobsRequest
+	12, // 17: beeremote.UpdatePathsResponse.update_result:type_name -> beeremote.UpdateJobsResponse
+	24, // 18: beeremote.UpdateJobsRequest.remote_targets:type_name -> beeremote.UpdateJobsRequest.RemoteTargetsEntry
+	3,  // 19: beeremote.UpdateJobsRequest.new_state:type_name -> beeremote.UpdateJobsRequest.NewState
+	8,  // 20: beeremote.UpdateJobsResponse.results:type_name -> beeremote.JobResult
+	25, // 21: beeremote.GetJobsRequest.by_job_id_and_path:type_name -> beeremote.GetJobsRequest.QueryIdAndPath
+	8,  // 22: beeremote.GetJobsResponse.results:type_name -> beeremote.JobResult
+	32, // 23: beeremote.UpdateWorkRequest.work:type_name -> flex.Work
+	33, // 24: beeremote.GetRSTConfigResponse.rsts:type_name -> flex.RemoteStorageTarget
+	1,  // 25: beeremote.JobRequest.GenerationStatus.state:type_name -> beeremote.JobRequest.GenerationStatus.State
+	2,  // 26: beeremote.Job.Status.state:type_name -> beeremote.Job.State
+	30, // 27: beeremote.Job.Status.updated:type_name -> google.protobuf.Timestamp
+	32, // 28: beeremote.JobResult.WorkResult.work:type_name -> flex.Work
+	4,  // 29: beeremote.BeeRemote.SubmitJob:input_type -> beeremote.SubmitJobRequest
+	9,  // 30: beeremote.BeeRemote.UpdatePaths:input_type -> beeremote.UpdatePathsRequest
+	11, // 31: beeremote.BeeRemote.UpdateJobs:input_type -> beeremote.UpdateJobsRequest
+	13, // 32: beeremote.BeeRemote.GetJobs:input_type -> beeremote.GetJobsRequest
+	15, // 33: beeremote.BeeRemote.UpdateWork:input_type -> beeremote.UpdateWorkRequest
+	17, // 34: beeremote.BeeRemote.GetRSTConfig:input_type -> beeremote.GetRSTConfigRequest
+	19, // 35: beeremote.BeeRemote.GetStubContents:input_type -> beeremote.GetStubContentsRequest
+	34, // 36: beeremote.BeeRemote.GetCapabilities:input_type -> flex.GetCapabilitiesRequest
+	5,  // 37: beeremote.BeeRemote.SubmitJob:output_type -> beeremote.SubmitJobResponse
+	10, // 38: beeremote.BeeRemote.UpdatePaths:output_type -> beeremote.UpdatePathsResponse
+	12, // 39: beeremote.BeeRemote.UpdateJobs:output_type -> beeremote.UpdateJobsResponse
+	14, // 40: beeremote.BeeRemote.GetJobs:output_type -> beeremote.GetJobsResponse
+	16, // 41: beeremote.BeeRemote.UpdateWork:output_type -> beeremote.UpdateWorkResponse
+	18, // 42: beeremote.BeeRemote.GetRSTConfig:output_type -> beeremote.GetRSTConfigResponse
+	20, // 43: beeremote.BeeRemote.GetStubContents:output_type -> beeremote.GetStubContentsResponse
+	35, // 44: beeremote.BeeRemote.GetCapabilities:output_type -> flex.GetCapabilitiesResponse
+	37, // [37:45] is the sub-list for method output_type
+	29, // [29:37] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_beeremote_proto_init() }
