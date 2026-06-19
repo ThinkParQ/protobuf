@@ -16,6 +16,8 @@ enum NodeType {
   META = 2;
   STORAGE = 3;
   MANAGEMENT = 4;
+  REMOTE = 5;
+  SYNC = 6;
 }
 
 enum ReachabilityState {
