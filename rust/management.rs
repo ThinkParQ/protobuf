@@ -64,6 +64,8 @@ pub mod get_nodes_response {
         /// Should only be filled if include_nics was set to true.
         #[prost(message, repeated, tag = "4")]
         pub nics: ::prost::alloc::vec::Vec<node::Nic>,
+        #[prost(bytes = "vec", repeated, tag = "5")]
+        pub public_key: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
     }
     /// Nested message and enum types in `Node`.
     pub mod node {
