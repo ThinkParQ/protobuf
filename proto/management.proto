@@ -90,6 +90,7 @@ message GetNodesResponse {
     // The nodes list of nics.
     // Should only be filled if include_nics was set to true.
     repeated Nic nics = 4;
+    repeated bytes public_key = 5;
   }
 
   // The list of nodes.

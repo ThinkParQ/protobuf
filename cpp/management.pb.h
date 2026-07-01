@@ -4857,6 +4857,7 @@ class GetNodesResponse_Node final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kNicsFieldNumber = 4,
+    kPublicKeyFieldNumber = 5,
     kIdFieldNumber = 1,
     kNodeTypeFieldNumber = 2,
     kPortFieldNumber = 3,
@@ -4878,6 +4879,28 @@ class GetNodesResponse_Node final : public ::google::protobuf::Message
   const ::management::GetNodesResponse_Node_Nic& nics(int index) const;
   ::management::GetNodesResponse_Node_Nic* add_nics();
   const ::google::protobuf::RepeatedPtrField<::management::GetNodesResponse_Node_Nic>& nics() const;
+  // repeated bytes public_key = 5;
+  int public_key_size() const;
+  private:
+  int _internal_public_key_size() const;
+
+  public:
+  void clear_public_key() ;
+  const std::string& public_key(int index) const;
+  std::string* mutable_public_key(int index);
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_public_key(int index, Arg_&& value, Args_... args);
+  std::string* add_public_key();
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void add_public_key(Arg_&& value, Args_... args);
+  const ::google::protobuf::RepeatedPtrField<std::string>& public_key() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_public_key();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_public_key() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_public_key();
+
+  public:
   // .beegfs.EntityIdSet id = 1;
   bool has_id() const;
   void clear_id() ;
@@ -4918,7 +4941,7 @@ class GetNodesResponse_Node final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 2,
+      3, 5, 2,
       0, 2>
       _table_;
 
@@ -4939,6 +4962,7 @@ class GetNodesResponse_Node final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::management::GetNodesResponse_Node_Nic > nics_;
+    ::google::protobuf::RepeatedPtrField<std::string> public_key_;
     ::beegfs::EntityIdSet* id_;
     int node_type_;
     ::uint32_t port_;
@@ -10352,6 +10376,70 @@ inline ::google::protobuf::RepeatedPtrField<::management::GetNodesResponse_Node_
 GetNodesResponse_Node::_internal_mutable_nics() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.nics_;
+}
+
+// repeated bytes public_key = 5;
+inline int GetNodesResponse_Node::_internal_public_key_size() const {
+  return _internal_public_key().size();
+}
+inline int GetNodesResponse_Node::public_key_size() const {
+  return _internal_public_key_size();
+}
+inline void GetNodesResponse_Node::clear_public_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.public_key_.Clear();
+}
+inline std::string* GetNodesResponse_Node::add_public_key() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  std::string* _s = _internal_mutable_public_key()->Add();
+  // @@protoc_insertion_point(field_add_mutable:management.GetNodesResponse.Node.public_key)
+  return _s;
+}
+inline const std::string& GetNodesResponse_Node::public_key(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:management.GetNodesResponse.Node.public_key)
+  return _internal_public_key().Get(index);
+}
+inline std::string* GetNodesResponse_Node::mutable_public_key(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:management.GetNodesResponse.Node.public_key)
+  return _internal_mutable_public_key()->Mutable(index);
+}
+template <typename Arg_, typename... Args_>
+inline void GetNodesResponse_Node::set_public_key(int index, Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::AssignToString(
+      *_internal_mutable_public_key()->Mutable(index),
+      std::forward<Arg_>(value), args... , ::google::protobuf::internal::BytesTag{});
+  // @@protoc_insertion_point(field_set:management.GetNodesResponse.Node.public_key)
+}
+template <typename Arg_, typename... Args_>
+inline void GetNodesResponse_Node::add_public_key(Arg_&& value, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_public_key(),
+                               std::forward<Arg_>(value),
+                               args... , ::google::protobuf::internal::BytesTag{});
+  // @@protoc_insertion_point(field_add:management.GetNodesResponse.Node.public_key)
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+GetNodesResponse_Node::public_key() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:management.GetNodesResponse.Node.public_key)
+  return _internal_public_key();
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+GetNodesResponse_Node::mutable_public_key() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:management.GetNodesResponse.Node.public_key)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_public_key();
+}
+inline const ::google::protobuf::RepeatedPtrField<std::string>&
+GetNodesResponse_Node::_internal_public_key() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.public_key_;
+}
+inline ::google::protobuf::RepeatedPtrField<std::string>*
+GetNodesResponse_Node::_internal_mutable_public_key() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.public_key_;
 }
 
 // -------------------------------------------------------------------
