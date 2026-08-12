@@ -31,6 +31,7 @@ const (
 	Management_DeletePool_FullMethodName            = "/management.Management/DeletePool"
 	Management_GetBuddyGroups_FullMethodName        = "/management.Management/GetBuddyGroups"
 	Management_CreateBuddyGroup_FullMethodName      = "/management.Management/CreateBuddyGroup"
+	Management_ModifyBuddyGroup_FullMethodName      = "/management.Management/ModifyBuddyGroup"
 	Management_DeleteBuddyGroup_FullMethodName      = "/management.Management/DeleteBuddyGroup"
 	Management_MirrorRootInode_FullMethodName       = "/management.Management/MirrorRootInode"
 	Management_StartResync_FullMethodName           = "/management.Management/StartResync"
@@ -62,6 +63,7 @@ type ManagementClient interface {
 	// Buddy groups
 	GetBuddyGroups(ctx context.Context, in *GetBuddyGroupsRequest, opts ...grpc.CallOption) (*GetBuddyGroupsResponse, error)
 	CreateBuddyGroup(ctx context.Context, in *CreateBuddyGroupRequest, opts ...grpc.CallOption) (*CreateBuddyGroupResponse, error)
+	ModifyBuddyGroup(ctx context.Context, in *ModifyBuddyGroupRequest, opts ...grpc.CallOption) (*ModifyBuddyGroupResponse, error)
 	DeleteBuddyGroup(ctx context.Context, in *DeleteBuddyGroupRequest, opts ...grpc.CallOption) (*DeleteBuddyGroupResponse, error)
 	MirrorRootInode(ctx context.Context, in *MirrorRootInodeRequest, opts ...grpc.CallOption) (*MirrorRootInodeResponse, error)
 	StartResync(ctx context.Context, in *StartResyncRequest, opts ...grpc.CallOption) (*StartResyncResponse, error)
@@ -202,6 +204,16 @@ func (c *managementClient) CreateBuddyGroup(ctx context.Context, in *CreateBuddy
 	return out, nil
 }
 
+func (c *managementClient) ModifyBuddyGroup(ctx context.Context, in *ModifyBuddyGroupRequest, opts ...grpc.CallOption) (*ModifyBuddyGroupResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ModifyBuddyGroupResponse)
+	err := c.cc.Invoke(ctx, Management_ModifyBuddyGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *managementClient) DeleteBuddyGroup(ctx context.Context, in *DeleteBuddyGroupRequest, opts ...grpc.CallOption) (*DeleteBuddyGroupResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteBuddyGroupResponse)
@@ -321,6 +333,7 @@ type ManagementServer interface {
 	// Buddy groups
 	GetBuddyGroups(context.Context, *GetBuddyGroupsRequest) (*GetBuddyGroupsResponse, error)
 	CreateBuddyGroup(context.Context, *CreateBuddyGroupRequest) (*CreateBuddyGroupResponse, error)
+	ModifyBuddyGroup(context.Context, *ModifyBuddyGroupRequest) (*ModifyBuddyGroupResponse, error)
 	DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error)
 	MirrorRootInode(context.Context, *MirrorRootInodeRequest) (*MirrorRootInodeResponse, error)
 	StartResync(context.Context, *StartResyncRequest) (*StartResyncResponse, error)
@@ -376,6 +389,9 @@ func (UnimplementedManagementServer) GetBuddyGroups(context.Context, *GetBuddyGr
 }
 func (UnimplementedManagementServer) CreateBuddyGroup(context.Context, *CreateBuddyGroupRequest) (*CreateBuddyGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBuddyGroup not implemented")
+}
+func (UnimplementedManagementServer) ModifyBuddyGroup(context.Context, *ModifyBuddyGroupRequest) (*ModifyBuddyGroupResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ModifyBuddyGroup not implemented")
 }
 func (UnimplementedManagementServer) DeleteBuddyGroup(context.Context, *DeleteBuddyGroupRequest) (*DeleteBuddyGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteBuddyGroup not implemented")
@@ -638,6 +654,24 @@ func _Management_CreateBuddyGroup_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Management_ModifyBuddyGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ModifyBuddyGroupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).ModifyBuddyGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_ModifyBuddyGroup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).ModifyBuddyGroup(ctx, req.(*ModifyBuddyGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Management_DeleteBuddyGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteBuddyGroupRequest)
 	if err := dec(in); err != nil {
@@ -822,6 +856,10 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateBuddyGroup",
 			Handler:    _Management_CreateBuddyGroup_Handler,
+		},
+		{
+			MethodName: "ModifyBuddyGroup",
+			Handler:    _Management_ModifyBuddyGroup_Handler,
 		},
 		{
 			MethodName: "DeleteBuddyGroup",

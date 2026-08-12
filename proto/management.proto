@@ -27,6 +27,7 @@ service Management {
   // Buddy groups
   rpc GetBuddyGroups(GetBuddyGroupsRequest) returns (GetBuddyGroupsResponse);
   rpc CreateBuddyGroup(CreateBuddyGroupRequest) returns (CreateBuddyGroupResponse);
+  rpc ModifyBuddyGroup(ModifyBuddyGroupRequest) returns (ModifyBuddyGroupResponse);
   rpc DeleteBuddyGroup(DeleteBuddyGroupRequest) returns (DeleteBuddyGroupResponse);
   rpc MirrorRootInode(MirrorRootInodeRequest) returns (MirrorRootInodeResponse);
   rpc StartResync(StartResyncRequest) returns (StartResyncResponse);
@@ -301,6 +302,21 @@ message DeletePoolResponse {
 
 // Buddy groups
 
+message BuddyGroupOptions {
+  enum BuddyGroupQuotaAccounting {
+    BUDDY_GROUP_QUOTA_ACCOUNTING_UNSPECIFIED = 0;
+    BUDDY_GROUP_QUOTA_ACCOUNTING_PRIMARY = 1;
+    BUDDY_GROUP_QUOTA_ACCOUNTING_BOTH = 2;
+  }
+
+  // The quota accounting mode for this buddy group.
+  // When used for setting options: Optional if the corresponding buddy group is a storage group,
+  // unset otherwise.
+  // When used for getting options: Required if the corresponding buddy group is a storage group,
+  // unset otherwise.
+  optional BuddyGroupQuotaAccounting quota_accounting = 1;
+}
+
 // Gets the list of buddy groups.
 message GetBuddyGroupsRequest {}
 message GetBuddyGroupsResponse {
@@ -328,6 +344,9 @@ message GetBuddyGroupsResponse {
     // Required if this target is a storage target (e.g. node_type is STORAGE), unset otherwise. If
     // set, should be completely populated.
     optional beegfs.EntityIdSet storage_pool = 7;
+    // The options for this buddy group.
+    // Required.
+    optional BuddyGroupOptions options = 8;
   }
 
   // The list of buddy groups.
@@ -351,12 +370,26 @@ message CreateBuddyGroupRequest {
   // The new buddy groups secondary target.
   // Required. One identifier is sufficient.
   optional beegfs.EntityIdSet secondary_target = 5;
+  // The options for this buddy group.
+  // Required.
+  optional BuddyGroupOptions options = 6;
 }
 message CreateBuddyGroupResponse {
   // The identifier set of the new buddy group.
   // Required, should be completely populated.
   optional beegfs.EntityIdSet group = 1;
 }
+
+// Modifies a buddy group or its config.
+message ModifyBuddyGroupRequest {
+  // The buddy group to modify.
+  // Required. One identifier is sufficient.
+  optional beegfs.EntityIdSet group = 1;
+  // The options for this buddy group.
+  // Required.
+  optional BuddyGroupOptions options = 2;
+}
+message ModifyBuddyGroupResponse {}
 
 // Deletes a buddy group from the system.
 message DeleteBuddyGroupRequest {
