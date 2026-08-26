@@ -182,6 +182,74 @@ namespace protobuf {
 }  // namespace google
 
 namespace flex {
+enum HeartbeatResponse_State : int {
+  HeartbeatResponse_State_UNSPECIFIED = 0,
+  HeartbeatResponse_State_NOT_READY = 1,
+  HeartbeatResponse_State_READY = 2,
+  HeartbeatResponse_State_DRAINING = 3,
+  HeartbeatResponse_State_HeartbeatResponse_State_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  HeartbeatResponse_State_HeartbeatResponse_State_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool HeartbeatResponse_State_IsValid(int value);
+extern const uint32_t HeartbeatResponse_State_internal_data_[];
+constexpr HeartbeatResponse_State HeartbeatResponse_State_State_MIN = static_cast<HeartbeatResponse_State>(0);
+constexpr HeartbeatResponse_State HeartbeatResponse_State_State_MAX = static_cast<HeartbeatResponse_State>(3);
+constexpr int HeartbeatResponse_State_State_ARRAYSIZE = 3 + 1;
+const ::google::protobuf::EnumDescriptor*
+HeartbeatResponse_State_descriptor();
+template <typename T>
+const std::string& HeartbeatResponse_State_Name(T value) {
+  static_assert(std::is_same<T, HeartbeatResponse_State>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to State_Name().");
+  return HeartbeatResponse_State_Name(static_cast<HeartbeatResponse_State>(value));
+}
+template <>
+inline const std::string& HeartbeatResponse_State_Name(HeartbeatResponse_State value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<HeartbeatResponse_State_descriptor,
+                                                 0, 3>(
+      static_cast<int>(value));
+}
+inline bool HeartbeatResponse_State_Parse(absl::string_view name, HeartbeatResponse_State* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<HeartbeatResponse_State>(
+      HeartbeatResponse_State_descriptor(), name, value);
+}
+enum SubmitWorkResponse_ResponseStatus : int {
+  SubmitWorkResponse_ResponseStatus_ACCEPTED = 0,
+  SubmitWorkResponse_ResponseStatus_DRAINING = 1,
+  SubmitWorkResponse_ResponseStatus_SubmitWorkResponse_ResponseStatus_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SubmitWorkResponse_ResponseStatus_SubmitWorkResponse_ResponseStatus_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SubmitWorkResponse_ResponseStatus_IsValid(int value);
+extern const uint32_t SubmitWorkResponse_ResponseStatus_internal_data_[];
+constexpr SubmitWorkResponse_ResponseStatus SubmitWorkResponse_ResponseStatus_ResponseStatus_MIN = static_cast<SubmitWorkResponse_ResponseStatus>(0);
+constexpr SubmitWorkResponse_ResponseStatus SubmitWorkResponse_ResponseStatus_ResponseStatus_MAX = static_cast<SubmitWorkResponse_ResponseStatus>(1);
+constexpr int SubmitWorkResponse_ResponseStatus_ResponseStatus_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor*
+SubmitWorkResponse_ResponseStatus_descriptor();
+template <typename T>
+const std::string& SubmitWorkResponse_ResponseStatus_Name(T value) {
+  static_assert(std::is_same<T, SubmitWorkResponse_ResponseStatus>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to ResponseStatus_Name().");
+  return SubmitWorkResponse_ResponseStatus_Name(static_cast<SubmitWorkResponse_ResponseStatus>(value));
+}
+template <>
+inline const std::string& SubmitWorkResponse_ResponseStatus_Name(SubmitWorkResponse_ResponseStatus value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SubmitWorkResponse_ResponseStatus_descriptor,
+                                                 0, 1>(
+      static_cast<int>(value));
+}
+inline bool SubmitWorkResponse_ResponseStatus_Parse(absl::string_view name, SubmitWorkResponse_ResponseStatus* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SubmitWorkResponse_ResponseStatus>(
+      SubmitWorkResponse_ResponseStatus_descriptor(), name, value);
+}
 enum UpdateWorkRequest_NewState : int {
   UpdateWorkRequest_NewState_UNSPECIFIED = 0,
   UpdateWorkRequest_NewState_CANCELLED = 1,
@@ -5882,10 +5950,30 @@ class SubmitWorkResponse final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
+  using ResponseStatus = SubmitWorkResponse_ResponseStatus;
+  static constexpr ResponseStatus ACCEPTED = SubmitWorkResponse_ResponseStatus_ACCEPTED;
+  static constexpr ResponseStatus DRAINING = SubmitWorkResponse_ResponseStatus_DRAINING;
+  static inline bool ResponseStatus_IsValid(int value) {
+    return SubmitWorkResponse_ResponseStatus_IsValid(value);
+  }
+  static constexpr ResponseStatus ResponseStatus_MIN = SubmitWorkResponse_ResponseStatus_ResponseStatus_MIN;
+  static constexpr ResponseStatus ResponseStatus_MAX = SubmitWorkResponse_ResponseStatus_ResponseStatus_MAX;
+  static constexpr int ResponseStatus_ARRAYSIZE = SubmitWorkResponse_ResponseStatus_ResponseStatus_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* ResponseStatus_descriptor() {
+    return SubmitWorkResponse_ResponseStatus_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& ResponseStatus_Name(T value) {
+    return SubmitWorkResponse_ResponseStatus_Name(value);
+  }
+  static inline bool ResponseStatus_Parse(absl::string_view name, ResponseStatus* value) {
+    return SubmitWorkResponse_ResponseStatus_Parse(name, value);
+  }
 
   // accessors -------------------------------------------------------
   enum : int {
     kWorkFieldNumber = 1,
+    kStatusFieldNumber = 2,
   };
   // .flex.Work work = 1;
   bool has_work() const;
@@ -5902,12 +5990,22 @@ class SubmitWorkResponse final : public ::google::protobuf::Message
   ::flex::Work* _internal_mutable_work();
 
   public:
+  // .flex.SubmitWorkResponse.ResponseStatus status = 2;
+  void clear_status() ;
+  ::flex::SubmitWorkResponse_ResponseStatus status() const;
+  void set_status(::flex::SubmitWorkResponse_ResponseStatus value);
+
+  private:
+  ::flex::SubmitWorkResponse_ResponseStatus _internal_status() const;
+  void _internal_set_status(::flex::SubmitWorkResponse_ResponseStatus value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.SubmitWorkResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
+      1, 2, 1,
       0, 2>
       _table_;
 
@@ -5928,6 +6026,7 @@ class SubmitWorkResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::flex::Work* work_;
+    int status_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6830,11 +6929,33 @@ class HeartbeatResponse final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
+  using State = HeartbeatResponse_State;
+  static constexpr State UNSPECIFIED = HeartbeatResponse_State_UNSPECIFIED;
+  static constexpr State NOT_READY = HeartbeatResponse_State_NOT_READY;
+  static constexpr State READY = HeartbeatResponse_State_READY;
+  static constexpr State DRAINING = HeartbeatResponse_State_DRAINING;
+  static inline bool State_IsValid(int value) {
+    return HeartbeatResponse_State_IsValid(value);
+  }
+  static constexpr State State_MIN = HeartbeatResponse_State_State_MIN;
+  static constexpr State State_MAX = HeartbeatResponse_State_State_MAX;
+  static constexpr int State_ARRAYSIZE = HeartbeatResponse_State_State_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* State_descriptor() {
+    return HeartbeatResponse_State_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& State_Name(T value) {
+    return HeartbeatResponse_State_Name(value);
+  }
+  static inline bool State_Parse(absl::string_view name, State* value) {
+    return HeartbeatResponse_State_Parse(name, value);
+  }
 
   // accessors -------------------------------------------------------
   enum : int {
     kNodeStatsFieldNumber = 2,
     kIsReadyFieldNumber = 1,
+    kStateFieldNumber = 3,
   };
   // .flex.NodeStats node_stats = 2;
   bool has_node_stats() const;
@@ -6861,12 +6982,22 @@ class HeartbeatResponse final : public ::google::protobuf::Message
   void _internal_set_is_ready(bool value);
 
   public:
+  // .flex.HeartbeatResponse.State state = 3;
+  void clear_state() ;
+  ::flex::HeartbeatResponse_State state() const;
+  void set_state(::flex::HeartbeatResponse_State value);
+
+  private:
+  ::flex::HeartbeatResponse_State _internal_state() const;
+  void _internal_set_state(::flex::HeartbeatResponse_State value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.HeartbeatResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
+      2, 3, 1,
       0, 2>
       _table_;
 
@@ -6888,6 +7019,7 @@ class HeartbeatResponse final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::flex::NodeStats* node_stats_;
     bool is_ready_;
+    int state_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -9429,6 +9561,28 @@ inline void HeartbeatResponse::set_allocated_node_stats(::flex::NodeStats* value
   // @@protoc_insertion_point(field_set_allocated:flex.HeartbeatResponse.node_stats)
 }
 
+// .flex.HeartbeatResponse.State state = 3;
+inline void HeartbeatResponse::clear_state() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.state_ = 0;
+}
+inline ::flex::HeartbeatResponse_State HeartbeatResponse::state() const {
+  // @@protoc_insertion_point(field_get:flex.HeartbeatResponse.state)
+  return _internal_state();
+}
+inline void HeartbeatResponse::set_state(::flex::HeartbeatResponse_State value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:flex.HeartbeatResponse.state)
+}
+inline ::flex::HeartbeatResponse_State HeartbeatResponse::_internal_state() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::flex::HeartbeatResponse_State>(_impl_.state_);
+}
+inline void HeartbeatResponse::_internal_set_state(::flex::HeartbeatResponse_State value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.state_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // NodeStats
@@ -9744,6 +9898,28 @@ inline void SubmitWorkResponse::set_allocated_work(::flex::Work* value) {
 
   _impl_.work_ = reinterpret_cast<::flex::Work*>(value);
   // @@protoc_insertion_point(field_set_allocated:flex.SubmitWorkResponse.work)
+}
+
+// .flex.SubmitWorkResponse.ResponseStatus status = 2;
+inline void SubmitWorkResponse::clear_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_ = 0;
+}
+inline ::flex::SubmitWorkResponse_ResponseStatus SubmitWorkResponse::status() const {
+  // @@protoc_insertion_point(field_get:flex.SubmitWorkResponse.status)
+  return _internal_status();
+}
+inline void SubmitWorkResponse::set_status(::flex::SubmitWorkResponse_ResponseStatus value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:flex.SubmitWorkResponse.status)
+}
+inline ::flex::SubmitWorkResponse_ResponseStatus SubmitWorkResponse::_internal_status() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::flex::SubmitWorkResponse_ResponseStatus>(_impl_.status_);
+}
+inline void SubmitWorkResponse::_internal_set_status(::flex::SubmitWorkResponse_ResponseStatus value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -16378,6 +16554,18 @@ inline void BuildInfo::set_allocated_build_time(std::string* value) {
 namespace google {
 namespace protobuf {
 
+template <>
+struct is_proto_enum<::flex::HeartbeatResponse_State> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::flex::HeartbeatResponse_State>() {
+  return ::flex::HeartbeatResponse_State_descriptor();
+}
+template <>
+struct is_proto_enum<::flex::SubmitWorkResponse_ResponseStatus> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::flex::SubmitWorkResponse_ResponseStatus>() {
+  return ::flex::SubmitWorkResponse_ResponseStatus_descriptor();
+}
 template <>
 struct is_proto_enum<::flex::UpdateWorkRequest_NewState> : std::true_type {};
 template <>
