@@ -25,9 +25,23 @@ message HeartbeatRequest {
 }
 
 message HeartbeatResponse {
+    // Deprecated: superseded by state. Still populated for remote nodes predating state.
     bool is_ready = 1;
     NodeStats node_stats = 2;
+    State state = 3;
+    enum State {
+        // Unlike elsewhere in this file, UNSPECIFIED is expected rather than a bug: it means the
+        // worker node predates this field. Fall back to is_ready when it is seen.
+        UNSPECIFIED = 0;
+        // Not accepting work; needs configuration before it can be used.
+        NOT_READY = 1;
+        // Accepting new work requests.
+        READY = 2;
+        // Finishing in-flight work; will accept no new requests.
+        DRAINING = 3;
+    }
 }
+
 
 message NodeStats {
     google.protobuf.Timestamp timestamp = 1;
@@ -39,7 +53,21 @@ message SubmitWorkRequest {
 }
 
 message SubmitWorkResponse {
+    // The created work request. Unset unless the status is ACCEPTED.
     Work work = 1;
+    // Whether the node created the work request. Note an error returned alongside a response always
+    // means the request was not created; this distinguishes a rejection the node made deliberately
+    // from one caused by an internal error or loss of connectivity.
+    ResponseStatus status = 2;
+    enum ResponseStatus {
+        // Unlike elsewhere in this file the zero value carries meaning rather than indicating a
+        // bug. Worker nodes predating this field only ever reply once they have created the request,
+        // so their unset status is correctly read as ACCEPTED.
+        ACCEPTED = 0;
+        // The node is draining and accepts no new work. The request was rejected before it was
+        // created, so nothing needs to be cancelled and it can be assigned to another node.
+        DRAINING = 1;
+    }
 }
 
 // Used to change the state of a single work request.
