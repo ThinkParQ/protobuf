@@ -6,10 +6,63 @@ pub struct HeartbeatRequest {
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct HeartbeatResponse {
+    /// Deprecated: superseded by state. Still populated for remote nodes predating state.
     #[prost(bool, tag = "1")]
     pub is_ready: bool,
     #[prost(message, optional, tag = "2")]
     pub node_stats: ::core::option::Option<NodeStats>,
+    #[prost(enumeration = "heartbeat_response::State", tag = "3")]
+    pub state: i32,
+}
+/// Nested message and enum types in `HeartbeatResponse`.
+pub mod heartbeat_response {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum State {
+        /// Unlike elsewhere in this file, UNSPECIFIED is expected rather than a bug: it means the
+        /// worker node predates this field. Fall back to is_ready when it is seen.
+        Unspecified = 0,
+        /// Not accepting work; needs configuration before it can be used.
+        NotReady = 1,
+        /// Accepting new work requests.
+        Ready = 2,
+        /// Finishing in-flight work; will accept no new requests.
+        Draining = 3,
+    }
+    impl State {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "UNSPECIFIED",
+                Self::NotReady => "NOT_READY",
+                Self::Ready => "READY",
+                Self::Draining => "DRAINING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNSPECIFIED" => Some(Self::Unspecified),
+                "NOT_READY" => Some(Self::NotReady),
+                "READY" => Some(Self::Ready),
+                "DRAINING" => Some(Self::Draining),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct NodeStats {
@@ -25,8 +78,58 @@ pub struct SubmitWorkRequest {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubmitWorkResponse {
+    /// The created work request. Unset unless the status is ACCEPTED.
     #[prost(message, optional, tag = "1")]
     pub work: ::core::option::Option<Work>,
+    /// Whether the node created the work request. Note an error returned alongside a response always
+    /// means the request was not created; this distinguishes a rejection the node made deliberately
+    /// from one caused by an internal error or loss of connectivity.
+    #[prost(enumeration = "submit_work_response::ResponseStatus", tag = "2")]
+    pub status: i32,
+}
+/// Nested message and enum types in `SubmitWorkResponse`.
+pub mod submit_work_response {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ResponseStatus {
+        /// Unlike elsewhere in this file the zero value carries meaning rather than indicating a
+        /// bug. Worker nodes predating this field only ever reply once they have created the request,
+        /// so their unset status is correctly read as ACCEPTED.
+        Accepted = 0,
+        /// The node is draining and accepts no new work. The request was rejected before it was
+        /// created, so nothing needs to be cancelled and it can be assigned to another node.
+        Draining = 1,
+    }
+    impl ResponseStatus {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Accepted => "ACCEPTED",
+                Self::Draining => "DRAINING",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "ACCEPTED" => Some(Self::Accepted),
+                "DRAINING" => Some(Self::Draining),
+                _ => None,
+            }
+        }
+    }
 }
 /// Used to change the state of a single work request.
 /// The server will respond with a RequestStatus.
