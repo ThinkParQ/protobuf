@@ -29,6 +29,9 @@ service BeeRemote {
 
 message SubmitJobRequest {
     JobRequest request = 1;
+    // Set when a worker node submits the request, empty for other clients such as the CLI. Only a
+    // routing hint: BeeRemote may prefer this node when assigning work requests, but may ignore it.
+    string origin_node_id = 2;
 }
 
 message SubmitJobResponse {
