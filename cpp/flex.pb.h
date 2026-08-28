@@ -6956,6 +6956,7 @@ class HeartbeatResponse final : public ::google::protobuf::Message
     kNodeStatsFieldNumber = 2,
     kIsReadyFieldNumber = 1,
     kStateFieldNumber = 3,
+    kNumWorkersFieldNumber = 4,
   };
   // .flex.NodeStats node_stats = 2;
   bool has_node_stats() const;
@@ -6992,12 +6993,22 @@ class HeartbeatResponse final : public ::google::protobuf::Message
   void _internal_set_state(::flex::HeartbeatResponse_State value);
 
   public:
+  // uint32 num_workers = 4;
+  void clear_num_workers() ;
+  ::uint32_t num_workers() const;
+  void set_num_workers(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_num_workers() const;
+  void _internal_set_num_workers(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:flex.HeartbeatResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 1,
+      2, 4, 1,
       0, 2>
       _table_;
 
@@ -7020,6 +7031,7 @@ class HeartbeatResponse final : public ::google::protobuf::Message
     ::flex::NodeStats* node_stats_;
     bool is_ready_;
     int state_;
+    ::uint32_t num_workers_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -9581,6 +9593,28 @@ inline ::flex::HeartbeatResponse_State HeartbeatResponse::_internal_state() cons
 inline void HeartbeatResponse::_internal_set_state(::flex::HeartbeatResponse_State value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.state_ = value;
+}
+
+// uint32 num_workers = 4;
+inline void HeartbeatResponse::clear_num_workers() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.num_workers_ = 0u;
+}
+inline ::uint32_t HeartbeatResponse::num_workers() const {
+  // @@protoc_insertion_point(field_get:flex.HeartbeatResponse.num_workers)
+  return _internal_num_workers();
+}
+inline void HeartbeatResponse::set_num_workers(::uint32_t value) {
+  _internal_set_num_workers(value);
+  // @@protoc_insertion_point(field_set:flex.HeartbeatResponse.num_workers)
+}
+inline ::uint32_t HeartbeatResponse::_internal_num_workers() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.num_workers_;
+}
+inline void HeartbeatResponse::_internal_set_num_workers(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.num_workers_ = value;
 }
 
 // -------------------------------------------------------------------

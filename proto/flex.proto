@@ -40,6 +40,9 @@ message HeartbeatResponse {
         // Finishing in-flight work; will accept no new requests.
         DRAINING = 3;
     }
+    // The number of workers this node runs concurrently. Zero means the node predates this field;
+    // Remote assumes a default and logs that it did.
+    uint32 num_workers = 4;
 }
 
 
