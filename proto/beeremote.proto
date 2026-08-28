@@ -29,6 +29,9 @@ service BeeRemote {
 
 message SubmitJobRequest {
     JobRequest request = 1;
+    // Set when a worker node submits the request, empty for other clients such as the CLI. Only a
+    // routing hint: BeeRemote may prefer this node when assigning work requests, but may ignore it.
+    string origin_node_id = 2;
 }
 
 message SubmitJobResponse {
@@ -102,6 +105,10 @@ message JobRequest {
     optional flex.RestorePolicy restore_policy = 13;
     // Time in seconds to wait after a file is closed before replication begins.
     optional uint32 cooldown_secs = 14;
+    // bulk_info is optionally included when the job request participates in a provider-controlled
+    // bulk operation. It contains builder-maintained metadata needed to track the request within
+    // that bulk operation.
+    optional flex.BulkJobRequestInfo bulk_info = 15;
 }
 
 // Job contains all the data from the original request plus the job ID and
@@ -150,7 +157,7 @@ message Job {
         // When all worker node(s) have accepted the job's work requests, but may be waiting on
         // an available worker goroutine to pickup the request.
         SCHEDULED = 3;
-        // When all work requests for this job are in progress.
+        // When any work requests for this job are in progress.
         RUNNING = 4;
         // TODO: https://github.com/ThinkParQ/bee-remote/issues/16
         // A user manually requested the job be paused.
