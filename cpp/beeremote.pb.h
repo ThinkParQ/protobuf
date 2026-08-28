@@ -3471,8 +3471,25 @@ class SubmitJobRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kOriginNodeIdFieldNumber = 2,
     kRequestFieldNumber = 1,
   };
+  // string origin_node_id = 2;
+  void clear_origin_node_id() ;
+  const std::string& origin_node_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_origin_node_id(Arg_&& arg, Args_... args);
+  std::string* mutable_origin_node_id();
+  PROTOBUF_NODISCARD std::string* release_origin_node_id();
+  void set_allocated_origin_node_id(std::string* value);
+
+  private:
+  const std::string& _internal_origin_node_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_origin_node_id(
+      const std::string& value);
+  std::string* _internal_mutable_origin_node_id();
+
+  public:
   // .beeremote.JobRequest request = 1;
   bool has_request() const;
   void clear_request() ;
@@ -3493,8 +3510,8 @@ class SubmitJobRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
+      1, 2, 1,
+      49, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -3513,6 +3530,7 @@ class SubmitJobRequest final : public ::google::protobuf::Message
                           const SubmitJobRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr origin_node_id_;
     ::beeremote::JobRequest* request_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5278,6 +5296,54 @@ inline void SubmitJobRequest::set_allocated_request(::beeremote::JobRequest* val
 
   _impl_.request_ = reinterpret_cast<::beeremote::JobRequest*>(value);
   // @@protoc_insertion_point(field_set_allocated:beeremote.SubmitJobRequest.request)
+}
+
+// string origin_node_id = 2;
+inline void SubmitJobRequest::clear_origin_node_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.origin_node_id_.ClearToEmpty();
+}
+inline const std::string& SubmitJobRequest::origin_node_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.SubmitJobRequest.origin_node_id)
+  return _internal_origin_node_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SubmitJobRequest::set_origin_node_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.origin_node_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:beeremote.SubmitJobRequest.origin_node_id)
+}
+inline std::string* SubmitJobRequest::mutable_origin_node_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_origin_node_id();
+  // @@protoc_insertion_point(field_mutable:beeremote.SubmitJobRequest.origin_node_id)
+  return _s;
+}
+inline const std::string& SubmitJobRequest::_internal_origin_node_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.origin_node_id_.Get();
+}
+inline void SubmitJobRequest::_internal_set_origin_node_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.origin_node_id_.Set(value, GetArena());
+}
+inline std::string* SubmitJobRequest::_internal_mutable_origin_node_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.origin_node_id_.Mutable( GetArena());
+}
+inline std::string* SubmitJobRequest::release_origin_node_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.SubmitJobRequest.origin_node_id)
+  return _impl_.origin_node_id_.Release();
+}
+inline void SubmitJobRequest::set_allocated_origin_node_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.origin_node_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.origin_node_id_.IsDefault()) {
+    _impl_.origin_node_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:beeremote.SubmitJobRequest.origin_node_id)
 }
 
 // -------------------------------------------------------------------

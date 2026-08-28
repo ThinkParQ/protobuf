@@ -9150,6 +9150,7 @@ class UpdateConfigRequest final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kRstsFieldNumber = 2,
+    kNodeIdFieldNumber = 3,
     kBeeRemoteFieldNumber = 1,
   };
   // repeated .flex.RemoteStorageTarget rsts = 2;
@@ -9169,6 +9170,22 @@ class UpdateConfigRequest final : public ::google::protobuf::Message
   const ::flex::RemoteStorageTarget& rsts(int index) const;
   ::flex::RemoteStorageTarget* add_rsts();
   const ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>& rsts() const;
+  // string node_id = 3;
+  void clear_node_id() ;
+  const std::string& node_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_node_id(Arg_&& arg, Args_... args);
+  std::string* mutable_node_id();
+  PROTOBUF_NODISCARD std::string* release_node_id();
+  void set_allocated_node_id(std::string* value);
+
+  private:
+  const std::string& _internal_node_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_node_id(
+      const std::string& value);
+  std::string* _internal_mutable_node_id();
+
+  public:
   // .flex.BeeRemoteNode bee_remote = 1;
   bool has_bee_remote() const;
   void clear_bee_remote() ;
@@ -9189,8 +9206,8 @@ class UpdateConfigRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 2,
-      0, 2>
+      2, 3, 2,
+      40, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -9210,6 +9227,7 @@ class UpdateConfigRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::flex::RemoteStorageTarget > rsts_;
+    ::google::protobuf::internal::ArenaStringPtr node_id_;
     ::flex::BeeRemoteNode* bee_remote_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -14127,6 +14145,54 @@ inline ::google::protobuf::RepeatedPtrField<::flex::RemoteStorageTarget>*
 UpdateConfigRequest::_internal_mutable_rsts() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.rsts_;
+}
+
+// string node_id = 3;
+inline void UpdateConfigRequest::clear_node_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.node_id_.ClearToEmpty();
+}
+inline const std::string& UpdateConfigRequest::node_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:flex.UpdateConfigRequest.node_id)
+  return _internal_node_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UpdateConfigRequest::set_node_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.node_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:flex.UpdateConfigRequest.node_id)
+}
+inline std::string* UpdateConfigRequest::mutable_node_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_node_id();
+  // @@protoc_insertion_point(field_mutable:flex.UpdateConfigRequest.node_id)
+  return _s;
+}
+inline const std::string& UpdateConfigRequest::_internal_node_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.node_id_.Get();
+}
+inline void UpdateConfigRequest::_internal_set_node_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.node_id_.Set(value, GetArena());
+}
+inline std::string* UpdateConfigRequest::_internal_mutable_node_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.node_id_.Mutable( GetArena());
+}
+inline std::string* UpdateConfigRequest::release_node_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:flex.UpdateConfigRequest.node_id)
+  return _impl_.node_id_.Release();
+}
+inline void UpdateConfigRequest::set_allocated_node_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.node_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.node_id_.IsDefault()) {
+    _impl_.node_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:flex.UpdateConfigRequest.node_id)
 }
 
 // -------------------------------------------------------------------

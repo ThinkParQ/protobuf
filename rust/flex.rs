@@ -705,6 +705,10 @@ pub struct UpdateConfigRequest {
     /// each message. Any that are not included will be deleted.
     #[prost(message, repeated, tag = "2")]
     pub rsts: ::prost::alloc::vec::Vec<RemoteStorageTarget>,
+    /// The identifier BeeRemote knows this node by which only BeeRemote can know. Nodes report it
+    /// back when submitting job requests. Empty if BeeRemote predates this field.
+    #[prost(string, tag = "3")]
+    pub node_id: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct UpdateConfigResponse {

@@ -3,6 +3,10 @@
 pub struct SubmitJobRequest {
     #[prost(message, optional, tag = "1")]
     pub request: ::core::option::Option<JobRequest>,
+    /// Set when a worker node submits the request, empty for other clients such as the CLI. Only a
+    /// routing hint: BeeRemote may prefer this node when assigning work requests, but may ignore it.
+    #[prost(string, tag = "2")]
+    pub origin_node_id: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubmitJobResponse {

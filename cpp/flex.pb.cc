@@ -1132,6 +1132,9 @@ inline constexpr UpdateConfigRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         rsts_{},
+        node_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         bee_remote_{nullptr} {}
 
 template <typename>
@@ -1574,7 +1577,9 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::flex::UpdateConfigRequest, _impl_.bee_remote_),
         PROTOBUF_FIELD_OFFSET(::flex::UpdateConfigRequest, _impl_.rsts_),
+        PROTOBUF_FIELD_OFFSET(::flex::UpdateConfigRequest, _impl_.node_id_),
         0,
+        ~0u,
         ~0u,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::flex::UpdateConfigResponse, _internal_metadata_),
@@ -1801,23 +1806,23 @@ static const ::_pbi::MigrationSchema
         {327, -1, -1, sizeof(::flex::Work_Status)},
         {337, 352, -1, sizeof(::flex::Work_Part)},
         {359, 373, -1, sizeof(::flex::Work)},
-        {379, 389, -1, sizeof(::flex::UpdateConfigRequest)},
-        {391, -1, -1, sizeof(::flex::UpdateConfigResponse)},
-        {401, -1, -1, sizeof(::flex::BeeRemoteNode)},
-        {418, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
-        {427, -1, -1, sizeof(::flex::RemoteStorageTarget_S3_StorageClass_Archival)},
-        {440, 450, -1, sizeof(::flex::RemoteStorageTarget_S3_StorageClass)},
-        {452, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
-        {467, 477, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
-        {479, 488, -1, sizeof(::flex::RemoteStorageTarget_XtreemStore)},
-        {489, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
-        {498, 515, -1, sizeof(::flex::RemoteStorageTarget)},
-        {523, -1, -1, sizeof(::flex::GetCapabilitiesRequest)},
-        {531, 541, -1, sizeof(::flex::GetCapabilitiesResponse_FeaturesEntry_DoNotUse)},
-        {543, 554, -1, sizeof(::flex::GetCapabilitiesResponse)},
-        {557, 567, -1, sizeof(::flex::Feature_SubFeatureEntry_DoNotUse)},
-        {569, -1, -1, sizeof(::flex::Feature)},
-        {578, -1, -1, sizeof(::flex::BuildInfo)},
+        {379, 390, -1, sizeof(::flex::UpdateConfigRequest)},
+        {393, -1, -1, sizeof(::flex::UpdateConfigResponse)},
+        {403, -1, -1, sizeof(::flex::BeeRemoteNode)},
+        {420, -1, -1, sizeof(::flex::RemoteStorageTarget_Policies)},
+        {429, -1, -1, sizeof(::flex::RemoteStorageTarget_S3_StorageClass_Archival)},
+        {442, 452, -1, sizeof(::flex::RemoteStorageTarget_S3_StorageClass)},
+        {454, -1, -1, sizeof(::flex::RemoteStorageTarget_S3)},
+        {469, 479, -1, sizeof(::flex::RemoteStorageTarget_Azure)},
+        {481, 490, -1, sizeof(::flex::RemoteStorageTarget_XtreemStore)},
+        {491, -1, -1, sizeof(::flex::RemoteStorageTarget_POSIX)},
+        {500, 517, -1, sizeof(::flex::RemoteStorageTarget)},
+        {525, -1, -1, sizeof(::flex::GetCapabilitiesRequest)},
+        {533, 543, -1, sizeof(::flex::GetCapabilitiesResponse_FeaturesEntry_DoNotUse)},
+        {545, 556, -1, sizeof(::flex::GetCapabilitiesResponse)},
+        {559, 569, -1, sizeof(::flex::Feature_SubFeatureEntry_DoNotUse)},
+        {571, -1, -1, sizeof(::flex::Feature)},
+        {580, -1, -1, sizeof(::flex::BuildInfo)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::flex::_HeartbeatRequest_default_instance_._instance,
@@ -1962,70 +1967,71 @@ const char descriptor_table_protodef_flex_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "UNKNOWN\020\001\022\013\n\007CREATED\020\002\022\r\n\tSCHEDULED\020\003\022\013\n"
     "\007RUNNING\020\004\022\017\n\013RESCHEDULED\020\005\022\t\n\005ERROR\020\006\022\n"
     "\n\006FAILED\020\007\022\r\n\tCANCELLED\020\010\022\r\n\tCOMPLETED\020\t"
-    "\"g\n\023UpdateConfigRequest\022\'\n\nbee_remote\030\001 "
+    "\"x\n\023UpdateConfigRequest\022\'\n\nbee_remote\030\001 "
     "\001(\0132\023.flex.BeeRemoteNode\022\'\n\004rsts\030\002 \003(\0132\031"
-    ".flex.RemoteStorageTarget\"\234\001\n\024UpdateConf"
-    "igResponse\0221\n\006result\030\001 \001(\0162!.flex.Update"
-    "ConfigResponse.Result\022\017\n\007message\030\002 \001(\t\"@"
-    "\n\006Result\022\017\n\013UNSPECIFIED\020\000\022\013\n\007SUCCESS\020\001\022\013"
-    "\n\007PARTIAL\020\002\022\013\n\007FAILURE\020\003\"\342\001\n\rBeeRemoteNo"
-    "de\022\n\n\002id\030\001 \001(\t\022\017\n\007address\030\002 \001(\t\022\025\n\rmgmtd"
-    "_address\030\003 \001(\t\022\026\n\016mgmtd_tls_cert\030\004 \001(\014\022&"
-    "\n\036mgmtd_tls_disable_verification\030\005 \001(\010\022\031"
-    "\n\021mgmtd_tls_disable\030\006 \001(\010\022\027\n\017mgmtd_use_p"
-    "roxy\030\t \001(\010\022\023\n\013auth_secret\030\007 \001(\014\022\024\n\014auth_"
-    "disable\030\010 \001(\010\"\270\007\n\023RemoteStorageTarget\022\n\n"
-    "\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\0224\n\010policies\030\003 \001("
-    "\0132\".flex.RemoteStorageTarget.Policies\022*\n"
-    "\002s3\030\004 \001(\0132\034.flex.RemoteStorageTarget.S3H"
-    "\000\0220\n\005posix\030\005 \001(\0132\037.flex.RemoteStorageTar"
-    "get.POSIXH\000\0220\n\005azure\030\006 \001(\0132\037.flex.Remote"
-    "StorageTarget.AzureH\000\022\016\n\004mock\030\007 \001(\tH\000\022<\n"
-    "\013xtreemstore\030\010 \001(\0132%.flex.RemoteStorageT"
-    "arget.XtreemStoreH\000\032\'\n\010Policies\022\033\n\023fast_"
-    "start_max_size\030\001 \001(\003\032\255\003\n\002S3\022\024\n\014endpoint_"
-    "url\030\001 \001(\t\022\024\n\014partition_id\030\002 \001(\t\022\016\n\006regio"
-    "n\030\003 \001(\t\022\016\n\006bucket\030\004 \001(\t\022\022\n\naccess_key\030\005 "
-    "\001(\t\022\022\n\nsecret_key\030\006 \001(\t\022@\n\rstorage_class"
-    "\030\010 \003(\0132).flex.RemoteStorageTarget.S3.Sto"
-    "rageClass\032\360\001\n\014StorageClass\022\014\n\004name\030\001 \001(\t"
-    "\022I\n\010archival\030\002 \001(\01322.flex.RemoteStorageT"
-    "arget.S3.StorageClass.ArchivalH\000\210\001\001\032z\n\010A"
-    "rchival\022\026\n\016retrieval_tier\030\001 \001(\t\022\026\n\016reten"
-    "tion_days\030\002 \001(\005\022\022\n\ncheck_time\030\003 \001(\t\022\024\n\014r"
-    "echeck_time\030\004 \001(\t\022\024\n\014auto_restore\030\005 \001(\010B"
-    "\013\n\t_archival\032B\n\005Azure\022(\n\002s3\030\001 \001(\0132\034.flex"
-    ".RemoteStorageTarget.S3\022\017\n\007account\030\002 \001(\t"
-    "\0327\n\013XtreemStore\022(\n\002s3\030\001 \001(\0132\034.flex.Remot"
-    "eStorageTarget.S3\032\025\n\005POSIX\022\014\n\004path\030\001 \001(\t"
-    "B\006\n\004type\"\030\n\026GetCapabilitiesRequest\"\362\001\n\027G"
-    "etCapabilitiesResponse\022#\n\nbuild_info\030\001 \001"
-    "(\0132\017.flex.BuildInfo\022=\n\010features\030\002 \003(\0132+."
-    "flex.GetCapabilitiesResponse.FeaturesEnt"
-    "ry\0223\n\017start_timestamp\030\003 \001(\0132\032.google.pro"
-    "tobuf.Timestamp\032>\n\rFeaturesEntry\022\013\n\003key\030"
-    "\001 \001(\t\022\034\n\005value\030\002 \001(\0132\r.flex.Feature:\0028\001\""
-    "\177\n\007Feature\0222\n\013sub_feature\030\001 \003(\0132\035.flex.F"
-    "eature.SubFeatureEntry\032@\n\017SubFeatureEntr"
-    "y\022\013\n\003key\030\001 \001(\t\022\034\n\005value\030\002 \001(\0132\r.flex.Fea"
-    "ture:\0028\001\"U\n\tBuildInfo\022\023\n\013binary_name\030\001 \001"
-    "(\t\022\017\n\007version\030\002 \001(\t\022\016\n\006commit\030\003 \001(\t\022\022\n\nb"
-    "uild_time\030\004 \001(\t*\177\n\rRestorePolicy\022\036\n\032REST"
-    "ORE_POLICY_UNSPECIFIED\020\000\022\031\n\025RESTORE_POLI"
-    "CY_MANUAL\020\001\022\027\n\023RESTORE_POLICY_AUTO\020\002\022\032\n\026"
-    "RESTORE_POLICY_DELAYED\020\0032\260\003\n\nWorkerNode\022"
-    "E\n\014UpdateConfig\022\031.flex.UpdateConfigReque"
-    "st\032\032.flex.UpdateConfigResponse\022<\n\tHeartb"
-    "eat\022\026.flex.HeartbeatRequest\032\027.flex.Heart"
-    "beatResponse\022\?\n\nSubmitWork\022\027.flex.Submit"
-    "WorkRequest\032\030.flex.SubmitWorkResponse\022\?\n"
-    "\nUpdateWork\022\027.flex.UpdateWorkRequest\032\030.f"
-    "lex.UpdateWorkResponse\022K\n\016BulkUpdateWork"
-    "\022\033.flex.BulkUpdateWorkRequest\032\034.flex.Bul"
-    "kUpdateWorkResponse\022N\n\017GetCapabilities\022\034"
-    ".flex.GetCapabilitiesRequest\032\035.flex.GetC"
-    "apabilitiesResponseB\'Z%github.com/thinkp"
-    "arq/protobuf/go/flexb\006proto3"
+    ".flex.RemoteStorageTarget\022\017\n\007node_id\030\003 \001"
+    "(\t\"\234\001\n\024UpdateConfigResponse\0221\n\006result\030\001 "
+    "\001(\0162!.flex.UpdateConfigResponse.Result\022\017"
+    "\n\007message\030\002 \001(\t\"@\n\006Result\022\017\n\013UNSPECIFIED"
+    "\020\000\022\013\n\007SUCCESS\020\001\022\013\n\007PARTIAL\020\002\022\013\n\007FAILURE\020"
+    "\003\"\342\001\n\rBeeRemoteNode\022\n\n\002id\030\001 \001(\t\022\017\n\007addre"
+    "ss\030\002 \001(\t\022\025\n\rmgmtd_address\030\003 \001(\t\022\026\n\016mgmtd"
+    "_tls_cert\030\004 \001(\014\022&\n\036mgmtd_tls_disable_ver"
+    "ification\030\005 \001(\010\022\031\n\021mgmtd_tls_disable\030\006 \001"
+    "(\010\022\027\n\017mgmtd_use_proxy\030\t \001(\010\022\023\n\013auth_secr"
+    "et\030\007 \001(\014\022\024\n\014auth_disable\030\010 \001(\010\"\270\007\n\023Remot"
+    "eStorageTarget\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t"
+    "\0224\n\010policies\030\003 \001(\0132\".flex.RemoteStorageT"
+    "arget.Policies\022*\n\002s3\030\004 \001(\0132\034.flex.Remote"
+    "StorageTarget.S3H\000\0220\n\005posix\030\005 \001(\0132\037.flex"
+    ".RemoteStorageTarget.POSIXH\000\0220\n\005azure\030\006 "
+    "\001(\0132\037.flex.RemoteStorageTarget.AzureH\000\022\016"
+    "\n\004mock\030\007 \001(\tH\000\022<\n\013xtreemstore\030\010 \001(\0132%.fl"
+    "ex.RemoteStorageTarget.XtreemStoreH\000\032\'\n\010"
+    "Policies\022\033\n\023fast_start_max_size\030\001 \001(\003\032\255\003"
+    "\n\002S3\022\024\n\014endpoint_url\030\001 \001(\t\022\024\n\014partition_"
+    "id\030\002 \001(\t\022\016\n\006region\030\003 \001(\t\022\016\n\006bucket\030\004 \001(\t"
+    "\022\022\n\naccess_key\030\005 \001(\t\022\022\n\nsecret_key\030\006 \001(\t"
+    "\022@\n\rstorage_class\030\010 \003(\0132).flex.RemoteSto"
+    "rageTarget.S3.StorageClass\032\360\001\n\014StorageCl"
+    "ass\022\014\n\004name\030\001 \001(\t\022I\n\010archival\030\002 \001(\01322.fl"
+    "ex.RemoteStorageTarget.S3.StorageClass.A"
+    "rchivalH\000\210\001\001\032z\n\010Archival\022\026\n\016retrieval_ti"
+    "er\030\001 \001(\t\022\026\n\016retention_days\030\002 \001(\005\022\022\n\nchec"
+    "k_time\030\003 \001(\t\022\024\n\014recheck_time\030\004 \001(\t\022\024\n\014au"
+    "to_restore\030\005 \001(\010B\013\n\t_archival\032B\n\005Azure\022("
+    "\n\002s3\030\001 \001(\0132\034.flex.RemoteStorageTarget.S3"
+    "\022\017\n\007account\030\002 \001(\t\0327\n\013XtreemStore\022(\n\002s3\030\001"
+    " \001(\0132\034.flex.RemoteStorageTarget.S3\032\025\n\005PO"
+    "SIX\022\014\n\004path\030\001 \001(\tB\006\n\004type\"\030\n\026GetCapabili"
+    "tiesRequest\"\362\001\n\027GetCapabilitiesResponse\022"
+    "#\n\nbuild_info\030\001 \001(\0132\017.flex.BuildInfo\022=\n\010"
+    "features\030\002 \003(\0132+.flex.GetCapabilitiesRes"
+    "ponse.FeaturesEntry\0223\n\017start_timestamp\030\003"
+    " \001(\0132\032.google.protobuf.Timestamp\032>\n\rFeat"
+    "uresEntry\022\013\n\003key\030\001 \001(\t\022\034\n\005value\030\002 \001(\0132\r."
+    "flex.Feature:\0028\001\"\177\n\007Feature\0222\n\013sub_featu"
+    "re\030\001 \003(\0132\035.flex.Feature.SubFeatureEntry\032"
+    "@\n\017SubFeatureEntry\022\013\n\003key\030\001 \001(\t\022\034\n\005value"
+    "\030\002 \001(\0132\r.flex.Feature:\0028\001\"U\n\tBuildInfo\022\023"
+    "\n\013binary_name\030\001 \001(\t\022\017\n\007version\030\002 \001(\t\022\016\n\006"
+    "commit\030\003 \001(\t\022\022\n\nbuild_time\030\004 \001(\t*\177\n\rRest"
+    "orePolicy\022\036\n\032RESTORE_POLICY_UNSPECIFIED\020"
+    "\000\022\031\n\025RESTORE_POLICY_MANUAL\020\001\022\027\n\023RESTORE_"
+    "POLICY_AUTO\020\002\022\032\n\026RESTORE_POLICY_DELAYED\020"
+    "\0032\260\003\n\nWorkerNode\022E\n\014UpdateConfig\022\031.flex."
+    "UpdateConfigRequest\032\032.flex.UpdateConfigR"
+    "esponse\022<\n\tHeartbeat\022\026.flex.HeartbeatReq"
+    "uest\032\027.flex.HeartbeatResponse\022\?\n\nSubmitW"
+    "ork\022\027.flex.SubmitWorkRequest\032\030.flex.Subm"
+    "itWorkResponse\022\?\n\nUpdateWork\022\027.flex.Upda"
+    "teWorkRequest\032\030.flex.UpdateWorkResponse\022"
+    "K\n\016BulkUpdateWork\022\033.flex.BulkUpdateWorkR"
+    "equest\032\034.flex.BulkUpdateWorkResponse\022N\n\017"
+    "GetCapabilities\022\034.flex.GetCapabilitiesRe"
+    "quest\032\035.flex.GetCapabilitiesResponseB\'Z%"
+    "github.com/thinkparq/protobuf/go/flexb\006p"
+    "roto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_flex_2eproto_deps[1] =
     {
@@ -2035,7 +2041,7 @@ static ::absl::once_flag descriptor_table_flex_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_flex_2eproto = {
     false,
     false,
-    6548,
+    6565,
     descriptor_table_protodef_flex_2eproto,
     "flex.proto",
     &descriptor_table_flex_2eproto_once,
@@ -9837,7 +9843,8 @@ inline PROTOBUF_NDEBUG_INLINE UpdateConfigRequest::Impl_::Impl_(
     const Impl_& from, const ::flex::UpdateConfigRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        rsts_{visibility, arena, from.rsts_} {}
+        rsts_{visibility, arena, from.rsts_},
+        node_id_(arena, from.node_id_) {}
 
 UpdateConfigRequest::UpdateConfigRequest(
     ::google::protobuf::Arena* arena,
@@ -9863,7 +9870,8 @@ inline PROTOBUF_NDEBUG_INLINE UpdateConfigRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        rsts_{visibility, arena} {}
+        rsts_{visibility, arena},
+        node_id_(arena) {}
 
 inline void UpdateConfigRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -9877,6 +9885,7 @@ inline void UpdateConfigRequest::SharedDtor(MessageLite& self) {
   UpdateConfigRequest& this_ = static_cast<UpdateConfigRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.node_id_.Destroy();
   delete this_._impl_.bee_remote_;
   this_._impl_.~Impl_();
 }
@@ -9893,7 +9902,7 @@ constexpr auto UpdateConfigRequest::InternalNewImpl_() {
                   ::google::protobuf::Message::internal_visibility()),
   });
   if (arena_bits.has_value()) {
-    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
         sizeof(UpdateConfigRequest), alignof(UpdateConfigRequest), *arena_bits);
   } else {
     return ::google::protobuf::internal::MessageCreator(&UpdateConfigRequest::PlacementNew_,
@@ -9929,15 +9938,15 @@ const ::google::protobuf::internal::ClassData* UpdateConfigRequest::GetClassData
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 2, 0, 2> UpdateConfigRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 2, 40, 2> UpdateConfigRequest::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(UpdateConfigRequest, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -9947,12 +9956,16 @@ const ::_pbi::TcParseTable<1, 2, 2, 0, 2> UpdateConfigRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::flex::UpdateConfigRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated .flex.RemoteStorageTarget rsts = 2;
-    {::_pbi::TcParser::FastMtR1,
-     {18, 63, 1, PROTOBUF_FIELD_OFFSET(UpdateConfigRequest, _impl_.rsts_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // .flex.BeeRemoteNode bee_remote = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(UpdateConfigRequest, _impl_.bee_remote_)}},
+    // repeated .flex.RemoteStorageTarget rsts = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 1, PROTOBUF_FIELD_OFFSET(UpdateConfigRequest, _impl_.rsts_)}},
+    // string node_id = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateConfigRequest, _impl_.node_id_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -9962,10 +9975,16 @@ const ::_pbi::TcParseTable<1, 2, 2, 0, 2> UpdateConfigRequest::_table_ = {
     // repeated .flex.RemoteStorageTarget rsts = 2;
     {PROTOBUF_FIELD_OFFSET(UpdateConfigRequest, _impl_.rsts_), -1, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string node_id = 3;
+    {PROTOBUF_FIELD_OFFSET(UpdateConfigRequest, _impl_.node_id_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::flex::BeeRemoteNode>()},
     {::_pbi::TcParser::GetTable<::flex::RemoteStorageTarget>()},
   }}, {{
+    "\30\0\0\7\0\0\0\0"
+    "flex.UpdateConfigRequest"
+    "node_id"
   }},
 };
 
@@ -9977,6 +9996,7 @@ PROTOBUF_NOINLINE void UpdateConfigRequest::Clear() {
   (void) cached_has_bits;
 
   _impl_.rsts_.Clear();
+  _impl_.node_id_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.bee_remote_ != nullptr);
@@ -10020,6 +10040,14 @@ PROTOBUF_NOINLINE void UpdateConfigRequest::Clear() {
                     target, stream);
           }
 
+          // string node_id = 3;
+          if (!this_._internal_node_id().empty()) {
+            const std::string& _s = this_._internal_node_id();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "flex.UpdateConfigRequest.node_id");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -10054,6 +10082,13 @@ PROTOBUF_NOINLINE void UpdateConfigRequest::Clear() {
             }
           }
            {
+            // string node_id = 3;
+            if (!this_._internal_node_id().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_node_id());
+            }
+          }
+           {
             // .flex.BeeRemoteNode bee_remote = 1;
             cached_has_bits = this_._impl_._has_bits_[0];
             if (cached_has_bits & 0x00000001u) {
@@ -10076,6 +10111,9 @@ void UpdateConfigRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, con
 
   _this->_internal_mutable_rsts()->MergeFrom(
       from._internal_rsts());
+  if (!from._internal_node_id().empty()) {
+    _this->_internal_set_node_id(from._internal_node_id());
+  }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(from._impl_.bee_remote_ != nullptr);
@@ -10100,9 +10138,12 @@ void UpdateConfigRequest::CopyFrom(const UpdateConfigRequest& from) {
 
 void UpdateConfigRequest::InternalSwap(UpdateConfigRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.rsts_.InternalSwap(&other->_impl_.rsts_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.node_id_, &other->_impl_.node_id_, arena);
   swap(_impl_.bee_remote_, other->_impl_.bee_remote_);
 }
 

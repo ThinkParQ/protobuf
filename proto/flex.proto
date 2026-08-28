@@ -387,6 +387,9 @@ message UpdateConfigRequest {
     // All RemoteStorageTarget(s) that should be configured need to be included in
     // each message. Any that are not included will be deleted.
     repeated RemoteStorageTarget rsts = 2;
+    // The identifier BeeRemote knows this node by which only BeeRemote can know. Nodes report it
+    // back when submitting job requests. Empty if BeeRemote predates this field.
+    string node_id = 3;
 }
 
 message UpdateConfigResponse {
