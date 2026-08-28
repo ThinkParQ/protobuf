@@ -5,8 +5,6 @@ SHELL := /bin/bash
 SRC_DIR := proto
 # Output directory for compiled Go files
 GO_OUT_DIR := go
-# Output directory for compiled C++ files
-CPP_OUT_DIR := cpp
 # Output directory for compiled Rust files
 RUST_OUT_DIR := rust
 
@@ -14,14 +12,13 @@ all: protos
 
 .PHONY: protos
 protos: check-tools
-	mkdir -p $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)
+	mkdir -p $(GO_OUT_DIR) $(RUST_OUT_DIR)
 	protoc -I $(SRC_DIR) \
 		--go_opt=module="github.com/thinkparq/protobuf/go" \
 		--go_opt=default_api_level=API_HYBRID \
 		--go_out=$(GO_OUT_DIR) \
 		--go-grpc_opt=module="github.com/thinkparq/protobuf/go" \
 		--go-grpc_out=$(GO_OUT_DIR) \
-		--cpp_out=$(CPP_OUT_DIR) \
 		$(SRC_DIR)/*.proto
 	protoc-rs -I $(SRC_DIR) --out=$(RUST_OUT_DIR) $(SRC_DIR)/*.proto
 
@@ -35,7 +32,7 @@ protos: check-tools
 test: test-protos 
 
 test-protos: protos
-	@out="$$(git status --porcelain $$(find $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)))"; \
+	@out="$$(git status --porcelain $$(find $(GO_OUT_DIR) $(RUST_OUT_DIR)))"; \
 	if [ -n "$$out" ]; then \
 		echo "Protobuf files are not up to date. Please run 'make protos' and commit the changes."; \
 		echo "The following files are not up to date:"; \
@@ -48,7 +45,7 @@ test-protos: protos
 # Clean up
 .PHONY: clean
 clean:
-	rm -rf $(GO_OUT_DIR) $(CPP_OUT_DIR) $(RUST_OUT_DIR)
+	rm -rf $(GO_OUT_DIR) $(RUST_OUT_DIR)
 	rm -rf target/
 	rm -f Cargo.lock
 
