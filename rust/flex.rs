@@ -13,6 +13,10 @@ pub struct HeartbeatResponse {
     pub node_stats: ::core::option::Option<NodeStats>,
     #[prost(enumeration = "heartbeat_response::State", tag = "3")]
     pub state: i32,
+    /// The number of workers this node runs concurrently. Zero means the node predates this field;
+    /// Remote assumes a default and logs that it did.
+    #[prost(uint32, tag = "4")]
+    pub num_workers: u32,
 }
 /// Nested message and enum types in `HeartbeatResponse`.
 pub mod heartbeat_response {
