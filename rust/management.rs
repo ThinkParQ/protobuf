@@ -330,6 +330,62 @@ pub struct DeletePoolResponse {
     #[prost(message, optional, tag = "1")]
     pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct BuddyGroupOptions {
+    /// The quota accounting mode for this buddy group.
+    /// When used for setting options: Optional if the corresponding buddy group is a storage group,
+    /// unset otherwise.
+    /// When used for getting options: Required if the corresponding buddy group is a storage group,
+    /// unset otherwise.
+    #[prost(
+        enumeration = "buddy_group_options::BuddyGroupQuotaAccounting",
+        optional,
+        tag = "1"
+    )]
+    pub quota_accounting: ::core::option::Option<i32>,
+}
+/// Nested message and enum types in `BuddyGroupOptions`.
+pub mod buddy_group_options {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum BuddyGroupQuotaAccounting {
+        Unspecified = 0,
+        Primary = 1,
+        Both = 2,
+    }
+    impl BuddyGroupQuotaAccounting {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "BUDDY_GROUP_QUOTA_ACCOUNTING_UNSPECIFIED",
+                Self::Primary => "BUDDY_GROUP_QUOTA_ACCOUNTING_PRIMARY",
+                Self::Both => "BUDDY_GROUP_QUOTA_ACCOUNTING_BOTH",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "BUDDY_GROUP_QUOTA_ACCOUNTING_UNSPECIFIED" => Some(Self::Unspecified),
+                "BUDDY_GROUP_QUOTA_ACCOUNTING_PRIMARY" => Some(Self::Primary),
+                "BUDDY_GROUP_QUOTA_ACCOUNTING_BOTH" => Some(Self::Both),
+                _ => None,
+            }
+        }
+    }
+}
 /// Gets the list of buddy groups.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetBuddyGroupsRequest {}
@@ -373,6 +429,10 @@ pub mod get_buddy_groups_response {
         /// set, should be completely populated.
         #[prost(message, optional, tag = "7")]
         pub storage_pool: ::core::option::Option<super::super::beegfs::EntityIdSet>,
+        /// The options for this buddy group.
+        /// Required.
+        #[prost(message, optional, tag = "8")]
+        pub options: ::core::option::Option<super::BuddyGroupOptions>,
     }
 }
 /// Creates a new buddy group.
@@ -398,6 +458,10 @@ pub struct CreateBuddyGroupRequest {
     /// Required. One identifier is sufficient.
     #[prost(message, optional, tag = "5")]
     pub secondary_target: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// The options for this buddy group.
+    /// Required.
+    #[prost(message, optional, tag = "6")]
+    pub options: ::core::option::Option<BuddyGroupOptions>,
 }
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct CreateBuddyGroupResponse {
@@ -406,6 +470,20 @@ pub struct CreateBuddyGroupResponse {
     #[prost(message, optional, tag = "1")]
     pub group: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
+/// Modifies a buddy group or its config.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ModifyBuddyGroupRequest {
+    /// The buddy group to modify.
+    /// Required. One identifier is sufficient.
+    #[prost(message, optional, tag = "1")]
+    pub group: ::core::option::Option<super::beegfs::EntityIdSet>,
+    /// The options for this buddy group.
+    /// Required.
+    #[prost(message, optional, tag = "2")]
+    pub options: ::core::option::Option<BuddyGroupOptions>,
+}
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ModifyBuddyGroupResponse {}
 /// Deletes a buddy group from the system.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct DeleteBuddyGroupRequest {
@@ -1011,6 +1089,30 @@ pub mod management_client {
                 .insert(GrpcMethod::new("management.Management", "CreateBuddyGroup"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn modify_buddy_group(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ModifyBuddyGroupRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ModifyBuddyGroupResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/ModifyBuddyGroup",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "ModifyBuddyGroup"));
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn delete_buddy_group(
             &mut self,
             request: impl tonic::IntoRequest<super::DeleteBuddyGroupRequest>,
@@ -1309,6 +1411,13 @@ pub mod management_server {
             request: tonic::Request<super::CreateBuddyGroupRequest>,
         ) -> std::result::Result<
             tonic::Response<super::CreateBuddyGroupResponse>,
+            tonic::Status,
+        >;
+        async fn modify_buddy_group(
+            &self,
+            request: tonic::Request<super::ModifyBuddyGroupRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ModifyBuddyGroupResponse>,
             tonic::Status,
         >;
         async fn delete_buddy_group(
@@ -1983,6 +2092,51 @@ pub mod management_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = CreateBuddyGroupSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/ModifyBuddyGroup" => {
+                    #[allow(non_camel_case_types)]
+                    struct ModifyBuddyGroupSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::ModifyBuddyGroupRequest>
+                    for ModifyBuddyGroupSvc<T> {
+                        type Response = super::ModifyBuddyGroupResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ModifyBuddyGroupRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::modify_buddy_group(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = ModifyBuddyGroupSvc(inner);
                         let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
