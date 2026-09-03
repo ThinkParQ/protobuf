@@ -330,12 +330,13 @@ pub struct DeletePoolResponse {
     #[prost(message, optional, tag = "1")]
     pub pool: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
+/// New in 8.5.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct BuddyGroupOptions {
     /// The quota accounting mode for this buddy group.
     /// When used for setting options: Optional if the corresponding buddy group is a storage group,
     /// unset otherwise.
-    /// When used for getting options: Required if the corresponding buddy group is a storage group,
+    /// When used for getting options: Optional if the corresponding buddy group is a storage group,
     /// unset otherwise.
     #[prost(
         enumeration = "buddy_group_options::BuddyGroupQuotaAccounting",
@@ -430,7 +431,7 @@ pub mod get_buddy_groups_response {
         #[prost(message, optional, tag = "7")]
         pub storage_pool: ::core::option::Option<super::super::beegfs::EntityIdSet>,
         /// The options for this buddy group.
-        /// Required.
+        /// New in 8.5. Optional for compatibility.
         #[prost(message, optional, tag = "8")]
         pub options: ::core::option::Option<super::BuddyGroupOptions>,
     }
@@ -459,7 +460,7 @@ pub struct CreateBuddyGroupRequest {
     #[prost(message, optional, tag = "5")]
     pub secondary_target: ::core::option::Option<super::beegfs::EntityIdSet>,
     /// The options for this buddy group.
-    /// Required.
+    /// New in 8.5. Optional for compatibility. Assume default values if unset.
     #[prost(message, optional, tag = "6")]
     pub options: ::core::option::Option<BuddyGroupOptions>,
 }
@@ -471,6 +472,7 @@ pub struct CreateBuddyGroupResponse {
     pub group: ::core::option::Option<super::beegfs::EntityIdSet>,
 }
 /// Modifies a buddy group or its config.
+/// New in 8.5.
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct ModifyBuddyGroupRequest {
     /// The buddy group to modify.

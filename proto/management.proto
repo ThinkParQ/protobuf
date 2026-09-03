@@ -302,6 +302,7 @@ message DeletePoolResponse {
 
 // Buddy groups
 
+// New in 8.5.
 message BuddyGroupOptions {
   enum BuddyGroupQuotaAccounting {
     BUDDY_GROUP_QUOTA_ACCOUNTING_UNSPECIFIED = 0;
@@ -312,7 +313,7 @@ message BuddyGroupOptions {
   // The quota accounting mode for this buddy group.
   // When used for setting options: Optional if the corresponding buddy group is a storage group,
   // unset otherwise.
-  // When used for getting options: Required if the corresponding buddy group is a storage group,
+  // When used for getting options: Optional if the corresponding buddy group is a storage group,
   // unset otherwise.
   optional BuddyGroupQuotaAccounting quota_accounting = 1;
 }
@@ -345,7 +346,7 @@ message GetBuddyGroupsResponse {
     // set, should be completely populated.
     optional beegfs.EntityIdSet storage_pool = 7;
     // The options for this buddy group.
-    // Required.
+    // New in 8.5. Optional for compatibility.
     optional BuddyGroupOptions options = 8;
   }
 
@@ -371,7 +372,7 @@ message CreateBuddyGroupRequest {
   // Required. One identifier is sufficient.
   optional beegfs.EntityIdSet secondary_target = 5;
   // The options for this buddy group.
-  // Required.
+  // New in 8.5. Optional for compatibility. Assume default values if unset.
   optional BuddyGroupOptions options = 6;
 }
 message CreateBuddyGroupResponse {
@@ -381,6 +382,7 @@ message CreateBuddyGroupResponse {
 }
 
 // Modifies a buddy group or its config.
+// New in 8.5.
 message ModifyBuddyGroupRequest {
   // The buddy group to modify.
   // Required. One identifier is sufficient.

@@ -1742,12 +1742,13 @@ func (b0 DeletePoolResponse_builder) Build() *DeletePoolResponse {
 	return m0
 }
 
+// New in 8.5.
 type BuddyGroupOptions struct {
 	state protoimpl.MessageState `protogen:"hybrid.v1"`
 	// The quota accounting mode for this buddy group.
 	// When used for setting options: Optional if the corresponding buddy group is a storage group,
 	// unset otherwise.
-	// When used for getting options: Required if the corresponding buddy group is a storage group,
+	// When used for getting options: Optional if the corresponding buddy group is a storage group,
 	// unset otherwise.
 	QuotaAccounting *BuddyGroupOptions_BuddyGroupQuotaAccounting `protobuf:"varint,1,opt,name=quota_accounting,json=quotaAccounting,proto3,enum=management.BuddyGroupOptions_BuddyGroupQuotaAccounting,oneof" json:"quota_accounting,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -1807,7 +1808,7 @@ type BuddyGroupOptions_builder struct {
 	// The quota accounting mode for this buddy group.
 	// When used for setting options: Optional if the corresponding buddy group is a storage group,
 	// unset otherwise.
-	// When used for getting options: Required if the corresponding buddy group is a storage group,
+	// When used for getting options: Optional if the corresponding buddy group is a storage group,
 	// unset otherwise.
 	QuotaAccounting *BuddyGroupOptions_BuddyGroupQuotaAccounting
 }
@@ -1942,7 +1943,7 @@ type CreateBuddyGroupRequest struct {
 	// Required. One identifier is sufficient.
 	SecondaryTarget *beegfs.EntityIdSet `protobuf:"bytes,5,opt,name=secondary_target,json=secondaryTarget,proto3,oneof" json:"secondary_target,omitempty"`
 	// The options for this buddy group.
-	// Required.
+	// New in 8.5. Optional for compatibility. Assume default values if unset.
 	Options       *BuddyGroupOptions `protobuf:"bytes,6,opt,name=options,proto3,oneof" json:"options,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2124,7 +2125,7 @@ type CreateBuddyGroupRequest_builder struct {
 	// Required. One identifier is sufficient.
 	SecondaryTarget *beegfs.EntityIdSet
 	// The options for this buddy group.
-	// Required.
+	// New in 8.5. Optional for compatibility. Assume default values if unset.
 	Options *BuddyGroupOptions
 }
 
@@ -2214,6 +2215,7 @@ func (b0 CreateBuddyGroupResponse_builder) Build() *CreateBuddyGroupResponse {
 }
 
 // Modifies a buddy group or its config.
+// New in 8.5.
 type ModifyBuddyGroupRequest struct {
 	state protoimpl.MessageState `protogen:"hybrid.v1"`
 	// The buddy group to modify.
@@ -5009,7 +5011,7 @@ type GetBuddyGroupsResponse_BuddyGroup struct {
 	// set, should be completely populated.
 	StoragePool *beegfs.EntityIdSet `protobuf:"bytes,7,opt,name=storage_pool,json=storagePool,proto3,oneof" json:"storage_pool,omitempty"`
 	// The options for this buddy group.
-	// Required.
+	// New in 8.5. Optional for compatibility.
 	Options       *BuddyGroupOptions `protobuf:"bytes,8,opt,name=options,proto3,oneof" json:"options,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -5209,7 +5211,7 @@ type GetBuddyGroupsResponse_BuddyGroup_builder struct {
 	// set, should be completely populated.
 	StoragePool *beegfs.EntityIdSet
 	// The options for this buddy group.
-	// Required.
+	// New in 8.5. Optional for compatibility.
 	Options *BuddyGroupOptions
 }
 
