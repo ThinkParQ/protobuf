@@ -107,6 +107,11 @@ pub struct JobRequest {
     /// Time in seconds to wait after a file is closed before replication begins.
     #[prost(uint32, optional, tag = "14")]
     pub cooldown_secs: ::core::option::Option<u32>,
+    /// bulk_info is optionally included when the job request participates in a provider-controlled
+    /// bulk operation. It contains builder-maintained metadata needed to track the request within
+    /// that bulk operation.
+    #[prost(message, optional, tag = "15")]
+    pub bulk_info: ::core::option::Option<super::flex::BulkJobRequestInfo>,
     #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }
@@ -276,7 +281,7 @@ pub mod job {
         /// When all worker node(s) have accepted the job's work requests, but may be waiting on
         /// an available worker goroutine to pickup the request.
         Scheduled = 3,
-        /// When all work requests for this job are in progress.
+        /// When any work requests for this job are in progress.
         Running = 4,
         /// TODO: <https://github.com/ThinkParQ/bee-remote/issues/16>
         /// A user manually requested the job be paused.
