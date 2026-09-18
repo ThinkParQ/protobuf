@@ -3063,6 +3063,7 @@ class JobRequest final : public ::google::protobuf::Message
     kPathFieldNumber = 1,
     kNameFieldNumber = 2,
     kGenerationStatusFieldNumber = 8,
+    kBulkInfoFieldNumber = 15,
     kPriorityFieldNumber = 3,
     kRemoteStorageTargetFieldNumber = 4,
     kForceFieldNumber = 5,
@@ -3119,6 +3120,21 @@ class JobRequest final : public ::google::protobuf::Message
   private:
   const ::beeremote::JobRequest_GenerationStatus& _internal_generation_status() const;
   ::beeremote::JobRequest_GenerationStatus* _internal_mutable_generation_status();
+
+  public:
+  // optional .flex.BulkJobRequestInfo bulk_info = 15;
+  bool has_bulk_info() const;
+  void clear_bulk_info() ;
+  const ::flex::BulkJobRequestInfo& bulk_info() const;
+  PROTOBUF_NODISCARD ::flex::BulkJobRequestInfo* release_bulk_info();
+  ::flex::BulkJobRequestInfo* mutable_bulk_info();
+  void set_allocated_bulk_info(::flex::BulkJobRequestInfo* value);
+  void unsafe_arena_set_allocated_bulk_info(::flex::BulkJobRequestInfo* value);
+  ::flex::BulkJobRequestInfo* unsafe_arena_release_bulk_info();
+
+  private:
+  const ::flex::BulkJobRequestInfo& _internal_bulk_info() const;
+  ::flex::BulkJobRequestInfo* _internal_mutable_bulk_info();
 
   public:
   // int32 priority = 3;
@@ -3263,7 +3279,7 @@ class JobRequest final : public ::google::protobuf::Message
   inline void clear_has_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 13, 4,
+      4, 14, 5,
       45, 2>
       _table_;
 
@@ -3286,6 +3302,7 @@ class JobRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr path_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::beeremote::JobRequest_GenerationStatus* generation_status_;
+    ::flex::BulkJobRequestInfo* bulk_info_;
     ::int32_t priority_;
     ::uint32_t remote_storage_target_;
     bool force_;
@@ -5949,13 +5966,13 @@ inline void JobRequest::set_allocated_generation_status(::beeremote::JobRequest_
 
 // optional bool update = 9;
 inline bool JobRequest::has_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
 inline void JobRequest::clear_update() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.update_ = false;
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
 inline bool JobRequest::update() const {
   // @@protoc_insertion_point(field_get:beeremote.JobRequest.update)
@@ -5963,7 +5980,7 @@ inline bool JobRequest::update() const {
 }
 inline void JobRequest::set_update(bool value) {
   _internal_set_update(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   // @@protoc_insertion_point(field_set:beeremote.JobRequest.update)
 }
 inline bool JobRequest::_internal_update() const {
@@ -5977,13 +5994,13 @@ inline void JobRequest::_internal_set_update(bool value) {
 
 // optional .flex.RestorePolicy restore_policy = 13;
 inline bool JobRequest::has_restore_policy() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   return value;
 }
 inline void JobRequest::clear_restore_policy() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.restore_policy_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
 inline ::flex::RestorePolicy JobRequest::restore_policy() const {
   // @@protoc_insertion_point(field_get:beeremote.JobRequest.restore_policy)
@@ -5991,7 +6008,7 @@ inline ::flex::RestorePolicy JobRequest::restore_policy() const {
 }
 inline void JobRequest::set_restore_policy(::flex::RestorePolicy value) {
   _internal_set_restore_policy(value);
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   // @@protoc_insertion_point(field_set:beeremote.JobRequest.restore_policy)
 }
 inline ::flex::RestorePolicy JobRequest::_internal_restore_policy() const {
@@ -6005,13 +6022,13 @@ inline void JobRequest::_internal_set_restore_policy(::flex::RestorePolicy value
 
 // optional uint32 cooldown_secs = 14;
 inline bool JobRequest::has_cooldown_secs() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
 inline void JobRequest::clear_cooldown_secs() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.cooldown_secs_ = 0u;
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
 inline ::uint32_t JobRequest::cooldown_secs() const {
   // @@protoc_insertion_point(field_get:beeremote.JobRequest.cooldown_secs)
@@ -6019,7 +6036,7 @@ inline ::uint32_t JobRequest::cooldown_secs() const {
 }
 inline void JobRequest::set_cooldown_secs(::uint32_t value) {
   _internal_set_cooldown_secs(value);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   // @@protoc_insertion_point(field_set:beeremote.JobRequest.cooldown_secs)
 }
 inline ::uint32_t JobRequest::_internal_cooldown_secs() const {
@@ -6029,6 +6046,97 @@ inline ::uint32_t JobRequest::_internal_cooldown_secs() const {
 inline void JobRequest::_internal_set_cooldown_secs(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.cooldown_secs_ = value;
+}
+
+// optional .flex.BulkJobRequestInfo bulk_info = 15;
+inline bool JobRequest::has_bulk_info() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.bulk_info_ != nullptr);
+  return value;
+}
+inline const ::flex::BulkJobRequestInfo& JobRequest::_internal_bulk_info() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::flex::BulkJobRequestInfo* p = _impl_.bulk_info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::flex::BulkJobRequestInfo&>(::flex::_BulkJobRequestInfo_default_instance_);
+}
+inline const ::flex::BulkJobRequestInfo& JobRequest::bulk_info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:beeremote.JobRequest.bulk_info)
+  return _internal_bulk_info();
+}
+inline void JobRequest::unsafe_arena_set_allocated_bulk_info(::flex::BulkJobRequestInfo* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.bulk_info_);
+  }
+  _impl_.bulk_info_ = reinterpret_cast<::flex::BulkJobRequestInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:beeremote.JobRequest.bulk_info)
+}
+inline ::flex::BulkJobRequestInfo* JobRequest::release_bulk_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::flex::BulkJobRequestInfo* released = _impl_.bulk_info_;
+  _impl_.bulk_info_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::flex::BulkJobRequestInfo* JobRequest::unsafe_arena_release_bulk_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:beeremote.JobRequest.bulk_info)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::flex::BulkJobRequestInfo* temp = _impl_.bulk_info_;
+  _impl_.bulk_info_ = nullptr;
+  return temp;
+}
+inline ::flex::BulkJobRequestInfo* JobRequest::_internal_mutable_bulk_info() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.bulk_info_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::flex::BulkJobRequestInfo>(GetArena());
+    _impl_.bulk_info_ = reinterpret_cast<::flex::BulkJobRequestInfo*>(p);
+  }
+  return _impl_.bulk_info_;
+}
+inline ::flex::BulkJobRequestInfo* JobRequest::mutable_bulk_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::flex::BulkJobRequestInfo* _msg = _internal_mutable_bulk_info();
+  // @@protoc_insertion_point(field_mutable:beeremote.JobRequest.bulk_info)
+  return _msg;
+}
+inline void JobRequest::set_allocated_bulk_info(::flex::BulkJobRequestInfo* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.bulk_info_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.bulk_info_ = reinterpret_cast<::flex::BulkJobRequestInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:beeremote.JobRequest.bulk_info)
 }
 
 inline bool JobRequest::has_type() const {
