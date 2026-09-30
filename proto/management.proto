@@ -17,6 +17,7 @@ service Management {
   rpc DeleteTarget(DeleteTargetRequest) returns (DeleteTargetResponse);
   // Manually set a target consistency state 
   rpc SetTargetState(SetTargetStateRequest) returns (SetTargetStateResponse);
+  rpc ResetTargetRegistrationToken(ResetTargetRegistrationTokenRequest) returns (ResetTargetRegistrationTokenResponse);
   
   // (Storage) pools
   rpc GetPools(GetPoolsRequest) returns (GetPoolsResponse);
@@ -189,7 +190,7 @@ message DeleteTargetResponse {
 }
 
 // Sets a targets consistency state.
-message SetTargetStateRequest{
+message SetTargetStateRequest {
     // The target to set the state for.
     // Required, one identifier is sufficient.
     optional beegfs.EntityIdSet target = 1;
@@ -199,6 +200,19 @@ message SetTargetStateRequest{
 }
 message SetTargetStateResponse{}
 
+// Resets a targets registration token
+//
+// New in 8.5.
+message ResetTargetRegistrationTokenRequest {
+  // The target to reset the registration token for.
+  // Required, one identifier is sufficient.
+  optional beegfs.EntityIdSet target = 1;
+}
+message ResetTargetRegistrationTokenResponse {
+  // The identifier set of the affected target.
+  // Required, should be completely populated.
+  optional beegfs.EntityIdSet target = 1;
+}
 
 // (Storage) pools
 
