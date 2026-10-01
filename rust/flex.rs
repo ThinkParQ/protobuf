@@ -437,6 +437,12 @@ pub struct BuilderJob {
     /// Number of jobs that were already offloaded.
     #[prost(int32, tag = "11")]
     pub jobs_already_offloaded: i32,
+    /// Number of jobs that failed because the expect job reservation did not exist.
+    #[prost(int32, tag = "12")]
+    pub jobs_not_reserved: i32,
+    /// Number of paths a bulk operation has reserved before being claim or cancelled.
+    #[prost(int32, tag = "13")]
+    pub jobs_reserved: i32,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MockJob {

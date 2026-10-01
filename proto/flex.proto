@@ -244,6 +244,10 @@ message BuilderJob {
     int32 jobs_already_complete = 10;
     // Number of jobs that were already offloaded.
     int32 jobs_already_offloaded = 11;
+    // Number of jobs that failed because the expect job reservation did not exist.
+    int32 jobs_not_reserved = 12;
+    // Number of paths a bulk operation has reserved before being claim or cancelled.
+    int32 jobs_reserved = 13;
 }
 
 message MockJob {
