@@ -37,6 +37,13 @@ pub mod submit_job_response {
         AlreadyComplete = 4,
         AlreadyOffloaded = 5,
         FailedPrecondition = 6,
+        /// The request claimed a reserved job that exists but is no longer waiting to be claimed
+        /// because it was cancelled or already claimed. Reserving the job again would duplicate work
+        /// on the path.
+        NotReserved = 7,
+        /// The request claimed a jobId that remote has no record of, so the reservation never
+        /// reached it or was cleaned up.
+        ReservationMissing = 8,
     }
     impl ResponseStatus {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -52,6 +59,8 @@ pub mod submit_job_response {
                 Self::AlreadyComplete => "ALREADY_COMPLETE",
                 Self::AlreadyOffloaded => "ALREADY_OFFLOADED",
                 Self::FailedPrecondition => "FAILED_PRECONDITION",
+                Self::NotReserved => "NOT_RESERVED",
+                Self::ReservationMissing => "RESERVATION_MISSING",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -64,6 +73,8 @@ pub mod submit_job_response {
                 "ALREADY_COMPLETE" => Some(Self::AlreadyComplete),
                 "ALREADY_OFFLOADED" => Some(Self::AlreadyOffloaded),
                 "FAILED_PRECONDITION" => Some(Self::FailedPrecondition),
+                "NOT_RESERVED" => Some(Self::NotReserved),
+                "RESERVATION_MISSING" => Some(Self::ReservationMissing),
                 _ => None,
             }
         }
@@ -116,6 +127,13 @@ pub struct JobRequest {
     /// that bulk operation.
     #[prost(message, optional, tag = "15")]
     pub bulk_info: ::core::option::Option<super::flex::BulkJobRequestInfo>,
+    /// reserve can be set to indicate whether the job reservation should be created and requires
+    /// reserve_job_id to be specified.
+    #[prost(bool, tag = "16")]
+    pub reserve: bool,
+    /// reserve_job_id can be optionally added to reserve or claim a job. This must be a valid UUID.
+    #[prost(string, optional, tag = "17")]
+    pub reserve_job_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }
@@ -282,6 +300,10 @@ pub mod job {
         /// Initially all jobs start out in the UNASSIGNED state. This indicates BeeRemote has not
         /// had a chance to schedule work requests for the job to any worker node(s).
         Unassigned = 2,
+        /// A hold is placed on this path and target by a reserve request. The job exists to prevent
+        /// others from taking the path until its work requests can be generated. It leaves this
+        /// state when the reservation is claimed or is cancelled.
+        Reserved = 11,
         /// When all worker node(s) have accepted the job's work requests, but may be waiting on
         /// an available worker goroutine to pickup the request.
         Scheduled = 3,
@@ -333,6 +355,7 @@ pub mod job {
                 Self::Unspecified => "UNSPECIFIED",
                 Self::Unknown => "UNKNOWN",
                 Self::Unassigned => "UNASSIGNED",
+                Self::Reserved => "RESERVED",
                 Self::Scheduled => "SCHEDULED",
                 Self::Running => "RUNNING",
                 Self::Error => "ERROR",
@@ -348,6 +371,7 @@ pub mod job {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "UNASSIGNED" => Some(Self::Unassigned),
+                "RESERVED" => Some(Self::Reserved),
                 "SCHEDULED" => Some(Self::Scheduled),
                 "RUNNING" => Some(Self::Running),
                 "ERROR" => Some(Self::Error),

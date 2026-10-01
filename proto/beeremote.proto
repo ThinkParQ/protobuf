@@ -45,6 +45,13 @@ message SubmitJobResponse {
         ALREADY_COMPLETE = 4;
         ALREADY_OFFLOADED = 5;
         FAILED_PRECONDITION = 6;
+        // The request claimed a reserved job that exists but is no longer waiting to be claimed
+        // because it was cancelled or already claimed. Reserving the job again would duplicate work
+        // on the path.
+        NOT_RESERVED = 7;
+        // The request claimed a jobId that remote has no record of, so the reservation never
+        // reached it or was cleaned up.
+        RESERVATION_MISSING = 8;
     }
 }
 
@@ -109,6 +116,11 @@ message JobRequest {
     // bulk operation. It contains builder-maintained metadata needed to track the request within
     // that bulk operation.
     optional flex.BulkJobRequestInfo bulk_info = 15;
+    // reserve can be set to indicate whether the job reservation should be created and requires
+    // reserve_job_id to be specified.
+    bool reserve = 16;
+    // reserve_job_id can be optionally added to reserve or claim a job. This must be a valid UUID.
+    optional string reserve_job_id = 17;
 }
 
 // Job contains all the data from the original request plus the job ID and
@@ -154,6 +166,10 @@ message Job {
         // Initially all jobs start out in the UNASSIGNED state. This indicates BeeRemote has not
         // had a chance to schedule work requests for the job to any worker node(s).
         UNASSIGNED = 2;
+        // A hold is placed on this path and target by a reserve request. The job exists to prevent
+        // others from taking the path until its work requests can be generated. It leaves this
+        // state when the reservation is claimed or is cancelled.
+        RESERVED = 11;
         // When all worker node(s) have accepted the job's work requests, but may be waiting on
         // an available worker goroutine to pickup the request.
         SCHEDULED = 3;
