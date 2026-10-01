@@ -19,27 +19,28 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Management_SetAlias_FullMethodName              = "/management.Management/SetAlias"
-	Management_GetNodes_FullMethodName              = "/management.Management/GetNodes"
-	Management_DeleteNode_FullMethodName            = "/management.Management/DeleteNode"
-	Management_GetTargets_FullMethodName            = "/management.Management/GetTargets"
-	Management_DeleteTarget_FullMethodName          = "/management.Management/DeleteTarget"
-	Management_SetTargetState_FullMethodName        = "/management.Management/SetTargetState"
-	Management_GetPools_FullMethodName              = "/management.Management/GetPools"
-	Management_CreatePool_FullMethodName            = "/management.Management/CreatePool"
-	Management_AssignPool_FullMethodName            = "/management.Management/AssignPool"
-	Management_DeletePool_FullMethodName            = "/management.Management/DeletePool"
-	Management_GetBuddyGroups_FullMethodName        = "/management.Management/GetBuddyGroups"
-	Management_CreateBuddyGroup_FullMethodName      = "/management.Management/CreateBuddyGroup"
-	Management_ModifyBuddyGroup_FullMethodName      = "/management.Management/ModifyBuddyGroup"
-	Management_DeleteBuddyGroup_FullMethodName      = "/management.Management/DeleteBuddyGroup"
-	Management_MirrorRootInode_FullMethodName       = "/management.Management/MirrorRootInode"
-	Management_StartResync_FullMethodName           = "/management.Management/StartResync"
-	Management_SetDefaultQuotaLimits_FullMethodName = "/management.Management/SetDefaultQuotaLimits"
-	Management_SetQuotaLimits_FullMethodName        = "/management.Management/SetQuotaLimits"
-	Management_GetQuotaLimits_FullMethodName        = "/management.Management/GetQuotaLimits"
-	Management_GetQuotaUsage_FullMethodName         = "/management.Management/GetQuotaUsage"
-	Management_GetLicense_FullMethodName            = "/management.Management/GetLicense"
+	Management_SetAlias_FullMethodName                     = "/management.Management/SetAlias"
+	Management_GetNodes_FullMethodName                     = "/management.Management/GetNodes"
+	Management_DeleteNode_FullMethodName                   = "/management.Management/DeleteNode"
+	Management_GetTargets_FullMethodName                   = "/management.Management/GetTargets"
+	Management_DeleteTarget_FullMethodName                 = "/management.Management/DeleteTarget"
+	Management_SetTargetState_FullMethodName               = "/management.Management/SetTargetState"
+	Management_ResetTargetRegistrationToken_FullMethodName = "/management.Management/ResetTargetRegistrationToken"
+	Management_GetPools_FullMethodName                     = "/management.Management/GetPools"
+	Management_CreatePool_FullMethodName                   = "/management.Management/CreatePool"
+	Management_AssignPool_FullMethodName                   = "/management.Management/AssignPool"
+	Management_DeletePool_FullMethodName                   = "/management.Management/DeletePool"
+	Management_GetBuddyGroups_FullMethodName               = "/management.Management/GetBuddyGroups"
+	Management_CreateBuddyGroup_FullMethodName             = "/management.Management/CreateBuddyGroup"
+	Management_ModifyBuddyGroup_FullMethodName             = "/management.Management/ModifyBuddyGroup"
+	Management_DeleteBuddyGroup_FullMethodName             = "/management.Management/DeleteBuddyGroup"
+	Management_MirrorRootInode_FullMethodName              = "/management.Management/MirrorRootInode"
+	Management_StartResync_FullMethodName                  = "/management.Management/StartResync"
+	Management_SetDefaultQuotaLimits_FullMethodName        = "/management.Management/SetDefaultQuotaLimits"
+	Management_SetQuotaLimits_FullMethodName               = "/management.Management/SetQuotaLimits"
+	Management_GetQuotaLimits_FullMethodName               = "/management.Management/GetQuotaLimits"
+	Management_GetQuotaUsage_FullMethodName                = "/management.Management/GetQuotaUsage"
+	Management_GetLicense_FullMethodName                   = "/management.Management/GetLicense"
 )
 
 // ManagementClient is the client API for Management service.
@@ -55,6 +56,7 @@ type ManagementClient interface {
 	DeleteTarget(ctx context.Context, in *DeleteTargetRequest, opts ...grpc.CallOption) (*DeleteTargetResponse, error)
 	// Manually set a target consistency state
 	SetTargetState(ctx context.Context, in *SetTargetStateRequest, opts ...grpc.CallOption) (*SetTargetStateResponse, error)
+	ResetTargetRegistrationToken(ctx context.Context, in *ResetTargetRegistrationTokenRequest, opts ...grpc.CallOption) (*ResetTargetRegistrationTokenResponse, error)
 	// (Storage) pools
 	GetPools(ctx context.Context, in *GetPoolsRequest, opts ...grpc.CallOption) (*GetPoolsResponse, error)
 	CreatePool(ctx context.Context, in *CreatePoolRequest, opts ...grpc.CallOption) (*CreatePoolResponse, error)
@@ -138,6 +140,16 @@ func (c *managementClient) SetTargetState(ctx context.Context, in *SetTargetStat
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SetTargetStateResponse)
 	err := c.cc.Invoke(ctx, Management_SetTargetState_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managementClient) ResetTargetRegistrationToken(ctx context.Context, in *ResetTargetRegistrationTokenRequest, opts ...grpc.CallOption) (*ResetTargetRegistrationTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResetTargetRegistrationTokenResponse)
+	err := c.cc.Invoke(ctx, Management_ResetTargetRegistrationToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -325,6 +337,7 @@ type ManagementServer interface {
 	DeleteTarget(context.Context, *DeleteTargetRequest) (*DeleteTargetResponse, error)
 	// Manually set a target consistency state
 	SetTargetState(context.Context, *SetTargetStateRequest) (*SetTargetStateResponse, error)
+	ResetTargetRegistrationToken(context.Context, *ResetTargetRegistrationTokenRequest) (*ResetTargetRegistrationTokenResponse, error)
 	// (Storage) pools
 	GetPools(context.Context, *GetPoolsRequest) (*GetPoolsResponse, error)
 	CreatePool(context.Context, *CreatePoolRequest) (*CreatePoolResponse, error)
@@ -371,6 +384,9 @@ func (UnimplementedManagementServer) DeleteTarget(context.Context, *DeleteTarget
 }
 func (UnimplementedManagementServer) SetTargetState(context.Context, *SetTargetStateRequest) (*SetTargetStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetTargetState not implemented")
+}
+func (UnimplementedManagementServer) ResetTargetRegistrationToken(context.Context, *ResetTargetRegistrationTokenRequest) (*ResetTargetRegistrationTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetTargetRegistrationToken not implemented")
 }
 func (UnimplementedManagementServer) GetPools(context.Context, *GetPoolsRequest) (*GetPoolsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPools not implemented")
@@ -542,6 +558,24 @@ func _Management_SetTargetState_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ManagementServer).SetTargetState(ctx, req.(*SetTargetStateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Management_ResetTargetRegistrationToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResetTargetRegistrationTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).ResetTargetRegistrationToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_ResetTargetRegistrationToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).ResetTargetRegistrationToken(ctx, req.(*ResetTargetRegistrationTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -832,6 +866,10 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetTargetState",
 			Handler:    _Management_SetTargetState_Handler,
+		},
+		{
+			MethodName: "ResetTargetRegistrationToken",
+			Handler:    _Management_ResetTargetRegistrationToken_Handler,
 		},
 		{
 			MethodName: "GetPools",
