@@ -29,6 +29,9 @@ service BeeRemote {
 
 message SubmitJobRequest {
     JobRequest request = 1;
+    // Set when a worker node submits the request, empty for other clients such as the CLI. Only a
+    // routing hint: BeeRemote may prefer this node when assigning work requests, but may ignore it.
+    string origin_node_id = 2;
 }
 
 message SubmitJobResponse {
@@ -42,6 +45,13 @@ message SubmitJobResponse {
         ALREADY_COMPLETE = 4;
         ALREADY_OFFLOADED = 5;
         FAILED_PRECONDITION = 6;
+        // The request claimed a reserved job that exists but is no longer waiting to be claimed
+        // because it was cancelled or already claimed. Reserving the job again would duplicate work
+        // on the path.
+        NOT_RESERVED = 7;
+        // The request claimed a jobId that remote has no record of, so the reservation never
+        // reached it or was cleaned up.
+        RESERVATION_MISSING = 8;
     }
 }
 
@@ -102,6 +112,15 @@ message JobRequest {
     optional flex.RestorePolicy restore_policy = 13;
     // Time in seconds to wait after a file is closed before replication begins.
     optional uint32 cooldown_secs = 14;
+    // bulk_info is optionally included when the job request participates in a provider-controlled
+    // bulk operation. It contains builder-maintained metadata needed to track the request within
+    // that bulk operation.
+    optional flex.BulkJobRequestInfo bulk_info = 15;
+    // reserve can be set to indicate whether the job reservation should be created and requires
+    // reserve_job_id to be specified.
+    bool reserve = 16;
+    // reserve_job_id can be optionally added to reserve or claim a job. This must be a valid UUID.
+    optional string reserve_job_id = 17;
 }
 
 // Job contains all the data from the original request plus the job ID and
@@ -147,10 +166,14 @@ message Job {
         // Initially all jobs start out in the UNASSIGNED state. This indicates BeeRemote has not
         // had a chance to schedule work requests for the job to any worker node(s).
         UNASSIGNED = 2;
+        // A hold is placed on this path and target by a reserve request. The job exists to prevent
+        // others from taking the path until its work requests can be generated. It leaves this
+        // state when the reservation is claimed or is cancelled.
+        RESERVED = 11;
         // When all worker node(s) have accepted the job's work requests, but may be waiting on
         // an available worker goroutine to pickup the request.
         SCHEDULED = 3;
-        // When all work requests for this job are in progress.
+        // When any work requests for this job are in progress.
         RUNNING = 4;
         // TODO: https://github.com/ThinkParQ/bee-remote/issues/16
         // A user manually requested the job be paused.
