@@ -1,0 +1,186 @@
+syntax = "proto3";
+package beeindex;
+option go_package = "github.com/thinkparq/protobuf/go/beeindex";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+// IndexUpdater is served by beegfs-index-updater. The service turns BeeGFS Watch events into
+// GUFI suspect files and applies them to the index with gufi_incremental_update. The beegfs CLI
+// (beegfs index update) drives and inspects it through these RPCs.
+service IndexUpdater {
+    // RunUpdate asks for an update and returns its summary once it has run. Runs are serialised:
+    // when one is in progress the request is served by the run that follows it, and every
+    // request made meanwhile shares that run.
+    rpc RunUpdate(RunUpdateRequest) returns (RunUpdateResponse);
+    // SetSchedule changes when updates run on their own. Fields left unset keep their value. The
+    // change lasts until the service restarts, which reads the schedule from its configuration.
+    rpc SetSchedule(SetScheduleRequest) returns (SetScheduleResponse);
+    // GetStatus reports what each stage is doing, the backlog, the schedule and the last run.
+    rpc GetStatus(GetStatusRequest) returns (GetStatusResponse);
+}
+
+message Schedule {
+    // Run an update at least this often. Zero disables the timer.
+    google.protobuf.Duration every = 1;
+    // Run an update once this many directories wait to be rebuilt. Zero disables the threshold.
+    uint64 pending_dirs = 2;
+}
+
+message RunUpdateRequest {
+    enum Mode {
+        // Apply the suspect files of every completed batch.
+        NORMAL = 0;
+        // Rebuild directories judged from file times, and touch no batch. Without `since` every
+        // directory is rebuilt, which is how a gap in the event stream is repaired.
+        REPAIR = 1;
+    }
+    Mode mode = 1;
+    // For REPAIR: rebuild only the directories with an entry changed at or after this time.
+    // Unset rebuilds every directory. While a repair is pending every repair rebuilds every
+    // directory, because only that covers the events Watch lost.
+    google.protobuf.Timestamp since = 2;
+    // Leave the BeeGFS metadata plugin out of the run, so rebuilt directories get GUFI's tables
+    // only. Applies to the run that serves this request, also when it was queued before.
+    bool no_beegfs_metadata = 3;
+}
+
+message RunUpdateResponse {
+    RunSummary summary = 1;
+}
+
+message RunSummary {
+    RunUpdateRequest.Mode mode = 1;
+    google.protobuf.Timestamp started = 2;
+    google.protobuf.Timestamp finished = 3;
+    // For a REPAIR limited by time: the time it rebuilt from. Unset for a full rebuild.
+    google.protobuf.Timestamp since = 4;
+    // Batches consumed, and the directories their suspect files named.
+    uint64 batches = 5;
+    uint64 suspect_dirs = 6;
+    // Lines of the tool's output that start with "Error:". They do not fail the run.
+    uint64 error_lines = 7;
+    // The tool's exit code. Zero means the run succeeded and its batches were deleted.
+    int32 exit_code = 8;
+    // Set when the run could not start or the tool failed.
+    string error = 9;
+}
+
+message SetScheduleRequest {
+    optional google.protobuf.Duration every = 1;
+    optional uint64 pending_dirs = 2;
+}
+
+message SetScheduleResponse {
+    Schedule schedule = 1;
+}
+
+message GetStatusRequest {}
+
+// GetStatusResponse reports the three stages in the order events pass through them.
+message GetStatusResponse {
+    CollectorStatus collector = 1;
+    MarkwalkStatus markwalk = 2;
+    UpdateStatus update = 3;
+}
+
+// Queue is how much waits in a bounded queue, against what it holds.
+message Queue {
+    uint64 size = 1;
+    uint64 capacity = 2;
+}
+
+// MetaProgress is where the collector stands with one metadata node's event stream.
+message MetaProgress {
+    uint32 meta = 1;
+    // The highest sequence ID received since the service started. Before any arrived it is the
+    // one restored from the checkpoint.
+    uint64 received_seq = 2;
+    // The highest sequence ID acknowledged: the suspect file of its batch is on disk, so Watch
+    // may drop the event. An acknowledgement reaches Watch within the ack frequency.
+    uint64 acknowledged_seq = 3;
+    // Events lost since the service started, found as holes in the sequence IDs.
+    uint64 missing_events = 4;
+}
+
+// CollectorStatus is what the collector is doing. The collector receives events from Watch and
+// groups them into batches.
+message CollectorStatus {
+    enum State {
+        // No batch is open: no event has arrived since the last one closed.
+        IDLE = 0;
+        // Events are being added to the open batch.
+        GATHERING = 1;
+        // A closed batch waits for a free slot in the batch queue. Until it gets one no event is
+        // read from Watch, which keeps them in its own buffer.
+        BLOCKED = 2;
+    }
+    State state = 1;
+    // Events received from Watch and not yet added to a batch.
+    Queue events = 2;
+    // The open batch, against the size that closes it.
+    Queue open_batch = 3;
+    // Closed batches waiting for markwalk.
+    Queue batches = 4;
+    // Acknowledgements waiting to be sent to Watch.
+    Queue acks = 5;
+    repeated MetaProgress metas = 6;
+    // Totals since the service started.
+    uint64 events_received = 7;
+    uint64 batches_closed = 8;
+    uint64 batches_acknowledged = 9;
+}
+
+// MarkwalkStatus is what markwalk is doing. Markwalk turns one batch at a time into its suspect
+// file.
+message MarkwalkStatus {
+    enum State {
+        // No batch is in markwalk.
+        WAITING = 0;
+        // A batch is being turned into its suspect file.
+        PROCESSING = 1;
+        // The batch failed and is retried with a growing delay. It is not acknowledged, and
+        // collection holds behind it, until a retry succeeds.
+        FAILING = 2;
+    }
+    State state = 1;
+    // The batch in markwalk and the events in it. Unset while waiting.
+    uint64 batch = 2;
+    uint64 events = 3;
+    // When the batch entered markwalk. While failing: when it first failed.
+    google.protobuf.Timestamp since = 4;
+    // While processing: the step under way.
+    string step = 5;
+    // While failing: why, in fixed words. The service log has the full error.
+    string error = 6;
+    // Totals since the service started: batches done, and the directories their suspect files
+    // name.
+    uint64 batches_done = 7;
+    uint64 suspect_dirs = 8;
+}
+
+// UpdateStatus is what the updater is doing. The updater applies batches to the index with
+// gufi_incremental_update.
+message UpdateStatus {
+    // Completed batches not yet applied, and the directories their suspect files name.
+    uint64 pending_batches = 1;
+    uint64 pending_dirs = 2;
+    Schedule schedule = 3;
+    // The run in progress: its mode, start and since. The other fields are set when it finishes.
+    RunSummary running = 4;
+    RunSummary last_run = 5;
+    // A full repair waits, because Watch lost events.
+    bool repair_pending = 6;
+    // When the schedule, or the retry of a failed run, starts the next run. Unset while a run is
+    // in progress, and when only a request can start one.
+    google.protobuf.Timestamp next_run = 7;
+    // Totals since the service started. A run that failed adds to runs and failed_runs only.
+    uint64 runs = 8;
+    uint64 repairs = 9;
+    uint64 failed_runs = 10;
+    // Batches the successful runs consumed, and the directories their suspect files named.
+    uint64 batches_applied = 11;
+    uint64 suspect_dirs_applied = 12;
+    // Time spent in runs.
+    google.protobuf.Duration run_time = 13;
+}
