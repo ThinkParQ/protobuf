@@ -203,6 +203,23 @@ pub struct SetTargetStateRequest {
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct SetTargetStateResponse {}
+/// Resets a targets registration token
+///
+/// New in 8.5.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ResetTargetRegistrationTokenRequest {
+    /// The target to reset the registration token for.
+    /// Required, one identifier is sufficient.
+    #[prost(message, optional, tag = "1")]
+    pub target: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ResetTargetRegistrationTokenResponse {
+    /// The identifier set of the affected target.
+    /// Required, should be completely populated.
+    #[prost(message, optional, tag = "1")]
+    pub target: ::core::option::Option<super::beegfs::EntityIdSet>,
+}
 /// Gets the full list of storage pools.
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetPoolsRequest {
@@ -945,6 +962,35 @@ pub mod management_client {
                 .insert(GrpcMethod::new("management.Management", "SetTargetState"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn reset_target_registration_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ResetTargetRegistrationTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ResetTargetRegistrationTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/ResetTargetRegistrationToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "management.Management",
+                        "ResetTargetRegistrationToken",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         /// (Storage) pools
         pub async fn get_pools(
             &mut self,
@@ -1369,6 +1415,13 @@ pub mod management_server {
             request: tonic::Request<super::SetTargetStateRequest>,
         ) -> std::result::Result<
             tonic::Response<super::SetTargetStateResponse>,
+            tonic::Status,
+        >;
+        async fn reset_target_registration_token(
+            &self,
+            request: tonic::Request<super::ResetTargetRegistrationTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ResetTargetRegistrationTokenResponse>,
             tonic::Status,
         >;
         /// (Storage) pools
@@ -1824,6 +1877,58 @@ pub mod management_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = SetTargetStateSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/ResetTargetRegistrationToken" => {
+                    #[allow(non_camel_case_types)]
+                    struct ResetTargetRegistrationTokenSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<
+                        super::ResetTargetRegistrationTokenRequest,
+                    > for ResetTargetRegistrationTokenSvc<T> {
+                        type Response = super::ResetTargetRegistrationTokenResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<
+                                super::ResetTargetRegistrationTokenRequest,
+                            >,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::reset_target_registration_token(
+                                        &inner,
+                                        request,
+                                    )
+                                    .await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = ResetTargetRegistrationTokenSvc(inner);
                         let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
