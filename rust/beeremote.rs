@@ -44,6 +44,9 @@ pub mod submit_job_response {
         /// The request claimed a jobId that remote has no record of, so the reservation never
         /// reached it or was cleaned up.
         ReservationMissing = 8,
+        /// An unfinished job on the same path is blocking the request. Unlike NOT_ALLOWED, the
+        /// blocking job is expected to finish, so the caller may submit the request again later.
+        BlockedByActiveJob = 9,
     }
     impl ResponseStatus {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -61,6 +64,7 @@ pub mod submit_job_response {
                 Self::FailedPrecondition => "FAILED_PRECONDITION",
                 Self::NotReserved => "NOT_RESERVED",
                 Self::ReservationMissing => "RESERVATION_MISSING",
+                Self::BlockedByActiveJob => "BLOCKED_BY_ACTIVE_JOB",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -75,6 +79,7 @@ pub mod submit_job_response {
                 "FAILED_PRECONDITION" => Some(Self::FailedPrecondition),
                 "NOT_RESERVED" => Some(Self::NotReserved),
                 "RESERVATION_MISSING" => Some(Self::ReservationMissing),
+                "BLOCKED_BY_ACTIVE_JOB" => Some(Self::BlockedByActiveJob),
                 _ => None,
             }
         }
@@ -127,13 +132,18 @@ pub struct JobRequest {
     /// that bulk operation.
     #[prost(message, optional, tag = "15")]
     pub bulk_info: ::core::option::Option<super::flex::BulkJobRequestInfo>,
-    /// reserve can be set to indicate whether the job reservation should be created and requires
-    /// reserve_job_id to be specified.
-    #[prost(bool, tag = "16")]
-    pub reserve: bool,
-    /// reserve_job_id can be optionally added to reserve or claim a job. This must be a valid UUID.
+    /// reservation says whether this request reserves a job, claims a reserved job, or neither. A
+    /// reservation is a placeholder job that holds the path and its RST until the reserving client
+    /// submits the real request, which claims it. RESERVE and CLAIM both require job_id.
+    #[prost(enumeration = "job_request::ReservationAction", tag = "16")]
+    pub reservation: i32,
+    /// job_id names this request's job. It must be a valid UUID. A client that may submit the same
+    /// request more than once, for example after a lost response, sets it so that remote can
+    /// recognize the repeat: a request whose job_id already names a job for the same path, RST and
+    /// operation gets that job and its original answer back instead of a new job. When unset,
+    /// remote generates the ID.
     #[prost(string, optional, tag = "17")]
-    pub reserve_job_id: ::core::option::Option<::prost::alloc::string::String>,
+    pub job_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }
@@ -204,6 +214,48 @@ pub mod job_request {
             }
         }
     }
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ReservationAction {
+        /// A plain request. It neither reserves nor claims a job.
+        NoReservation = 0,
+        /// Create a RESERVED job under job_id.
+        Reserve = 1,
+        /// Turn the RESERVED job named by job_id into this request's job.
+        Claim = 2,
+    }
+    impl ReservationAction {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::NoReservation => "NO_RESERVATION",
+                Self::Reserve => "RESERVE",
+                Self::Claim => "CLAIM",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "NO_RESERVATION" => Some(Self::NoReservation),
+                "RESERVE" => Some(Self::Reserve),
+                "CLAIM" => Some(Self::Claim),
+                _ => None,
+            }
+        }
+    }
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Type {
         #[prost(message, tag = "10")]
@@ -254,6 +306,11 @@ pub struct Job {
     /// may be nil if there is no file in BeeGFS at the end of the job.
     #[prost(message, optional, tag = "7")]
     pub stop_mtime: ::core::option::Option<::prost_types::Timestamp>,
+    /// submit_status is the answer remote gave to the request that created this job. Remote returns
+    /// it again when the same request is submitted again with the same job_id, so a client that
+    /// lost the first response gets the same answer.
+    #[prost(enumeration = "submit_job_response::ResponseStatus", tag = "8")]
+    pub submit_status: i32,
 }
 /// Nested message and enum types in `Job`.
 pub mod job {
