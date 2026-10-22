@@ -52,6 +52,9 @@ message SubmitJobResponse {
         // The request claimed a jobId that remote has no record of, so the reservation never
         // reached it or was cleaned up.
         RESERVATION_MISSING = 8;
+        // An unfinished job on the same path is blocking the request. Unlike NOT_ALLOWED, the
+        // blocking job is expected to finish, so the caller may submit the request again later.
+        BLOCKED_BY_ACTIVE_JOB = 9;
     }
 }
 
@@ -116,11 +119,24 @@ message JobRequest {
     // bulk operation. It contains builder-maintained metadata needed to track the request within
     // that bulk operation.
     optional flex.BulkJobRequestInfo bulk_info = 15;
-    // reserve can be set to indicate whether the job reservation should be created and requires
-    // reserve_job_id to be specified.
-    bool reserve = 16;
-    // reserve_job_id can be optionally added to reserve or claim a job. This must be a valid UUID.
-    optional string reserve_job_id = 17;
+    // reservation says whether this request reserves a job, claims a reserved job, or neither. A
+    // reservation is a placeholder job that holds the path and its RST until the reserving client
+    // submits the real request, which claims it. RESERVE and CLAIM both require job_id.
+    ReservationAction reservation = 16;
+    enum ReservationAction {
+        // A plain request. It neither reserves nor claims a job.
+        NO_RESERVATION = 0;
+        // Create a RESERVED job under job_id.
+        RESERVE = 1;
+        // Turn the RESERVED job named by job_id into this request's job.
+        CLAIM = 2;
+    }
+    // job_id names this request's job. It must be a valid UUID. A client that may submit the same
+    // request more than once, for example after a lost response, sets it so that remote can
+    // recognize the repeat: a request whose job_id already names a job for the same path, RST and
+    // operation gets that job and its original answer back instead of a new job. When unset,
+    // remote generates the ID.
+    optional string job_id = 17;
 }
 
 // Job contains all the data from the original request plus the job ID and
@@ -227,6 +243,10 @@ message Job {
     // in BeeGFS based on its current mtime matches the mtime of a successfully uploaded file. This
     // may be nil if there is no file in BeeGFS at the end of the job.
     optional google.protobuf.Timestamp stop_mtime = 7;    
+    // submit_status is the answer remote gave to the request that created this job. Remote returns
+    // it again when the same request is submitted again with the same job_id, so a client that
+    // lost the first response gets the same answer.
+    SubmitJobResponse.ResponseStatus submit_status = 8;
 }
 
 // The JobResult is used to return information about a job and its work results. Note the work
