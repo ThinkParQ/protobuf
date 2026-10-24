@@ -3,6 +3,10 @@
 pub struct SubmitJobRequest {
     #[prost(message, optional, tag = "1")]
     pub request: ::core::option::Option<JobRequest>,
+    /// Set when a worker node submits the request, empty for other clients such as the CLI. Only a
+    /// routing hint: BeeRemote may prefer this node when assigning work requests, but may ignore it.
+    #[prost(string, tag = "2")]
+    pub origin_node_id: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SubmitJobResponse {
@@ -33,6 +37,16 @@ pub mod submit_job_response {
         AlreadyComplete = 4,
         AlreadyOffloaded = 5,
         FailedPrecondition = 6,
+        /// The request claimed a reserved job that exists but is no longer waiting to be claimed
+        /// because it was cancelled or already claimed. Reserving the job again would duplicate work
+        /// on the path.
+        NotReserved = 7,
+        /// The request claimed a jobId that remote has no record of, so the reservation never
+        /// reached it or was cleaned up.
+        ReservationMissing = 8,
+        /// An unfinished job on the same path is blocking the request. Unlike NOT_ALLOWED, the
+        /// blocking job is expected to finish, so the caller may submit the request again later.
+        BlockedByActiveJob = 9,
     }
     impl ResponseStatus {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -48,6 +62,9 @@ pub mod submit_job_response {
                 Self::AlreadyComplete => "ALREADY_COMPLETE",
                 Self::AlreadyOffloaded => "ALREADY_OFFLOADED",
                 Self::FailedPrecondition => "FAILED_PRECONDITION",
+                Self::NotReserved => "NOT_RESERVED",
+                Self::ReservationMissing => "RESERVATION_MISSING",
+                Self::BlockedByActiveJob => "BLOCKED_BY_ACTIVE_JOB",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -60,6 +77,9 @@ pub mod submit_job_response {
                 "ALREADY_COMPLETE" => Some(Self::AlreadyComplete),
                 "ALREADY_OFFLOADED" => Some(Self::AlreadyOffloaded),
                 "FAILED_PRECONDITION" => Some(Self::FailedPrecondition),
+                "NOT_RESERVED" => Some(Self::NotReserved),
+                "RESERVATION_MISSING" => Some(Self::ReservationMissing),
+                "BLOCKED_BY_ACTIVE_JOB" => Some(Self::BlockedByActiveJob),
                 _ => None,
             }
         }
@@ -107,6 +127,23 @@ pub struct JobRequest {
     /// Time in seconds to wait after a file is closed before replication begins.
     #[prost(uint32, optional, tag = "14")]
     pub cooldown_secs: ::core::option::Option<u32>,
+    /// bulk_info is optionally included when the job request participates in a provider-controlled
+    /// bulk operation. It contains builder-maintained metadata needed to track the request within
+    /// that bulk operation.
+    #[prost(message, optional, tag = "15")]
+    pub bulk_info: ::core::option::Option<super::flex::BulkJobRequestInfo>,
+    /// reservation says whether this request reserves a job, claims a reserved job, or neither. A
+    /// reservation is a placeholder job that holds the path and its RST until the reserving client
+    /// submits the real request, which claims it. RESERVE and CLAIM both require job_id.
+    #[prost(enumeration = "job_request::ReservationAction", tag = "16")]
+    pub reservation: i32,
+    /// job_id names this request's job. It must be a valid UUID. A client that may submit the same
+    /// request more than once, for example after a lost response, sets it so that remote can
+    /// recognize the repeat: a request whose job_id already names a job for the same path, RST and
+    /// operation gets that job and its original answer back instead of a new job. When unset,
+    /// remote generates the ID.
+    #[prost(string, optional, tag = "17")]
+    pub job_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(oneof = "job_request::Type", tags = "10, 11, 12")]
     pub r#type: ::core::option::Option<job_request::Type>,
 }
@@ -177,6 +214,48 @@ pub mod job_request {
             }
         }
     }
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ReservationAction {
+        /// A plain request. It neither reserves nor claims a job.
+        NoReservation = 0,
+        /// Create a RESERVED job under job_id.
+        Reserve = 1,
+        /// Turn the RESERVED job named by job_id into this request's job.
+        Claim = 2,
+    }
+    impl ReservationAction {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::NoReservation => "NO_RESERVATION",
+                Self::Reserve => "RESERVE",
+                Self::Claim => "CLAIM",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "NO_RESERVATION" => Some(Self::NoReservation),
+                "RESERVE" => Some(Self::Reserve),
+                "CLAIM" => Some(Self::Claim),
+                _ => None,
+            }
+        }
+    }
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Type {
         #[prost(message, tag = "10")]
@@ -227,6 +306,11 @@ pub struct Job {
     /// may be nil if there is no file in BeeGFS at the end of the job.
     #[prost(message, optional, tag = "7")]
     pub stop_mtime: ::core::option::Option<::prost_types::Timestamp>,
+    /// submit_status is the answer remote gave to the request that created this job. Remote returns
+    /// it again when the same request is submitted again with the same job_id, so a client that
+    /// lost the first response gets the same answer.
+    #[prost(enumeration = "submit_job_response::ResponseStatus", tag = "8")]
+    pub submit_status: i32,
 }
 /// Nested message and enum types in `Job`.
 pub mod job {
@@ -273,10 +357,14 @@ pub mod job {
         /// Initially all jobs start out in the UNASSIGNED state. This indicates BeeRemote has not
         /// had a chance to schedule work requests for the job to any worker node(s).
         Unassigned = 2,
+        /// A hold is placed on this path and target by a reserve request. The job exists to prevent
+        /// others from taking the path until its work requests can be generated. It leaves this
+        /// state when the reservation is claimed or is cancelled.
+        Reserved = 11,
         /// When all worker node(s) have accepted the job's work requests, but may be waiting on
         /// an available worker goroutine to pickup the request.
         Scheduled = 3,
-        /// When all work requests for this job are in progress.
+        /// When any work requests for this job are in progress.
         Running = 4,
         /// TODO: <https://github.com/ThinkParQ/bee-remote/issues/16>
         /// A user manually requested the job be paused.
@@ -324,6 +412,7 @@ pub mod job {
                 Self::Unspecified => "UNSPECIFIED",
                 Self::Unknown => "UNKNOWN",
                 Self::Unassigned => "UNASSIGNED",
+                Self::Reserved => "RESERVED",
                 Self::Scheduled => "SCHEDULED",
                 Self::Running => "RUNNING",
                 Self::Error => "ERROR",
@@ -339,6 +428,7 @@ pub mod job {
                 "UNSPECIFIED" => Some(Self::Unspecified),
                 "UNKNOWN" => Some(Self::Unknown),
                 "UNASSIGNED" => Some(Self::Unassigned),
+                "RESERVED" => Some(Self::Reserved),
                 "SCHEDULED" => Some(Self::Scheduled),
                 "RUNNING" => Some(Self::Running),
                 "ERROR" => Some(Self::Error),
@@ -542,6 +632,19 @@ pub struct GetRstConfigRequest {}
 pub struct GetRstConfigResponse {
     #[prost(message, repeated, tag = "1")]
     pub rsts: ::prost::alloc::vec::Vec<super::flex::RemoteStorageTarget>,
+}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ReleaseUnusedFileLockRequest {
+    /// The in-mount path of the file whose content lock should be released.
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ReleaseUnusedFileLockResponse {
+    /// released is true when BeeRemote cleared the lock. It is false when a job still needs the
+    /// lock, when the file is offloaded, or when the file does not exist.
+    #[prost(bool, tag = "1")]
+    pub released: bool,
 }
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetStubContentsRequest {
@@ -849,6 +952,35 @@ pub mod bee_remote_client {
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "GetCapabilities"));
             self.inner.unary(req, path, codec).await
         }
+        /// ReleaseUnusedFileLock asks BeeRemote to clear the content lock on a file if no job recorded
+        /// for the path still needs it. BeeRemote alone decides whether the lock is released, because
+        /// only it sees every job on the path. A client that took a lock calls this when it gave up
+        /// before any job was recorded to hold the lock, for example after its request was refused
+        /// before it reached BeeRemote's job store.
+        pub async fn release_unused_file_lock(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReleaseUnusedFileLockRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ReleaseUnusedFileLockResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/ReleaseUnusedFileLock",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "ReleaseUnusedFileLock"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -936,6 +1068,18 @@ pub mod bee_remote_server {
             request: tonic::Request<super::super::flex::GetCapabilitiesRequest>,
         ) -> std::result::Result<
             tonic::Response<super::super::flex::GetCapabilitiesResponse>,
+            tonic::Status,
+        >;
+        /// ReleaseUnusedFileLock asks BeeRemote to clear the content lock on a file if no job recorded
+        /// for the path still needs it. BeeRemote alone decides whether the lock is released, because
+        /// only it sees every job on the path. A client that took a lock calls this when it gave up
+        /// before any job was recorded to hold the lock, for example after its request was refused
+        /// before it reached BeeRemote's job store.
+        async fn release_unused_file_lock(
+            &self,
+            request: tonic::Request<super::ReleaseUnusedFileLockRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ReleaseUnusedFileLockResponse>,
             tonic::Status,
         >;
     }
@@ -1367,6 +1511,52 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetCapabilitiesSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/ReleaseUnusedFileLock" => {
+                    #[allow(non_camel_case_types)]
+                    struct ReleaseUnusedFileLockSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::ReleaseUnusedFileLockRequest>
+                    for ReleaseUnusedFileLockSvc<T> {
+                        type Response = super::ReleaseUnusedFileLockResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ReleaseUnusedFileLockRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::release_unused_file_lock(&inner, request)
+                                    .await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = ReleaseUnusedFileLockSvc(inner);
                         let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

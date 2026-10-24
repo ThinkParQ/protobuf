@@ -25,10 +25,19 @@ service BeeRemote {
     rpc GetRSTConfig(GetRSTConfigRequest) returns (GetRSTConfigResponse);
     rpc GetStubContents(GetStubContentsRequest) returns (GetStubContentsResponse);
     rpc GetCapabilities(flex.GetCapabilitiesRequest) returns (flex.GetCapabilitiesResponse);
+    // ReleaseUnusedFileLock asks BeeRemote to clear the content lock on a file if no job recorded
+    // for the path still needs it. BeeRemote alone decides whether the lock is released, because
+    // only it sees every job on the path. A client that took a lock calls this when it gave up
+    // before any job was recorded to hold the lock, for example after its request was refused
+    // before it reached BeeRemote's job store.
+    rpc ReleaseUnusedFileLock(ReleaseUnusedFileLockRequest) returns (ReleaseUnusedFileLockResponse);
 }
 
 message SubmitJobRequest {
     JobRequest request = 1;
+    // Set when a worker node submits the request, empty for other clients such as the CLI. Only a
+    // routing hint: BeeRemote may prefer this node when assigning work requests, but may ignore it.
+    string origin_node_id = 2;
 }
 
 message SubmitJobResponse {
@@ -42,6 +51,16 @@ message SubmitJobResponse {
         ALREADY_COMPLETE = 4;
         ALREADY_OFFLOADED = 5;
         FAILED_PRECONDITION = 6;
+        // The request claimed a reserved job that exists but is no longer waiting to be claimed
+        // because it was cancelled or already claimed. Reserving the job again would duplicate work
+        // on the path.
+        NOT_RESERVED = 7;
+        // The request claimed a jobId that remote has no record of, so the reservation never
+        // reached it or was cleaned up.
+        RESERVATION_MISSING = 8;
+        // An unfinished job on the same path is blocking the request. Unlike NOT_ALLOWED, the
+        // blocking job is expected to finish, so the caller may submit the request again later.
+        BLOCKED_BY_ACTIVE_JOB = 9;
     }
 }
 
@@ -102,6 +121,28 @@ message JobRequest {
     optional flex.RestorePolicy restore_policy = 13;
     // Time in seconds to wait after a file is closed before replication begins.
     optional uint32 cooldown_secs = 14;
+    // bulk_info is optionally included when the job request participates in a provider-controlled
+    // bulk operation. It contains builder-maintained metadata needed to track the request within
+    // that bulk operation.
+    optional flex.BulkJobRequestInfo bulk_info = 15;
+    // reservation says whether this request reserves a job, claims a reserved job, or neither. A
+    // reservation is a placeholder job that holds the path and its RST until the reserving client
+    // submits the real request, which claims it. RESERVE and CLAIM both require job_id.
+    ReservationAction reservation = 16;
+    enum ReservationAction {
+        // A plain request. It neither reserves nor claims a job.
+        NO_RESERVATION = 0;
+        // Create a RESERVED job under job_id.
+        RESERVE = 1;
+        // Turn the RESERVED job named by job_id into this request's job.
+        CLAIM = 2;
+    }
+    // job_id names this request's job. It must be a valid UUID. A client that may submit the same
+    // request more than once, for example after a lost response, sets it so that remote can
+    // recognize the repeat: a request whose job_id already names a job for the same path, RST and
+    // operation gets that job and its original answer back instead of a new job. When unset,
+    // remote generates the ID.
+    optional string job_id = 17;
 }
 
 // Job contains all the data from the original request plus the job ID and
@@ -147,10 +188,14 @@ message Job {
         // Initially all jobs start out in the UNASSIGNED state. This indicates BeeRemote has not
         // had a chance to schedule work requests for the job to any worker node(s).
         UNASSIGNED = 2;
+        // A hold is placed on this path and target by a reserve request. The job exists to prevent
+        // others from taking the path until its work requests can be generated. It leaves this
+        // state when the reservation is claimed or is cancelled.
+        RESERVED = 11;
         // When all worker node(s) have accepted the job's work requests, but may be waiting on
         // an available worker goroutine to pickup the request.
         SCHEDULED = 3;
-        // When all work requests for this job are in progress.
+        // When any work requests for this job are in progress.
         RUNNING = 4;
         // TODO: https://github.com/ThinkParQ/bee-remote/issues/16
         // A user manually requested the job be paused.
@@ -204,6 +249,10 @@ message Job {
     // in BeeGFS based on its current mtime matches the mtime of a successfully uploaded file. This
     // may be nil if there is no file in BeeGFS at the end of the job.
     optional google.protobuf.Timestamp stop_mtime = 7;    
+    // submit_status is the answer remote gave to the request that created this job. Remote returns
+    // it again when the same request is submitted again with the same job_id, so a client that
+    // lost the first response gets the same answer.
+    SubmitJobResponse.ResponseStatus submit_status = 8;
 }
 
 // The JobResult is used to return information about a job and its work results. Note the work
@@ -323,6 +372,17 @@ message GetRSTConfigRequest {
 
 message GetRSTConfigResponse {
     repeated flex.RemoteStorageTarget rsts = 1;
+}
+
+message ReleaseUnusedFileLockRequest {
+    // The in-mount path of the file whose content lock should be released.
+    string path = 1;
+}
+
+message ReleaseUnusedFileLockResponse {
+    // released is true when BeeRemote cleared the lock. It is false when a job still needs the
+    // lock, when the file is offloaded, or when the file does not exist.
+    bool released = 1;
 }
 
 message GetStubContentsRequest {
