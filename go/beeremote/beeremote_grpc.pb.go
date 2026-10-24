@@ -20,14 +20,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BeeRemote_SubmitJob_FullMethodName       = "/beeremote.BeeRemote/SubmitJob"
-	BeeRemote_UpdatePaths_FullMethodName     = "/beeremote.BeeRemote/UpdatePaths"
-	BeeRemote_UpdateJobs_FullMethodName      = "/beeremote.BeeRemote/UpdateJobs"
-	BeeRemote_GetJobs_FullMethodName         = "/beeremote.BeeRemote/GetJobs"
-	BeeRemote_UpdateWork_FullMethodName      = "/beeremote.BeeRemote/UpdateWork"
-	BeeRemote_GetRSTConfig_FullMethodName    = "/beeremote.BeeRemote/GetRSTConfig"
-	BeeRemote_GetStubContents_FullMethodName = "/beeremote.BeeRemote/GetStubContents"
-	BeeRemote_GetCapabilities_FullMethodName = "/beeremote.BeeRemote/GetCapabilities"
+	BeeRemote_SubmitJob_FullMethodName             = "/beeremote.BeeRemote/SubmitJob"
+	BeeRemote_UpdatePaths_FullMethodName           = "/beeremote.BeeRemote/UpdatePaths"
+	BeeRemote_UpdateJobs_FullMethodName            = "/beeremote.BeeRemote/UpdateJobs"
+	BeeRemote_GetJobs_FullMethodName               = "/beeremote.BeeRemote/GetJobs"
+	BeeRemote_UpdateWork_FullMethodName            = "/beeremote.BeeRemote/UpdateWork"
+	BeeRemote_GetRSTConfig_FullMethodName          = "/beeremote.BeeRemote/GetRSTConfig"
+	BeeRemote_GetStubContents_FullMethodName       = "/beeremote.BeeRemote/GetStubContents"
+	BeeRemote_GetCapabilities_FullMethodName       = "/beeremote.BeeRemote/GetCapabilities"
+	BeeRemote_ReleaseUnusedFileLock_FullMethodName = "/beeremote.BeeRemote/ReleaseUnusedFileLock"
 )
 
 // BeeRemoteClient is the client API for BeeRemote service.
@@ -54,6 +55,12 @@ type BeeRemoteClient interface {
 	GetRSTConfig(ctx context.Context, in *GetRSTConfigRequest, opts ...grpc.CallOption) (*GetRSTConfigResponse, error)
 	GetStubContents(ctx context.Context, in *GetStubContentsRequest, opts ...grpc.CallOption) (*GetStubContentsResponse, error)
 	GetCapabilities(ctx context.Context, in *flex.GetCapabilitiesRequest, opts ...grpc.CallOption) (*flex.GetCapabilitiesResponse, error)
+	// ReleaseUnusedFileLock asks BeeRemote to clear the content lock on a file if no job recorded
+	// for the path still needs it. BeeRemote alone decides whether the lock is released, because
+	// only it sees every job on the path. A client that took a lock calls this when it gave up
+	// before any job was recorded to hold the lock, for example after its request was refused
+	// before it reached BeeRemote's job store.
+	ReleaseUnusedFileLock(ctx context.Context, in *ReleaseUnusedFileLockRequest, opts ...grpc.CallOption) (*ReleaseUnusedFileLockResponse, error)
 }
 
 type beeRemoteClient struct {
@@ -162,6 +169,16 @@ func (c *beeRemoteClient) GetCapabilities(ctx context.Context, in *flex.GetCapab
 	return out, nil
 }
 
+func (c *beeRemoteClient) ReleaseUnusedFileLock(ctx context.Context, in *ReleaseUnusedFileLockRequest, opts ...grpc.CallOption) (*ReleaseUnusedFileLockResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReleaseUnusedFileLockResponse)
+	err := c.cc.Invoke(ctx, BeeRemote_ReleaseUnusedFileLock_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BeeRemoteServer is the server API for BeeRemote service.
 // All implementations must embed UnimplementedBeeRemoteServer
 // for forward compatibility.
@@ -186,6 +203,12 @@ type BeeRemoteServer interface {
 	GetRSTConfig(context.Context, *GetRSTConfigRequest) (*GetRSTConfigResponse, error)
 	GetStubContents(context.Context, *GetStubContentsRequest) (*GetStubContentsResponse, error)
 	GetCapabilities(context.Context, *flex.GetCapabilitiesRequest) (*flex.GetCapabilitiesResponse, error)
+	// ReleaseUnusedFileLock asks BeeRemote to clear the content lock on a file if no job recorded
+	// for the path still needs it. BeeRemote alone decides whether the lock is released, because
+	// only it sees every job on the path. A client that took a lock calls this when it gave up
+	// before any job was recorded to hold the lock, for example after its request was refused
+	// before it reached BeeRemote's job store.
+	ReleaseUnusedFileLock(context.Context, *ReleaseUnusedFileLockRequest) (*ReleaseUnusedFileLockResponse, error)
 	mustEmbedUnimplementedBeeRemoteServer()
 }
 
@@ -219,6 +242,9 @@ func (UnimplementedBeeRemoteServer) GetStubContents(context.Context, *GetStubCon
 }
 func (UnimplementedBeeRemoteServer) GetCapabilities(context.Context, *flex.GetCapabilitiesRequest) (*flex.GetCapabilitiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCapabilities not implemented")
+}
+func (UnimplementedBeeRemoteServer) ReleaseUnusedFileLock(context.Context, *ReleaseUnusedFileLockRequest) (*ReleaseUnusedFileLockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReleaseUnusedFileLock not implemented")
 }
 func (UnimplementedBeeRemoteServer) mustEmbedUnimplementedBeeRemoteServer() {}
 func (UnimplementedBeeRemoteServer) testEmbeddedByValue()                   {}
@@ -371,6 +397,24 @@ func _BeeRemote_GetCapabilities_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BeeRemote_ReleaseUnusedFileLock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReleaseUnusedFileLockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeeRemoteServer).ReleaseUnusedFileLock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BeeRemote_ReleaseUnusedFileLock_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeeRemoteServer).ReleaseUnusedFileLock(ctx, req.(*ReleaseUnusedFileLockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BeeRemote_ServiceDesc is the grpc.ServiceDesc for BeeRemote service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -401,6 +445,10 @@ var BeeRemote_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCapabilities",
 			Handler:    _BeeRemote_GetCapabilities_Handler,
+		},
+		{
+			MethodName: "ReleaseUnusedFileLock",
+			Handler:    _BeeRemote_ReleaseUnusedFileLock_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

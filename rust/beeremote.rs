@@ -634,6 +634,19 @@ pub struct GetRstConfigResponse {
     pub rsts: ::prost::alloc::vec::Vec<super::flex::RemoteStorageTarget>,
 }
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ReleaseUnusedFileLockRequest {
+    /// The in-mount path of the file whose content lock should be released.
+    #[prost(string, tag = "1")]
+    pub path: ::prost::alloc::string::String,
+}
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ReleaseUnusedFileLockResponse {
+    /// released is true when BeeRemote cleared the lock. It is false when a job still needs the
+    /// lock, when the file is offloaded, or when the file does not exist.
+    #[prost(bool, tag = "1")]
+    pub released: bool,
+}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetStubContentsRequest {
     #[prost(string, tag = "1")]
     pub path: ::prost::alloc::string::String,
@@ -939,6 +952,35 @@ pub mod bee_remote_client {
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "GetCapabilities"));
             self.inner.unary(req, path, codec).await
         }
+        /// ReleaseUnusedFileLock asks BeeRemote to clear the content lock on a file if no job recorded
+        /// for the path still needs it. BeeRemote alone decides whether the lock is released, because
+        /// only it sees every job on the path. A client that took a lock calls this when it gave up
+        /// before any job was recorded to hold the lock, for example after its request was refused
+        /// before it reached BeeRemote's job store.
+        pub async fn release_unused_file_lock(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ReleaseUnusedFileLockRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ReleaseUnusedFileLockResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/ReleaseUnusedFileLock",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "ReleaseUnusedFileLock"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -1026,6 +1068,18 @@ pub mod bee_remote_server {
             request: tonic::Request<super::super::flex::GetCapabilitiesRequest>,
         ) -> std::result::Result<
             tonic::Response<super::super::flex::GetCapabilitiesResponse>,
+            tonic::Status,
+        >;
+        /// ReleaseUnusedFileLock asks BeeRemote to clear the content lock on a file if no job recorded
+        /// for the path still needs it. BeeRemote alone decides whether the lock is released, because
+        /// only it sees every job on the path. A client that took a lock calls this when it gave up
+        /// before any job was recorded to hold the lock, for example after its request was refused
+        /// before it reached BeeRemote's job store.
+        async fn release_unused_file_lock(
+            &self,
+            request: tonic::Request<super::ReleaseUnusedFileLockRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ReleaseUnusedFileLockResponse>,
             tonic::Status,
         >;
     }
@@ -1457,6 +1511,52 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetCapabilitiesSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/ReleaseUnusedFileLock" => {
+                    #[allow(non_camel_case_types)]
+                    struct ReleaseUnusedFileLockSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::ReleaseUnusedFileLockRequest>
+                    for ReleaseUnusedFileLockSvc<T> {
+                        type Response = super::ReleaseUnusedFileLockResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ReleaseUnusedFileLockRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::release_unused_file_lock(&inner, request)
+                                    .await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = ReleaseUnusedFileLockSvc(inner);
                         let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
