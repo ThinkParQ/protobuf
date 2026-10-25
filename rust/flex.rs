@@ -446,6 +446,10 @@ pub struct BuilderJob {
     /// Number of directories whose RST configuration was updated by --update or --remote-cooldown.
     #[prost(int32, tag = "14")]
     pub dirs_configured: i32,
+    /// Number of files that changed between the builder reading them and locking them. The builder
+    /// cancelled the job it had reserved for each one, so none of them was pushed or pulled.
+    #[prost(int32, tag = "15")]
+    pub jobs_changed_during_build: i32,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MockJob {

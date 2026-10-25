@@ -250,6 +250,9 @@ message BuilderJob {
     int32 jobs_reserved = 13;
     // Number of directories whose RST configuration was updated by --update or --remote-cooldown.
     int32 dirs_configured = 14;
+    // Number of files that changed between the builder reading them and locking them. The builder
+    // cancelled the job it had reserved for each one, so none of them was pushed or pulled.
+    int32 jobs_changed_during_build = 15;
 }
 
 message MockJob {
