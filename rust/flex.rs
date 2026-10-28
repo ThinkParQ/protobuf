@@ -833,7 +833,7 @@ pub struct RemoteStorageTarget {
     /// in the rst package for additional details.
     ///
     /// Ref: <https://groups.google.com/g/protobuf/c/ojpYHqx2l04>
-    #[prost(oneof = "remote_storage_target::Type", tags = "4, 5, 6, 7")]
+    #[prost(oneof = "remote_storage_target::Type", tags = "4, 5, 6, 7, 8")]
     pub r#type: ::core::option::Option<remote_storage_target::Type>,
 }
 /// Nested message and enum types in `RemoteStorageTarget`.
@@ -939,6 +939,69 @@ pub mod remote_storage_target {
         #[prost(string, tag = "2")]
         pub account: ::prost::alloc::string::String,
     }
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct XtreemStore {
+        #[prost(message, optional, tag = "1")]
+        pub s3: ::core::option::Option<S3>,
+        #[prost(message, repeated, tag = "2")]
+        pub bulk_operations: ::prost::alloc::vec::Vec<xtreem_store::BulkOperation>,
+    }
+    /// Nested message and enum types in `XtreemStore`.
+    pub mod xtreem_store {
+        #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+        pub struct BulkOperation {
+            #[prost(enumeration = "bulk_operation::Operation", tag = "1")]
+            pub operation: i32,
+            /// Delay for when the bulk operation is not ready to start. Should be a positive number
+            /// with a valid time unit (ms, s, m, h). For example, "1h"
+            #[prost(string, optional, tag = "2")]
+            pub retry_delay: ::core::option::Option<::prost::alloc::string::String>,
+            /// Delay for when the bulk operation has started but is waiting for the request to
+            /// complete. Should be a positive number with a valid time unit (ms, s, m, h). For
+            /// example, "1h"
+            #[prost(string, optional, tag = "3")]
+            pub poll_delay: ::core::option::Option<::prost::alloc::string::String>,
+        }
+        /// Nested message and enum types in `BulkOperation`.
+        pub mod bulk_operation {
+            #[derive(
+                Clone,
+                Copy,
+                Debug,
+                PartialEq,
+                Eq,
+                Hash,
+                PartialOrd,
+                Ord,
+                ::prost::Enumeration
+            )]
+            #[repr(i32)]
+            pub enum Operation {
+                Unknown = 0,
+                EfficientRetrieve = 1,
+            }
+            impl Operation {
+                /// String value of the enum field names used in the ProtoBuf definition.
+                ///
+                /// The values are not transformed in any way and thus are considered stable
+                /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+                pub fn as_str_name(&self) -> &'static str {
+                    match self {
+                        Self::Unknown => "UNKNOWN",
+                        Self::EfficientRetrieve => "EFFICIENT_RETRIEVE",
+                    }
+                }
+                /// Creates an enum from field names used in the ProtoBuf definition.
+                pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                    match value {
+                        "UNKNOWN" => Some(Self::Unknown),
+                        "EFFICIENT_RETRIEVE" => Some(Self::EfficientRetrieve),
+                        _ => None,
+                    }
+                }
+            }
+        }
+    }
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
     pub struct Posix {
         #[prost(string, tag = "1")]
@@ -962,6 +1025,8 @@ pub mod remote_storage_target {
         Azure(Azure),
         #[prost(string, tag = "7")]
         Mock(::prost::alloc::string::String),
+        #[prost(message, tag = "8")]
+        Xtreemstore(XtreemStore),
     }
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
