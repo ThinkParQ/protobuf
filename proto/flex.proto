@@ -40,6 +40,9 @@ message HeartbeatResponse {
         // Finishing in-flight work; will accept no new requests.
         DRAINING = 3;
     }
+    // The number of workers this node runs concurrently. Zero means the node predates this field;
+    // Remote assumes a default and logs that it did.
+    uint32 num_workers = 4;
 }
 
 message NodeStats {
@@ -207,15 +210,47 @@ message WorkRequest {
     optional RestorePolicy restore_policy = 13;
     // Time in seconds to wait after a file is closed before replication begins.
     optional uint32 cooldown_secs = 14;
+    // bulk_info is optionally set when this work request belongs to a provider-controlled bulk
+    // operation. It carries builder-maintained metadata used to correlate the request with the
+    // provider's bulk operation and track its state within that operation.
+    optional BulkJobRequestInfo bulk_info = 16;
+}
+
+// BulkJobRequestInfo contains builder-maintained metadata for requests that participate in a
+// provider controlled bulk operation.
+message BulkJobRequestInfo {
+    // Builder-maintained in-mount path for provider bulk-operation state.
+    string state_mount_path = 1;
+    // Provider-defined bulk operation identifier for this request.
+    string operation = 2;
+    // Zero-based request index within the bulk operation.
+    int64 job_index = 3;
 }
 
 // JobBuilderJob is a special type of job that creates job requests of any time.
 message BuilderJob {
     JobRequestCfg cfg = 1;
-    // Stores the total number of job requests that were submitted regardless of success.
+    // Number of job requests submitted to BeeGFS Remote.
     int32 submitted = 2;
-    // Stores the number of failed job requests.
+    // Number of job requests submitted with a GenerationStatus of ERROR or FAILED_PRECONDITION.
     int32 errors = 3;
+    // Number of jobs for which there's already an equivalent active job.
+    int32 jobs_already_exist = 8;
+    // Number of jobs for which there's an existing equivalent failed job.
+    int32 jobs_not_allowed = 9;
+    // Number of jobs that were already complete.
+    int32 jobs_already_complete = 10;
+    // Number of jobs that were already offloaded.
+    int32 jobs_already_offloaded = 11;
+    // Number of jobs that failed because the expected job reservation did not exist.
+    int32 jobs_not_reserved = 12;
+    // Number of paths a bulk operation has reserved before they were claimed or cancelled.
+    int32 jobs_reserved = 13;
+    // Number of directories whose RST configuration was updated by --update or --remote-cooldown.
+    int32 dirs_configured = 14;
+    // Number of files that changed between the builder reading them and locking them. The builder
+    // cancelled the job it had reserved for each one, so none of them was pushed or pulled.
+    int32 jobs_changed_during_build = 15;
 }
 
 message MockJob {
@@ -343,6 +378,7 @@ message Work {
         // the ETag in that it is an application layer integrity check of the part's content.
         string checksum_sha256 = 5;
         bool completed = 6;
+        optional bool started = 7;
     }
     // Indicates whether the work is a job builder task.
     bool job_builder = 6;
@@ -361,6 +397,9 @@ message UpdateConfigRequest {
     // The ID BeeRemote knows this node by. Only BeeRemote can assign it. Nodes report it back when
     // submitting job requests. Empty if BeeRemote predates this field.
     string node_id = 3;
+    // Mount relative directory for state information that must persist such as inflight bulk
+    // operations from a builder job. This directory is shared and available to all sync workers.
+    string state_root = 4;
 }
 
 message UpdateConfigResponse {
