@@ -290,6 +290,39 @@ pub struct JobLockedInfo {
     #[prost(bool, tag = "11")]
     pub is_archived: bool,
 }
+/// ContentHeaders are the headers S3 stores with an object and answers on a GET or HEAD, as the
+/// client sent them. A transfer sets each one on the upload, so the copy answers the same headers as
+/// the source. A field is absent when the object has no such header. Whether a store keeps a header
+/// is the store's decision: some S3 providers drop website_redirect_location on a bucket that is
+/// not a website.
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ContentHeaders {
+    /// The Content-Type header.
+    #[prost(string, optional, tag = "1")]
+    pub content_type: ::core::option::Option<::prost::alloc::string::String>,
+    /// The Content-Encoding header.
+    #[prost(string, optional, tag = "2")]
+    pub content_encoding: ::core::option::Option<::prost::alloc::string::String>,
+    /// The Content-Language header.
+    #[prost(string, optional, tag = "3")]
+    pub content_language: ::core::option::Option<::prost::alloc::string::String>,
+    /// The Content-Disposition header.
+    #[prost(string, optional, tag = "4")]
+    pub content_disposition: ::core::option::Option<::prost::alloc::string::String>,
+    /// The Cache-Control header.
+    #[prost(string, optional, tag = "5")]
+    pub cache_control: ::core::option::Option<::prost::alloc::string::String>,
+    /// The instant the client's Expires header names. The upload sends it as an HTTP date, which
+    /// every S3 provider accepts, while providers disagree about any other form. The producer
+    /// parses the client's header, and the gateway refuses a header it cannot parse as a date.
+    #[prost(message, optional, tag = "6")]
+    pub expires: ::core::option::Option<::prost_types::Timestamp>,
+    /// The x-amz-website-redirect-location header.
+    #[prost(string, optional, tag = "7")]
+    pub website_redirect_location: ::core::option::Option<
+        ::prost::alloc::string::String,
+    >,
+}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JobRequestCfg {
     #[prost(uint32, tag = "1")]
@@ -334,6 +367,10 @@ pub struct JobRequestCfg {
     /// Maps to the RST CoolDownPeriod metadata field. Max value is 65535 (uint16).
     #[prost(uint32, optional, tag = "18")]
     pub cooldown_secs: ::core::option::Option<u32>,
+    /// The content headers of the object the job names. Every upload sets them, so the copy answers
+    /// the same headers as the object in BeeGFS (ContentHeaders).
+    #[prost(message, optional, tag = "19")]
+    pub content_headers: ::core::option::Option<ContentHeaders>,
 }
 /// BeeRemote assigns work for a job to one or more worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -504,6 +541,10 @@ pub struct SyncJob {
     pub storage_class: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(bool, optional, tag = "13")]
     pub allow_restore: ::core::option::Option<bool>,
+    /// The content headers of the object. Every upload sets them, so the copy answers the same
+    /// headers as the object in BeeGFS (ContentHeaders).
+    #[prost(message, optional, tag = "14")]
+    pub content_headers: ::core::option::Option<ContentHeaders>,
 }
 /// Nested message and enum types in `SyncJob`.
 pub mod sync_job {

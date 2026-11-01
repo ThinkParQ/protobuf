@@ -152,6 +152,30 @@ enum RestorePolicy {
     RESTORE_POLICY_DELAYED = 3;
 }
 
+// ContentHeaders are the headers S3 stores with an object and answers on a GET or HEAD, as the
+// client sent them. A transfer sets each one on the upload, so the copy answers the same headers as
+// the source. A field is absent when the object has no such header. Whether a store keeps a header
+// is the store's decision: some S3 providers drop website_redirect_location on a bucket that is
+// not a website.
+message ContentHeaders {
+    // The Content-Type header.
+    optional string content_type = 1;
+    // The Content-Encoding header.
+    optional string content_encoding = 2;
+    // The Content-Language header.
+    optional string content_language = 3;
+    // The Content-Disposition header.
+    optional string content_disposition = 4;
+    // The Cache-Control header.
+    optional string cache_control = 5;
+    // The instant the client's Expires header names. The upload sends it as an HTTP date, which
+    // every S3 provider accepts, while providers disagree about any other form. The producer
+    // parses the client's header, and the gateway refuses a header it cannot parse as a date.
+    google.protobuf.Timestamp expires = 6;
+    // The x-amz-website-redirect-location header.
+    optional string website_redirect_location = 7;
+}
+
 message JobRequestCfg {
     uint32 remoteStorageTarget = 1;
     string path = 2;
@@ -174,6 +198,9 @@ message JobRequestCfg {
     // Time in seconds to wait after a file is closed before replication begins.
     // Maps to the RST CoolDownPeriod metadata field. Max value is 65535 (uint16).
     optional uint32 cooldown_secs = 18;
+    // The content headers of the object the job names. Every upload sets them, so the copy answers
+    // the same headers as the object in BeeGFS (ContentHeaders).
+    ContentHeaders content_headers = 19;
 }
 
 // BeeRemote assigns work for a job to one or more worker nodes.
@@ -291,6 +318,9 @@ message SyncJob {
     optional string tagging = 10;
     optional string storage_class = 12;
     optional bool allow_restore = 13;
+    // The content headers of the object. Every upload sets them, so the copy answers the same
+    // headers as the object in BeeGFS (ContentHeaders).
+    ContentHeaders content_headers = 14;
 }
 
 // Currently while requests types are specific to a particular worker node type,
