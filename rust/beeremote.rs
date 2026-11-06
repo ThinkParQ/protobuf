@@ -902,6 +902,190 @@ pub mod verify_rst_backend_response {
         }
     }
 }
+/// RSTBucket is one bucket in the store of a backend.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct RstBucket {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// When the store created the bucket. Not set when the store does not report it.
+    #[prost(message, optional, tag = "2")]
+    pub created: ::core::option::Option<::prost_types::Timestamp>,
+    /// Whether the bucket keeps old versions of objects. UNKNOWN when it was not read, such as in a
+    /// list without details.
+    #[prost(enumeration = "rst_bucket::Versioning", tag = "3")]
+    pub versioning: i32,
+    /// The bucket's tags. Empty when it has none, or when they were not read.
+    #[prost(map = "string, string", tag = "4")]
+    pub tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// True when versioning and tags were read.
+    #[prost(bool, tag = "5")]
+    pub details: bool,
+    /// The IDs of the live targets whose effective configuration uses this bucket.
+    #[prost(uint32, repeated, tag = "6")]
+    pub targets: ::prost::alloc::vec::Vec<u32>,
+}
+/// Nested message and enum types in `RSTBucket`.
+pub mod rst_bucket {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Versioning {
+        Unknown = 0,
+        /// Versioning was never enabled.
+        Unversioned = 1,
+        Enabled = 2,
+        /// Versioning was enabled once and is now suspended. Old versions are kept.
+        Suspended = 3,
+    }
+    impl Versioning {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unknown => "UNKNOWN",
+                Self::Unversioned => "UNVERSIONED",
+                Self::Enabled => "ENABLED",
+                Self::Suspended => "SUSPENDED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "UNVERSIONED" => Some(Self::Unversioned),
+                "ENABLED" => Some(Self::Enabled),
+                "SUSPENDED" => Some(Self::Suspended),
+                _ => None,
+            }
+        }
+    }
+}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ListRstBucketsRequest {
+    /// Optional: The backend whose buckets to list. Empty lists the buckets of every backend whose
+    /// type can manage buckets.
+    #[prost(string, tag = "1")]
+    pub backend: ::prost::alloc::string::String,
+    /// Optional: Also read each bucket's versioning and tags. This costs extra requests per bucket.
+    #[prost(bool, tag = "2")]
+    pub details: bool,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ListRstBucketsResponse {
+    /// One entry per backend, sorted by name.
+    #[prost(message, repeated, tag = "1")]
+    pub backends: ::prost::alloc::vec::Vec<list_rst_buckets_response::BackendBuckets>,
+}
+/// Nested message and enum types in `ListRSTBucketsResponse`.
+pub mod list_rst_buckets_response {
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct BackendBuckets {
+        #[prost(string, tag = "1")]
+        pub backend: ::prost::alloc::string::String,
+        /// Sorted by name.
+        #[prost(message, repeated, tag = "2")]
+        pub buckets: ::prost::alloc::vec::Vec<super::RstBucket>,
+        /// Why the buckets of this backend could not be listed. One backend that fails does not
+        /// fail the request.
+        #[prost(string, tag = "3")]
+        pub error: ::prost::alloc::string::String,
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateRstBucketRequest {
+    /// Required: The backend whose store gets the bucket. The bucket is created in the backend's
+    /// region.
+    #[prost(string, tag = "1")]
+    pub backend: ::prost::alloc::string::String,
+    /// Required: The name of the new bucket. The store checks the name.
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional: ENABLED or SUSPENDED sets the bucket's versioning after it is created. UNKNOWN
+    /// leaves the store's default.
+    #[prost(enumeration = "rst_bucket::Versioning", tag = "3")]
+    pub versioning: i32,
+    /// Optional: Tags to set on the new bucket.
+    #[prost(map = "string, string", tag = "4")]
+    pub tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CreateRstBucketResponse {
+    /// The new bucket, with its details.
+    #[prost(message, optional, tag = "1")]
+    pub bucket: ::core::option::Option<RstBucket>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateRstBucketRequest {
+    /// Required: The backend whose store holds the bucket.
+    #[prost(string, tag = "1")]
+    pub backend: ::prost::alloc::string::String,
+    /// Required: The bucket to change.
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional: ENABLED or SUSPENDED changes the bucket's versioning. UNKNOWN leaves it.
+    /// UNVERSIONED is refused, because a store cannot turn versioning off once it was enabled.
+    #[prost(enumeration = "rst_bucket::Versioning", tag = "3")]
+    pub versioning: i32,
+    /// Optional: Tags to add, or to change the value of.
+    #[prost(map = "string, string", tag = "4")]
+    pub set_tags: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// Optional: Keys of the tags to remove. A key that is not set is ignored.
+    #[prost(string, repeated, tag = "5")]
+    pub remove_tags: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// Optional: Remove every tag before set_tags is applied.
+    #[prost(bool, tag = "6")]
+    pub clear_tags: bool,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UpdateRstBucketResponse {
+    /// The bucket after the change, with its details.
+    #[prost(message, optional, tag = "1")]
+    pub bucket: ::core::option::Option<RstBucket>,
+}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct DeleteRstBucketRequest {
+    /// Required: The backend whose store holds the bucket.
+    #[prost(string, tag = "1")]
+    pub backend: ::prost::alloc::string::String,
+    /// Required: The bucket to delete.
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    /// Optional: Delete a bucket that holds objects. BeeRemote first deletes every object, every old
+    /// version of an object, and every unfinished multipart upload. Without force, a bucket that
+    /// holds any of them is refused with FAILED_PRECONDITION. A bucket a live target uses is
+    /// refused with FAILED_PRECONDITION, with or without force.
+    #[prost(bool, tag = "3")]
+    pub force: bool,
+}
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct DeleteRstBucketResponse {
+    /// The number of objects and object versions deleted to empty the bucket.
+    #[prost(int64, tag = "1")]
+    pub deleted_objects: i64,
+    /// The number of unfinished multipart uploads aborted to empty the bucket.
+    #[prost(int64, tag = "2")]
+    pub aborted_uploads: i64,
+}
 /// ApplyResult reports how a change to the remote storage targets reached the worker nodes.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ApplyResult {
@@ -1455,6 +1639,106 @@ pub mod bee_remote_client {
                 .insert(GrpcMethod::new("beeremote.BeeRemote", "VerifyRSTBackend"));
             self.inner.unary(req, path, codec).await
         }
+        /// ListRSTBuckets, CreateRSTBucket, UpdateRSTBucket and DeleteRSTBucket manage the buckets in
+        /// the store of a backend. BeeRemote runs each request against the store with the backend's
+        /// settings. These requests change the store, not BeeRemote's configuration, so nothing is
+        /// applied to worker nodes.
+        pub async fn list_rst_buckets(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ListRstBucketsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListRstBucketsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/ListRSTBuckets",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "ListRSTBuckets"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn create_rst_bucket(
+            &mut self,
+            request: impl tonic::IntoRequest<super::CreateRstBucketRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CreateRstBucketResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/CreateRSTBucket",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "CreateRSTBucket"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn update_rst_bucket(
+            &mut self,
+            request: impl tonic::IntoRequest<super::UpdateRstBucketRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateRstBucketResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/UpdateRSTBucket",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "UpdateRSTBucket"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn delete_rst_bucket(
+            &mut self,
+            request: impl tonic::IntoRequest<super::DeleteRstBucketRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeleteRstBucketResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/beeremote.BeeRemote/DeleteRSTBucket",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("beeremote.BeeRemote", "DeleteRSTBucket"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -1605,6 +1889,38 @@ pub mod bee_remote_server {
             request: tonic::Request<super::VerifyRstBackendRequest>,
         ) -> std::result::Result<
             tonic::Response<super::VerifyRstBackendResponse>,
+            tonic::Status,
+        >;
+        /// ListRSTBuckets, CreateRSTBucket, UpdateRSTBucket and DeleteRSTBucket manage the buckets in
+        /// the store of a backend. BeeRemote runs each request against the store with the backend's
+        /// settings. These requests change the store, not BeeRemote's configuration, so nothing is
+        /// applied to worker nodes.
+        async fn list_rst_buckets(
+            &self,
+            request: tonic::Request<super::ListRstBucketsRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ListRstBucketsResponse>,
+            tonic::Status,
+        >;
+        async fn create_rst_bucket(
+            &self,
+            request: tonic::Request<super::CreateRstBucketRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::CreateRstBucketResponse>,
+            tonic::Status,
+        >;
+        async fn update_rst_bucket(
+            &self,
+            request: tonic::Request<super::UpdateRstBucketRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::UpdateRstBucketResponse>,
+            tonic::Status,
+        >;
+        async fn delete_rst_bucket(
+            &self,
+            request: tonic::Request<super::DeleteRstBucketRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::DeleteRstBucketResponse>,
             tonic::Status,
         >;
     }
@@ -2351,6 +2667,186 @@ pub mod bee_remote_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = VerifyRSTBackendSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/ListRSTBuckets" => {
+                    #[allow(non_camel_case_types)]
+                    struct ListRSTBucketsSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::ListRstBucketsRequest>
+                    for ListRSTBucketsSvc<T> {
+                        type Response = super::ListRstBucketsResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ListRstBucketsRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::list_rst_buckets(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = ListRSTBucketsSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/CreateRSTBucket" => {
+                    #[allow(non_camel_case_types)]
+                    struct CreateRSTBucketSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::CreateRstBucketRequest>
+                    for CreateRSTBucketSvc<T> {
+                        type Response = super::CreateRstBucketResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::CreateRstBucketRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::create_rst_bucket(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = CreateRSTBucketSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/UpdateRSTBucket" => {
+                    #[allow(non_camel_case_types)]
+                    struct UpdateRSTBucketSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::UpdateRstBucketRequest>
+                    for UpdateRSTBucketSvc<T> {
+                        type Response = super::UpdateRstBucketResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::UpdateRstBucketRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::update_rst_bucket(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = UpdateRSTBucketSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/beeremote.BeeRemote/DeleteRSTBucket" => {
+                    #[allow(non_camel_case_types)]
+                    struct DeleteRSTBucketSvc<T: BeeRemote>(pub Arc<T>);
+                    impl<
+                        T: BeeRemote,
+                    > tonic::server::UnaryService<super::DeleteRstBucketRequest>
+                    for DeleteRSTBucketSvc<T> {
+                        type Response = super::DeleteRstBucketResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::DeleteRstBucketRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as BeeRemote>::delete_rst_bucket(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = DeleteRSTBucketSvc(inner);
                         let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

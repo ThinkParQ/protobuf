@@ -35,6 +35,10 @@ const (
 	BeeRemote_UpdateRSTBackend_FullMethodName = "/beeremote.BeeRemote/UpdateRSTBackend"
 	BeeRemote_DeleteRSTBackend_FullMethodName = "/beeremote.BeeRemote/DeleteRSTBackend"
 	BeeRemote_VerifyRSTBackend_FullMethodName = "/beeremote.BeeRemote/VerifyRSTBackend"
+	BeeRemote_ListRSTBuckets_FullMethodName   = "/beeremote.BeeRemote/ListRSTBuckets"
+	BeeRemote_CreateRSTBucket_FullMethodName  = "/beeremote.BeeRemote/CreateRSTBucket"
+	BeeRemote_UpdateRSTBucket_FullMethodName  = "/beeremote.BeeRemote/UpdateRSTBucket"
+	BeeRemote_DeleteRSTBucket_FullMethodName  = "/beeremote.BeeRemote/DeleteRSTBucket"
 )
 
 // BeeRemoteClient is the client API for BeeRemote service.
@@ -82,6 +86,14 @@ type BeeRemoteClient interface {
 	// BeeRemote and from every worker node. Unlike every other RST RPC, it contacts the store. It
 	// changes nothing.
 	VerifyRSTBackend(ctx context.Context, in *VerifyRSTBackendRequest, opts ...grpc.CallOption) (*VerifyRSTBackendResponse, error)
+	// ListRSTBuckets, CreateRSTBucket, UpdateRSTBucket and DeleteRSTBucket manage the buckets in
+	// the store of a backend. BeeRemote runs each request against the store with the backend's
+	// settings. These requests change the store, not BeeRemote's configuration, so nothing is
+	// applied to worker nodes.
+	ListRSTBuckets(ctx context.Context, in *ListRSTBucketsRequest, opts ...grpc.CallOption) (*ListRSTBucketsResponse, error)
+	CreateRSTBucket(ctx context.Context, in *CreateRSTBucketRequest, opts ...grpc.CallOption) (*CreateRSTBucketResponse, error)
+	UpdateRSTBucket(ctx context.Context, in *UpdateRSTBucketRequest, opts ...grpc.CallOption) (*UpdateRSTBucketResponse, error)
+	DeleteRSTBucket(ctx context.Context, in *DeleteRSTBucketRequest, opts ...grpc.CallOption) (*DeleteRSTBucketResponse, error)
 }
 
 type beeRemoteClient struct {
@@ -260,6 +272,46 @@ func (c *beeRemoteClient) VerifyRSTBackend(ctx context.Context, in *VerifyRSTBac
 	return out, nil
 }
 
+func (c *beeRemoteClient) ListRSTBuckets(ctx context.Context, in *ListRSTBucketsRequest, opts ...grpc.CallOption) (*ListRSTBucketsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListRSTBucketsResponse)
+	err := c.cc.Invoke(ctx, BeeRemote_ListRSTBuckets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beeRemoteClient) CreateRSTBucket(ctx context.Context, in *CreateRSTBucketRequest, opts ...grpc.CallOption) (*CreateRSTBucketResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateRSTBucketResponse)
+	err := c.cc.Invoke(ctx, BeeRemote_CreateRSTBucket_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beeRemoteClient) UpdateRSTBucket(ctx context.Context, in *UpdateRSTBucketRequest, opts ...grpc.CallOption) (*UpdateRSTBucketResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateRSTBucketResponse)
+	err := c.cc.Invoke(ctx, BeeRemote_UpdateRSTBucket_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *beeRemoteClient) DeleteRSTBucket(ctx context.Context, in *DeleteRSTBucketRequest, opts ...grpc.CallOption) (*DeleteRSTBucketResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteRSTBucketResponse)
+	err := c.cc.Invoke(ctx, BeeRemote_DeleteRSTBucket_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BeeRemoteServer is the server API for BeeRemote service.
 // All implementations must embed UnimplementedBeeRemoteServer
 // for forward compatibility.
@@ -305,6 +357,14 @@ type BeeRemoteServer interface {
 	// BeeRemote and from every worker node. Unlike every other RST RPC, it contacts the store. It
 	// changes nothing.
 	VerifyRSTBackend(context.Context, *VerifyRSTBackendRequest) (*VerifyRSTBackendResponse, error)
+	// ListRSTBuckets, CreateRSTBucket, UpdateRSTBucket and DeleteRSTBucket manage the buckets in
+	// the store of a backend. BeeRemote runs each request against the store with the backend's
+	// settings. These requests change the store, not BeeRemote's configuration, so nothing is
+	// applied to worker nodes.
+	ListRSTBuckets(context.Context, *ListRSTBucketsRequest) (*ListRSTBucketsResponse, error)
+	CreateRSTBucket(context.Context, *CreateRSTBucketRequest) (*CreateRSTBucketResponse, error)
+	UpdateRSTBucket(context.Context, *UpdateRSTBucketRequest) (*UpdateRSTBucketResponse, error)
+	DeleteRSTBucket(context.Context, *DeleteRSTBucketRequest) (*DeleteRSTBucketResponse, error)
 	mustEmbedUnimplementedBeeRemoteServer()
 }
 
@@ -359,6 +419,18 @@ func (UnimplementedBeeRemoteServer) DeleteRSTBackend(context.Context, *DeleteRST
 }
 func (UnimplementedBeeRemoteServer) VerifyRSTBackend(context.Context, *VerifyRSTBackendRequest) (*VerifyRSTBackendResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyRSTBackend not implemented")
+}
+func (UnimplementedBeeRemoteServer) ListRSTBuckets(context.Context, *ListRSTBucketsRequest) (*ListRSTBucketsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRSTBuckets not implemented")
+}
+func (UnimplementedBeeRemoteServer) CreateRSTBucket(context.Context, *CreateRSTBucketRequest) (*CreateRSTBucketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRSTBucket not implemented")
+}
+func (UnimplementedBeeRemoteServer) UpdateRSTBucket(context.Context, *UpdateRSTBucketRequest) (*UpdateRSTBucketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRSTBucket not implemented")
+}
+func (UnimplementedBeeRemoteServer) DeleteRSTBucket(context.Context, *DeleteRSTBucketRequest) (*DeleteRSTBucketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRSTBucket not implemented")
 }
 func (UnimplementedBeeRemoteServer) mustEmbedUnimplementedBeeRemoteServer() {}
 func (UnimplementedBeeRemoteServer) testEmbeddedByValue()                   {}
@@ -637,6 +709,78 @@ func _BeeRemote_VerifyRSTBackend_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BeeRemote_ListRSTBuckets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRSTBucketsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeeRemoteServer).ListRSTBuckets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BeeRemote_ListRSTBuckets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeeRemoteServer).ListRSTBuckets(ctx, req.(*ListRSTBucketsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeeRemote_CreateRSTBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRSTBucketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeeRemoteServer).CreateRSTBucket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BeeRemote_CreateRSTBucket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeeRemoteServer).CreateRSTBucket(ctx, req.(*CreateRSTBucketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeeRemote_UpdateRSTBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRSTBucketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeeRemoteServer).UpdateRSTBucket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BeeRemote_UpdateRSTBucket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeeRemoteServer).UpdateRSTBucket(ctx, req.(*UpdateRSTBucketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BeeRemote_DeleteRSTBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRSTBucketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BeeRemoteServer).DeleteRSTBucket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BeeRemote_DeleteRSTBucket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BeeRemoteServer).DeleteRSTBucket(ctx, req.(*DeleteRSTBucketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BeeRemote_ServiceDesc is the grpc.ServiceDesc for BeeRemote service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -695,6 +839,22 @@ var BeeRemote_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VerifyRSTBackend",
 			Handler:    _BeeRemote_VerifyRSTBackend_Handler,
+		},
+		{
+			MethodName: "ListRSTBuckets",
+			Handler:    _BeeRemote_ListRSTBuckets_Handler,
+		},
+		{
+			MethodName: "CreateRSTBucket",
+			Handler:    _BeeRemote_CreateRSTBucket_Handler,
+		},
+		{
+			MethodName: "UpdateRSTBucket",
+			Handler:    _BeeRemote_UpdateRSTBucket_Handler,
+		},
+		{
+			MethodName: "DeleteRSTBucket",
+			Handler:    _BeeRemote_DeleteRSTBucket_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -46,6 +46,14 @@ service BeeRemote {
     // BeeRemote and from every worker node. Unlike every other RST RPC, it contacts the store. It
     // changes nothing.
     rpc VerifyRSTBackend(VerifyRSTBackendRequest) returns (VerifyRSTBackendResponse);
+    // ListRSTBuckets, CreateRSTBucket, UpdateRSTBucket and DeleteRSTBucket manage the buckets in
+    // the store of a backend. BeeRemote runs each request against the store with the backend's
+    // settings. These requests change the store, not BeeRemote's configuration, so nothing is
+    // applied to worker nodes.
+    rpc ListRSTBuckets(ListRSTBucketsRequest) returns (ListRSTBucketsResponse);
+    rpc CreateRSTBucket(CreateRSTBucketRequest) returns (CreateRSTBucketResponse);
+    rpc UpdateRSTBucket(UpdateRSTBucketRequest) returns (UpdateRSTBucketResponse);
+    rpc DeleteRSTBucket(DeleteRSTBucketRequest) returns (DeleteRSTBucketResponse);
 }
 
 message SubmitJobRequest {
@@ -571,6 +579,111 @@ message VerifyRSTBackendResponse {
         // The worker node is too old to verify a backend.
         UNSUPPORTED = 4;
     }
+}
+
+// RSTBucket is one bucket in the store of a backend.
+message RSTBucket {
+    string name = 1;
+    // When the store created the bucket. Not set when the store does not report it.
+    google.protobuf.Timestamp created = 2;
+    // Whether the bucket keeps old versions of objects. UNKNOWN when it was not read, such as in a
+    // list without details.
+    Versioning versioning = 3;
+    // The bucket's tags. Empty when it has none, or when they were not read.
+    map<string, string> tags = 4;
+    // True when versioning and tags were read.
+    bool details = 5;
+    // The IDs of the live targets whose effective configuration uses this bucket.
+    repeated uint32 targets = 6;
+
+    enum Versioning {
+        UNKNOWN = 0;
+        // Versioning was never enabled.
+        UNVERSIONED = 1;
+        ENABLED = 2;
+        // Versioning was enabled once and is now suspended. Old versions are kept.
+        SUSPENDED = 3;
+    }
+}
+
+message ListRSTBucketsRequest {
+    // Optional: The backend whose buckets to list. Empty lists the buckets of every backend whose
+    // type can manage buckets.
+    string backend = 1;
+    // Optional: Also read each bucket's versioning and tags. This costs extra requests per bucket.
+    bool details = 2;
+}
+
+message ListRSTBucketsResponse {
+    // One entry per backend, sorted by name.
+    repeated BackendBuckets backends = 1;
+
+    message BackendBuckets {
+        string backend = 1;
+        // Sorted by name.
+        repeated RSTBucket buckets = 2;
+        // Why the buckets of this backend could not be listed. One backend that fails does not
+        // fail the request.
+        string error = 3;
+    }
+}
+
+message CreateRSTBucketRequest {
+    // Required: The backend whose store gets the bucket. The bucket is created in the backend's
+    // region.
+    string backend = 1;
+    // Required: The name of the new bucket. The store checks the name.
+    string name = 2;
+    // Optional: ENABLED or SUSPENDED sets the bucket's versioning after it is created. UNKNOWN
+    // leaves the store's default.
+    RSTBucket.Versioning versioning = 3;
+    // Optional: Tags to set on the new bucket.
+    map<string, string> tags = 4;
+}
+
+message CreateRSTBucketResponse {
+    // The new bucket, with its details.
+    RSTBucket bucket = 1;
+}
+
+message UpdateRSTBucketRequest {
+    // Required: The backend whose store holds the bucket.
+    string backend = 1;
+    // Required: The bucket to change.
+    string name = 2;
+    // Optional: ENABLED or SUSPENDED changes the bucket's versioning. UNKNOWN leaves it.
+    // UNVERSIONED is refused, because a store cannot turn versioning off once it was enabled.
+    RSTBucket.Versioning versioning = 3;
+    // Optional: Tags to add, or to change the value of.
+    map<string, string> set_tags = 4;
+    // Optional: Keys of the tags to remove. A key that is not set is ignored.
+    repeated string remove_tags = 5;
+    // Optional: Remove every tag before set_tags is applied.
+    bool clear_tags = 6;
+}
+
+message UpdateRSTBucketResponse {
+    // The bucket after the change, with its details.
+    RSTBucket bucket = 1;
+}
+
+message DeleteRSTBucketRequest {
+    // Required: The backend whose store holds the bucket.
+    string backend = 1;
+    // Required: The bucket to delete.
+    string name = 2;
+    // Optional: Delete a bucket that holds objects. BeeRemote first deletes every object, every old
+    // version of an object, and every unfinished multipart upload. Without force, a bucket that
+    // holds any of them is refused with FAILED_PRECONDITION. A bucket a live target uses is
+    // refused with FAILED_PRECONDITION, with or without force.
+    bool force = 3;
+}
+
+message DeleteRSTBucketResponse {
+    // The number of objects and object versions deleted to empty the bucket.
+    int64 deleted_objects = 1;
+    // The number of unfinished multipart uploads aborted to empty the bucket.
+    int64 aborted_uploads = 2;
 }
 
 // ApplyResult reports how a change to the remote storage targets reached the worker nodes.
