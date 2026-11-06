@@ -27,6 +27,7 @@ const (
 	WorkerNode_UpdateWork_FullMethodName      = "/flex.WorkerNode/UpdateWork"
 	WorkerNode_BulkUpdateWork_FullMethodName  = "/flex.WorkerNode/BulkUpdateWork"
 	WorkerNode_GetCapabilities_FullMethodName = "/flex.WorkerNode/GetCapabilities"
+	WorkerNode_VerifyBackend_FullMethodName   = "/flex.WorkerNode/VerifyBackend"
 )
 
 // WorkerNodeClient is the client API for WorkerNode service.
@@ -46,6 +47,9 @@ type WorkerNodeClient interface {
 	// if it is being removed.
 	BulkUpdateWork(ctx context.Context, in *BulkUpdateWorkRequest, opts ...grpc.CallOption) (*BulkUpdateWorkResponse, error)
 	GetCapabilities(ctx context.Context, in *GetCapabilitiesRequest, opts ...grpc.CallOption) (*GetCapabilitiesResponse, error)
+	// VerifyBackend checks that the node can reach and authenticate to the store of a backend (see
+	// RemoteStorageTarget.backend). It contacts the store, and changes nothing on the node.
+	VerifyBackend(ctx context.Context, in *VerifyBackendRequest, opts ...grpc.CallOption) (*VerifyBackendResponse, error)
 }
 
 type workerNodeClient struct {
@@ -116,6 +120,16 @@ func (c *workerNodeClient) GetCapabilities(ctx context.Context, in *GetCapabilit
 	return out, nil
 }
 
+func (c *workerNodeClient) VerifyBackend(ctx context.Context, in *VerifyBackendRequest, opts ...grpc.CallOption) (*VerifyBackendResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VerifyBackendResponse)
+	err := c.cc.Invoke(ctx, WorkerNode_VerifyBackend_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WorkerNodeServer is the server API for WorkerNode service.
 // All implementations must embed UnimplementedWorkerNodeServer
 // for forward compatibility.
@@ -133,6 +147,9 @@ type WorkerNodeServer interface {
 	// if it is being removed.
 	BulkUpdateWork(context.Context, *BulkUpdateWorkRequest) (*BulkUpdateWorkResponse, error)
 	GetCapabilities(context.Context, *GetCapabilitiesRequest) (*GetCapabilitiesResponse, error)
+	// VerifyBackend checks that the node can reach and authenticate to the store of a backend (see
+	// RemoteStorageTarget.backend). It contacts the store, and changes nothing on the node.
+	VerifyBackend(context.Context, *VerifyBackendRequest) (*VerifyBackendResponse, error)
 	mustEmbedUnimplementedWorkerNodeServer()
 }
 
@@ -160,6 +177,9 @@ func (UnimplementedWorkerNodeServer) BulkUpdateWork(context.Context, *BulkUpdate
 }
 func (UnimplementedWorkerNodeServer) GetCapabilities(context.Context, *GetCapabilitiesRequest) (*GetCapabilitiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCapabilities not implemented")
+}
+func (UnimplementedWorkerNodeServer) VerifyBackend(context.Context, *VerifyBackendRequest) (*VerifyBackendResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyBackend not implemented")
 }
 func (UnimplementedWorkerNodeServer) mustEmbedUnimplementedWorkerNodeServer() {}
 func (UnimplementedWorkerNodeServer) testEmbeddedByValue()                    {}
@@ -290,6 +310,24 @@ func _WorkerNode_GetCapabilities_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WorkerNode_VerifyBackend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyBackendRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkerNodeServer).VerifyBackend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkerNode_VerifyBackend_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkerNodeServer).VerifyBackend(ctx, req.(*VerifyBackendRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WorkerNode_ServiceDesc is the grpc.ServiceDesc for WorkerNode service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -320,6 +358,10 @@ var WorkerNode_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCapabilities",
 			Handler:    _WorkerNode_GetCapabilities_Handler,
+		},
+		{
+			MethodName: "VerifyBackend",
+			Handler:    _WorkerNode_VerifyBackend_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
