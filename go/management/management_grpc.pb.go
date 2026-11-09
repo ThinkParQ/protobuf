@@ -41,6 +41,7 @@ const (
 	Management_GetQuotaLimits_FullMethodName               = "/management.Management/GetQuotaLimits"
 	Management_GetQuotaUsage_FullMethodName                = "/management.Management/GetQuotaUsage"
 	Management_GetLicense_FullMethodName                   = "/management.Management/GetLicense"
+	Management_RegisterIdentity_FullMethodName             = "/management.Management/RegisterIdentity"
 )
 
 // ManagementClient is the client API for Management service.
@@ -76,6 +77,7 @@ type ManagementClient interface {
 	GetQuotaUsage(ctx context.Context, in *GetQuotaUsageRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetQuotaUsageResponse], error)
 	// Licensing
 	GetLicense(ctx context.Context, in *GetLicenseRequest, opts ...grpc.CallOption) (*GetLicenseResponse, error)
+	RegisterIdentity(ctx context.Context, in *RegisterIdentityRequest, opts ...grpc.CallOption) (*RegisterIdentityResponse, error)
 }
 
 type managementClient struct {
@@ -324,6 +326,16 @@ func (c *managementClient) GetLicense(ctx context.Context, in *GetLicenseRequest
 	return out, nil
 }
 
+func (c *managementClient) RegisterIdentity(ctx context.Context, in *RegisterIdentityRequest, opts ...grpc.CallOption) (*RegisterIdentityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RegisterIdentityResponse)
+	err := c.cc.Invoke(ctx, Management_RegisterIdentity_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ManagementServer is the server API for Management service.
 // All implementations must embed UnimplementedManagementServer
 // for forward compatibility.
@@ -357,6 +369,7 @@ type ManagementServer interface {
 	GetQuotaUsage(*GetQuotaUsageRequest, grpc.ServerStreamingServer[GetQuotaUsageResponse]) error
 	// Licensing
 	GetLicense(context.Context, *GetLicenseRequest) (*GetLicenseResponse, error)
+	RegisterIdentity(context.Context, *RegisterIdentityRequest) (*RegisterIdentityResponse, error)
 	mustEmbedUnimplementedManagementServer()
 }
 
@@ -432,6 +445,9 @@ func (UnimplementedManagementServer) GetQuotaUsage(*GetQuotaUsageRequest, grpc.S
 }
 func (UnimplementedManagementServer) GetLicense(context.Context, *GetLicenseRequest) (*GetLicenseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLicense not implemented")
+}
+func (UnimplementedManagementServer) RegisterIdentity(context.Context, *RegisterIdentityRequest) (*RegisterIdentityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterIdentity not implemented")
 }
 func (UnimplementedManagementServer) mustEmbedUnimplementedManagementServer() {}
 func (UnimplementedManagementServer) testEmbeddedByValue()                    {}
@@ -836,6 +852,24 @@ func _Management_GetLicense_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Management_RegisterIdentity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterIdentityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).RegisterIdentity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_RegisterIdentity_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).RegisterIdentity(ctx, req.(*RegisterIdentityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Management_ServiceDesc is the grpc.ServiceDesc for Management service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -922,6 +956,10 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLicense",
 			Handler:    _Management_GetLicense_Handler,
+		},
+		{
+			MethodName: "RegisterIdentity",
+			Handler:    _Management_RegisterIdentity_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

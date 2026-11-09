@@ -41,6 +41,8 @@ service Management {
 
   // Licensing
   rpc GetLicense(GetLicenseRequest) returns (GetLicenseResponse);
+
+  rpc RegisterIdentity(RegisterIdentityRequest) returns (RegisterIdentityResponse);
 }
 
 // Sets an entity alias.
@@ -585,3 +587,9 @@ message GetLicenseResponse {
   optional license.GetCertDataResult cert_data = 1;
 }
 
+message RegisterIdentityRequest {
+  optional string name = 1;
+}
+message RegisterIdentityResponse {
+  optional int64 identity_id = 1;
+}
