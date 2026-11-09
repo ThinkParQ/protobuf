@@ -43,6 +43,7 @@ service Management {
   rpc GetLicense(GetLicenseRequest) returns (GetLicenseResponse);
 
   rpc RegisterIdentity(RegisterIdentityRequest) returns (RegisterIdentityResponse);
+  rpc GetIdentities(GetIdentitiesRequest) returns (GetIdentitiesResponse);
 }
 
 // Sets an entity alias.
@@ -592,4 +593,15 @@ message RegisterIdentityRequest {
 }
 message RegisterIdentityResponse {
   optional int64 identity_id = 1;
+}
+
+message GetIdentitiesRequest {}
+message GetIdentitiesResponse {
+  message IdentityKey {
+    optional string key_id = 1;
+    optional int64 identity_id = 2;
+    optional beegfs.EntityIdSet node = 3;
+  }
+
+  repeated IdentityKey keys = 1;
 }

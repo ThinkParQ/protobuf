@@ -734,6 +734,25 @@ pub struct RegisterIdentityResponse {
     #[prost(int64, optional, tag = "1")]
     pub identity_id: ::core::option::Option<i64>,
 }
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GetIdentitiesRequest {}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetIdentitiesResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<get_identities_response::IdentityKey>,
+}
+/// Nested message and enum types in `GetIdentitiesResponse`.
+pub mod get_identities_response {
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct IdentityKey {
+        #[prost(string, optional, tag = "1")]
+        pub key_id: ::core::option::Option<::prost::alloc::string::String>,
+        #[prost(int64, optional, tag = "2")]
+        pub identity_id: ::core::option::Option<i64>,
+        #[prost(message, optional, tag = "3")]
+        pub node: ::core::option::Option<super::super::beegfs::EntityIdSet>,
+    }
+}
 /// Generated client implementations.
 pub mod management_client {
     #![allow(
@@ -1391,6 +1410,30 @@ pub mod management_client {
                 .insert(GrpcMethod::new("management.Management", "RegisterIdentity"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn get_identities(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetIdentitiesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetIdentitiesResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/GetIdentities",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "GetIdentities"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -1584,6 +1627,13 @@ pub mod management_server {
             request: tonic::Request<super::RegisterIdentityRequest>,
         ) -> std::result::Result<
             tonic::Response<super::RegisterIdentityResponse>,
+            tonic::Status,
+        >;
+        async fn get_identities(
+            &self,
+            request: tonic::Request<super::GetIdentitiesRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetIdentitiesResponse>,
             tonic::Status,
         >;
     }
@@ -2693,6 +2743,51 @@ pub mod management_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = RegisterIdentitySvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/GetIdentities" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetIdentitiesSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::GetIdentitiesRequest>
+                    for GetIdentitiesSvc<T> {
+                        type Response = super::GetIdentitiesResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetIdentitiesRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::get_identities(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = GetIdentitiesSvc(inner);
                         let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

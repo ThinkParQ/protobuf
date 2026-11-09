@@ -42,6 +42,7 @@ const (
 	Management_GetQuotaUsage_FullMethodName                = "/management.Management/GetQuotaUsage"
 	Management_GetLicense_FullMethodName                   = "/management.Management/GetLicense"
 	Management_RegisterIdentity_FullMethodName             = "/management.Management/RegisterIdentity"
+	Management_GetIdentities_FullMethodName                = "/management.Management/GetIdentities"
 )
 
 // ManagementClient is the client API for Management service.
@@ -78,6 +79,7 @@ type ManagementClient interface {
 	// Licensing
 	GetLicense(ctx context.Context, in *GetLicenseRequest, opts ...grpc.CallOption) (*GetLicenseResponse, error)
 	RegisterIdentity(ctx context.Context, in *RegisterIdentityRequest, opts ...grpc.CallOption) (*RegisterIdentityResponse, error)
+	GetIdentities(ctx context.Context, in *GetIdentitiesRequest, opts ...grpc.CallOption) (*GetIdentitiesResponse, error)
 }
 
 type managementClient struct {
@@ -336,6 +338,16 @@ func (c *managementClient) RegisterIdentity(ctx context.Context, in *RegisterIde
 	return out, nil
 }
 
+func (c *managementClient) GetIdentities(ctx context.Context, in *GetIdentitiesRequest, opts ...grpc.CallOption) (*GetIdentitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetIdentitiesResponse)
+	err := c.cc.Invoke(ctx, Management_GetIdentities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ManagementServer is the server API for Management service.
 // All implementations must embed UnimplementedManagementServer
 // for forward compatibility.
@@ -370,6 +382,7 @@ type ManagementServer interface {
 	// Licensing
 	GetLicense(context.Context, *GetLicenseRequest) (*GetLicenseResponse, error)
 	RegisterIdentity(context.Context, *RegisterIdentityRequest) (*RegisterIdentityResponse, error)
+	GetIdentities(context.Context, *GetIdentitiesRequest) (*GetIdentitiesResponse, error)
 	mustEmbedUnimplementedManagementServer()
 }
 
@@ -448,6 +461,9 @@ func (UnimplementedManagementServer) GetLicense(context.Context, *GetLicenseRequ
 }
 func (UnimplementedManagementServer) RegisterIdentity(context.Context, *RegisterIdentityRequest) (*RegisterIdentityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterIdentity not implemented")
+}
+func (UnimplementedManagementServer) GetIdentities(context.Context, *GetIdentitiesRequest) (*GetIdentitiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetIdentities not implemented")
 }
 func (UnimplementedManagementServer) mustEmbedUnimplementedManagementServer() {}
 func (UnimplementedManagementServer) testEmbeddedByValue()                    {}
@@ -870,6 +886,24 @@ func _Management_RegisterIdentity_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Management_GetIdentities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetIdentitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagementServer).GetIdentities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Management_GetIdentities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagementServer).GetIdentities(ctx, req.(*GetIdentitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Management_ServiceDesc is the grpc.ServiceDesc for Management service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -960,6 +994,10 @@ var Management_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegisterIdentity",
 			Handler:    _Management_RegisterIdentity_Handler,
+		},
+		{
+			MethodName: "GetIdentities",
+			Handler:    _Management_GetIdentities_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
