@@ -813,7 +813,7 @@ pub struct GenerateIdentityTokenRequest {
     #[prost(enumeration = "generate_identity_token_request::Scope", optional, tag = "1")]
     pub scope: ::core::option::Option<i32>,
     #[prost(bool, optional, tag = "2")]
-    pub permanent: ::core::option::Option<bool>,
+    pub reusable: ::core::option::Option<bool>,
     #[prost(string, optional, tag = "3")]
     pub comment: ::core::option::Option<::prost::alloc::string::String>,
 }
