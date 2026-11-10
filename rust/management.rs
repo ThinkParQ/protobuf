@@ -728,11 +728,62 @@ pub struct GetLicenseResponse {
 pub struct RegisterIdentityRequest {
     #[prost(string, optional, tag = "1")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, optional, tag = "2")]
+    pub identity_token: ::core::option::Option<::prost::alloc::string::String>,
 }
-#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RegisterIdentityResponse {
     #[prost(int64, optional, tag = "1")]
     pub identity_id: ::core::option::Option<i64>,
+    #[prost(enumeration = "register_identity_response::Status", optional, tag = "2")]
+    pub status: ::core::option::Option<i32>,
+    #[prost(string, optional, tag = "3")]
+    pub message: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `RegisterIdentityResponse`.
+pub mod register_identity_response {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Status {
+        Unspecified = 0,
+        Ok = 1,
+        Pending = 2,
+        Rejected = 3,
+    }
+    impl Status {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "STATUS_UNSPECIFIED",
+                Self::Ok => "STATUS_OK",
+                Self::Pending => "STATUS_PENDING",
+                Self::Rejected => "STATUS_REJECTED",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "STATUS_UNSPECIFIED" => Some(Self::Unspecified),
+                "STATUS_OK" => Some(Self::Ok),
+                "STATUS_PENDING" => Some(Self::Pending),
+                "STATUS_REJECTED" => Some(Self::Rejected),
+                _ => None,
+            }
+        }
+    }
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct GetIdentitiesRequest {}
@@ -755,6 +806,149 @@ pub mod get_identities_response {
         pub node: ::core::option::Option<super::super::beegfs::EntityIdSet>,
     }
 }
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GenerateIdentityTokenRequest {
+    #[prost(enumeration = "generate_identity_token_request::Scope", optional, tag = "1")]
+    pub scope: ::core::option::Option<i32>,
+    #[prost(bool, optional, tag = "2")]
+    pub permanent: ::core::option::Option<bool>,
+    #[prost(string, optional, tag = "3")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `GenerateIdentityTokenRequest`.
+pub mod generate_identity_token_request {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Scope {
+        Unspecified = 0,
+        Client = 1,
+        Admin = 2,
+    }
+    impl Scope {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Self::Unspecified => "SCOPE_UNSPECIFIED",
+                Self::Client => "SCOPE_CLIENT",
+                Self::Admin => "SCOPE_ADMIN",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "SCOPE_UNSPECIFIED" => Some(Self::Unspecified),
+                "SCOPE_CLIENT" => Some(Self::Client),
+                "SCOPE_ADMIN" => Some(Self::Admin),
+                _ => None,
+            }
+        }
+    }
+}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GenerateIdentityTokenResponse {
+    #[prost(string, optional, tag = "1")]
+    pub token: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GetPendingKeysRequest {}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetPendingKeysResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub keys: ::prost::alloc::vec::Vec<get_pending_keys_response::PendingKey>,
+}
+/// Nested message and enum types in `GetPendingKeysResponse`.
+pub mod get_pending_keys_response {
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+    pub struct PendingKey {
+        #[prost(string, optional, tag = "1")]
+        pub key_id: ::core::option::Option<::prost::alloc::string::String>,
+        #[prost(enumeration = "pending_key::Category", optional, tag = "2")]
+        pub category: ::core::option::Option<i32>,
+        #[prost(enumeration = "super::super::beegfs::NodeType", optional, tag = "3")]
+        pub node_type: ::core::option::Option<i32>,
+        #[prost(uint32, optional, tag = "4")]
+        pub node_id: ::core::option::Option<u32>,
+        #[prost(string, optional, tag = "5")]
+        pub name: ::core::option::Option<::prost::alloc::string::String>,
+        #[prost(string, optional, tag = "6")]
+        pub addr: ::core::option::Option<::prost::alloc::string::String>,
+        #[prost(bool, optional, tag = "7")]
+        pub rejected: ::core::option::Option<bool>,
+        #[prost(int64, optional, tag = "8")]
+        pub first_seen_unix: ::core::option::Option<i64>,
+        #[prost(int64, optional, tag = "9")]
+        pub last_seen_unix: ::core::option::Option<i64>,
+    }
+    /// Nested message and enum types in `PendingKey`.
+    pub mod pending_key {
+        #[derive(
+            Clone,
+            Copy,
+            Debug,
+            PartialEq,
+            Eq,
+            Hash,
+            PartialOrd,
+            Ord,
+            ::prost::Enumeration
+        )]
+        #[repr(i32)]
+        pub enum Category {
+            Unspecified = 0,
+            Client = 1,
+            Server = 2,
+        }
+        impl Category {
+            /// String value of the enum field names used in the ProtoBuf definition.
+            ///
+            /// The values are not transformed in any way and thus are considered stable
+            /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+            pub fn as_str_name(&self) -> &'static str {
+                match self {
+                    Self::Unspecified => "CATEGORY_UNSPECIFIED",
+                    Self::Client => "CATEGORY_CLIENT",
+                    Self::Server => "CATEGORY_SERVER",
+                }
+            }
+            /// Creates an enum from field names used in the ProtoBuf definition.
+            pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+                match value {
+                    "CATEGORY_UNSPECIFIED" => Some(Self::Unspecified),
+                    "CATEGORY_CLIENT" => Some(Self::Client),
+                    "CATEGORY_SERVER" => Some(Self::Server),
+                    _ => None,
+                }
+            }
+        }
+    }
+}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ApproveKeysRequest {
+    #[prost(string, repeated, tag = "1")]
+    pub key_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct ApproveKeysResponse {}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct RejectKeysRequest {
+    #[prost(string, repeated, tag = "1")]
+    pub key_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct RejectKeysResponse {}
 /// Generated client implementations.
 pub mod management_client {
     #![allow(
@@ -1436,6 +1630,104 @@ pub mod management_client {
                 .insert(GrpcMethod::new("management.Management", "GetIdentities"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn generate_identity_token(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GenerateIdentityTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateIdentityTokenResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/GenerateIdentityToken",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("management.Management", "GenerateIdentityToken"),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn get_pending_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<super::GetPendingKeysRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetPendingKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/GetPendingKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "GetPendingKeys"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn approve_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<super::ApproveKeysRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ApproveKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/ApproveKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "ApproveKeys"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn reject_keys(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RejectKeysRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RejectKeysResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::unknown(
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/management.Management/RejectKeys",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("management.Management", "RejectKeys"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated server implementations.
@@ -1636,6 +1928,34 @@ pub mod management_server {
             request: tonic::Request<super::GetIdentitiesRequest>,
         ) -> std::result::Result<
             tonic::Response<super::GetIdentitiesResponse>,
+            tonic::Status,
+        >;
+        async fn generate_identity_token(
+            &self,
+            request: tonic::Request<super::GenerateIdentityTokenRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GenerateIdentityTokenResponse>,
+            tonic::Status,
+        >;
+        async fn get_pending_keys(
+            &self,
+            request: tonic::Request<super::GetPendingKeysRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::GetPendingKeysResponse>,
+            tonic::Status,
+        >;
+        async fn approve_keys(
+            &self,
+            request: tonic::Request<super::ApproveKeysRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::ApproveKeysResponse>,
+            tonic::Status,
+        >;
+        async fn reject_keys(
+            &self,
+            request: tonic::Request<super::RejectKeysRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::RejectKeysResponse>,
             tonic::Status,
         >;
     }
@@ -2790,6 +3110,187 @@ pub mod management_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let method = GetIdentitiesSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/GenerateIdentityToken" => {
+                    #[allow(non_camel_case_types)]
+                    struct GenerateIdentityTokenSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::GenerateIdentityTokenRequest>
+                    for GenerateIdentityTokenSvc<T> {
+                        type Response = super::GenerateIdentityTokenResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GenerateIdentityTokenRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::generate_identity_token(&inner, request)
+                                    .await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = GenerateIdentityTokenSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/GetPendingKeys" => {
+                    #[allow(non_camel_case_types)]
+                    struct GetPendingKeysSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::GetPendingKeysRequest>
+                    for GetPendingKeysSvc<T> {
+                        type Response = super::GetPendingKeysResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::GetPendingKeysRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::get_pending_keys(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = GetPendingKeysSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/ApproveKeys" => {
+                    #[allow(non_camel_case_types)]
+                    struct ApproveKeysSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::ApproveKeysRequest>
+                    for ApproveKeysSvc<T> {
+                        type Response = super::ApproveKeysResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::ApproveKeysRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::approve_keys(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = ApproveKeysSvc(inner);
+                        let codec = tonic_prost::ProstCodec::default();
+                        let mut grpc = tonic::server::Grpc::new(codec)
+                            .apply_compression_config(
+                                accept_compression_encodings,
+                                send_compression_encodings,
+                            )
+                            .apply_max_message_size_config(
+                                max_decoding_message_size,
+                                max_encoding_message_size,
+                            );
+                        let res = grpc.unary(method, req).await;
+                        Ok(res)
+                    };
+                    Box::pin(fut)
+                }
+                "/management.Management/RejectKeys" => {
+                    #[allow(non_camel_case_types)]
+                    struct RejectKeysSvc<T: Management>(pub Arc<T>);
+                    impl<
+                        T: Management,
+                    > tonic::server::UnaryService<super::RejectKeysRequest>
+                    for RejectKeysSvc<T> {
+                        type Response = super::RejectKeysResponse;
+                        type Future = BoxFuture<
+                            tonic::Response<Self::Response>,
+                            tonic::Status,
+                        >;
+                        fn call(
+                            &mut self,
+                            request: tonic::Request<super::RejectKeysRequest>,
+                        ) -> Self::Future {
+                            let inner = Arc::clone(&self.0);
+                            let fut = async move {
+                                <T as Management>::reject_keys(&inner, request).await
+                            };
+                            Box::pin(fut)
+                        }
+                    }
+                    let accept_compression_encodings = self.accept_compression_encodings;
+                    let send_compression_encodings = self.send_compression_encodings;
+                    let max_decoding_message_size = self.max_decoding_message_size;
+                    let max_encoding_message_size = self.max_encoding_message_size;
+                    let inner = self.inner.clone();
+                    let fut = async move {
+                        let method = RejectKeysSvc(inner);
                         let codec = tonic_prost::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(

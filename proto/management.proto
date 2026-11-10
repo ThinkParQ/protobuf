@@ -44,6 +44,10 @@ service Management {
 
   rpc RegisterIdentity(RegisterIdentityRequest) returns (RegisterIdentityResponse);
   rpc GetIdentities(GetIdentitiesRequest) returns (GetIdentitiesResponse);
+  rpc GenerateIdentityToken(GenerateIdentityTokenRequest) returns (GenerateIdentityTokenResponse);
+  rpc GetPendingKeys(GetPendingKeysRequest) returns (GetPendingKeysResponse);
+  rpc ApproveKeys(ApproveKeysRequest) returns (ApproveKeysResponse);
+  rpc RejectKeys(RejectKeysRequest) returns (RejectKeysResponse);
 }
 
 // Sets an entity alias.
@@ -590,9 +594,19 @@ message GetLicenseResponse {
 
 message RegisterIdentityRequest {
   optional string name = 1;
+  optional string identity_token = 2;
 }
 message RegisterIdentityResponse {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_OK = 1;
+    STATUS_PENDING = 2;
+    STATUS_REJECTED = 3;
+  }
+
   optional int64 identity_id = 1;
+  optional Status status = 2;
+  optional string message = 3;
 }
 
 message GetIdentitiesRequest {}
@@ -606,3 +620,51 @@ message GetIdentitiesResponse {
   repeated IdentityKey keys = 1;
   optional uint64 version = 2;
 }
+
+message GenerateIdentityTokenRequest {
+  enum Scope {
+    SCOPE_UNSPECIFIED = 0;
+    SCOPE_CLIENT = 1;
+    SCOPE_ADMIN = 2;
+  }
+
+  optional Scope scope = 1;
+  optional bool permanent = 2;
+  optional string comment = 3;
+}
+message GenerateIdentityTokenResponse {
+  optional string token = 1;
+}
+
+message GetPendingKeysRequest {}
+message GetPendingKeysResponse {
+  message PendingKey {
+    enum Category {
+      CATEGORY_UNSPECIFIED = 0;
+      CATEGORY_CLIENT = 1;
+      CATEGORY_SERVER = 2;
+    }
+
+    optional string key_id = 1;
+    optional Category category = 2;
+    optional beegfs.NodeType node_type = 3;
+    optional uint32 node_id = 4;
+    optional string name = 5;
+    optional string addr = 6;
+    optional bool rejected = 7;
+    optional int64 first_seen_unix = 8;
+    optional int64 last_seen_unix = 9;
+  }
+
+  repeated PendingKey keys = 1;
+}
+
+message ApproveKeysRequest {
+  repeated string key_ids = 1;
+}
+message ApproveKeysResponse {}
+
+message RejectKeysRequest {
+  repeated string key_ids = 1;
+}
+message RejectKeysResponse {}
