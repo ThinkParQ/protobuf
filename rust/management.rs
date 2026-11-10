@@ -739,6 +739,8 @@ pub struct RegisterIdentityResponse {
     pub status: ::core::option::Option<i32>,
     #[prost(string, optional, tag = "3")]
     pub message: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(bool, optional, tag = "4")]
+    pub already_registered: ::core::option::Option<bool>,
 }
 /// Nested message and enum types in `RegisterIdentityResponse`.
 pub mod register_identity_response {

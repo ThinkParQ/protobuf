@@ -607,6 +607,7 @@ message RegisterIdentityResponse {
   optional int64 identity_id = 1;
   optional Status status = 2;
   optional string message = 3;
+  optional bool already_registered = 4;
 }
 
 message GetIdentitiesRequest {}
