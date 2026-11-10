@@ -740,6 +740,8 @@ pub struct GetIdentitiesRequest {}
 pub struct GetIdentitiesResponse {
     #[prost(message, repeated, tag = "1")]
     pub keys: ::prost::alloc::vec::Vec<get_identities_response::IdentityKey>,
+    #[prost(uint64, optional, tag = "2")]
+    pub version: ::core::option::Option<u64>,
 }
 /// Nested message and enum types in `GetIdentitiesResponse`.
 pub mod get_identities_response {
